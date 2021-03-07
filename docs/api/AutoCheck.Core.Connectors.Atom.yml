@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Atom
     path: ../core/connectors/Atom.cs
@@ -81,7 +81,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -201,7 +201,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Atom.cs
@@ -236,7 +236,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateAtomAgainstW3C
     path: ../core/connectors/Atom.cs

@@ -17,4 +17,6 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 inherits: "..\\templates\\web_syndication.yaml"  
-folder: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\web_syndication\\Student Name 1"
+single:
+  local:
+    folder:  "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\web_syndication\\Student Name 1"

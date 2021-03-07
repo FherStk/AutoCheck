@@ -97,13 +97,13 @@ body:
 ```
 
 ### Running a remote command:
-*AutoCheck will provide a way to run scripts directly into remote hosts, but at the momenti is still under development; however, the RemoteShell Connector can be used in order to run remote commands.*
 
 ```
-name: "Local command example (with no vars)"
+name: "Remote command example (with no vars)"
 body:   
 - connector:            
-      type: "RemoteShell"        
+      type: "Shell"    
+      name: "RemoteShell"    
       arguments: "--remoteOS GNU --host 192.168.1.196 --username user --password pwd"    
 
   - question: 
@@ -260,7 +260,7 @@ CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right
 CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
-REMOTE_OS | [GNU | WIN | MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
+REMOTE_OS | [GNU; WIN; MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
 REMOTE_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
 REMOTE_USER | text | Only for remote batch mode: the username for the current remote batch execution.
 REMOTE_PORT | number | Only for remote batch mode: the ssh port for the current remote batch execution.
@@ -526,16 +526,18 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 path | text | no (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
 
 #### <a name="remote"></a>remote
 Remote batch target, so each script body will be executed once per remote target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-os   | [GNU | WIN | MAC] | no | The remote OS family | `GNU`
+os   | [GNU; WIN; MAC] | no | The remote OS family | `GNU`
 host | text | yes | The script will be executed once for each defined host address or name, be aware that **defining a range of hosts is still not supported**, but the `remote` block can be repeated if needed. | 
 user | text | yes | The username used to connect with the remote host. | 
 password | text | no | The password used to connect with the remote host. | (Blank password)
 port   | number | no | The remote SSH port used to connect with. | 22
 path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 

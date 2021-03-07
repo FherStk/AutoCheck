@@ -28,73 +28,98 @@ namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
     public class Css : Test
-    {       
+    {    
         [Test]
-        public void Constructor()
-        {           
-            //Local  
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, _FAKE)));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")));
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.css"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(OS.GNU, host, username, password, file));  
+        [TestCase("empty.css")]
+        [TestCase("correct.css")]
+        [TestCase("incorrect.css")]
+        public void Constructor_Local_DoesNotThrow(string file)
+        {      
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)));
         }
 
         [Test]
-        public void ValidateCss3AgainstW3C()
+        [TestCase("correct.css", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {     
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
+        }
+
+        [Test]
+        [TestCase("")]        
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(file));
+        }
+
+        [Test]
+        [TestCase(_FAKE)]        
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)));
+        }
+
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]        
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {      
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]        
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, file));
+        }
+       
+        [Test]
+        [TestCase("empty.css")]
+        [TestCase("correct.css")]
+        public void ValidateCss3AgainstW3C_DoesNotThrow(string file)
         {            
-            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "empty.css")))
+            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
                 Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
-
-            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
-                Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
-
-            using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "incorrect.css")))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());            
         }
 
         [Test]
-        public void PropertyExists()
+        [TestCase("incorrect.css")]
+        public void ValidateCss3AgainstW3C_Throws_DocumentInvalidException(string file)
         {            
-            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
-            {
-                Assert.IsTrue(css.PropertyExists("color"));                  
-                Assert.IsTrue(css.PropertyExists("font"));
-                Assert.IsTrue(css.PropertyExists("font-size"));
-                Assert.IsTrue(css.PropertyExists("line"));
-                Assert.IsTrue(css.PropertyExists("line-height"));
-                Assert.IsTrue(css.PropertyExists("line-height", "1"));
-                Assert.IsFalse(css.PropertyExists("float"));                      
-            }
+           using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());
         }
 
         [Test]
-        public void PropertyApplied()
+        [TestCase("correct.css","color", null, ExpectedResult = true)]
+        [TestCase("correct.css","font", null, ExpectedResult = true)]
+        [TestCase("correct.css","font-size", null, ExpectedResult = true)]
+        [TestCase("correct.css","line", null, ExpectedResult = true)]
+        [TestCase("correct.css","line-height", null, ExpectedResult = true)]
+        [TestCase("correct.css","line-height", "1", ExpectedResult = true)]
+        [TestCase("correct.css","float", null, ExpectedResult = false)]        
+        public bool PropertyExists_DoesNotThrow(string file, string property, string value)
         {            
-            using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), "correct.html")))
-            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, "correct.css")))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
+                return css.PropertyExists(property, value);                
+        }
+
+        [Test]
+        [TestCase("correct.html", "correct.css", "color", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "font", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "font-size", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line-height", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "line-height", "1", ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
+        [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
+        public bool PropertyApplied_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
+        {            
+            using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), htmlFile)))
+            using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, cssFile)))
             {
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "color"));                  
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "font-size"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line-height"));
-                Assert.IsTrue(css.PropertyApplied(html.HtmlDoc, "line-height", "1"));
-                Assert.IsFalse(css.PropertyApplied(html.HtmlDoc, "float"));      
-                Assert.IsFalse(css.PropertyApplied(html.HtmlDoc, "text-shadow", "none"));                      
+                return css.PropertyApplied(html.HtmlDoc, property, value);                
             }
         }
     }

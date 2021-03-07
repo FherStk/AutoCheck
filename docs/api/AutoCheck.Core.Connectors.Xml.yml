@@ -28,7 +28,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Xml
     path: ../core/connectors/Xml.cs
@@ -79,7 +79,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Comments
     path: ../core/connectors/Xml.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlDoc
     path: ../core/connectors/Xml.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Xml.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -229,7 +229,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -274,7 +274,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Xml.cs
@@ -317,7 +317,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Xml.cs
@@ -352,7 +352,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
@@ -393,7 +393,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Xml.cs
@@ -437,7 +437,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
@@ -478,7 +478,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Xml.cs
@@ -522,7 +522,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs
@@ -563,7 +563,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Equals
     path: ../core/connectors/Xml.cs

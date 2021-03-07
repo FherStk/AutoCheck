@@ -31,100 +31,123 @@ namespace AutoCheck.Test.Connectors
     public class Html : Test
     {       
         [Test]
-        public void Constructor()
-        {           
-            //Local 
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.html"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Html(OS.GNU, host, username, password, file));            
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html(file));
         }
 
         [Test]
-        public void ValidateHtml5AgainstW3C()
-        {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html")))
-                Assert.DoesNotThrow(() => conn.ValidateHtml5AgainstW3C());
-
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "incorrect.html")))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
-
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "empty.html")))
-                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
-        }      
+        [TestCase("someFile.ext")]
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)));
+        }
+   
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Html(remoteOS, host, username, password, file));
+        }
 
         [Test]
-        public void CountNodes()
+        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Html(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase("correct.html", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {           
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Html(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));            
+        }
+
+        [Test]
+        [TestCase("incorrect.html")]
+        [TestCase("empty.html")]
+        public void ValidateHtml5AgainstW3C_Throws_DocumentInvalidException(string file)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.Throws<DocumentInvalidException>(() => conn.ValidateHtml5AgainstW3C());            
+        } 
+
+        [Test]
+        [TestCase("correct.html")]
+        public void ValidateHtml5AgainstW3C_DoesNotThrow(string file)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.DoesNotThrow(() => conn.ValidateHtml5AgainstW3C());            
+        }  
+
+        [Test]
+        [TestCase("correct.html", "//body", ExpectedResult = 1)]
+        [TestCase("correct.html", "//body/p", ExpectedResult = 3)]
+        [TestCase("correct.html", "//body/div/p", ExpectedResult = 3)]
+        [TestCase("correct.html", "//p", ExpectedResult = 6)]
+        [TestCase("correct.html", "//body//p", ExpectedResult = 6)]
+        [TestCase("correct.html", "//body/.//input", ExpectedResult = 3)]
+        [TestCase("correct.html", "//input[@type='text']", ExpectedResult = 2)]
+        [TestCase("correct.html", "//input[@type='text'] | //input[@type='email']", ExpectedResult = 3)]
+        public int CountNodes_DoesNotThrow(string file, string xpath)
         {                        
             //Internally uses SelectNodes
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
-                Assert.AreNotEqual(0, conn.CountNodes("//body"));
-                Assert.AreEqual(3, conn.CountNodes("//body/p"));
-                Assert.AreEqual(3, conn.CountNodes("//body/div/p"));
-                Assert.AreEqual(6, conn.CountNodes("//p"));
-                Assert.AreEqual(6, conn.CountNodes("//body//p"));
-                Assert.AreEqual(3, conn.CountNodes("//body/.//input"));
-                Assert.AreEqual(2, conn.CountNodes("//input[@type='text']"));
-                Assert.AreEqual(3, conn.CountNodes("//input[@type='text'] | //input[@type='email']"));
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                return conn.CountNodes(xpath);
         }      
 
         [Test]
-        public void CountSiblings()
+        [TestCase("correct.html", "//body", ExpectedResult = new int[]{1})]
+        [TestCase("correct.html", "//body/p", ExpectedResult = new int[]{3})]
+        [TestCase("correct.html", "//body/div/p", ExpectedResult = new int[]{3})]
+        [TestCase("correct.html", "//p", ExpectedResult = new int[]{3, 3})]
+        [TestCase("correct.html", "//body//p", ExpectedResult = new int[]{3, 3})]        
+        public int[] CountSiblings_DoesNotThrow(string file, string xpath)
         {           
             //Internally uses GroupSiblings           
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
-                Assert.AreEqual(new int[]{1}, conn.CountSiblings("//body"));
-                Assert.AreEqual(new int[]{3}, conn.CountSiblings("//body/p"));
-                Assert.AreEqual(new int[]{3}, conn.CountSiblings("//body/div/p"));                
-                CollectionAssert.AreEqual(new int[]{3, 3}, conn.CountSiblings("//p"));
-                CollectionAssert.AreEqual(new int[]{3, 3}, conn.CountSiblings("//body//p"));                
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                return conn.CountSiblings(xpath);          
         }
 
         [Test]
-        public void ContentLength()
+        [TestCase("correct.html", "//body/p", ExpectedResult = 72)]
+        [TestCase("correct.html", "//body/div/p", ExpectedResult = 72)]
+        [TestCase("correct.html", "//p", ExpectedResult = 144)]
+        [TestCase("correct.html", "//body//p", ExpectedResult = 144)]        
+        public int ContentLength_DoesNotThrow(string file, string xpath)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){             
-                Assert.AreEqual(72, conn.ContentLength("//body/p"));
-                Assert.AreEqual(72, conn.ContentLength("//body/div/p"));                
-                Assert.AreEqual(144, conn.ContentLength("//p"));
-                Assert.AreEqual(144, conn.ContentLength("//body//p"));                
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                return conn.ContentLength(xpath);        
         }
 
         [Test]
-        public void GetRelatedLabels()
+        [TestCase("correct.html", "//input[@type='text']", ExpectedResult = new int[]{1, 2})]
+        [TestCase("correct.html", "//input", ExpectedResult = new int[]{1, 2, 0})]
+        public int[] GetRelatedLabels_DoesNotThrow(string file, string xpath)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){             
-                var inputs = conn.GetRelatedLabels("//input[@type='text']");
-                Assert.AreEqual(new int[]{1, 2}, inputs.Select(x => x.Value.Count()).ToArray());
-
-                inputs = conn.GetRelatedLabels("//input");
-                Assert.AreEqual(new int[]{1, 2, 0}, inputs.Select(x => x.Value.Count()).ToArray());
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                return conn.GetRelatedLabels(xpath).Select(x => x.Value.Count()).ToArray();            
         }
 
         [Test]
-        public void CheckTableConsistence()
+        [TestCase("correct.html", "//table[@id='colspanKo']")]
+        public void CheckTableConsistence_Throws_TableInconsistencyException(string file, string xpath)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, "correct.html"))){
-                Assert.DoesNotThrow(() => conn.ValidateTable("//table[@id='simpleOk']"));
-                Assert.DoesNotThrow(() => conn.ValidateTable("//table[@id='colspanOk']"));
-                Assert.Throws<TableInconsistencyException>(() => conn.ValidateTable("//table[@id='colspanKo']"));
-                //TODO: check for rowspan consistency
-            }
+            //TODO: check for rowspan consistency
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.Throws<TableInconsistencyException>(() => conn.ValidateTable(xpath));                            
+        }
+
+        [Test]
+        [TestCase("correct.html", "//table[@id='simpleOk']")]
+        [TestCase("correct.html", "//table[@id='colspanOk']")]
+        public void CheckTableConsistence_DoesNotThrow(string file, string xpath)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Html(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.DoesNotThrow(() => conn.ValidateTable(xpath));                
         }
     }
 }

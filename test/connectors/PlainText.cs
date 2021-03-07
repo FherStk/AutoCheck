@@ -28,38 +28,52 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class PlainText : Test
     { 
-        string commentsRegex = "<!--[\\s\\S\n]*?-->";
-
         [Test]
-        public void Constructor()
-        {            
-            //Local
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(OS.GNU, host, username, password, file));
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(file));
         }
 
         [Test]
-        public void Count()
+        [TestCase("someFile.ext")]
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, file)));
+        }
+
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase("dtd_no_comments.dtd", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {           
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));            
+        }
+
+
+
+        [Test]
+        [TestCase("dtd_no_comments.dtd", "<!--[\\s\\S\n]*?-->", ExpectedResult=0)]
+        [TestCase("dtd_few_comments.dtd", "<!--[\\s\\S\n]*?-->", ExpectedResult=2)]
+        [TestCase("dtd_all_comments.dtd", "<!--[\\s\\S\n]*?-->", ExpectedResult=21)]
+        public int Count_DoesNotThrow(string file, string regex)
         {   
             //Uses Find() internally
-            Assert.AreEqual(0, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_no_comments.dtd")).Count(commentsRegex)); 
-            Assert.AreEqual(2, new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_few_comments.dtd")).Count(commentsRegex)); 
-
-            var pt = new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, "dtd_all_comments.dtd"));
-            Assert.AreEqual(pt.plainTextDoc.Lines, pt.Count(commentsRegex)); 
+            return new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, file)).Count(regex);             
         }           
     }
 }

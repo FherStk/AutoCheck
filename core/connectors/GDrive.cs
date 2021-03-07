@@ -282,7 +282,7 @@ namespace AutoCheck.Core.Connectors{
                 fileMetadata.Parents = new string[]{parent.Id};                    
             }   
 
-            using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open))
+            using (var stream = new System.IO.FileStream(localFilePath, System.IO.FileMode.Open, FileAccess.Read))
             {                
                 var existing = GetFile(remoteFilePath, fileMetadata.Name, false);
                 if(existing == null){
