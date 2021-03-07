@@ -36,21 +36,29 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Core{        
     public class Script{
 #region Classes
-    private class Remote{
+    private class Remote: Local{
         public OS OS {get; set;}
         public string Host {get; set;}
         public string User {get; set;}
         public string Password {get; set;}
-        public int Port {get; set;}
-        public string[] Folders {get; set;}
+        public int Port {get; set;}        
 
-        public Remote(OS os, string host, string user, string password, int port, string[] folders){
+        public Remote(OS os, string host, string user, string password, int port, string[] folders, Dictionary<string, object> vars): base(folders, vars){
             OS = os;
             Host = host;
             User = user;
             Password = password;
-            Port = port;
+            Port = port;            
+        }
+    }
+
+    private class Local{        
+        public string[] Folders {get; set;}
+        public Dictionary<string, object> Vars {get; set;}
+
+        public Local(string[] folders, Dictionary<string, object> vars){            
             Folders = folders;
+            Vars = vars;
         }
     }
 #endregion
@@ -714,13 +722,13 @@ namespace AutoCheck.Core{
             AutoComputeVarValues = true;                 
         } 
 
-        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null){
+        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null, Stack<Dictionary<string, object>> collection = null){
             reserved ??= new string[]{"script_name", "execution_folder_path", "current_ip", "current_folder_path", "current_file_path", "result", "now"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
             ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                UpdateVar(name, ParseNode(value, false));
+                UpdateVar(name, ParseNode(value, false), collection);
             }));                     
         }  
         
@@ -795,12 +803,12 @@ namespace AutoCheck.Core{
                 AutoComputeVarValues = true;
 
                 //Parsing local / remote targets      
-                var local = string.Empty;
+                Local local = null;
                 Remote remote = null;
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local = ParseLocal(node, name, current).SingleOrDefault();
+                            local = ParseLocal(node, name, current);
                             break;
 
                         case "remote":                        
@@ -817,8 +825,8 @@ namespace AutoCheck.Core{
                     Output.UnIndent();
                 });
 
-                if(!string.IsNullOrEmpty(local)){
-                    ForEachLocalTarget(new string[]{local}, (folder) => {
+                if(local != null){
+                    ForEachLocalTarget(new Local[]{local}, (folder) => {
                         //ForEachLocalTarget method setups the global vars
                         script.Invoke();
                     });
@@ -856,12 +864,12 @@ namespace AutoCheck.Core{
                 AutoComputeVarValues = true;
 
                 //Parsing local / remote targets      
-                var local = new List<string>();  
+                var local = new List<Local>();  
                 var remote = new List<Remote>();                        
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local.AddRange(ParseLocal(node, name, current));
+                            local.Add(ParseLocal(node, name, current));
                             break;
 
                         case "remote":                        
@@ -924,7 +932,7 @@ namespace AutoCheck.Core{
 
                 //Executing for each local target                
                 ForEachLocalTarget(local.ToArray(), (folder) => {
-                    //ForEachLocalTarget method setups the global vars
+                    //ForEachLocalTarget method setups the global vars                    
                     script.Invoke(folder);
                 });                                  
 
@@ -936,26 +944,36 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private string[] ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
-            children ??= new string[]{"path", "folder"};
+        private Local ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
+            children ??= new string[]{"path", "folder", "vars"};
             
-            var folders = new List<string>();            
-            var parse = new Action<string, YamlScalarNode>((string name, YamlScalarNode node) => {
+            var folders = new List<string>();  
+            Dictionary<string, object> vars = new Dictionary<string, object>();
+
+            var parse = new Action<string, YamlNode>((string name, YamlNode node) => {
                 //Prepare the local folder/path parsing mechanism for mapping/sequence definition (within single/batch)
                 switch(name){                        
                     case "folder":
-                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
+                        folders.Add(Utils.PathToCurrentOS(ParseNode((YamlScalarNode)node, CurrentFolderPath)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath))).OrderBy(x => x)) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode((YamlScalarNode)node, CurrentFolderPath))).OrderBy(x => x)) 
                             folders.Add(folder);     
 
+                        break;
+
+                    case "vars":
+                        var stack = new Stack<Dictionary<string, object>>();
+                        stack.Push(vars);
+
+                        //NOTE: vars should be stored within the current remote execution, not remotelly
+                        ParseVars(node, name, current, null, stack);
                         break;
                 }
             });
 
-             //Load local folder/path data
+            //Load local folder/path data
             if(node != null){
                 if(node.GetType().Equals(typeof(YamlSequenceNode))){
                     ValidateChildren((YamlSequenceNode)node, current, children, mandatory);
@@ -968,11 +986,11 @@ namespace AutoCheck.Core{
             }
 
             if(folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
-            return folders.ToArray();
+            return new Local(folders.ToArray(), vars);
         }
 
         private Remote ParseRemote(YamlNode node, string current="remote", string parent="single", string[] children = null, string[] mandatory = null){  
-            children ??= new string[]{"os", "host", "user", "password", "port", "path", "folder"};
+            children ??= new string[]{"os", "host", "user", "password", "port", "path", "folder", "vars"};
             mandatory ??= new string[]{"host", "user"};
 
             var os = OS.GNU;
@@ -981,9 +999,10 @@ namespace AutoCheck.Core{
             var password = string.Empty;
             var port = 22;
             var folders = new List<string>();
+            Dictionary<string, object> vars = new Dictionary<string, object>();
 
             //NOTE: Could be MappingNode or SequenceNode (within remote and single respectively)
-            if(node == null) return new Remote(os, host, user, password, port, folders.ToArray());
+            if(node == null) return new Remote(os, host, user, password, port, folders.ToArray(), vars);
             
             //Load the current data
             AutoComputeVarValues = false;
@@ -1008,26 +1027,38 @@ namespace AutoCheck.Core{
 
                     case "port":                            
                         port = ParseNode(node, RemotePort);
-                        break;
+                        break;                                   
+                }
+            }));
 
+            ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                   
                     case "folder":                            
-                        folders.Add(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os));
+                        folders.Add(Utils.PathToRemoteOS(ParseNode((YamlScalarNode)node, CurrentFolderPath), os));
                         break;
 
                     case "path":                            
                         var remote = new AutoCheck.Core.Connectors.Shell(os, host, user, password, port);
-                        foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
+                        foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode((YamlScalarNode)node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
                             folders.Add(folder);    
 
+                        break;
+
+                    case "vars":                     
+                        var stack = new Stack<Dictionary<string, object>>();
+                        stack.Push(vars);
+
+                        //NOTE: vars should be stored within the current remote execution, not remotelly
+                        ParseVars(node, name, current, null, stack);
                         break;
                 }
             }));
             AutoComputeVarValues = true;
 
-            return new Remote(os, host, user, password, port, folders.ToArray());
+            return new Remote(os, host, user, password, port, folders.ToArray(), vars);
         }
         
-        private CopyDetector[] ParseCopyDetector(YamlNode node, string[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        
+        private CopyDetector[] ParseCopyDetector(YamlNode node, Local[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        
             children ??= new string[]{"type", "caption", "threshold", "file", "pre", "post"};
             mandatory ??= new string[]{"type"};
 
@@ -1444,7 +1475,7 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlScalarNode))) return;
             
             var echo = node.ToString().Trim();
-            Output.WriteLine(echo, Output.Style.ECHO);
+            Output.WriteLine(ComputeVarValue(echo), Output.Style.ECHO);
         }
         
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
@@ -1713,13 +1744,18 @@ namespace AutoCheck.Core{
             return output;
         }  
 
-        private void ForEachLocalTarget(string[] local, Action<string> action){
+        private void ForEachLocalTarget(Local[] local, Action<string> action){
             var originalFolder = CurrentFolderPath;
 
-            foreach(var folder in local){
-                CurrentFolderPath = folder;
-                action.Invoke(folder);
-            }    
+            foreach(var l in local){
+                //local target vars should be loaded
+                Vars.Push(l.Vars);
+                foreach(var folder in l.Folders){
+                    CurrentFolderPath = folder;
+                    action.Invoke(folder);
+                }    
+                Vars.Pop();
+            }
 
             CurrentFolderPath = originalFolder;
         }
@@ -1735,7 +1771,10 @@ namespace AutoCheck.Core{
                 RemoteHost = r.Host;
                 RemoteUser = r.User;
                 RemotePort = r.Port;
-                RemotePassword = r.Password;                
+                RemotePassword = r.Password;    
+
+                //local target vars should be loaded
+                Vars.Push(r.Vars);            
 
                 if(r.Folders.Count() == 0) action.Invoke(r.OS, r.Host, r.User, r.Password, r.Port, null);
                 else{
@@ -1745,6 +1784,7 @@ namespace AutoCheck.Core{
                     }
                 }
                 
+                Vars.Pop();
             }    
 
             CurrentFolderPath = originalFolder;
@@ -2084,8 +2124,9 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private void UpdateVar(string name, object value){
+        private void UpdateVar(string name, object value, Stack<Dictionary<string, object>> collection = null){
             name = name.ToLower();
+            collection ??= Vars;
 
             if(name.StartsWith("$")){
                 //Only update var within upper scopes
@@ -2152,7 +2193,7 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Copy Detection        
-        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] local, Remote[] remote){                        
+        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, Local[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
             if(assembly == null) throw new ArgumentInvalidException("type");            

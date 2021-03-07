@@ -526,6 +526,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 path | text | no (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
 
 #### <a name="remote"></a>remote
 Remote batch target, so each script body will be executed once per remote target.
@@ -539,3 +540,4 @@ password | text | no | The password used to connect with the remote host. | (Bla
 port   | number | no | The remote SSH port used to connect with. | 22
 path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 

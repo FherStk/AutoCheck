@@ -171,5 +171,19 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok8.yaml"));            
             Assert.AreEqual("Running script batch_run_ok8 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
+
+        [Test, Category("Batch"), Category("Local")]
+        public void Script_BATCH_LOCAL_VARS()
+        {            
+            var dest =  Path.Combine(TempScriptFolder, "test9");         
+            var dest1 = Path.Combine(dest, "folder1");
+            var dest2 = Path.Combine(dest, "folder2");
+
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2); 
+
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok9.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok9 (v1.0.0.0):\r\nRunning on batch mode for folder1:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for folder2:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for test9:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
+        }
     }
 }
