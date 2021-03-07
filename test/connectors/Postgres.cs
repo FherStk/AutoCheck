@@ -197,41 +197,63 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        public void ExecuteNonQuery()
-        {         
+        [TestCase(null)]
+        public void ExecuteNonQuery_Throws_ArgumentNullException(string query)
+        {   
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Argument validation
-            Assert.Throws<ArgumentNullException>(() => conn.ExecuteNonQuery(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery(_FAKE));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery("SELECT * FROM fake"));                
-
-            //Queries
-            Assert.DoesNotThrow(() => conn.ExecuteNonQuery("SELECT * FROM test.departments"));
-            Assert.DoesNotThrow(() => conn.ExecuteNonQuery("SELECT name_department FROM test.departments WHERE id_department=60"));
-            Assert.DoesNotThrow(() => conn.ExecuteNonQuery("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
-            Assert.DoesNotThrow(() => conn.ExecuteNonQuery("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-            Assert.DoesNotThrow(() => conn.ExecuteNonQuery("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));                
-        } 
+            Assert.Throws<ArgumentNullException>(() => conn.ExecuteNonQuery(query));
+        }
 
         [Test]
-        public void ExecuteScalar()
-        {          
+        [TestCase(_FAKE)]
+        [TestCase("SELECT * FROM fake")]
+        public void ExecuteNonQuery_Throws_QueryInvalidException(string query)
+        {   
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery(query));
+        }
 
-            //Argument validation
-            Assert.Throws<ArgumentNullException>(() => conn.ExecuteScalar<object>(null));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>(_FAKE));
-            Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>("SELECT * FROM fake"));
-            
-            //Queries
-            Assert.AreEqual(10, conn.ExecuteScalar<short>("SELECT * FROM test.departments"));
-            Assert.AreEqual("IT", conn.ExecuteScalar<string>("SELECT name_department FROM test.departments WHERE id_department=60"));
-            Assert.AreEqual(3, conn.ExecuteScalar<short>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;"));
-            Assert.IsNull(conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
-            Assert.IsNull(conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-            Assert.IsNull(conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-        }                   
+        [Test]
+        [TestCase("SELECT * FROM test.departments")]
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60")]
+        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')")]
+        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
+        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
+        public void ExecuteNonQuery_DoesNotThrow(string query)
+        {   
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.DoesNotThrow(() => conn.ExecuteNonQuery(query));
+        }
+
+        [Test]
+        [TestCase(null)]
+        public void ExecuteScalar_Throws_ArgumentNullException(string query)
+        {   
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.ExecuteScalar<object>(query));
+        }
+
+        [Test]
+        [TestCase(_FAKE)]
+        [TestCase("SELECT * FROM fake")]
+        public void ExecuteScalar_Throws_QueryInvalidException(string query)
+        {   
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>(query));
+        }
+
+        [Test]
+        [TestCase("SELECT * FROM test.departments", ExpectedResult=10)]
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", ExpectedResult="IT")]
+        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;", ExpectedResult=3)]        
+        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')", ExpectedResult=null)]
+        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)", ExpectedResult=null)]
+        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)", ExpectedResult=null)]
+        public object ExecuteScalar_DoesNotThrow(string query)
+        {   
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            return conn.ExecuteScalar<object>(query);
+        }    
 
         [Test]
         public void UserManagement(){  
