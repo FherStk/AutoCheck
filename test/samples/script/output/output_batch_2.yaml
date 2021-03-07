@@ -16,17 +16,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "OUTPUT SINGLE 1"
+name: "OUTPUT BATCH 1"
 inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
 
-single:
-  local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\private\\html5\\Student Name 1"
-    
+batch: 
+  - local:
+      - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
+
 output:
-  terminal: !!bool True
-  pause: !!bool False
+  terminal: True
+  pause: False
   log:
-    enabled: !!bool True
-    folder: "{$APP_FOLDER_PATH}\\logs\\output\\single_1"
-    name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
+    enabled: True
+    folder: "{$APP_FOLDER_PATH}\\logs\\output\\batch_2"

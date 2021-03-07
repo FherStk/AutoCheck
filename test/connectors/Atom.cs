@@ -28,52 +28,49 @@ namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
     public class Atom : Test
-    {       
+    {                               
         [Test]
-        public void Constructor()
+        [TestCase("correct.atom")]
+        public void Constructor_Local_DoesNotThrow(string file)
         {      
-            //Local      
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Atom(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.atom"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(OS.GNU, host, username, password, file));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)));
         }
 
         [Test]
-        public void ValidateAtomAgainstW3C()
-        {                        
-            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, "correct.atom")))
-                Assert.DoesNotThrow(() => conn.ValidateAtomAgainstW3C());
+        [TestCase("correct.atom", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {     
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
+        }
 
-            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, "incorrect.atom")))
+        [Test]
+        [TestCase("incorrect.atom")]
+        public void ValidateAtomAgainstW3C_Throws_DocumentInvalidException(string file)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateAtomAgainstW3C());                                
         } 
 
         [Test]
-        public void CountNodes()
+        [TestCase("correct.atom")]
+        public void ValidateAtomAgainstW3C_DoesNotThrow(string file)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.atom"))){
-                Assert.AreEqual(1, conn.CountNodes("//feed"));
-                Assert.AreEqual(1, conn.CountNodes("//feed/title"));
-                Assert.AreEqual(3, conn.CountNodes("//feed//title"));
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)))
+                Assert.DoesNotThrow(() => conn.ValidateAtomAgainstW3C());
+        } 
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.atom"))){
-                Assert.AreEqual(1, conn.CountNodes("//feed"));
-                Assert.AreEqual(0, conn.CountNodes("//feed/title"));
-                Assert.AreEqual(2, conn.CountNodes("//feed//title"));
-            }
-        }       
+        [Test]
+        [TestCase("correct.atom", "//feed", ExpectedResult=1)]
+        [TestCase("correct.atom", "//feed/title", ExpectedResult=1)]
+        [TestCase("correct.atom", "//feed//title", ExpectedResult=3)]
+        [TestCase("incorrect.atom", "//feed", ExpectedResult=1)]
+        [TestCase("incorrect.atom", "//feed/title", ExpectedResult=0)]
+        [TestCase("incorrect.atom", "//feed//title", ExpectedResult=2)]
+        public int CountNodes_DoesNotThrow(string file, string xpath)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, file)))
+                return conn.CountNodes(xpath);
+        }            
     }
 }

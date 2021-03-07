@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Csv
     path: ../core/connectors/Csv.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDoc
     path: ../core/connectors/Csv.cs
@@ -107,7 +107,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -241,7 +241,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.5.0
+      branch: testing
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Csv.cs

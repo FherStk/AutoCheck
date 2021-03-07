@@ -36,21 +36,29 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Core{        
     public class Script{
 #region Classes
-    private class Remote{
+    private class Remote: Local{
         public OS OS {get; set;}
         public string Host {get; set;}
         public string User {get; set;}
         public string Password {get; set;}
-        public int Port {get; set;}
-        public string[] Folders {get; set;}
+        public int Port {get; set;}        
 
-        public Remote(OS os, string host, string user, string password, int port, string[] folders){
+        public Remote(OS os, string host, string user, string password, int port, string[] folders, Dictionary<string, object> vars): base(folders, vars){
             OS = os;
             Host = host;
             User = user;
             Password = password;
-            Port = port;
+            Port = port;            
+        }
+    }
+
+    private class Local{        
+        public string[] Folders {get; set;}
+        public Dictionary<string, object> Vars {get; set;}
+
+        public Local(string[] folders, Dictionary<string, object> vars){            
             Folders = folders;
+            Vars = vars;
         }
     }
 #endregion
@@ -60,7 +68,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptName {
             get{
-                return GetVar("script_name").ToString();
+                return GetVar("script_name", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -73,7 +81,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptVersion {
             get{
-                return GetVar("script_version").ToString();
+                return GetVar("script_version", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -86,7 +94,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptCaption {
             get{
-                return GetVar("script_caption").ToString();
+                return GetVar("script_caption", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -99,7 +107,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string SingleCaption {
             get{
-                return GetVar("single_caption").ToString();
+                return GetVar("single_caption", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -112,7 +120,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string BatchCaption {
             get{
-                return GetVar("batch_caption").ToString();
+                return GetVar("batch_caption", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -125,13 +133,13 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string AppFolderPath {
             get{
-                return GetVar("app_folder_path").ToString();
+                return GetVar("app_folder_path", AutoComputeVarValues).ToString();
             }
 
             private set{                
                 try{
                     //Read only
-                    GetVar("app_folder_path");
+                    GetVar("app_folder_path", AutoComputeVarValues);
                     throw new NotSupportedException("Read only");
                 }
                 catch (ItemNotFoundException){
@@ -146,7 +154,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string AppFolderName {
             get{
-                return GetVar("app_folder_name").ToString();
+                return GetVar("app_folder_name", AutoComputeVarValues).ToString();
             }           
         }
 
@@ -155,7 +163,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ExecutionFolderPath {
             get{
-                return GetVar("execution_folder_path").ToString();
+                return GetVar("execution_folder_path", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -169,7 +177,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ExecutionFolderName {
             get{
-                return GetVar("execution_folder_name").ToString();
+                return GetVar("execution_folder_name", AutoComputeVarValues).ToString();
             }
         }
         
@@ -178,7 +186,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptFolderPath {
             get{
-                return GetVar("script_folder_path").ToString();
+                return GetVar("script_folder_path", AutoComputeVarValues).ToString();
             }
 
             private set{    
@@ -197,7 +205,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptFolderName {
             get{
-                return GetVar("script_folder_name").ToString();
+                return GetVar("script_folder_name", AutoComputeVarValues).ToString();
             }
         }
         
@@ -206,7 +214,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptFilePath {
             get{
-                return GetVar("script_file_path").ToString();
+                return GetVar("script_file_path", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -224,7 +232,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string ScriptFileName {
             get{
-                return GetVar("script_file_name").ToString();
+                return GetVar("script_file_name", AutoComputeVarValues).ToString();
             }
         }     
         
@@ -233,7 +241,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string CurrentFolderPath {
             get{
-                return GetVar("current_folder_path").ToString();
+                return GetVar("current_folder_path", AutoComputeVarValues).ToString();
             }
 
             private set{    
@@ -252,7 +260,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string CurrentFolderName {
             get{
-                return GetVar("current_folder_name").ToString();
+                return GetVar("current_folder_name", AutoComputeVarValues).ToString();
             }
         }
         
@@ -261,7 +269,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string CurrentFilePath {
             get{
-                return GetVar("current_file_path").ToString();
+                return GetVar("current_file_path", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -288,7 +296,8 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string LogFolderPath {
             get{
-                return CleanPathInvalidChars((string)GetVar("log_folder_path"));
+                string path = (string)GetVar("log_folder_path", AutoComputeVarValues);
+                return (AutoComputeVarValues ? CleanPathInvalidChars(path) : path);                
             }
 
             private set{    
@@ -307,7 +316,8 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string LogFolderName {
             get{
-                return CleanPathInvalidChars((string)GetVar("log_folder_name"));
+                string path = (string)GetVar("log_folder_name", AutoComputeVarValues);
+                return (AutoComputeVarValues ? CleanPathInvalidChars(path) : path);                
             }
         }
 
@@ -316,7 +326,8 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string LogFilePath {
             get{
-                return CleanPathInvalidChars((string)GetVar("log_file_path"));
+                string path = (string)GetVar("log_file_path", AutoComputeVarValues);
+                return (AutoComputeVarValues ? CleanPathInvalidChars(path) : path);                
             }
 
             private set{
@@ -334,7 +345,8 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string LogFileName {
             get{
-                return CleanPathInvalidChars((string)GetVar("log_file_name"));
+                string path = (string)GetVar("log_file_name", AutoComputeVarValues);
+                return (AutoComputeVarValues ? CleanPathInvalidChars(path) : path);
             }
         }
 
@@ -343,7 +355,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string CurrentTarget {
             get{
-                return GetVar("current_target").ToString();
+                return GetVar("current_target", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -356,7 +368,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected OS RemoteOS {
             get{
-                return (OS)GetVar("remote_os");
+                return (OS)GetVar("remote_os", AutoComputeVarValues);
             }
 
             private set{
@@ -369,7 +381,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteHost {
             get{
-                return GetVar("remote_host").ToString();
+                return GetVar("remote_host", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -382,7 +394,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteUser {
             get{
-                return GetVar("remote_user").ToString();
+                return GetVar("remote_user", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -395,7 +407,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemotePassword {
             get{
-                return GetVar("remote_password").ToString();
+                return GetVar("remote_password", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -408,7 +420,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected int RemotePort {
             get{
-                return (int)GetVar("remote_port");
+                return (int)GetVar("remote_port", AutoComputeVarValues);
             }
 
             private set{
@@ -421,7 +433,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteFolderName {
             get{
-                return GetVar("current_folder_name").ToString();
+                return GetVar("current_folder_name", AutoComputeVarValues).ToString();
             }
         } 
 
@@ -430,7 +442,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteFolderPath {
             get{
-                return GetVar("current_folder_path").ToString();
+                return GetVar("current_folder_path", AutoComputeVarValues).ToString();
             }
         }  
 
@@ -439,7 +451,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteFileName {
             get{
-                return GetVar("current_file_name").ToString();
+                return GetVar("current_file_name", AutoComputeVarValues).ToString();
             }
         } 
 
@@ -448,7 +460,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string RemoteFilePath {
             get{
-                return GetVar("current_file_path").ToString();
+                return GetVar("current_file_path", AutoComputeVarValues).ToString();
             }
         }    
 
@@ -457,7 +469,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected string CurrentQuestion {
             get{
-                return GetVar("current_question").ToString();
+                return GetVar("current_question", AutoComputeVarValues).ToString();
             }
 
             private set{
@@ -471,14 +483,14 @@ namespace AutoCheck.Core{
         /// <value></value>
         protected string Result {
             get{ 
-                var res = GetVar("result");
+                var res = GetVar("result", AutoComputeVarValues);
                 return res == null ? null : res.ToString();
             }
 
             private set{                
                 try{
                     //Only on upper scope (global)
-                    GetVar("result");
+                    GetVar("result", AutoComputeVarValues);
                     UpdateVar("$result", value);
                 }
                 catch (ItemNotFoundException){
@@ -501,7 +513,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected float CurrentScore {
             get{
-                return (float)GetVar("current_score");
+                return (float)GetVar("current_score", AutoComputeVarValues);
             }
 
             private set{
@@ -514,7 +526,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected float MaxScore {
             get{
-                return (float)GetVar("max_score");
+                return (float)GetVar("max_score", AutoComputeVarValues);
             }
 
             private set{
@@ -527,7 +539,7 @@ namespace AutoCheck.Core{
         /// </summary>
         protected float TotalScore {
             get{
-                return (float)GetVar("total_score");
+                return (float)GetVar("total_score", AutoComputeVarValues);
             }
 
             private set{
@@ -554,29 +566,33 @@ namespace AutoCheck.Core{
         private bool Abort {get; set;}
         
         private bool Skip {get; set;}
+        private bool AutoComputeVarValues {get; set;}
 
         private bool BatchPauseEnabled {get; set;}
-        private bool LogFilesEnabled {get; set;}       
+
+        private bool LogFilesEnabled {get; set;}   
+
         private bool IsQuestionOpen {
             get{
                 return Errors != null;
             }
-        }
+        }        
 #endregion
 #region Constructor
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path){            
+        public Script(string path){                        
             Output = new Output();                                    
             Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();
+            Vars = new Stack<Dictionary<string, object>>();            
             
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
             //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
+            AutoComputeVarValues = false;
             Abort = false;
             Skip = false;
             Result = null;                                   
@@ -626,8 +642,9 @@ namespace AutoCheck.Core{
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);                        
             MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
-            
+                        
             //Preparing script execution
+            AutoComputeVarValues = true;
             var script = new Action(() => {   
                 //This data must be cleared for each script body execution (batch mode)  
                 Success = 0;
@@ -652,7 +669,7 @@ namespace AutoCheck.Core{
             });
             
             //Display the script caption
-            Output.WriteLine(ComputeVarValue(ScriptCaption), Output.Style.HEADER);
+            Output.WriteLine(ScriptCaption, Output.Style.HEADER);
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
@@ -677,6 +694,7 @@ namespace AutoCheck.Core{
             children ??= new string[]{"terminal", "pause", "log"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
+            AutoComputeVarValues = false;
             ValidateChildren(node, current, children, mandatory);
             ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
                 switch(name){
@@ -700,16 +718,17 @@ namespace AutoCheck.Core{
                         );                       
                         break;
                 }               
-            }));                   
+            }));  
+            AutoComputeVarValues = true;                 
         } 
 
-        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null){
+        private void ParseVars(YamlNode node, string current="vars", string parent="root", string[] reserved = null, Stack<Dictionary<string, object>> stack = null){
             reserved ??= new string[]{"script_name", "execution_folder_path", "current_ip", "current_folder_path", "current_file_path", "result", "now"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
             ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
                 if(reserved.Contains(name)) throw new VariableInvalidException($"The variable name {name} is reserved and cannot be declared.");                                    
-                UpdateVar(name, ParseNode(value, false));
+                UpdateVar(name, ParseNode(value, false), stack);
             }));                     
         }  
         
@@ -772,7 +791,8 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke(); 
             else{                                    
                 //Parsing caption (scalar)
-                ValidateChildren(node, current, children, mandatory);
+                AutoComputeVarValues = false;
+                ValidateChildren(node, current, children, mandatory);                
                 ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
                         case "caption":                            
@@ -780,14 +800,15 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
+                AutoComputeVarValues = true;
 
                 //Parsing local / remote targets      
-                var local = string.Empty;
+                Local local = null;
                 Remote remote = null;
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local = ParseLocal(node, name, current).SingleOrDefault();
+                            local = ParseLocal(node, name, current);
                             break;
 
                         case "remote":                        
@@ -798,14 +819,14 @@ namespace AutoCheck.Core{
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
-                    Output.WriteLine(ComputeVarValue(SingleCaption), Output.Style.HEADER);
+                    Output.WriteLine(SingleCaption, Output.Style.HEADER);
                     Output.Indent();
                     action.Invoke();
                     Output.UnIndent();
                 });
 
-                if(!string.IsNullOrEmpty(local)){
-                    ForEachLocalTarget(new string[]{local}, (folder) => {
+                if(local != null){
+                    ForEachLocalTarget(new Local[]{local}, (folder) => {
                         //ForEachLocalTarget method setups the global vars
                         script.Invoke();
                     });
@@ -814,7 +835,7 @@ namespace AutoCheck.Core{
                 if(remote != null){
                     ForEachRemoteTarget(new Remote[]{remote}, (os, host, username, password, port, folder) => {
                         //ForEachLocalTarget method setups the global vars
-                    script.Invoke();
+                        script.Invoke();
                     });
                 }
             }
@@ -832,6 +853,7 @@ namespace AutoCheck.Core{
                 ValidateChildren(node, current, children, mandatory);
                 
                 //Parsing caption (scalar)
+                AutoComputeVarValues = false;
                 ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                     switch(name){                       
                         case "caption":                            
@@ -839,14 +861,15 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
+                AutoComputeVarValues = true;
 
                 //Parsing local / remote targets      
-                var local = new List<string>();  
+                var local = new List<Local>();  
                 var remote = new List<Remote>();                        
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local.AddRange(ParseLocal(node, name, current));
+                            local.Add(ParseLocal(node, name, current));
                             break;
 
                         case "remote":                        
@@ -871,7 +894,7 @@ namespace AutoCheck.Core{
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
                     //Printing script caption
-                    Output.WriteLine(ComputeVarValue(BatchCaption), Output.Style.HEADER);
+                    Output.WriteLine(BatchCaption, Output.Style.HEADER);
                     
                     //Running copy detectors and script body
                     new Action(() => {
@@ -909,7 +932,7 @@ namespace AutoCheck.Core{
 
                 //Executing for each local target                
                 ForEachLocalTarget(local.ToArray(), (folder) => {
-                    //ForEachLocalTarget method setups the global vars
+                    //ForEachLocalTarget method setups the global vars                    
                     script.Invoke(folder);
                 });                                  
 
@@ -921,26 +944,36 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private string[] ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
-            children ??= new string[]{"path", "folder"};
+        private Local ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
+            children ??= new string[]{"path", "folder", "vars"};
             
-            var folders = new List<string>();            
-            var parse = new Action<string, YamlScalarNode>((string name, YamlScalarNode node) => {
+            var folders = new List<string>();  
+            Dictionary<string, object> vars = new Dictionary<string, object>();
+
+            var parse = new Action<string, YamlNode>((string name, YamlNode node) => {
                 //Prepare the local folder/path parsing mechanism for mapping/sequence definition (within single/batch)
                 switch(name){                        
                     case "folder":
-                        folders.Add(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath)));
+                        folders.Add(Utils.PathToCurrentOS(ParseNode((YamlScalarNode)node, CurrentFolderPath)));
                         break;
 
                     case "path":                            
-                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode(node, CurrentFolderPath))).OrderBy(x => x)) 
+                        foreach(var folder in Directory.GetDirectories(Utils.PathToCurrentOS(ParseNode((YamlScalarNode)node, CurrentFolderPath))).OrderBy(x => x)) 
                             folders.Add(folder);     
 
+                        break;
+
+                    case "vars":
+                        var stack = new Stack<Dictionary<string, object>>();
+                        stack.Push(vars);
+
+                        //NOTE: vars should be stored within the current remote execution, not remotelly
+                        ParseVars(node, name, current, null, stack);
                         break;
                 }
             });
 
-             //Load local folder/path data
+            //Load local folder/path data
             if(node != null){
                 if(node.GetType().Equals(typeof(YamlSequenceNode))){
                     ValidateChildren((YamlSequenceNode)node, current, children, mandatory);
@@ -953,11 +986,11 @@ namespace AutoCheck.Core{
             }
 
             if(folders.Count == 0) throw new ArgumentNullException("Some 'folder' or 'path' must be defined when using 'local' batch mode.");
-            return folders.ToArray();
+            return new Local(folders.ToArray(), vars);
         }
 
         private Remote ParseRemote(YamlNode node, string current="remote", string parent="single", string[] children = null, string[] mandatory = null){  
-            children ??= new string[]{"os", "host", "user", "password", "port", "path", "folder"};
+            children ??= new string[]{"os", "host", "user", "password", "port", "path", "folder", "vars"};
             mandatory ??= new string[]{"host", "user"};
 
             var os = OS.GNU;
@@ -966,11 +999,13 @@ namespace AutoCheck.Core{
             var password = string.Empty;
             var port = 22;
             var folders = new List<string>();
+            Dictionary<string, object> vars = new Dictionary<string, object>();
 
             //NOTE: Could be MappingNode or SequenceNode (within remote and single respectively)
-            if(node == null) return new Remote(os, host, user, password, port, folders.ToArray());
+            if(node == null) return new Remote(os, host, user, password, port, folders.ToArray(), vars);
             
             //Load the current data
+            AutoComputeVarValues = false;
             ValidateChildren(node, current, children, mandatory);
             ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
@@ -992,25 +1027,38 @@ namespace AutoCheck.Core{
 
                     case "port":                            
                         port = ParseNode(node, RemotePort);
-                        break;
+                        break;                                   
+                }
+            }));
 
+            ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                   
                     case "folder":                            
-                        folders.Add(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os));
+                        folders.Add(Utils.PathToRemoteOS(ParseNode((YamlScalarNode)node, CurrentFolderPath), os));
                         break;
 
                     case "path":                            
                         var remote = new AutoCheck.Core.Connectors.Shell(os, host, user, password, port);
-                        foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode(node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
+                        foreach(var folder in remote.GetFolders(Utils.PathToRemoteOS(ParseNode((YamlScalarNode)node, CurrentFolderPath), os), "*", false).OrderBy(x => x)) 
                             folders.Add(folder);    
 
                         break;
+
+                    case "vars":                     
+                        var stack = new Stack<Dictionary<string, object>>();
+                        stack.Push(vars);
+
+                        //NOTE: vars should be stored within the current remote execution, not remotelly
+                        ParseVars(node, name, current, null, stack);
+                        break;
                 }
             }));
+            AutoComputeVarValues = true;
 
-            return new Remote(os, host, user, password, port, folders.ToArray());
+            return new Remote(os, host, user, password, port, folders.ToArray(), vars);
         }
         
-        private CopyDetector[] ParseCopyDetector(YamlNode node, string[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        
+        private CopyDetector[] ParseCopyDetector(YamlNode node, Local[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        
             children ??= new string[]{"type", "caption", "threshold", "file", "pre", "post"};
             mandatory ??= new string[]{"type"};
 
@@ -1427,7 +1475,7 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlScalarNode))) return;
             
             var echo = node.ToString().Trim();
-            Output.WriteLine(echo, Output.Style.ECHO);
+            Output.WriteLine(ComputeVarValue(echo), Output.Style.ECHO);
         }
         
         private Dictionary<string, object> ParseArguments(YamlNode node){                        
@@ -1460,17 +1508,6 @@ namespace AutoCheck.Core{
                     
                     arguments.Add(name, ComputeVarValue(name, value));
                 }
-
-                // foreach(var item in node.ToString().Split("--").Skip(1)){                    
-                //     var clean = item.Trim(' ');
-                //     var name = string.Empty;
-                //     var value = string.Empty;                    
-                //     char separator = (clean.Contains('"') ? '"' : ' ');
-
-                //     name = clean.Substring(0, clean.IndexOf(separator)).TrimStart('-').Trim();
-                //     value = clean.Substring(clean.IndexOf(separator)+1).TrimEnd('"').Trim();
-                //     arguments.Add(name, ComputeVarValue(name, value));
-                // }
             }
             else{
                 //Typed arguments               
@@ -1540,18 +1577,6 @@ namespace AutoCheck.Core{
                 return (T)ParseNode((YamlScalarNode)current.Value,  @default, compute);           
             }           
         }
-
-        // private T ParseChild<T>(YamlMappingNode node, string child, T @default, bool compute=true){           
-        //     if(node.Children.ContainsKey(child)){
-        //         var current = node.Children.Where(x => x.Key.ToString().Equals(child)).FirstOrDefault().Value;
-        //         if(!current.GetType().Equals(typeof(YamlScalarNode))) throw new NotSupportedException("This method only supports YamlScalarNode child nodes.");
-        //         return (T)ParseNode((YamlScalarNode)current,  @default, compute);                            
-        //     } 
-        //     else{
-        //         if(@default == null || !@default.GetType().Equals(typeof(string))) return @default;
-        //         else return (T)ParseNode(new YamlScalarNode(@default.ToString()), @default, compute); 
-        //     }
-        // }
                  
         private T ParseNode<T>(YamlScalarNode node, T @default, bool compute=true){
             try{                                
@@ -1574,16 +1599,6 @@ namespace AutoCheck.Core{
             return value;
         }        
 
-        
-
-        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlSequenceNode node){
-        //     return node.Children.SelectMany(x => ((YamlMappingNode)x).Children);
-        // }
-
-        // private IEnumerable<KeyValuePair<YamlNode, YamlNode>> GetChildren(YamlMappingNode node){
-        //     return node.Children.Select(x => x);
-        // }
-
         private void ValidateChildren(YamlNode node, string current, string[] expected, string[] mandatory = null){                                 
             //ValidateChildren(GetChildren(node), current, expected, mandatory);
 
@@ -1600,31 +1615,7 @@ namespace AutoCheck.Core{
                     if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
                 }
             }
-        }
-    
-        // private void ValidateChildren(YamlSequenceNode node, string current, string[] expected, string[] mandatory = null){            
-        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
-        // }
-
-        // private void ValidateChildren(YamlMappingNode node, string current, string[] expected, string[] mandatory = null){
-        //     ValidateChildren(GetChildren(node), current, expected, mandatory);
-        // }
-
-        // private void ValidateChildren(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, string current, string[] expected, string[] mandatory){
-        //     var found = new List<string>();
-
-        //     foreach (var entry in nodes){
-        //         var name = entry.Key.ToString();
-        //         found.Add(name);
-        //         if(expected != null && !expected.Contains(name)) throw new DocumentInvalidException($"Unexpected value '{name}' found within '{current}'.");                        
-        //     }
-
-        //     if(mandatory != null){
-        //         foreach (var name in mandatory){
-        //             if(!found.Contains(name)) throw new DocumentInvalidException($"Mandatory value '{name}' not found within '{current}'.");                        
-        //         }
-        //     }
-        // }
+        }      
 
         private void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
             foreach(var child in GetChildren(node)){
@@ -1648,31 +1639,6 @@ namespace AutoCheck.Core{
             else if(node.GetType().Equals(typeof(YamlMappingNode))) return ((YamlMappingNode)node).Children.Select(x => x).ToList();
             else throw new InvalidOperationException("Only YamlMappingNode and YamlSequenceNode can be requested for looping through its children.");
         }
-
-        // private void ForEachChild<T>(YamlSequenceNode node, Action<string, T> action) where T: YamlNode{
-        //     //ForEachChild(GetChildren(node), action);
-        //     foreach(var child in GetChildren(node)){
-        //         action.Invoke(child.Key.ToString(), (T)child.Value);
-        //     }
-        // }
-
-        // private void ForEachChild<T>(YamlMappingNode node, Action<string, T> action) where T: YamlNode{
-        //     //ForEachChild(GetChildren(node), action);
-        //     foreach(var child in GetChildren(node)){
-        //         action.Invoke(child.Key.ToString(), (T)child.Value);
-        //     }
-        // }
-
-        // private void ForEachChild<T>(IEnumerable<KeyValuePair<YamlNode, YamlNode>> nodes, Action<string, T> action) where T: YamlNode{                  
-        //     foreach(var child in nodes){
-        //         if(child.Value.GetType().Equals(typeof(T)) || typeof(T).Equals(typeof(YamlNode))) action.Invoke(child.Key.ToString(), (T)child.Value);                                
-        //         else if(typeof(T).Equals(typeof(YamlScalarNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlScalarNode()));  
-        //         else if(typeof(T).Equals(typeof(YamlMappingNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlMappingNode()));  
-        //         else if(typeof(T).Equals(typeof(YamlSequenceNode))) action.Invoke(child.Key.ToString(), (T)(YamlNode)(new YamlSequenceNode()));
-        //         else throw new NotSupportedException();                
-        //     }
-        // }
-
 #endregion
 #region Helpers
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
@@ -1696,13 +1662,18 @@ namespace AutoCheck.Core{
             return output;
         }  
 
-        private void ForEachLocalTarget(string[] local, Action<string> action){
+        private void ForEachLocalTarget(Local[] local, Action<string> action){
             var originalFolder = CurrentFolderPath;
 
-            foreach(var folder in local){
-                CurrentFolderPath = folder;
-                action.Invoke(folder);
-            }    
+            foreach(var l in local){
+                //local target vars should be loaded
+                Vars.Push(l.Vars);
+                foreach(var folder in l.Folders){
+                    CurrentFolderPath = folder;
+                    action.Invoke(folder);
+                }    
+                Vars.Pop();
+            }
 
             CurrentFolderPath = originalFolder;
         }
@@ -1718,7 +1689,10 @@ namespace AutoCheck.Core{
                 RemoteHost = r.Host;
                 RemoteUser = r.User;
                 RemotePort = r.Port;
-                RemotePassword = r.Password;                
+                RemotePassword = r.Password;    
+
+                //local target vars should be loaded
+                Vars.Push(r.Vars);            
 
                 if(r.Folders.Count() == 0) action.Invoke(r.OS, r.Host, r.User, r.Password, r.Port, null);
                 else{
@@ -1727,7 +1701,8 @@ namespace AutoCheck.Core{
                         action.Invoke(r.OS, r.Host, r.User, r.Password, r.Port, folder);
                     }
                 }
-                
+
+                Vars.Pop();
             }    
 
             CurrentFolderPath = originalFolder;
@@ -2026,7 +2001,7 @@ namespace AutoCheck.Core{
 
         private void SetupLog(string logFolderPath, string logFileName, bool enabled){            
             LogFolderPath =  logFolderPath;                    
-            LogFilePath = Path.Combine(logFolderPath, $"{logFileName}.log");
+            LogFilePath = Path.Combine(logFolderPath, $"{Path.GetFileNameWithoutExtension(logFileName)}.log");
             LogFilesEnabled = enabled;
         }
 
@@ -2067,28 +2042,29 @@ namespace AutoCheck.Core{
             }            
         }
 
-        private void UpdateVar(string name, object value){
+        private void UpdateVar(string name, object value, Stack<Dictionary<string, object>> stack = null){
             name = name.ToLower();
+            stack ??= Vars;
 
             if(name.StartsWith("$")){
                 //Only update var within upper scopes
-                var current = Vars.Pop();  
+                var current = stack.Pop();  
                 name = name.TrimStart('$');
                 
                 try{ 
-                    var found = FindScope(Vars, name);
+                    var found = FindScope(stack, name);
                     found[name] = value;
                 }
                 catch (ItemNotFoundException){
                     throw new VariableNotFoundException($"Undefined upper-scope variable {name} has been requested.");
                 }  
                 finally{ 
-                    Vars.Push(current); 
+                    stack.Push(current); 
                 }  
             }
             else{
                 //Create or update var within current scope
-                var current = Vars.Peek();
+                var current = stack.Peek();
                 if(!current.ContainsKey(name)) current.Add(name, null);
                 current[name] = value;
             }           
@@ -2135,7 +2111,7 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Copy Detection        
-        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, string[] local, Remote[] remote){                        
+        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, Local[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
             var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
             if(assembly == null) throw new ArgumentInvalidException("type");            
@@ -2338,8 +2314,7 @@ namespace AutoCheck.Core{
             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
            
-            try{     
-                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
+            try{                     
                 using(var drive = new Connectors.GDrive(account, secret)){                        
                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolderPath, source, remoteFolder, remoteFile, link, copy, recursive, remove);
                     else{
@@ -2368,6 +2343,8 @@ namespace AutoCheck.Core{
 
             try{                            
                 CurrentFilePath =  localFile;
+                remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
+                remoteFile = ComputeVarValue(remoteFile);
 
                 Output.WriteLine($"Checking the local file ~{CurrentFileName}: ", Output.Style.HEADER);      
                 Output.Indent();                
@@ -2478,7 +2455,7 @@ namespace AutoCheck.Core{
                     if(recursive){
                         foreach(var folder in folders){
                             var folderName = Path.GetFileName(folder);
-                            drive.CreateFolder(remoteFolder, folderName);
+                            drive.CreateFolder(ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar)), folderName);
                             
                             //This will setup CurrentFolder and CurrentFile
                             UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), remoteFile, link, copy, recursive, remove);
