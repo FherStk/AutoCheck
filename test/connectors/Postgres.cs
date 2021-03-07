@@ -174,7 +174,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("SELECT * FROM test.departments", 9, 4, _SCHEMA, "departments", "name_department", "IT")]
-        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "IT")]
+        [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "Administration")]
         public void ExecuteQuery_DoesNotThrow_READ(string query, int rowCount, int columnCount, string schema, string table, string scalarField, string scalarValue)
         {
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
@@ -186,14 +186,14 @@ namespace AutoCheck.Test.Connectors
             Assert.AreEqual(scalarValue, ds.Tables[0].Rows[0][scalarField]);                
         } 
 
-        [Test]
-        [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')")]
-        [TestCase("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
-        [TestCase("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)")]
+        [Test]        
         public void ExecuteQuery_DoesNotThrow_UPDATE(string query)
         {
+            //Should be executed in order
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];                        
-            Assert.DoesNotThrow(() => conn.ExecuteQuery(query));            
+            Assert.DoesNotThrow(() => conn.ExecuteQuery("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
+            Assert.DoesNotThrow(() => conn.ExecuteQuery("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
+            Assert.DoesNotThrow(() => conn.ExecuteQuery("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
         }
 
         [Test]

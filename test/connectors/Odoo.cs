@@ -99,14 +99,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(1, _FAKE, _FAKE, _FAKE)]
         public void Constructor_Local_DoesNotThrow_CompanyID(int companyID, string host, string database, string username)
         {      
-             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyID, host, database, username));
+             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(companyID, host, database, username));
         }
 
         [Test]        
         [TestCase(_FAKE, _FAKE, _FAKE, _FAKE)]
         public void Constructor_Local_DoesNotThrow_CompanyName(string companyName, string host, string database, string username)
         {      
-             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Odoo(companyName, host, database, username));
+             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Odoo(companyName, host, database, username));
         }
 
         [Test]
@@ -212,7 +212,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase(_FAKE, ExpectedResult=0)]
-        [TestCase("ASUSTeK", ExpectedResult=0)]
+        [TestCase("ASUSTeK", ExpectedResult=1)]
         public int GetProviderData_DoesNotThrow_ProviderName(string providerName)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
@@ -323,7 +323,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase(6, ExpectedResult="PO00006")]
         [TestCase(999, ExpectedResult=null)]
-        public string GetPurchaseCode_DoesNotThrow()
+        public string GetPurchaseCode_DoesNotThrow(int purchaseID)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             return conn.GetPurchaseCode(6);
@@ -408,7 +408,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("PO00008", ExpectedResult=8)]
-        [TestCase("PO00008", ExpectedResult=0)]
+        [TestCase("PO00009", ExpectedResult=0)]
         public int GetInvoiceID_DoesNotThrow(string orderCode)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
@@ -482,10 +482,10 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Main/0001", ExpectedResult=1)]
         [TestCase("Main/0002", ExpectedResult=2)]
         [TestCase("Main/0999", ExpectedResult=0)]
-        public void GetPosSaleID_DoesNotThrow(string posSaleCode)
+        public int GetPosSaleID_DoesNotThrow(string posSaleCode)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.AreEqual(1, conn.GetPosSaleID(posSaleCode));
+            return conn.GetPosSaleID(posSaleCode);
         }
 
         [Test]
@@ -575,7 +575,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(1, ExpectedResult="SO001")]
         [TestCase(2, ExpectedResult="SO002")]
         [TestCase(999, ExpectedResult=null)]
-        public string GetSaleCode_DoesNotThrow()
+        public string GetSaleCode_DoesNotThrow(int saleID)
         {                    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             return conn.GetSaleCode(1);
