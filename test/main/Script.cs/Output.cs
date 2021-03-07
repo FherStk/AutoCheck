@@ -19,6 +19,7 @@
 */
 
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 namespace AutoCheck.Test
@@ -57,9 +58,27 @@ namespace AutoCheck.Test
             
             var i = 0;
             var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "output", "output_batch_1.yaml"));
-                    
+            
+            Assert.AreEqual(3, Directory.GetFiles(LogsScriptFolder).Length);
+            
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
+            }
+        } 
+
+        [Test, Category("Output"), Category("Local")]
+        public void Output_BATCH_FILE_2()
+        {   
+            if(Directory.Exists(LogsScriptFolder))                      
+                Assert.AreEqual(0, Directory.GetFiles(LogsScriptFolder).Length);
+
+            var i = 0;
+            var s = new AutoCheck.Core.Script(Path.Combine(GetSamplePath("script"), "output", "output_batch_2.yaml"));
+
+            Assert.AreEqual(3, Directory.GetFiles(LogsScriptFolder).Length);
+
+            foreach(var l in Directory.GetFiles(LogsScriptFolder).OrderBy(x => x)){
                 Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
             }
         } 
