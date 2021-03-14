@@ -267,48 +267,77 @@ namespace AutoCheck.Test.Connectors
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
-        }    
-    
-
-        //TODO: Continue from here
-        [Test]
-        public void UserManagement(){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            
-            //Vars for testing
-            var user1 = "usermanagement_user1";
-            var user2 = "usermanagement_user2";
-            var user3 = "usermanagement_user3";
-
-            //Argument validation
-            Assert.Throws<ArgumentNullException>(() => conn.CreateUser(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => conn.DropUser(string.Empty));
-        
-            //Create
-            Assert.DoesNotThrow(() =>conn.CreateUser(user1));
-            Assert.DoesNotThrow(() =>conn.CreateUser(user2, "PASS"));
-            var users = conn.GetUsers();     
-            Assert.IsTrue(users.Tables[0].Select(string.Format("username='{0}'", user1)).Length == 1);
-            Assert.IsTrue(users.Tables[0].Select(string.Format("username='{0}'", user2)).Length == 1);
-            
-            //Create an existing one
-            Assert.Throws<QueryInvalidException>(() =>conn.CreateUser(user2));   
-
-            //Search         
-            Assert.IsTrue(conn.ExistsUser(user2));            
-            Assert.IsFalse(conn.ExistsUser(user3));      
-
-            //Distroying existing users
-            Assert.DoesNotThrow(() => conn.DropUser(user1));            
-            Assert.DoesNotThrow(() => conn.DropUser(user2));
-            users = conn.GetUsers();
-            Assert.IsTrue(users.Tables[0].Select(string.Format("username='{0}'", user1)).Length == 0);
-            Assert.IsTrue(users.Tables[0].Select(string.Format("username='{0}'", user2)).Length == 0);
-
-            //Distroying non-existing users
-            Assert.Throws<QueryInvalidException>(() => conn.DropUser(user3));
         }   
 
+        [Test]
+        public void CreateUser_Throws_ArgumentNullException(){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.CreateUser(string.Empty));
+        }
+
+        [Test]
+        public void DropUser_Throws_ArgumentNullException(){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.DropUser(string.Empty));
+        }  
+
+        [Test]
+        [TestCase("createuser_user1")]
+        [TestCase("createuser_user2")]
+        public void CreateUser_Throws_QueryInvalidException(string user){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+
+            //Create
+            Assert.DoesNotThrow(() =>conn.CreateUser(user));
+
+            //Create an existing one
+            Assert.Throws<QueryInvalidException>(() =>conn.CreateUser(user)); 
+        }
+
+        [Test]
+        [TestCase("createuser_user3", null)]
+        [TestCase("createuser_user4", "PASS")]
+        public void CreateUser_DoesNotThrow(string user, string password){
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+
+            Assert.IsFalse(conn.ExistsUser(user)); 
+            Assert.DoesNotThrow(() =>conn.CreateUser(user, password));            
+            Assert.IsTrue(conn.ExistsUser(user)); 
+        }
+
+        [Test]
+        [TestCase("existuser_user1", "existuser_user1", ExpectedResult=true)]
+        [TestCase("existuser_user2", "existuser_user0", ExpectedResult=false)]
+        public bool ExistsUser_DoesNotThrow(string user, string find){
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            
+            Assert.IsFalse(conn.ExistsUser(user));
+            Assert.DoesNotThrow(() =>conn.CreateUser(user));            
+            return conn.ExistsUser(find);
+        }
+
+        [Test]
+        [TestCase("dropuser_user1")]
+        public void DropUser_DoesNotThrow(string user){
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            
+            Assert.IsFalse(conn.ExistsUser(user));
+            Assert.DoesNotThrow(() =>conn.CreateUser(user));   
+            Assert.IsTrue(conn.ExistsUser(user));
+            Assert.DoesNotThrow(() => conn.DropUser(user));                   
+            Assert.IsFalse(conn.ExistsUser(user));
+        }
+
+        [Test]
+        [TestCase("dropuser_user2")]
+        public void DropUser_Throws_QueryInvalidException(string user){
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            
+            Assert.IsFalse(conn.ExistsUser(user));
+            Assert.Throws<QueryInvalidException>(() =>conn.DropUser(user)); 
+        }
+    
+        //TODO: Continue from here        
         [Test]
         public void RoleManagement(){    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
