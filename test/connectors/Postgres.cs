@@ -328,7 +328,7 @@ namespace AutoCheck.Test.Connectors
             Assert.IsFalse(conn.ExistsUser(user));
         }
 
-        [Test]
+        [Test]        
         [TestCase("dropuser_user2")]
         public void DropUser_Throws_QueryInvalidException(string user){
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
@@ -336,41 +336,70 @@ namespace AutoCheck.Test.Connectors
             Assert.IsFalse(conn.ExistsUser(user));
             Assert.Throws<QueryInvalidException>(() =>conn.DropUser(user)); 
         }
-    
-        //TODO: Continue from here        
+        
         [Test]
-        public void RoleManagement(){    
+        [TestCase("existrole_role1", "existrole_role1", ExpectedResult=true)]
+        [TestCase("existrole_role2", "existrole_role0", ExpectedResult=false)]
+        public bool ExistsRole_DoesNotThrow(string role, string find){
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             
-            //Vars for testing
-            var role1 = "rolemanagement_role1";
-            var role2 = "rolemanagement_role2";
-            string filter = string.Format("rolname='{0}'", role1);
+            Assert.IsFalse(conn.ExistsRole(role));
+            Assert.DoesNotThrow(() =>conn.CreateRole(role));            
+            return conn.ExistsRole(find);
+        }
 
-            //Argument validation
+        [Test]
+        public void CreateRole_Throws_ArgumentNullException(){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.CreateRole(string.Empty));
+        }
+
+        [Test] 
+        public void DropRole_Throws_ArgumentNullException(){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];         
             Assert.Throws<ArgumentNullException>(() => conn.DropRole(string.Empty));
+        }
 
-            //Create a new one
-            Assert.DoesNotThrow(() =>conn.CreateRole(role1));
-            var roles = conn.GetRoles();
-            Assert.IsTrue(roles.Tables[0].Select(filter).Length == 1);
+        [Test]
+        [TestCase("createrole_role1")]
+        public void CreateNonExistingRole_DoesNotThrow(string role){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
 
-            //Create an existing one
-            Assert.Throws<QueryInvalidException>(() =>conn.CreateRole(role1));            
+            Assert.DoesNotThrow(() =>conn.CreateRole(role));
+            Assert.IsTrue(conn.ExistsRole(role));
+        }
 
-            //Search         
-            Assert.IsTrue(conn.ExistsRole(role1));            
-            Assert.IsFalse(conn.ExistsRole(role2));   
+        [Test]
+        [TestCase("createrole_role2")]
+        public void CreateExistingRole_DoesNotThrow(string role){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
 
-            //Distroying existing roles
-            Assert.DoesNotThrow(() => conn.DropRole(role1));
-            roles = conn.GetRoles();
-            Assert.IsTrue(roles.Tables[0].Select(filter).Length == 0);
+            Assert.DoesNotThrow(() =>conn.CreateRole(role));
+            Assert.DoesNotThrow(() =>conn.CreateRole(role));
+            Assert.Throws<QueryInvalidException>(() =>conn.CreateRole(role));    
+        }
 
-            //Distroying non-existing role
-            Assert.Throws<QueryInvalidException>(() => conn.DropRole("rolemanagement_role2"));                      
-        }  
+        [Test]
+        [TestCase("droprole_role1")]
+        public void DropExistingRole_DoesNotThrow(string role){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+
+            Assert.DoesNotThrow(() =>conn.CreateRole(role));
+            Assert.IsTrue(conn.ExistsRole(role));
+            Assert.DoesNotThrow(() => conn.DropRole(role));
+            Assert.IsFalse(conn.ExistsRole(role));
+        }
+
+        [Test]
+        [TestCase("droprole_role2")]
+        public void DropNonExistingRole_DoesNotThrow(string role){    
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+
+            Assert.IsFalse(conn.ExistsRole(role));
+            Assert.Throws<QueryInvalidException>(() => conn.DropRole(role));
+        }
+    
+        //TODO: Continue from here          
 
         [Test]
         [NonParallelizable()]
