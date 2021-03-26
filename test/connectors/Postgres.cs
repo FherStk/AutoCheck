@@ -97,15 +97,29 @@ namespace AutoCheck.Test.Connectors
 
         protected override void CleanUp(){
             using(var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, _ADMIN, _ADMIN, _ADMIN)){ //default BBDD postgres can be used to user management
-                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user1")); } catch{}
-                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "usermanagement_user2")); } catch{}                       
-                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "rolemanagement_role1")); } catch{}                   
-                
-                try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", "permissionmanagement_role1")); } catch{}
-                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "permissionmanagement_role1")); } catch{}
+                foreach(string user in new string[]{
+                        "createuser_user1", 
+                        "createuser_user2", 
+                        "createuser_user3", 
+                        "createuser_user4", 
+                        "existuser_user1", 
+                        "existuser_user2",
+                        "dropuser_user1",
+                        "dropuser_user2",
+                        "existrole_role1",
+                        "existrole_role2",
+                        "createrole_role1",
+                        "createrole_role2",
+                        "droprole_role1",
+                        "droprole_role2"
+                    }){
+                    try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", user)); } catch{}
+                }
 
-                try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", "permissionmanagement_user1")); } catch{}
-                try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", "permissionmanagement_user1")); } catch{}
+                foreach(string user in new string[]{"permissionmanagement_role1", "permissionmanagement_user1"}){
+                    try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", user)); } catch{}
+                    try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", user)); } catch{}
+                }
             }
         }
 
@@ -288,6 +302,7 @@ namespace AutoCheck.Test.Connectors
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
 
             //Create
+            Assert.IsFalse(conn.ExistsUser(user)); 
             Assert.DoesNotThrow(() =>conn.CreateUser(user));
 
             //Create an existing one
@@ -365,6 +380,7 @@ namespace AutoCheck.Test.Connectors
         public void CreateNonExistingRole_DoesNotThrow(string role){    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
 
+            Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
             Assert.IsTrue(conn.ExistsRole(role));
         }
@@ -373,8 +389,8 @@ namespace AutoCheck.Test.Connectors
         [TestCase("createrole_role2")]
         public void CreateExistingRole_DoesNotThrow(string role){    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            Assert.DoesNotThrow(() =>conn.CreateRole(role));
+            
+            Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
             Assert.Throws<QueryInvalidException>(() =>conn.CreateRole(role));    
         }
@@ -384,6 +400,7 @@ namespace AutoCheck.Test.Connectors
         public void DropExistingRole_DoesNotThrow(string role){    
             var conn = this.Pool[TestContext.CurrentContext.Test.ID];
 
+            Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
             Assert.IsTrue(conn.ExistsRole(role));
             Assert.DoesNotThrow(() => conn.DropRole(role));
@@ -398,9 +415,97 @@ namespace AutoCheck.Test.Connectors
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.Throws<QueryInvalidException>(() => conn.DropRole(role));
         }
-    
-        //TODO: Continue from here          
 
+        [Test]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        public void CompareSelects_Throws_ArgumentNullException(string expected, string compared){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(expected, compared));
+        }
+
+        [Test]        
+        [TestCase(_FAKE, _FAKE)]
+        public void CompareSelects_Throws_QueryInvalidException(string expected, string compared){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<QueryInvalidException>(() => conn.CompareSelects(expected, compared));
+        }
+
+        [Test]        
+        [TestCase("SELECT * FROM test.employees", "SELECT * FROM test.employees", ExpectedResult = true)]
+        [TestCase("SELECT * FROM test.employees WHERE 1=1", "SELECT * FROM test.employees WHERE id_employee > 99", ExpectedResult = true)]
+        [TestCase("SELECT * FROM test.employees WHERE id_employee=103", "SELECT * FROM test.employees WHERE email='AHUNOLD'", ExpectedResult = true)]
+        [TestCase("SELECT * FROM test.employees WHERE id_employee=103", "SELECT * FROM test.employees WHERE email='NKOCHHAR'", ExpectedResult = false)]
+        [TestCase("SELECT * FROM test.employees WHERE 1=1", "SELECT * FROM test.employees WHERE id_employee < 99", ExpectedResult = false)]
+        public bool CompareSelects_DowsNotThrow(string expected, string compared){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            return conn.CompareSelects(expected, compared);
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        [TestCase(_FAKE, null)]
+        [TestCase(null, _FAKE)]        
+        public void GetViewDefinition_Throws_ArgumentNullException(string schema, string table){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.GetViewDefinition(schema, table));                             
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE)]
+        [TestCase(_SCHEMA, _FAKE)]
+        public void GetViewDefinition_DowsNotThrow_ArgumentValidation(string schema, string table){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.DoesNotThrow(() => conn.GetViewDefinition(schema, table));         
+        }
+
+        [Test]
+        [TestCase(_SCHEMA, "programmers", " SELECT employees.id_employee AS id,\n    employees.id_boss,\n    employees.name,\n    employees.surnames,\n    employees.email,\n    employees.phone\n   FROM test.employees\n  WHERE ((employees.id_work)::text = 'IT_PROG'::text);")]
+        public void GetViewDefinition_DowsNotThrow_Overloads(string schema, string table, string definition){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.AreEqual(definition, conn.GetViewDefinition(schema, table));     
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase("", "")]
+        [TestCase(_FAKE, "")]
+        [TestCase("", _FAKE)]
+        [TestCase(_FAKE, null)]
+        [TestCase(null, _FAKE)]        
+        public void GetForeignKeys_Throws_ArgumentNullException(string schema, string table){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.Throws<ArgumentNullException>(() => conn.GetForeignKeys(schema, table));
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE)]
+        [TestCase(_SCHEMA, _FAKE)]
+        public void GetForeignKeys_DowsNotThrow_ArgumentValidation(string schema, string table){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            Assert.DoesNotThrow(() => conn.GetViewDefinition(schema, table));         
+        }
+
+        [Test]
+        [TestCase(_SCHEMA, "countries", "name", "countries_regions_fk")]
+        [TestCase(_SCHEMA, "countries", "schemaFrom", _SCHEMA)]
+        [TestCase(_SCHEMA, "countries", "tableFrom", "countries")]
+        [TestCase(_SCHEMA, "countries", "columnFrom", "id_region")]
+        [TestCase(_SCHEMA, "countries", "schemaTo", _SCHEMA)]
+        [TestCase(_SCHEMA, "countries", "tableTo", "regions")]
+        [TestCase(_SCHEMA, "countries", "columnTo", "id_region")]
+        public void  GetForeignKeys_DowsNotThrow_Overloads(string schema, string table, string field, string value){  
+            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var foreign = conn.GetForeignKeys(schema, table);
+
+            Assert.AreEqual(1, foreign.Tables[0].Rows.Count);
+            Assert.AreEqual(value, foreign.Tables[0].Rows[0][field]);
+        }
+         
         [Test]
         [NonParallelizable()]
         public void CountRolesAndUsers(){  
@@ -425,82 +530,6 @@ namespace AutoCheck.Test.Connectors
             Assert.DoesNotThrow(() => conn.DropRole(role));
             Assert.AreEqual(roles, conn.CountRoles());
             Assert.AreEqual(users, conn.CountUsers());
-        } 
-
-        [Test]
-        public void CompareSelects(){  
-            //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Argument validation
-            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(_FAKE, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(string.Empty, _FAKE));
-            Assert.Throws<QueryInvalidException>(() => conn.CompareSelects(_FAKE, _FAKE));
-
-            var query = "SELECT * FROM test.employees";
-            Assert.IsTrue(conn.CompareSelects(query, query));
-            Assert.IsTrue(conn.CompareSelects(string.Format("{0} WHERE 1=1", query), string.Format("{0} WHERE id_employee > 99", query)));
-            Assert.IsTrue(conn.CompareSelects(string.Format("{0} WHERE id_employee=103", query), string.Format("{0} WHERE email='AHUNOLD'", query)));            
-            Assert.IsFalse(conn.CompareSelects(string.Format("{0} WHERE id_employee=103", query), string.Format("{0} WHERE email='NKOCHHAR'", query)));
-            Assert.IsFalse(conn.CompareSelects(string.Format("{0} WHERE 1=1", query), string.Format("{0} WHERE id_employee < 99", query)));
-        }
-
-        [Test]
-        public void GetViewDefinition_ArgumentValidation(){  
-            //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Argument validation
-            foreach(var s in _emptySources)
-                Assert.Throws<ArgumentNullException>(() => conn.GetViewDefinition(s.schema, s.table));
-            
-
-            foreach(var s in _wrongSources)
-                Assert.DoesNotThrow(() => conn.GetViewDefinition(s.schema, s.table));                  
-        }
-
-        [Test]
-        public void GetViewDefinition_Overloads(){  
-            //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Testing
-            string def = " SELECT employees.id_employee AS id,\n    employees.id_boss,\n    employees.name,\n    employees.surnames,\n    employees.email,\n    employees.phone\n   FROM test.employees\n  WHERE ((employees.id_work)::text = 'IT_PROG'::text);";
-            Assert.AreEqual(def, conn.GetViewDefinition(_SCHEMA, "programmers"));
-        }           
-
-        [Test]
-        public void GetForeignKeys_ArgumentValidation(){  
-            //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Argument validation
-            foreach(var s in _emptySources)
-                Assert.Throws<ArgumentNullException>(() => conn.GetForeignKeys(s.schema, s.table));
-            
-            foreach(var s in _wrongSources)
-                Assert.DoesNotThrow(() => conn.GetForeignKeys(s.schema, s.table));               
-        }
-
-        [Test]
-        public void  GetForeignKeys_Overloads(){  
-            //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-
-            //Vars for testing
-            var table = "countries";
-
-            //Testing
-            var foreign = conn.GetForeignKeys(_SCHEMA, table);
-            Assert.AreEqual(1, foreign.Tables[0].Rows.Count);
-            Assert.AreEqual("countries_regions_fk", foreign.Tables[0].Rows[0]["name"]);
-            Assert.AreEqual(_SCHEMA, foreign.Tables[0].Rows[0]["schemaFrom"]);
-            Assert.AreEqual(table, foreign.Tables[0].Rows[0]["tableFrom"]);
-            Assert.AreEqual("id_region", foreign.Tables[0].Rows[0]["columnFrom"]);
-            Assert.AreEqual(_SCHEMA, foreign.Tables[0].Rows[0]["schemaTo"]);
-            Assert.AreEqual("regions", foreign.Tables[0].Rows[0]["tableTo"]);
-            Assert.AreEqual("id_region", foreign.Tables[0].Rows[0]["columnTo"]);
         } 
     }
 }
