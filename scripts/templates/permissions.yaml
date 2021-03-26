@@ -19,7 +19,7 @@
 name: "ASIX - M02 (UF3): Permissions Assignment"
 version: "1.0.0.1"
 
-#TODO: try so simplify the postgres connector using raw queries within the scripts
+#TODO: permission reset should be performed ONLY when running on batch mode and ONLY when importing an SQL dump... When using directly over an existing BBDD, it should be just READ ONLY.
 
 body:
   - connector:            
