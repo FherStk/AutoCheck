@@ -220,26 +220,33 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
         /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
         /// <param name="recursive">Recursive upload through folders.</param>
-        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName = null, bool recursive = false){
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){
+            if(string.IsNullOrEmpty(localFolderPath)) throw new ArgumentNullException("localFolderPath");    
+            if(string.IsNullOrEmpty(remoteFolderPath)) throw new ArgumentNullException("remoteFolderPath");    
+            if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();   
+
             remoteFolderPath = remoteFolderPath.TrimEnd(Path.DirectorySeparatorChar);
+            remoteFolderName ??= Path.GetFileName(localFolderPath.TrimEnd(Path.DirectorySeparatorChar));
 
             var localFiles = Directory.GetFiles(localFolderPath, "*", SearchOption.TopDirectoryOnly);
-            var localFolders = (recursive ? Directory.GetDirectories(localFolderPath, "*", SearchOption.TopDirectoryOnly) : new string[]{});
-            var remoteTarget = (string.IsNullOrEmpty(remoteFolderName) ? remoteFolderPath : Path.Combine(remoteFolderPath, remoteFolderName));
+            var localFolders = Directory.GetDirectories(localFolderPath, "*", SearchOption.TopDirectoryOnly);
+            remoteFolderPath = Path.Combine(remoteFolderPath, remoteFolderName);
 
-            if(localFiles.Length == 0 && localFolders.Length == 0){
-                foreach(var localFile in localFiles){                    
-                    UploadFile(localFile, remoteTarget);
-                }
-                                
-                if(recursive){
-                    foreach(var localFolder in localFolders){
-                        var folderName = Path.GetFileName(localFolder);
-                        CreateFolder(remoteFolderPath, folderName);                        
-                        UploadFolder(localFolder, remoteTarget, recursive);
-                    }                   
-                }
-            } 
+            foreach(var localFile in localFiles){                    
+                UploadFile(localFile, remoteFolderPath);
+            }
+
+            foreach(var localFolder in localFolders){
+                var folderName = Path.GetFileName(localFolder);
+                CreateFolder(remoteFolderPath, folderName);                        
+            }
+                            
+            if(recursive){
+                foreach(var localFolder in localFolders){    
+                    var folderName = Path.GetFileName(localFolder);            
+                    UploadFolder(localFolder, remoteFolderPath, folderName, recursive);
+                }                   
+            }
         }
 #endregion
 #region Files          

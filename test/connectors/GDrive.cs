@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Threading;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
 
@@ -39,6 +40,7 @@ namespace AutoCheck.Test.Connectors
         {            
             Conn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);                        
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
+            Thread.Sleep(5000);
 
             var path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1", "TestFolder 1.1.1");
             Conn.CreateFolder(path);
@@ -61,8 +63,7 @@ namespace AutoCheck.Test.Connectors
             Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.1.txt");
 
             path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1");
-            Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.2.txt");
-         
+            Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.2.txt");      
         }
 
         [OneTimeTearDown]
@@ -74,8 +75,7 @@ namespace AutoCheck.Test.Connectors
         protected override void CleanUp(){
             //TODO: remove the folders created by CreateFolder() to ensure a clean enviroment
             File.Delete(this.GetSampleFile("10mb.test"));
-            Conn.DeleteFolder(_driveFolder);
-            Conn.CreateFolder(_driveFolder);
+            Conn.DeleteFolder(_driveFolder);            
         }
 
         [Test]    
@@ -218,7 +218,7 @@ namespace AutoCheck.Test.Connectors
 
             var local = this.GetSampleFile(sample);
             Conn.CreateFile(local, remotePath, remoteFileCreate);
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
 
             var f = Conn.GetFile(remotePath, remoteFileFind);
             if(f == null) return null;
@@ -240,17 +240,17 @@ namespace AutoCheck.Test.Connectors
         {
             //Does not exist
             Assert.IsNull(Conn.GetFile(remotePath, remoteFile));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFile(remotePath, remoteFile));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFile(this.GetSampleFile(localFile), remotePath, remoteFile));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(remotePath, remoteFile));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFile(remotePath, remoteFile));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFile(remotePath, remoteFile));      
         }
 
@@ -277,7 +277,7 @@ namespace AutoCheck.Test.Connectors
         public void CopyFile_DoesNotThrow(string uri, string remotePath, string remoteFileName, string remoteAssignedName)
         {               
             Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFile(remotePath, remoteAssignedName, false));
         }
 
@@ -299,7 +299,7 @@ namespace AutoCheck.Test.Connectors
             @base = (string.IsNullOrEmpty(path) ? @base : Path.Combine(@base, path));    
 
             Assert.DoesNotThrow(() => Conn.CreateFolder(@base, folder));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(@base, Path.GetFileName(folder)));
         }
 
@@ -318,17 +318,17 @@ namespace AutoCheck.Test.Connectors
         {            
             //Does not exist
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
 
             //Creating
             Assert.DoesNotThrow(() => Conn.CreateFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNotNull(Conn.GetFolder(_driveFolder, folder));
 
             //Destroying
             Assert.DoesNotThrow(() => Conn.DeleteFolder(_driveFolder, folder));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsNull(Conn.GetFolder(_driveFolder, folder));
         }
 
@@ -374,16 +374,50 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("create.txt", _driveFolder, "UploadFile", "uploadedFile.txt", "uploadedFile.txt")]
-        [TestCase("create.txt", _driveFolder, "UploadFile", null, "create.txt")]
+        [TestCase("create.txt", _driveFolder, "UploadFile 1", "uploadedFile.txt", "uploadedFile.txt")]
+        [TestCase("create.txt", _driveFolder, "UploadFile 2", null, "create.txt")]
         public void UploadFile_DoesNotThrow(string localFilePath, string remoteBasePath, string remoteFilePath, string remoteFileName, string expectedFileName)
         {   
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
 
             Assert.IsFalse(Conn.ExistsFolder(remoteFilePath));
             Assert.DoesNotThrow(() => Conn.UploadFile(GetSampleFile(localFilePath), remoteFilePath, remoteFileName));
-            System.Threading.Thread.Sleep(5000);
+            Thread.Sleep(5000);
             Assert.IsTrue(Conn.ExistsFile(remoteFilePath, expectedFileName));            
+        }
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase(_FAKE, null)]        
+        public void UploadFolder_Throws_ArgumentNullException(string localFolderPath, string remoteFolderPath)
+        {            
+            Assert.Throws<ArgumentNullException>(() => Conn.UploadFolder(localFolderPath, remoteFolderPath));            
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE)]        
+        public void UploadFolder_Throws_DirectoryNotFoundException(string localFolderPath, string remoteFolderPath)
+        {            
+            Assert.Throws<DirectoryNotFoundException>(() => Conn.UploadFolder(localFolderPath, remoteFolderPath));            
+        }
+
+        [Test]
+        [TestCase("Test Folder 0", _driveFolder, "UploadFolder 1", "My Uploaded Folder", false, "My Uploaded Folder", 2, 0)]
+        [TestCase("Test Folder 0", _driveFolder, "UploadFolder 2", null, false, "Test Folder 0", 2, 0)]
+        [TestCase("Test Folder 0", _driveFolder, "UploadFolder 3", null, true, "Test Folder 0", 4, 4)]
+        public void UploadFolder_DoesNotThrow(string localFolderPath, string remoteBasePath, string remoteFolderPath, string remoteFolderName, bool recursive, string expectedFolderName, int expectedFolderCount, int expectedFileCount)
+        {   
+            remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
+
+            Assert.IsFalse(Conn.ExistsFolder(remoteFolderPath));
+            Assert.DoesNotThrow(() => Conn.UploadFolder(Path.Combine(this.SamplesScriptFolder, localFolderPath), remoteFolderPath, remoteFolderName, recursive));
+            
+            Thread.Sleep(5000);            
+            Assert.IsTrue(Conn.ExistsFolder(remoteFolderPath, expectedFolderName));
+
+            remoteFolderPath = Path.Combine(remoteFolderPath, expectedFolderName);            
+            Assert.AreEqual(expectedFolderCount, Conn.CountFolders(remoteFolderPath, recursive));
+            Assert.AreEqual(expectedFileCount, Conn.CountFiles(remoteFolderPath, recursive));
         }
     }
 }

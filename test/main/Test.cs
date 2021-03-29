@@ -39,13 +39,13 @@ namespace AutoCheck.Test
 
         protected string TempScriptFolder {
             get {
-                return Path.Combine(GetSamplePath("script"), "temp", Name);
+                return Path.Combine(GetSamplePath("script"), "temp", Name.ToLower());
             }
         }
 
         protected string LogsScriptFolder {
             get {
-                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
+                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name.ToLower());
             }
         }        
 
@@ -57,7 +57,7 @@ namespace AutoCheck.Test
 
             //Compute samples paths
             SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(Name); 
+            SamplesScriptFolder = GetSamplePath(Name.ToLower()); 
             
             //Fresh start needed!
             CleanUp();            
