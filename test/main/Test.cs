@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core;
 using OS = AutoCheck.Core.Utils.OS;
@@ -27,40 +28,81 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Test
 {
     public abstract class Test
-    {        
-        protected string SamplesRootFolder {get; set;}
-        protected string SamplesScriptFolder {get; set;}        
-        protected const string _FAKE = "fake";
+    { 
+        private string _PATH {get; set;}
+        protected const string _FAKE = "fake"; 
+
+        private ConcurrentDictionary<string, string> FolderPool = new ConcurrentDictionary<string, string>();
+
+        protected string SamplesRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "samples")); 
+            }
+        } 
+        protected string TempRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "temp")); 
+            }
+        } 
+        protected string LogRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "logs")); 
+            }
+        } 
+
+        protected string SamplesScriptFolder  {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _PATH, Name)); 
+            }
+        } 
+
+        protected string TempScriptFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _PATH, Name, FolderPool[TestContext.CurrentContext.Test.ID])); 
+            }
+        } 
+        protected string LogScriptFolder{
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _PATH, Name, FolderPool[TestContext.CurrentContext.Test.ID])); 
+            }
+        }         
+        
         protected string Name { 
             get {
                 return GetType().Name.ToCamelCase();
             }
+        } 
+
+        public Test(){
+            _PATH = Name;
         }
 
-        protected string TempScriptFolder {
-            get {
-                return Path.Combine(GetSamplePath("script"), "temp", Name.ToLower());
-            }
-        }
-
-        protected string LogsScriptFolder {
-            get {
-                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name.ToLower());
-            }
-        }        
+        public Test(string folderScaffold){            
+            _PATH = folderScaffold;
+        }                   
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
         {        
             //Hide the output    
             AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.SILENT);
+           
+            //Mandatory folders
+            if(!Directory.Exists(SamplesRootFolder)) Directory.CreateDirectory(SamplesRootFolder);
+            if(!Directory.Exists(TempRootFolder)) Directory.CreateDirectory(TempRootFolder);
+            if(!Directory.Exists(LogRootFolder)) Directory.CreateDirectory(LogRootFolder);
 
-            //Compute samples paths
-            SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(Name.ToLower()); 
-            
             //Fresh start needed!
             CleanUp();            
+        }
+
+        [SetUp]
+        public void Setup() 
+        {
+            //Each test instance has its own folder for logs and temp in order to avoid collisions and ensure cleaning when done.
+            var added = false;
+            do added = FolderPool.TryAdd(TestContext.CurrentContext.Test.ID, Guid.NewGuid().ToString());
+            while(!added);                
         }
 
         [OneTimeTearDown]
@@ -68,9 +110,13 @@ namespace AutoCheck.Test
             //Clean before exit :)          
             CleanUp();                                
 
+            //Temp and logs
+            if(Directory.Exists(LogRootFolder)) Directory.Delete(LogRootFolder, true);
+            if(Directory.Exists(TempRootFolder)) Directory.Delete(TempRootFolder, true);
+
             //Restore output     
             AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.VERBOSE);
-        }         
+        } 
 
         /// <summary>
         /// This method will be automatically called by the engine in order to cleanup a test enviroment before any test starts and after all tests ends.
@@ -80,18 +126,38 @@ namespace AutoCheck.Test
             if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);       
 
             //Clean logs
-            if(Directory.Exists(LogsScriptFolder)) Directory.Delete(LogsScriptFolder, true);
-        }                   
+            if(Directory.Exists(LogScriptFolder)) Directory.Delete(LogScriptFolder, true);
+        } 
 
-        /// <summary>
-        /// Retrieves the samples path for the requested script.
-        /// </summary>
-        /// <param name="script">Script name.</param>
-        /// <returns>A folder path.</returns>
-        protected string GetSamplePath(string script) 
-        {
-            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
-        }
+        // /// <summary>
+        // /// Retrieves the temporal path for the requested script.
+        // /// </summary>
+        // /// <param name="script">Script name.</param>
+        // /// <returns>A folder path.</returns>
+        // protected string GetTempPath(string script) 
+        // {
+        //     return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, script)); 
+        // }
+
+        // /// <summary>
+        // /// Retrieves the logs path for the requested script.
+        // /// </summary>
+        // /// <param name="script">Script name.</param>
+        // /// <returns>A folder path.</returns>
+        // protected string GetLogsPath(string script) 
+        // {
+        //     return Utils.PathToCurrentOS(Path.Combine(LogsRootFolder, script)); 
+        // }                  
+
+        // /// <summary>
+        // /// Retrieves the samples path for the requested script.
+        // /// </summary>
+        // /// <param name="script">Script name.</param>
+        // /// <returns>A folder path.</returns>
+        // protected string GetSamplePath(string script) 
+        // {
+        //     return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
+        // }
 
         /// <summary>
         /// Retrieves a sample file path for the current test.
@@ -99,9 +165,8 @@ namespace AutoCheck.Test
         /// <param name="file">The file to retrieve.</param>
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string file) 
-        {
-            if(string.IsNullOrEmpty(SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Utils.PathToCurrentOS(Path.Combine(SamplesScriptFolder, file)); 
+        {            
+            return GetSampleFile(SamplesScriptFolder, file); 
         }
 
         /// <summary>
@@ -112,7 +177,7 @@ namespace AutoCheck.Test
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string script, string file) 
         {
-            return Utils.PathToCurrentOS(Path.Combine(GetSamplePath(script), file)); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script, file)); 
         }
 
         /// <summary>

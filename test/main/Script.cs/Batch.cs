@@ -25,12 +25,10 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Batch : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
+    {
+        public Batch(): base(Path.Combine("script")){
+        }   
+       
        
         [Test, Category("Batch"), Category("Local")]
         public void Script_BATCH_RUN_FOLDER_SINGLE()

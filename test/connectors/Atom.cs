@@ -28,12 +28,12 @@ namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
     public class Atom : Test
-    {                               
+    {         
         [Test]
         [TestCase("correct.atom")]
         public void Constructor_Local_DoesNotThrow(string file)
         {      
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(GetSampleFile(file)));
         }
 
         [Test]
