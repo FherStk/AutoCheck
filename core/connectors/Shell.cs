@@ -352,7 +352,7 @@ namespace AutoCheck.Core.Connectors{
             var localFolder = Path.GetDirectoryName(localPath);
             
             if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);  
-
+            
             FileSystem.Connect();
             FileSystem.Download(remotePath, new FileInfo(localPath));            
             FileSystem.Disconnect();

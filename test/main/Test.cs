@@ -52,18 +52,18 @@ namespace AutoCheck.Test
 
         protected string SamplesScriptFolder  {
             get {
-                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _PATH, Name)); 
+                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _PATH)); 
             }
         } 
 
         protected string TempScriptFolder {
             get {
-                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _PATH, Name, FolderPool[TestContext.CurrentContext.Test.ID])); 
+                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _PATH, FolderPool[TestContext.CurrentContext.Test.ID])); 
             }
         } 
         protected string LogScriptFolder{
             get {
-                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _PATH, Name, FolderPool[TestContext.CurrentContext.Test.ID])); 
+                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _PATH, FolderPool[TestContext.CurrentContext.Test.ID])); 
             }
         }         
         
@@ -78,7 +78,7 @@ namespace AutoCheck.Test
         }
 
         public Test(string folderScaffold){            
-            _PATH = folderScaffold;
+            _PATH = Path.Combine(folderScaffold, Name);
         }                   
 
         [OneTimeSetUp]
@@ -121,12 +121,7 @@ namespace AutoCheck.Test
         /// <summary>
         /// This method will be automatically called by the engine in order to cleanup a test enviroment before any test starts and after all tests ends.
         /// </summary>
-        protected virtual void CleanUp(){
-            //Clean temp files
-            if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);       
-
-            //Clean logs
-            if(Directory.Exists(LogScriptFolder)) Directory.Delete(LogScriptFolder, true);
+        protected virtual void CleanUp(){            
         }        
 
         /// <summary>
