@@ -50,4 +50,7 @@
     <RemoveDir Directories="..\docs\obj"/>
     <RemoveDir Directories="$(BaseIntermediateOutputPath)"/>
   </Target>
+  <Target Name="ObliterateAfterClean" AfterTargets="Build">
+    <RemoveDir Directories="bin\Debug\net5.0\temp"/>    
+  </Target>
 </Project>

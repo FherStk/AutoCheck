@@ -36,6 +36,16 @@ namespace AutoCheck.Test.Connectors
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");   //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive> LocalConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive>();
         private ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive> RemoteConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive>();
+        private AutoCheck.Core.Connectors.GDrive LocalConnector {
+            get{
+                return LocalConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
+        private AutoCheck.Core.Connectors.GDrive RemoteConnector {
+            get{
+                return RemoteConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
 
         [OneTimeSetUp]        
         public override void OneTimeSetUp() 
@@ -86,8 +96,8 @@ namespace AutoCheck.Test.Connectors
 
         [TearDown]
         public void TearDown(){
-            RemoteConnectors[TestContext.CurrentContext.Test.ID].Dispose();
-            LocalConnectors[TestContext.CurrentContext.Test.ID].Dispose();
+            RemoteConnector.Dispose();
+            LocalConnector.Dispose();
         }
 
         protected override void CleanUp(){                        
@@ -151,7 +161,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("\\AutoCheck", _FAKE, true, ExpectedResult = null)]
         public string GetFolder_DoesNotThrow(string path, string folder, bool recursive)
         {                    
-            var f = LocalConnectors[TestContext.CurrentContext.Test.ID].GetFolder(path, folder, recursive);
+            var f = LocalConnector.GetFolder(path, folder, recursive);
             if(f == null) return null;
             else return f.Name;
         }
@@ -162,14 +172,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null, _FAKE)]
         public void GetFile_Throws_ArgumentNullException(string path, string file)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].GetFile(path, file));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.GetFile(path, file));
         }
 
         [Test]
         [TestCase(_FAKE, _FAKE)]
         public void GetFile_Throws_ArgumentInvalidException(string path, string file)
         {
-            Assert.Throws<ArgumentInvalidException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].GetFile(path, file));
+            Assert.Throws<ArgumentInvalidException>(() => LocalConnector.GetFile(path, file));
         }
 
         [Test]
@@ -181,7 +191,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("\\AutoCheck", _FAKE, true, ExpectedResult = null)]
         public string GetFile_DoesNotThrow(string path, string file, bool recursive)
         {                             
-            var f = LocalConnectors[TestContext.CurrentContext.Test.ID].GetFile(path, file, recursive);
+            var f = LocalConnector.GetFile(path, file, recursive);
             if(f == null) return null;
             else return f.Name;
         }
@@ -190,7 +200,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null)]        
         public void CountFolders_Throws_ArgumentNullException(string path)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CountFolders(path));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFolders(path));
         }
 
         [Test]
@@ -198,14 +208,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_driveFolder, "Test Folder 1", true, ExpectedResult = 4)]
         public int CountFolders_DoesNotThrows(string path, string folder, bool recursive)
         {
-            return LocalConnectors[TestContext.CurrentContext.Test.ID].CountFolders(Path.Combine(path, folder), recursive);
+            return LocalConnector.CountFolders(Path.Combine(path, folder), recursive);
         }
 
         [Test]
         [TestCase(null)]        
         public void CountFiles_Throws_ArgumentNullException(string path)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CountFiles(path));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFiles(path));
         }
 
         [Test]
@@ -213,7 +223,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_driveFolder, "Test Folder 1", true, ExpectedResult = 3)]
         public int CountFiles_DoesNotThrows(string path, string folder, bool recursive)
         {
-            return LocalConnectors[TestContext.CurrentContext.Test.ID].CountFiles(Path.Combine(path, folder), recursive);
+            return LocalConnector.CountFiles(Path.Combine(path, folder), recursive);
         }
 
         [Test]
@@ -221,7 +231,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("", _FAKE)]
         public void CreateFile_Throws_ArgumentNullException(string local, string remote)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CreateFile(local, remote));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CreateFile(local, remote));
         }
 
         [Test]
@@ -229,7 +239,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, _FAKE)]
         public void CreateFile_Throws_FileNotFoundException(string local, string remote)
         {
-            Assert.Throws<FileNotFoundException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CreateFile(local, remote));
+            Assert.Throws<FileNotFoundException>(() => LocalConnector.CreateFile(local, remote));
         }
 
         [Test]
@@ -238,7 +248,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("create.txt", _driveFolder, "CreateFile_Folder1\\CreateFile_Folder1.1", "CreateFile_File3.txt", "CreateFile_File3.txt", ExpectedResult = "CreateFile_File3.txt")]
         public string CreateFile_DoesNotThrows(string sample, string remotePath, string remoteFolder, string remoteFileCreate, string remoteFileFind)
         {
-            var conn = LocalConnectors[TestContext.CurrentContext.Test.ID];
+            var conn = LocalConnector;
             remotePath = (string.IsNullOrEmpty(remoteFolder) ? remotePath : Path.Combine(remotePath, remoteFolder));
 
             conn.CreateFile(GetSampleFile(sample), remotePath, remoteFileCreate);
@@ -255,14 +265,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase("", _FAKE)]
         public void DeleteFile_Throws_ArgumentNullException(string local, string remote)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].DeleteFile(local, remote));           
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.DeleteFile(local, remote));           
         }
 
         [Test]
         [TestCase("delete.txt", _driveFolder, "DeleteFile_File1.txt")]
         public void DeleteFile_DoesNotThrow(string localFile, string remotePath, string remoteFile)
         {
-            var conn = LocalConnectors[TestContext.CurrentContext.Test.ID];
+            var conn = LocalConnector;
 
             //Does not exist
             Assert.IsNull(conn.GetFile(remotePath, remoteFile));
@@ -284,7 +294,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "")]
         public void CopyFile_Throws_ArgumentNullException(string uri, string remote)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CopyFile(new Uri(uri), remote));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CopyFile(new Uri(uri), remote));
         }
 
         [Test]
@@ -293,7 +303,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/", _FAKE)]
         public void CopyFile_Throws_ArgumentInvalidException(string uri, string remote)
         {
-            Assert.Throws<ArgumentInvalidException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CopyFile(new Uri(uri), remote));
+            Assert.Throws<ArgumentInvalidException>(() => LocalConnector.CopyFile(new Uri(uri), remote));
         }
 
         [Test]
@@ -302,7 +312,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", _driveFolder, "", "10mb.test")]
         public void CopyFile_DoesNotThrow(string uri, string remotePath, string remoteFileName, string remoteAssignedName)
         {       
-            var conn = LocalConnectors[TestContext.CurrentContext.Test.ID]; 
+            var conn = LocalConnector; 
 
             Assert.DoesNotThrow(() => conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
             Thread.Sleep(5000);
@@ -315,7 +325,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("", _FAKE)]
         public void CreateFolder_Throws_ArgumentNullException(string path, string folder)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].CreateFolder(path, folder));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CreateFolder(path, folder));
         }
 
         [Test]
@@ -324,7 +334,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_driveFolder, null, "CreateFolder_Folder2/CreateFolder_Folder2.1/CreateFolder_Folder2.1.1")]
         public void CreateFolder_DoesNotThrow(string @base, string path, string folder)
         {      
-            var conn = LocalConnectors[TestContext.CurrentContext.Test.ID]; 
+            var conn = LocalConnector; 
             @base = (string.IsNullOrEmpty(path) ? @base : Path.Combine(@base, path));    
 
             Assert.DoesNotThrow(() => conn.CreateFolder(@base, folder));
@@ -338,14 +348,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase("", _FAKE)]
         public void DeleteFolder_Throws_ArgumentNullException(string path, string folder)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].DeleteFolder(path, folder));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.DeleteFolder(path, folder));
         }
 
         [Test]
         [TestCase(_driveFolder, "DeleteFolder_Folder1")]
         public void DeleteFolder_DoesNotThrow(string path, string folder)
         {        
-            var conn = LocalConnectors[TestContext.CurrentContext.Test.ID]; 
+            var conn = LocalConnector; 
 
             //Does not exist
             Assert.IsNull(conn.GetFolder(_driveFolder, folder));
@@ -369,14 +379,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/", _FAKE)]
         public void Download_Throws_ArgumentInvalidException(string uri, string savePath)
         {
-            Assert.Throws<ArgumentInvalidException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].Download(new Uri(uri), savePath));
+            Assert.Throws<ArgumentInvalidException>(() => LocalConnector.Download(new Uri(uri), savePath));
         }
 
         [Test]
         [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "")]
         public void Download_Throws_ArgumentNullException(string uri, string savePath)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].Download(new Uri(uri), savePath));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.Download(new Uri(uri), savePath));
         }
 
         [Test]
@@ -384,7 +394,7 @@ namespace AutoCheck.Test.Connectors
         public void Download_DoesNotThrow(string uri, string file)
         {            
             var filePath = GetSampleFile(file);            
-            Assert.AreEqual(filePath, LocalConnectors[TestContext.CurrentContext.Test.ID].Download(new Uri(uri), SamplesScriptFolder));
+            Assert.AreEqual(filePath, LocalConnector.Download(new Uri(uri), SamplesScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
         }
 
@@ -392,7 +402,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null, null, null)]            
         public void UploadFile_Throws_ArgumentNullException(string localFilePath, string remoteFilePath, string remoteFileName)
         {            
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].UploadFile(localFilePath, remoteFilePath, remoteFileName));            
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.UploadFile(localFilePath, remoteFilePath, remoteFileName));            
         }
 
         [Test]
@@ -401,7 +411,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, _FAKE, _FAKE)]
         public void UploadFile_Throws_FileNotFoundException(string localFilePath, string remoteFilePath, string remoteFileName)
         {            
-            Assert.Throws<FileNotFoundException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].UploadFile(localFilePath, remoteFilePath, remoteFileName));            
+            Assert.Throws<FileNotFoundException>(() => LocalConnector.UploadFile(localFilePath, remoteFilePath, remoteFileName));            
         }
 
         [Test]
@@ -409,7 +419,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("create.txt", _driveFolder, "UploadFile 2", null, "create.txt")]
         public void UploadFile_DoesNotThrow(string localFilePath, string remoteBasePath, string remoteFilePath, string remoteFileName, string expectedFileName)
         {               
-            var conn = RemoteConnectors[TestContext.CurrentContext.Test.ID];
+            var conn = RemoteConnector;
 
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
@@ -425,14 +435,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, null)]        
         public void UploadFolder_Throws_ArgumentNullException(string localFolderPath, string remoteFolderPath)
         {            
-            Assert.Throws<ArgumentNullException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].UploadFolder(localFolderPath, remoteFolderPath));            
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.UploadFolder(localFolderPath, remoteFolderPath));            
         }
 
         [Test]
         [TestCase(_FAKE, _FAKE)]        
         public void UploadFolder_Throws_DirectoryNotFoundException(string localFolderPath, string remoteFolderPath)
         {            
-            Assert.Throws<DirectoryNotFoundException>(() => LocalConnectors[TestContext.CurrentContext.Test.ID].UploadFolder(localFolderPath, remoteFolderPath));            
+            Assert.Throws<DirectoryNotFoundException>(() => LocalConnector.UploadFolder(localFolderPath, remoteFolderPath));            
         }
 
         [Test]
@@ -441,7 +451,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Test Folder 0", _driveFolder, "UploadFolder 3", null, true, "Test Folder 0", 4, 4)]
         public void UploadFolder_DoesNotThrow(string localFolderPath, string remoteBasePath, string remoteFolderPath, string remoteFolderName, bool recursive, string expectedFolderName, int expectedFolderCount, int expectedFileCount)
         {   
-            var conn = RemoteConnectors[TestContext.CurrentContext.Test.ID];
+            var conn = RemoteConnector;
 
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
