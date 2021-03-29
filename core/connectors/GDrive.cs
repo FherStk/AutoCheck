@@ -40,8 +40,14 @@ namespace AutoCheck.Core.Connectors{
     public class GDrive: Base{      
 #region Properties
         public DriveService Drive {get; private set;}
+        private Shell Remote { get; set; }
 #endregion
 #region Constructor / Destructor
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="accountFilePath">Path to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Path to the json file containing the Google Drive credentials which will be used to login.</param>
         public GDrive(string accountFilePath, string secretFilePath){  
             accountFilePath = Utils.PathToCurrentOS(accountFilePath);
             secretFilePath = Utils.PathToCurrentOS(secretFilePath);
@@ -52,15 +58,29 @@ namespace AutoCheck.Core.Connectors{
             if (string.IsNullOrEmpty(secretFilePath)) throw new ArgumentNullException("secretFilePath");                                        
             if (!File.Exists(secretFilePath)) throw new FileNotFoundException($"The given '{secretFilePath}' file does not exist.");
             
-
             this.Drive = AuthenticateOauth(accountFilePath, secretFilePath);
         } 
+
+        /// <summary>
+        /// Creates a new remote connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="accountFilePath">Local path (not remote one) to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Local path (not remote one) to the json file containing the Google Drive credentials which will be used to login.</param>
+        public GDrive(Utils.OS remoteOS, string host, string username, string password, int port, string accountFilePath, string secretFilePath): this(accountFilePath, secretFilePath){  
+            Remote = new Shell(remoteOS, host, username, password, port);
+        }
 
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-            this.Drive.Dispose();
+            if(this.Remote != null) this.Remote.Dispose();
+            this.Drive.Dispose();            
         }   
 #endregion
 #region Folders
@@ -221,6 +241,12 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
         /// <param name="recursive">Recursive upload through folders.</param>
         public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){
+            // if(Remote != null){
+            //     //TODO: needs Remote.DownloadFolder
+            //     //Remote mode: copy locally; upload; remove.
+            //     Remote.Do
+            // }
+
             if(string.IsNullOrEmpty(localFolderPath)) throw new ArgumentNullException("localFolderPath");    
             if(string.IsNullOrEmpty(remoteFolderPath)) throw new ArgumentNullException("remoteFolderPath");    
             if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();   
@@ -238,15 +264,10 @@ namespace AutoCheck.Core.Connectors{
 
             foreach(var localFolder in localFolders){
                 var folderName = Path.GetFileName(localFolder);
-                CreateFolder(remoteFolderPath, folderName);                        
-            }
-                            
-            if(recursive){
-                foreach(var localFolder in localFolders){    
-                    var folderName = Path.GetFileName(localFolder);            
-                    UploadFolder(localFolder, remoteFolderPath, folderName, recursive);
-                }                   
-            }
+                CreateFolder(remoteFolderPath, folderName);    
+                
+                if(recursive) UploadFolder(localFolder, remoteFolderPath, Path.GetFileName(localFolder), recursive);       
+            }             
         }
 #endregion
 #region Files          
@@ -301,6 +322,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
         public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){
+            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);
             if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
             if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
@@ -347,6 +369,8 @@ namespace AutoCheck.Core.Connectors{
                     });  
                 }              
             }
+
+            if(Remote != null) Utils.RunWithRetry<Exception>(() => {File.Delete(localFilePath);});
         }
 
         /// <summary>

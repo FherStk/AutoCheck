@@ -48,7 +48,7 @@ namespace AutoCheck.Core.Connectors{
         public string Raw {get; private set;}
         
         /// <summary>
-        /// Creates a new connector instance.
+        /// Creates a new local connector instance.
         /// </summary>
         /// <param name="filePath">HTML file path.</param>
         public Html(string filePath){    
@@ -61,7 +61,7 @@ namespace AutoCheck.Core.Connectors{
         }
 
         /// <summary>
-        /// Creates a new connector instance.
+        /// Creates a new remote connector instance.
         /// </summary>
         /// <param name="remoteOS"The remote host OS.</param>
         /// <param name="host">Host address where the command will be run.</param>

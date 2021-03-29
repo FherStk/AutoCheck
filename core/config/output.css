@@ -66,6 +66,10 @@
     color: red;
 }
 
+.warning{
+    color: orange;
+}
+
 .default{
     color: white;
 }

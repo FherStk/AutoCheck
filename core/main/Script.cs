@@ -2170,6 +2170,9 @@ namespace AutoCheck.Core{
 #endregion
 #region ZIP
         private void Extract(string file, bool remove, bool recursive){
+            Output.WriteLine("DEPRECATED! Use the ZIP Connector instead.", Output.Style.WARNING);
+            Output.BreakLine();
+
             Output.WriteLine($"Extracting files at: ~{CurrentFolderName}~", Output.Style.HEADER);
             Output.Indent();
 
@@ -2186,7 +2189,8 @@ namespace AutoCheck.Core{
 
                         try{
                             Output.Write($"Extracting the file ~{CurrentFileName}... ", Output.Style.DETAILS);
-                            Utils.ExtractFile(zip);
+                            var zipConnector = new Connectors.Zip();
+                            zipConnector.Extract(zip);
                             Output.WriteResponse();
                         }
                         catch(Exception e){
@@ -2303,6 +2307,9 @@ namespace AutoCheck.Core{
 #region Google Drive
         private void UploadGDrive(string source, string account, string secret, string remoteFolder, string remoteFile, bool link, bool copy, bool remove, bool recursive){                        
             if(string.IsNullOrEmpty(account)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
+
+            Output.WriteLine("DEPRECATED! Use the Google Drive Connector instead.", Output.Style.WARNING);
+            Output.BreakLine();
 
             Output.WriteLine("Uploading files to Google Drive: ", Output.Style.HEADER);
             Output.Indent();

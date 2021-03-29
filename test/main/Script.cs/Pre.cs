@@ -78,7 +78,7 @@ namespace AutoCheck.Test
 
 #region ZIP
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
-        public void Extract_ZIP_NOREMOVE_NORECURSIVE()
+        public void DEPRECATED_Extract_ZIP_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(TempScriptFolder, "extract", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
@@ -96,7 +96,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
-        public void Extract_NONEXISTING_NOREMOVE_NORECURSIVE()
+        public void DEPRECATED_Extract_NONEXISTING_NOREMOVE_NORECURSIVE()
         { 
             var dest = Path.Combine(TempScriptFolder, "extract", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);           
@@ -114,7 +114,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
-        public void Extract_SPECIFIC_BATCH()
+        public void DEPRECATED_Extract_SPECIFIC_BATCH()
         { 
             var dest = Path.Combine(TempScriptFolder, "extract", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
@@ -140,7 +140,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Pre"), Category("Zip"), Category("Local")]
-        public void Extract_ZIP_REMOVE_RECURSIVE()
+        public void DEPRECATED_Extract_ZIP_REMOVE_RECURSIVE()
         { 
             var dest = Path.Combine(TempScriptFolder, "extract", "test4");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                     
@@ -164,8 +164,6 @@ namespace AutoCheck.Test
             
             Directory.Delete(dest, true);
         }
-
-        //TODO: Extract_KO() testing something different to ZIP (RAR, TAR, GZ...)
 #endregion
 #region SQL
         [Test, Category("Pre"), Category("SQL"), Category("Remote")] 
@@ -306,7 +304,7 @@ namespace AutoCheck.Test
 #endregion
 #region GDrive      
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
-        public void UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
+        public void DEPRECATED_UploadGDrive_NOREMOVE_UPLOAD_NOLINK_NORECURSIVE()
         {  
             var dest = Path.Combine(TempScriptFolder, "upload", "test1");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
@@ -328,7 +326,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
-        public void UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
+        public void DEPRECATED_UploadGDrive_REMOVE_UPLOAD_NOLINK_RECURSIVE()
         {  
             var dest = Path.Combine(TempScriptFolder, "upload", "test2");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
@@ -359,7 +357,7 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Pre"), Category("GDrive"), Category("Remote")]
-        public void UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
+        public void DEPRECATED_UploadGDrive_NOREMOVE_COPY_LINK_NORECURSIVE()
         {  
             var dest = Path.Combine(TempScriptFolder, "upload", "test3");
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
@@ -381,7 +379,6 @@ namespace AutoCheck.Test
 
             Directory.Delete(dest, true);
         }
-        //TODO: UploadGDrive_KO() testing something unable to parse (read the PDF content for example, it will be supported in a near future, but not right now) or upload
 #endregion        
     }
 }
