@@ -40,29 +40,29 @@ namespace AutoCheck.Test.Connectors
             Conn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);                        
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
 
-            if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1") == null)
-                Conn.CreateFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.1");
+            var path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1", "TestFolder 1.1.1");
+            Conn.CreateFolder(path);
 
-            if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.2") == null)
-                Conn.CreateFolder(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "TestFolder 1.1.2");
+            path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1", "TestFolder 1.1.2");
+            Conn.CreateFolder(path);
 
-            if(Conn.GetFolder(Path.Combine(_driveFolder, "Test Folder 1"), "TestFolder 1.2") == null)
-                Conn.CreateFolder(Path.Combine(_driveFolder, "Test Folder 1"), "TestFolder 1.2");
+            path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.2");
+            Conn.CreateFolder(path);
 
-            if(Conn.GetFolder(_driveFolder, "Test Folder 2") == null)
-                Conn.CreateFolder(_driveFolder, "Test Folder 2");
+            path = Path.Combine(_driveFolder, "Test Folder 2");
+            Conn.CreateFolder(path);
+            
+            Conn.CreateFile(GetSampleFile("create.txt"), _driveFolder, "file.txt");
 
-            if(Conn.GetFile(_driveFolder, "file.txt") == null)
-                Conn.CreateFile(GetSampleFile("create.txt"), _driveFolder, "file.txt");
+            path = Path.Combine(_driveFolder, "Test Folder 1");
+            Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.txt");
 
-            if(Conn.GetFile(Path.Combine(_driveFolder, "Test Folder 1"), "file 1.txt") == null)
-                Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1"), "file 1.txt");
+            path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1");
+            Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.1.txt");
 
-            if(Conn.GetFile(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.1.txt") == null)
-                Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.1.txt");
-
-            if(Conn.GetFile(Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.2.txt") == null)
-                Conn.CreateFile(GetSampleFile("create.txt"), Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1"), "file 1.2.txt");            
+            path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1");
+            Conn.CreateFile(GetSampleFile("create.txt"), path, "file 1.2.txt");
+         
         }
 
         [OneTimeTearDown]
@@ -74,17 +74,8 @@ namespace AutoCheck.Test.Connectors
         protected override void CleanUp(){
             //TODO: remove the folders created by CreateFolder() to ensure a clean enviroment
             File.Delete(this.GetSampleFile("10mb.test"));
-            Conn.DeleteFile(_driveFolder, "create.txt");
-            Conn.DeleteFile(_driveFolder, "CreateFile_File1.txt");
-            Conn.DeleteFile(_driveFolder, "CreateFile_File2.txt");
-            Conn.DeleteFile(_driveFolder, "DeleteFile_File1.txt");
-            Conn.DeleteFile(_driveFolder, "CopyFile_File1.txt");
-            Conn.DeleteFile(_driveFolder, "CopyFile_File2.test");
-            Conn.DeleteFile(_driveFolder, "10mb.test");
-            Conn.DeleteFolder(_driveFolder, "DeleteFolder_Folder1");
-            Conn.DeleteFolder(_driveFolder, "CreateFolder_Folder1");
-            Conn.DeleteFolder(_driveFolder, "CreateFolder_Folder2");
-            Conn.DeleteFolder(_driveFolder, "CreateFile_Folder1");
+            Conn.DeleteFolder(_driveFolder);
+            Conn.CreateFolder(_driveFolder);
         }
 
         [Test]    
@@ -158,8 +149,8 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "file.txt", false, ExpectedResult = "file.txt")]
-        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", _FAKE, false, ExpectedResult = null)]
+        [TestCase(_driveFolder, "file.txt", false, ExpectedResult = "file.txt")]
+        [TestCase(_driveFolder, _FAKE, false, ExpectedResult = null)]
         [TestCase("\\", "file.txt", true, ExpectedResult = "file.txt")]
         [TestCase("\\", _FAKE, true, ExpectedResult = null)]
         [TestCase("\\AutoCheck", "file.txt", true, ExpectedResult = "file.txt")]
@@ -218,11 +209,13 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive", "CreateFile_File1.txt", "CreateFile_File1.txt", ExpectedResult = "CreateFile_File1.txt")]
-        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive", "CreateFile_File2", "CreateFile_File2.txt", ExpectedResult = "CreateFile_File2.txt")]
-        [TestCase("create.txt", "\\AutoCheck\\test\\Connectors.GDrive\\CreateFile_Folder1\\CreateFile_Folder1.1", "CreateFile_File3.txt", "CreateFile_File3.txt", ExpectedResult = "CreateFile_File3.txt")]
-        public string CreateFile_DoesNotThrows(string sample, string remotePath, string remoteFileCreate, string remoteFileFind)
+        [TestCase("create.txt", _driveFolder, null, "CreateFile_File1.txt", "CreateFile_File1.txt", ExpectedResult = "CreateFile_File1.txt")]
+        [TestCase("create.txt", _driveFolder, null,  "CreateFile_File2", "CreateFile_File2.txt", ExpectedResult = "CreateFile_File2.txt")]
+        [TestCase("create.txt", _driveFolder, "CreateFile_Folder1\\CreateFile_Folder1.1", "CreateFile_File3.txt", "CreateFile_File3.txt", ExpectedResult = "CreateFile_File3.txt")]
+        public string CreateFile_DoesNotThrows(string sample, string remotePath, string remoteFolder, string remoteFileCreate, string remoteFileFind)
         {
+            remotePath = (string.IsNullOrEmpty(remoteFolder) ? remotePath : Path.Combine(remotePath, remoteFolder));
+
             var local = this.GetSampleFile(sample);
             Conn.CreateFile(local, remotePath, remoteFileCreate);
             System.Threading.Thread.Sleep(5000);
@@ -242,7 +235,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("delete.txt", "\\AutoCheck\\test\\Connectors.GDrive", "DeleteFile_File1.txt")]
+        [TestCase("delete.txt", _driveFolder, "DeleteFile_File1.txt")]
         public void DeleteFile_DoesNotThrow(string localFile, string remotePath, string remoteFile)
         {
             //Does not exist
@@ -278,9 +271,9 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "CopyFile_File1.txt", "CopyFile_File1.txt")]
-        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "CopyFile_File2", "CopyFile_File2.test")]
-        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "\\AutoCheck\\test\\Connectors.GDrive", "", "10mb.test")]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", _driveFolder, "CopyFile_File1.txt", "CopyFile_File1.txt")]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", _driveFolder, "CopyFile_File2", "CopyFile_File2.test")]
+        [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", _driveFolder, "", "10mb.test")]
         public void CopyFile_DoesNotThrow(string uri, string remotePath, string remoteFileName, string remoteAssignedName)
         {               
             Assert.DoesNotThrow(() => Conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
@@ -298,13 +291,16 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "CreateFolder_Folder1")]
-        [TestCase("\\AutoCheck\\test\\Connectors.GDrive/CreateFolder_Folder2/CreateFolder_Folder2.1", "CreateFolder_Folder2.1.1")]
-        public void CreateFolder_DoesNotThrow(string path, string folder)
-        {            
-            Assert.DoesNotThrow(() => Conn.CreateFolder(path, folder));
+        [TestCase(_driveFolder, null, "CreateFolder_Folder1")]
+        [TestCase(_driveFolder, "CreateFolder_Folder2/CreateFolder_Folder2.1", "CreateFolder_Folder2.1.1")]
+        [TestCase(_driveFolder, null, "CreateFolder_Folder2/CreateFolder_Folder2.1/CreateFolder_Folder2.1.1")]
+        public void CreateFolder_DoesNotThrow(string @base, string path, string folder)
+        {      
+            @base = (string.IsNullOrEmpty(path) ? @base : Path.Combine(@base, path));    
+
+            Assert.DoesNotThrow(() => Conn.CreateFolder(@base, folder));
             System.Threading.Thread.Sleep(5000);
-            Assert.IsNotNull(Conn.GetFolder(path, folder));
+            Assert.IsNotNull(Conn.GetFolder(@base, Path.GetFileName(folder)));
         }
 
         [Test]
@@ -317,7 +313,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("\\AutoCheck\\test\\Connectors.GDrive", "DeleteFolder_Folder1")]
+        [TestCase(_driveFolder, "DeleteFolder_Folder1")]
         public void DeleteFolder_DoesNotThrow(string path, string folder)
         {            
             //Does not exist
@@ -359,6 +355,35 @@ namespace AutoCheck.Test.Connectors
             var filePath = this.GetSampleFile(file);            
             Assert.AreEqual(filePath, Conn.Download(new Uri(uri), this.SamplesScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
+        }
+
+        [Test]
+        [TestCase(null, null, null)]
+        [TestCase(_FAKE, null, null)]        
+        public void UploadFile_Throws_ArgumentNullException(string localFilePath, string remoteFilePath, string remoteFileName)
+        {            
+            Assert.Throws<ArgumentNullException>(() => Conn.UploadFile(localFilePath, remoteFilePath, remoteFileName));            
+        }
+
+        [Test]
+        [TestCase(_FAKE, _FAKE, null)]
+        [TestCase(_FAKE, _FAKE, _FAKE)]
+        public void UploadFile_Throws_FileNotFoundException(string localFilePath, string remoteFilePath, string remoteFileName)
+        {            
+            Assert.Throws<FileNotFoundException>(() => Conn.UploadFile(localFilePath, remoteFilePath, remoteFileName));            
+        }
+
+        [Test]
+        [TestCase("create.txt", _driveFolder, "UploadFile", "uploadedFile.txt", "uploadedFile.txt")]
+        [TestCase("create.txt", _driveFolder, "UploadFile", null, "create.txt")]
+        public void UploadFile_DoesNotThrow(string localFilePath, string remoteBasePath, string remoteFilePath, string remoteFileName, string expectedFileName)
+        {   
+            remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
+
+            Assert.IsFalse(Conn.ExistsFolder(remoteFilePath));
+            Assert.DoesNotThrow(() => Conn.UploadFile(GetSampleFile(localFilePath), remoteFilePath, remoteFileName));
+            System.Threading.Thread.Sleep(5000);
+            Assert.IsTrue(Conn.ExistsFile(remoteFilePath, expectedFileName));            
         }
     }
 }

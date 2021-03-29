@@ -73,7 +73,7 @@ namespace AutoCheck.Test
         }         
 
         /// <summary>
-        /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.
+        /// This method will be automatically called by the engine in order to cleanup a test enviroment before any test starts and after all tests ends.
         /// </summary>
         protected virtual void CleanUp(){
             //Clean temp files

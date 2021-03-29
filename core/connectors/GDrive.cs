@@ -31,6 +31,8 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.StaticFiles;
 using AutoCheck.Core.Exceptions;
 
+//TODO: Idea for fixing sync problems and remove the timeouts when using the API: https://developers.google.com/drive/api/v3/reference/changes/getStartPageToken
+
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a GDrive instance.
@@ -67,7 +69,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to create including its path (all needed subfolders will be created also).</param>
         public Google.Apis.Drive.v3.Data.File CreateFolder(string folder){
-            folder = folder.Trim('\\');            
+            folder = folder.TrimEnd('\\');            
             return CreateFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -206,12 +208,38 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="localFolderPath">Local folder path</param>
         /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
+        /// <param name="recursive">Recursive upload through folders.</param>
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, bool recursive = false){
+            UploadFolder(localFolderPath, remoteFolderPath, null, recursive);
+        }
+
+        /// <summary>
+        /// Uploads a local folder to a remote Google Drive one.
+        /// </summary>
+        /// <param name="localFolderPath">Local folder path</param>
+        /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
         /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
-        /// <remarks>This method is an alias for CreateFolder.</remarks>
-        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName = null){
-            //TODO:
-            //  Loop through files and folders in order to update
-            //CreateFolder(localFolderPath, Path.Combine(remoteFolderPath, remoteFolderName));
+        /// <param name="recursive">Recursive upload through folders.</param>
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName = null, bool recursive = false){
+            remoteFolderPath = remoteFolderPath.TrimEnd(Path.DirectorySeparatorChar);
+
+            var localFiles = Directory.GetFiles(localFolderPath, "*", SearchOption.TopDirectoryOnly);
+            var localFolders = (recursive ? Directory.GetDirectories(localFolderPath, "*", SearchOption.TopDirectoryOnly) : new string[]{});
+            var remoteTarget = (string.IsNullOrEmpty(remoteFolderName) ? remoteFolderPath : Path.Combine(remoteFolderPath, remoteFolderName));
+
+            if(localFiles.Length == 0 && localFolders.Length == 0){
+                foreach(var localFile in localFiles){                    
+                    UploadFile(localFile, remoteTarget);
+                }
+                                
+                if(recursive){
+                    foreach(var localFolder in localFolders){
+                        var folderName = Path.GetFileName(localFolder);
+                        CreateFolder(remoteFolderPath, folderName);                        
+                        UploadFolder(localFolder, remoteTarget, recursive);
+                    }                   
+                }
+            } 
         }
 #endregion
 #region Files          
@@ -301,7 +329,8 @@ namespace AutoCheck.Core.Connectors{
                 if(existing == null){
                     Utils.RunWithRetry<Google.GoogleApiException>(() => {
                         //Create a new file
-                        this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                        var progress = this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                        if(progress.Exception != null) throw progress.Exception;
                     });
                 }                 
                 else{ 
