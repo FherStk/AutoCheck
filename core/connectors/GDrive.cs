@@ -200,6 +200,19 @@ namespace AutoCheck.Core.Connectors{
         public bool ExistsFolder(string path, string folder, bool recursive = false){
             return GetFolder(path, folder, recursive) != null;
         }
+
+        /// <summary>
+        /// Uploads a local folder to a remote Google Drive one.
+        /// </summary>
+        /// <param name="localFolderPath">Local folder path</param>
+        /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
+        /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
+        /// <remarks>This method is an alias for CreateFolder.</remarks>
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName = null){
+            //TODO:
+            //  Loop through files and folders in order to update
+            //CreateFolder(localFolderPath, Path.Combine(remoteFolderPath, remoteFolderName));
+        }
 #endregion
 #region Files          
         /// <summary>
@@ -377,6 +390,8 @@ namespace AutoCheck.Core.Connectors{
             var file = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                 return copy.Execute(); 
             });
+
+            //TODO: download and reupload if copy fails
         }
 
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
@@ -388,7 +403,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
         /// <remarks>This method is an alias for CreateFile.</remarks>
-        public void Upload(string localFilePath, string remoteFilePath, string remoteFileName = null){
+        public void UploadFile(string localFilePath, string remoteFilePath, string remoteFileName = null){
             CreateFile(localFilePath, remoteFilePath, remoteFileName);
         }
 
