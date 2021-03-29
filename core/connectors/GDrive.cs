@@ -68,6 +68,18 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="host">Host address where the command will be run.</param>
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="accountFilePath">Local path (not remote one) to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Local path (not remote one) to the json file containing the Google Drive credentials which will be used to login.</param>
+        public GDrive(Utils.OS remoteOS, string host, string username, string password, string accountFilePath, string secretFilePath): this(remoteOS, host, username, password, 22, accountFilePath, secretFilePath){              
+        }
+
+        /// <summary>
+        /// Creates a new remote connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         /// <param name="accountFilePath">Local path (not remote one) to the txt file containing the Google Drive account which will be used to login.</param>
         /// <param name="secretFilePath">Local path (not remote one) to the json file containing the Google Drive credentials which will be used to login.</param>
@@ -241,13 +253,10 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
         /// <param name="recursive">Recursive upload through folders.</param>
         public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){
-            // if(Remote != null){
-            //     //TODO: needs Remote.DownloadFolder
-            //     //Remote mode: copy locally; upload; remove.
-            //     Remote.Do
-            // }
-
+            //Remote mode: copy locally; upload; remove.            
             if(string.IsNullOrEmpty(localFolderPath)) throw new ArgumentNullException("localFolderPath");    
+            if(Remote != null) localFolderPath = Remote.DownloadFolder(localFolderPath, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+
             if(string.IsNullOrEmpty(remoteFolderPath)) throw new ArgumentNullException("remoteFolderPath");    
             if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();   
 
@@ -267,7 +276,9 @@ namespace AutoCheck.Core.Connectors{
                 CreateFolder(remoteFolderPath, folderName);    
                 
                 if(recursive) UploadFolder(localFolder, remoteFolderPath, Path.GetFileName(localFolder), recursive);       
-            }             
+            }
+
+            if(Remote != null) Utils.RunWithRetry<Exception>(() => {Directory.Delete(localFolderPath, true);});             
         }
 #endregion
 #region Files          
@@ -321,9 +332,10 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="localFilePath">Local file path</param>
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){
-            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);
+        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){            
             if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
+            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);
+
             if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
             if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
                         

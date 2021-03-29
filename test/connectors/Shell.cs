@@ -68,7 +68,8 @@ namespace AutoCheck.Test.Connectors
         }
 
         protected override void CleanUp(){
-            if(Directory.Exists("tmp")) Directory.Delete("tmp", true);
+            var path = Path.Combine("temp", "shell");
+            if(Directory.Exists(path)) Directory.Delete(path, true);
         }
 
         [TearDown]
@@ -254,16 +255,17 @@ namespace AutoCheck.Test.Connectors
         public void DownloadFile()
         {            
             //Local
+            var temp = Path.Combine("temp", "shell", "upload_file");
             using(var local = new AutoCheck.Core.Connectors.Shell()){                                                
                 Assert.IsTrue(File.Exists(Path.Combine(this.SamplesScriptFolder, "testFolder1", "testFile11.txt")));
-                Assert.IsFalse(File.Exists(Path.Combine(this.SamplesScriptFolder, "tmp", "testFile11.txt")));
+                Assert.IsFalse(File.Exists(Path.Combine(this.SamplesScriptFolder, temp, "testFile11.txt")));
             }      
 
             //Remote
             var remote = this.Conn[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "testFolder1"));
 
-            var file = remote.DownloadFile(Path.Combine(path, "testFile11.txt"), Path.Combine(this.SamplesScriptFolder, "tmp"));
+            var file = remote.DownloadFile(Path.Combine(path, "testFile11.txt"), Path.Combine(this.SamplesScriptFolder, temp));
             Assert.IsTrue(File.Exists(file));
             Assert.AreEqual(File.ReadAllText(Path.Combine(this.SamplesScriptFolder, "testFolder1", "testFile11.txt")), File.ReadAllText(file));
         }
@@ -272,16 +274,17 @@ namespace AutoCheck.Test.Connectors
         public void DownloadFolder()
         {            
             //Local
+            var temp = Path.Combine("temp", "shell", "upload_folder");
             using(var local = new AutoCheck.Core.Connectors.Shell()){                                                
                 Assert.IsTrue(Directory.Exists(this.SamplesScriptFolder));
-                Assert.IsFalse(Directory.Exists(Path.Combine("tmp", "shell")));
+                Assert.IsFalse(Directory.Exists(temp));
             }      
 
             //Remote
             var remote = this.Conn[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(this.SamplesScriptFolder);
 
-            var dest = remote.DownloadFolder(path,"tmp", true);
+            var dest = remote.DownloadFolder(path, temp, true);
             Assert.IsTrue(Directory.Exists(dest));
             Assert.AreEqual(3, Directory.GetDirectories(dest, "*", SearchOption.AllDirectories).Length);
             Assert.AreEqual(3, Directory.GetFiles(dest, "*", SearchOption.AllDirectories).Length);
