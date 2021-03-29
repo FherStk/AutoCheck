@@ -25,16 +25,13 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Pre : Test
-    {             
-        private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
-        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");    
-        
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
+    {
+        public Pre(): base(Path.Combine("script")){
         }
 
+        private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
+        private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");    
+               
         protected override void CleanUp(){
             base.CleanUp();
 

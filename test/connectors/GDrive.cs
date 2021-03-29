@@ -71,13 +71,15 @@ namespace AutoCheck.Test.Connectors
         }
 
         [SetUp]
-        public void Setup() 
+        public override void SetUp() 
         {
             //Create a new and unique remote connector for the current context, local connectors can be shared but not the remote ones because 
             //remote connectors cannot share its internal ssh connection or it can be closed by one when another is using it.        
             var added = false;
-            do added = this.RemotePool.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "usuario", "usuario", _user, _secret));             
-            while(!added);                
+            do added = RemotePool.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "usuario", "usuario", _user, _secret));             
+            while(!added);      
+
+            base.SetUp();          
         }
 
         [OneTimeTearDown]
@@ -88,13 +90,13 @@ namespace AutoCheck.Test.Connectors
 
         [TearDown]
         public void TearDown(){
-            var remoteConn = this.RemotePool[TestContext.CurrentContext.Test.ID];
+            var remoteConn = RemotePool[TestContext.CurrentContext.Test.ID];
             remoteConn.Dispose();
         }
 
         protected override void CleanUp(){
             //TODO: remove the folders created by CreateFolder() to ensure a clean enviroment
-            File.Delete(this.GetSampleFile("10mb.test"));
+            File.Delete(GetSampleFile("10mb.test"));
             LocalConn.DeleteFolder(_driveFolder);            
         }
 
@@ -236,7 +238,7 @@ namespace AutoCheck.Test.Connectors
         {
             remotePath = (string.IsNullOrEmpty(remoteFolder) ? remotePath : Path.Combine(remotePath, remoteFolder));
 
-            var local = this.GetSampleFile(sample);
+            var local = GetSampleFile(sample);
             LocalConn.CreateFile(local, remotePath, remoteFileCreate);
             Thread.Sleep(5000);
 
@@ -264,7 +266,7 @@ namespace AutoCheck.Test.Connectors
             Assert.DoesNotThrow(() => LocalConn.DeleteFile(remotePath, remoteFile));
 
             //Creating
-            Assert.DoesNotThrow(() => LocalConn.CreateFile(this.GetSampleFile(localFile), remotePath, remoteFile));
+            Assert.DoesNotThrow(() => LocalConn.CreateFile(GetSampleFile(localFile), remotePath, remoteFile));
             Thread.Sleep(5000);
             Assert.IsNotNull(LocalConn.GetFile(remotePath, remoteFile));
 
@@ -372,8 +374,8 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "10mb.test")]
         public void Download_DoesNotThrow(string uri, string file)
         {            
-            var filePath = this.GetSampleFile(file);            
-            Assert.AreEqual(filePath, LocalConn.Download(new Uri(uri), this.SamplesScriptFolder));
+            var filePath = GetSampleFile(file);            
+            Assert.AreEqual(filePath, LocalConn.Download(new Uri(uri), SamplesScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
         }
 
@@ -401,7 +403,7 @@ namespace AutoCheck.Test.Connectors
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
 
-            var remoteConn = this.RemotePool[TestContext.CurrentContext.Test.ID];
+            var remoteConn = RemotePool[TestContext.CurrentContext.Test.ID];
             Assert.IsFalse(remoteConn.ExistsFolder(remoteFilePath));
             Assert.DoesNotThrow(() => remoteConn.UploadFile(LocalPathToWsl(GetSampleFile(localFilePath)), remoteFilePath, remoteFileName));
             Thread.Sleep(5000);
@@ -432,9 +434,9 @@ namespace AutoCheck.Test.Connectors
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
 
-            var remoteConn = this.RemotePool[TestContext.CurrentContext.Test.ID];
+            var remoteConn = RemotePool[TestContext.CurrentContext.Test.ID];
             Assert.IsFalse(remoteConn.ExistsFolder(remoteFolderPath));
-            Assert.DoesNotThrow(() => remoteConn.UploadFolder(LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, localFolderPath)), remoteFolderPath, remoteFolderName, recursive));
+            Assert.DoesNotThrow(() => remoteConn.UploadFolder(LocalPathToWsl(Path.Combine(SamplesScriptFolder, localFolderPath)), remoteFolderPath, remoteFolderName, recursive));
             
             Thread.Sleep(5000);            
             Assert.IsTrue(remoteConn.ExistsFolder(remoteFolderPath, expectedFolderName));

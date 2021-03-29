@@ -34,7 +34,7 @@ namespace AutoCheck.Test.Connectors
         {            
             //Local
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "someFile.ext")));            
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(GetSampleFile("someFile.ext")));            
 
             //Remote
             const OS remoteOS = OS.GNU;
@@ -46,30 +46,30 @@ namespace AutoCheck.Test.Connectors
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, _FAKE));
 
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct.rss"));
+            var file = LocalPathToWsl(GetSampleFile("correct.rss"));
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Rss(OS.GNU, host, username, password, file));
         }
 
         [Test]
         public void ValidateRssAgainstW3C()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss")))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("correct.rss")))
                 Assert.DoesNotThrow(() => conn.ValidateRssAgainstW3C());
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss")))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("incorrect.rss")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateRssAgainstW3C());                                
         } 
 
         [Test]
         public void CountNodes()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "correct.rss"))){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("correct.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(1, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(2, conn.CountNodes("//rss//title"));
             }
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, "incorrect.rss"))){
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("incorrect.rss"))){
                 Assert.AreEqual(1, conn.CountNodes("//rss"));
                 Assert.AreEqual(0, conn.CountNodes("//rss/channel/title"));
                 Assert.AreEqual(1, conn.CountNodes("//rss//title"));

@@ -97,7 +97,7 @@ namespace AutoCheck.Test
         }
 
         [SetUp]
-        public void Setup() 
+        public virtual void SetUp() 
         {
             //Each test instance has its own folder for logs and temp in order to avoid collisions and ensure cleaning when done.
             var added = false;
@@ -127,37 +127,7 @@ namespace AutoCheck.Test
 
             //Clean logs
             if(Directory.Exists(LogScriptFolder)) Directory.Delete(LogScriptFolder, true);
-        } 
-
-        // /// <summary>
-        // /// Retrieves the temporal path for the requested script.
-        // /// </summary>
-        // /// <param name="script">Script name.</param>
-        // /// <returns>A folder path.</returns>
-        // protected string GetTempPath(string script) 
-        // {
-        //     return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, script)); 
-        // }
-
-        // /// <summary>
-        // /// Retrieves the logs path for the requested script.
-        // /// </summary>
-        // /// <param name="script">Script name.</param>
-        // /// <returns>A folder path.</returns>
-        // protected string GetLogsPath(string script) 
-        // {
-        //     return Utils.PathToCurrentOS(Path.Combine(LogsRootFolder, script)); 
-        // }                  
-
-        // /// <summary>
-        // /// Retrieves the samples path for the requested script.
-        // /// </summary>
-        // /// <param name="script">Script name.</param>
-        // /// <returns>A folder path.</returns>
-        // protected string GetSamplePath(string script) 
-        // {
-        //     return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
-        // }
+        }        
 
         /// <summary>
         /// Retrieves a sample file path for the current test.

@@ -32,7 +32,7 @@ namespace AutoCheck.Test.Connectors
         // [Test]       
         // public void Constructor_Local_DoesNotThrow()
         // {      
-        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)));
+        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(GetSampleFile(file)));
         // }
 
         // [Test]
@@ -40,7 +40,7 @@ namespace AutoCheck.Test.Connectors
         // public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         // {     
         //     //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
-        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
+        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));
         // }
 
         // [Test]
@@ -54,7 +54,7 @@ namespace AutoCheck.Test.Connectors
         // [TestCase(_FAKE)]        
         // public void Constructor_Local_Throws_FileNotFoundException(string file)
         // {      
-        //     Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)));
+        //     Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(GetSampleFile(file)));
         // }
 
         // [Test]
@@ -76,7 +76,7 @@ namespace AutoCheck.Test.Connectors
         // [TestCase("correct.css")]
         // public void ValidateCss3AgainstW3C_DoesNotThrow(string file)
         // {            
-        //     using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
+        //     using(var conn = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
         //         Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
         // }
 
@@ -84,7 +84,7 @@ namespace AutoCheck.Test.Connectors
         // [TestCase("incorrect.css")]
         // public void ValidateCss3AgainstW3C_Throws_DocumentInvalidException(string file)
         // {            
-        //    using(var conn = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
+        //    using(var conn = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
         //         Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());
         // }
 
@@ -98,7 +98,7 @@ namespace AutoCheck.Test.Connectors
         // [TestCase("correct.css","float", null, ExpectedResult = false)]        
         // public bool PropertyExists_DoesNotThrow(string file, string property, string value)
         // {            
-        //     using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, file)))
+        //     using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
         //         return css.PropertyExists(property, value);                
         // }
 
@@ -113,8 +113,8 @@ namespace AutoCheck.Test.Connectors
         // [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
         // public bool PropertyApplied_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
         // {            
-        //     using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(this.GetSamplePath("html"), htmlFile)))
-        //     using(var css = new AutoCheck.Core.Connectors.Css(Path.Combine(this.SamplesScriptFolder, cssFile)))
+        //     using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(GetSamplePath("html"), htmlFile)))
+        //     using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(cssFile)))
         //     {
         //         return css.PropertyApplied(html.HtmlDoc, property, value);                
         //     }

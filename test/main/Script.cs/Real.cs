@@ -25,12 +25,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Real : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }      
+    { 
+        public Real(): base(Path.Combine("script")){
+        }        
 
 #region Real script testing: XML Validation    
         [Test, Category("FullScriptXml"), Category("Real"), Category("Local")]    

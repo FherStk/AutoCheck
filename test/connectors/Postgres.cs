@@ -79,18 +79,18 @@ namespace AutoCheck.Test.Connectors
 
             //Storing the connector instance for the current context
             var added = false;
-            do added = this.Pool.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
+            do added = Pool.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
             while(!added);                
         }
 
         [OneTimeTearDown]
         public new void OneTimeTearDown(){     
-            this.Pool.Clear();                        
+            Pool.Clear();                        
         } 
 
         [TearDown]
         public void TearDown(){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             conn.DropDataBase();
             conn.Dispose();
         }
@@ -152,13 +152,13 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void TestConnection_DoesNotThrow()
         {                                
-            Assert.DoesNotThrow(() => this.Pool[TestContext.CurrentContext.Test.ID].TestConnection());
+            Assert.DoesNotThrow(() => Pool[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
         [Test]
         public void ExistsDataBase_DoesNotThrow_True() 
         {            
-            Assert.IsTrue(this.Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());                        
+            Assert.IsTrue(Pool[TestContext.CurrentContext.Test.ID].ExistsDataBase());                        
         }  
 
         [Test]
@@ -173,7 +173,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null)]
         public void ExecuteQuery_Throws_ArgumentNullException(string query)
         {
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteQuery(query));
         } 
 
@@ -182,7 +182,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT * FROM fake")]
         public void ExecuteQuery_Throws_QueryInvalidException(string query)
         {
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteQuery(query));
         } 
 
@@ -191,7 +191,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT name_department FROM test.departments WHERE id_department=60", 1, 1, _SCHEMA, "departments", "name_department", "IT")]
         public void ExecuteQuery_DoesNotThrow_READ(string query, int rowCount, int columnCount, string schema, string table, string scalarField, string scalarValue)
         {
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
+            var conn = Pool[TestContext.CurrentContext.Test.ID];            
             var ds = conn.ExecuteQuery(query);
             Assert.AreEqual(rowCount, ds.Tables[0].Rows.Count);
             Assert.AreEqual(columnCount, ds.Tables[0].Columns.Count);
@@ -204,7 +204,7 @@ namespace AutoCheck.Test.Connectors
         public void ExecuteQuery_DoesNotThrow_UPDATE()
         {
             //Should be executed in order
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];                        
+            var conn = Pool[TestContext.CurrentContext.Test.ID];                        
             Assert.DoesNotThrow(() => conn.ExecuteQuery("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.DoesNotThrow(() => conn.ExecuteQuery("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.DoesNotThrow(() => conn.ExecuteQuery("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
@@ -214,7 +214,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null)]
         public void ExecuteNonQuery_Throws_ArgumentNullException(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteNonQuery(query));
         }
 
@@ -223,7 +223,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT * FROM fake")]
         public void ExecuteNonQuery_Throws_QueryInvalidException(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteNonQuery(query));
         }
 
@@ -232,7 +232,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT name_department FROM test.departments WHERE id_department=60")]        
         public void ExecuteNonQuery_READ_DoesNotThrow(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.ExecuteNonQuery(query));
         }
 
@@ -240,7 +240,7 @@ namespace AutoCheck.Test.Connectors
         public void ExecuteNonQuery_WRITE_DoesNotThrow()
         {   
             //Should be executed in order
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
@@ -250,7 +250,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null)]
         public void ExecuteScalar_Throws_ArgumentNullException(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.ExecuteScalar<object>(query));
         }
 
@@ -259,7 +259,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT * FROM fake")]
         public void ExecuteScalar_Throws_QueryInvalidException(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<QueryInvalidException>(() => conn.ExecuteScalar<object>(query));
         }
 
@@ -269,7 +269,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST') RETURNING id_region;", ExpectedResult=3)]                
         public object ExecuteScalar_READ_DoesNotThrow(string query)
         {   
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             return conn.ExecuteScalar<object>(query);
         }
 
@@ -277,7 +277,7 @@ namespace AutoCheck.Test.Connectors
         public void ExecuteScalar_WRITE_DoesNotThrow()
         {   
             //Should be executed in order
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.DoesNotThrow(() => conn.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
@@ -285,13 +285,13 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         public void CreateUser_Throws_ArgumentNullException(){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.CreateUser(string.Empty));
         }
 
         [Test]
         public void DropUser_Throws_ArgumentNullException(){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.DropUser(string.Empty));
         }  
 
@@ -299,7 +299,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("createuser_user1")]
         [TestCase("createuser_user2")]
         public void CreateUser_Throws_QueryInvalidException(string user){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             //Create
             Assert.IsFalse(conn.ExistsUser(user)); 
@@ -313,7 +313,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("createuser_user3", null)]
         [TestCase("createuser_user4", "PASS")]
         public void CreateUser_DoesNotThrow(string user, string password){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             Assert.IsFalse(conn.ExistsUser(user)); 
             Assert.DoesNotThrow(() =>conn.CreateUser(user, password));            
@@ -324,7 +324,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("existuser_user1", "existuser_user1", ExpectedResult=true)]
         [TestCase("existuser_user2", "existuser_user0", ExpectedResult=false)]
         public bool ExistsUser_DoesNotThrow(string user, string find){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             
             Assert.IsFalse(conn.ExistsUser(user));
             Assert.DoesNotThrow(() =>conn.CreateUser(user));            
@@ -334,7 +334,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("dropuser_user1")]
         public void DropUser_DoesNotThrow(string user){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             
             Assert.IsFalse(conn.ExistsUser(user));
             Assert.DoesNotThrow(() =>conn.CreateUser(user));   
@@ -346,7 +346,7 @@ namespace AutoCheck.Test.Connectors
         [Test]        
         [TestCase("dropuser_user2")]
         public void DropUser_Throws_QueryInvalidException(string user){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             
             Assert.IsFalse(conn.ExistsUser(user));
             Assert.Throws<QueryInvalidException>(() =>conn.DropUser(user)); 
@@ -356,7 +356,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("existrole_role1", "existrole_role1", ExpectedResult=true)]
         [TestCase("existrole_role2", "existrole_role0", ExpectedResult=false)]
         public bool ExistsRole_DoesNotThrow(string role, string find){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));            
@@ -365,20 +365,20 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         public void CreateRole_Throws_ArgumentNullException(){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.CreateRole(string.Empty));
         }
 
         [Test] 
         public void DropRole_Throws_ArgumentNullException(){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];         
+            var conn = Pool[TestContext.CurrentContext.Test.ID];         
             Assert.Throws<ArgumentNullException>(() => conn.DropRole(string.Empty));
         }
 
         [Test]
         [TestCase("createrole_role1")]
         public void CreateNonExistingRole_DoesNotThrow(string role){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
@@ -388,7 +388,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("createrole_role2")]
         public void CreateExistingRole_DoesNotThrow(string role){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
@@ -398,7 +398,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("droprole_role1")]
         public void DropExistingRole_DoesNotThrow(string role){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.DoesNotThrow(() =>conn.CreateRole(role));
@@ -410,7 +410,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("droprole_role2")]
         public void DropNonExistingRole_DoesNotThrow(string role){    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             Assert.IsFalse(conn.ExistsRole(role));
             Assert.Throws<QueryInvalidException>(() => conn.DropRole(role));
@@ -421,14 +421,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, "")]
         [TestCase("", _FAKE)]
         public void CompareSelects_Throws_ArgumentNullException(string expected, string compared){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.CompareSelects(expected, compared));
         }
 
         [Test]        
         [TestCase(_FAKE, _FAKE)]
         public void CompareSelects_Throws_QueryInvalidException(string expected, string compared){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<QueryInvalidException>(() => conn.CompareSelects(expected, compared));
         }
 
@@ -439,7 +439,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SELECT * FROM test.employees WHERE id_employee=103", "SELECT * FROM test.employees WHERE email='NKOCHHAR'", ExpectedResult = false)]
         [TestCase("SELECT * FROM test.employees WHERE 1=1", "SELECT * FROM test.employees WHERE id_employee < 99", ExpectedResult = false)]
         public bool CompareSelects_DowsNotThrow(string expected, string compared){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             return conn.CompareSelects(expected, compared);
         }
 
@@ -451,7 +451,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, null)]
         [TestCase(null, _FAKE)]        
         public void GetViewDefinition_Throws_ArgumentNullException(string schema, string table){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.GetViewDefinition(schema, table));                             
         }
 
@@ -459,14 +459,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, _FAKE)]
         [TestCase(_SCHEMA, _FAKE)]
         public void GetViewDefinition_DowsNotThrow_ArgumentValidation(string schema, string table){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.GetViewDefinition(schema, table));         
         }
 
         [Test]
         [TestCase(_SCHEMA, "programmers", " SELECT employees.id_employee AS id,\n    employees.id_boss,\n    employees.name,\n    employees.surnames,\n    employees.email,\n    employees.phone\n   FROM test.employees\n  WHERE ((employees.id_work)::text = 'IT_PROG'::text);")]
         public void GetViewDefinition_DowsNotThrow_Overloads(string schema, string table, string definition){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.AreEqual(definition, conn.GetViewDefinition(schema, table));     
         }
 
@@ -478,7 +478,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, null)]
         [TestCase(null, _FAKE)]        
         public void GetForeignKeys_Throws_ArgumentNullException(string schema, string table){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.Throws<ArgumentNullException>(() => conn.GetForeignKeys(schema, table));
         }
 
@@ -486,7 +486,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, _FAKE)]
         [TestCase(_SCHEMA, _FAKE)]
         public void GetForeignKeys_DowsNotThrow_ArgumentValidation(string schema, string table){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             Assert.DoesNotThrow(() => conn.GetViewDefinition(schema, table));         
         }
 
@@ -499,7 +499,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_SCHEMA, "countries", "tableTo", "regions")]
         [TestCase(_SCHEMA, "countries", "columnTo", "id_region")]
         public void  GetForeignKeys_DowsNotThrow_Overloads(string schema, string table, string field, string value){  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
             var foreign = conn.GetForeignKeys(schema, table);
 
             Assert.AreEqual(1, foreign.Tables[0].Rows.Count);
@@ -510,7 +510,7 @@ namespace AutoCheck.Test.Connectors
         [NonParallelizable()]
         public void CountRolesAndUsers(){  
             //Note: this test cannot run in parallel, because users and roles are shared along all the postgres instance.
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
+            var conn = Pool[TestContext.CurrentContext.Test.ID];
 
             //Vars for testing            
             var user = "permissionmanagement_user1";

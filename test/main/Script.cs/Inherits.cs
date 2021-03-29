@@ -26,12 +26,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Inherits : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }        
+    {
+        public Inherits(): base(Path.Combine("script")){
+        }              
        
         [Test, Category("Inherits"), Category("Local")]
         public void Script_INHERITS_VARS_REPLACE()

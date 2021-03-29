@@ -26,12 +26,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Dummy : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
+    { 
+        public Dummy(): base(Path.Combine("script")){
+        }       
        
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_OK1()

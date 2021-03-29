@@ -63,7 +63,7 @@ namespace AutoCheck.Test.Connectors
             
             //Storing the connector instance for the current context
             var added = false;
-            do added = this.Conn.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
+            do added = Conn.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
             while(!added);  
         }
 
@@ -74,7 +74,7 @@ namespace AutoCheck.Test.Connectors
 
         [TearDown]
         public void TearDown(){
-            var conn = this.Conn[TestContext.CurrentContext.Test.ID];
+            var conn = Conn[TestContext.CurrentContext.Test.ID];
             conn.Dispose();
         }
 
@@ -98,7 +98,7 @@ namespace AutoCheck.Test.Connectors
             using(var remote = new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE))
                 Assert.Throws<ConnectionInvalidException>(() => remote.TestConnection());
 
-            Assert.DoesNotThrow(() => this.Conn[TestContext.CurrentContext.Test.ID].TestConnection());
+            Assert.DoesNotThrow(() => Conn[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
         [Test]
@@ -106,17 +106,17 @@ namespace AutoCheck.Test.Connectors
         {         
             //Local   
             using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder1", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder2", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder1", true));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder2", true));
-                Assert.IsNull(local.GetFolder(this.SamplesScriptFolder, "testFolder21", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder21", true));
+                Assert.IsNotNull(local.GetFolder(SamplesScriptFolder, "testFolder1", false));
+                Assert.IsNotNull(local.GetFolder(SamplesScriptFolder, "testFolder2", false));
+                Assert.IsNotNull(local.GetFolder(SamplesScriptFolder, "testFolder1", true));
+                Assert.IsNotNull(local.GetFolder(SamplesScriptFolder, "testFolder2", true));
+                Assert.IsNull(local.GetFolder(SamplesScriptFolder, "testFolder21", false));
+                Assert.IsNotNull(local.GetFolder(SamplesScriptFolder, "testFolder21", true));
             }      
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.IsNotNull(remote.GetFolder(path, "testFolder1", false));
             Assert.IsNotNull(remote.GetFolder(path, "testFolder2", false));
@@ -131,15 +131,15 @@ namespace AutoCheck.Test.Connectors
         {            
             //Local
             using(var local = new AutoCheck.Core.Connectors.Shell()){                
-                Assert.IsNull(local.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));
-                Assert.IsNotNull(local.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
-                Assert.IsNull(local.GetFile(this.SamplesScriptFolder, "testFile211.txt", false));                
-                Assert.IsNotNull(local.GetFile(this.SamplesScriptFolder, "testFile211.txt", true));
+                Assert.IsNull(local.GetFile(SamplesScriptFolder, "testFile11.txt", false));
+                Assert.IsNotNull(local.GetFile(SamplesScriptFolder, "testFile11.txt", true));
+                Assert.IsNull(local.GetFile(SamplesScriptFolder, "testFile211.txt", false));                
+                Assert.IsNotNull(local.GetFile(SamplesScriptFolder, "testFile211.txt", true));
             }      
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.IsNull(remote.GetFile(path, "testFile11.txt", false));
             Assert.IsNotNull(remote.GetFile(path, "testFile11.txt", true));
@@ -157,13 +157,13 @@ namespace AutoCheck.Test.Connectors
         {          
             //Local  
             using(var local = new AutoCheck.Core.Connectors.Shell()){
-                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, local.GetFolders(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, local.GetFolders(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, local.GetFolders(SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, local.GetFolders(SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
             }              
 
             //remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, remote.GetFolders(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
             CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, remote.GetFolders(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());  
@@ -174,13 +174,13 @@ namespace AutoCheck.Test.Connectors
         {     
             //Local       
             using(var local = new AutoCheck.Core.Connectors.Shell()){
-                CollectionAssert.AreEqual(new string[]{}, local.GetFiles(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-                CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, local.GetFiles(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{}, local.GetFiles(SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
+                CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, local.GetFiles(SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
             }              
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             CollectionAssert.AreEqual(new string[]{}, remote.GetFiles(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
             CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, remote.GetFiles(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());  
@@ -191,13 +191,13 @@ namespace AutoCheck.Test.Connectors
         {            
             //Local
             using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.AreEqual(2, local.CountFolders(this.SamplesScriptFolder, false));
-                Assert.AreEqual(3, local.CountFolders(this.SamplesScriptFolder, true));
+                Assert.AreEqual(2, local.CountFolders(SamplesScriptFolder, false));
+                Assert.AreEqual(3, local.CountFolders(SamplesScriptFolder, true));
             }      
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.AreEqual(2, remote.CountFolders(path, false));
             Assert.AreEqual(3, remote.CountFolders(path, true));          
@@ -208,13 +208,13 @@ namespace AutoCheck.Test.Connectors
         {            
             //Local
             using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.AreEqual(0, local.CountFiles(this.SamplesScriptFolder, false));
-                Assert.AreEqual(3, local.CountFiles(this.SamplesScriptFolder, true));
+                Assert.AreEqual(0, local.CountFiles(SamplesScriptFolder, false));
+                Assert.AreEqual(3, local.CountFiles(SamplesScriptFolder, true));
             }              
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.AreEqual(0, remote.CountFiles(path, false));
             Assert.AreEqual(3, remote.CountFiles(path, true));  
@@ -241,7 +241,7 @@ namespace AutoCheck.Test.Connectors
             }  
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];            
+            var remote = Conn[TestContext.CurrentContext.Test.ID];            
             var rres = remote.RunCommand("ls");
             Assert.AreEqual(0, rres.code);
             Assert.IsNotNull(rres.response);
@@ -257,17 +257,17 @@ namespace AutoCheck.Test.Connectors
             //Local
             var temp = Path.Combine("temp", "shell", "upload_file");
             using(var local = new AutoCheck.Core.Connectors.Shell()){                                                
-                Assert.IsTrue(File.Exists(Path.Combine(this.SamplesScriptFolder, "testFolder1", "testFile11.txt")));
-                Assert.IsFalse(File.Exists(Path.Combine(this.SamplesScriptFolder, temp, "testFile11.txt")));
+                Assert.IsTrue(File.Exists(Path.Combine(SamplesScriptFolder, "testFolder1", "testFile11.txt")));
+                Assert.IsFalse(File.Exists(Path.Combine(SamplesScriptFolder, temp, "testFile11.txt")));
             }      
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "testFolder1"));
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(Path.Combine(SamplesScriptFolder, "testFolder1"));
 
-            var file = remote.DownloadFile(Path.Combine(path, "testFile11.txt"), Path.Combine(this.SamplesScriptFolder, temp));
+            var file = remote.DownloadFile(Path.Combine(path, "testFile11.txt"), Path.Combine(SamplesScriptFolder, temp));
             Assert.IsTrue(File.Exists(file));
-            Assert.AreEqual(File.ReadAllText(Path.Combine(this.SamplesScriptFolder, "testFolder1", "testFile11.txt")), File.ReadAllText(file));
+            Assert.AreEqual(File.ReadAllText(Path.Combine(SamplesScriptFolder, "testFolder1", "testFile11.txt")), File.ReadAllText(file));
         }
 
         [Test]
@@ -276,13 +276,13 @@ namespace AutoCheck.Test.Connectors
             //Local
             var temp = Path.Combine("temp", "shell", "upload_folder");
             using(var local = new AutoCheck.Core.Connectors.Shell()){                                                
-                Assert.IsTrue(Directory.Exists(this.SamplesScriptFolder));
+                Assert.IsTrue(Directory.Exists(SamplesScriptFolder));
                 Assert.IsFalse(Directory.Exists(temp));
             }      
 
             //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var path = LocalPathToWsl(SamplesScriptFolder);
 
             var dest = remote.DownloadFolder(path, temp, true);
             Assert.IsTrue(Directory.Exists(dest));

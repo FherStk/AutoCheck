@@ -25,12 +25,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Copy : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
+    { 
+        public Copy(): base(Path.Combine("script")){
+        }      
 
         [Test, Category("Copy"), Category("Local")]
         public void Script_COPY_PLAINTEXT_PATH_ISCOPY() 
