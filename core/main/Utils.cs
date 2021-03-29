@@ -66,6 +66,16 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// Returns the current app config folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string TempFolder{
+            get{
+                return Path.Combine(ExecutionFolder, "temp");
+            }
+        }
+
+        /// <summary>
         /// Returns the current OS host type (Windows; Mac; GNU/Linux)
         /// </summary>
         /// <value></value>

@@ -26,6 +26,8 @@ using Renci.SshNet;
 using ToolBox.Bridge;
 using ToolBox.Notification;
 
+//TODO: missing throw new ArgumentNullException("filePath"), should be applied correctly
+
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).
@@ -348,7 +350,7 @@ namespace AutoCheck.Core.Connectors{
             if(!ExistsFile(file)) throw new FileNotFoundException();
                         
             var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
-            var localPath = Path.Combine(folder ?? Path.Combine("temp", Guid.NewGuid().ToString()), Path.GetFileName(remotePath));             
+            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));             
             var localFolder = Path.GetDirectoryName(localPath);
             
             if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);  
@@ -382,7 +384,7 @@ namespace AutoCheck.Core.Connectors{
             if(!ExistsFolder(path)) throw new DirectoryNotFoundException();
 
             var remotePath = Utils.PathToRemoteOS(path, RemoteOS);            
-            var localPath = Path.Combine(folder ?? Path.Combine("temp", Guid.NewGuid().ToString()), Path.GetFileName(remotePath));                        
+            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));                        
             if(!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);                     
             
             var dirPath = localPath;            

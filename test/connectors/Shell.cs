@@ -65,12 +65,7 @@ namespace AutoCheck.Test.Connectors
             var added = false;
             do added = Conn.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
             while(!added);  
-        }
-
-        protected override void CleanUp(){
-            var path = Path.Combine("temp", "shell");
-            if(Directory.Exists(path)) Directory.Delete(path, true);
-        }
+        }        
 
         [TearDown]
         public void TearDown(){
@@ -253,7 +248,9 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         public void DownloadFile()
-        {            
+        {   
+            //TODO: check the temp folder
+
             //Local
             var temp = Path.Combine("temp", "shell", "upload_file");
             using(var local = new AutoCheck.Core.Connectors.Shell()){                                                

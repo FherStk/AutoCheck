@@ -29,11 +29,11 @@ namespace AutoCheck.Test
 {
     public abstract class Test
     { 
-        private string _PATH {get; set;}
+        private string _testPath {get; set;}
         protected const string _FAKE = "fake"; 
 
-        private ConcurrentDictionary<string, string> FolderPool = new ConcurrentDictionary<string, string>();
-
+        private ConcurrentDictionary<string, string> _folderPool = new ConcurrentDictionary<string, string>();
+        
         protected string SamplesRootFolder {
             get {
                 return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "samples")); 
@@ -52,18 +52,18 @@ namespace AutoCheck.Test
 
         protected string SamplesScriptFolder  {
             get {
-                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _PATH)); 
+                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _testPath)); 
             }
         } 
 
         protected string TempScriptFolder {
             get {
-                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _PATH, FolderPool[TestContext.CurrentContext.Test.ID])); 
+                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _testPath, _folderPool[TestContext.CurrentContext.Test.ID])); 
             }
         } 
         protected string LogScriptFolder{
             get {
-                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _PATH, FolderPool[TestContext.CurrentContext.Test.ID])); 
+                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _testPath, _folderPool[TestContext.CurrentContext.Test.ID])); 
             }
         }         
         
@@ -74,11 +74,11 @@ namespace AutoCheck.Test
         } 
 
         public Test(){
-            _PATH = Name;
+            _testPath = Name;
         }
 
         public Test(string folderScaffold){            
-            _PATH = Path.Combine(folderScaffold, Name);
+            _testPath = Path.Combine(folderScaffold, Name);
         }                   
 
         [OneTimeSetUp]
@@ -101,7 +101,7 @@ namespace AutoCheck.Test
         {
             //Each test instance has its own folder for logs and temp in order to avoid collisions and ensure cleaning when done.
             var added = false;
-            do added = FolderPool.TryAdd(TestContext.CurrentContext.Test.ID, Guid.NewGuid().ToString());
+            do added = _folderPool.TryAdd(TestContext.CurrentContext.Test.ID, Guid.NewGuid().ToString());
             while(!added);                
         }
 
@@ -112,7 +112,7 @@ namespace AutoCheck.Test
 
             //Temp and logs
             if(Directory.Exists(LogRootFolder)) Directory.Delete(LogRootFolder, true);
-            if(Directory.Exists(TempRootFolder)) Directory.Delete(TempRootFolder, true);
+            if(Directory.Exists(TempRootFolder)) Directory.Delete(TempRootFolder, true);            
 
             //Restore output     
             AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.VERBOSE);

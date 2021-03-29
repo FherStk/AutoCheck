@@ -286,7 +286,14 @@ namespace AutoCheck.Core.Connectors{
 
             //Restoring the original Remote instance.
             Remote = originalRemote;
-            if(Remote != null) Utils.RunWithRetry<Exception>(() => {Directory.Delete(localFolderPath, true);});             
+            if(Remote != null){
+                Utils.RunWithRetry<IOException>(new Action(() => {
+                    //Note: GC must be invoked in order to avoid an System.IO.IOException (file in use by another process).
+                    System.GC.Collect();
+                    System.GC.WaitForPendingFinalizers();
+                    Directory.Delete(localFolderPath, true);
+                }));   
+            }                    
         }
 #endregion
 #region Files          
@@ -340,14 +347,12 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="localFilePath">Local file path</param>
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){            
-            if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
-            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);
+        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){                                                
+            if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");
+            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);                       
+            if(!File.Exists(localFilePath)) throw new FileNotFoundException();
 
-            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
-            if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
-                        
-            string mime = string.Empty;                        
+            string mime = string.Empty;                                    
             if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime)){                                
                 //Unsupported are manually added
                 mime = Path.GetExtension(localFilePath) switch
@@ -389,8 +394,15 @@ namespace AutoCheck.Core.Connectors{
                     });  
                 }              
             }
-
-            if(Remote != null) Utils.RunWithRetry<Exception>(() => {File.Delete(localFilePath);});
+            
+            if(Remote != null){
+                Utils.RunWithRetry<IOException>(new Action(() => {
+                    //Note: GC must be invoked in order to avoid an System.IO.IOException (file in use by another process).
+                    System.GC.Collect();
+                    System.GC.WaitForPendingFinalizers();
+                    File.Delete(localFilePath);
+                }));     
+            }
         }
 
         /// <summary>
