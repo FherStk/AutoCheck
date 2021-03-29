@@ -382,7 +382,7 @@ namespace AutoCheck.Core.Connectors{
             if(!ExistsFolder(path)) throw new DirectoryNotFoundException();
 
             var remotePath = Utils.PathToRemoteOS(path, RemoteOS);            
-            var localPath = Path.Combine(folder ?? "tmp", Path.GetFileName(remotePath));                        
+            var localPath = Path.Combine(folder ?? Path.Combine("temp", Guid.NewGuid().ToString()), Path.GetFileName(remotePath));                        
             if(!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);                     
             
             var dirPath = localPath;            

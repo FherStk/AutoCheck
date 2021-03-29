@@ -252,14 +252,20 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
         /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
         /// <param name="recursive">Recursive upload through folders.</param>
-        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){
-            //Remote mode: copy locally; upload; remove.            
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){            
             if(string.IsNullOrEmpty(localFolderPath)) throw new ArgumentNullException("localFolderPath");    
-            if(Remote != null) localFolderPath = Remote.DownloadFolder(localFolderPath, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-
             if(string.IsNullOrEmpty(remoteFolderPath)) throw new ArgumentNullException("remoteFolderPath");    
-            if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();   
 
+            var originalRemote = Remote;    
+            if(Remote != null){
+                //When running on remote, the remote folder will be copied locally in order to upload the files to GDrive.
+                //Due the recursive calls to this method, Remote should be disabled temporally.
+                localFolderPath = Remote.DownloadFolder(localFolderPath, recursive);
+                originalRemote = Remote;
+                Remote = null;
+            }             
+
+            if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();               
             remoteFolderPath = remoteFolderPath.TrimEnd(Path.DirectorySeparatorChar);
             remoteFolderName ??= Path.GetFileName(localFolderPath.TrimEnd(Path.DirectorySeparatorChar));
 
@@ -278,6 +284,8 @@ namespace AutoCheck.Core.Connectors{
                 if(recursive) UploadFolder(localFolder, remoteFolderPath, Path.GetFileName(localFolder), recursive);       
             }
 
+            //Restoring the original Remote instance.
+            Remote = originalRemote;
             if(Remote != null) Utils.RunWithRetry<Exception>(() => {Directory.Delete(localFolderPath, true);});             
         }
 #endregion
