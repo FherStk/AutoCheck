@@ -355,6 +355,8 @@ MigrationBackup/
 #AutoCheck protected files
 log.txt
 test/samples/private/*/*
+test/logs/*/*
+test/temp/*/*
 core/config/gdrive_account.txt
 core/config/gdrive_secret.json
 scripts/custom/*.yaml
