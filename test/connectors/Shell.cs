@@ -53,24 +53,49 @@ namespace AutoCheck.Test.Connectors
                     - Create a scheduled task with Win+R and "taskschd.msc"
                         - Setup it to run when the user loggins with admin privileges and hidden.
         */
-        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> Conn = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
 
+        //TODO: Continue from here. 
+        //  - Update the test to the parametrized version
+        //  - Use the remote/local connectors, because Shell must be tested always using both versions
+        //  - Check the correct creation of the temp files and folders (and its removal)
+
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> LocalConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> RemoteConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
+        
+        private AutoCheck.Core.Connectors.Shell LocalConnector {
+            get{
+                return LocalConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
+
+        private AutoCheck.Core.Connectors.Shell RemoteConnector {
+            get{
+                return RemoteConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
+        
         [SetUp]
         public void Setup() 
         {
-            //Create a new and unique host connection for the current context (same host for all tests)
-            var conn = new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "usuario", "usuario"); 
-            
-            //Storing the connector instance for the current context
+            //Create a new and unique host connection for the current context (same host for all tests)            
             var added = false;
-            do added = Conn.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
+            do added = LocalConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell());
+            while(!added); 
+
+            added = false;
+            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "usuario", "usuario"));
             while(!added);  
         }        
 
         [TearDown]
         public void TearDown(){
-            var conn = Conn[TestContext.CurrentContext.Test.ID];
-            conn.Dispose();
+            LocalConnector.Dispose();
+            RemoteConnector.Dispose();
+        }
+
+        protected override void CleanUp(){
+            LocalConnectors.Clear();
+            RemoteConnectors.Clear();
         }
 
         [Test]
@@ -93,7 +118,7 @@ namespace AutoCheck.Test.Connectors
             using(var remote = new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE))
                 Assert.Throws<ConnectionInvalidException>(() => remote.TestConnection());
 
-            Assert.DoesNotThrow(() => Conn[TestContext.CurrentContext.Test.ID].TestConnection());
+            Assert.DoesNotThrow(() => RemoteConnectors[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
         [Test]
@@ -110,7 +135,7 @@ namespace AutoCheck.Test.Connectors
             }      
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.IsNotNull(remote.GetFolder(path, "testFolder1", false));
@@ -133,7 +158,7 @@ namespace AutoCheck.Test.Connectors
             }      
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.IsNull(remote.GetFile(path, "testFile11.txt", false));
@@ -157,7 +182,7 @@ namespace AutoCheck.Test.Connectors
             }              
 
             //remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, remote.GetFolders(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
@@ -174,7 +199,7 @@ namespace AutoCheck.Test.Connectors
             }              
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             CollectionAssert.AreEqual(new string[]{}, remote.GetFiles(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
@@ -191,7 +216,7 @@ namespace AutoCheck.Test.Connectors
             }      
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.AreEqual(2, remote.CountFolders(path, false));
@@ -208,7 +233,7 @@ namespace AutoCheck.Test.Connectors
             }              
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             Assert.AreEqual(0, remote.CountFiles(path, false));
@@ -236,7 +261,7 @@ namespace AutoCheck.Test.Connectors
             }  
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];            
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];            
             var rres = remote.RunCommand("ls");
             Assert.AreEqual(0, rres.code);
             Assert.IsNotNull(rres.response);
@@ -259,7 +284,7 @@ namespace AutoCheck.Test.Connectors
             }      
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(Path.Combine(SamplesScriptFolder, "testFolder1"));
 
             var file = remote.DownloadFile(Path.Combine(path, "testFile11.txt"), Path.Combine(SamplesScriptFolder, temp));
@@ -278,7 +303,7 @@ namespace AutoCheck.Test.Connectors
             }      
 
             //Remote
-            var remote = Conn[TestContext.CurrentContext.Test.ID];
+            var remote = RemoteConnectors[TestContext.CurrentContext.Test.ID];
             var path = LocalPathToWsl(SamplesScriptFolder);
 
             var dest = remote.DownloadFolder(path, temp, true);
