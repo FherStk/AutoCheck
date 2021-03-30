@@ -28,8 +28,7 @@ using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core.Connectors{    
     public class Zip: Base{     
-        //public ZipFile ZipFile {get; private set;}   
-        private MemoryStream FileContent {get; set;}   
+        public MemoryStream ZipFile {get; private set;}   
         private string FilePath {get; set;}   
 
         /// <summary>
@@ -77,9 +76,9 @@ namespace AutoCheck.Core.Connectors{
             ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
 
             FilePath = filePath;
-            FileContent = new MemoryStream();
+            ZipFile = new MemoryStream();
             using(var fs = File.OpenRead(filePath)){
-                fs.CopyTo(FileContent);
+                fs.CopyTo(ZipFile);
             }            
         }
 
@@ -87,7 +86,7 @@ namespace AutoCheck.Core.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-            FileContent.Dispose();
+            ZipFile.Dispose();
         } 
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace AutoCheck.Core.Connectors{
             if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
 
             //Source: https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation   
-            using(var zf = new ZipFile(FileContent)){
+            using(var zf = new ZipFile(ZipFile)){
                 if (!String.IsNullOrEmpty(password)) zf.Password = password;
 
                 foreach (ZipEntry zipEntry in zf) {
