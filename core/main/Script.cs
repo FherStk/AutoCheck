@@ -2227,6 +2227,9 @@ namespace AutoCheck.Core{
 #endregion
 #region BBDD
         private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
+            Output.WriteLine("DEPRECATED! Use the Postgres Connector instead.", Output.Style.WARNING);
+            Output.BreakLine();
+
             Output.WriteLine("Restoring databases: ", Output.Style.HEADER);
             Output.Indent();
 
