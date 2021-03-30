@@ -21,94 +21,133 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Globalization;
+using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core.Connectors{    
     public class Zip: Base{     
+        //public ZipFile ZipFile {get; private set;}   
+        private MemoryStream FileContent {get; set;}   
+        private string FilePath {get; set;}   
+
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        public Zip(){            
+        /// <param name="filePath">ZIP file path.</param>
+        public Zip(string filePath){            
+            Parse(filePath);    
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="filePath">XML file path.</param>
+        /// <param name="validation">Validation type.</param>
+        public Zip(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){              
+        }
+
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="filePath">XML file path.</param>
+        /// <param name="validation">Validation type.</param>
+        public Zip(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
+            ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
+                Parse(filePath); 
+            }));            
+        }
+
+        private void Parse(string filePath){       
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+
+            //Encoding must be manually setup in order to avoid errors during decompression
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
+
+            FilePath = filePath;
+            FileContent = new MemoryStream();
+            using(var fs = File.OpenRead(filePath)){
+                fs.CopyTo(FileContent);
+            }            
         }
 
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
+            FileContent.Dispose();
         } 
+
+        /// <summary>
+        /// Extracts the ZIP file.
+        /// </summary>
+        /// <param name="output">Destination folder for the extracted files.</param>
+        /// <param name="password">ZIP file's password.</param>
+        public void Extract(string output, string password = null) {
+            Extract(false, output, password);
+        }
         
         /// <summary>
-        /// Extracts a ZIP file.
+        /// Extracts the ZIP file.
         /// </summary>
-        /// <param name="filePath">ZIP file's path.</param>
         /// <param name="recursive">ZIP files within the extracted one, will be also extracted.</param>
         /// <param name="output">Destination folder for the extracted files.</param>
         /// <param name="password">ZIP file's password.</param>
-        public void Extract(string filePath, bool recursive=false, string output = null, string password = null) {
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("path");            
-            if(!File.Exists(filePath)) throw new FileNotFoundException();
-            if(!Path.GetExtension(filePath).Equals("zip", StringComparison.InvariantCultureIgnoreCase)) throw new ArgumentInvalidException("Only ZIP files are allowed.");
-
-            output ??= Path.GetDirectoryName(filePath);
+        public void Extract(bool recursive=false, string output = null, string password = null) {           
+            output ??= Path.GetDirectoryName(FilePath);
             if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
-            
-            //Encoding must be manually setup in order to avoid errors during decompression
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
 
-            //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
-            using(Stream fsInput = File.OpenRead(filePath)){ 
-                using(ZipFile zf = new ZipFile(fsInput)){
+            //Source: https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation   
+            using(var zf = new ZipFile(FileContent)){
+                if (!String.IsNullOrEmpty(password)) zf.Password = password;
+
+                foreach (ZipEntry zipEntry in zf) {
+                    if (!zipEntry.IsFile) continue;
                     
-                    if (!string.IsNullOrEmpty(password)) {
-                        // AES encrypted entries are handled automatically
-                        zf.Password = password;
-                    }
+                    var entryFileName = zipEntry.Name;
+                    var fullZipToPath = Path.Combine(output, entryFileName);
+                    var directoryName = Path.GetDirectoryName(fullZipToPath);
 
-                    foreach (ZipEntry zipEntry in zf) {
-                        if (!zipEntry.IsFile) {
-                            // Ignore directories
-                            continue;
-                        }
-                        
-                        //zipEntry.IsUnicodeText <- is false with error
-
-                        string entryFileName = zipEntry.Name;
-                        // to remove the folder from the entry:
-                        //entryFileName = Path.GetFileName(entryFileName);
-                        // Optionally match entrynames against a selection list here
-                        // to skip as desired.
-                        // The unpacked length is available in the zipEntry.Size property.
-
-                        // Manipulate the output filename here as desired.
-                        var fullZipToPath = Path.Combine(output, entryFileName);
-                        var directoryName = Path.GetDirectoryName(fullZipToPath);
-                        if (directoryName.Length > 0) {
-                            Directory.CreateDirectory(directoryName);
-                        }
-
-                        // 4K is optimum
-                        var buffer = new byte[4096];
-
-                        // Unzip file in buffered chunks. This is just as fast as unpacking
-                        // to a buffer the full size of the file, but does not waste memory.
-                        // The "using" will close the stream even if an exception occurs.
-                        using(var zipStream = zf.GetInputStream(zipEntry))
-                        using (Stream fsOutput = File.Create(fullZipToPath)) {
-                            StreamUtils.Copy(zipStream, fsOutput , buffer);
-                        }
+                    if (directoryName.Length > 0) Directory.CreateDirectory(directoryName);
+                    
+                    var buffer = new byte[4096];
+                    using(var zipStream = zf.GetInputStream(zipEntry))
+                    using (Stream fsOutput = File.Create(fullZipToPath)) {
+                        StreamUtils.Copy(zipStream, fsOutput , buffer);
                     }
                 }
             }
 
-            if(recursive){
-                var files = Directory.GetFiles(Path.GetFullPath(filePath), "*.zip", SearchOption.AllDirectories); 
-                foreach(string zip in files){       
-                    Extract(zip, true);
-                }
+            if(recursive){                
+                //Cannot call recursivelly with the recursive flag in order to avoid infinite loops.
+                var done = false;
+                var extracted = new HashSet<string>();                
+
+                do{        
+                    done = true;                                                               
+                    foreach(string file in Directory.GetFiles(output, "*.zip", SearchOption.AllDirectories)){  
+                        if(!extracted.Contains(file)){
+                            extracted.Add(file);
+                            
+                            var connector = new Zip(file);
+                            connector.Extract(false);
+
+                            done = false;
+                        }
+                    }
+                } while(!done);
             }
         }
     }

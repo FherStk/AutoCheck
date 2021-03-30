@@ -28,7 +28,9 @@ namespace AutoCheck.Test.Connectors
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Xml : Test
-    {                     
+    {   
+        //TODO: tests must be parametrized
+
         [Test]
         public void Constructor()
         {  

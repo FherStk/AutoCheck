@@ -2189,7 +2189,7 @@ namespace AutoCheck.Core{
 
                         try{
                             Output.Write($"Extracting the file ~{CurrentFileName}... ", Output.Style.DETAILS);
-                            var zipConnector = new Connectors.Zip();
+                            var zipConnector = new Connectors.Zip(null);    //TODO: change this, null will fail
                             zipConnector.Extract(zip);
                             Output.WriteResponse();
                         }

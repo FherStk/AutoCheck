@@ -29,95 +29,69 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class Zip : Test
     {    
-        // [Test]       
-        // public void Constructor_Local_DoesNotThrow()
-        // {      
-        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(GetSampleFile(file)));
-        // }
+        [Test]
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Zip(file));
+        }
 
-        // [Test]
-        // [TestCase("correct.css", OS.GNU, "localhost", "usuario", "usuario")]
-        // public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
-        // {     
-        //     //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
-        //     Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));
-        // }
+        [Test]
+        [TestCase("someFile.ext")]
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Zip(GetSampleFile(file)));
+        }       
+   
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, file));
+        }
 
-        // [Test]
-        // [TestCase("")]        
-        // public void Constructor_Local_Throws_ArgumentNullException(string file)
-        // {      
-        //     Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(file));
-        // }
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, file));
+        }
 
-        // [Test]
-        // [TestCase(_FAKE)]        
-        // public void Constructor_Local_Throws_FileNotFoundException(string file)
-        // {      
-        //     Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(GetSampleFile(file)));
-        // }
+        [Test]
+        [TestCase("nopass.zip", OS.GNU, "localhost", "usuario", "usuario")]
+        public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {           
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));            
+        }
 
-        // [Test]
-        // [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]        
-        // public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
-        // {      
-        //     Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, file));
-        // }
+        [Test]
+        [TestCase("nopass.zip", null, "nopass.txt", "nopass")]
+        [TestCase("withpass.zip", "1234", "withpass.txt", "withpass")]
+        public void Extract_Local_NoRecursive_DoesNotThrow(string file, string password, string expectedFile, string expectedContent)
+        {                        
+            var local = new AutoCheck.Core.Connectors.Zip(GetSampleFile(file));
+            Assert.IsFalse(Directory.Exists(TempScriptFolder));                     
+            
+            Directory.CreateDirectory(TempScriptFolder);            
+            local.Extract(TempScriptFolder, password);
 
-        // [Test]
-        // [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]        
-        // public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
-        // {      
-        //     Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Css(remoteOS, host, username, password, file));
-        // }
-       
-        // [Test]
-        // [TestCase("empty.css")]
-        // [TestCase("correct.css")]
-        // public void ValidateCss3AgainstW3C_DoesNotThrow(string file)
-        // {            
-        //     using(var conn = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
-        //         Assert.DoesNotThrow(() => conn.ValidateCss3AgainstW3C());
-        // }
+            Assert.IsTrue(File.Exists(Path.Combine(TempScriptFolder, expectedFile)));
+            Assert.AreEqual(expectedContent, File.ReadAllText(Path.Combine(TempScriptFolder, expectedFile)));
+        } 
 
-        // [Test]
-        // [TestCase("incorrect.css")]
-        // public void ValidateCss3AgainstW3C_Throws_DocumentInvalidException(string file)
-        // {            
-        //    using(var conn = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
-        //         Assert.Throws<DocumentInvalidException>(() => conn.ValidateCss3AgainstW3C());
-        // }
+        [Test]
+        [TestCase("recursive.zip", 1, 4)]        
+        public void Extract_Local_Recursive_DoesNotThrow(string file, int expectedFolders, int expectedFiles)
+        {                        
+            var local = new AutoCheck.Core.Connectors.Zip(GetSampleFile(file));         
+            Assert.IsFalse(Directory.Exists(TempScriptFolder));      
 
-        // [Test]
-        // [TestCase("correct.css","color", null, ExpectedResult = true)]
-        // [TestCase("correct.css","font", null, ExpectedResult = true)]
-        // [TestCase("correct.css","font-size", null, ExpectedResult = true)]
-        // [TestCase("correct.css","line", null, ExpectedResult = true)]
-        // [TestCase("correct.css","line-height", null, ExpectedResult = true)]
-        // [TestCase("correct.css","line-height", "1", ExpectedResult = true)]
-        // [TestCase("correct.css","float", null, ExpectedResult = false)]        
-        // public bool PropertyExists_DoesNotThrow(string file, string property, string value)
-        // {            
-        //     using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(file)))
-        //         return css.PropertyExists(property, value);                
-        // }
-
-        // [Test]
-        // [TestCase("correct.html", "correct.css", "color", null, ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "font", null, ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "font-size", null, ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "line", null, ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "line-height", null, ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "line-height", "1", ExpectedResult = true)]
-        // [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
-        // [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
-        // public bool PropertyApplied_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
-        // {            
-        //     using(var html = new AutoCheck.Core.Connectors.Html(Path.Combine(GetSamplePath("html"), htmlFile)))
-        //     using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(cssFile)))
-        //     {
-        //         return css.PropertyApplied(html.HtmlDoc, property, value);                
-        //     }
-        // }
+            Directory.CreateDirectory(TempScriptFolder);     
+            local.Extract(true, TempScriptFolder);
+            
+            Assert.AreEqual(expectedFolders, Directory.GetDirectories(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
+            Assert.AreEqual(expectedFiles, Directory.GetFiles(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
+        } 
     }
 }

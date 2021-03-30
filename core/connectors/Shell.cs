@@ -307,7 +307,11 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="folder">The folder to get including its path.</param>
         public bool ExistsFolder(string folder){
             folder = (IsLocal ? Utils.PathToCurrentOS(folder) : Utils.PathToRemoteOS(folder, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/');            
-            return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+            
+            var path = Path.GetDirectoryName(folder);
+            if(string.IsNullOrEmpty(path)) path = Utils.ExecutionFolder;
+
+            return ExistsFolder(path, Path.GetFileName(folder));
         }
 
         /// <summary>
@@ -327,8 +331,12 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="file">The file to get including its path.</param>
         public bool ExistsFile(string file){
-            file = (IsLocal ? Utils.PathToCurrentOS(file) : Utils.PathToRemoteOS(file, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/');         
-            return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
+            file = (IsLocal ? Utils.PathToCurrentOS(file) : Utils.PathToRemoteOS(file, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/'); 
+
+            var path = Path.GetDirectoryName(file);
+            if(string.IsNullOrEmpty(path)) path = Utils.ExecutionFolder;
+
+            return ExistsFile(path, Path.GetFileName(file));
         }
 
         /// <summary>
