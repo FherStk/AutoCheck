@@ -123,7 +123,18 @@ namespace AutoCheck.Test
         /// This method will be automatically called by the engine in order to cleanup a test enviroment before any test starts and after all tests ends.
         /// </summary>
         protected virtual void CleanUp(){            
-        }        
+        }  
+
+        /// <summary>
+        /// Retrieves a sample file path for the current test.
+        /// </summary>
+        /// <param name="file">The file to retrieve.</param>
+        /// <returns>A file path.</returns>
+        protected string GetTempFile(string file) 
+        {            
+            //Temp folders uses the current test context ID, so is not possible to access another ones as could be done when asking for a sample file between scripts.
+            return Utils.PathToCurrentOS(Path.Combine(TempScriptFolder, file)); 
+        }      
 
         /// <summary>
         /// Retrieves a sample file path for the current test.

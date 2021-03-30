@@ -266,7 +266,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public int CountFolders(string path, string searchpattern = "*", bool recursive = true){
+        public int CountFolders(string path, string searchpattern, bool recursive = true){
             return GetFolders(path, searchpattern, recursive).Count();
         }
         
@@ -287,7 +287,7 @@ namespace AutoCheck.Core.Connectors{
          /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public int CountFiles(string path, string searchpattern = "*", bool recursive = true){
+        public int CountFiles(string path, string searchpattern, bool recursive = true){
             return GetFiles(path, searchpattern, recursive).Count();
         }
 
