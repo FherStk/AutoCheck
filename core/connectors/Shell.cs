@@ -26,8 +26,6 @@ using Renci.SshNet;
 using ToolBox.Bridge;
 using ToolBox.Notification;
 
-//TODO: missing throw new ArgumentNullException("filePath"), should be applied correctly
-
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).
@@ -187,6 +185,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public virtual string GetFolder(string path, string folder, bool recursive = true){
+            //path will be validated within GetFolders
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("folder");
             return GetFolders(path, folder, recursive).FirstOrDefault();
         }
 
@@ -198,7 +198,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full path, NULL if does not exists.</returns>
         public virtual string GetFile(string path, string file, bool recursive = true){
-           return GetFiles(path, file, recursive).FirstOrDefault();
+            //path will be validated within GetFiles
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("folder");
+            return GetFiles(path, file, recursive).FirstOrDefault();
         }
 
         /// <summary>
@@ -229,6 +231,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path.</returns>
         public string[] GetFolders(string path, string searchpattern = "*", bool recursive = true){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, true).Items;
             else{
                 path = Utils.PathToCurrentOS(path);                         
@@ -246,6 +249,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full paths.</returns>
         public string[] GetFiles(string path, string searchpattern = "*", bool recursive = true){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, false).Items;
             else{
                 path = Utils.PathToCurrentOS(path); 
