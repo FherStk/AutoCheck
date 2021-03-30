@@ -23,6 +23,7 @@ using System.IO;
 using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core;
+using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test
@@ -151,9 +152,13 @@ namespace AutoCheck.Test
         /// <example>"C:\folder\file.ext" -> "/mnt/c/folder/file.ext"</example>
         /// <param name="localPath">Absolute local path to convert.</param>        
         /// <returns>The absolute remote path.</returns>
-        protected string LocalPathToWsl(string localPath){            
-            var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();            
-            if(Core.Utils.CurrentOS == OS.WIN) localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+        protected string LocalPathToWsl(string localPath){
+            if(!Path.IsPathFullyQualified(localPath)) throw new ArgumentInvalidException("The argument localPath must be an absolute path.");
+
+            if(Core.Utils.CurrentOS == OS.WIN){
+                var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();
+                localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+            } 
             return localPath;
         }
     }

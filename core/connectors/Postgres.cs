@@ -23,7 +23,6 @@ using System.IO;
 using System.Data;
 using System.Collections.Generic;
 using Npgsql;
-using ToolBox.Bridge;
 using AutoCheck.Core.Exceptions;
 
 

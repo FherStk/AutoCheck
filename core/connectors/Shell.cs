@@ -211,17 +211,7 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>Folder's full path.</returns>
         public virtual string[] GetFolders(string path, bool recursive = true){
             return GetFolders(path, "*", recursive);
-        }
-
-        /// <summary>
-        /// Returns a set of file's path found, using the given file name or search pattern.
-        /// </summary>
-        /// <param name="path">Path where the file will be searched into.</param>
-        /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>File's full paths.</returns>
-        public virtual string[] GetFiles(string path, bool recursive = true){
-            return GetFiles(path, "*", recursive);
-        }
+        }       
 
         /// <summary>
         /// Returns a set of folder's path found, using the given folder name or search pattern.
@@ -230,7 +220,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path.</returns>
-        public string[] GetFolders(string path, string searchpattern = "*", bool recursive = true){
+        public string[] GetFolders(string path, string searchpattern, bool recursive = true){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, true).Items;
             else{
@@ -245,10 +235,20 @@ namespace AutoCheck.Core.Connectors{
         /// Returns a set of file's path found, using the given file name or search pattern.
         /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>File's full paths.</returns>
+        public virtual string[] GetFiles(string path, bool recursive = true){
+            return GetFiles(path, "*", recursive);
+        }
+
+        /// <summary>
+        /// Returns a set of file's path found, using the given file name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full paths.</returns>
-        public string[] GetFiles(string path, string searchpattern = "*", bool recursive = true){
+        public string[] GetFiles(string path, string searchpattern, bool recursive = true){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, false).Items;
             else{
