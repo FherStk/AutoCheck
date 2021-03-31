@@ -228,17 +228,21 @@ namespace AutoCheck.Core.Connectors{
         /// Creates a new database instance using an SQL Dump file.
         /// </summary>
         /// <param name="filePath">The SQL Dump file path.</param>
-        public void CreateDataBase(string dumpPath)
+        /// <param name="replace">Existing database will be drop and replaced by the new one.</param>
+        public void CreateDataBase(string dumpPath, bool replace = false)
         { 
             if(string.IsNullOrEmpty(dumpPath)) throw new ArgumentNullException("filePath");
-            CreateDataBase();
+            if(replace && ExistsDataBase()) DropDataBase();
+
+            CreateDataBase(replace);
             ImportSqlDump(dumpPath);
         } 
 
         /// <summary>
         /// Creates a new and empty database.
         /// </summary>
-        public void CreateDataBase()
+        /// <param name="replace">Existing database will be drop and replaced by the new one.</param>
+        public void CreateDataBase(bool replace = false)
         { 
             //TODO: this should work with remote...
             string cmdPassword = $"PGPASSWORD={this.Password}";

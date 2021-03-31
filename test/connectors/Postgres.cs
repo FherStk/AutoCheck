@@ -45,14 +45,12 @@ namespace AutoCheck.Test.Connectors
             }
         }
 
-
         [SetUp]
         public void Setup() 
         {
             //Create a new and unique database for the current context (each test has its own database)
             var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), _ADMIN, _ADMIN);
-            if(conn.ExistsDataBase()) conn.DropDataBase();
-            conn.CreateDataBase(base.GetSampleFile("dump.sql"));                  
+            conn.CreateDataBase(base.GetSampleFile("dump.sql"), true);
 
             //Storing the connector instance for the current context
             var added = false;

@@ -24,7 +24,7 @@ version: "1.1.0.0"
 body:
   - connector:            
       type: "Postgres"        
-      arguments: "--host {$REMOTE_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"
+      arguments: "--host {$REMOTE_HOST} --database {$DATABASE} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
   
 #   - run:
 #       caption:  "Revoking permissions for dbadmin from previous executions... "
@@ -85,7 +85,7 @@ body:
         - run:
             caption: "Checking table privileges..."
             connector: "Postgres"
-            command:  "GetTablePrivileges"      #TODO: Move from checker to connector
+            command:  "GetTablePrivileges"      
             arguments: "--source rrhh.empleats --filter id>9"
             expected: "%a%"
 
