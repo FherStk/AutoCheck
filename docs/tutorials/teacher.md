@@ -457,8 +457,8 @@ Batch mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
-[pre](#pre) | sequence | no | The defined content will be executed once per batch target before any target's body. |
-[post](#post) | sequence | no | The  defined content will be executed once per batch target after all target's body. |
+[pre](#pre) | sequence | no | The defined content will be executed once per batch target before the copy_detector and any target's body. |
+[post](#post) | sequence | no | The  defined content will be executed once per batch target after the copy_detector and all target's body. |
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
 [remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
