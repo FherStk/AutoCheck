@@ -127,6 +127,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
+        [TestCase(OS.GNU, "localhost", "usuario", "usuario")]
         public void TestConnection_Remote_DoesNotThrow(OS remoteOS, string host, string username, string password)
         {                
             Assert.DoesNotThrow(() => RemoteConnectors[TestContext.CurrentContext.Test.ID].TestConnection());
