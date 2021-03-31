@@ -26,27 +26,6 @@ body:
       type: "Postgres"        
       arguments: "--host {$REMOTE_HOST} --database {$DATABASE} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
   
-#   - run:
-#       caption:  "Revoking permissions for dbadmin from previous executions... "
-#       connector: "Postgres"
-#       command:  "Revoke"      
-#       arguments: "--what dbadmin --where prodadmin,rrhhadmin"  
-#       onexception: "ABORT"
-
-#   - run:
-#       caption:  "Revoking permissions for prodadmin from previous executions... "
-#       connector: "Postgres"
-#       command:  "Revoke"      
-#       arguments: "--what prodadmin --where dbadmin"  
-#       onexception: "ABORT"
-  
-#   - run:
-#       caption:  "Revoking permissions for rrhhadmin from previous executions... "
-#       connector: "Postgres"
-#       command:  "Revoke"      
-#       arguments: "--what rrhhadmin --where dbadmin"  
-#       onexception: "ABORT"
-      
   - question: 
       description: "This questions does not score"
       score: 0
@@ -80,7 +59,7 @@ body:
             caption: "Checking new entries..."
             connector: "Postgres"
             command:  "ExecuteScalar"      
-            arguments: --query "SELECT * FROM rrhh.empleats WHERE id > 9"
+            arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id > 9"
             expected: ">0"
 
         - run:

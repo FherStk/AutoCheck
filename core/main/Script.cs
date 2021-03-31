@@ -1717,7 +1717,10 @@ namespace AutoCheck.Core{
                 }
 
                 //Not null means that all the constructor parameters has been succesfully binded, but unused arguments are not allowed
-                if(args != null && pending.Count == 0) return (info, args.ToArray());
+                if(args != null && pending.Count == 0){
+                    if(info.IsGenericMethodDefinition) return (((MethodInfo)info).MakeGenericMethod(typeof(object)), args.ToArray());
+                    else return (info, args.ToArray());   
+                } 
             }
             
             //No bind has been found
@@ -1750,8 +1753,8 @@ namespace AutoCheck.Core{
                 data = GetMethod(connector.GetType(), command, arguments);                
             }
 
-            var result = data.method.Invoke(connector, data.args);                                                 
-            return (result, shellExecuted);
+            var result = data.method.Invoke(connector, data.args);
+            return (result, shellExecuted);           
         }
 
         private object ComputeArgument(string name, YamlScalarNode node){
