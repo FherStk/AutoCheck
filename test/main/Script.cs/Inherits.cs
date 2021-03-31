@@ -46,7 +46,7 @@ namespace AutoCheck.Test
         [Test, Category("Inherits"), Category("Local")]
         public void Script_INHERITS_RUN_FOLDER()
         {       
-            var dest = Path.Combine(TempScriptFolder, "test2");
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test2"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
