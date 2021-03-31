@@ -435,6 +435,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="role">The role name to remove.</param>
         public void DropRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            ExecuteNonQuery($"REASSIGN OWNED BY {role} TO postgres;");
             ExecuteNonQuery($"DROP OWNED BY {role}");
             ExecuteNonQuery($"DROP ROLE {role};");
         }
@@ -475,13 +476,12 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="table">The table which permissions will be requested.</param>
         /// <param name="role">The role which privileges will be checked.</param>        
         /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
-        public string GetTablePrivileges(string schema, string table, string role = null){
+        public string GetTablePrivileges(string schema, string table, string role){
             if(schema == null) throw new ArgumentNullException("schema");
             if(table == null) throw new ArgumentNullException("table");
+            if(role == null) throw new ArgumentNullException("role");
 
-            string query = $"SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{schema}' AND table_name='{table}'";
-            if(!string.IsNullOrEmpty(role)) query += $" AND grantee='{role}'";
-
+            string query = $"SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{schema}' AND table_name='{table}' AND grantee='{role}'";
             string currentPrivileges = "";
             
             foreach(DataRow dr in ExecuteQuery(query).Tables[0].Rows){

@@ -1857,7 +1857,8 @@ namespace AutoCheck.Core{
 
         private bool MatchesExpected(Array current, string expected){
             var match = false;
-            expected = expected.ToUpper().TrimStart();
+            //expected = expected.ToUpper().TrimStart();
+            expected = expected.TrimStart();
 
             if(expected.StartsWith("LENGTH")){
                 expected = expected.Substring(6).Trim();
@@ -1871,15 +1872,16 @@ namespace AutoCheck.Core{
                     if(match) break;
                 }
             }
-            else if(expected.StartsWith("UNORDEREDEQUALS")){
+            else if(expected.StartsWith("UNORDEREDEQUALS")){                
                 var source = new List<string>((IEnumerable<string>)current).OrderBy(x => x);
-                match = source.SequenceEqual(expected.Split(",").OrderBy(x => x));
+                expected = expected.Substring(15).Trim();
+                match = source.SequenceEqual(expected.TrimStart('[').TrimEnd(']').Split(",").OrderBy(x => x));
 
             }
-            else{
-                //ORDEREDEQUALS
+            else{                
                 var source = new List<string>((IEnumerable<string>)current);
-                match = source.SequenceEqual(expected.Split(","));
+                if(expected.StartsWith("ORDEREDEQUALS")) expected = expected.Substring(13).Trim();
+                match = source.SequenceEqual(expected.TrimStart('[').TrimEnd(']').Split(","));
             }            
             
             return match;

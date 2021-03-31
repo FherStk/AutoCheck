@@ -66,7 +66,7 @@ body:
             caption: "Checking table privileges..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--schema rrhh --table empleats"
+            arguments: "--schema rrhh --table empleats --role rrhhadmin"
             expected: "%a%"
 
   - question: 
@@ -89,14 +89,14 @@ body:
             caption: "Checking foreign key 'fabricacio -> productes'..."
             connector: "Postgres"
             command:  "ExistsForeignKey"      
-            arguments: "--schemaFrom produccio --tableFrom fabricacio --columnFrom id_fabrica --schemaTo produccio --tableTo productes --columnTo id"                  
+            arguments: "--schemaFrom produccio --tableFrom fabricacio --columnFrom id_producte --schemaTo produccio --tableTo productes --columnTo id"                  
             expected: True
 
         - run:
             caption: "Checking table privileges..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table fabricacio --role rrhhadmin"
+            arguments: "--schema produccio --table productes --role prodadmin"
             expected: "%x%"
   
   - question: 
@@ -130,7 +130,7 @@ body:
             caption: "Checking removed entries..."
             connector: "Postgres"
             command:  "ExecuteScalar"      
-            arguments: --query "SELECT * FROM rrhh.empleats WHERE id=9"
+            arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id=9"
             expected: "0"
 
         - run:
