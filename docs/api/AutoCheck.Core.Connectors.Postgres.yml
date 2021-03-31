@@ -12,8 +12,8 @@ items:
   - AutoCheck.Core.Connectors.Postgres.Conn
   - AutoCheck.Core.Connectors.Postgres.CountRoles
   - AutoCheck.Core.Connectors.Postgres.CountUsers
-  - AutoCheck.Core.Connectors.Postgres.CreateDataBase
-  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
   - AutoCheck.Core.Connectors.Postgres.CreateUser(System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.Database
@@ -52,11 +52,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../core/connectors/Postgres.cs
-    startLine: 33
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -76,6 +76,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -103,11 +104,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../core/connectors/Postgres.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -141,11 +142,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Postgres.cs
-    startLine: 46
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -179,11 +180,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
     path: ../core/connectors/Postgres.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -217,11 +218,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
     path: ../core/connectors/Postgres.cs
-    startLine: 58
+    startLine: 57
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -255,11 +256,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Postgres.cs
-    startLine: 65
+    startLine: 64
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -293,11 +294,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
     path: ../core/connectors/Postgres.cs
-    startLine: 71
+    startLine: 70
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -331,11 +332,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Student
     path: ../core/connectors/Postgres.cs
-    startLine: 77
+    startLine: 76
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -369,11 +370,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Postgres.cs
-    startLine: 92
+    startLine: 91
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -417,11 +418,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Postgres.cs
-    startLine: 108
+    startLine: 107
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -452,11 +453,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Postgres.cs
-    startLine: 116
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -484,11 +485,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../core/connectors/Postgres.cs
-    startLine: 132
+    startLine: 131
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -523,11 +524,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../core/connectors/Postgres.cs
-    startLine: 170
+    startLine: 169
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -559,11 +560,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../core/connectors/Postgres.cs
-    startLine: 192
+    startLine: 191
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -603,11 +604,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 214
+    startLine: 213
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -624,21 +625,21 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
-  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
-  id: CreateDataBase(System.String)
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  id: CreateDataBase(System.String,System.Boolean)
   parent: AutoCheck.Core.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: CreateDataBase(String)
-  nameWithType: Postgres.CreateDataBase(String)
-  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  name: CreateDataBase(String, Boolean)
+  nameWithType: Postgres.CreateDataBase(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String, System.Boolean)
   type: Method
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -649,43 +650,50 @@ items:
   summary: "\nCreates a new database instance using an SQL Dump file.\n"
   example: []
   syntax:
-    content: public void CreateDataBase(string dumpPath)
+    content: public void CreateDataBase(string dumpPath, bool replace = false)
     parameters:
     - id: dumpPath
       type: System.String
-    content.vb: Public Sub CreateDataBase(dumpPath As String)
+    - id: replace
+      type: System.Boolean
+      description: Existing database will be drop and replaced by the new one.
+    content.vb: Public Sub CreateDataBase(dumpPath As String, replace As Boolean = False)
   overload: AutoCheck.Core.Connectors.Postgres.CreateDataBase*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase
-  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase
-  id: CreateDataBase
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  id: CreateDataBase(System.Boolean)
   parent: AutoCheck.Core.Connectors.Postgres
   langs:
   - csharp
   - vb
-  name: CreateDataBase()
-  nameWithType: Postgres.CreateDataBase()
-  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase()
+  name: CreateDataBase(Boolean)
+  nameWithType: Postgres.CreateDataBase(Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
   type: Method
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 241
+    startLine: 244
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new and empty database.\n"
   example: []
   syntax:
-    content: public void CreateDataBase()
-    content.vb: Public Sub CreateDataBase
+    content: public void CreateDataBase(bool replace = false)
+    parameters:
+    - id: replace
+      type: System.Boolean
+      description: Existing database will be drop and replaced by the new one.
+    content.vb: Public Sub CreateDataBase(replace As Boolean = False)
   overload: AutoCheck.Core.Connectors.Postgres.CreateDataBase*
   modifiers.csharp:
   - public
@@ -705,11 +713,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlDump
     path: ../core/connectors/Postgres.cs
-    startLine: 269
+    startLine: 272
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -741,11 +749,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 299
+    startLine: 302
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -773,11 +781,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 346
+    startLine: 349
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -808,11 +816,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 364
+    startLine: 367
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -843,11 +851,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
     path: ../core/connectors/Postgres.cs
-    startLine: 372
+    startLine: 375
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -880,11 +888,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
     path: ../core/connectors/Postgres.cs
-    startLine: 384
+    startLine: 387
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -915,11 +923,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
     path: ../core/connectors/Postgres.cs
-    startLine: 394
+    startLine: 397
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -950,11 +958,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 407
+    startLine: 410
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -985,11 +993,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 415
+    startLine: 418
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1020,11 +1028,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../core/connectors/Postgres.cs
-    startLine: 423
+    startLine: 426
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1056,11 +1064,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../core/connectors/Postgres.cs
-    startLine: 432
+    startLine: 435
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1092,11 +1100,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
     path: ../core/connectors/Postgres.cs
-    startLine: 443
+    startLine: 447
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1127,11 +1135,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../core/connectors/Postgres.cs
-    startLine: 456
+    startLine: 460
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1166,18 +1174,18 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 474
+    startLine: 478
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nReturns the table privileges.\n"
   example: []
   syntax:
-    content: public string GetTablePrivileges(string schema, string table, string role = null)
+    content: public string GetTablePrivileges(string schema, string table, string role)
     parameters:
     - id: schema
       type: System.String
@@ -1191,7 +1199,7 @@ items:
     return:
       type: System.String
       description: The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).
-    content.vb: Public Function GetTablePrivileges(schema As String, table As String, role As String = Nothing) As String
+    content.vb: Public Function GetTablePrivileges(schema As String, table As String, role As String) As String
   overload: AutoCheck.Core.Connectors.Postgres.GetTablePrivileges*
   modifiers.csharp:
   - public
@@ -1211,11 +1219,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 505
+    startLine: 508
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1253,11 +1261,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelectWithView
     path: ../core/connectors/Postgres.cs
-    startLine: 529
+    startLine: 532
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1298,11 +1306,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../core/connectors/Postgres.cs
-    startLine: 539
+    startLine: 542
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1340,11 +1348,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../core/connectors/Postgres.cs
-    startLine: 560
+    startLine: 563
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1382,11 +1390,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../core/connectors/Postgres.cs
-    startLine: 573
+    startLine: 576
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1424,11 +1432,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsForeignKey
     path: ../core/connectors/Postgres.cs
-    startLine: 594
+    startLine: 597
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1478,11 +1486,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsTable
     path: ../core/connectors/Postgres.cs
-    startLine: 612
+    startLine: 615
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1532,6 +1540,164 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

@@ -89,6 +89,22 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Base.Dispose
   nameWithType: Base.Dispose
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_ProcessRemoteFile_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Action_System_String__
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile*
+  name: ProcessRemoteFile
+  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_ProcessRemoteFile_
+  commentId: Overload:AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  nameWithType: Base.ProcessRemoteFile
 - uid: AutoCheck.Core.Connectors.Css
   name: Css
   href: api/AutoCheck.Connectors.Css.html
@@ -417,6 +433,18 @@ references:
   commentId: T:AutoCheck.Core.Connectors.GDrive
   fullName: AutoCheck.Core.Connectors.GDrive
   nameWithType: GDrive
+- uid: AutoCheck.Core.Connectors.GDrive.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.String)
+  name: GDrive(Utils.OS, String, String, String, Int32, String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.GDrive(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.String)
+  nameWithType: GDrive.GDrive(Utils.OS, String, String, String, Int32, String, String)
+- uid: AutoCheck.Core.Connectors.GDrive.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.String)
+  name: GDrive(Utils.OS, String, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.GDrive(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.String)
+  nameWithType: GDrive.GDrive(Utils.OS, String, String, String, String, String)
 - uid: AutoCheck.Core.Connectors.GDrive.#ctor(System.String,System.String)
   name: GDrive(String, String)
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive__ctor_System_String_System_String_
@@ -678,19 +706,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.GDrive.GetFolder
   nameWithType: GDrive.GetFolder
-- uid: AutoCheck.Core.Connectors.GDrive.Upload(System.String,System.String,System.String)
-  name: Upload(String, String, String)
-  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_Upload_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.GDrive.Upload(System.String,System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.GDrive.Upload(System.String, System.String, System.String)
-  nameWithType: GDrive.Upload(String, String, String)
-- uid: AutoCheck.Core.Connectors.GDrive.Upload*
-  name: Upload
-  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_Upload_
-  commentId: Overload:AutoCheck.Core.Connectors.GDrive.Upload
+- uid: AutoCheck.Core.Connectors.GDrive.UploadFile(System.String,System.String,System.String)
+  name: UploadFile(String, String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_UploadFile_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.UploadFile(System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.UploadFile(System.String, System.String, System.String)
+  nameWithType: GDrive.UploadFile(String, String, String)
+- uid: AutoCheck.Core.Connectors.GDrive.UploadFile*
+  name: UploadFile
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_UploadFile_
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.UploadFile
   isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.GDrive.Upload
-  nameWithType: GDrive.Upload
+  fullName: AutoCheck.Core.Connectors.GDrive.UploadFile
+  nameWithType: GDrive.UploadFile
+- uid: AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String,System.String,System.Boolean)
+  name: UploadFolder(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_UploadFolder_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.UploadFolder(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String,System.String,System.String,System.Boolean)
+  name: UploadFolder(String, String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_UploadFolder_System_String_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String,System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.UploadFolder(System.String, System.String, System.String, System.Boolean)
+  nameWithType: GDrive.UploadFolder(String, String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.UploadFolder*
+  name: UploadFolder
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_UploadFolder_
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.UploadFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.GDrive.UploadFolder
+  nameWithType: GDrive.UploadFolder
 - uid: AutoCheck.Core.Connectors.Html
   name: Html
   href: api/AutoCheck.Connectors.Html.html
@@ -1860,12 +1907,24 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase
   fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase()
   nameWithType: Postgres.CreateDataBase()
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  name: CreateDataBase(Boolean)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_CreateDataBase_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  nameWithType: Postgres.CreateDataBase(Boolean)
 - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
   name: CreateDataBase(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_CreateDataBase_System_String_
   commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
   fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
   nameWithType: Postgres.CreateDataBase(String)
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  name: CreateDataBase(String, Boolean)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_CreateDataBase_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String, System.Boolean)
+  nameWithType: Postgres.CreateDataBase(String, Boolean)
 - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.String)
   name: CreateDataBase(String, String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_CreateDataBase_System_String_System_String_
@@ -3029,12 +3088,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.Dispose
   nameWithType: Shell.Dispose
-- uid: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
-  name: DownloadFile(String)
-  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFile_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
-  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
-  nameWithType: Shell.DownloadFile(String)
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String,System.String)
+  name: DownloadFile(String, String)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFile_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFile(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String, System.String)
+  nameWithType: Shell.DownloadFile(String, String)
 - uid: AutoCheck.Core.Connectors.Shell.DownloadFile*
   name: DownloadFile
   href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFile_
@@ -3042,6 +3101,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.DownloadFile
   nameWithType: Shell.DownloadFile
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.Boolean)
+  name: DownloadFolder(String, Boolean)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFolder_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String, System.Boolean)
+  nameWithType: Shell.DownloadFolder(String, Boolean)
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.String,System.Boolean)
+  name: DownloadFolder(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFolder_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String, System.String, System.Boolean)
+  nameWithType: Shell.DownloadFolder(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder*
+  name: DownloadFolder
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_DownloadFolder_
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.DownloadFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder
+  nameWithType: Shell.DownloadFolder
 - uid: AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
   name: ExistsFile(String)
   href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_ExistsFile_System_String_
@@ -3431,6 +3509,82 @@ references:
   commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
   fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
   nameWithType: Xml.XmlNodeType.STRING
+- uid: AutoCheck.Core.Connectors.Zip
+  name: Zip
+  href: api/AutoCheck.Core.Connectors.Zip.html
+  commentId: T:AutoCheck.Core.Connectors.Zip
+  fullName: AutoCheck.Core.Connectors.Zip
+  nameWithType: Zip
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Zip(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Zip.Zip(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Zip(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Zip.Zip(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(System.String)
+  name: Zip(String)
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(System.String)
+  nameWithType: Zip.Zip(String)
+- uid: AutoCheck.Core.Connectors.Zip.#ctor*
+  name: Zip
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Zip.Zip
+  nameWithType: Zip.Zip
+- uid: AutoCheck.Core.Connectors.Zip.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Zip.Dispose
+  fullName: AutoCheck.Core.Connectors.Zip.Dispose()
+  nameWithType: Zip.Dispose()
+- uid: AutoCheck.Core.Connectors.Zip.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Zip.Dispose
+  nameWithType: Zip.Dispose
+- uid: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+  name: Extract(Boolean, String, String)
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_System_Boolean_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean, System.String, System.String)
+  nameWithType: Zip.Extract(Boolean, String, String)
+- uid: AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+  name: Extract(String, String)
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.String, System.String)
+  nameWithType: Zip.Extract(String, String)
+- uid: AutoCheck.Core.Connectors.Zip.Extract*
+  name: Extract
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.Extract
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Zip.Extract
+  nameWithType: Zip.Extract
+- uid: AutoCheck.Core.Connectors.Zip.ZipFile
+  name: ZipFile
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_ZipFile
+  commentId: P:AutoCheck.Core.Connectors.Zip.ZipFile
+  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+  nameWithType: Zip.ZipFile
+- uid: AutoCheck.Core.Connectors.Zip.ZipFile*
+  name: ZipFile
+  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_ZipFile_
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.ZipFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+  nameWithType: Zip.ZipFile
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   href: api/AutoCheck.CopyDetectors.html
@@ -4572,6 +4726,12 @@ references:
   commentId: F:AutoCheck.Core.Output.Style.SUCCESS
   fullName: AutoCheck.Core.Output.Style.SUCCESS
   nameWithType: Output.Style.SUCCESS
+- uid: AutoCheck.Core.Output.Style.WARNING
+  name: WARNING
+  href: api/AutoCheck.Core.Output.Style.html#AutoCheck_Core_Output_Style_WARNING
+  commentId: F:AutoCheck.Core.Output.Style.WARNING
+  fullName: AutoCheck.Core.Output.Style.WARNING
+  nameWithType: Output.Style.WARNING
 - uid: AutoCheck.Core.Output.ToArray
   name: ToArray()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray
@@ -4860,6 +5020,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.LogFilePath
   nameWithType: Script.LogFilePath
+- uid: AutoCheck.Core.Script.LogFiles
+  name: LogFiles
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFiles
+  commentId: P:AutoCheck.Core.Script.LogFiles
+  fullName: AutoCheck.Core.Script.LogFiles
+  nameWithType: Script.LogFiles
+- uid: AutoCheck.Core.Script.LogFiles*
+  name: LogFiles
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFiles_
+  commentId: Overload:AutoCheck.Core.Script.LogFiles
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogFiles
+  nameWithType: Script.LogFiles
 - uid: AutoCheck.Core.Script.LogFolderName
   name: LogFolderName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFolderName
@@ -5256,19 +5429,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ExecutionFolder
   nameWithType: Utils.ExecutionFolder
-- uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
-  name: ExtractFile(String, String, String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExtractFile_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
-  fullName: AutoCheck.Core.Utils.ExtractFile(System.String, System.String, System.String)
-  nameWithType: Utils.ExtractFile(String, String, String)
-- uid: AutoCheck.Core.Utils.ExtractFile*
-  name: ExtractFile
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExtractFile_
-  commentId: Overload:AutoCheck.Core.Utils.ExtractFile
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.ExtractFile
-  nameWithType: Utils.ExtractFile
 - uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   name: FolderNameToDataBase(String, String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_System_String_System_String_
@@ -5383,6 +5543,19 @@ references:
   fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(System.Func(Of R), System.Int32, System.Int32)
   nameWithType: Utils.RunWithRetry<R, T>(Func<R>, Int32, Int32)
   nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
+- uid: AutoCheck.Core.Utils.TempFolder
+  name: TempFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_TempFolder
+  commentId: P:AutoCheck.Core.Utils.TempFolder
+  fullName: AutoCheck.Core.Utils.TempFolder
+  nameWithType: Utils.TempFolder
+- uid: AutoCheck.Core.Utils.TempFolder*
+  name: TempFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_TempFolder_
+  commentId: Overload:AutoCheck.Core.Utils.TempFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.TempFolder
+  nameWithType: Utils.TempFolder
 - uid: AutoCheck.Core.Utils.ToCamelCase(System.String)
   name: ToCamelCase(String)
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ToCamelCase_System_String_

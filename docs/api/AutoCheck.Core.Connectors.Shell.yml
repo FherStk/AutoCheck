@@ -13,7 +13,9 @@ items:
   - AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.Shell.CountFolders(System.String,System.String,System.Boolean)
   - AutoCheck.Core.Connectors.Shell.Dispose
-  - AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  - AutoCheck.Core.Connectors.Shell.DownloadFile(System.String,System.String)
+  - AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.String,System.Boolean)
   - AutoCheck.Core.Connectors.Shell.ExistsFile(System.String)
   - AutoCheck.Core.Connectors.Shell.ExistsFile(System.String,System.String,System.Boolean)
   - AutoCheck.Core.Connectors.Shell.ExistsFolder(System.String)
@@ -43,7 +45,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/Shell.cs
@@ -65,6 +67,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -92,7 +95,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/Shell.cs
@@ -130,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Shell.cs
@@ -168,7 +171,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/Shell.cs
@@ -206,7 +209,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Shell.cs
@@ -244,7 +247,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/Shell.cs
@@ -282,7 +285,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsLocal
     path: ../core/connectors/Shell.cs
@@ -320,7 +323,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsRemote
     path: ../core/connectors/Shell.cs
@@ -358,7 +361,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -390,7 +393,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -431,7 +434,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -472,7 +475,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Shell.cs
@@ -507,7 +510,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Shell.cs
@@ -539,7 +542,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunCommand
     path: ../core/connectors/Shell.cs
@@ -580,7 +583,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/Shell.cs
@@ -627,11 +630,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/Shell.cs
-    startLine: 197
+    startLine: 199
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -674,11 +677,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
-    startLine: 207
+    startLine: 211
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -704,6 +707,51 @@ items:
   modifiers.vb:
   - Public
   - Overridable
+- uid: AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
+  id: GetFolders(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: GetFolders(String, String, Boolean)
+  nameWithType: Shell.GetFolders(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.GetFolders(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetFolders
+    path: ../core/connectors/Shell.cs
+    startLine: 222
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns a set of folder&apos;s path found, using the given folder name or search pattern.\n"
+  example: []
+  syntax:
+    content: public string[] GetFolders(string path, string searchpattern, bool recursive = true)
+    parameters:
+    - id: path
+      type: System.String
+      description: Path where the folders will be searched into.
+    - id: searchpattern
+      type: System.String
+      description: The folder search pattern.
+    - id: recursive
+      type: System.Boolean
+      description: Recursive deep search.
+    return:
+      type: System.String[]
+      description: Folder&apos;s full path.
+    content.vb: Public Function GetFolders(path As String, searchpattern As String, recursive As Boolean = True) As String()
+  overload: AutoCheck.Core.Connectors.Shell.GetFolders*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.Boolean)
   commentId: M:AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.Boolean)
   id: GetFiles(System.String,System.Boolean)
@@ -718,11 +766,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 217
+    startLine: 239
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -748,51 +796,6 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-- uid: AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
-  commentId: M:AutoCheck.Core.Connectors.Shell.GetFolders(System.String,System.String,System.Boolean)
-  id: GetFolders(System.String,System.String,System.Boolean)
-  parent: AutoCheck.Core.Connectors.Shell
-  langs:
-  - csharp
-  - vb
-  name: GetFolders(String, String, Boolean)
-  nameWithType: Shell.GetFolders(String, String, Boolean)
-  fullName: AutoCheck.Core.Connectors.Shell.GetFolders(System.String, System.String, System.Boolean)
-  type: Method
-  source:
-    remote:
-      path: core/connectors/Shell.cs
-      branch: testing
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetFolders
-    path: ../core/connectors/Shell.cs
-    startLine: 228
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  summary: "\nReturns a set of folder&apos;s path found, using the given folder name or search pattern.\n"
-  example: []
-  syntax:
-    content: public string[] GetFolders(string path, string searchpattern = "*", bool recursive = true)
-    parameters:
-    - id: path
-      type: System.String
-      description: Path where the folders will be searched into.
-    - id: searchpattern
-      type: System.String
-      description: The folder search pattern.
-    - id: recursive
-      type: System.Boolean
-      description: Recursive deep search.
-    return:
-      type: System.String[]
-      description: Folder&apos;s full path.
-    content.vb: Public Function GetFolders(path As String, searchpattern As String = "*", recursive As Boolean = True) As String()
-  overload: AutoCheck.Core.Connectors.Shell.GetFolders*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.String,System.Boolean)
   commentId: M:AutoCheck.Core.Connectors.Shell.GetFiles(System.String,System.String,System.Boolean)
   id: GetFiles(System.String,System.String,System.Boolean)
@@ -807,18 +810,18 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 245
+    startLine: 250
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nReturns a set of file&apos;s path found, using the given file name or search pattern.\n"
   example: []
   syntax:
-    content: public string[] GetFiles(string path, string searchpattern = "*", bool recursive = true)
+    content: public string[] GetFiles(string path, string searchpattern, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -832,7 +835,7 @@ items:
     return:
       type: System.String[]
       description: File&apos;s full paths.
-    content.vb: Public Function GetFiles(path As String, searchpattern As String = "*", recursive As Boolean = True) As String()
+    content.vb: Public Function GetFiles(path As String, searchpattern As String, recursive As Boolean = True) As String()
   overload: AutoCheck.Core.Connectors.Shell.GetFiles*
   modifiers.csharp:
   - public
@@ -852,18 +855,18 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 262
+    startLine: 268
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nReturns how many folders has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFolders(string path, string searchpattern = "*", bool recursive = true)
+    content: public int CountFolders(string path, string searchpattern, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -877,7 +880,7 @@ items:
     return:
       type: System.Int32
       description: The amount of folders.
-    content.vb: Public Function CountFolders(path As String, searchpattern As String = "*", recursive As Boolean = True) As Integer
+    content.vb: Public Function CountFolders(path As String, searchpattern As String, recursive As Boolean = True) As Integer
   overload: AutoCheck.Core.Connectors.Shell.CountFolders*
   modifiers.csharp:
   - public
@@ -897,11 +900,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 272
+    startLine: 278
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -941,18 +944,18 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 283
+    startLine: 289
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nReturns how many files has been found within the given path.\n"
   example: []
   syntax:
-    content: public int CountFiles(string path, string searchpattern = "*", bool recursive = true)
+    content: public int CountFiles(string path, string searchpattern, bool recursive = true)
     parameters:
     - id: path
       type: System.String
@@ -966,7 +969,7 @@ items:
     return:
       type: System.Int32
       description: The amount of files.
-    content.vb: Public Function CountFiles(path As String, searchpattern As String = "*", recursive As Boolean = True) As Integer
+    content.vb: Public Function CountFiles(path As String, searchpattern As String, recursive As Boolean = True) As Integer
   overload: AutoCheck.Core.Connectors.Shell.CountFiles*
   modifiers.csharp:
   - public
@@ -986,11 +989,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 293
+    startLine: 299
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1030,11 +1033,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 301
+    startLine: 307
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1068,11 +1071,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 313
+    startLine: 323
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1113,11 +1116,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 322
+    startLine: 332
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1151,11 +1154,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 334
+    startLine: 348
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1182,41 +1185,131 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
-  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
-  id: DownloadFile(System.String)
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFile(System.String,System.String)
+  id: DownloadFile(System.String,System.String)
   parent: AutoCheck.Core.Connectors.Shell
   langs:
   - csharp
   - vb
-  name: DownloadFile(String)
-  nameWithType: Shell.DownloadFile(String)
-  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String)
+  name: DownloadFile(String, String)
+  nameWithType: Shell.DownloadFile(String, String)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFile(System.String, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFile
     path: ../core/connectors/Shell.cs
-    startLine: 344
+    startLine: 359
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nDownloads the remote file into the local system.\n"
   example: []
   syntax:
-    content: public string DownloadFile(string file)
+    content: public string DownloadFile(string file, string folder = null)
     parameters:
     - id: file
       type: System.String
       description: The file to get including its path.
+    - id: folder
+      type: System.String
+      description: The folder where the file will be downloaded.
     return:
       type: System.String
       description: The local file path once downloaded.
-    content.vb: Public Function DownloadFile(file As String) As String
+    content.vb: Public Function DownloadFile(file As String, folder As String = Nothing) As String
   overload: AutoCheck.Core.Connectors.Shell.DownloadFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.Boolean)
+  id: DownloadFolder(System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: DownloadFolder(String, Boolean)
+  nameWithType: Shell.DownloadFolder(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DownloadFolder
+    path: ../core/connectors/Shell.cs
+    startLine: 385
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDownloads the remote file into the local system.\n"
+  example: []
+  syntax:
+    content: public string DownloadFolder(string path, bool recursive)
+    parameters:
+    - id: path
+      type: System.String
+      description: The file to get including its path.
+    - id: recursive
+      type: System.Boolean
+      description: The entire file and folder structure will be downloaded recursivelly.
+    return:
+      type: System.String
+      description: The local file path once downloaded.
+    content.vb: Public Function DownloadFolder(path As String, recursive As Boolean) As String
+  overload: AutoCheck.Core.Connectors.Shell.DownloadFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String,System.String,System.Boolean)
+  id: DownloadFolder(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: DownloadFolder(String, String, Boolean)
+  nameWithType: Shell.DownloadFolder(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DownloadFolder
+    path: ../core/connectors/Shell.cs
+    startLine: 396
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDownloads the remote file into the local system.\n"
+  example: []
+  syntax:
+    content: public string DownloadFolder(string path, string folder = null, bool recursive = false)
+    parameters:
+    - id: path
+      type: System.String
+      description: The file to get including its path.
+    - id: folder
+      type: System.String
+      description: The folder where the file will be downloaded.
+    - id: recursive
+      type: System.Boolean
+      description: The entire file and folder structure will be downloaded recursivelly.
+    return:
+      type: System.String
+      description: The local folder path once downloaded.
+    content.vb: Public Function DownloadFolder(path As String, folder As String = Nothing, recursive As Boolean = False) As String
+  overload: AutoCheck.Core.Connectors.Shell.DownloadFolder*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1247,6 +1340,164 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
@@ -1778,3 +2029,8 @@ references:
   name: DownloadFile
   nameWithType: Shell.DownloadFile
   fullName: AutoCheck.Core.Connectors.Shell.DownloadFile
+- uid: AutoCheck.Core.Connectors.Shell.DownloadFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.DownloadFolder
+  name: DownloadFolder
+  nameWithType: Shell.DownloadFolder
+  fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder

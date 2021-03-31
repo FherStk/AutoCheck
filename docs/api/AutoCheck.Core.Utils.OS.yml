@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: OS
     path: ../core/main/Utils.cs
-    startLine: 31
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -49,11 +49,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GNU
     path: ../core/main/Utils.cs
-    startLine: 32
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -81,11 +81,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAC
     path: ../core/main/Utils.cs
-    startLine: 33
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -113,11 +113,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WIN
     path: ../core/main/Utils.cs
-    startLine: 34
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
