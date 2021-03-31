@@ -50,7 +50,8 @@ body:
   - question: 
       description: "This questions does not score"
       score: 0
-      content:  #EMTPY   
+      content:  
+        - run: "echo dummy"   #dummy question, just for matching with the assignment rubric
 
   - question: 
       description: "Foreign key (I)"
@@ -78,21 +79,22 @@ body:
         - run:
             caption: "Checking new entries..."
             connector: "Postgres"
-            command:  "CountRegisters"      
-            arguments: "--source rrhh.empleats --filter id>9"
+            command:  "ExecuteScalar"      
+            arguments: --query "SELECT * FROM rrhh.empleats WHERE id > 9"
             expected: ">0"
 
         - run:
             caption: "Checking table privileges..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.empleats --filter id>9"
+            arguments: "--schema rrhh --table empleats"
             expected: "%a%"
 
   - question: 
       description: "This questions does not score"
       score: 0
-      content:  #EMTPY
+      content:
+        - run: "echo dummy"   #dummy question, just for matching with the assignment rubric
 
   - question: 
       description: "Privileges over 'fabricacio'"
@@ -115,7 +117,7 @@ body:
             caption: "Checking table privileges..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.fabricacio --role rrhhadmin"
+            arguments: "--schema produccio --table fabricacio --role rrhhadmin"
             expected: "%x%"
   
   - question: 
@@ -139,7 +141,7 @@ body:
             caption: "Checking table privileges..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.empleats --role prodadmin"
+            arguments: "--schema rrhh --table empleats --role prodadmin"
             expected: "%x%"
 
   - question: 
@@ -148,43 +150,43 @@ body:
         - run:
             caption: "Checking removed entries..."
             connector: "Postgres"
-            command:  "CountRegisters"      
-            arguments: "--source rrhh.empleats --filter id=9"
-            expected: "=0"      
+            command:  "ExecuteScalar"      
+            arguments: --query "SELECT * FROM rrhh.empleats WHERE id=9"
+            expected: "0"
 
         - run:
             caption: "Checking 'rrhhadmin' privileges for the table 'empleats'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.empleats --role rrhhadmin"
+            arguments: "--schema rrhh --table empleats --role rrhhadmin"
             expected: "arwxt"
 
         - run:
             caption: "Checking 'rrhhadmin' privileges for the table 'departaments'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.departaments --role rrhhadmin"
+            arguments: "--schema rrhh --table departaments --role rrhhadmin"
             expected: "arwxt"
 
         - run:
             caption: "Checking 'prodadmin' privileges for the table 'fabriques'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.fabriques --role prodadmin"
+            arguments: "--schema produccio --table fabriques --role prodadmin"
             expected: "arwxt"
 
         - run:
             caption: "Checking 'prodadmin' privileges for the table 'productes'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.productes --role prodadmin"
+            arguments: "--schema produccio --table productes --role prodadmin"
             expected: "arwxt"
 
         - run:
             caption: "Checking 'prodadmin' privileges for the table 'fabricacio'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.fabricacio --role prodadmin"
+            arguments: "--schema produccio --table fabricacio --role prodadmin"
             expected: "arwxt"
 
   - question: 
@@ -195,41 +197,39 @@ body:
             connector: "Postgres"
             command:  "GetMembership"      
             arguments: "--item dbadmin"
-            expected:
-              - item: "prodadmin"
-              - item: "rrhhadmin"  
+            expected: "[prodadmin,rrhhadmin]"
 
         - run:
             caption: "Checking 'dbadmin' privileges for the table 'empleats'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.empleats --role dbadmin"
+            arguments: "--schema rrhh --table empleats --role dbadmin"
             expected: "dD"
 
         - run:
             caption: "Checking 'dbadmin' privileges for the table 'departaments'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source rrhh.departaments --role dbadmin"
+            arguments: "--schema rrhh --table departaments --role dbadmin"
             expected: "dD"
 
         - run:
             caption: "Checking 'dbadmin' privileges for the table 'fabriques'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.fabriques --role dbadmin"
+            arguments: "--schema produccio --table fabriques --role dbadmin"
             expected: "dD"
 
         - run:
             caption: "Checking 'dbadmin' privileges for the table 'productes'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.productes --role dbadmin"
+            arguments: "--schema produccio --table productes --role dbadmin"
             expected: "dD"
 
         - run:
             caption: "Checking 'dbadmin' privileges for the table 'fabricacio'..."
             connector: "Postgres"
             command:  "GetTablePrivileges"      
-            arguments: "--source produccio.fabricacio --role dbadmin"
+            arguments: "--schema produccio --table fabricacio --role dbadmin"
             expected: "dD" 

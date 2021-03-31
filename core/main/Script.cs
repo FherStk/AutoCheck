@@ -1718,7 +1718,7 @@ namespace AutoCheck.Core{
             }
             
             //No bind has been found
-            throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : "method")} for the Connector '{type.Name}' that matches with the given set of arguments.");
+            throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : $"method called '{method}'")} for the Connector '{type.Name}' that matches with the given set of arguments.");
         }
                
         private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments = null){
@@ -1866,15 +1866,15 @@ namespace AutoCheck.Core{
                 }
             }
             else if(expected.StartsWith("UNORDEREDEQUALS")){
-                //TODO
-                throw new NotImplementedException();
+                var source = new List<string>((IEnumerable<string>)current).OrderBy(x => x);
+                match = source.SequenceEqual(expected.Split(",").OrderBy(x => x));
 
             }
-            else if(expected.StartsWith("ORDEREDEQUALS")){
-                //TODO
-                throw new NotImplementedException();
-            }
-            else throw new NotSupportedException();    
+            else{
+                //ORDEREDEQUALS
+                var source = new List<string>((IEnumerable<string>)current);
+                match = source.SequenceEqual(expected.Split(","));
+            }            
             
             return match;
         }
