@@ -21,7 +21,6 @@
 using System;
 using System.IO;
 using NUnit.Framework;
-using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
