@@ -60,8 +60,9 @@ namespace AutoCheck.Test.Connectors
         }
 
         [TearDown]
-        public void TearDown(){
+        public override void TearDown(){
             Connector.Dispose();
+            base.TearDown();
         }
 
         [Test]

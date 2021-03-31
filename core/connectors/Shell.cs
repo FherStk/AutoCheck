@@ -364,15 +364,13 @@ namespace AutoCheck.Core.Connectors{
             var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
             var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));             
             var localFolder = Path.GetDirectoryName(localPath);
-                                    
-            Utils.RunWithRetry<IOException>(new Action(() => {
-                if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);  
 
-                FileSystem.Connect();
-                FileSystem.Download(remotePath, new FileInfo(localPath));            
-                FileSystem.Disconnect();
+            FileSystem.Connect();                                    
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);                  
+                FileSystem.Download(remotePath, new FileInfo(localPath));                            
             }));
-           
+            FileSystem.Disconnect();
 
             return localPath;      
         }

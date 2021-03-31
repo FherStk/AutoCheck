@@ -87,9 +87,10 @@ namespace AutoCheck.Test.Connectors
         }        
 
         [TearDown]
-        public void TearDown(){
+        public override void TearDown(){
             LocalConnector.Dispose();
             RemoteConnector.Dispose();
+            base.TearDown();
         }
 
         protected override void CleanUp(){

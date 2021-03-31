@@ -34,7 +34,7 @@ namespace AutoCheck.Test
         public void Output_SINGLE_FILE_1()
         {             
             var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
-            Assert.IsFalse(File.Exists(logFilePath));
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
             Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
@@ -46,6 +46,8 @@ namespace AutoCheck.Test
         public void Output_BATCH_FILE_1()
         {         
             var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_1_yaml");  
+            if(Directory.Exists(path)) Directory.Delete(path, true);
+            
             var logs = new string[]{
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 1.log"),
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 2.log"),
@@ -72,8 +74,7 @@ namespace AutoCheck.Test
         public void Output_BATCH_FILE_2()
         {   
             var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_2_yaml");  
-            if(Directory.Exists(path))                      
-                Assert.AreEqual(0, Directory.GetFiles(path).Length);
+            if(Directory.Exists(path)) Directory.Delete(path, true);                                     
 
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_2.yaml"));

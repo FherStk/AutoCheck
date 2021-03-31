@@ -79,7 +79,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [SetUp]
-        public override void SetUp() 
+        public void SetUp() 
         {
             //Create a new and unique remote connector for the current context, local connectors can be shared but not the remote ones because 
             //remote connectors cannot share its internal ssh connection or it can be closed by one when another is using it.        
@@ -89,15 +89,14 @@ namespace AutoCheck.Test.Connectors
 
             added = false;
             do added = LocalConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(_user, _secret));             
-            while(!added);      
-
-            base.SetUp();          
+            while(!added);       
         }       
 
         [TearDown]
-        public void TearDown(){
+        public override void TearDown(){            
             RemoteConnector.Dispose();
             LocalConnector.Dispose();
+            base.TearDown();
         }
 
         protected override void CleanUp(){                        
