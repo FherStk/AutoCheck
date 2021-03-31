@@ -28,6 +28,8 @@ namespace AutoCheck.Test
     {
         public Pre(): base("script"){
         }
+        
+        //TODO: do this
 
         //private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");
         //private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");    
