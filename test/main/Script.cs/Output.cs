@@ -27,24 +27,25 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Output : Test
     {
-        public Output(): base(Path.Combine("script")){
+        public Output(): base("script"){
         }        
        
         [Test, Category("Output"), Category("Local")]
         public void Output_SINGLE_FILE_1()
         {             
-            var log = Path.Combine(LogScriptFolder, "single_1", "OUTPUT SINGLE 1_Student Name 1.log");
-            Assert.IsFalse(File.Exists(log));
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
+            Assert.IsFalse(File.Exists(logFilePath));
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            Assert.IsTrue(File.Exists(log));        
-            Assert.IsTrue(File.ReadAllText(log).Equals(s.Output.ToString()));                
+            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.IsTrue(File.Exists(logFilePath));        
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToString()));                
         } 
 
         [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_1()
         {         
-            var path = Path.Combine(LogScriptFolder, "batch_1");  
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_1_yaml");  
             var logs = new string[]{
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 1.log"),
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 2.log"),
@@ -70,7 +71,7 @@ namespace AutoCheck.Test
         [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_2()
         {   
-            var path = Path.Combine(LogScriptFolder, "batch_2");  
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_2_yaml");  
             if(Directory.Exists(path))                      
                 Assert.AreEqual(0, Directory.GetFiles(path).Length);
 
@@ -79,7 +80,7 @@ namespace AutoCheck.Test
 
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
-            foreach(var l in Directory.GetFiles(path).OrderBy(x => x)){
+            foreach(var l in s.LogFiles.OrderBy(x => x)){
                 Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
             }
         } 

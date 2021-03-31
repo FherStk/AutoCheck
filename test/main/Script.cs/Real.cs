@@ -26,7 +26,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Real : Test
     { 
-        public Real(): base(Path.Combine("script")){
+        public Real(): base("script"){
         }        
 
 #region Real script testing: XML Validation    

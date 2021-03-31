@@ -551,7 +551,12 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Output instance used to display messages.
         /// </summary>
-        public Output Output {get; private set;}   
+        public Output Output {get; private set;} 
+
+        /// <summary>
+        /// Output instance used to display messages.
+        /// </summary>
+        public List<string> LogFiles {get; private set;}          
 
         private Stack<Dictionary<string, object>> Vars {get; set;}  //Variables are scope-delimited
 
@@ -583,8 +588,9 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path){                        
-            Output = new Output();                                    
+        public Script(string path){    
+            Output = new Output();     
+            LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();            
             
@@ -630,7 +636,7 @@ namespace AutoCheck.Core{
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
                 "{$SCRIPT_NAME}_{$NOW}", 
                 false
-            );  
+            );                 
         
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
@@ -655,14 +661,21 @@ namespace AutoCheck.Core{
                 
                 //Preparing the output files and folders                                                
                 if(LogFilesEnabled){                
-                    //Writing log output if needed
-                    if(!Directory.Exists(LogFolderPath)) Directory.CreateDirectory(LogFolderPath);
-                    if(File.Exists(LogFilePath)) File.Delete(LogFilePath);
+                    //Logfile path could contain "NOW" so must be generated here.
+                    var logFile = ComputeVarValue(LogFilePath);
+                    var logFolder = Path.GetDirectoryName(logFile);
+
+                    //Writing log output if needed                                        
+                    if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
+                    if(File.Exists(logFile)) File.Delete(logFile);                    
                                
                     //Retry if the log file is bussy
                     Utils.RunWithRetry<IOException>(new Action(() => {
-                        File.WriteAllText(LogFilePath, Output.ToArray().LastOrDefault());
-                    }));                                    
+                        File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                    }));                                          
+
+                    //Storing the generated file
+                    LogFiles.Add(logFile);              
                 }
             });
             

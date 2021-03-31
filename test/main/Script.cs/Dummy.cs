@@ -27,7 +27,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Dummy : Test
     { 
-        public Dummy(): base(Path.Combine("script")){
+        public Dummy(): base("script"){
         }       
        
         [Test, Category("Dummy"), Category("Local")]

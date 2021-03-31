@@ -26,7 +26,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Pre : Test
     {
-        public Pre(): base(Path.Combine("script")){
+        public Pre(): base("script"){
         }
 
         private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");

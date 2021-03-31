@@ -27,7 +27,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Connector : Test
     {
-        public Connector(): base(Path.Combine("script")){
+        public Connector(): base("script"){
         }
         
         [Test, Category("Connector"), Category("Local")]

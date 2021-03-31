@@ -26,7 +26,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Batch : Test
     {
-        public Batch(): base(Path.Combine("script")){
+        public Batch(): base("script"){
         }   
        
        

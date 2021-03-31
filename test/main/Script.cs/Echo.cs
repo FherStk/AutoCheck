@@ -26,7 +26,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Echo : Test
     {  
-        public Echo(): base(Path.Combine("script")){
+        public Echo(): base("script"){
         }        
       
         [Test, Category("Echo"), Category("Local")]

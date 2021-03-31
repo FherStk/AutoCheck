@@ -26,7 +26,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Copy : Test
     { 
-        public Copy(): base(Path.Combine("script")){
+        public Copy(): base("script"){
         }      
 
         [Test, Category("Copy"), Category("Local")]

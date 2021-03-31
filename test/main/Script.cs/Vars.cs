@@ -27,7 +27,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Vars : Test
     { 
-        public Vars(): base(Path.Combine("script")){
+        public Vars(): base("script"){
         }            
 
         [Test, Category("Vars"), Category("Local")]

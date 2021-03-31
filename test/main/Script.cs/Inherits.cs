@@ -27,7 +27,7 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Inherits : Test
     {
-        public Inherits(): base(Path.Combine("script")){
+        public Inherits(): base("script"){
         }              
        
         [Test, Category("Inherits"), Category("Local")]
