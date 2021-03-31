@@ -103,8 +103,6 @@ namespace AutoCheck.Test.Connectors
             var localConn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);  
             localConn.DeleteFolder(_driveFolder);            
 
-            File.Delete(GetSampleFile("10mb.test"));
-
             LocalConnectors.Clear();
             RemoteConnectors.Clear();
         }
@@ -392,8 +390,8 @@ namespace AutoCheck.Test.Connectors
         [TestCase("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit", "10mb.test")]
         public void Download_DoesNotThrow(string uri, string file)
         {            
-            var filePath = GetSampleFile(file);            
-            Assert.AreEqual(filePath, LocalConnector.Download(new Uri(uri), SamplesScriptFolder));
+            var filePath = Path.Combine(TempScriptFolder, file)            ;
+            Assert.AreEqual(filePath, LocalConnector.Download(new Uri(uri), TempScriptFolder));
             Assert.IsTrue(File.Exists(filePath));
         }
 
