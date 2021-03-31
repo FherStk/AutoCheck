@@ -849,11 +849,13 @@ namespace AutoCheck.Core{
                 }));
 
                 //Parsing pre content, it must run for each target before the body and the copy detector execution
+                Output.Indent();      
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
                         switch(name){                       
                             case "pre":                            
                                 ParsePre(node, name, current);
+                                Output.BreakLine();
                                 break;
                         }                    
                     })); 
@@ -864,13 +866,13 @@ namespace AutoCheck.Core{
                         switch(name){                       
                             case "pre":                            
                                 ParsePre(node, name, current);
+                                Output.BreakLine();
                                 break;
                         }                    
                     })); 
                 }); 
 
-                //Parsing copy detectors (mapping nodes) which cannot be parsed till all the folders have been requested                                               
-                Output.Indent();                
+                //Note: the copy detector cannot be parsed till the local and remote has been loaded and, also, all pre has been executed.
                 var cpydet = new List<CopyDetector>();
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {                                         
                     switch(name){                       
@@ -934,11 +936,13 @@ namespace AutoCheck.Core{
                 }); 
 
                 //Parsing post content, it must run for each target after all the bodies and the copy detector execution
+                Output.Indent();
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
                         switch(name){                       
                             case "post":                            
                                 ParsePost(node, name, current);
+                                Output.BreakLine();
                                 break;
                         }                    
                     })); 
@@ -949,10 +953,12 @@ namespace AutoCheck.Core{
                         switch(name){                       
                             case "post":                            
                                 ParsePost(node, name, current);
+                                Output.BreakLine();
                                 break;
                         }                    
                     })); 
-                });                                  
+                }); 
+                Output.UnIndent();                                 
             }            
         }
 

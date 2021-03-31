@@ -286,7 +286,7 @@ vars:
     var2: "PRE_POST"
     var3: "This is the result of applying a regular expression to var1: {#regex$VAR1}"
     var4: "This will display the last word after an underscore: {#(?<=_)(.*)$VAR2}"
-    var5: "This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}"        
+    var5: "This will display the filename for a given path: {#([^\\\\]*)$$CURRENT_FOLDER_PATH}" #two $$ symbols are needed for this example
 ```
 
 #### Scopes:

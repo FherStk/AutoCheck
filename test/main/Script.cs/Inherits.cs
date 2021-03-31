@@ -27,6 +27,9 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Inherits : Test
     {
+        //WARNING:  Parametrization not allowed, because the temp folder would be shared. 
+        // 
+        
         public Inherits(): base("script"){
         }              
        

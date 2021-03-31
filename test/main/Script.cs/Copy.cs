@@ -26,6 +26,9 @@ namespace AutoCheck.Test
     [Parallelizable(ParallelScope.All)]    
     public class Copy : Test
     { 
+        //WARNING:  Parametrization not allowed, because the temp folder would be shared. 
+        // 
+        
         public Copy(): base("script"){
         }      
 

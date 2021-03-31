@@ -22,7 +22,6 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using AutoCheck.Core.Exceptions;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
