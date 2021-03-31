@@ -19,7 +19,7 @@
 version: "1.0.0.1"
 single:
   local:  
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\body\\run\\"
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\run\\"
 
 body:  
   - run:
