@@ -1558,8 +1558,11 @@ namespace AutoCheck.Core{
         }
                  
         private T ParseNode<T>(YamlScalarNode node, T @default, bool compute=true){
-            try{                                
-                return (T)ParseNode(node, compute);                    
+            try{
+                var parsed = ParseNode(node, compute);
+
+                if(typeof(T).Equals(typeof(Single)) && parsed.GetType().Equals(typeof(Int32))) parsed = (float)(int)parsed;
+                return (T)parsed;
             }
             catch(InvalidCastException){
                 return @default;
@@ -1845,7 +1848,7 @@ namespace AutoCheck.Core{
                 }));
             }
 
-            if(!subquestion) return ParseChild(root, "score", 1f, false);
+            if(!subquestion) return ParseChild<float>(root, "score", 1f, false);
             else return score;
         }
 
