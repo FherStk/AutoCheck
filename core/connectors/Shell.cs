@@ -364,12 +364,15 @@ namespace AutoCheck.Core.Connectors{
             var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
             var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));             
             var localFolder = Path.GetDirectoryName(localPath);
-            
-            if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);  
-            
-            FileSystem.Connect();
-            FileSystem.Download(remotePath, new FileInfo(localPath));            
-            FileSystem.Disconnect();
+                                    
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);  
+
+                FileSystem.Connect();
+                FileSystem.Download(remotePath, new FileInfo(localPath));            
+                FileSystem.Disconnect();
+            }));
+           
 
             return localPath;      
         }
@@ -396,8 +399,11 @@ namespace AutoCheck.Core.Connectors{
             if(!ExistsFolder(path)) throw new DirectoryNotFoundException();
 
             var remotePath = Utils.PathToRemoteOS(path, RemoteOS);            
-            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));                        
-            if(!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);                     
+            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));    
+
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                if(!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);            
+            }));                    
             
             var dirPath = localPath;            
             foreach(var remoteFile in GetFiles(path, false)){
@@ -406,7 +412,11 @@ namespace AutoCheck.Core.Connectors{
 
             foreach(var remoteFolder in GetFolders(path, false)){                
                 if(recursive) DownloadFolder(remoteFolder, dirPath, true);
-                else Directory.CreateDirectory(Path.Combine(dirPath, Path.GetFileName(remoteFolder)));
+                else{
+                     Utils.RunWithRetry<IOException>(new Action(() => {
+                        Directory.CreateDirectory(Path.Combine(dirPath, Path.GetFileName(remoteFolder)));
+                    }));
+                } 
             }         
 
             return localPath;      

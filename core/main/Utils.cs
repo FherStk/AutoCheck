@@ -128,7 +128,7 @@ namespace AutoCheck.Core{
         /// <param name="action">The action to run.</param>
         /// <param name="max">Max retries.</param>
         /// <param name="wait">Retry time will be exponential as step*wait.</param>      
-        public static void RunWithRetry<T>(Action action, int max=5, int wait=500) where T: Exception{
+        public static void RunWithRetry<T>(Action action, int max=10, int wait=250) where T: Exception{
              RunWithRetry<string, T>(() => {
                 action.Invoke();
                 return "";
@@ -141,7 +141,7 @@ namespace AutoCheck.Core{
         /// <param name="action">The action to run.</param>
         /// <param name="max">Max retries.</param>
         /// <param name="wait">Retry time will be exponential as step*wait.</param>
-        public static R RunWithRetry<R, T>(Func<R> function, int max=5, int wait=500) where T: Exception where R: class{
+        public static R RunWithRetry<R, T>(Func<R> function, int max=10, int wait=250) where T: Exception where R: class{
             T exception = null;
 
             for(int i = 0; i < max; i++){
