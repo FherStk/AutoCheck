@@ -31,6 +31,8 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.StaticFiles;
 using AutoCheck.Core.Exceptions;
 
+//TODO: Idea for fixing sync problems and remove the timeouts when using the API: https://developers.google.com/drive/api/v3/reference/changes/getStartPageToken
+
 namespace AutoCheck.Core.Connectors{    
     /// <summary>
     /// Allows in/out operations and/or data validations with a GDrive instance.
@@ -38,8 +40,14 @@ namespace AutoCheck.Core.Connectors{
     public class GDrive: Base{      
 #region Properties
         public DriveService Drive {get; private set;}
+        private Shell Remote { get; set; }
 #endregion
 #region Constructor / Destructor
+        /// <summary>
+        /// Creates a new connector instance.
+        /// </summary>
+        /// <param name="accountFilePath">Path to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Path to the json file containing the Google Drive credentials which will be used to login.</param>
         public GDrive(string accountFilePath, string secretFilePath){  
             accountFilePath = Utils.PathToCurrentOS(accountFilePath);
             secretFilePath = Utils.PathToCurrentOS(secretFilePath);
@@ -50,15 +58,41 @@ namespace AutoCheck.Core.Connectors{
             if (string.IsNullOrEmpty(secretFilePath)) throw new ArgumentNullException("secretFilePath");                                        
             if (!File.Exists(secretFilePath)) throw new FileNotFoundException($"The given '{secretFilePath}' file does not exist.");
             
-
             this.Drive = AuthenticateOauth(accountFilePath, secretFilePath);
         } 
+
+        /// <summary>
+        /// Creates a new remote connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="accountFilePath">Local path (not remote one) to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Local path (not remote one) to the json file containing the Google Drive credentials which will be used to login.</param>
+        public GDrive(Utils.OS remoteOS, string host, string username, string password, string accountFilePath, string secretFilePath): this(remoteOS, host, username, password, 22, accountFilePath, secretFilePath){              
+        }
+
+        /// <summary>
+        /// Creates a new remote connector instance.
+        /// </summary>
+        /// <param name="remoteOS"The remote host OS.</param>
+        /// <param name="host">Host address where the command will be run.</param>
+        /// <param name="username">The remote machine's username which one will be used to login.</param>
+        /// <param name="password">The remote machine's password which one will be used to login.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="accountFilePath">Local path (not remote one) to the txt file containing the Google Drive account which will be used to login.</param>
+        /// <param name="secretFilePath">Local path (not remote one) to the json file containing the Google Drive credentials which will be used to login.</param>
+        public GDrive(Utils.OS remoteOS, string host, string username, string password, int port, string accountFilePath, string secretFilePath): this(accountFilePath, secretFilePath){  
+            Remote = new Shell(remoteOS, host, username, password, port);
+        }
 
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-            this.Drive.Dispose();
+            if(this.Remote != null) this.Remote.Dispose();
+            this.Drive.Dispose();            
         }   
 #endregion
 #region Folders
@@ -67,7 +101,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to create including its path (all needed subfolders will be created also).</param>
         public Google.Apis.Drive.v3.Data.File CreateFolder(string folder){
-            folder = folder.Trim('\\');            
+            folder = folder.TrimEnd('\\');            
             return CreateFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -200,6 +234,67 @@ namespace AutoCheck.Core.Connectors{
         public bool ExistsFolder(string path, string folder, bool recursive = false){
             return GetFolder(path, folder, recursive) != null;
         }
+
+        /// <summary>
+        /// Uploads a local folder to a remote Google Drive one.
+        /// </summary>
+        /// <param name="localFolderPath">Local folder path</param>
+        /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
+        /// <param name="recursive">Recursive upload through folders.</param>
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, bool recursive = false){
+            UploadFolder(localFolderPath, remoteFolderPath, null, recursive);
+        }
+
+        /// <summary>
+        /// Uploads a local folder to a remote Google Drive one.
+        /// </summary>
+        /// <param name="localFolderPath">Local folder path</param>
+        /// <param name="remoteFolderPath">Remote folder path (will be created if not exists).</param>
+        /// <param name="remoteFolderName">Remote folder name (will be created if not exists).</param>
+        /// <param name="recursive">Recursive upload through folders.</param>
+        public void UploadFolder(string localFolderPath, string remoteFolderPath, string remoteFolderName, bool recursive = false){            
+            if(string.IsNullOrEmpty(localFolderPath)) throw new ArgumentNullException("localFolderPath");    
+            if(string.IsNullOrEmpty(remoteFolderPath)) throw new ArgumentNullException("remoteFolderPath");    
+
+            var originalRemote = Remote;    
+            if(Remote != null){
+                //When running on remote, the remote folder will be copied locally in order to upload the files to GDrive.
+                //Due the recursive calls to this method, Remote should be disabled temporally.
+                localFolderPath = Remote.DownloadFolder(localFolderPath, recursive);
+                originalRemote = Remote;
+                Remote = null;
+            }             
+
+            if(!Directory.Exists(localFolderPath)) throw new DirectoryNotFoundException();               
+            remoteFolderPath = remoteFolderPath.TrimEnd(Path.DirectorySeparatorChar);
+            remoteFolderName ??= Path.GetFileName(localFolderPath.TrimEnd(Path.DirectorySeparatorChar));
+
+            var localFiles = Directory.GetFiles(localFolderPath, "*", SearchOption.TopDirectoryOnly);
+            var localFolders = Directory.GetDirectories(localFolderPath, "*", SearchOption.TopDirectoryOnly);
+            remoteFolderPath = Path.Combine(remoteFolderPath, remoteFolderName);
+
+            foreach(var localFile in localFiles){                    
+                UploadFile(localFile, remoteFolderPath);
+            }
+
+            foreach(var localFolder in localFolders){
+                var folderName = Path.GetFileName(localFolder);
+                CreateFolder(remoteFolderPath, folderName);    
+                
+                if(recursive) UploadFolder(localFolder, remoteFolderPath, Path.GetFileName(localFolder), recursive);       
+            }
+
+            //Restoring the original Remote instance.
+            Remote = originalRemote;
+            if(Remote != null){
+                Utils.RunWithRetry<IOException>(new Action(() => {
+                    //Note: GC must be invoked in order to avoid an System.IO.IOException (file in use by another process).
+                    System.GC.Collect();
+                    System.GC.WaitForPendingFinalizers();
+                    Directory.Delete(localFolderPath, true);
+                }));   
+            }                    
+        }
 #endregion
 #region Files          
         /// <summary>
@@ -252,12 +347,12 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="localFilePath">Local file path</param>
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){
-            if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");    
-            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
-            if(!File.Exists(localFilePath)) throw new FileNotFoundException();   
-                        
-            string mime = string.Empty;                        
+        public void CreateFile(string localFilePath, string remoteFilePath, string remoteFileName = null){                                                
+            if(string.IsNullOrEmpty(localFilePath)) throw new ArgumentNullException("localFilePath");
+            if(Remote != null) localFilePath = Remote.DownloadFile(localFilePath);                       
+            if(!File.Exists(localFilePath)) throw new FileNotFoundException();
+
+            string mime = string.Empty;                                    
             if(!new FileExtensionContentTypeProvider().TryGetContentType(localFilePath, out mime)){                                
                 //Unsupported are manually added
                 mime = Path.GetExtension(localFilePath) switch
@@ -288,7 +383,8 @@ namespace AutoCheck.Core.Connectors{
                 if(existing == null){
                     Utils.RunWithRetry<Google.GoogleApiException>(() => {
                         //Create a new file
-                        this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                        var progress = this.Drive.Files.Create(fileMetadata, stream, mime).Upload();
+                        if(progress.Exception != null) throw progress.Exception;
                     });
                 }                 
                 else{ 
@@ -297,6 +393,15 @@ namespace AutoCheck.Core.Connectors{
                         this.Drive.Files.Update(fileMetadata, existing.Id).Execute();
                     });  
                 }              
+            }
+            
+            if(Remote != null){
+                Utils.RunWithRetry<IOException>(new Action(() => {
+                    //Note: GC must be invoked in order to avoid an System.IO.IOException (file in use by another process).
+                    System.GC.Collect();
+                    System.GC.WaitForPendingFinalizers();
+                    File.Delete(localFilePath);
+                }));     
             }
         }
 
@@ -377,6 +482,8 @@ namespace AutoCheck.Core.Connectors{
             var file = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                 return copy.Execute(); 
             });
+
+            //TODO: download and reupload if copy fails
         }
 
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
@@ -388,7 +495,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="remoteFilePath">Remote file path (will be created if not exists).</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
         /// <remarks>This method is an alias for CreateFile.</remarks>
-        public void Upload(string localFilePath, string remoteFilePath, string remoteFileName = null){
+        public void UploadFile(string localFilePath, string remoteFilePath, string remoteFileName = null){
             CreateFile(localFilePath, remoteFilePath, remoteFileName);
         }
 

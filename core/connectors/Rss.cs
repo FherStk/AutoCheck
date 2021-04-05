@@ -18,16 +18,10 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
 using System.IO;
 using System.Xml;
 using System.Net;
-using System.Xml.XPath;
-using System.Text;
-using System.Linq;
-using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
-using Wmhelp.XPath2;
 
 namespace AutoCheck.Core.Connectors{       
     /// <summary>

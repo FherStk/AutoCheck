@@ -23,7 +23,6 @@ using System.IO;
 using System.Data;
 using System.Collections.Generic;
 using Npgsql;
-using ToolBox.Bridge;
 using AutoCheck.Core.Exceptions;
 
 
@@ -229,17 +228,21 @@ namespace AutoCheck.Core.Connectors{
         /// Creates a new database instance using an SQL Dump file.
         /// </summary>
         /// <param name="filePath">The SQL Dump file path.</param>
-        public void CreateDataBase(string dumpPath)
+        /// <param name="replace">Existing database will be drop and replaced by the new one.</param>
+        public void CreateDataBase(string dumpPath, bool replace = false)
         { 
             if(string.IsNullOrEmpty(dumpPath)) throw new ArgumentNullException("filePath");
-            CreateDataBase();
+            if(replace && ExistsDataBase()) DropDataBase();
+
+            CreateDataBase(replace);
             ImportSqlDump(dumpPath);
         } 
 
         /// <summary>
         /// Creates a new and empty database.
         /// </summary>
-        public void CreateDataBase()
+        /// <param name="replace">Existing database will be drop and replaced by the new one.</param>
+        public void CreateDataBase(bool replace = false)
         { 
             //TODO: this should work with remote...
             string cmdPassword = $"PGPASSWORD={this.Password}";
@@ -432,6 +435,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="role">The role name to remove.</param>
         public void DropRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            ExecuteNonQuery($"REASSIGN OWNED BY {role} TO postgres;");
             ExecuteNonQuery($"DROP OWNED BY {role}");
             ExecuteNonQuery($"DROP ROLE {role};");
         }
@@ -472,13 +476,12 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="table">The table which permissions will be requested.</param>
         /// <param name="role">The role which privileges will be checked.</param>        
         /// <returns>The table privileges as ACL (https://www.postgresql.org/docs/9.3/sql-grant.html).</returns>
-        public string GetTablePrivileges(string schema, string table, string role = null){
+        public string GetTablePrivileges(string schema, string table, string role){
             if(schema == null) throw new ArgumentNullException("schema");
             if(table == null) throw new ArgumentNullException("table");
+            if(role == null) throw new ArgumentNullException("role");
 
-            string query = $"SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{schema}' AND table_name='{table}'";
-            if(!string.IsNullOrEmpty(role)) query += $" AND grantee='{role}'";
-
+            string query = $"SELECT grantee, privilege_type AS privilege FROM information_schema.role_table_grants WHERE table_schema='{schema}' AND table_name='{table}' AND grantee='{role}'";
             string currentPrivileges = "";
             
             foreach(DataRow dr in ExecuteQuery(query).Tables[0].Rows){

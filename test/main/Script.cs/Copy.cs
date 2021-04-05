@@ -25,17 +25,17 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Copy : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
+    { 
+        //WARNING:  Parametrization not allowed, because the temp folder would be shared. 
+        // 
+        
+        public Copy(): base("script"){
+        }      
 
         [Test, Category("Copy"), Category("Local")]
         public void Script_COPY_PLAINTEXT_PATH_ISCOPY() 
-        {               
-            var dest =  Path.Combine(TempScriptFolder, "test1");         
+        {   
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test1"); //the script will use this folder, so no random path can be used
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 
@@ -56,7 +56,7 @@ namespace AutoCheck.Test
         [Test, Category("Copy"), Category("Local")]
         public void Script_COPY_PLAINTEXT_FOLDERS_NOTCOPY()
         {               
-            var dest =  Path.Combine(TempScriptFolder, "test2");         
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test2"); //the script will use this folder, so no random path can be used
             var dest1 = Path.Combine(dest, "folder1");
             var dest2 = Path.Combine(dest, "folder2");
 

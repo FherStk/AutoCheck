@@ -35,7 +35,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct2.csv",  ',', '"')]
         public void Constructor_Local_DoesNotThrow(string file, char fieldDelimiter, char textDelimiter)
         {      
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file), fieldDelimiter, textDelimiter));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(GetSampleFile(file), fieldDelimiter, textDelimiter));
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace AutoCheck.Test.Connectors
         public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {      
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, "correct2.csv"))));  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));  
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE)]        
         public void Constructor_Local_Throws_FileNotFoundException(string file)
         {      
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(GetSampleFile(file)));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct2.csv", 36634, ExpectedResult = new string[]{"398149", "FL", "PINELLAS COUNTY", "373488.3", "373488.3", "0", "0", "373488.3", "596003.67", "0", "0", "0", "0", "28.06444", "-82.77459", "Residential", "Masonry", "1"})]
         public string[] GetLine_DoesNotThrow(string file, int line)
         {
-            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)))    
+            using(var conn = new AutoCheck.Core.Connectors.Csv(GetSampleFile(file)))    
                 return conn.CsvDoc.GetLine(line).Values.ToArray();
         }
 
@@ -89,7 +89,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct2.csv", 36636)]
         public void GetLine_Throws_IndexOutOfRangeException(string file, int line)
         {
-            using(var conn = new AutoCheck.Core.Connectors.Csv(Path.Combine(this.SamplesScriptFolder, file)))    
+            using(var conn = new AutoCheck.Core.Connectors.Csv(GetSampleFile(file)))    
                 Assert.Throws<IndexOutOfRangeException>(() => conn.CsvDoc.GetLine(line));
         } 
     }

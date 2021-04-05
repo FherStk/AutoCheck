@@ -25,12 +25,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Echo : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", "body", Name));            
-        }
+    {  
+        public Echo(): base("script"){
+        }        
       
         [Test, Category("Echo"), Category("Local")]
         public void Script_ECHO_RUN()

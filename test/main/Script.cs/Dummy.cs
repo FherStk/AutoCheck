@@ -26,18 +26,17 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Dummy : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
-       
+    { 
+        //WARNING:  Parametrization not allowed, because the temp folder would be shared. 
+        //          If parametrization is needed, the best way is sending a string to the scripts, so yaml test files could be all removed.
+
+        public Dummy(): base("script"){
+        }       
+               
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_OK1()
-        {    
-            //TODO: test this
-            var dest =  Path.Combine(TempScriptFolder, "test1");                        
+        {                
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test1"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
@@ -50,7 +49,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_ONEXCEPTION_ABORT()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test2");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test2"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
@@ -63,7 +62,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_ONEXCEPTION_ERROR()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test3");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test3"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
@@ -76,7 +75,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_ONEXCEPTION_SUCCESS()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test4");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test4"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
@@ -89,7 +88,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_ONEXCEPTION_SKIP()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test5");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test5"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
@@ -104,7 +103,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_SINGLE_ONEXCEPTION_NOCAPTION()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test6");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test6"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "incorrect.html"), GetSampleFile(dest, "index.html"));
@@ -116,7 +115,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_ARGUMENT_TYPE_CONNECTOR_OK()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test7");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test7"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
@@ -131,7 +130,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_ARGUMENT_TYPE_CONNECTOR_KO()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test8");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test8"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));
@@ -146,7 +145,7 @@ namespace AutoCheck.Test
         [Test, Category("Dummy"), Category("Local")]
         public void Script_SCRIPT_ARGUMENT_TYPE_CONNECTOR_TUPLE()
         {    
-            var dest =  Path.Combine(TempScriptFolder, "test9");                        
+            var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test9"); //the script will use this folder, so no random path can be used                        
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
             
             File.Copy(GetSampleFile("html", "correct.html"), GetSampleFile(dest, "index.html"));

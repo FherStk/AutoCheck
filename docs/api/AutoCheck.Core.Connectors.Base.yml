@@ -6,6 +6,7 @@ items:
   parent: AutoCheck.Core.Connectors
   children:
   - AutoCheck.Core.Connectors.Base.Dispose
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   langs:
   - csharp
   - vb
@@ -16,11 +17,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -43,6 +44,7 @@ items:
   - AutoCheck.Core.Connectors.Postgres
   - AutoCheck.Core.Connectors.Shell
   - AutoCheck.Core.Connectors.Xml
+  - AutoCheck.Core.Connectors.Zip
   implements:
   - System.IDisposable
   inheritedMembers:
@@ -75,11 +77,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -97,6 +99,57 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  id: ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  langs:
+  - csharp
+  - vb
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Base.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ProcessRemoteFile
+    path: ../core/connectors/Base.cs
+    startLine: 51
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDownloads a remote file into a temp folder, perfoms the action and removes the file.\n"
+  example: []
+  syntax:
+    content: protected void ProcessRemoteFile(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, Action<string> action)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    - id: action
+      type: System.Action{System.String}
+      description: The action to run.
+    content.vb: Protected Sub ProcessRemoteFile(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String, action As Action(Of String))
+  overload: AutoCheck.Core.Connectors.Base.ProcessRemoteFile*
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
 references:
 - uid: AutoCheck.Core.Connectors
   commentId: N:AutoCheck.Core.Connectors
@@ -435,6 +488,119 @@ references:
   - name: (
     nameWithType: (
     fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile*
+  commentId: Overload:AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  name: ProcessRemoteFile
+  nameWithType: Base.ProcessRemoteFile
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Action{System.String}
+  commentId: T:System.Action{System.String}
+  parent: System
+  definition: System.Action`1
+  name: Action<String>
+  nameWithType: Action<String>
+  fullName: System.Action<System.String>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: System.Action(Of System.String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

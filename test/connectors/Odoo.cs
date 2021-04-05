@@ -27,49 +27,42 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]   //TODO: conflict between instances, each test must use its own connector instance!
     public class Odoo : Test
     {   
-        /// <summary>
-        /// The connector instance is created here because a new one-time use BBDD will be created on every startup, and dropped when done.
-        /// </summary>
-        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo> Pool = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo>();
-        private AutoCheck.Core.Connectors.Odoo Conn = null;           
+        private AutoCheck.Core.Connectors.Odoo Conn = null; //Just to share connector data                  
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo> Connectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Odoo>();        
+        private AutoCheck.Core.Connectors.Odoo Connector {
+            get{
+                return Connectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
 
         [OneTimeSetUp]
         public override void OneTimeSetUp() 
         {            
             //The same database (but different connector instance, to allow parallel queries) will be shared along the different tests, because all the opperations 
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
-            this.Conn = new AutoCheck.Core.Connectors.Odoo(1, "localhost", string.Format("autocheck_{0}", TestContext.CurrentContext.Test.ID), "postgres", "postgres");
-            base.OneTimeSetUp();    //needs "Conn" on "CleanUp"
-           
-            this.Conn.CreateDataBase(base.GetSampleFile("dump.sql"));
-        }
-
-        [OneTimeTearDown]
-        public new void OneTimeTearDown(){     
-            this.Pool.Clear(); 
-        }
+            Conn = new AutoCheck.Core.Connectors.Odoo(1, "localhost", $"autocheck_{TestContext.CurrentContext.Test.ID}", "postgres", "postgres");                        
+            base.OneTimeSetUp();                                            //needs "Conn" on "CleanUp"
+            Conn.CreateDataBase(base.GetSampleFile("dump.sql"));       //must be done after OneTimeSetup()
+        }      
 
         protected override void CleanUp(){
-            if(this.Conn.ExistsDataBase()) 
-                this.Conn.DropDataBase();
+            if(Conn.ExistsDataBase()) Conn.DropDataBase();
+            Connectors.Clear();
         }
         
         [SetUp]
         public void Setup() 
         {            
-            //Create a new and unique database connection for the current context (same DB for all tests)
-            var conn = new AutoCheck.Core.Connectors.Odoo(1, this.Conn.Host, this.Conn.Database, this.Conn.User, this.Conn.User);
-            
-            //Storing the connector instance for the current context
+            //Create a new and unique database connection for the current context (same DB for all tests)            
             var added = false;
-            do added = this.Pool.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
+            do added = Connectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Odoo(1, Conn.Host, Conn.Database, Conn.User, Conn.User));             
             while(!added);            
         }
 
         [TearDown]
-        public void TearDown(){
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            conn.Dispose();
+        public override void TearDown(){
+            Connector.Dispose();
+            base.TearDown();
         }
 
         [Test]
@@ -113,8 +106,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("")]
         public void GetCompanyID_Throws_ArgumentNullException(string companyName)
         {  
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyID(companyName));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetCompanyID(companyName));
         }
 
 
@@ -133,24 +125,21 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Play", false, ExpectedResult=0)]
         public int GetCompanyID_DoesNotThrow(string companyName, bool strict)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetCompanyID(companyName, strict);                    
+            return Connector.GetCompanyID(companyName, strict);                    
         }
 
         [Test]
         [TestCase("")]
         public void GetCompanyData_Throws_ArgumentNullException(string companyName)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetCompanyData(companyName));            
+            Assert.Throws<ArgumentNullException>(() => Connector.GetCompanyData(companyName));            
         }
 
         [Test]
         [TestCase(0)]
         public void GetCompanyData_Throws_ArgumentOutOfRangeException(int companyID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetCompanyData(companyID));            
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetCompanyData(companyID));            
         }
 
         [Test]
@@ -159,24 +148,21 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, ExpectedResult=0)]
         public int GetCompanyData_DoesNotThrows_CompanyName(string companyName)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];          
-            return conn.GetCompanyData(companyName).Rows.Count;           
+            return Connector.GetCompanyData(companyName).Rows.Count;           
         }
 
         [Test]
         [TestCase(1, ExpectedResult=1)]
         public int GetCompanyData_DoesNotThrows_CompanyID(int companyID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];          
-            return conn.GetCompanyData(companyID).Rows.Count;
+            return Connector.GetCompanyData(companyID).Rows.Count;
         }
 
         [Test]
         [TestCase("")]
         public void GetProviderID_Throws_ArgumentNullException(string companyName)
         { 
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetProviderID(companyName));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetProviderID(companyName));
         } 
 
         [Test]
@@ -192,22 +178,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase("TeK", false, ExpectedResult=0)]
         public int GetProviderID_DoesNotThrows(string companyName, bool strict)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProviderID(companyName, strict);                              
+            return Connector.GetProviderID(companyName, strict);                              
         }
 
         [Test]
         public void GetProviderData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetProviderData(string.Empty));            
+            Assert.Throws<ArgumentNullException>(() => Connector.GetProviderData(string.Empty));            
         }
 
         [Test]
         public void GetProviderData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetProviderData(0));                    
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetProviderData(0));                    
         }
 
         [Test]
@@ -215,23 +198,20 @@ namespace AutoCheck.Test.Connectors
         [TestCase("ASUSTeK", ExpectedResult=1)]
         public int GetProviderData_DoesNotThrow_ProviderName(string providerName)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProviderData(providerName).Rows.Count;
+            return Connector.GetProviderData(providerName).Rows.Count;
         }
 
         [Test]
         [TestCase(8, ExpectedResult=1)]
         public int GetProviderData_DoesNotThrow(int providerID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProviderData(providerID).Rows.Count;
+            return Connector.GetProviderData(providerID).Rows.Count;
         }
 
         [Test]
         public void GetProductTemplateID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetProductTemplateID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetProductTemplateID(string.Empty));
 
         }
 
@@ -252,22 +232,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase("HDDSH-1", false, ExpectedResult=0)]
         public int GetProductTemplateID_DoesNotThrow(string productName, bool strict)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProductTemplateID(productName, strict);            
+            return Connector.GetProductTemplateID(productName, strict);            
         }
 
         [Test]
         public void GetProductTemplateData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetProductTemplateData(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetProductTemplateData(string.Empty));
         }
 
         [Test]
         public void GetProductTemplateData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetProductTemplateData(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetProductTemplateData(0));
         }
 
         [Test]
@@ -275,31 +252,27 @@ namespace AutoCheck.Test.Connectors
         [TestCase("iPod", ExpectedResult=2)]
         public int GetProductTemplateData_DoesNotThrow_ProductName(string productName)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProductTemplateData(productName).Rows.Count;
+            return Connector.GetProductTemplateData(productName).Rows.Count;
         }
 
         [Test]
         [TestCase(20, ExpectedResult=2)]
         public int GetProductTemplateData_DoesNotThrow_ProductName(int productID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetProductTemplateData(productID).Rows.Count;
+            return Connector.GetProductTemplateData(productID).Rows.Count;
         }
 
         [Test]
         [TestCase(ExpectedResult=10)]
         public int GetLastPurchaseID()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetLastPurchaseID();
+            return Connector.GetLastPurchaseID();
         }
 
         [Test]
         public void GetPurchaseID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetPurchaseID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetPurchaseID(string.Empty));
         }
 
         [Test]
@@ -308,16 +281,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00999", ExpectedResult=0)]
         public int GetPurchaseID_DoesNotThrow(string purchaseCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPurchaseID(purchaseCode);
+            return Connector.GetPurchaseID(purchaseCode);
         }
 
 
         [Test]
         public void GetPurchaseCode_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetPurchaseCode(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetPurchaseCode(0));
         }
 
         [Test]
@@ -325,22 +296,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=null)]
         public string GetPurchaseCode_DoesNotThrow(int purchaseID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPurchaseCode(purchaseID);
+            return Connector.GetPurchaseCode(purchaseID);
         }
 
         [Test]
         public void GetPurchaseData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetPurchaseData(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetPurchaseData(0));
         }
 
         [Test]
         public void GetPurchaseData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetPurchaseData(null));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetPurchaseData(null));
         }
 
         [Test]
@@ -349,8 +317,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=0)]
         public int GetPurchaseData_DoesNotThrow_PurchaseID(int purchaseID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPurchaseData(purchaseID).Rows.Count;
+            return Connector.GetPurchaseData(purchaseID).Rows.Count;
         }
 
         [Test]
@@ -359,15 +326,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00999", ExpectedResult=0)]
         public int GetPurchaseData_DoesNotThrow_PurchaseID(string purchaseCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPurchaseData(purchaseCode).Rows.Count;
+            return Connector.GetPurchaseData(purchaseCode).Rows.Count;
         }
 
         [Test]
         public void GetStockMovementData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetStockMovementData(null, false));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetStockMovementData(null, false));
         }
 
         [Test]
@@ -387,23 +352,20 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SO999", true, ExpectedResult=0)]
         public int GetStockMovementData_DoesNotThrow(string purchaseCode, bool isReturn)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetStockMovementData(purchaseCode, isReturn).Rows.Count;
+            return Connector.GetStockMovementData(purchaseCode, isReturn).Rows.Count;
         }   
 
         [Test]
         [TestCase(ExpectedResult=3)]
         public int GetScrappedStockData()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];        
-            return conn.GetScrappedStockData().Rows.Count;
+            return Connector.GetScrappedStockData().Rows.Count;
         }
 
         [Test]
         public void GetInvoiceID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetInvoiceID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetInvoiceID(string.Empty));
         }
 
         [Test]
@@ -411,15 +373,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00009", ExpectedResult=0)]
         public int GetInvoiceID_DoesNotThrow(string orderCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetInvoiceID(orderCode);
+            return Connector.GetInvoiceID(orderCode);
         }
 
         [Test]
         public void GetInvoiceCode_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetInvoiceCode(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetInvoiceCode(string.Empty));
         } 
 
         [Test]
@@ -427,22 +387,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00009", ExpectedResult=null)]
         public string GetInvoiceCode_DoesNotThrow(string orderCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetInvoiceCode(orderCode);
+            return Connector.GetInvoiceCode(orderCode);
         } 
 
         [Test]
         public void GetInvoiceData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetInvoiceData(0));  
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetInvoiceData(0));  
         } 
 
         [Test]
         public void GetInvoiceData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetInvoiceData(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetInvoiceData(string.Empty));
         } 
 
         [Test]
@@ -450,8 +407,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=0)]
         public int GetInvoiceData_DoesNotThrow_InvoiceID(int invoiceID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetInvoiceData(invoiceID).Rows.Count;
+            return Connector.GetInvoiceData(invoiceID).Rows.Count;
         } 
 
         [Test]
@@ -459,23 +415,20 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00009", ExpectedResult=0)]
         public int GetInvoiceData_DoesNotThrow_InvoiceID(string orderCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetInvoiceData(orderCode).Rows.Count;
+            return Connector.GetInvoiceData(orderCode).Rows.Count;
         } 
 
         [Test]
         [TestCase(ExpectedResult=3)]
         public int GetLastPosSaleID()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
-            return conn.GetLastPosSaleID();
+            return Connector.GetLastPosSaleID();
         } 
 
         [Test]
         public void GetPosSaleID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetPosSaleID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetPosSaleID(string.Empty));
         }
 
         [Test]
@@ -484,15 +437,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Main/0999", ExpectedResult=0)]
         public int GetPosSaleID_DoesNotThrow(string posSaleCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPosSaleID(posSaleCode);
+            return Connector.GetPosSaleID(posSaleCode);
         }
 
         [Test]
         public void GetPosSaleCode_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetPosSaleCode(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetPosSaleCode(0));
         }
 
         [Test]
@@ -501,22 +452,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=null)]
         public string GetPosSaleCode_DoesNotThrow(int posSaleID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPosSaleCode(posSaleID);
+            return Connector.GetPosSaleCode(posSaleID);
         }
 
         [Test]
         public void GetPosSaleData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetPosSaleData(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetPosSaleData(0));
         }
 
         [Test]
         public void GetPosSaleData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetPosSaleData(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetPosSaleData(string.Empty));
         }
 
         [Test]
@@ -525,8 +473,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=0)]
         public int GetPosSaleData_DoesNotThrow_PosSaleID(int posSaleID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPosSaleData(posSaleID).Rows.Count;
+            return Connector.GetPosSaleData(posSaleID).Rows.Count;
         }
 
         [Test]
@@ -535,23 +482,20 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Main/0999", ExpectedResult=0)]
         public int GetPosSaleData_DoesNotThrow_PosSaleID(string posSaleCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetPosSaleData(posSaleCode).Rows.Count;
+            return Connector.GetPosSaleData(posSaleCode).Rows.Count;
         }
 
         [Test]
         [TestCase(ExpectedResult=23)]
         public int GetLastSaleID()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
-            return conn.GetLastSaleID();
+            return Connector.GetLastSaleID();
         } 
 
         [Test]
         public void GetSaleID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetSaleID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetSaleID(string.Empty));
         }
 
         [Test]
@@ -560,15 +504,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SO999", ExpectedResult=0)]
         public int GetSaleID_DoesNotThrow(string saleCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];            
-            return conn.GetSaleID(saleCode);
+            return Connector.GetSaleID(saleCode);
         }
 
         [Test]
         public void GetSaleCode_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetSaleCode(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetSaleCode(0));
         }
 
         [Test]
@@ -577,22 +519,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=null)]
         public string GetSaleCode_DoesNotThrow(int saleID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetSaleCode(saleID);
+            return Connector.GetSaleCode(saleID);
         }
 
         [Test]
         public void GetSaleData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetSaleData(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetSaleData(0));
         }
 
         [Test]
         public void GetSaleData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetSaleData(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetSaleData(string.Empty));
         }
 
         [Test]
@@ -601,8 +540,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=0)]
         public int GetSaleData(int saleID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetSaleData(saleID).Rows.Count;
+            return Connector.GetSaleData(saleID).Rows.Count;
         }
 
         [Test]
@@ -611,15 +549,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("SO999", ExpectedResult=0)]
         public int GetSaleData(string saleCode)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetSaleData(saleCode).Rows.Count;
+            return Connector.GetSaleData(saleCode).Rows.Count;
         }
 
         [Test]
         public void GetUserID_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetUserID(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetUserID(string.Empty));
         }
 
         [Test]
@@ -633,15 +569,13 @@ namespace AutoCheck.Test.Connectors
         [TestCase("admin @ elpuig.xeill.net", false, ExpectedResult=1)]
         public int GetUserID_DoesNotThrow(string userName, bool strict)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetUserID(userName, strict);
+            return Connector.GetUserID(userName, strict);
         }
 
         [Test]
         public void GetUserName_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetUserName(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetUserName(0));
         }
 
         [Test]
@@ -650,22 +584,19 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=null)]
         public string GetUserName_DoesNotThrow(int userID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetUserName(userID);
+            return Connector.GetUserName(userID);
         }
 
         [Test]
         public void GetUserData_Throws_ArgumentNullException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentNullException>(() => conn.GetUserData(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => Connector.GetUserData(string.Empty));
         }
 
          [Test]
         public void GetUserData_Throws_ArgumentOutOfRangeException()
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            Assert.Throws<ArgumentOutOfRangeException>(() => conn.GetUserData(0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Connector.GetUserData(0));
         }
 
         [Test]
@@ -674,8 +605,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(999, ExpectedResult=0)]
         public int GetUserData(int userID)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetUserData(userID).Rows.Count;
+            return Connector.GetUserData(userID).Rows.Count;
         }
 
         [Test]
@@ -684,8 +614,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(_FAKE, ExpectedResult=0)]
         public int GetUserData(string userName)
         {                    
-            var conn = this.Pool[TestContext.CurrentContext.Test.ID];
-            return conn.GetUserData(userName).Rows.Count;
+            return Connector.GetUserData(userName).Rows.Count;
         }
     }
 }

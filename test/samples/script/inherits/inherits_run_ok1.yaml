@@ -22,4 +22,4 @@ inherits: "inherits_base2.yaml"
 single:
   caption: "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION})~ in single mode for ~{$CURRENT_FOLDER_PATH}:"
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\inherits\\test2"
+    folder: "{$APP_FOLDER_PATH}\\temp\\script\\inherits\\test2"

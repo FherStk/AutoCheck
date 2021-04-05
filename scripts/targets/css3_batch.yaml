@@ -19,16 +19,30 @@
 inherits: "..\\templates\\css3.yaml"  
 
 batch: 
-  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
-  - local:                             
-      - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\css3"
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
+    - local:                             
+        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\css3"
 
-  - copy_detector:            
-      type: "CSS"            
-      file: "index.css"
-      threshold: !!float 0.7    
-      pre:
-          - extract:   
-              file: "*.zip"              
-              recursive: !!bool True
-              remove: !!bool True      
+    - copy_detector:            
+        type: "CSS"            
+        file: "index.css"
+        threshold: !!float 0.7    
+
+    - pre:
+        - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
+
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
+            store: "ZIP_FILE"    
+            
+        - connector:  
+            type: "Zip"                    
+            arguments: "--filePath {$ZIP_FILE}"
+        
+        - run:   
+            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            connector: "Zip"
+            command: "Extract"
+            arguments: 
+                recursive: !!bool True

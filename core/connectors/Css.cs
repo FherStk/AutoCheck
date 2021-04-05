@@ -51,12 +51,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="filePath">CSS file path.</param>
         public Css(string filePath){            
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!File.Exists(filePath)) throw new FileNotFoundException();
-                        
-            StylesheetParser parser = new StylesheetParser();    
-            this.Raw = File.ReadAllText(filePath);
-            this.CssDoc = parser.Parse(this.Raw);            
+            Parse(filePath);
         }
 
         /// <summary>
@@ -69,18 +64,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         /// <param name="filePath">CSS file path.</param>
         public Css(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
-            var remote = new Shell(remoteOS, host, username, password, port);
-            
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");                        
-            
-            filePath = remote.DownloadFile(filePath);
-
-            StylesheetParser parser = new StylesheetParser();    
-            this.Raw = File.ReadAllText(filePath);
-            this.CssDoc = parser.Parse(this.Raw);       
-
-            File.Delete(filePath);
+            ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
+                Parse(filePath); 
+            }));   
         }
 
         /// <summary>
@@ -92,7 +78,16 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="filePath">CSS file path.</param>
         public Css(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){
-        }         
+        } 
+
+        private void Parse(string filePath){
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+                        
+            StylesheetParser parser = new StylesheetParser();    
+            Raw = File.ReadAllText(filePath);
+            CssDoc = parser.Parse(Raw);    
+        }        
         
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
@@ -107,7 +102,7 @@ namespace AutoCheck.Core.Connectors{
         public void ValidateCss3AgainstW3C(){
             string html = string.Empty;
             string url = "http://jigsaw.w3.org/css-validator/validator";
-            string css = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));
+            string css = System.Web.HttpUtility.UrlEncode(Raw.Replace("\r\n", ""));
             string parameters = string.Format("profile=css3&output=soap12&warning=no&text={0}", css);            
             byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
 
@@ -141,7 +136,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="value">The CSS property value.</param>
         /// <returns>True if the property has been found</returns>
         public bool PropertyExists(string property, string value = null){ 
-            foreach(StylesheetNode cssNode in this.CssDoc.Children){
+            foreach(StylesheetNode cssNode in CssDoc.Children){
                 if(!NodeUsingProperty(cssNode, property, value)) continue;
                 return true;
             }
@@ -185,7 +180,7 @@ namespace AutoCheck.Core.Connectors{
             //Not needed, redundand check          
             //if(!PropertyExists(property, value)) return false;
             //else{
-                foreach(StylesheetNode cssNode in this.CssDoc.Children){
+                foreach(StylesheetNode cssNode in CssDoc.Children){
                     if(!NodeUsingProperty(cssNode, property, value)) continue;                    
 
                     //Checking if the given css style is being used. Important: only one selector is allowed when calling BuildXpathQuery, so comma split is needed

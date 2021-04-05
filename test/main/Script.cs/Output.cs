@@ -26,28 +26,28 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Output : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }
+    {
+        public Output(): base("script"){
+        }        
        
         [Test, Category("Output"), Category("Local")]
         public void Output_SINGLE_FILE_1()
         {             
-            var log = Path.Combine(LogsScriptFolder, "single_1", "OUTPUT SINGLE 1_Student Name 1.log");
-            Assert.IsFalse(File.Exists(log));
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            Assert.IsTrue(File.Exists(log));        
-            Assert.IsTrue(File.ReadAllText(log).Equals(s.Output.ToString()));                
+            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.IsTrue(File.Exists(logFilePath));        
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToString()));                
         } 
 
         [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_1()
         {         
-            var path = Path.Combine(LogsScriptFolder, "batch_1");  
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_1_yaml");  
+            if(Directory.Exists(path)) Directory.Delete(path, true);
+            
             var logs = new string[]{
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 1.log"),
                 Path.Combine(path, "OUTPUT BATCH 1_Student Name 2.log"),
@@ -73,16 +73,15 @@ namespace AutoCheck.Test
         [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_2()
         {   
-            var path = Path.Combine(LogsScriptFolder, "batch_2");  
-            if(Directory.Exists(path))                      
-                Assert.AreEqual(0, Directory.GetFiles(path).Length);
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_2_yaml");  
+            if(Directory.Exists(path)) Directory.Delete(path, true);                                     
 
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_2.yaml"));
 
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
-            foreach(var l in Directory.GetFiles(path).OrderBy(x => x)){
+            foreach(var l in s.LogFiles.OrderBy(x => x)){
                 Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
             }
         } 
