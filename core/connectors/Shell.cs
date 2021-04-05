@@ -185,6 +185,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path, NULL if does not exists.</returns>
         public virtual string GetFolder(string path, string folder, bool recursive = true){
+            //path will be validated within GetFolders
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("folder");
             return GetFolders(path, folder, recursive).FirstOrDefault();
         }
 
@@ -196,7 +198,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full path, NULL if does not exists.</returns>
         public virtual string GetFile(string path, string file, bool recursive = true){
-           return GetFiles(path, file, recursive).FirstOrDefault();
+            //path will be validated within GetFiles
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("folder");
+            return GetFiles(path, file, recursive).FirstOrDefault();
         }
 
         /// <summary>
@@ -207,17 +211,7 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>Folder's full path.</returns>
         public virtual string[] GetFolders(string path, bool recursive = true){
             return GetFolders(path, "*", recursive);
-        }
-
-        /// <summary>
-        /// Returns a set of file's path found, using the given file name or search pattern.
-        /// </summary>
-        /// <param name="path">Path where the file will be searched into.</param>
-        /// <param name="recursive">Recursive deep search.</param>
-        /// <returns>File's full paths.</returns>
-        public virtual string[] GetFiles(string path, bool recursive = true){
-            return GetFiles(path, "*", recursive);
-        }
+        }       
 
         /// <summary>
         /// Returns a set of folder's path found, using the given folder name or search pattern.
@@ -226,7 +220,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>Folder's full path.</returns>
-        public string[] GetFolders(string path, string searchpattern = "*", bool recursive = true){
+        public string[] GetFolders(string path, string searchpattern, bool recursive = true){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, true).Items;
             else{
                 path = Utils.PathToCurrentOS(path);                         
@@ -240,10 +235,21 @@ namespace AutoCheck.Core.Connectors{
         /// Returns a set of file's path found, using the given file name or search pattern.
         /// </summary>
         /// <param name="path">Path where the file will be searched into.</param>
+        /// <param name="recursive">Recursive deep search.</param>
+        /// <returns>File's full paths.</returns>
+        public virtual string[] GetFiles(string path, bool recursive = true){
+            return GetFiles(path, "*", recursive);
+        }
+
+        /// <summary>
+        /// Returns a set of file's path found, using the given file name or search pattern.
+        /// </summary>
+        /// <param name="path">Path where the file will be searched into.</param>
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>File's full paths.</returns>
-        public string[] GetFiles(string path, string searchpattern = "*", bool recursive = true){
+        public string[] GetFiles(string path, string searchpattern, bool recursive = true){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(IsRemote) return GetFileOrFolder(path, searchpattern, recursive, false).Items;
             else{
                 path = Utils.PathToCurrentOS(path); 
@@ -260,7 +266,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of folders.</returns>
-        public int CountFolders(string path, string searchpattern = "*", bool recursive = true){
+        public int CountFolders(string path, string searchpattern, bool recursive = true){
             return GetFolders(path, searchpattern, recursive).Count();
         }
         
@@ -281,7 +287,7 @@ namespace AutoCheck.Core.Connectors{
          /// <param name="searchpattern">The folder search pattern.</param>
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>The amount of files.</returns>
-        public int CountFiles(string path, string searchpattern = "*", bool recursive = true){
+        public int CountFiles(string path, string searchpattern, bool recursive = true){
             return GetFiles(path, searchpattern, recursive).Count();
         }
 
@@ -301,7 +307,11 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="folder">The folder to get including its path.</param>
         public bool ExistsFolder(string folder){
             folder = (IsLocal ? Utils.PathToCurrentOS(folder) : Utils.PathToRemoteOS(folder, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/');            
-            return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
+            
+            var path = Path.GetDirectoryName(folder);
+            if(string.IsNullOrEmpty(path)) path = Utils.ExecutionFolder;
+
+            return ExistsFolder(path, Path.GetFileName(folder));
         }
 
         /// <summary>
@@ -312,7 +322,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="recursive">Recursive deep search.</param>
         /// <returns>If the folder exists or not.</returns>
         public bool ExistsFolder(string path, string folder, bool recursive = false){
-            path = (IsLocal ? Utils.PathToCurrentOS(folder) : Utils.PathToRemoteOS(folder, RemoteOS));
+            path = (IsLocal ? Utils.PathToCurrentOS(path) : Utils.PathToRemoteOS(path, RemoteOS));
             return GetFolder(path, folder, recursive) != null;
         }
 
@@ -321,8 +331,12 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="file">The file to get including its path.</param>
         public bool ExistsFile(string file){
-            file = (IsLocal ? Utils.PathToCurrentOS(file) : Utils.PathToRemoteOS(file, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/');         
-            return ExistsFile(Path.GetDirectoryName(file), Path.GetFileName(file));
+            file = (IsLocal ? Utils.PathToCurrentOS(file) : Utils.PathToRemoteOS(file, RemoteOS)).TrimEnd(RemoteOS == Utils.OS.WIN ? '\\' : '/'); 
+
+            var path = Path.GetDirectoryName(file);
+            if(string.IsNullOrEmpty(path)) path = Utils.ExecutionFolder;
+
+            return ExistsFile(path, Path.GetFileName(file));
         }
 
         /// <summary>
@@ -341,17 +355,67 @@ namespace AutoCheck.Core.Connectors{
         /// Downloads the remote file into the local system.
         /// </summary>
         /// <param name="file">The file to get including its path.</param>
+        /// <param name="folder">The folder where the file will be downloaded.</param>
         /// <returns>The local file path once downloaded.</returns>
-        public string DownloadFile(string file){
+        public string DownloadFile(string file, string folder=null){
             ExceptionIfLocalShell();
             if(!ExistsFile(file)) throw new FileNotFoundException();
-
+                        
             var remotePath = Utils.PathToRemoteOS(file, RemoteOS);            
-            var localPath = Path.Combine("tmp", Path.GetFileName(remotePath));                        
+            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));             
+            var localFolder = Path.GetDirectoryName(localPath);
 
-            FileSystem.Connect();
-            FileSystem.Download(remotePath, new FileInfo(localPath));
+            FileSystem.Connect();                                    
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                if(!Directory.Exists(localFolder)) Directory.CreateDirectory(localFolder);                  
+                FileSystem.Download(remotePath, new FileInfo(localPath));                            
+            }));
             FileSystem.Disconnect();
+
+            return localPath;      
+        }
+
+         /// <summary>
+        /// Downloads the remote file into the local system.
+        /// </summary>
+        /// <param name="path">The file to get including its path.</param>
+        /// <param name="recursive">The entire file and folder structure will be downloaded recursivelly.</param>
+        /// <returns>The local file path once downloaded.</returns>
+        public string DownloadFolder(string path, bool recursive){
+            return DownloadFolder(path, null, recursive);
+        }
+
+        /// <summary>
+        /// Downloads the remote file into the local system.
+        /// </summary>
+        /// <param name="path">The file to get including its path.</param>
+        /// <param name="folder">The folder where the file will be downloaded.</param>
+        /// <param name="recursive">The entire file and folder structure will be downloaded recursivelly.</param>
+        /// <returns>The local folder path once downloaded.</returns>
+        public string DownloadFolder(string path, string folder=null, bool recursive=false){
+            ExceptionIfLocalShell();
+            if(!ExistsFolder(path)) throw new DirectoryNotFoundException();
+
+            var remotePath = Utils.PathToRemoteOS(path, RemoteOS);            
+            var localPath = Path.Combine(folder ?? Path.Combine(Utils.TempFolder, Guid.NewGuid().ToString()), Path.GetFileName(remotePath));    
+
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                if(!Directory.Exists(localPath)) Directory.CreateDirectory(localPath);            
+            }));                    
+            
+            var dirPath = localPath;            
+            foreach(var remoteFile in GetFiles(path, false)){
+                DownloadFile(remoteFile, dirPath);
+            }
+
+            foreach(var remoteFolder in GetFolders(path, false)){                
+                if(recursive) DownloadFolder(remoteFolder, dirPath, true);
+                else{
+                     Utils.RunWithRetry<IOException>(new Action(() => {
+                        Directory.CreateDirectory(Path.Combine(dirPath, Path.GetFileName(remoteFolder)));
+                    }));
+                } 
+            }         
 
             return localPath;      
         }

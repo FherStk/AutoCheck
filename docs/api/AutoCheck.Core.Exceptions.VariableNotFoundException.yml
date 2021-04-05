@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: VariableNotFoundException
     path: ../core/main/Exceptions.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -115,7 +115,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

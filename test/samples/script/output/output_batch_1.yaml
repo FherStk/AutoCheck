@@ -28,5 +28,5 @@ output:
   pause: False
   log:
     enabled: True
-    folder: "{$APP_FOLDER_PATH}\\logs\\output\\batch_1"
+    folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_1_yaml"
     name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

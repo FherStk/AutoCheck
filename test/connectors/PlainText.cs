@@ -39,7 +39,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("someFile.ext")]
         public void Constructor_Local_Throws_FileNotFoundException(string file)
         {      
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, file)));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.PlainText(GetSampleFile(file)));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace AutoCheck.Test.Connectors
         public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {           
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));            
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));            
         }
 
 
@@ -73,7 +73,7 @@ namespace AutoCheck.Test.Connectors
         public int Count_DoesNotThrow(string file, string regex)
         {   
             //Uses Find() internally
-            return new AutoCheck.Core.Connectors.PlainText(Path.Combine(this.SamplesScriptFolder, file)).Count(regex);             
+            return new AutoCheck.Core.Connectors.PlainText(GetSampleFile(file)).Count(regex);             
         }           
     }
 }

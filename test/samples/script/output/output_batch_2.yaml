@@ -28,4 +28,4 @@ output:
   pause: False
   log:
     enabled: True
-    folder: "{$APP_FOLDER_PATH}\\logs\\output\\batch_2"
+    folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_2_yaml"

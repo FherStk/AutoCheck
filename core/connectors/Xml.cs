@@ -61,10 +61,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
-        public Xml(string filePath, ValidationType validation = ValidationType.None){            
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!File.Exists(filePath)) throw new FileNotFoundException();
-
+        public Xml(string filePath, ValidationType validation = ValidationType.None){                        
             Parse(filePath, validation);           
         }
 
@@ -79,17 +76,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
         public Xml(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, ValidationType validation = ValidationType.None){  
-            var remote = new Shell(remoteOS, host, username, password, port);
-            
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
-                                    filePath = remote.DownloadFile(filePath);
-
-            Parse(filePath, validation); 
-
-            Utils.RunWithRetry<IOException>(new Action(() => {
-                File.Delete(filePath);
-            }));                           
+            ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
+                Parse(filePath, validation); 
+            }));            
         }
 
         /// <summary>
@@ -215,7 +204,10 @@ namespace AutoCheck.Core.Connectors{
             return Equals(xmlConn.XmlDoc, ignoreSchema);            
         }
 
-        private void Parse(string filePath, ValidationType validation = ValidationType.None){             
+        private void Parse(string filePath, ValidationType validation = ValidationType.None){       
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+                  
             var coms = new List<string>();     
             var messages = new StringBuilder();            
             var settings = new XmlReaderSettings { 

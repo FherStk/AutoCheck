@@ -311,20 +311,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td></td>
 </tr>
 <tr>
-<td><a href="#pre">pre</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed (in order) before the body.</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="#post">post</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed (in order) before the body.</td>
-<td></td>
-</tr>
-<tr>
 <td><a href="#body">body</a></td>
 <td>sequence</td>
 <td>no</td>
@@ -674,8 +660,9 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
     var1: &quot;VALUE1&quot;
     var2: &quot;PRE_POST&quot;
     var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
-    var4: &quot;This will display the last word after an underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
-    var5: &quot;This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}&quot;        
+    var4: &quot;This will display the word after the last underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
+    var5: &quot;This will display the filename for a given path: {#([^\\\\]*)$$CURRENT_FOLDER_PATH}&quot; #two $$ symbols are needed for this example
+    var5: &quot;This will display the student name for a downloaded assignment Moodle path: {#^[^_]+(?=_)$MOODLE_FOLDER_PATH}&quot;
 </code></pre>
 <h4 id="scopes">Scopes:</h4>
 <p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
@@ -684,195 +671,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
     $var1: &quot;Value1.2&quot; #Does not declares but updates var1 value on the first predecesor scope where the var has been found.
 </code></pre>
 <p>When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.</p>
-<h3 id="pre"> pre</h3>
-<p>Defined blocks will be executed (in order) before the script's body does.</p>
-<h4 id="extract"> extract</h4>
-<p>Extract a compressed file from the current execution folder (only zip is supported).</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>file</td>
-<td>text</td>
-<td>no</td>
-<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also.</td>
-<td><code>&quot;*.zip&quot;</code></td>
-</tr>
-<tr>
-<td>remove</td>
-<td>boolean</td>
-<td>no</td>
-<td>Remove the original file when extracted.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>recursive</td>
-<td>boolean</td>
-<td>no</td>
-<td>Repeat through folders.</td>
-<td><code>False</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="restore_db"> restore_db</h4>
-<p>Restores a database using an sql dump file from the current execution folder (only PostgreSQL is supported).</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>file</td>
-<td>text</td>
-<td>no</td>
-<td>Search patthern used to find files to restore, OS file naming convetions allowed; regex can be used also.</td>
-<td><code>&quot;*.sql&quot;</code></td>
-</tr>
-<tr>
-<td>remove</td>
-<td>boolean</td>
-<td>no</td>
-<td>Remove the original file when restored.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>recursive</td>
-<td>boolean</td>
-<td>no</td>
-<td>Repeat through folders.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>db_host</td>
-<td>text</td>
-<td>no</td>
-<td>Host name or IP address.</td>
-<td><code>&quot;localhost&quot;</code></td>
-</tr>
-<tr>
-<td>db_user</td>
-<td>text</td>
-<td>no</td>
-<td>Credential's username.</td>
-<td><code>&quot;postgres&quot;</code></td>
-</tr>
-<tr>
-<td>db_pass</td>
-<td>text</td>
-<td>no</td>
-<td>Credential's password.</td>
-<td><code>&quot;postgres&quot;</code></td>
-</tr>
-<tr>
-<td>db_name</td>
-<td>text</td>
-<td>no</td>
-<td>Database name.</td>
-<td><code>The current script name (&quot;$SCRIPT_NAME&quot;)</code></td>
-</tr>
-<tr>
-<td>override</td>
-<td>boolean</td>
-<td>no</td>
-<td>Overrides the DB if exists.</td>
-<td><code>False</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="upload_gdrive"> upload_gdrive</h4>
-<p>Uploads a file from the current execution folder to Google Drive.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>source</td>
-<td>text</td>
-<td>no</td>
-<td>Search patthern used to find files or folders to upload, OS file naming convetions allowed; regex can be used also.</td>
-<td><code>&quot;*.sql&quot;</code></td>
-</tr>
-<tr>
-<td>remove</td>
-<td>boolean</td>
-<td>no</td>
-<td>Remove the original file when uploaded.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>recursive</td>
-<td>boolean</td>
-<td>no</td>
-<td>Repeat through folders.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>link</td>
-<td>boolean</td>
-<td>no</td>
-<td>A link to the source file will be extracted from text file's content.</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td>copy</td>
-<td>boolean</td>
-<td>no</td>
-<td>The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded.</td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td>account</td>
-<td>text</td>
-<td>no</td>
-<td>Path to a file containing the username used to login into the own's Google Drive account.</td>
-<td><code>&quot;config\\gdrive_account.txt&quot;</code></td>
-</tr>
-<tr>
-<td>secret</td>
-<td>text</td>
-<td>no</td>
-<td>Path to the <code>client_secret.json</code> file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services).</td>
-<td><code>&quot;config\\gdrive_secret.json&quot;</code></td>
-</tr>
-<tr>
-<td>remote_path</td>
-<td>text</td>
-<td>no</td>
-<td>Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible.</td>
-<td><code>&quot;\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\&quot;</code></td>
-</tr>
-<tr>
-<td>remote_file</td>
-<td>text</td>
-<td>no</td>
-<td>The remote file will be created using this value as a template, but original extension will be preserved.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="post"> post</h3>
-<p>Defined blocks will be executed (in order) after the script's body does; same nodes as <code>pre</code> are allowed.</p>
 <h3 id="body"> body</h3>
 <p>Script's body where the main action is defined.</p>
 <table>
@@ -1321,6 +1119,20 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>&quot;Running on batch mode:&quot;</code></td>
 </tr>
 <tr>
+<td><a href="#pre">pre</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The defined content will be executed once per batch target before the copy_detector and any target's body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#post">post</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The  defined content will be executed once per batch target after the copy_detector and all target's body.</td>
+<td></td>
+</tr>
+<tr>
 <td><a href="#copy_detector">copy_detector</a></td>
 <td>collection</td>
 <td>no</td>
@@ -1340,6 +1152,82 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>yes (if no <code>local</code> has been defined)</td>
 <td>Remote batch target, so each script body will be executed once per remote target.</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="pre"> pre</h4>
+<p>The defined content will be executed once per batch target before any target's body.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="post"> post</h4>
+<p>The  defined content will be executed once per batch target after all target's body.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>collection</td>
+<td>no</td>
+<td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
 </tr>
 </tbody>
 </table>
@@ -1383,20 +1271,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>no</td>
 <td>The copy threshold to use, so results exceeding this value will be considered as a pontential copy.</td>
 <td><code>!!float 1 </code></td>
-</tr>
-<tr>
-<td><a href="#pre">pre</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed (in order, once per target) before the copy detector execution.</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="#post">post</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Defined blocks will be executed(in order, once per target) after the copy detector execution.</td>
-<td></td>
 </tr>
 </tbody>
 </table>

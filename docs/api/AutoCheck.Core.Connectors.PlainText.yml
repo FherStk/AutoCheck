@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
@@ -44,6 +44,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -71,7 +72,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
@@ -109,7 +110,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -145,11 +146,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 103
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -188,11 +189,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 122
+    startLine: 114
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -229,11 +230,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
-    startLine: 128
+    startLine: 127
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -264,11 +265,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
-    startLine: 136
+    startLine: 135
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -303,11 +304,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs
-    startLine: 150
+    startLine: 149
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -354,6 +355,164 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

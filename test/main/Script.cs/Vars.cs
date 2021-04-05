@@ -26,12 +26,9 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Vars : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", Name));            
-        }      
+    { 
+        public Vars(): base("script"){
+        }            
 
         [Test, Category("Vars"), Category("Local")]
         public void ParseVars_DEFAULT_VARS()

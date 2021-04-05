@@ -37,7 +37,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="expression">A mathematical expression.</param>
         /// <example>Round(Pow(2, 8) + Sqrt(2) * 27.4, 2)</example>
         /// <remarks>Uses NCalc2 internally (https://github.com/sklose/NCalc2)</remarks>
-        /// <returns></returns>
+        /// <returns>The evaluated expression value.</returns>
         public object Evaluate(string expression){
             var e = new Expression(expression);
             return e.Evaluate();            

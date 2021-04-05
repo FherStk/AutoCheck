@@ -1,0 +1,891 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Connectors.Zip
+  commentId: T:AutoCheck.Core.Connectors.Zip
+  id: Zip
+  parent: AutoCheck.Core.Connectors
+  children:
+  - AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Zip.#ctor(System.String)
+  - AutoCheck.Core.Connectors.Zip.Dispose
+  - AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+  - AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+  - AutoCheck.Core.Connectors.Zip.ZipFile
+  langs:
+  - csharp
+  - vb
+  name: Zip
+  nameWithType: Zip
+  fullName: AutoCheck.Core.Connectors.Zip
+  type: Class
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Zip
+    path: ../core/connectors/Zip.cs
+    startLine: 28
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: 'public class Zip : Base, IDisposable'
+    content.vb: >-
+      Public Class Zip
+          Inherits Base
+          Implements IDisposable
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Connectors.Base
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Connectors.Zip.ZipFile
+  commentId: P:AutoCheck.Core.Connectors.Zip.ZipFile
+  id: ZipFile
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: ZipFile
+  nameWithType: Zip.ZipFile
+  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ZipFile
+    path: ../core/connectors/Zip.cs
+    startLine: 29
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public MemoryStream ZipFile { get; }
+    parameters: []
+    return:
+      type: System.IO.MemoryStream
+    content.vb: Public ReadOnly Property ZipFile As MemoryStream
+  overload: AutoCheck.Core.Connectors.Zip.ZipFile*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Zip(String)
+  nameWithType: Zip.Zip(String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Zip.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new connector instance.\n"
+  example: []
+  syntax:
+    content: public Zip(string filePath)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: ZIP file path.
+    content.vb: Public Sub New(filePath As String)
+  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Zip(Utils.OS, String, String, String, String)
+  nameWithType: Zip.Zip(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Zip.cs
+    startLine: 49
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Zip(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
+  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Zip(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Zip.Zip(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/Zip.cs
+    startLine: 62
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public Zip(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    parameters:
+    - id: remoteOS
+      type: AutoCheck.Core.Utils.OS
+    - id: host
+      type: System.String
+    - id: username
+      type: System.String
+    - id: password
+      type: System.String
+    - id: port
+      type: System.Int32
+    - id: filePath
+      type: System.String
+    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
+  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Zip.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Zip.Dispose
+  id: Dispose
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Zip.Dispose()
+  fullName: AutoCheck.Core.Connectors.Zip.Dispose()
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Dispose
+    path: ../core/connectors/Zip.cs
+    startLine: 86
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDisposes the object releasing its unmanaged properties.\n"
+  example: []
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: AutoCheck.Core.Connectors.Base.Dispose
+  overload: AutoCheck.Core.Connectors.Zip.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+  id: Extract(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Extract(String, String)
+  nameWithType: Zip.Extract(String, String)
+  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Extract
+    path: ../core/connectors/Zip.cs
+    startLine: 95
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nExtracts the ZIP file.\n"
+  example: []
+  syntax:
+    content: public void Extract(string output, string password = null)
+    parameters:
+    - id: output
+      type: System.String
+      description: Destination folder for the extracted files.
+    - id: password
+      type: System.String
+      description: ZIP file&apos;s password.
+    content.vb: Public Sub Extract(output As String, password As String = Nothing)
+  overload: AutoCheck.Core.Connectors.Zip.Extract*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+  id: Extract(System.Boolean,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Zip
+  langs:
+  - csharp
+  - vb
+  name: Extract(Boolean, String, String)
+  nameWithType: Zip.Extract(Boolean, String, String)
+  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Zip.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Extract
+    path: ../core/connectors/Zip.cs
+    startLine: 105
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nExtracts the ZIP file.\n"
+  example: []
+  syntax:
+    content: public void Extract(bool recursive = false, string output = null, string password = null)
+    parameters:
+    - id: recursive
+      type: System.Boolean
+      description: ZIP files within the extracted one, will be also extracted.
+    - id: output
+      type: System.String
+      description: Destination folder for the extracted files.
+    - id: password
+      type: System.String
+      description: ZIP file&apos;s password.
+    content.vb: Public Sub Extract(recursive As Boolean = False, output As String = Nothing, password As String = Nothing)
+  overload: AutoCheck.Core.Connectors.Zip.Extract*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Connectors
+  commentId: N:AutoCheck.Core.Connectors
+  name: AutoCheck.Core.Connectors
+  nameWithType: AutoCheck.Core.Connectors
+  fullName: AutoCheck.Core.Connectors
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Connectors.Base
+  commentId: T:AutoCheck.Core.Connectors.Base
+  parent: AutoCheck.Core.Connectors
+  name: Base
+  nameWithType: Base
+  fullName: AutoCheck.Core.Connectors.Base
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Connectors.Zip.ZipFile*
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.ZipFile
+  name: ZipFile
+  nameWithType: Zip.ZipFile
+  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+- uid: System.IO.MemoryStream
+  commentId: T:System.IO.MemoryStream
+  parent: System.IO
+  isExternal: true
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: System.IO.MemoryStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: AutoCheck.Core.Connectors.Zip.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.#ctor
+  name: Zip
+  nameWithType: Zip.Zip
+  fullName: AutoCheck.Core.Connectors.Zip.Zip
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.Utils.OS
+  commentId: T:AutoCheck.Core.Utils.OS
+  parent: AutoCheck.Core
+  name: Utils.OS
+  nameWithType: Utils.OS
+  fullName: AutoCheck.Core.Utils.OS
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core.Connectors.Base.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Base.Dispose
+  parent: AutoCheck.Core.Connectors.Base
+  name: Dispose()
+  nameWithType: Base.Dispose()
+  fullName: AutoCheck.Core.Connectors.Base.Dispose()
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.Dispose
+    name: Dispose
+    nameWithType: Base.Dispose
+    fullName: AutoCheck.Core.Connectors.Base.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Zip.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.Dispose
+  name: Dispose
+  nameWithType: Zip.Dispose
+  fullName: AutoCheck.Core.Connectors.Zip.Dispose
+- uid: AutoCheck.Core.Connectors.Zip.Extract*
+  commentId: Overload:AutoCheck.Core.Connectors.Zip.Extract
+  name: Extract
+  nameWithType: Zip.Extract
+  fullName: AutoCheck.Core.Connectors.Zip.Extract
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

@@ -47,7 +47,8 @@ namespace AutoCheck.Core{
             SUCCESS,
             ERROR,
             DEFAULT,
-            ECHO
+            ECHO,
+            WARNING
         }
 
         public const string SingleIndent = "   ";

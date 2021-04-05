@@ -22,11 +22,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../core/connectors/Base.cs
-    startLine: 26
+    startLine: 27
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -55,11 +55,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWER
     path: ../core/connectors/Base.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -87,11 +87,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWEREQUALS
     path: ../core/connectors/Base.cs
-    startLine: 28
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -119,11 +119,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATER
     path: ../core/connectors/Base.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -151,11 +151,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATEREQUALS
     path: ../core/connectors/Base.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -183,11 +183,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../core/connectors/Base.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -215,11 +215,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: NOTEQUALS
     path: ../core/connectors/Base.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -247,11 +247,11 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LIKE
     path: ../core/connectors/Base.cs
-    startLine: 33
+    startLine: 34
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

@@ -20,78 +20,119 @@
 
 using System;
 using System.IO;
+using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core;
+using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test
 {
     public abstract class Test
-    {        
-        protected string SamplesRootFolder {get; set;}
-        protected string SamplesScriptFolder {get; set;}        
-        protected const string _FAKE = "fake";
+    { 
+        private string _testPath {get; set;}
+        protected const string _FAKE = "fake";         
+        protected string SamplesRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "samples")); 
+            }
+        } 
+        protected string TempRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "temp")); 
+            }
+        } 
+        protected string LogRootFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(Utils.AppFolder, "logs")); 
+            }
+        } 
+
+        protected string SamplesScriptFolder  {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, _testPath)); 
+            }
+        } 
+
+        protected string TempScriptFolder {
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(TempRootFolder, _testPath, TestContext.CurrentContext.Test.ID)); 
+            }
+        } 
+        protected string LogScriptFolder{
+            get {
+                return Utils.PathToCurrentOS(Path.Combine(LogRootFolder, _testPath, TestContext.CurrentContext.Test.ID)); 
+            }
+        }         
+        
         protected string Name { 
             get {
                 return GetType().Name.ToCamelCase();
             }
+        } 
+
+        public Test(){
+            _testPath = Name;
         }
 
-        protected string TempScriptFolder {
-            get {
-                return Path.Combine(GetSamplePath("script"), "temp", Name);
-            }
-        }
-
-        protected string LogsScriptFolder {
-            get {
-                return Path.Combine(AutoCheck.Core.Utils.AppFolder, "logs", Name);
-            }
-        }        
+        public Test(string folderScaffold){            
+            _testPath = Path.Combine(folderScaffold, Name);
+        }                   
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
         {        
             //Hide the output    
             AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.SILENT);
+           
+            //Mandatory folders
+            if(!Directory.Exists(SamplesRootFolder)) Directory.CreateDirectory(SamplesRootFolder);
+            if(!Directory.Exists(TempRootFolder)) Directory.CreateDirectory(TempRootFolder);
+            if(!Directory.Exists(LogRootFolder)) Directory.CreateDirectory(LogRootFolder);
 
-            //Compute samples paths
-            SamplesRootFolder = Path.Combine(Utils.AppFolder, "samples"); 
-            SamplesScriptFolder = GetSamplePath(Name); 
-            
             //Fresh start needed!
             CleanUp();            
+        }        
+
+        [TearDown]
+        public virtual void TearDown() 
+        {
+            //Temp and logs
+            if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);    
+            if(Directory.Exists(LogScriptFolder)) Directory.Delete(LogScriptFolder, true);                     
         }
 
         [OneTimeTearDown]
         public virtual void OneTimeTearDown(){     
             //Clean before exit :)          
-            CleanUp();                                
+            CleanUp();                                                        
+
+            //Temp and logs
+            var temp = Path.Combine(TempRootFolder, _testPath);
+            var log = Path.Combine(LogRootFolder, _testPath);
+            if(Directory.Exists(temp)) Directory.Delete(temp, true);    
+            if(Directory.Exists(log)) Directory.Delete(log, true);  
 
             //Restore output     
             AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.VERBOSE);
-        }         
+        } 
 
         /// <summary>
-        /// This method will be automatically called by the engine in order to cleanup a test enviroment on start and on ends.
+        /// This method will be automatically called by the engine in order to cleanup a test enviroment before any test starts and after all tests ends.
         /// </summary>
-        protected virtual void CleanUp(){
-            //Clean temp files
-            if(Directory.Exists(TempScriptFolder)) Directory.Delete(TempScriptFolder, true);       
-
-            //Clean logs
-            if(Directory.Exists(LogsScriptFolder)) Directory.Delete(LogsScriptFolder, true);
-        }                   
+        protected virtual void CleanUp(){            
+        }  
 
         /// <summary>
-        /// Retrieves the samples path for the requested script.
+        /// Retrieves a sample file path for the current test.
         /// </summary>
-        /// <param name="script">Script name.</param>
-        /// <returns>A folder path.</returns>
-        protected string GetSamplePath(string script) 
-        {
-            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script)); 
-        }
+        /// <param name="file">The file to retrieve.</param>
+        /// <returns>A file path.</returns>
+        protected string GetTempFile(string file) 
+        {            
+            //Temp folders uses the current test context ID, so is not possible to access another ones as could be done when asking for a sample file between scripts.
+            return Utils.PathToCurrentOS(Path.Combine(TempScriptFolder, file)); 
+        }      
 
         /// <summary>
         /// Retrieves a sample file path for the current test.
@@ -99,9 +140,8 @@ namespace AutoCheck.Test
         /// <param name="file">The file to retrieve.</param>
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string file) 
-        {
-            if(string.IsNullOrEmpty(SamplesScriptFolder)) throw new ArgumentNullException("The global samples path value is empty, use another overload or set up the SamplesPath parameter.");
-            return Utils.PathToCurrentOS(Path.Combine(SamplesScriptFolder, file)); 
+        {            
+            return GetSampleFile(SamplesScriptFolder, file); 
         }
 
         /// <summary>
@@ -112,7 +152,7 @@ namespace AutoCheck.Test
         /// <returns>A file path.</returns>
         protected string GetSampleFile(string script, string file) 
         {
-            return Utils.PathToCurrentOS(Path.Combine(GetSamplePath(script), file)); 
+            return Utils.PathToCurrentOS(Path.Combine(SamplesRootFolder, script, file)); 
         }
 
         /// <summary>
@@ -121,9 +161,13 @@ namespace AutoCheck.Test
         /// <example>"C:\folder\file.ext" -> "/mnt/c/folder/file.ext"</example>
         /// <param name="localPath">Absolute local path to convert.</param>        
         /// <returns>The absolute remote path.</returns>
-        protected string LocalPathToWsl(string localPath){            
-            var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();            
-            if(Core.Utils.CurrentOS == OS.WIN) localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+        protected string LocalPathToWsl(string localPath){
+            if(!Path.IsPathFullyQualified(localPath)) throw new ArgumentInvalidException("The argument localPath must be an absolute path.");
+
+            if(Core.Utils.CurrentOS == OS.WIN){
+                var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();
+                localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    
+            } 
             return localPath;
         }
     }

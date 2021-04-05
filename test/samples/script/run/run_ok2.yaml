@@ -16,14 +16,35 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
+version: "1.0.0.1"
 single:
-  local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\pre\\upload\\test2"
+  local:  
+    folder: "{$APP_FOLDER_PATH}\\samples\\script\\run\\"
 
-pre:     
-  - upload_gdrive:       
-      remote_path: "\\AutoCheck\\test\\{$SCRIPT_NAME}\\"
-      recursive: !!bool True
-      remove: !!bool True
+body:  
+  - run:
+      connector: "LOCALSHELL"           
+      command: "ExistsFile"
+      arguments:  
+        path: "{$CURRENT_FOLDER_PATH}"
+        file: "{$SCRIPT_FILE_NAME}"
+        recursive: !!bool False
+      expected: !!bool True
 
-body:     
+  - run:
+      connector: "LOCALSHELL"           
+      command: "ExistsFile"
+      arguments:  
+        path: "{$SCRIPT_FOLDER_PATH}"
+        file: "{$SCRIPT_FILE_NAME}"
+        recursive: !!bool False
+      expected: !!bool True
+
+  - run:
+      connector: "LOCALSHELL"           
+      command: "GetFile"
+      arguments:  
+        path: "{$SCRIPT_FOLDER_PATH}"
+        file: "{$SCRIPT_FILE_NAME}"
+        recursive: !!bool False
+      expected: "%run_ok2.yaml"

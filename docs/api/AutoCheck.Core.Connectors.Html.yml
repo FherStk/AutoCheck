@@ -38,7 +38,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
@@ -60,6 +60,7 @@ items:
   implements:
   - System.IDisposable
   inheritedMembers:
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -87,7 +88,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
@@ -125,7 +126,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
@@ -163,7 +164,7 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
@@ -171,7 +172,7 @@ items:
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nCreates a new connector instance.\n"
+  summary: "\nCreates a new local connector instance.\n"
   example: []
   syntax:
     content: public Html(string filePath)
@@ -199,11 +200,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 71
+    startLine: 66
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -242,11 +243,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 94
+    startLine: 80
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -283,11 +284,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
-    startLine: 100
+    startLine: 95
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -318,11 +319,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHtml5AgainstW3C
     path: ../core/connectors/Html.cs
-    startLine: 107
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -350,11 +351,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 154
+    startLine: 149
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -389,11 +390,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 164
+    startLine: 159
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -431,11 +432,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 174
+    startLine: 169
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -470,11 +471,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 184
+    startLine: 179
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -512,11 +513,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 197
+    startLine: 192
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -551,11 +552,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 207
+    startLine: 202
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -593,11 +594,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 223
+    startLine: 218
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -632,11 +633,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 233
+    startLine: 228
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -674,11 +675,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 242
+    startLine: 237
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -713,11 +714,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 252
+    startLine: 247
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -755,11 +756,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 265
+    startLine: 260
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -794,11 +795,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 275
+    startLine: 270
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -836,11 +837,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 297
+    startLine: 292
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -875,11 +876,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 307
+    startLine: 302
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -917,11 +918,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 316
+    startLine: 311
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -953,11 +954,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 326
+    startLine: 321
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1004,6 +1005,164 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Object.Equals(System.Object)
   commentId: M:System.Object.Equals(System.Object)
   parent: System.Object

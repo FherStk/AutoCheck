@@ -18,8 +18,6 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System;
-using System.IO;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
@@ -28,12 +26,12 @@ namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
     public class Atom : Test
-    {                               
+    {         
         [Test]
         [TestCase("correct.atom")]
         public void Constructor_Local_DoesNotThrow(string file)
         {      
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(GetSampleFile(file)));
         }
 
         [Test]
@@ -41,14 +39,14 @@ namespace AutoCheck.Test.Connectors
         public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {     
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed. 
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, LocalPathToWsl(Path.Combine(this.SamplesScriptFolder, file))));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Atom(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));
         }
 
         [Test]
         [TestCase("incorrect.atom")]
         public void ValidateAtomAgainstW3C_Throws_DocumentInvalidException(string file)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)))
+            using(var conn = new AutoCheck.Core.Connectors.Atom(GetSampleFile(file)))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateAtomAgainstW3C());                                
         } 
 
@@ -56,7 +54,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.atom")]
         public void ValidateAtomAgainstW3C_DoesNotThrow(string file)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Atom(Path.Combine(this.SamplesScriptFolder, file)))
+            using(var conn = new AutoCheck.Core.Connectors.Atom(GetSampleFile(file)))
                 Assert.DoesNotThrow(() => conn.ValidateAtomAgainstW3C());
         } 
 
@@ -69,7 +67,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("incorrect.atom", "//feed//title", ExpectedResult=2)]
         public int CountNodes_DoesNotThrow(string file, string xpath)
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(Path.Combine(this.SamplesScriptFolder, file)))
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile(file)))
                 return conn.CountNodes(xpath);
         }            
     }

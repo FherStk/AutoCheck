@@ -53,197 +53,317 @@ namespace AutoCheck.Test.Connectors
                     - Create a scheduled task with Win+R and "taskschd.msc"
                         - Setup it to run when the user loggins with admin privileges and hidden.
         */
-        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> Conn = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
 
+        //TODO: Continue from here. 
+        //  - Update the test to the parametrized version
+        //  - Use the remote/local connectors, because Shell must be tested always using both versions
+        //  - Check the correct creation of the temp files and folders (and its removal)
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> LocalConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
+        private ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell> RemoteConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.Shell>();
+
+        private AutoCheck.Core.Connectors.Shell LocalConnector {
+            get{
+                return LocalConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
+
+        private AutoCheck.Core.Connectors.Shell RemoteConnector {
+            get{
+                return RemoteConnectors[TestContext.CurrentContext.Test.ID];
+            }
+        }
+        
         [SetUp]
         public void Setup() 
         {
-            //Create a new and unique host connection for the current context (same host for all tests)
-            var conn = new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "usuario", "usuario"); 
-            
-            //Storing the connector instance for the current context
+            //Create a new and unique host connection for the current context (same host for all tests)            
             var added = false;
-            do added = this.Conn.TryAdd(TestContext.CurrentContext.Test.ID, conn);             
+            do added = LocalConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell());
+            while(!added); 
+
+            added = false;
+            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "usuario", "usuario"));
             while(!added);  
-        }
+        }        
 
         [TearDown]
-        public void TearDown(){
-            var conn = this.Conn[TestContext.CurrentContext.Test.ID];
-            conn.Dispose();
+        public override void TearDown(){
+            LocalConnector.Dispose();
+            RemoteConnector.Dispose();
+            base.TearDown();
+        }
+
+        protected override void CleanUp(){
+            LocalConnectors.Clear();
+            RemoteConnectors.Clear();
         }
 
         [Test]
-        public void Constructor()
+        [TestCase(OS.WIN, "", "", "")]
+        [TestCase(OS.WIN, _FAKE, "", "")]
+        [TestCase(OS.WIN, _FAKE, _FAKE, "")]
+        public void Constructor_Remote_Throws_ArgumentNullException(OS remoteOS, string host, string username, string password)
+        {                 
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(remoteOS, host, username, password));            
+        }
+
+        [Test]
+        [TestCase(OS.WIN, _FAKE, _FAKE, _FAKE)]
+        public void Constructor_Remote_DoesNotThrow(OS remoteOS, string host, string username, string password)
+        {                 
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Shell(remoteOS, host, username, password));  
+        }
+
+        [Test]
+        public void Constructor_Local_DoesNotThrow()
         {     
-            //Local                 
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Shell());
-
-            //Remote
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, string.Empty, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, string.Empty, string.Empty));
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, string.Empty));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE)); 
         }
 
         [Test]
-        public void TestConnection()
+        [TestCase(OS.WIN, _FAKE, _FAKE, _FAKE)]
+        public void TestConnection_Remote_Throws_ConnectionInvalidException(OS remoteOS, string host, string username, string password)
         {     
-            //Remote                             
-            using(var remote = new AutoCheck.Core.Connectors.Shell(OS.WIN, _FAKE, _FAKE, _FAKE))
-                Assert.Throws<ConnectionInvalidException>(() => remote.TestConnection());
-
-            Assert.DoesNotThrow(() => this.Conn[TestContext.CurrentContext.Test.ID].TestConnection());
+            Assert.Throws<ConnectionInvalidException>(() => new AutoCheck.Core.Connectors.Shell(remoteOS, host, username, password).TestConnection());
         }
 
         [Test]
-        public void GetFolder()
-        {         
-            //Local   
-            using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder1", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder2", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder1", true));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder2", true));
-                Assert.IsNull(local.GetFolder(this.SamplesScriptFolder, "testFolder21", false));
-                Assert.IsNotNull(local.GetFolder(this.SamplesScriptFolder, "testFolder21", true));
-            }      
-
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
-
-            Assert.IsNotNull(remote.GetFolder(path, "testFolder1", false));
-            Assert.IsNotNull(remote.GetFolder(path, "testFolder2", false));
-            Assert.IsNotNull(remote.GetFolder(path, "testFolder1", true));
-            Assert.IsNotNull(remote.GetFolder(path, "testFolder2", true));
-            Assert.IsNull(remote.GetFolder(path, "testFolder21", false));
-            Assert.IsNotNull(remote.GetFolder(path, "testFolder21", true));          
+        [TestCase(OS.GNU, "localhost", "usuario", "usuario")]
+        public void TestConnection_Remote_DoesNotThrow(OS remoteOS, string host, string username, string password)
+        {                
+            Assert.DoesNotThrow(() => RemoteConnectors[TestContext.CurrentContext.Test.ID].TestConnection());
         }
 
         [Test]
-        public void GetFile()
+        [TestCase(null, null)]
+        [TestCase(null, _FAKE)]
+        [TestCase(_FAKE, null)]        
+        public void GetFolder_Local_Throws_ArgumentNullException(string path, string folder)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.GetFolder(path, folder));
+        }
+
+        [Test]
+        [TestCase(_FAKE, false, ExpectedResult = null)]
+        [TestCase(_FAKE, true, ExpectedResult = null)]
+        [TestCase("testFolder1", false, ExpectedResult = "testFolder1")]
+        [TestCase("testFolder2", false, ExpectedResult = "testFolder2")]
+        [TestCase("testFolder1", true, ExpectedResult = "testFolder1")]
+        [TestCase("testFolder2", true, ExpectedResult = "testFolder2")]
+        [TestCase("testFolder21", false, ExpectedResult = null)]
+        [TestCase("testFolder21", true, ExpectedResult = "testFolder21")]        
+        public string GetFolder_Local_DoesNotThrow(string folder, bool recursive)
+        {
+            var found = LocalConnector.GetFolder(SamplesScriptFolder, folder, recursive);
+            return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
+        }
+
+        [Test]
+        [TestCase(_FAKE, false, ExpectedResult = null)]
+        [TestCase(_FAKE, true, ExpectedResult = null)]
+        [TestCase("testFolder1", false, ExpectedResult = "testFolder1")]
+        [TestCase("testFolder2", false, ExpectedResult = "testFolder2")]
+        [TestCase("testFolder1", true, ExpectedResult = "testFolder1")]
+        [TestCase("testFolder2", true, ExpectedResult = "testFolder2")]
+        [TestCase("testFolder21", false, ExpectedResult = null)]
+        [TestCase("testFolder21", true, ExpectedResult = "testFolder21")]        
+        public string GetFolder_Remote_DoesNotThrow(string folder, bool recursive)
+        {
+            var found = RemoteConnector.GetFolder(LocalPathToWsl(SamplesScriptFolder), folder, recursive);
+            return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
+        } 
+
+        [Test]
+        [TestCase(null, null)]
+        [TestCase(null, _FAKE)]
+        [TestCase(_FAKE, null)]        
+        public void GetFile_Local_Throws_ArgumentNullException(string path, string folder)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.GetFile(path, folder));
+        }    
+
+        [Test]
+        [TestCase(_FAKE, false, ExpectedResult = null)]
+        [TestCase(_FAKE, true, ExpectedResult = null)]
+        [TestCase("testFile11.txt", false, ExpectedResult = null)]
+        [TestCase("testFile11.txt", true, ExpectedResult = "testFile11.txt")]
+        [TestCase("testFile211.txt", false, ExpectedResult = null)]
+        [TestCase("testFile211.txt", true, ExpectedResult = "testFile211.txt")]
+        public string GetFile_Local_DoesNotThrow(string folder, bool recursive)
+        {
+            var found = LocalConnector.GetFile(SamplesScriptFolder, folder, recursive);
+            return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
+        }
+
+        [Test]
+        [TestCase(_FAKE, false, ExpectedResult = null)]
+        [TestCase(_FAKE, true, ExpectedResult = null)]
+        [TestCase("testFile11.txt", false, ExpectedResult = null)]
+        [TestCase("testFile11.txt", true, ExpectedResult = "testFile11.txt")]
+        [TestCase("testFile211.txt", false, ExpectedResult = null)]
+        [TestCase("testFile211.txt", true, ExpectedResult = "testFile211.txt")]
+        public string GetFile_Remote_DoesNotThrow(string folder, bool recursive)
+        {
+            var found = RemoteConnector.GetFile(LocalPathToWsl(SamplesScriptFolder), folder, recursive);
+            return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
+        } 
+
+        [Test]
+        [TestCase(null)]
+        public void GetFolders_Local_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.GetFolders(path));
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = new string[]{"testFolder1", "testFolder2"})]
+        [TestCase(true, ExpectedResult = new string[]{"testFolder1", "testFolder2", "testFolder21"})]
+        public string[] GetFolders_Local_DoesNotThrow(bool recursive)
+        {
+            return LocalConnector.GetFolders(SamplesScriptFolder, recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = new string[]{"testFolder1", "testFolder2"})]
+        [TestCase(true, ExpectedResult = new string[]{"testFolder1", "testFolder2", "testFolder21"})]
+        public string[] GetFolders_Remote_DoesNotThrow(bool recursive)
+        {
+            return RemoteConnector.GetFolders(LocalPathToWsl(SamplesScriptFolder), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+        }
+
+        [Test]
+        [TestCase(null)]
+        public void GetFiles_Local_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.GetFiles(path));
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = new string[]{})]
+        [TestCase(true, ExpectedResult = new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"})]
+        public string[] GetFiles_Local_DoesNotThrow(bool recursive)
+        {
+            return LocalConnector.GetFiles(SamplesScriptFolder, recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = new string[]{})]
+        [TestCase(true, ExpectedResult = new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"})]
+        public string[] GetFiles_Remote_DoesNotThrow(bool recursive)
+        {
+            return RemoteConnector.GetFiles(LocalPathToWsl(SamplesScriptFolder), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+        }
+
+        [Test]
+        [TestCase(null)]
+        public void CountFolders_Local_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFolders(path));
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = 2)]
+        [TestCase(true, ExpectedResult = 3)]
+        public int CountFolders_Local_DoesNotThrow(bool recursive)
+        {
+            return LocalConnector.CountFolders(SamplesScriptFolder, recursive);
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = 2)]
+        [TestCase(true, ExpectedResult = 3)]
+        public int CountFolders_Remote_DoesNotThrow(bool recursive)
+        {
+            return RemoteConnector.CountFolders(LocalPathToWsl(SamplesScriptFolder), recursive);
+        }
+
+         [Test]
+        [TestCase(null)]
+        public void CountFiles_Local_Throws_ArgumentNullException(string path)
+        {
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFolders(path));
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = 0)]
+        [TestCase(true, ExpectedResult = 3)]
+        public int CountFiles_Local_DoesNotThrow(bool recursive)
+        {
+            return LocalConnector.CountFiles(SamplesScriptFolder, recursive);
+        }
+
+        [Test]
+        [TestCase(false, ExpectedResult = 0)]
+        [TestCase(true, ExpectedResult = 3)]
+        public int CountFiles_Remote_DoesNotThrow(bool recursive)
+        {
+            return RemoteConnector.CountFiles(LocalPathToWsl(SamplesScriptFolder), recursive);
+        }
+
+        [Test]
+        [TestCase("ls", ExpectedResult = 0)]
+        [TestCase("fake", ExpectedResult = 127)]
+        public int RunCommand_Local_DoesNotThrow(string command)
+        {
+            if(Core.Utils.CurrentOS == OS.WIN) command = string.Format("wsl {0}", command);
+            
+            //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception
+
+            var lres = LocalConnector.RunCommand(command);            
+            Assert.IsNotNull(lres.response);
+
+            return lres.code;
+        }
+
+        [Test]
+        [TestCase("ls", ExpectedResult = 0)]
+        [TestCase("fake", ExpectedResult = 127)]
+        public int RunCommand_Remote_DoesNotThrow(string command)
         {            
-            //Local
-            using(var local = new AutoCheck.Core.Connectors.Shell()){                
-                Assert.IsNull(local.GetFile(this.SamplesScriptFolder, "testFile11.txt", false));
-                Assert.IsNotNull(local.GetFile(this.SamplesScriptFolder, "testFile11.txt", true));
-                Assert.IsNull(local.GetFile(this.SamplesScriptFolder, "testFile211.txt", false));                
-                Assert.IsNotNull(local.GetFile(this.SamplesScriptFolder, "testFile211.txt", true));
-            }      
-
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
-
-            Assert.IsNull(remote.GetFile(path, "testFile11.txt", false));
-            Assert.IsNotNull(remote.GetFile(path, "testFile11.txt", true));
-            Assert.IsNull(remote.GetFile(path, "testFile211.txt", false));                
-            Assert.IsNotNull(remote.GetFile(path, "testFile211.txt", true));
-
-            Assert.IsNotNull(remote.GetFile(path, "*.txt", true));
-            Assert.IsNull(remote.GetFile(path, "*.txt", false));
-            Assert.IsNull(remote.GetFile(path, "*.xml", true));
-            Assert.IsNull(remote.GetFile(path, "*.xml", false));          
+            var lres = RemoteConnector.RunCommand(command);            
+            Assert.IsNotNull(lres.response);
+            
+            return lres.code;
         }
 
         [Test]
-        public void GetFolders()
-        {          
-            //Local  
-            using(var local = new AutoCheck.Core.Connectors.Shell()){
-                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, local.GetFolders(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-                CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, local.GetFolders(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
-            }              
+        [TestCase("testFolder1\\testFile11.txt")]
+        public void DownloadFile_Remote_DoesNotThrow(string sourceFile)
+        {   
+            //Checking the local sample file
+            sourceFile = GetSampleFile(sourceFile);
+            Assert.IsTrue(File.Exists(sourceFile));
 
-            //remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            //Preparing remote path and local copy one
+            var remoteFile = LocalPathToWsl(sourceFile);
+            var destFile = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFile));            
+            Assert.IsFalse(File.Exists(destFile));
 
-            CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2"}, remote.GetFolders(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-            CollectionAssert.AreEqual(new string[]{"testFolder1", "testFolder2", "testFolder21"}, remote.GetFolders(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());  
+            //Download
+            var downloadedFile = RemoteConnector.DownloadFile(remoteFile, Path.GetDirectoryName(destFile));
+            Assert.IsTrue(File.Exists(downloadedFile));
+            Assert.AreEqual(destFile, downloadedFile);
+            Assert.AreEqual(File.ReadAllText(sourceFile), File.ReadAllText(downloadedFile));
         }
 
         [Test]
-        public void GetFiles()
-        {     
-            //Local       
-            using(var local = new AutoCheck.Core.Connectors.Shell()){
-                CollectionAssert.AreEqual(new string[]{}, local.GetFiles(this.SamplesScriptFolder, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-                CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, local.GetFiles(this.SamplesScriptFolder, true).ToList().Select(x => Path.GetFileName(x)).ToArray());
-            }              
+        public void DownloadFolder_Remote_DoesNotThrow()
+        {   
+            //Checking the local sample file
+            var sourceFolder = SamplesScriptFolder;
+            Assert.IsTrue(Directory.Exists(sourceFolder));
 
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
+            //Preparing remote path and local copy one
+            var remoteFolder = LocalPathToWsl(sourceFolder);
+            var destFolder = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFolder));            
+            Assert.IsFalse(Directory.Exists(destFolder));
 
-            CollectionAssert.AreEqual(new string[]{}, remote.GetFiles(path, false).ToList().Select(x => Path.GetFileName(x)).ToArray());
-            CollectionAssert.AreEqual(new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"}, remote.GetFiles(path, true).ToList().Select(x => Path.GetFileName(x)).ToArray());  
-        }
-        
-        [Test]
-        public void CountFolders()
-        {            
-            //Local
-            using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.AreEqual(2, local.CountFolders(this.SamplesScriptFolder, false));
-                Assert.AreEqual(3, local.CountFolders(this.SamplesScriptFolder, true));
-            }      
-
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
-
-            Assert.AreEqual(2, remote.CountFolders(path, false));
-            Assert.AreEqual(3, remote.CountFolders(path, true));          
-        }
-
-        [Test]
-        public void CountFiles()
-        {            
-            //Local
-            using(var local = new AutoCheck.Core.Connectors.Shell()){
-                Assert.AreEqual(0, local.CountFiles(this.SamplesScriptFolder, false));
-                Assert.AreEqual(3, local.CountFiles(this.SamplesScriptFolder, true));
-            }              
-
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];
-            var path = LocalPathToWsl(this.SamplesScriptFolder);
-
-            Assert.AreEqual(0, remote.CountFiles(path, false));
-            Assert.AreEqual(3, remote.CountFiles(path, true));  
-        }
-
-        [Test]
-        public void RunCommand()
-        {           
-            //Local             
-            using(var local = new AutoCheck.Core.Connectors.Shell()){                
-                string command = "ls";
-                if(Core.Utils.CurrentOS == OS.WIN) 
-                    command = string.Format("wsl {0}", command);
-                
-                //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception
-
-                var lres = local.RunCommand(command);
-                Assert.AreEqual(0, lres.code);
-                Assert.IsNotNull(lres.response);
-
-                lres = local.RunCommand("fake");
-                Assert.AreNotEqual(0, lres.code);
-                Assert.IsNotNull(lres.response);
-            }  
-
-            //Remote
-            var remote = this.Conn[TestContext.CurrentContext.Test.ID];            
-            var rres = remote.RunCommand("ls");
-            Assert.AreEqual(0, rres.code);
-            Assert.IsNotNull(rres.response);
-
-            rres = remote.RunCommand("fake");
-            Assert.AreNotEqual(0, rres.code);
-            Assert.IsNotNull(rres.response);                  
-        }
+            //Download
+            var downloadedFolder = RemoteConnector.DownloadFolder(remoteFolder, Path.GetDirectoryName(destFolder), true);
+            Assert.IsTrue(Directory.Exists(downloadedFolder));
+            Assert.AreEqual(destFolder, downloadedFolder);
+            Assert.AreEqual(3, Directory.GetDirectories(downloadedFolder, "*", SearchOption.AllDirectories).Length);
+            Assert.AreEqual(3, Directory.GetFiles(downloadedFolder, "*", SearchOption.AllDirectories).Length);
+        }        
     }
 }

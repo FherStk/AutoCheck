@@ -184,8 +184,6 @@ caption | text | no | Message to display at script startup. | `Running script {$
 max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | collection | no | Setups the output behaviour. | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
-[pre](#pre) | sequence | no | Defined blocks will be executed (in order) before the body. |
-[post](#post) | sequence | no | Defined blocks will be executed (in order) before the body. |
 [body](#body) | sequence | no | Script body. |
 
 ### <a name="output"></a> output
@@ -287,8 +285,9 @@ vars:
     var1: "VALUE1"
     var2: "PRE_POST"
     var3: "This is the result of applying a regular expression to var1: {#regex$VAR1}"
-    var4: "This will display the last word after an underscore: {#(?<=_)(.*)$VAR2}"
-    var5: "This will display the last folder for a given path: {$CURRENT_FOLDER_NAME}"        
+    var4: "This will display the word after the last underscore: {#(?<=_)(.*)$VAR2}"
+    var5: "This will display the filename for a given path: {#([^\\\\]*)$$CURRENT_FOLDER_PATH}" #two $$ symbols are needed for this example
+    var5: "This will display the student name for a downloaded assignment Moodle path: {#^[^_]+(?=_)$MOODLE_FOLDER_PATH}"
 ```
 
 #### Scopes:
@@ -300,50 +299,6 @@ vars:
 ```
 
 When requesting a var value (for example: {$var1}) the scope-nearest one will be retreived, so shadowed vars will be not accessible; it has been designed as is to reduce the scope logic complexity, simple workarounds can be used as store the value locally before shadowing or just use another var name to avoid shadowing.
-
-### <a name="pre"></a> pre
-Defined blocks will be executed (in order) before the script's body does.
-
-#### <a name="extract"></a> extract
-Extract a compressed file from the current execution folder (only zip is supported).
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. | `"*.zip"`
-remove | boolean | no | Remove the original file when extracted. | `False`
-recursive | boolean | no | Repeat through folders. | `False`
-
-#### <a name="restore_db"></a> restore_db
-Restores a database using an sql dump file from the current execution folder (only PostgreSQL is supported).
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-file | text | no | Search patthern used to find files to restore, OS file naming convetions allowed; regex can be used also. | `"*.sql"`
-remove | boolean | no | Remove the original file when restored. | `False`
-recursive | boolean | no | Repeat through folders. | `False`
-db_host | text | no | Host name or IP address. | `"localhost"`
-db_user | text | no | Credential's username. | `"postgres"`
-db_pass | text | no | Credential's password. | `"postgres"`
-db_name | text | no | Database name. | `The current script name ("$SCRIPT_NAME")`
-override | boolean | no | Overrides the DB if exists. | `False`
-
-#### <a name="upload_gdrive"></a> upload_gdrive
-Uploads a file from the current execution folder to Google Drive.
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-source | text | no | Search patthern used to find files or folders to upload, OS file naming convetions allowed; regex can be used also. | `"*.sql"`
-remove | boolean | no | Remove the original file when uploaded. | `False`
-recursive | boolean | no | Repeat through folders. | `False`
-link | boolean | no | A link to the source file will be extracted from text file's content. | `False`
-copy | boolean | no | The source file will be copied directly to gdrive (when possible) instead of downloaded and re-uploaded. | `True`
-account | text | no | Path to a file containing the username used to login into the own's Google Drive account. | `"config\\gdrive_account.txt"`
-secret | text | no | Path to the `client_secret.json` file that will be used to login into the own's Google Drive account (it can be generated through the Google API Console services). | `"config\\gdrive_secret.json"`
-remote_path | text | no | Where to upload the files; the remote folders will be created if needed and files, if no filename has been specified, will be auto-named using the original names when possible. | `"\\AutoCheck\\scripts\\{$SCRIPT_NAME}\\"`
-remote_file | text | no | The remote file will be created using this value as a template, but original extension will be preserved. | 
-
-### <a name="post"></a> post
-Defined blocks will be executed (in order) after the script's body does; same nodes as `pre` are allowed.
 
 ### <a name="body"></a> body
 Script's body where the main action is defined.
@@ -503,9 +458,31 @@ Batch mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
+[pre](#pre) | sequence | no | The defined content will be executed once per batch target before the copy_detector and any target's body. |
+[post](#post) | sequence | no | The  defined content will be executed once per batch target after the copy_detector and all target's body. |
 [copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
 [remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
+
+#### <a name="pre"></a> pre
+The defined content will be executed once per batch target before any target's body.
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+echo | text | no | Displays a message.
+
+#### <a name="post"></a> post
+The  defined content will be executed once per batch target after all target's body.
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+echo | text | no | Displays a message.
 
 #### <a name="copy_detector"></a> copy_detector
 Enables the copy detection logic, not supported for `host` targets (see avaliable copy detectors through API documentation). Just a single file per folder can be loaded into the copy detector engine, but this will be upgraded in a near future in order to allow multi-file support. 
@@ -516,8 +493,6 @@ type | text | yes |The type of copy detector to use (see avaliable copy detector
 file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. The first file found using the search pattern will be loaded into the copy detector engine.| `"*"`
 caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {$CURRENT_FOLDER_NAME}..."`
 threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
-[pre](#pre) | sequence | no | Defined blocks will be executed (in order, once per target) before the copy detector execution. |
-[post](#post) | sequence | no | Defined blocks will be executed(in order, once per target) after the copy detector execution. |
 
 #### <a name="local"></a>local
 Local batch target, so each script body will be executed once per local target.

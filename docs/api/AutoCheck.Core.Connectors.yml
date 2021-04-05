@@ -21,6 +21,7 @@ items:
   - AutoCheck.Core.Connectors.Shell
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Xml.XmlNodeType
+  - AutoCheck.Core.Connectors.Zip
   langs:
   - csharp
   - vb
@@ -125,6 +126,11 @@ references:
   name: Xml.XmlNodeType
   nameWithType: Xml.XmlNodeType
   fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
+- uid: AutoCheck.Core.Connectors.Zip
+  commentId: T:AutoCheck.Core.Connectors.Zip
+  name: Zip
+  nameWithType: Zip
+  fullName: AutoCheck.Core.Connectors.Zip
 - uid: AutoCheck.Core.Connectors
   commentId: N:AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors

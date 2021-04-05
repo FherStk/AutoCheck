@@ -86,10 +86,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         public PlainText(string filePath){
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!File.Exists(filePath)) throw new FileNotFoundException();
-                        
-            plainTextDoc = new PlainTextDocument(filePath);
+            Parse(filePath); 
         }
 
         /// <summary>
@@ -102,14 +99,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         /// <param name="filePath">The file path.</param>
         public PlainText(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
-            var remote = new Shell(remoteOS, host, username, password, port);
-            
-            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
-            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
-                        
-            filePath = remote.DownloadFile(filePath);
-            plainTextDoc = new PlainTextDocument(filePath);
-            File.Delete(filePath);
+            ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
+                Parse(filePath); 
+            }));  
         }
 
         /// <summary>
@@ -121,6 +113,13 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="filePath">The file path.</param>
         public PlainText(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){              
+        }
+
+        private void Parse(string filePath){
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!File.Exists(filePath)) throw new FileNotFoundException();
+                        
+            plainTextDoc = new PlainTextDocument(filePath);
         }
         
         /// <summary>

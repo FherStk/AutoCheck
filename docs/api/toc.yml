@@ -51,6 +51,8 @@
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
     name: Xml.XmlNodeType
+  - uid: AutoCheck.Core.Connectors.Zip
+    name: Zip
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   items:

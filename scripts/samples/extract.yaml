@@ -16,14 +16,28 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-single:
-  local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\script\\temp\\pre\\restore\\test5"
+inherits: "some_template.yaml"
 
-pre:     
-  - restore_db:       
-      db_name: "{$SCRIPT_NAME}-{$CURRENT_FILE_NAME}"
-      recursive: !!bool True
-      remove: !!bool True
+batch: 
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
+    - local:                             
+        - path: "some_folder"
 
-body:     
+    - pre:
+        - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
+
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
+            store: "ZIP_FILE"    
+            
+        - connector:  
+            type: "Zip"                    
+            arguments: "--filePath {$ZIP_FILE}"
+        
+        - run:   
+            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            connector: "Zip"
+            command: "Extract"
+            arguments: 
+                recursive: !!bool True

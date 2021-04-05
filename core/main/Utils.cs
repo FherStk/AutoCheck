@@ -23,8 +23,6 @@ using System.IO;
 using System.Text;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Core;
 
 namespace AutoCheck.Core{    
     public static class Utils{  
@@ -64,6 +62,16 @@ namespace AutoCheck.Core{
         public static string ConfigFolder{
             get{
                 return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config");
+            }
+        }
+
+        /// <summary>
+        /// Returns the current app config folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string TempFolder{
+            get{
+                return Path.Combine(ExecutionFolder, "temp");
             }
         }
 
@@ -120,7 +128,7 @@ namespace AutoCheck.Core{
         /// <param name="action">The action to run.</param>
         /// <param name="max">Max retries.</param>
         /// <param name="wait">Retry time will be exponential as step*wait.</param>      
-        public static void RunWithRetry<T>(Action action, int max=5, int wait=500) where T: Exception{
+        public static void RunWithRetry<T>(Action action, int max=10, int wait=250) where T: Exception{
              RunWithRetry<string, T>(() => {
                 action.Invoke();
                 return "";
@@ -133,7 +141,7 @@ namespace AutoCheck.Core{
         /// <param name="action">The action to run.</param>
         /// <param name="max">Max retries.</param>
         /// <param name="wait">Retry time will be exponential as step*wait.</param>
-        public static R RunWithRetry<R, T>(Func<R> function, int max=5, int wait=500) where T: Exception where R: class{
+        public static R RunWithRetry<R, T>(Func<R> function, int max=10, int wait=250) where T: Exception where R: class{
             T exception = null;
 
             for(int i = 0; i < max; i++){
@@ -219,69 +227,7 @@ namespace AutoCheck.Core{
 
             if(!studentFolder.Contains("_")) throw new Exception("The current folder name does not follows the naming convetion 'prefix_STUDENT'.");
             else return studentFolder.Substring(0, studentFolder.IndexOf("_"));                                
-        }            
-
-        /// <summary>
-        /// Extracts a zip file into the given folder.
-        /// </summary>
-        /// <param name="path">ZIP file's path.</param>
-        /// <param name="output">Destination folder for the extracted files.</param>
-        /// <param name="password">ZIP file's password.</param>
-        public static void ExtractFile(string path, string output = null, string password = null) {
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(output)) output = Path.GetDirectoryName(path);
-            if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
-            if(!File.Exists(path)) throw new FileNotFoundException();
-            
-            //Encoding must be manually setup in order to avoid errors during decompression
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
-
-            //source:https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation
-            using(Stream fsInput = File.OpenRead(path)){ 
-                using(ZipFile zf = new ZipFile(fsInput)){
-                    
-                    if (!string.IsNullOrEmpty(password)) {
-                        // AES encrypted entries are handled automatically
-                        zf.Password = password;
-                    }
-
-                    foreach (ZipEntry zipEntry in zf) {
-                        if (!zipEntry.IsFile) {
-                            // Ignore directories
-                            continue;
-                        }
-                        
-                        //zipEntry.IsUnicodeText <- is false with error
-
-                        string entryFileName = zipEntry.Name;
-                        // to remove the folder from the entry:
-                        //entryFileName = Path.GetFileName(entryFileName);
-                        // Optionally match entrynames against a selection list here
-                        // to skip as desired.
-                        // The unpacked length is available in the zipEntry.Size property.
-
-                        // Manipulate the output filename here as desired.
-                        var fullZipToPath = Path.Combine(output, entryFileName);
-                        var directoryName = Path.GetDirectoryName(fullZipToPath);
-                        if (directoryName.Length > 0) {
-                            Directory.CreateDirectory(directoryName);
-                        }
-
-                        // 4K is optimum
-                        var buffer = new byte[4096];
-
-                        // Unzip file in buffered chunks. This is just as fast as unpacking
-                        // to a buffer the full size of the file, but does not waste memory.
-                        // The "using" will close the stream even if an exception occurs.
-                        using(var zipStream = zf.GetInputStream(zipEntry))
-                        using (Stream fsOutput = File.Create(fullZipToPath)) {
-                            StreamUtils.Copy(zipStream, fsOutput , buffer);
-                        }
-                    }
-                }
-            }
-        }
+        }                    
 #endregion
     }
 }

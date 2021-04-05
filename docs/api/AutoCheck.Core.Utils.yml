@@ -11,7 +11,6 @@ items:
   - AutoCheck.Core.Utils.CurrentOS
   - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
   - AutoCheck.Core.Utils.ExecutionFolder
-  - AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
   - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
@@ -19,6 +18,7 @@ items:
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   - AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
   - AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  - AutoCheck.Core.Utils.TempFolder
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
   - csharp
@@ -30,11 +30,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
-    startLine: 29
+    startLine: 27
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -72,11 +72,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
-    startLine: 42
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -112,11 +112,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
-    startLine: 53
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -152,11 +152,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
-    startLine: 63
+    startLine: 61
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -170,6 +170,46 @@ items:
       description: A folder&apos;s path.
     content.vb: Public Shared ReadOnly Property ConfigFolder As String
   overload: AutoCheck.Core.Utils.ConfigFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.TempFolder
+  commentId: P:AutoCheck.Core.Utils.TempFolder
+  id: TempFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: TempFolder
+  nameWithType: Utils.TempFolder
+  fullName: AutoCheck.Core.Utils.TempFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: v2.7.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TempFolder
+    path: ../core/main/Utils.cs
+    startLine: 71
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app config folder\n"
+  example: []
+  syntax:
+    content: public static string TempFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property TempFolder As String
+  overload: AutoCheck.Core.Utils.TempFolder*
   modifiers.csharp:
   - public
   - static
@@ -192,11 +232,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
-    startLine: 73
+    startLine: 81
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -233,11 +273,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
-    startLine: 85
+    startLine: 93
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -278,11 +318,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
-    startLine: 96
+    startLine: 104
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -322,11 +362,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 122
+    startLine: 130
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -334,7 +374,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static void RunWithRetry<T>(Action action, int max = 5, int wait = 500)
+      public static void RunWithRetry<T>(Action action, int max = 10, int wait = 250)
           where T : Exception
     parameters:
     - id: action
@@ -348,7 +388,7 @@ items:
       description: Retry time will be exponential as step*wait.
     typeParameters:
     - id: T
-    content.vb: Public Shared Sub RunWithRetry(Of T As Exception)(action As Action, max As Integer = 5, wait As Integer = 500)
+    content.vb: Public Shared Sub RunWithRetry(Of T As Exception)(action As Action, max As Integer = 10, wait As Integer = 250)
   overload: AutoCheck.Core.Utils.RunWithRetry*
   nameWithType.vb: Utils.RunWithRetry(Of T)(Action, Int32, Int32)
   modifiers.csharp:
@@ -373,11 +413,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 135
+    startLine: 143
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -385,7 +425,7 @@ items:
   example: []
   syntax:
     content: >-
-      public static R RunWithRetry<R, T>(Func<R> function, int max = 5, int wait = 500)
+      public static R RunWithRetry<R, T>(Func<R> function, int max = 10, int wait = 250)
           where R : class where T : Exception
     parameters:
     - id: function
@@ -401,7 +441,7 @@ items:
     - id: T
     return:
       type: '{R}'
-    content.vb: Public Shared Function RunWithRetry(Of R As Class, T As Exception)(function As Func(Of R), max As Integer = 5, wait As Integer = 500) As R
+    content.vb: Public Shared Function RunWithRetry(Of R As Class, T As Exception)(function As Func(Of R), max As Integer = 10, wait As Integer = 250) As R
   overload: AutoCheck.Core.Utils.RunWithRetry*
   nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
   modifiers.csharp:
@@ -426,11 +466,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
-    startLine: 155
+    startLine: 163
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -466,11 +506,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
-    startLine: 166
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -508,11 +548,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 177
+    startLine: 185
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -548,11 +588,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToDataBase
     path: ../core/main/Utils.cs
-    startLine: 187
+    startLine: 195
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -592,11 +632,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DataBaseNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 196
+    startLine: 204
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -633,11 +673,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FolderNameToStudentName
     path: ../core/main/Utils.cs
-    startLine: 206
+    startLine: 214
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -654,50 +694,6 @@ items:
       description: The student&apos;s name.
     content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
   overload: AutoCheck.Core.Utils.FolderNameToStudentName*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Core.Utils.ExtractFile(System.String,System.String,System.String)
-  id: ExtractFile(System.String,System.String,System.String)
-  parent: AutoCheck.Core.Utils
-  langs:
-  - csharp
-  - vb
-  name: ExtractFile(String, String, String)
-  nameWithType: Utils.ExtractFile(String, String, String)
-  fullName: AutoCheck.Core.Utils.ExtractFile(System.String, System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: core/main/Utils.cs
-      branch: testing
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ExtractFile
-    path: ../core/main/Utils.cs
-    startLine: 229
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nExtracts a zip file into the given folder.\n"
-  example: []
-  syntax:
-    content: public static void ExtractFile(string path, string output = null, string password = null)
-    parameters:
-    - id: path
-      type: System.String
-      description: ZIP file&apos;s path.
-    - id: output
-      type: System.String
-      description: Destination folder for the extracted files.
-    - id: password
-      type: System.String
-      description: ZIP file&apos;s password.
-    content.vb: Public Shared Sub ExtractFile(path As String, output As String = Nothing, password As String = Nothing)
-  overload: AutoCheck.Core.Utils.ExtractFile*
   modifiers.csharp:
   - public
   - static
@@ -1024,6 +1020,11 @@ references:
   name: ConfigFolder
   nameWithType: Utils.ConfigFolder
   fullName: AutoCheck.Core.Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.TempFolder*
+  commentId: Overload:AutoCheck.Core.Utils.TempFolder
+  name: TempFolder
+  nameWithType: Utils.TempFolder
+  fullName: AutoCheck.Core.Utils.TempFolder
 - uid: AutoCheck.Core.Utils.CurrentOS*
   commentId: Overload:AutoCheck.Core.Utils.CurrentOS
   name: CurrentOS
@@ -1184,8 +1185,3 @@ references:
   name: FolderNameToStudentName
   nameWithType: Utils.FolderNameToStudentName
   fullName: AutoCheck.Core.Utils.FolderNameToStudentName
-- uid: AutoCheck.Core.Utils.ExtractFile*
-  commentId: Overload:AutoCheck.Core.Utils.ExtractFile
-  name: ExtractFile
-  nameWithType: Utils.ExtractFile
-  fullName: AutoCheck.Core.Utils.ExtractFile

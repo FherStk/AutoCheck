@@ -19,6 +19,7 @@
 */
 
 using System;
+using System.IO;
 
 namespace AutoCheck.Core.Connectors{ 
     /// <summary>
@@ -43,5 +44,26 @@ namespace AutoCheck.Core.Connectors{
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public abstract void Dispose();        
-    }
+
+        /// <summary>
+        /// Downloads a remote file into a temp folder, perfoms the action and removes the file.
+        /// </summary>
+        /// <param name="action">The action to run.</param>        
+        protected void ProcessRemoteFile(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, Action<string> action){
+            var remote = new Shell(remoteOS, host, username, password, port);              
+
+            if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
+            if(!remote.ExistsFile(filePath)) throw new FileNotFoundException("filePath");
+
+            filePath = remote.DownloadFile(filePath);                        
+            action.Invoke(filePath);
+
+            Utils.RunWithRetry<IOException>(new Action(() => {
+                //Note: GC must be invoked in order to avoid an System.IO.IOException (file in use by another process).
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
+                File.Delete(filePath);
+            }));                
+        } 
+    }   
 }

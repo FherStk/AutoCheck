@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../core/connectors/Odoo.cs
@@ -89,8 +89,8 @@ items:
   - AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExecuteScalar``1(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsDataBase
-  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
-  - AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
   - AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
   - AutoCheck.Core.Connectors.Postgres.DropDataBase
   - AutoCheck.Core.Connectors.Postgres.GetUsers
@@ -112,6 +112,7 @@ items:
   - AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String,System.String)
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetHashCode
@@ -139,7 +140,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../core/connectors/Odoo.cs
@@ -177,7 +178,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../core/connectors/Odoo.cs
@@ -215,7 +216,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -265,7 +266,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -315,7 +316,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
     path: ../core/connectors/Odoo.cs
@@ -357,7 +358,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -396,7 +397,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -435,7 +436,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
     path: ../core/connectors/Odoo.cs
@@ -477,7 +478,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -516,7 +517,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -555,7 +556,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
     path: ../core/connectors/Odoo.cs
@@ -597,7 +598,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -636,7 +637,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -675,7 +676,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -710,7 +711,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -749,7 +750,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
     path: ../core/connectors/Odoo.cs
@@ -788,7 +789,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -827,7 +828,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -866,7 +867,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../core/connectors/Odoo.cs
@@ -901,7 +902,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../core/connectors/Odoo.cs
@@ -940,7 +941,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../core/connectors/Odoo.cs
@@ -979,7 +980,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -1018,7 +1019,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -1057,7 +1058,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1092,7 +1093,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1131,7 +1132,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
     path: ../core/connectors/Odoo.cs
@@ -1170,7 +1171,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1208,7 +1209,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1246,7 +1247,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
     path: ../core/connectors/Odoo.cs
@@ -1288,7 +1289,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
     path: ../core/connectors/Odoo.cs
@@ -1323,7 +1324,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceID
     path: ../core/connectors/Odoo.cs
@@ -1362,7 +1363,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
     path: ../core/connectors/Odoo.cs
@@ -1401,7 +1402,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1440,7 +1441,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1479,7 +1480,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../core/connectors/Odoo.cs
@@ -1521,7 +1522,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../core/connectors/Odoo.cs
@@ -1560,7 +1561,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs
@@ -1599,7 +1600,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: testing
+      branch: v2.7.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs
@@ -1902,15 +1903,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
-  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
   parent: AutoCheck.Core.Connectors.Postgres
   isExternal: true
-  name: CreateDataBase(String)
-  nameWithType: Postgres.CreateDataBase(String)
-  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  name: CreateDataBase(String, Boolean)
+  nameWithType: Postgres.CreateDataBase(String, Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String, System.Boolean)
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
     name: CreateDataBase
     nameWithType: Postgres.CreateDataBase
     fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase
@@ -1921,12 +1922,20 @@ references:
     name: String
     nameWithType: String
     fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String)
+  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.String,System.Boolean)
     name: CreateDataBase
     nameWithType: Postgres.CreateDataBase
     fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase
@@ -1938,34 +1947,53 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase
-  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase
+- uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
   parent: AutoCheck.Core.Connectors.Postgres
-  name: CreateDataBase()
-  nameWithType: Postgres.CreateDataBase()
-  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase()
+  isExternal: true
+  name: CreateDataBase(Boolean)
+  nameWithType: Postgres.CreateDataBase(Boolean)
+  fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
     name: CreateDataBase
     nameWithType: Postgres.CreateDataBase
     fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase
+  - uid: AutoCheck.Core.Connectors.Postgres.CreateDataBase(System.Boolean)
     name: CreateDataBase
     nameWithType: Postgres.CreateDataBase
     fullName: AutoCheck.Core.Connectors.Postgres.CreateDataBase
   - name: (
     nameWithType: (
     fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -2970,6 +2998,164 @@ references:
     nameWithType: String
     fullName: System.String
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  parent: AutoCheck.Core.Connectors.Base
+  isExternal: true
+  name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+    name: ProcessRemoteFile
+    nameWithType: Base.ProcessRemoteFile
+    fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: AutoCheck.Core.Utils.OS
+    name: Utils.OS
+    nameWithType: Utils.OS
+    fullName: AutoCheck.Core.Utils.OS
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )

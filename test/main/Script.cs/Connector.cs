@@ -26,13 +26,10 @@ namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
     public class Connector : Test
-    {                
-        [OneTimeSetUp]
-        public virtual void StartUp() 
-        {
-            SamplesScriptFolder = GetSamplePath(Path.Combine("script", "body", Name));            
-        }       
-
+    {
+        public Connector(): base("script"){
+        }
+        
         [Test, Category("Connector"), Category("Local")]
         public void Script_CONNECTOR_EMPTY()
         {  

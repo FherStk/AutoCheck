@@ -12,4 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\core\AutoCheck.Core.csproj"/>
   </ItemGroup>
+   <Target Name="ObliterateAfterClean" AfterTargets="Build">
+    <RemoveDir Directories="bin\Debug\net5.0\temp"/>    
+  </Target>
 </Project>
