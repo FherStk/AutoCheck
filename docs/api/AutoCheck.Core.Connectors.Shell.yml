@@ -1245,7 +1245,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 385
+    startLine: 383
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1287,7 +1287,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 396
+    startLine: 394
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
