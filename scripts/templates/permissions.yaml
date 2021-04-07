@@ -101,6 +101,7 @@ body:
   
   - question: 
       description: "Privileges over 'fabriques'"
+      score: 2
       content:        
         - run:
             caption: "Checking foreign key 'fabriques -> empleats'..."
@@ -170,6 +171,7 @@ body:
 
   - question: 
       description: "Privileges for dbadmin"
+      score: 3
       content:        
         - run:  
             caption: "Checking dbadmin membership..."
