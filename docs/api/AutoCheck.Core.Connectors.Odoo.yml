@@ -82,7 +82,6 @@ items:
   - AutoCheck.Core.Connectors.Postgres.User
   - AutoCheck.Core.Connectors.Postgres.Password
   - AutoCheck.Core.Connectors.Postgres.BinPath
-  - AutoCheck.Core.Connectors.Postgres.Student
   - AutoCheck.Core.Connectors.Postgres.Dispose
   - AutoCheck.Core.Connectors.Postgres.TestConnection
   - AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
@@ -98,11 +97,13 @@ items:
   - AutoCheck.Core.Connectors.Postgres.CreateUser(System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsUser(System.String)
+  - AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
   - AutoCheck.Core.Connectors.Postgres.GetRoles
   - AutoCheck.Core.Connectors.Postgres.CountRoles
   - AutoCheck.Core.Connectors.Postgres.CreateRole(System.String)
   - AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsRole(System.String)
+  - AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
   - AutoCheck.Core.Connectors.Postgres.GetMembership(System.String)
   - AutoCheck.Core.Connectors.Postgres.GetTablePrivileges(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.GetSchemaPrivileges(System.String,System.String)
@@ -1693,12 +1694,6 @@ references:
   name: BinPath
   nameWithType: Postgres.BinPath
   fullName: AutoCheck.Core.Connectors.Postgres.BinPath
-- uid: AutoCheck.Core.Connectors.Postgres.Student
-  commentId: P:AutoCheck.Core.Connectors.Postgres.Student
-  parent: AutoCheck.Core.Connectors.Postgres
-  name: Student
-  nameWithType: Postgres.Student
-  fullName: AutoCheck.Core.Connectors.Postgres.Student
 - uid: AutoCheck.Core.Connectors.Postgres.Dispose
   commentId: M:AutoCheck.Core.Connectors.Postgres.Dispose
   parent: AutoCheck.Core.Connectors.Postgres
@@ -2253,6 +2248,45 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  isExternal: true
+  name: DropUserMembership(String)
+  nameWithType: Postgres.DropUserMembership(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+    name: DropUserMembership
+    nameWithType: Postgres.DropUserMembership
+    fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+    name: DropUserMembership
+    nameWithType: Postgres.DropUserMembership
+    fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Core.Connectors.Postgres.GetRoles
   commentId: M:AutoCheck.Core.Connectors.Postgres.GetRoles
   parent: AutoCheck.Core.Connectors.Postgres
@@ -2415,6 +2449,45 @@ references:
     name: ExistsRole
     nameWithType: Postgres.ExistsRole
     fullName: AutoCheck.Core.Connectors.Postgres.ExistsRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  isExternal: true
+  name: DropRoleMembership(String)
+  nameWithType: Postgres.DropRoleMembership(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+    name: DropRoleMembership
+    nameWithType: Postgres.DropRoleMembership
+    fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+    name: DropRoleMembership
+    nameWithType: Postgres.DropRoleMembership
+    fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership
   - name: (
     nameWithType: (
     fullName: (

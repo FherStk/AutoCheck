@@ -2066,6 +2066,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Postgres.DropRole
   nameWithType: Postgres.DropRole
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  name: DropRoleMembership(String)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropRoleMembership_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  nameWithType: Postgres.DropRoleMembership(String)
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership*
+  name: DropRoleMembership
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropRoleMembership_
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  nameWithType: Postgres.DropRoleMembership
 - uid: AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
   name: DropUser(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUser_System_String_
@@ -2079,6 +2092,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Postgres.DropUser
   nameWithType: Postgres.DropUser
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  name: DropUserMembership(String)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUserMembership_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  nameWithType: Postgres.DropUserMembership(String)
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership*
+  name: DropUserMembership
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUserMembership_
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  nameWithType: Postgres.DropUserMembership
 - uid: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
   name: ExecuteNonQuery(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_ExecuteNonQuery_System_String_
@@ -5351,19 +5377,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.CurrentOS
   nameWithType: Utils.CurrentOS
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  name: DataBaseNameToStudentName(String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_System_String_
-  commentId: M:AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  nameWithType: Utils.DataBaseNameToStudentName(String)
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName*
-  name: DataBaseNameToStudentName
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_
-  commentId: Overload:AutoCheck.Core.Utils.DataBaseNameToStudentName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
-  nameWithType: Utils.DataBaseNameToStudentName
 - uid: AutoCheck.Core.Utils.ExecutionFolder
   name: ExecutionFolder
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExecutionFolder
@@ -5377,32 +5390,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ExecutionFolder
   nameWithType: Utils.ExecutionFolder
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  name: FolderNameToDataBase(String, String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_System_String_System_String_
-  commentId: M:AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase(System.String, System.String)
-  nameWithType: Utils.FolderNameToDataBase(String, String)
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase*
-  name: FolderNameToDataBase
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase
-  nameWithType: Utils.FolderNameToDataBase
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  name: FolderNameToStudentName(String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToStudentName_System_String_
-  commentId: M:AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  nameWithType: Utils.FolderNameToStudentName(String)
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName*
-  name: FolderNameToStudentName
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToStudentName_
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToStudentName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName
-  nameWithType: Utils.FolderNameToStudentName
 - uid: AutoCheck.Core.Utils.OS
   name: Utils.OS
   href: api/AutoCheck.Core.Utils.OS.html

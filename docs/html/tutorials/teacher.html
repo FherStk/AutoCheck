@@ -225,17 +225,17 @@ body:
 <pre><code>type: &quot;Html&quot;
 arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </code></pre>
-<h3 id="collection">Collection</h3>
-<p>A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.</p>
-<p>In the following example, <code>vars</code> is a collection:</p>
+<h3 id="mapping">Mapping</h3>
+<p>A mapping node means that children are allowed but those cannot be repeated.</p>
+<p>In the following example, <code>vars</code> is a mapping:</p>
 <pre><code>vars:     
   student_name: &quot;Fer&quot;
   student_var: &quot;{$STUDENT_NAME}&quot;
   student_replace: &quot;This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!&quot; 
 </code></pre>
 <h3 id="sequence">Sequence</h3>
-<p>A sequence node means a collection of other nodes, so children are allowed and also those can be repeated.</p>
-<p>In the following example, <code>body</code> is a sequence because its children uses <code>-</code> before the node name, but each <code>run</code> node is a collection:</p>
+<p>A sequence node means that children are allowed and also those can be repeated.</p>
+<p>In the following example, <code>body</code> is a sequence because its children uses <code>-</code> before the node name, but each <code>run</code> node is a mapping:</p>
 <pre><code>body:     
   - run:
       command: &quot;echo {$STUDENT_NAME}&quot;
@@ -298,14 +298,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 <tr>
 <td><a href="#output">output</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Setups the output behaviour.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
 <td></td>
@@ -348,7 +348,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 <tr>
 <td><a href="#log">log</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Allows storing log data into external files.</td>
 <td></td>
@@ -665,25 +665,25 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <tbody>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
 </tr>
 <tr>
 <td><a href="#connector">connector</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
 </tr>
 <tr>
 <td><a href="#run">run</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
 </tr>
 <tr>
 <td><a href="#question">question</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines a question to test and score; can be repeated.</td>
 </tr>
@@ -756,7 +756,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>onexception</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour on exception when creating a connector; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
+<td>Determines the behaviour on exception when creating a connector; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
 <td><code>&quot;ERROR&quot;</code></td>
 </tr>
 </tbody>
@@ -827,14 +827,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>onexception</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
+<td>Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li><em>SUCCESS</em>: continues as no error.</li><li><em>ERROR</em>: continues as an error.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
 <td><code>&quot;ERROR&quot;</code></td>
 </tr>
 <tr>
 <td>onerror</td>
 <td>text</td>
 <td>no</td>
-<td>Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li><em>CONTINUE</em>: continues with the script regular execution.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
+<td>Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li><em>CONTINUE</em>: continues with the script regular execution.</li><li><em>ABORT</em>: stops the entire script execution.</li><li><em>SKIP</em>: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output.</td>
 <td><code>&quot;CONTINUE&quot;</code></td>
 </tr>
 <tr>
@@ -903,25 +903,25 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <tbody>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Same as <code>vars</code> defined within <code>body</code>, but as local-scope vars; useful to store command results or other stuff.</td>
 </tr>
 <tr>
 <td><a href="#connector">connector</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>A connector can be also defined here; see <code>connector</code> definition within <code>body</code>.</td>
 </tr>
 <tr>
 <td><a href="#question">question</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>A sub-question can also be defined here (parent score will be updated as the summary of its children); see <code>question</code> definition within <code>body</code>.</td>
 </tr>
 <tr>
 <td><a href="#run">run</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>yes</td>
 <td>Same as <code>run</code> defined within <code>body</code>, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.</td>
 </tr>
@@ -958,7 +958,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
           - item: !!int 3
           - item: !!int 0
 </code></pre>
-<p>And also typed collections are supported, but all the keys must be of the same type (not the values):</p>
+<p>And also typed mappings are supported, but all the keys must be of the same type (not the values):</p>
 <pre><code>- connector:            
       type: &quot;Demo&quot;        
       arguments: 
@@ -995,7 +995,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 <tr>
 <td><a href="#single">single</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Single mode definition.</td>
 <td></td>
@@ -1043,7 +1043,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
     </li>
 </ul>
 <h3 id="single"> single</h3>
-<p>Batch mode definition.</p>
+<p>Single mode definition.</p>
 <table>
 <thead>
 <tr>
@@ -1063,15 +1063,29 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>Running on single mode:</code></td>
 </tr>
 <tr>
+<td><a href="#setup">setup</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>The defined content will be executed once before the copy_detector and any target's body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#teardown">teardown</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>The  defined content will be executed once after the copy_detector and all target's body.</td>
+<td></td>
+</tr>
+<tr>
 <td><a href="#local">local</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>yes (if no <code>remote</code> has been defined)</td>
 <td>Local single target, so the script body will be executed over the local target.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#remote">remote</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>yes (if no <code>local</code> has been defined)</td>
 <td>Remote single target, so the script body will be executed over the remote target.</td>
 <td></td>
@@ -1099,22 +1113,36 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>&quot;Running on batch mode:&quot;</code></td>
 </tr>
 <tr>
+<td><a href="#setup">setup</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The defined content will be executed once before the copy_detector and any target's body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#teardown">teardown</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The  defined content will be executed once after the copy_detector and all target's body.</td>
+<td></td>
+</tr>
+<tr>
 <td><a href="#pre">pre</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once per batch target before the copy_detector and any target's body.</td>
+<td>The defined content will be executed once per batch target before each body.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#post">post</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The  defined content will be executed once per batch target after the copy_detector and all target's body.</td>
+<td>The defined content will be executed once per batch target after each body.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#copy_detector">copy_detector</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Enables the copy detection logic, which will be executed before any body and after all pre executions.</td>
 <td></td>
@@ -1149,19 +1177,19 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <tbody>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
 </tr>
 <tr>
 <td><a href="#connector">connector</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
 </tr>
 <tr>
 <td><a href="#run">run</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
 </tr>
@@ -1187,19 +1215,19 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <tbody>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
 </tr>
 <tr>
 <td><a href="#connector">connector</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
 </tr>
 <tr>
 <td><a href="#run">run</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
 </tr>
@@ -1268,13 +1296,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </thead>
 <tbody>
 <tr>
-<td>path</td>
-<td>text</td>
-<td>no (if no <code>folder</code> has been defined)</td>
-<td>The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
-<td></td>
-</tr>
-<tr>
 <td>folder</td>
 <td>text</td>
 <td>yes (if no <code>path</code> has been defined)</td>
@@ -1282,8 +1303,15 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td></td>
 </tr>
 <tr>
+<td>path</td>
+<td>text</td>
+<td>yes (if no <code>folder</code> has been defined)</td>
+<td>Only for batch mode exectution: the script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with <code>$CURRENT_FOLDER_PATH</code></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
 <td></td>
@@ -1354,7 +1382,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 <tr>
 <td><a href="#vars">vars</a></td>
-<td>collection</td>
+<td>mapping</td>
 <td>no</td>
 <td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
 <td></td>
