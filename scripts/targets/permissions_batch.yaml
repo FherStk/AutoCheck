@@ -23,7 +23,7 @@ vars:
 batch: 
   - caption: "Running on batch mode for ~{$STUDENT}:"       
   - local:                             
-      path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\html5"            
+      path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"            
       vars:
         current_host: "localhost"
         current_user: "postgres"
@@ -53,3 +53,66 @@ batch:
           command: "Extract"
           arguments: 
               recursive: !!bool True
+
+      - echo: "Restoring BBDD permissions."
+
+      - run:            
+          command:  "GetFile"
+          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
+          store: "SQL_FILE"    
+
+      - connector:            
+          type: "Postgres"        
+          arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
+
+      - run:            
+          connector: "Postgres"
+          command:  "DropRole"
+          arguments: "--role rrhhAdmin"
+
+      - run:            
+          connector: "Postgres"
+          command:  "DropRole"
+          arguments: "--role prodAdmin"
+
+      - run:            
+          connector: "Postgres"
+          command:  "DropRole"
+          arguments: "--role dbAdmin"
+
+      - run:            
+          connector: "Postgres"
+          command:  "DropUser"
+          arguments: "--role it"
+
+      - run:            
+          connector: "Postgres"
+          command:  "CreateUser"
+          arguments: "--role it"
+
+      - run:            
+          connector: "Postgres"
+          command:  "CreateRole"
+          arguments: "--role rrhhAdmin"
+
+      - run:            
+          connector: "Postgres"
+          command:  "CreateRole"
+          arguments: "--role prodAdmin"
+
+      - run:            
+          connector: "Postgres"
+          command:  "CreateRole"
+          arguments: "--role dbAdmin"
+
+      - echo: "Importing SQL dump."
+
+      - run:            
+          command:  "GetFile"
+          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
+          store: "SQL_FILE"    
+
+      - run:            
+          connector: "Postgres"
+          command:  "CreateDataBase"
+          arguments: "--dumpPath {$SQL_FILE} --replace True"
