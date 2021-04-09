@@ -136,10 +136,10 @@ type: "Html"
 arguments: "--folder {$CURRENT_FOLDER_PATH} --file index.html"
 ```
 
-### Collection
-A collection node means a collection of other nodes, so children are allowed but those cannot be repeated.
+### Mapping
+A mapping node means that children are allowed but those cannot be repeated.
 
-In the following example, `vars` is a collection:
+In the following example, `vars` is a mapping:
 ```
 vars:     
   student_name: "Fer"
@@ -148,9 +148,9 @@ vars:
 ```
 
 ### Sequence
-A sequence node means a collection of other nodes, so children are allowed and also those can be repeated.
+A sequence node means that children are allowed and also those can be repeated.
 
-In the following example, `body` is a sequence because its children uses `-` before the node name, but each `run` node is a collection:
+In the following example, `body` is a sequence because its children uses `-` before the node name, but each `run` node is a mapping:
 ``` 
 body:     
   - run:
@@ -182,8 +182,8 @@ version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
 caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
-[output](#output) | collection | no | Setups the output behaviour. | 
-[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
+[output](#output) | mapping | no | Setups the output behaviour. | 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [body](#body) | sequence | no | Script body. |
 
 ### <a name="output"></a> output
@@ -193,7 +193,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
 pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
-[log](#log) | collection | no | Allows storing log data into external files. | 
+[log](#log) | mapping | no | Allows storing log data into external files. | 
 
 #### <a name="log"></a> log
 Setups the output file-mode behaviour.
@@ -301,10 +301,10 @@ Script's body where the main action is defined.
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
-[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
-[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
-[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
-[question](#question) | collection | no | Defines a question to test and score; can be repeated.
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+[question](#question) | mapping | no | Defines a question to test and score; can be repeated.
 echo | text | no | Displays a message.
 
 #### <a name="vars"></a> vars
@@ -354,10 +354,10 @@ What to test within the question, all must be ok to compute the score; cannot be
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
-[vars](#vars) | collection | no | Same as `vars` defined within `body`, but as local-scope vars; useful to store command results or other stuff.
-[connector](#connector) | collection | no | A connector can be also defined here; see `connector` definition within `body`.
-[question](#question) | collection | no | A sub-question can also be defined here (parent score will be updated as the summary of its children); see `question` definition within `body`.
-[run](#run) | collection | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.  
+[vars](#vars) | mapping | no | Same as `vars` defined within `body`, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | A connector can be also defined here; see `connector` definition within `body`.
+[question](#question) | mapping | no | A sub-question can also be defined here (parent score will be updated as the summary of its children); see `question` definition within `body`.
+[run](#run) | mapping | yes | Same as `run` defined within `body`, but all the executed commands within a question's content must succeed (no execution errors and result matching the expected value) in order to compute the entire score.  
 echo | text | no | Displays a message.
 
 ### <a name="arguments"></a> arguments
@@ -392,7 +392,7 @@ Notice than typed arrays are also supported, but all the items must be of the sa
           - item: !!int 0
 ```
 
-And also typed collections are supported, but all the keys must be of the same type (not the values):
+And also typed mappings are supported, but all the keys must be of the same type (not the values):
 ```
 - connector:            
       type: "Demo"        
@@ -415,7 +415,7 @@ The main idea of a single-typed script is to use a generic template and set a si
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 inherits | text | no | Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs. | `"NONE"`
-[single](#single) | collection | no | Single mode definition. | 
+[single](#single) | mapping | no | Single mode definition. | 
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
@@ -445,8 +445,10 @@ Single mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before the single execution. | `Running on single mode:`
-[local](#local) | collection | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
-[remote](#remote) | collection | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
+[setup](#setup) | mapping | no | The defined content will be executed once before the copy_detector and any target's body. |
+[teardown](#teardown) | mapping | no | The  defined content will be executed once after the copy_detector and all target's body. |
+[local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
+[remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
 ### <a name="batch"></a> batch
 Batch mode definition.
@@ -454,9 +456,11 @@ Batch mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
-[pre](#pre) | sequence | no | The defined content will be executed once per batch target before the copy_detector and any target's body. |
-[post](#post) | sequence | no | The  defined content will be executed once per batch target after the copy_detector and all target's body. |
-[copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, which will be executed before any body and after all pre executions. | 
+[setup](#setup) | sequence | no | The defined content will be executed once before the copy_detector and any target's body. |
+[teardown](#teardown) | sequence | no | The  defined content will be executed once after the copy_detector and all target's body. |
+[pre](#pre) | sequence | no | The defined content will be executed once per batch target before each body. |
+[post](#post) | sequence | no | The defined content will be executed once per batch target after each body. |
+[copy_detector](#copy_detector) | mapping | no | Enables the copy detection logic, which will be executed before any body and after all pre executions. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
 [remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
 
@@ -465,9 +469,9 @@ The defined content will be executed once per batch target before any target's b
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
-[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
-[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
-[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
 echo | text | no | Displays a message.
 
 #### <a name="post"></a> post
@@ -475,9 +479,9 @@ The  defined content will be executed once per batch target after all target's b
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
-[vars](#vars) | collection | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
-[connector](#connector) | collection | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
-[run](#run) | collection | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
 echo | text | no | Displays a message.
 
 #### <a name="copy_detector"></a> copy_detector
@@ -497,7 +501,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
 path | text | yes (if no `folder` has been defined) | Only for batch mode exectution: the script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
 
 #### <a name="remote"></a>remote
 Remote batch target, so each script body will be executed once per remote target.
@@ -511,4 +515,4 @@ password | text | no | The password used to connect with the remote host. | (Bla
 port   | number | no | The remote SSH port used to connect with. | 22
 path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
-[vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
