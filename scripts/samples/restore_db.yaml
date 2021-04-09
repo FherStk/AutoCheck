@@ -23,7 +23,7 @@ batch:
     - local:                             
         - path: "some_folder"
 
-    - pre:
+    - setup:
         - echo: "Restoring databases from: ~{$CURRENT_FOLDER_NAME}"
 
         - run:            

@@ -36,7 +36,7 @@ batch:
         file: "*.log"
         threshold: !!float 0.65    
 
-    - pre:
+    - setup:
         - echo: "Extracting files at: ~{$STUDENT}"
 
         - run:            

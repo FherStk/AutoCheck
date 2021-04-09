@@ -24,13 +24,13 @@ using NUnit.Framework;
 namespace AutoCheck.Test
 {    
     [Parallelizable(ParallelScope.All)]    
-    public class Pre : Test
+    public class Setup : Test
     {
-        public Pre(): base("script"){
+        public Setup(): base("script"){
         }
 
-        [Test, Category("Pre"), Category("Local")]
-        public void Pre_ECHO()
+        [Test, Category("Setup"), Category("Local")]
+        public void Setup_ECHO()
         { 
             var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test1"); //the script will use this folder, so no random path can be used
             var dest1 = Path.Combine(dest, "folder1");
@@ -40,8 +40,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);         
 
 
-            var s = new AutoCheck.Core.Script(GetSampleFile("pre_ok1.yaml"));
-            Assert.AreEqual($"Running script pre_ok1 (v1.0.0.0):\r\n   Echo for pre execution over folder1\r\n\r\n   Echo for pre execution over folder2\r\n\r\nRunning on batch mode for folder1:\r\n   Echo for body execution over folder1\r\nRunning on batch mode for folder2:\r\n   Echo for body execution over folder2\r\n   Echo for post execution over folder1\r\n\r\n   Echo for post execution over folder2", s.Output.ToString());            
+            var s = new AutoCheck.Core.Script(GetSampleFile("setup_ok1.yaml"));
+            Assert.AreEqual($"Running script setup_ok1 (v1.0.0.0):\r\n   Echo for setup execution over folder1\r\n\r\n   Echo for setup execution over folder2\r\n\r\nRunning on batch mode for folder1:\r\n   Echo for body execution over folder1\r\nRunning on batch mode for folder2:\r\n   Echo for body execution over folder2\r\n   Echo for teardown execution over folder1\r\n\r\n   Echo for teardown execution over folder2", s.Output.ToString());            
         }       
     }
 }

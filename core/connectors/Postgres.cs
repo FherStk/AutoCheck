@@ -380,7 +380,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="role">The user name to remove.</param>
         public void DropUser(string user){
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
-            ExecuteNonQuery($"DROP USER IF EXISTS {user}");
+            DropUserMembership(user);            
+            ExecuteNonQuery($"DROP USER {user};");  
         }                
 
         /// <summary>
@@ -393,6 +394,15 @@ namespace AutoCheck.Core.Connectors{
                 if(dr["username"].ToString().Equals(user)) return true;
 
             return false;
+        }
+
+        /// <summary>
+        /// Drops the user from its current memberhips
+        /// </summary>
+        /// <param name="user">The user to clean.</param>
+        public void DropUserMembership(string user){
+            if(!ExistsUser(user)) return;
+            DropMembership(user);       
         }
 
 #endregion
@@ -427,15 +437,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="role">The role name to remove.</param>
         public void DropRole(string role){
-            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
-            if(!ExistsRole(role)) return;
-
-            ExecuteNonQuery($"REASSIGN OWNED BY {role} TO postgres;");
-            ExecuteNonQuery($"DROP OWNED BY {role}");
-
-            foreach(var member in GetMembership(role))
-                ExecuteNonQuery($"REVOKE {member} FROM {role}");
-
+            if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");            
+            DropRoleMembership(role);            
             ExecuteNonQuery($"DROP ROLE {role};");            
         }
 
@@ -450,8 +453,17 @@ namespace AutoCheck.Core.Connectors{
 
             return false;
         }
+
+        /// <summary>
+        /// Drops the role from its current memberhips
+        /// </summary>
+        /// <param name="role">The rol to clean.</param>
+        public void DropRoleMembership(string role){
+            if(!ExistsRole(role)) return;
+            DropMembership(role);       
+        }
 #endregion
-#region "Permissions"        
+#region "Permissions"         
         /// <summary>
         /// Get a list of groups and roles where the given item (user, role or group) belongs.
         /// </summary>
@@ -617,7 +629,21 @@ namespace AutoCheck.Core.Connectors{
             return ExecuteScalar<bool>($"SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema='{schema}' AND  table_name='{table}');");            
         }        
 #endregion
-#region "Private"       
+#region "Private"   
+        /// <summary>
+        /// Drops the item (user, role or group) from its current memberhips
+        /// </summary>
+        /// <param name="item">The role, group or user to clean.</param>
+        private void DropMembership(string item){
+            if(string.IsNullOrEmpty(item)) throw new ArgumentNullException("item");
+
+            ExecuteNonQuery($"REASSIGN OWNED BY {item} TO postgres;");
+            ExecuteNonQuery($"DROP OWNED BY {item}");
+
+            foreach(var member in GetMembership(item))
+                ExecuteNonQuery($"REVOKE {member} FROM {item}");           
+        }
+
         private string CleanSqlQuery(string sql){
             sql = sql.Replace("\r\n", "").Replace("\n", "");            
             do sql = sql.Replace("  ", " ").Trim();

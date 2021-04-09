@@ -17,7 +17,9 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 body:
-  - connector:  
-      type: "CSS"
-      arguments: "--folder myFolder\\mySubFolder\\ --file myFile.tmp --fake FAKE"
-      onexception: "ABORT"
+  - question:
+      content:
+        - connector:  
+            type: "CSS"
+            arguments: "--folder myFolder\\mySubFolder\\ --file myFile.tmp --fake FAKE"
+            onexception: "ABORT"

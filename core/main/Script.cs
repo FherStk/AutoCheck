@@ -702,14 +702,14 @@ namespace AutoCheck.Core{
             }));                     
         }  
         
-        private void ParsePre(YamlNode node, string current="pre", string parent="root", string[] children = null, string[] mandatory = null){
+        private void ParsePre(YamlNode node, string current="setup", string parent="root", string[] children = null, string[] mandatory = null){
             children ??= new string[]{"vars", "connector", "run", "echo"};
 
             //The same as ParseBody but with no questions                        
             ParseBody(node, current, parent, children, mandatory);
         }    
         
-        private void ParsePost(YamlNode node, string current="post", string parent="root", string[] children = null, string[] mandatory = null){
+        private void ParsePost(YamlNode node, string current="teardown", string parent="root", string[] children = null, string[] mandatory = null){
             //The same as ParsePre
             ParsePre(node, current, parent, children, mandatory);
         }
@@ -771,7 +771,7 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
-            children ??= new string[]{"caption", "pre", "post", "copy_detector", "local", "remote"};     
+            children ??= new string[]{"caption", "setup", "teardown", "copy_detector", "local", "remote"};     
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke(); 
             else{    
                 //Running in batch mode            
@@ -810,9 +810,10 @@ namespace AutoCheck.Core{
                 //Parsing pre content, it must run for each target before the body and the copy detector execution
                 Output.Indent();      
                 ForEachLocalTarget(local.ToArray(), (folder) => {
+                    if(Abort) return;
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
                         switch(name){                       
-                            case "pre":                            
+                            case "setup":                            
                                 ParsePre(node, name, current);
                                 Output.BreakLine();                                
                                 break;
@@ -821,9 +822,10 @@ namespace AutoCheck.Core{
                 }); 
 
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {   
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {
+                        if(Abort) return;   
                         switch(name){                       
-                            case "pre":                            
+                            case "setup":                            
                                 ParsePre(node, name, current);
                                 Output.BreakLine();
                                 break;
@@ -831,7 +833,7 @@ namespace AutoCheck.Core{
                     })); 
                 }); 
                 
-                //Execution abort could be requested from any "pre"
+                //Execution abort could be requested from any "setup"
                 if(Abort) return;
                                     
                 //Note: the copy detector cannot be parsed till the local and remote has been loaded and, also, all pre has been executed.
@@ -902,7 +904,7 @@ namespace AutoCheck.Core{
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
                         switch(name){                       
-                            case "post":                            
+                            case "teardown":                            
                                 ParsePost(node, name, current);
                                 Output.BreakLine();
                                 break;
@@ -913,7 +915,7 @@ namespace AutoCheck.Core{
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
                         switch(name){                       
-                            case "post":                            
+                            case "teardown":                            
                                 ParsePost(node, name, current);
                                 Output.BreakLine();
                                 break;

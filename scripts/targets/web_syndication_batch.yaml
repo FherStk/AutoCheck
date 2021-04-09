@@ -28,7 +28,7 @@ batch:
         file: "document.rss"
         threshold: !!float 0.85   
 
-    - pre:
+    - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
 
         - run:            
