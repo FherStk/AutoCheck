@@ -65,7 +65,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok2.yaml"));  
-            Assert.AreEqual($"Running script batch_run_ok2 (v1.0.0.1):\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok2 (v1.0.0.1):\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest1)}:\r\n\r\nRunning script batch_run_ok2 (v1.0.0.1) on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -87,7 +87,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok3.yaml"));    
-            Assert.AreEqual($"Running script batch_run_ok3 (v1.0.0.1):\r\nRunning on batch mode:\r\nRunning on batch mode:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok3 (v1.0.0.1):\r\nRunning on batch mode:\r\n\r\nRunning on batch mode:", s.Output.ToString());
 
             Directory.Delete(dest, true);
         }
@@ -110,7 +110,7 @@ namespace AutoCheck.Test
         
             //NOTE: Folder order matters, folder order is as in the script, folders within a given path are collected sorted by name
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok4.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok4 (v1.0.0.1):\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok4 (v1.0.0.1):\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\n\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:\r\n\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest1)}:\r\n\r\nRunning script batch_run_ok4 (v1.0.0.1) in batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
             
             Directory.Delete(dest, true); 
         }
@@ -132,7 +132,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok5.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok5 (v1.0.0.1):\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok5 (v1.0.0.1):\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\n\r\nRunning on batch mode for {Path.GetFileName(dest2)}:\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\n\r\nRunning on batch mode for {Path.GetFileName(dest2)}:", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -154,7 +154,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok6.yaml"));            
-            Assert.AreEqual($"Running script batch_run_ok6 (v1.0.0.1):\r\n   Extracting files at: {Path.GetFileName(dest1)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Extracting files at: {Path.GetFileName(dest2)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Starting the copy detector for PlainText:\r\n      Looking for potential copies within {Path.GetFileName(dest1)}... OK\r\n      Looking for potential copies within {Path.GetFileName(dest2)}... OK\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\n   Potential copy detected for {Path.GetFileName(dest1)}\\nopass.txt:\r\n      Match score with {Path.GetFileName(dest2)}\\nopass.txt... 100,00 % \r\nRunning on batch mode for {Path.GetFileName(dest2)}:\r\n   Potential copy detected for {Path.GetFileName(dest2)}\\nopass.txt:\r\n      Match score with {Path.GetFileName(dest1)}\\nopass.txt... 100,00 %", s.Output.ToString());
+            Assert.AreEqual($"Running script batch_run_ok6 (v1.0.0.1):\r\n   Extracting files at: {Path.GetFileName(dest1)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Extracting files at: {Path.GetFileName(dest2)}\r\n      Extracting the file nopass.zip... OK\r\n\r\n   Starting the copy detector for PlainText:\r\n      Looking for potential copies within {Path.GetFileName(dest1)}... OK\r\n      Looking for potential copies within {Path.GetFileName(dest2)}... OK\r\n\r\nRunning on batch mode for {Path.GetFileName(dest1)}:\r\n   Potential copy detected for {Path.GetFileName(dest1)}\\nopass.txt:\r\n      Match score with {Path.GetFileName(dest2)}\\nopass.txt... 100,00 % \r\n\r\nRunning on batch mode for {Path.GetFileName(dest2)}:\r\n   Potential copy detected for {Path.GetFileName(dest2)}\\nopass.txt:\r\n      Match score with {Path.GetFileName(dest1)}\\nopass.txt... 100,00 %", s.Output.ToString());
             
             Directory.Delete(dest, true);
         }
@@ -163,14 +163,14 @@ namespace AutoCheck.Test
         public void Script_BATCH_REMOTE_ECHO()
         {                           
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok7.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok7 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\nRunning on batch mode for 127.0.0.1:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok7 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\n\r\nRunning on batch mode for 127.0.0.1:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
 
         [Test, Category("Batch"), Category("Remote")]
         public void Script_BATCH_REMOTE_FOLDER()
         {                           
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok8.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok8 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok8 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10\r\n\r\nRunning on batch mode for localhost:\r\n   Question 1 [1 point]:\r\n      Testing echo command... OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
 
         [Test, Category("Batch"), Category("Local")]
@@ -184,14 +184,14 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2); 
 
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok9.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok9 (v1.0.0.0):\r\nRunning on batch mode for folder1:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for folder2:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for test9:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok9 (v1.0.0.0):\r\nRunning on batch mode for folder1:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\n\r\nRunning on batch mode for folder2:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\n\r\nRunning on batch mode for test9:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
         }
 
         [Test, Category("Batch"), Category("Remote")]
         public void Script_BATCH_REMOTE_VARS()
         {                      
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok10.yaml"));            
-            Assert.AreEqual("Running script batch_run_ok10 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
+            Assert.AreEqual("Running script batch_run_ok10 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\n\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
         }
     }
 }

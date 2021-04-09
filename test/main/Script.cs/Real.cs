@@ -156,6 +156,7 @@ namespace AutoCheck.Test
         }
 #endregion
 #region Permissions
+        [NonParallelizable] //cannot interfear with the batch one, shares users and roles
         [Test, Category("FullScriptPermissions"), Category("Real"), Category("Local")]
         public void Real_PERMISSIONS_SCRIPT_SINGLE_1()
         {
@@ -223,6 +224,7 @@ namespace AutoCheck.Test
             Assert.AreEqual("Running script ASIX - M02 (UF3): Permissions Assignment (v1.1.0.1):\r\nRunning on single mode:\r\n   Question 1 [0 points] - This questions does not score:\r\n\r\n   Question 2 [1 point] - Foreign key (I):\r\n      Checking foreign key 'empleats -> empleats'...OK\r\n\r\n   Question 3 [1 point] - Foreign key (II):\r\n      Checking foreign key 'empleats -> departaments'...OK\r\n\r\n   Question 4 [1 point] - Privileges over 'empleats':\r\n      Checking new entries...OK\r\n      Checking table privileges...OK\r\n\r\n   Question 5 [0 points] - This questions does not score:\r\n\r\n   Question 6 [1 point] - Privileges over 'fabricacio':\r\n      Checking foreign key 'fabricacio -> fabriques'...OK\r\n      Checking foreign key 'fabricacio -> productes'...OK\r\n      Checking table privileges...OK\r\n\r\n   Question 7 [2 points] - Privileges over 'fabriques':\r\n      Checking foreign key 'fabriques -> empleats'...OK\r\n      Checking schema privileges...OK\r\n      Checking table privileges...OK\r\n\r\n   Question 8 [1 point] - Privileges for rrhhadmin and prodadmin:\r\n      Checking removed entries...OK\r\n      Checking 'rrhhadmin' privileges for the table 'empleats'...OK\r\n      Checking 'rrhhadmin' privileges for the table 'departaments'...OK\r\n      Checking 'prodadmin' privileges for the table 'fabriques'...OK\r\n      Checking 'prodadmin' privileges for the table 'productes'...OK\r\n      Checking 'prodadmin' privileges for the table 'fabricacio'...OK\r\n\r\n   Question 9 [3 points] - Privileges for dbadmin:\r\n      Checking dbadmin membership...OK\r\n      Checking 'dbadmin' privileges for the table 'empleats'...OK\r\n      Checking 'dbadmin' privileges for the table 'departaments'...OK\r\n      Checking 'dbadmin' privileges for the table 'fabriques'...OK\r\n      Checking 'dbadmin' privileges for the table 'productes'...OK\r\n      Checking 'dbadmin' privileges for the table 'fabricacio'...OK\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());            
         }
 
+        [NonParallelizable] //cannot interfear with the single one, shares users and roles
         [Test, Category("FullScriptPermissions"), Category("Real"), Category("Local")]
         public void Real_PERMISSIONS_SCRIPT_BATCH_1()
         {             
