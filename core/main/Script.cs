@@ -914,7 +914,10 @@ namespace AutoCheck.Core{
                                 }
                             }                        
 
-                            if(!match) action.Invoke();                            
+                            if(!match){
+                                action.Invoke();  
+                                Output.BreakLine();
+                            } 
                         }
                         catch(Exception ex){
                             Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
@@ -926,7 +929,7 @@ namespace AutoCheck.Core{
                             switch(name){                       
                                 case "post":                            
                                     ParsePost(node, name, current);
-                                    Output.BreakLine();                                
+                                    Output.BreakLine();
                                     break;
                             }                    
                         }));                    
@@ -950,12 +953,14 @@ namespace AutoCheck.Core{
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     //ForEachLocalTarget method setups the global vars                    
                     script.Invoke(folder);
+                    Output.BreakLine();
                 });                                  
 
                 //Executing body for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars
                     script.Invoke(folder);
+                    Output.BreakLine();
                 }); 
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
