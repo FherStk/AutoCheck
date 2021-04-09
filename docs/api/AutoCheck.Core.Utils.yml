@@ -9,10 +9,7 @@ items:
   - AutoCheck.Core.Utils.ConfigFile(System.String)
   - AutoCheck.Core.Utils.ConfigFolder
   - AutoCheck.Core.Utils.CurrentOS
-  - AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
   - AutoCheck.Core.Utils.ExecutionFolder
-  - AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  - AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
   - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   - AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
@@ -30,7 +27,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -72,7 +69,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
@@ -112,7 +109,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
@@ -152,7 +149,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
@@ -192,7 +189,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: TempFolder
     path: ../core/main/Utils.cs
@@ -232,7 +229,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
@@ -273,7 +270,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
@@ -318,7 +315,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
@@ -362,7 +359,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
@@ -413,7 +410,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
@@ -466,7 +463,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
@@ -506,7 +503,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
@@ -548,7 +545,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
@@ -568,132 +565,6 @@ items:
       description: A file&apos;s path.
     content.vb: Public Shared Function ConfigFile(file As String) As String
   overload: AutoCheck.Core.Utils.ConfigFile*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  commentId: M:AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  id: FolderNameToDataBase(System.String,System.String)
-  parent: AutoCheck.Core.Utils
-  langs:
-  - csharp
-  - vb
-  name: FolderNameToDataBase(String, String)
-  nameWithType: Utils.FolderNameToDataBase(String, String)
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase(System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: core/main/Utils.cs
-      branch: v2.7.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: FolderNameToDataBase
-    path: ../core/main/Utils.cs
-    startLine: 195
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nGiven a folder name, returns a database name using the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
-  example: []
-  syntax:
-    content: public static string FolderNameToDataBase(string folder, string prefix = "database")
-    parameters:
-    - id: folder
-      type: System.String
-      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
-    - id: prefix
-      type: System.String
-      description: The database name prefix.
-    return:
-      type: System.String
-      description: A database name like &apos;prefix_STUDENT&apos;
-    content.vb: Public Shared Function FolderNameToDataBase(folder As String, prefix As String = "database") As String
-  overload: AutoCheck.Core.Utils.FolderNameToDataBase*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  commentId: M:AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  id: DataBaseNameToStudentName(System.String)
-  parent: AutoCheck.Core.Utils
-  langs:
-  - csharp
-  - vb
-  name: DataBaseNameToStudentName(String)
-  nameWithType: Utils.DataBaseNameToStudentName(String)
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  type: Method
-  source:
-    remote:
-      path: core/main/Utils.cs
-      branch: v2.7.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: DataBaseNameToStudentName
-    path: ../core/main/Utils.cs
-    startLine: 204
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nExtracts the student&apos;s name from de database&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
-  example: []
-  syntax:
-    content: public static string DataBaseNameToStudentName(string database)
-    parameters:
-    - id: database
-      type: System.String
-      description: The database name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
-    return:
-      type: System.String
-      description: The student&apos;s name.
-    content.vb: Public Shared Function DataBaseNameToStudentName(database As String) As String
-  overload: AutoCheck.Core.Utils.DataBaseNameToStudentName*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  commentId: M:AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  id: FolderNameToStudentName(System.String)
-  parent: AutoCheck.Core.Utils
-  langs:
-  - csharp
-  - vb
-  name: FolderNameToStudentName(String)
-  nameWithType: Utils.FolderNameToStudentName(String)
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  type: Method
-  source:
-    remote:
-      path: core/main/Utils.cs
-      branch: v2.7.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: FolderNameToStudentName
-    path: ../core/main/Utils.cs
-    startLine: 214
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nGiven a folder name, returns the student&apos;s name, but only if it follows the naming convention &apos;prefix_STUDENT&apos;.\n"
-  example: []
-  syntax:
-    content: public static string FolderNameToStudentName(string folder)
-    parameters:
-    - id: folder
-      type: System.String
-      description: The folder name name, it must follows the naming convention &apos;prefix_STUDENT&apos;.
-    return:
-      type: System.String
-      description: The student&apos;s name.
-    content.vb: Public Shared Function FolderNameToStudentName(folder As String) As String
-  overload: AutoCheck.Core.Utils.FolderNameToStudentName*
   modifiers.csharp:
   - public
   - static
@@ -1170,18 +1041,3 @@ references:
   name: ConfigFile
   nameWithType: Utils.ConfigFile
   fullName: AutoCheck.Core.Utils.ConfigFile
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase*
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
-  name: FolderNameToDataBase
-  nameWithType: Utils.FolderNameToDataBase
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName*
-  commentId: Overload:AutoCheck.Core.Utils.DataBaseNameToStudentName
-  name: DataBaseNameToStudentName
-  nameWithType: Utils.DataBaseNameToStudentName
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName*
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToStudentName
-  name: FolderNameToStudentName
-  nameWithType: Utils.FolderNameToStudentName
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName

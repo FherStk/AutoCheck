@@ -19,7 +19,7 @@
 name: "Generic Google Drive Importer"
 version: "1.0.0.1"
 
-pre:
+setup:
   - upload_gdrive:      
       source: "*.txt"   #DEFAULT = "*": Search patthern used to find files or folders to upload, OS file naming convetions allowed (name.ext; *.ext; *); regex can be used also.
       remove: !!bool False

@@ -19,13 +19,19 @@
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\temp\\script\\pre\\test1"   
+        - path: "{$APP_FOLDER_PATH}\\temp\\script\\setup\\test1"   
+
+    - setup:
+        - echo: "Echo for setup execution over ~{$CURRENT_FOLDER_NAME}"
 
     - pre:
         - echo: "Echo for pre execution over ~{$CURRENT_FOLDER_NAME}"
 
     - post:
         - echo: "Echo for post execution over ~{$CURRENT_FOLDER_NAME}"
+
+    - teardown:
+        - echo: "Echo for teardown execution over ~{$CURRENT_FOLDER_NAME}"
 
 body:
   - echo: "Echo for body execution over ~{$CURRENT_FOLDER_NAME}"

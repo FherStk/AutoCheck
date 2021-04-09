@@ -20,7 +20,9 @@ items:
   - AutoCheck.Core.Connectors.Postgres.Dispose
   - AutoCheck.Core.Connectors.Postgres.DropDataBase
   - AutoCheck.Core.Connectors.Postgres.DropRole(System.String)
+  - AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
   - AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
+  - AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExecuteQuery(System.String)
   - AutoCheck.Core.Connectors.Postgres.ExecuteScalar``1(System.String)
@@ -39,7 +41,6 @@ items:
   - AutoCheck.Core.Connectors.Postgres.Host
   - AutoCheck.Core.Connectors.Postgres.ImportSqlDump(System.String)
   - AutoCheck.Core.Connectors.Postgres.Password
-  - AutoCheck.Core.Connectors.Postgres.Student
   - AutoCheck.Core.Connectors.Postgres.TestConnection
   - AutoCheck.Core.Connectors.Postgres.User
   langs:
@@ -52,7 +53,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../core/connectors/Postgres.cs
@@ -104,7 +105,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../core/connectors/Postgres.cs
@@ -142,7 +143,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Postgres.cs
@@ -180,7 +181,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
     path: ../core/connectors/Postgres.cs
@@ -218,7 +219,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
     path: ../core/connectors/Postgres.cs
@@ -256,7 +257,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Postgres.cs
@@ -294,7 +295,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
     path: ../core/connectors/Postgres.cs
@@ -318,44 +319,6 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Postgres.Student
-  commentId: P:AutoCheck.Core.Connectors.Postgres.Student
-  id: Student
-  parent: AutoCheck.Core.Connectors.Postgres
-  langs:
-  - csharp
-  - vb
-  name: Student
-  nameWithType: Postgres.Student
-  fullName: AutoCheck.Core.Connectors.Postgres.Student
-  type: Property
-  source:
-    remote:
-      path: core/connectors/Postgres.cs
-      branch: v2.7.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Student
-    path: ../core/connectors/Postgres.cs
-    startLine: 76
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  summary: "\nThe student name wich is the original database creator.\n"
-  example: []
-  syntax:
-    content: public string Student { get; }
-    parameters: []
-    return:
-      type: System.String
-      description: ''
-    content.vb: Public ReadOnly Property Student As String
-  overload: AutoCheck.Core.Connectors.Postgres.Student*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
 - uid: AutoCheck.Core.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
   commentId: M:AutoCheck.Core.Connectors.Postgres.#ctor(System.String,System.String,System.String,System.String,System.String)
   id: '#ctor(System.String,System.String,System.String,System.String,System.String)'
@@ -370,11 +333,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Postgres.cs
-    startLine: 91
+    startLine: 82
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -418,11 +381,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Postgres.cs
-    startLine: 107
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -453,11 +416,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Postgres.cs
-    startLine: 115
+    startLine: 108
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -485,11 +448,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../core/connectors/Postgres.cs
-    startLine: 131
+    startLine: 124
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -524,11 +487,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../core/connectors/Postgres.cs
-    startLine: 169
+    startLine: 162
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -560,11 +523,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../core/connectors/Postgres.cs
-    startLine: 191
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -604,11 +567,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 213
+    startLine: 206
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -639,11 +602,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 231
+    startLine: 224
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -677,11 +640,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 244
+    startLine: 237
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -713,11 +676,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlDump
     path: ../core/connectors/Postgres.cs
-    startLine: 272
+    startLine: 265
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -749,11 +712,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../core/connectors/Postgres.cs
-    startLine: 302
+    startLine: 295
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -781,11 +744,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 349
+    startLine: 342
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -816,11 +779,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
     path: ../core/connectors/Postgres.cs
-    startLine: 367
+    startLine: 360
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -851,11 +814,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
     path: ../core/connectors/Postgres.cs
-    startLine: 375
+    startLine: 368
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -888,11 +851,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
     path: ../core/connectors/Postgres.cs
-    startLine: 387
+    startLine: 380
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -923,11 +886,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
     path: ../core/connectors/Postgres.cs
-    startLine: 397
+    startLine: 391
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -940,6 +903,42 @@ items:
       type: System.Boolean
     content.vb: Public Function ExistsUser(user As String) As Boolean
   overload: AutoCheck.Core.Connectors.Postgres.ExistsUser*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  id: DropUserMembership(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: DropUserMembership(String)
+  nameWithType: Postgres.DropUserMembership(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: v2.7.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DropUserMembership
+    path: ../core/connectors/Postgres.cs
+    startLine: 402
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDrops the user from its current memberhips\n"
+  example: []
+  syntax:
+    content: public void DropUserMembership(string user)
+    parameters:
+    - id: user
+      type: System.String
+      description: The user to clean.
+    content.vb: Public Sub DropUserMembership(user As String)
+  overload: AutoCheck.Core.Connectors.Postgres.DropUserMembership*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -958,11 +957,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 410
+    startLine: 413
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -993,11 +992,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../core/connectors/Postgres.cs
-    startLine: 418
+    startLine: 421
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1028,11 +1027,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../core/connectors/Postgres.cs
-    startLine: 426
+    startLine: 429
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1064,11 +1063,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../core/connectors/Postgres.cs
-    startLine: 435
+    startLine: 438
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1100,11 +1099,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
     path: ../core/connectors/Postgres.cs
-    startLine: 447
+    startLine: 449
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1117,6 +1116,42 @@ items:
       type: System.Boolean
     content.vb: Public Function ExistsRole(role As String) As Boolean
   overload: AutoCheck.Core.Connectors.Postgres.ExistsRole*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  id: DropRoleMembership(System.String)
+  parent: AutoCheck.Core.Connectors.Postgres
+  langs:
+  - csharp
+  - vb
+  name: DropRoleMembership(String)
+  nameWithType: Postgres.DropRoleMembership(String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Postgres.cs
+      branch: v2.7.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DropRoleMembership
+    path: ../core/connectors/Postgres.cs
+    startLine: 460
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nDrops the role from its current memberhips\n"
+  example: []
+  syntax:
+    content: public void DropRoleMembership(string role)
+    parameters:
+    - id: role
+      type: System.String
+      description: The rol to clean.
+    content.vb: Public Sub DropRoleMembership(role As String)
+  overload: AutoCheck.Core.Connectors.Postgres.DropRoleMembership*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1135,11 +1170,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../core/connectors/Postgres.cs
-    startLine: 460
+    startLine: 471
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1174,11 +1209,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 478
+    startLine: 489
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1219,11 +1254,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../core/connectors/Postgres.cs
-    startLine: 508
+    startLine: 519
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1261,11 +1296,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelectWithView
     path: ../core/connectors/Postgres.cs
-    startLine: 532
+    startLine: 543
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1306,11 +1341,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../core/connectors/Postgres.cs
-    startLine: 542
+    startLine: 553
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1348,11 +1383,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../core/connectors/Postgres.cs
-    startLine: 563
+    startLine: 574
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1390,11 +1425,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../core/connectors/Postgres.cs
-    startLine: 576
+    startLine: 587
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1432,11 +1467,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsForeignKey
     path: ../core/connectors/Postgres.cs
-    startLine: 597
+    startLine: 608
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1486,11 +1521,11 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsTable
     path: ../core/connectors/Postgres.cs
-    startLine: 615
+    startLine: 626
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -2033,11 +2068,6 @@ references:
   name: BinPath
   nameWithType: Postgres.BinPath
   fullName: AutoCheck.Core.Connectors.Postgres.BinPath
-- uid: AutoCheck.Core.Connectors.Postgres.Student*
-  commentId: Overload:AutoCheck.Core.Connectors.Postgres.Student
-  name: Student
-  nameWithType: Postgres.Student
-  fullName: AutoCheck.Core.Connectors.Postgres.Student
 - uid: AutoCheck.Core.Connectors.Postgres.#ctor*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.#ctor
   name: Postgres
@@ -2179,6 +2209,11 @@ references:
   name: ExistsUser
   nameWithType: Postgres.ExistsUser
   fullName: AutoCheck.Core.Connectors.Postgres.ExistsUser
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  name: DropUserMembership
+  nameWithType: Postgres.DropUserMembership
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership
 - uid: AutoCheck.Core.Connectors.Postgres.GetRoles*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetRoles
   name: GetRoles
@@ -2204,6 +2239,11 @@ references:
   name: ExistsRole
   nameWithType: Postgres.ExistsRole
   fullName: AutoCheck.Core.Connectors.Postgres.ExistsRole
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership*
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  name: DropRoleMembership
+  nameWithType: Postgres.DropRoleMembership
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership
 - uid: AutoCheck.Core.Connectors.Postgres.GetMembership*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.GetMembership
   name: GetMembership

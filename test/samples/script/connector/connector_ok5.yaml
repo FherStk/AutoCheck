@@ -27,12 +27,12 @@ body:
       type: "Shell"
       arguments: 
         remoteOS: "GNU"
-        host: "{$REMOTE_HOST}"
-        username: "{$REMOTE_USER}"
-        password: "{$REMOTE_PASSWORD}"
-        port: "{$REMOTE_PORT}"
+        host: "{$CURRENT_HOST}"
+        username: "{$CURRENT_USER}"
+        password: "{$CURRENT_PASSWORD}"
+        port: "{$CURRENT_PORT}"
 
   - run:
       connector: "Shell"
-      command: "echo {$REMOTE_HOST}"
-      expected: "{$REMOTE_HOST}"
+      command: "echo {$CURRENT_HOST}"
+      expected: "{$CURRENT_HOST}"

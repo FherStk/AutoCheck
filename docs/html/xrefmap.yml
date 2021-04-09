@@ -2066,6 +2066,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Postgres.DropRole
   nameWithType: Postgres.DropRole
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  name: DropRoleMembership(String)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropRoleMembership_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership(System.String)
+  nameWithType: Postgres.DropRoleMembership(String)
+- uid: AutoCheck.Core.Connectors.Postgres.DropRoleMembership*
+  name: DropRoleMembership
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropRoleMembership_
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Postgres.DropRoleMembership
+  nameWithType: Postgres.DropRoleMembership
 - uid: AutoCheck.Core.Connectors.Postgres.DropUser(System.String)
   name: DropUser(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUser_System_String_
@@ -2079,6 +2092,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Postgres.DropUser
   nameWithType: Postgres.DropUser
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  name: DropUserMembership(String)
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUserMembership_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership(System.String)
+  nameWithType: Postgres.DropUserMembership(String)
+- uid: AutoCheck.Core.Connectors.Postgres.DropUserMembership*
+  name: DropUserMembership
+  href: api/AutoCheck.Core.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_DropUserMembership_
+  commentId: Overload:AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Postgres.DropUserMembership
+  nameWithType: Postgres.DropUserMembership
 - uid: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery(System.String)
   name: ExecuteNonQuery(String)
   href: api/AutoCheck.Connectors.Postgres.html#AutoCheck_Core_Connectors_Postgres_ExecuteNonQuery_System_String_
@@ -4929,6 +4955,58 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.CurrentFolderPath
   nameWithType: Script.CurrentFolderPath
+- uid: AutoCheck.Core.Script.CurrentHost
+  name: CurrentHost
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentHost
+  commentId: P:AutoCheck.Core.Script.CurrentHost
+  fullName: AutoCheck.Core.Script.CurrentHost
+  nameWithType: Script.CurrentHost
+- uid: AutoCheck.Core.Script.CurrentHost*
+  name: CurrentHost
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentHost_
+  commentId: Overload:AutoCheck.Core.Script.CurrentHost
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentHost
+  nameWithType: Script.CurrentHost
+- uid: AutoCheck.Core.Script.CurrentOS
+  name: CurrentOS
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentOS
+  commentId: P:AutoCheck.Core.Script.CurrentOS
+  fullName: AutoCheck.Core.Script.CurrentOS
+  nameWithType: Script.CurrentOS
+- uid: AutoCheck.Core.Script.CurrentOS*
+  name: CurrentOS
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentOS_
+  commentId: Overload:AutoCheck.Core.Script.CurrentOS
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentOS
+  nameWithType: Script.CurrentOS
+- uid: AutoCheck.Core.Script.CurrentPassword
+  name: CurrentPassword
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentPassword
+  commentId: P:AutoCheck.Core.Script.CurrentPassword
+  fullName: AutoCheck.Core.Script.CurrentPassword
+  nameWithType: Script.CurrentPassword
+- uid: AutoCheck.Core.Script.CurrentPassword*
+  name: CurrentPassword
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentPassword_
+  commentId: Overload:AutoCheck.Core.Script.CurrentPassword
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentPassword
+  nameWithType: Script.CurrentPassword
+- uid: AutoCheck.Core.Script.CurrentPort
+  name: CurrentPort
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentPort
+  commentId: P:AutoCheck.Core.Script.CurrentPort
+  fullName: AutoCheck.Core.Script.CurrentPort
+  nameWithType: Script.CurrentPort
+- uid: AutoCheck.Core.Script.CurrentPort*
+  name: CurrentPort
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentPort_
+  commentId: Overload:AutoCheck.Core.Script.CurrentPort
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentPort
+  nameWithType: Script.CurrentPort
 - uid: AutoCheck.Core.Script.CurrentQuestion
   name: CurrentQuestion
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentQuestion
@@ -4968,6 +5046,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.CurrentTarget
   nameWithType: Script.CurrentTarget
+- uid: AutoCheck.Core.Script.CurrentUser
+  name: CurrentUser
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentUser
+  commentId: P:AutoCheck.Core.Script.CurrentUser
+  fullName: AutoCheck.Core.Script.CurrentUser
+  nameWithType: Script.CurrentUser
+- uid: AutoCheck.Core.Script.CurrentUser*
+  name: CurrentUser
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentUser_
+  commentId: Overload:AutoCheck.Core.Script.CurrentUser
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentUser
+  nameWithType: Script.CurrentUser
 - uid: AutoCheck.Core.Script.ExecutionFolderName
   name: ExecutionFolderName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ExecutionFolderName
@@ -5098,123 +5189,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.Output
   nameWithType: Script.Output
-- uid: AutoCheck.Core.Script.RemoteFileName
-  name: RemoteFileName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFileName
-  commentId: P:AutoCheck.Core.Script.RemoteFileName
-  fullName: AutoCheck.Core.Script.RemoteFileName
-  nameWithType: Script.RemoteFileName
-- uid: AutoCheck.Core.Script.RemoteFileName*
-  name: RemoteFileName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFileName_
-  commentId: Overload:AutoCheck.Core.Script.RemoteFileName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteFileName
-  nameWithType: Script.RemoteFileName
-- uid: AutoCheck.Core.Script.RemoteFilePath
-  name: RemoteFilePath
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFilePath
-  commentId: P:AutoCheck.Core.Script.RemoteFilePath
-  fullName: AutoCheck.Core.Script.RemoteFilePath
-  nameWithType: Script.RemoteFilePath
-- uid: AutoCheck.Core.Script.RemoteFilePath*
-  name: RemoteFilePath
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFilePath_
-  commentId: Overload:AutoCheck.Core.Script.RemoteFilePath
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteFilePath
-  nameWithType: Script.RemoteFilePath
-- uid: AutoCheck.Core.Script.RemoteFolderName
-  name: RemoteFolderName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderName
-  commentId: P:AutoCheck.Core.Script.RemoteFolderName
-  fullName: AutoCheck.Core.Script.RemoteFolderName
-  nameWithType: Script.RemoteFolderName
-- uid: AutoCheck.Core.Script.RemoteFolderName*
-  name: RemoteFolderName
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderName_
-  commentId: Overload:AutoCheck.Core.Script.RemoteFolderName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteFolderName
-  nameWithType: Script.RemoteFolderName
-- uid: AutoCheck.Core.Script.RemoteFolderPath
-  name: RemoteFolderPath
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderPath
-  commentId: P:AutoCheck.Core.Script.RemoteFolderPath
-  fullName: AutoCheck.Core.Script.RemoteFolderPath
-  nameWithType: Script.RemoteFolderPath
-- uid: AutoCheck.Core.Script.RemoteFolderPath*
-  name: RemoteFolderPath
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteFolderPath_
-  commentId: Overload:AutoCheck.Core.Script.RemoteFolderPath
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteFolderPath
-  nameWithType: Script.RemoteFolderPath
-- uid: AutoCheck.Core.Script.RemoteHost
-  name: RemoteHost
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteHost
-  commentId: P:AutoCheck.Core.Script.RemoteHost
-  fullName: AutoCheck.Core.Script.RemoteHost
-  nameWithType: Script.RemoteHost
-- uid: AutoCheck.Core.Script.RemoteHost*
-  name: RemoteHost
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteHost_
-  commentId: Overload:AutoCheck.Core.Script.RemoteHost
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteHost
-  nameWithType: Script.RemoteHost
-- uid: AutoCheck.Core.Script.RemoteOS
-  name: RemoteOS
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteOS
-  commentId: P:AutoCheck.Core.Script.RemoteOS
-  fullName: AutoCheck.Core.Script.RemoteOS
-  nameWithType: Script.RemoteOS
-- uid: AutoCheck.Core.Script.RemoteOS*
-  name: RemoteOS
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteOS_
-  commentId: Overload:AutoCheck.Core.Script.RemoteOS
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteOS
-  nameWithType: Script.RemoteOS
-- uid: AutoCheck.Core.Script.RemotePassword
-  name: RemotePassword
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePassword
-  commentId: P:AutoCheck.Core.Script.RemotePassword
-  fullName: AutoCheck.Core.Script.RemotePassword
-  nameWithType: Script.RemotePassword
-- uid: AutoCheck.Core.Script.RemotePassword*
-  name: RemotePassword
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePassword_
-  commentId: Overload:AutoCheck.Core.Script.RemotePassword
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemotePassword
-  nameWithType: Script.RemotePassword
-- uid: AutoCheck.Core.Script.RemotePort
-  name: RemotePort
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePort
-  commentId: P:AutoCheck.Core.Script.RemotePort
-  fullName: AutoCheck.Core.Script.RemotePort
-  nameWithType: Script.RemotePort
-- uid: AutoCheck.Core.Script.RemotePort*
-  name: RemotePort
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemotePort_
-  commentId: Overload:AutoCheck.Core.Script.RemotePort
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemotePort
-  nameWithType: Script.RemotePort
-- uid: AutoCheck.Core.Script.RemoteUser
-  name: RemoteUser
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteUser
-  commentId: P:AutoCheck.Core.Script.RemoteUser
-  fullName: AutoCheck.Core.Script.RemoteUser
-  nameWithType: Script.RemoteUser
-- uid: AutoCheck.Core.Script.RemoteUser*
-  name: RemoteUser
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_RemoteUser_
-  commentId: Overload:AutoCheck.Core.Script.RemoteUser
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.RemoteUser
-  nameWithType: Script.RemoteUser
 - uid: AutoCheck.Core.Script.Result
   name: Result
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_Result
@@ -5403,19 +5377,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.CurrentOS
   nameWithType: Utils.CurrentOS
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  name: DataBaseNameToStudentName(String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_System_String_
-  commentId: M:AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName(System.String)
-  nameWithType: Utils.DataBaseNameToStudentName(String)
-- uid: AutoCheck.Core.Utils.DataBaseNameToStudentName*
-  name: DataBaseNameToStudentName
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_DataBaseNameToStudentName_
-  commentId: Overload:AutoCheck.Core.Utils.DataBaseNameToStudentName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.DataBaseNameToStudentName
-  nameWithType: Utils.DataBaseNameToStudentName
 - uid: AutoCheck.Core.Utils.ExecutionFolder
   name: ExecutionFolder
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ExecutionFolder
@@ -5429,32 +5390,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ExecutionFolder
   nameWithType: Utils.ExecutionFolder
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  name: FolderNameToDataBase(String, String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_System_String_System_String_
-  commentId: M:AutoCheck.Core.Utils.FolderNameToDataBase(System.String,System.String)
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase(System.String, System.String)
-  nameWithType: Utils.FolderNameToDataBase(String, String)
-- uid: AutoCheck.Core.Utils.FolderNameToDataBase*
-  name: FolderNameToDataBase
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToDataBase_
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToDataBase
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.FolderNameToDataBase
-  nameWithType: Utils.FolderNameToDataBase
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  name: FolderNameToStudentName(String)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToStudentName_System_String_
-  commentId: M:AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName(System.String)
-  nameWithType: Utils.FolderNameToStudentName(String)
-- uid: AutoCheck.Core.Utils.FolderNameToStudentName*
-  name: FolderNameToStudentName
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_FolderNameToStudentName_
-  commentId: Overload:AutoCheck.Core.Utils.FolderNameToStudentName
-  isSpec: "True"
-  fullName: AutoCheck.Core.Utils.FolderNameToStudentName
-  nameWithType: Utils.FolderNameToStudentName
 - uid: AutoCheck.Core.Utils.OS
   name: Utils.OS
   href: api/AutoCheck.Core.Utils.OS.html

@@ -19,7 +19,7 @@
 inherits: "batch_base3.yaml"
 
 batch: 
-    - caption: "Running on batch mode for ~{$REMOTE_HOST}:"
+    - caption: "Running on batch mode for ~{$CURRENT_HOST}:"
     - remote: 
         - os: "GNU"
         - host: "localhost"
