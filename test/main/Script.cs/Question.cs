@@ -18,7 +18,6 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.IO;
 using NUnit.Framework;
 
 namespace AutoCheck.Test

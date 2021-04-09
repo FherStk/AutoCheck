@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConnectorInvalidException
     path: ../core/main/Exceptions.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.7.0
+      branch: v2.7.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

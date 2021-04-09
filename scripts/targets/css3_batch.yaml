@@ -28,7 +28,7 @@ batch:
         file: "index.css"
         threshold: !!float 0.7    
 
-    - pre:
+    - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
 
         - run:            

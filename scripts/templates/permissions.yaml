@@ -17,14 +17,14 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "ASIX - M02 (UF3): Permissions Assignment"
-version: "1.1.0.1"
+version: "1.2.0.0"
 
 #TODO: permission reset should be performed ONLY when running on batch mode and ONLY when importing an SQL dump... When using directly over an existing BBDD, it should be just READ ONLY.
 
 body:
   - connector:            
       type: "Postgres"        
-      arguments: "--host {$REMOTE_HOST} --database {$DATABASE} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
+      arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
   
   - question: 
       description: "This questions does not score"
@@ -171,46 +171,53 @@ body:
 
   - question: 
       description: "Privileges for dbadmin"
-      score: 3
-      content:        
-        - run:  
-            caption: "Checking dbadmin membership..."
-            connector: "Postgres"
-            command:  "GetMembership"      
-            arguments: "--item dbadmin"
-            expected: "[prodadmin,rrhhadmin]"
+      content:  
+        - question:       
+            description: "Role membership"
+            score: 1
+            content:  
+                - run:  
+                    caption: "Checking dbadmin membership..."
+                    connector: "Postgres"
+                    command:  "GetMembership"      
+                    arguments: "--item dbadmin"
+                    expected: "[prodadmin,rrhhadmin]"
+        
+        - question:       
+            description: "Role privileges"
+            score: 2
+            content:  
+                - run:
+                    caption: "Checking 'dbadmin' privileges for the table 'empleats'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema rrhh --table empleats --role dbadmin"
+                    expected: "dD"
 
-        - run:
-            caption: "Checking 'dbadmin' privileges for the table 'empleats'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema rrhh --table empleats --role dbadmin"
-            expected: "dD"
+                - run:
+                    caption: "Checking 'dbadmin' privileges for the table 'departaments'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema rrhh --table departaments --role dbadmin"
+                    expected: "dD"
 
-        - run:
-            caption: "Checking 'dbadmin' privileges for the table 'departaments'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema rrhh --table departaments --role dbadmin"
-            expected: "dD"
+                - run:
+                    caption: "Checking 'dbadmin' privileges for the table 'fabriques'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table fabriques --role dbadmin"
+                    expected: "dD"
 
-        - run:
-            caption: "Checking 'dbadmin' privileges for the table 'fabriques'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table fabriques --role dbadmin"
-            expected: "dD"
+                - run:
+                    caption: "Checking 'dbadmin' privileges for the table 'productes'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table productes --role dbadmin"
+                    expected: "dD"
 
-        - run:
-            caption: "Checking 'dbadmin' privileges for the table 'productes'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table productes --role dbadmin"
-            expected: "dD"
-
-        - run:
-            caption: "Checking 'dbadmin' privileges for the table 'fabricacio'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table fabricacio --role dbadmin"
-            expected: "dD" 
+                - run:
+                    caption: "Checking 'dbadmin' privileges for the table 'fabricacio'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table fabricacio --role dbadmin"
+                    expected: "dD" 

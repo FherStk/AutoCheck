@@ -185,49 +185,7 @@ namespace AutoCheck.Core{
         /// <returns>A file's path.</returns>
         public static string ConfigFile(string file){
             return Path.Combine(ConfigFolder, file);
-        }         
-        
-        /// <summary>
-        /// Given a folder name, returns a database name using the student's name, but only if it follows the naming convention 'prefix_STUDENT'.
-        /// </summary>
-        /// <param name="folder">The folder name name, it must follows the naming convention 'prefix_STUDENT'.</param>
-        /// <param name="prefix">The database name prefix.</param>
-        /// <returns>A database name like 'prefix_STUDENT'</returns>
-        public static string FolderNameToDataBase(string folder, string prefix = "database"){
-            return ($"{prefix}_{FolderNameToStudentName(folder).Replace(" ", "_")}").RemoveDiacritics();
-        }
-        
-        /// <summary>
-        /// Extracts the student's name from de database's name, but only if it follows the naming convention 'prefix_STUDENT'.
-        /// </summary>
-        /// <param name="database">The database name, it must follows the naming convention 'prefix_STUDENT'.</param>
-        /// <returns>The student's name.</returns>
-        public static string DataBaseNameToStudentName(string database){
-            if(!database.Contains("_")) throw new Exception("The current database name does not follows the naming convetion 'prefix_STUDENT'.");
-            return database.Substring(database.IndexOf("_") + 1).Replace("_", " ");
-        } 
-        
-        /// <summary>
-        /// Given a folder name, returns the student's name, but only if it follows the naming convention 'prefix_STUDENT'.
-        /// </summary>
-        /// <param name="folder">The folder name name, it must follows the naming convention 'prefix_STUDENT'.</param>
-        /// <returns>The student's name.</returns>
-        public static string FolderNameToStudentName(string folder){  
-            string studentFolder = string.Empty;
-            switch (ToolBox.Platform.OS.GetCurrent())
-            {
-                case "win":
-                    studentFolder = Path.GetFileName(folder);
-                    break;
-                case "mac":
-                case "gnu":
-                    studentFolder = Path.GetDirectoryName(folder);
-                    break;
-            }
-
-            if(!studentFolder.Contains("_")) throw new Exception("The current folder name does not follows the naming convetion 'prefix_STUDENT'.");
-            else return studentFolder.Substring(0, studentFolder.IndexOf("_"));                                
-        }                    
+        }                                      
 #endregion
     }
 }

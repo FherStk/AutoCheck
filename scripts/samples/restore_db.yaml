@@ -23,7 +23,7 @@ batch:
     - local:                             
         - path: "some_folder"
 
-    - pre:
+    - setup:
         - echo: "Restoring databases from: ~{$CURRENT_FOLDER_NAME}"
 
         - run:            
@@ -33,7 +33,7 @@ batch:
                 
         - connector:  
             type: "Postgres"                    
-            arguments: "--host {$REMOTE_HOST} --database {$CURRENT_FOLDER_NAME} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
+            arguments: "--host {$CURRENT_HOST} --database {$CURRENT_FOLDER_NAME} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
         
         - run:   
             caption: "   Restoring the database using the file ~{#([^\\\\]*)$$SQL_FILE}... "

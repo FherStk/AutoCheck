@@ -20,7 +20,6 @@
 
 using System;
 using System.IO;
-using System.Net;
 using System.Linq;
 using System.Reflection;
 using System.Globalization;
@@ -364,105 +363,69 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// Only for remote batch mode: the remote OS family for the current remote batch execution.
+        /// The current OS family.
         /// </summary>
-        protected OS RemoteOS {
+        protected OS CurrentOS {
             get{
-                return (OS)GetVar("remote_os", AutoComputeVarValues);
+                return (OS)GetVar("current_os", AutoComputeVarValues);
             }
 
             private set{
-                UpdateVar("remote_os", value);               
+                UpdateVar("current_os", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the host name or IP address for the current remote batch execution.
+        /// The host name or IP address for the current execution.
         /// </summary>
-        protected string RemoteHost {
+        protected string CurrentHost {
             get{
-                return GetVar("remote_host", AutoComputeVarValues).ToString();
+                return GetVar("current_host", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_host", value);               
+                UpdateVar("current_host", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the username for the current remote batch execution.
+        /// The username for the current execution.
         /// </summary>
-        protected string RemoteUser {
+        protected string CurrentUser {
             get{
-                return GetVar("remote_user", AutoComputeVarValues).ToString();
+                return GetVar("current_user", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_user", value);               
+                UpdateVar("current_user", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the password for the current remote batch execution.
+        /// The password for the current execution.
         /// </summary>
-        protected string RemotePassword {
+        protected string CurrentPassword {
             get{
-                return GetVar("remote_password", AutoComputeVarValues).ToString();
+                return GetVar("current_password", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_password", value);               
+                UpdateVar("current_password", value);               
             }
         } 
 
         /// <summary>
-        /// Only for remote batch mode: the ssh port for the current remote batch execution.
+        /// The port for the current execution.
         /// </summary>
-        protected int RemotePort {
+        protected int CurrentPort {
             get{
-                return (int)GetVar("remote_port", AutoComputeVarValues);
+                return (int)GetVar("current_port", AutoComputeVarValues);
             }
 
             private set{
-                UpdateVar("remote_port", value);               
+                UpdateVar("current_port", value);               
             }
-        }
-
-        /// <summary>
-        /// An alias for CurrentFolderName
-        /// </summary>
-        protected string RemoteFolderName {
-            get{
-                return GetVar("current_folder_name", AutoComputeVarValues).ToString();
-            }
-        } 
-
-        /// <summary>
-        /// An alias for CurrentFolderPath
-        /// </summary>
-        protected string RemoteFolderPath {
-            get{
-                return GetVar("current_folder_path", AutoComputeVarValues).ToString();
-            }
-        }  
-
-        /// <summary>
-        /// An alias for CurrentFileName
-        /// </summary>
-        protected string RemoteFileName {
-            get{
-                return GetVar("current_file_name", AutoComputeVarValues).ToString();
-            }
-        } 
-
-        /// <summary>
-        /// An alias for CurrentFilePath
-        /// </summary>
-        protected string RemoteFilePath {
-            get{
-                return GetVar("current_file_path", AutoComputeVarValues).ToString();
-            }
-        }    
+        }         
 
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
@@ -615,13 +578,9 @@ namespace AutoCheck.Core{
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
 
-            //Setup remote batch mode vars
+            //Setup local/remote batch mode vars
             CurrentTarget = "none";
-            RemoteOS = OS.GNU;
-            RemoteHost = string.Empty;
-            RemoteUser = string.Empty;
-            RemotePassword = string.Empty;
-            RemotePort = 22;
+            SetupDefaultHostVars();
 
             //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
@@ -743,21 +702,33 @@ namespace AutoCheck.Core{
             }));                     
         }  
         
-        private void ParsePre(YamlNode node, string current="pre", string parent="root", string[] children = null, string[] mandatory = null){
+        private void ParseSetup(YamlNode node, string current="setup", string parent="root", string[] children = null, string[] mandatory = null){
             children ??= new string[]{"vars", "connector", "run", "echo"};
 
             //The same as ParseBody but with no questions                        
             ParseBody(node, current, parent, children, mandatory);
         }    
         
-        private void ParsePost(YamlNode node, string current="post", string parent="root", string[] children = null, string[] mandatory = null){
+        private void ParseTeardown(YamlNode node, string current="teardown", string parent="root", string[] children = null, string[] mandatory = null){
+            //The same as ParseSetup
+            ParseSetup(node, current, parent, children, mandatory);
+        }
+
+        private void ParsePre(YamlNode node, string current="pre", string parent="batch", string[] children = null, string[] mandatory = null){
+            children ??= new string[]{"vars", "connector", "run", "echo"};
+
+            //The same as ParseBody but with no questions                        
+            ParseBody(node, current, parent, children, mandatory);
+        }
+
+        private void ParsePost(YamlNode node, string current="post", string parent="batch", string[] children = null, string[] mandatory = null){
             //The same as ParsePre
             ParsePre(node, current, parent, children, mandatory);
         }
         
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){  
             //TODO: remove the node type check and also the parse (var single) and test
-            children ??= new string[]{"caption", "local", "remote"};
+            children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
             else{                                    
                 //Parsing caption (scalar)
@@ -778,7 +749,8 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local = ParseLocal(node, name, current);
+                            local = ParseLocal(node, name, current, new string[]{"folder", "vars"});
+                            if(local.Folders.Length > 1) throw new DocumentInvalidException("Only one folder is allowed when running on single mode.");
                             break;
 
                         case "remote":                        
@@ -786,6 +758,20 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
+
+                //Parsing pre content, it must run for each target before the body and the copy detector execution
+                ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {  
+                    if(Abort) return;                                              
+                    switch(name){                       
+                        case "setup":                            
+                            ParseSetup(node, name, current);
+                            Output.BreakLine();                                
+                            break;
+                    }                    
+                }));                            
+                
+                //Execution abort could be requested from any "setup"
+                if(Abort) return;
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
@@ -808,16 +794,27 @@ namespace AutoCheck.Core{
                         script.Invoke();
                     });
                 }
+
+                //Parsing post content, it must run for each target after all the bodies and the copy detector execution
+                ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {  
+                    if(Abort) return;                      
+                    switch(name){                       
+                        case "teardown":                            
+                            ParseTeardown(node, name, current);
+                            Output.BreakLine();
+                            break;
+                    }                    
+                })); 
             }
         }
 
         private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
-            children ??= new string[]{"caption", "pre", "post", "copy_detector", "local", "remote"};     
+            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote"};     
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke(); 
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
-                var originalIP = RemoteHost;                                          
+                var originalIP = CurrentHost;                                          
                                 
                 //Collecting all the folders and IPs      
                 ValidateChildren(node, current, children, mandatory);
@@ -848,30 +845,35 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Parsing pre content, it must run for each target before the body and the copy detector execution
+                //Parsing setup content, it must run for each target before the body and the copy detector execution
                 Output.Indent();      
-                ForEachLocalTarget(local.ToArray(), (folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                ForEachLocalTarget(local.ToArray(), (folder) => {                    
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                        if(Abort) return;
                         switch(name){                       
-                            case "pre":                            
-                                ParsePre(node, name, current);
-                                Output.BreakLine();
+                            case "setup":                            
+                                ParseSetup(node, name, current);
+                                Output.BreakLine();                                
                                 break;
                         }                    
                     })); 
                 }); 
 
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {
+                        if(Abort) return;   
                         switch(name){                       
-                            case "pre":                            
-                                ParsePre(node, name, current);
+                            case "setup":                            
+                                ParseSetup(node, name, current);
                                 Output.BreakLine();
                                 break;
                         }                    
                     })); 
                 }); 
-
+                
+                //Execution abort could be requested from any "setup"
+                if(Abort) return;
+                                    
                 //Note: the copy detector cannot be parsed till the local and remote has been loaded and, also, all pre has been executed.
                 var cpydet = new List<CopyDetector>();
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {                                         
@@ -891,7 +893,17 @@ namespace AutoCheck.Core{
                     
                     //Running copy detectors and script body
                     new Action(() => {
-                        Output.Indent();
+                        //Pre content
+                        Output.Indent();      
+                        ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                            if(Abort) return;
+                            switch(name){                       
+                                case "pre":                            
+                                    ParsePre(node, name, current);
+                                    Output.BreakLine();                                
+                                    break;
+                            }                    
+                        }));                                        
                         
                         var match = false;
                         try{                        
@@ -902,11 +914,25 @@ namespace AutoCheck.Core{
                                 }
                             }                        
 
-                            if(!match) action.Invoke();                            
+                            if(!match){
+                                action.Invoke();  
+                                Output.BreakLine();
+                            } 
                         }
                         catch(Exception ex){
                             Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
                         }
+
+                        //Post content
+                        ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                            if(Abort) return;
+                            switch(name){                       
+                                case "post":                            
+                                    ParsePost(node, name, current);
+                                    Output.BreakLine();
+                                    break;
+                            }                    
+                        }));                    
 
                         Output.UnIndent();
                         Output.BreakLine();
@@ -927,21 +953,24 @@ namespace AutoCheck.Core{
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     //ForEachLocalTarget method setups the global vars                    
                     script.Invoke(folder);
+                    Output.BreakLine();
                 });                                  
 
                 //Executing body for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars
                     script.Invoke(folder);
+                    Output.BreakLine();
                 }); 
 
-                //Parsing post content, it must run for each target after all the bodies and the copy detector execution
+                //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();
                 ForEachLocalTarget(local.ToArray(), (folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {    
+                        if(Abort) return;                    
                         switch(name){                       
-                            case "post":                            
-                                ParsePost(node, name, current);
+                            case "teardown":                            
+                                ParseTeardown(node, name, current);
                                 Output.BreakLine();
                                 break;
                         }                    
@@ -949,10 +978,11 @@ namespace AutoCheck.Core{
                 }); 
 
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {    
+                        if(Abort) return;                    
                         switch(name){                       
-                            case "post":                            
-                                ParsePost(node, name, current);
+                            case "teardown":                            
+                                ParseTeardown(node, name, current);
                                 Output.BreakLine();
                                 break;
                         }                    
@@ -967,6 +997,9 @@ namespace AutoCheck.Core{
             
             var folders = new List<string>();  
             Dictionary<string, object> vars = new Dictionary<string, object>();
+
+            //Setting up default localhost data, can be overriden using the "vars" property within a yaml script.
+            SetupDefaultHostVars();
 
             var parse = new Action<string, YamlNode>((string name, YamlNode node) => {
                 //Prepare the local folder/path parsing mechanism for mapping/sequence definition (within single/batch)
@@ -1028,23 +1061,23 @@ namespace AutoCheck.Core{
             ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
                     case "os":                            
-                        os = ParseNode(node, RemoteOS);
+                        os = ParseNode(node, CurrentOS);
                         break;
 
                     case "host":                            
-                        host = ParseNode(node, RemoteHost);
+                        host = ParseNode(node, CurrentHost);
                         break;
 
                     case "user":                            
-                        user = ParseNode(node, RemoteHost);
+                        user = ParseNode(node, CurrentHost);
                         break;
 
                     case "password":                            
-                        password = ParseNode(node, RemoteHost);
+                        password = ParseNode(node, CurrentHost);
                         break;
 
                     case "port":                            
-                        port = ParseNode(node, RemotePort);
+                        port = ParseNode(node, CurrentPort);
                         break;                                   
                 }
             }));
@@ -1623,10 +1656,18 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
+        private void SetupDefaultHostVars(){
+            CurrentOS = Utils.CurrentOS;
+            CurrentHost = "localhost";
+            CurrentPort = 22;
+            CurrentUser = string.Empty;
+            CurrentPassword = string.Empty;
+        }
+
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
             var caption = ParseChild(node, "caption", string.Empty);   
             var value = ParseChild(node, child, string.Empty);            
-            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument.");
+            if(IsQuestionOpen && string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument within a question.");
             if(string.IsNullOrEmpty(value)) value = @default;
 
             return value;
@@ -1661,17 +1702,17 @@ namespace AutoCheck.Core{
         }
 
         private void ForEachRemoteTarget(Remote[] remote, Action<OS, string, string, string, int, string> action){
-            var originalHost = RemoteHost;
-            var originalUser = RemoteUser;
-            var originalPort = RemotePort;
-            var originalPassword = RemotePassword;            
+            var originalHost = CurrentHost;
+            var originalUser = CurrentUser;
+            var originalPort = CurrentPort;
+            var originalPassword = CurrentPassword;            
             var originalFolder = CurrentFolderPath;            
 
             foreach(var r in remote){
-                RemoteHost = r.Host;
-                RemoteUser = r.User;
-                RemotePort = r.Port;
-                RemotePassword = r.Password;    
+                CurrentHost = r.Host;
+                CurrentUser = r.User;
+                CurrentPort = r.Port;
+                CurrentPassword = r.Password;    
 
                 //local target vars should be loaded
                 Vars.Push(r.Vars);            
@@ -1688,10 +1729,10 @@ namespace AutoCheck.Core{
             }    
 
             CurrentFolderPath = originalFolder;
-            RemotePassword = originalPassword;
-            RemoteUser = originalUser;
-            RemoteHost = originalHost;
-            RemotePort = originalPort;
+            CurrentPassword = originalPassword;
+            CurrentUser = originalUser;
+            CurrentHost = originalHost;
+            CurrentPort = originalPort;
         }
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
@@ -2100,10 +2141,12 @@ namespace AutoCheck.Core{
 #region Copy Detection        
         private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, Local[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
-            if(assembly == null) throw new ArgumentInvalidException("type");            
+            if(assembly == null) throw new ArgumentInvalidException("type");
 
             //Loading documents
+            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();                       
+            if(assemblyType == null) throw new ArgumentInvalidException("type");
+
             var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
 
             //Compute for each local folder

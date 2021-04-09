@@ -23,7 +23,7 @@ batch:
     - local:                             
         - path: "some_folder"
 
-    - pre:
+    - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
 
         - run:            
