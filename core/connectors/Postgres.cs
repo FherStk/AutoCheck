@@ -69,16 +69,7 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <value></value>    
         public string BinPath {get; private set;}    
-        
-        /// <summary>
-        /// The student name wich is the original database creator.
-        /// </summary>
-        /// <value></value>    
-        public string Student{
-            get{
-                return Core.Utils.DataBaseNameToStudentName(this.Database);
-            }
-        }          
+                      
 #endregion        
 #region "Constructor / Destructor"
         /// <summary>
@@ -93,6 +84,8 @@ namespace AutoCheck.Core.Connectors{
             if(string.IsNullOrEmpty(host)) throw new ArgumentNullException("host");
             if(string.IsNullOrEmpty(database)) throw new ArgumentNullException("database");
             if(string.IsNullOrEmpty(username)) throw new ArgumentNullException("username");
+            if(database.Contains(" ")) throw new ArgumentInvalidException($"Invalid database name '{database}', spaces are not allowed.");
+            //TODO: check for other forbidden chars when creating a bbdd
 
             this.Host = host;
             this.Database = database;
@@ -387,7 +380,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="role">The user name to remove.</param>
         public void DropUser(string user){
             if(string.IsNullOrEmpty(user)) throw new ArgumentNullException("role");            
-            ExecuteNonQuery($"DROP USER {user}");
+            ExecuteNonQuery($"DROP USER IF EXISTS {user}");
         }                
 
         /// <summary>
@@ -435,9 +428,15 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="role">The role name to remove.</param>
         public void DropRole(string role){
             if(string.IsNullOrEmpty(role)) throw new ArgumentNullException("role");
+            if(!ExistsRole(role)) return;
+
             ExecuteNonQuery($"REASSIGN OWNED BY {role} TO postgres;");
             ExecuteNonQuery($"DROP OWNED BY {role}");
-            ExecuteNonQuery($"DROP ROLE {role};");
+
+            foreach(var member in GetMembership(role))
+                ExecuteNonQuery($"REVOKE {member} FROM {role}");
+
+            ExecuteNonQuery($"DROP ROLE {role};");            
         }
 
         /// <summary>

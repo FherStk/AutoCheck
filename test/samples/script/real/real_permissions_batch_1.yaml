@@ -19,101 +19,122 @@
 inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\permissions.yaml"  
 
 vars:
-  student: "{#^[^_]+(?=_)$CURRENT_FOLDER_NAME}"
+    student: "{$CURRENT_FOLDER_NAME}"
 
 batch: 
-  - caption: "Running on batch mode for ~{$STUDENT}:"       
-  - local:                             
-      path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"            
-      vars:
-        current_host: "localhost"
-        current_user: "postgres"
-        current_password: "postgres"
-        database: "empresa-{#^[^_]+(?=_)$STUDENT}"
+    - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - local:                             
+        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"            
+        - vars:
+            current_host: "localhost"
+            current_user: "postgres"
+            current_password: "postgres"
+            database: "empresa-{$STUDENT}"
 
-  - copy_detector:            
-      type: "TXT"
-      file: "*.log"
-      threshold: !!float 0.65    
-   
-  - pre:
-      - echo: "Extracting files at: ~{$STUDENT}"
+    - copy_detector:            
+        type: "SqlLog"
+        file: "*.log"
+        threshold: !!float 0.65    
 
-      - run:            
-          command:  "GetFile"
-          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
-          store: "ZIP_FILE"    
-          
-      - connector:  
-          type: "Zip"                    
-          arguments: "--filePath {$ZIP_FILE}"
-      
-      - run:   
-          caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
-          connector: "Zip"
-          command: "Extract"
-          arguments: 
-              recursive: !!bool True
+    - pre:
+        - echo: "Extracting files at: ~{$STUDENT}"
 
-      - echo: "Restoring BBDD permissions."
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
+            store: "ZIP_FILE"                
+            
+        - connector:  
+            type: "Zip"                    
+            arguments: "--filePath {$ZIP_FILE}"
+        
+        - run:   
+            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            connector: "Zip"
+            command: "Extract"
+            onexception: "SUCCESS"
+            arguments: 
+                recursive: !!bool True
 
-      - run:            
-          command:  "GetFile"
-          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
-          store: "SQL_FILE"    
+        - echo: ""
+        - echo: "Restoring BBDD permissions."        
 
-      - connector:            
-          type: "Postgres"        
-          arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
+        - connector:            
+            type: "Postgres"        
+            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
+        
+        - run:
+            caption: "   Dropping role rrhhadmin... "
+            connector: "Postgres"
+            command:  "DropRole"
+            arguments: "--role rrhhadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "DropRole"
-          arguments: "--role rrhhAdmin"
+        - run: 
+            caption: "   Dropping role prodadmin... "           
+            connector: "Postgres"
+            command:  "DropRole"
+            arguments: "--role prodadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "DropRole"
-          arguments: "--role prodAdmin"
+        - run:   
+            caption: "   Dropping role dbadmin... "         
+            connector: "Postgres"
+            command:  "DropRole"
+            arguments: "--role dbadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "DropRole"
-          arguments: "--role dbAdmin"
+        - run:   
+            caption: "   Dropping user it... "         
+            connector: "Postgres"
+            command:  "DropUser"
+            arguments: "--user it"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "DropUser"
-          arguments: "--role it"
+        - run:   
+            caption: "   Dropping user it... "
+            connector: "Postgres"
+            command:  "CreateUser"
+            arguments: "--user it"
 
-      - run:            
-          connector: "Postgres"
-          command:  "CreateUser"
-          arguments: "--role it"
+        - run: 
+            caption: "   Dropping role rrhhadmin... "           
+            connector: "Postgres"
+            command:  "CreateRole"
+            arguments: "--role rrhhadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "CreateRole"
-          arguments: "--role rrhhAdmin"
+        - run:  
+            caption: "   Dropping role prodadmin... "          
+            connector: "Postgres"
+            command:  "CreateRole"
+            arguments: "--role prodadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "CreateRole"
-          arguments: "--role prodAdmin"
+        - run:  
+            caption: "   Dropping role dbadmin... "          
+            connector: "Postgres"
+            command:  "CreateRole"
+            arguments: "--role dbadmin"
+            onexception: "SUCCESS"
 
-      - run:            
-          connector: "Postgres"
-          command:  "CreateRole"
-          arguments: "--role dbAdmin"
+        - echo: ""
+        - echo: "Importing SQL dump."
 
-      - echo: "Importing SQL dump."
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
+            store: "SQL_FILE"                
+        
+        - connector:            
+            type: "Postgres"        
+            arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
 
-      - run:            
-          command:  "GetFile"
-          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
-          store: "SQL_FILE"    
-
-      - run:            
-          connector: "Postgres"
-          command:  "CreateDataBase"
-          arguments: "--dumpPath {$SQL_FILE} --replace True"
+        - run:
+            caption: "   Restoring database using the file: ~{#([^\\\\]*)$$SQL_FILE}... "          
+            connector: "Postgres"
+            command:  "CreateDataBase"
+            onexception: "ABORT"
+            arguments: 
+                dumpPath: "{$SQL_FILE}"
+                replace: True            

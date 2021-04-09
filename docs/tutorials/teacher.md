@@ -321,7 +321,7 @@ name | text | no | Name that will be used by a `run` node to execute a connector
 [arguments](#arguments) | text | no | As terminal app will do (--arg1 val1 --arg2 val2 ... --argN valN). | 
 success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
 error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
-onexception | text | no | Determines the behaviour on exception when creating a connector; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
+onexception | text | no | Determines the behaviour on exception when creating a connector; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
 
 #### <a name="run"></a> run
 Runs a command, it can be used wherever inside the body (usually inside a question's content).
@@ -335,8 +335,8 @@ command | text | yes | The command to run, the result will be stored as `$RESULT
 expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER_NAME}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
 success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
 error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
-onexception | text | no | Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
-onerror | text | no |  Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li>*CONTINUE*: continues with the script regular execution.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>Only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"CONTINUE"`
+onexception | text | no | Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
+onerror | text | no |  Determines the behaviour when a command execution ends with an error (including onexception=ERROR), which means that the output missmatched with the expected value; allowed values are: <ul><li>*CONTINUE*: continues with the script regular execution.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"CONTINUE"`
 store | text | no | The value of `$RESULT` will be stored into a new var within the current scope or an existing one if has already defined (for example: `MY_VAR`), storing into upper scopes is also allowed by adding the dollar `$` symbol before the varname (for example: `$MY_VAR`). | 
 
 #### <a name="question"></a> question
@@ -440,7 +440,7 @@ Recommended structure:
 </ul>
 
 ### <a name="single"></a> single
-Batch mode definition.
+Single mode definition.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
@@ -495,8 +495,8 @@ Local batch target, so each script body will be executed once per local target.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
-path | text | no (if no `folder` has been defined) | The script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
+path | text | yes (if no `folder` has been defined) | Only for batch mode exectution: the script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 [vars](#vars) | collection | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
 
 #### <a name="remote"></a>remote

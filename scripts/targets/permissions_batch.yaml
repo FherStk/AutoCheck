@@ -28,10 +28,10 @@ batch:
         current_host: "localhost"
         current_user: "postgres"
         current_password: "postgres"
-        database: "empresa-{#^[^_]+(?=_)$STUDENT}"
+        database: "empresa-{$STUDENT}"
 
   - copy_detector:            
-      type: "TXT"
+      type: "SqlLog"
       file: "*.log"
       threshold: !!float 0.65    
    

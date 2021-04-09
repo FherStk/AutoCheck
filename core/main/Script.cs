@@ -737,7 +737,7 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => { 
                     switch(name){                        
                         case "local":                        
-                            local = ParseLocal(node, name, current);
+                            local = ParseLocal(node, name, current, new string[]{"folder", "vars"});
                             break;
 
                         case "remote":                        
@@ -810,18 +810,18 @@ namespace AutoCheck.Core{
                 //Parsing pre content, it must run for each target before the body and the copy detector execution
                 Output.Indent();      
                 ForEachLocalTarget(local.ToArray(), (folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
                         switch(name){                       
                             case "pre":                            
                                 ParsePre(node, name, current);
-                                Output.BreakLine();
+                                Output.BreakLine();                                
                                 break;
                         }                    
                     })); 
                 }); 
 
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                     
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {   
                         switch(name){                       
                             case "pre":                            
                                 ParsePre(node, name, current);
@@ -830,7 +830,10 @@ namespace AutoCheck.Core{
                         }                    
                     })); 
                 }); 
-
+                
+                //Execution abort could be requested from any "pre"
+                if(Abort) return;
+                                    
                 //Note: the copy detector cannot be parsed till the local and remote has been loaded and, also, all pre has been executed.
                 var cpydet = new List<CopyDetector>();
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {                                         
@@ -1596,7 +1599,7 @@ namespace AutoCheck.Core{
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
             var caption = ParseChild(node, "caption", string.Empty);   
             var value = ParseChild(node, child, string.Empty);            
-            if(string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument.");
+            if(IsQuestionOpen && string.IsNullOrEmpty(caption) && !string.IsNullOrEmpty(value)) throw new DocumentInvalidException($"The '{child}' argument cannot be used without the 'caption' argument within a question.");
             if(string.IsNullOrEmpty(value)) value = @default;
 
             return value;
@@ -2070,10 +2073,12 @@ namespace AutoCheck.Core{
 #region Copy Detection        
         private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, Local[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
-            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();
-            if(assembly == null) throw new ArgumentInvalidException("type");            
+            if(assembly == null) throw new ArgumentInvalidException("type");
 
             //Loading documents
+            var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();                       
+            if(assemblyType == null) throw new ArgumentInvalidException("type");
+
             var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
 
             //Compute for each local folder

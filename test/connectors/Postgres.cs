@@ -81,12 +81,11 @@ namespace AutoCheck.Test.Connectors
                         "createrole_role1",
                         "createrole_role2",
                         "droprole_role1",
-                        "droprole_role2"
+                        "droprole_role2",
+                        "permissionmanagement_role1",
+                        "permissionmanagement_user1"
                     }){
-                    try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", user)); } catch{}
-                }
-
-                foreach(string user in new string[]{"permissionmanagement_role1", "permissionmanagement_user1"}){
+                    try{ conn.ExecuteNonQuery(string.Format("REASSIGN OWNED BY {0} TO postgres", user)); } catch{}
                     try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", user)); } catch{}
                     try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", user)); } catch{}
                 }
