@@ -294,10 +294,9 @@ namespace AutoCheck.Test.Connectors
 
         [Test]        
         [TestCase("dropuser_user2")]
-        public void DropUser_DoesNotThrow_DoesNotExists(string user){
+        public void DropUser_Throws_QueryInvalidException(string user){
             Assert.IsFalse(Connector.ExistsUser(user));
-            Assert.DoesNotThrow(() => Connector.DropUser(user));
-            Assert.IsFalse(Connector.ExistsUser(user));
+            Assert.Throws<QueryInvalidException>(() =>Connector.DropUser(user)); 
         }
         
         [Test]
@@ -337,7 +336,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("droprole_role1")]
-        public void DropExistingRole_DoesNotThrow_Exists(string role){    
+        public void DropExistingRole_DoesNotThrow(string role){    
             Assert.IsFalse(Connector.ExistsRole(role));
             Assert.DoesNotThrow(() =>Connector.CreateRole(role));
             Assert.IsTrue(Connector.ExistsRole(role));
@@ -347,10 +346,9 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("droprole_role2")]
-        public void DropExistingRole_DoesNotThrow_DoesNotExists(string role){    
+        public void DropNonExistingRole_DoesNotThrow(string role){    
             Assert.IsFalse(Connector.ExistsRole(role));
-            Assert.DoesNotThrow(() => Connector.DropRole(role));
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.Throws<QueryInvalidException>(() => Connector.DropRole(role));
         }
 
         [Test]
