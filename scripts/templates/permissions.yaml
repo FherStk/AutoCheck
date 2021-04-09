@@ -24,7 +24,7 @@ version: "1.1.0.1"
 body:
   - connector:            
       type: "Postgres"        
-      arguments: "--host {$REMOTE_HOST} --database {$DATABASE} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
+      arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
   
   - question: 
       description: "This questions does not score"

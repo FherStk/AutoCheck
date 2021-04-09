@@ -20,7 +20,6 @@
 
 using System;
 using System.IO;
-using System.Net;
 using System.Linq;
 using System.Reflection;
 using System.Globalization;
@@ -364,105 +363,69 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// Only for remote batch mode: the remote OS family for the current remote batch execution.
+        /// The current OS family.
         /// </summary>
-        protected OS RemoteOS {
+        protected OS CurrentOS {
             get{
-                return (OS)GetVar("remote_os", AutoComputeVarValues);
+                return (OS)GetVar("current_os", AutoComputeVarValues);
             }
 
             private set{
-                UpdateVar("remote_os", value);               
+                UpdateVar("current_os", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the host name or IP address for the current remote batch execution.
+        /// The host name or IP address for the current execution.
         /// </summary>
-        protected string RemoteHost {
+        protected string CurrentHost {
             get{
-                return GetVar("remote_host", AutoComputeVarValues).ToString();
+                return GetVar("current_host", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_host", value);               
+                UpdateVar("current_host", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the username for the current remote batch execution.
+        /// The username for the current execution.
         /// </summary>
-        protected string RemoteUser {
+        protected string CurrentUser {
             get{
-                return GetVar("remote_user", AutoComputeVarValues).ToString();
+                return GetVar("current_user", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_user", value);               
+                UpdateVar("current_user", value);               
             }
         }
 
         /// <summary>
-        /// Only for remote batch mode: the password for the current remote batch execution.
+        /// The password for the current execution.
         /// </summary>
-        protected string RemotePassword {
+        protected string CurrentPassword {
             get{
-                return GetVar("remote_password", AutoComputeVarValues).ToString();
+                return GetVar("current_password", AutoComputeVarValues).ToString();
             }
 
             private set{
-                UpdateVar("remote_password", value);               
+                UpdateVar("current_password", value);               
             }
         } 
 
         /// <summary>
-        /// Only for remote batch mode: the ssh port for the current remote batch execution.
+        /// The port for the current execution.
         /// </summary>
-        protected int RemotePort {
+        protected int CurrentPort {
             get{
-                return (int)GetVar("remote_port", AutoComputeVarValues);
+                return (int)GetVar("current_port", AutoComputeVarValues);
             }
 
             private set{
-                UpdateVar("remote_port", value);               
+                UpdateVar("current_port", value);               
             }
-        }
-
-        /// <summary>
-        /// An alias for CurrentFolderName
-        /// </summary>
-        protected string RemoteFolderName {
-            get{
-                return GetVar("current_folder_name", AutoComputeVarValues).ToString();
-            }
-        } 
-
-        /// <summary>
-        /// An alias for CurrentFolderPath
-        /// </summary>
-        protected string RemoteFolderPath {
-            get{
-                return GetVar("current_folder_path", AutoComputeVarValues).ToString();
-            }
-        }  
-
-        /// <summary>
-        /// An alias for CurrentFileName
-        /// </summary>
-        protected string RemoteFileName {
-            get{
-                return GetVar("current_file_name", AutoComputeVarValues).ToString();
-            }
-        } 
-
-        /// <summary>
-        /// An alias for CurrentFilePath
-        /// </summary>
-        protected string RemoteFilePath {
-            get{
-                return GetVar("current_file_path", AutoComputeVarValues).ToString();
-            }
-        }    
+        }         
 
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
@@ -615,13 +578,9 @@ namespace AutoCheck.Core{
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
 
-            //Setup remote batch mode vars
+            //Setup local/remote batch mode vars
             CurrentTarget = "none";
-            RemoteOS = OS.GNU;
-            RemoteHost = string.Empty;
-            RemoteUser = string.Empty;
-            RemotePassword = string.Empty;
-            RemotePort = 22;
+            SetupDefaultHostVars();
 
             //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
@@ -817,7 +776,7 @@ namespace AutoCheck.Core{
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
-                var originalIP = RemoteHost;                                          
+                var originalIP = CurrentHost;                                          
                                 
                 //Collecting all the folders and IPs      
                 ValidateChildren(node, current, children, mandatory);
@@ -968,6 +927,9 @@ namespace AutoCheck.Core{
             var folders = new List<string>();  
             Dictionary<string, object> vars = new Dictionary<string, object>();
 
+            //Setting up default localhost data, can be overriden using the "vars" property within a yaml script.
+            SetupDefaultHostVars();
+
             var parse = new Action<string, YamlNode>((string name, YamlNode node) => {
                 //Prepare the local folder/path parsing mechanism for mapping/sequence definition (within single/batch)
                 switch(name){                        
@@ -1028,23 +990,23 @@ namespace AutoCheck.Core{
             ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
                     case "os":                            
-                        os = ParseNode(node, RemoteOS);
+                        os = ParseNode(node, CurrentOS);
                         break;
 
                     case "host":                            
-                        host = ParseNode(node, RemoteHost);
+                        host = ParseNode(node, CurrentHost);
                         break;
 
                     case "user":                            
-                        user = ParseNode(node, RemoteHost);
+                        user = ParseNode(node, CurrentHost);
                         break;
 
                     case "password":                            
-                        password = ParseNode(node, RemoteHost);
+                        password = ParseNode(node, CurrentHost);
                         break;
 
                     case "port":                            
-                        port = ParseNode(node, RemotePort);
+                        port = ParseNode(node, CurrentPort);
                         break;                                   
                 }
             }));
@@ -1623,6 +1585,14 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
+        private void SetupDefaultHostVars(){
+            CurrentOS = Utils.CurrentOS;
+            CurrentHost = "localhost";
+            CurrentPort = 22;
+            CurrentUser = string.Empty;
+            CurrentPassword = string.Empty;
+        }
+
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
             var caption = ParseChild(node, "caption", string.Empty);   
             var value = ParseChild(node, child, string.Empty);            
@@ -1661,17 +1631,17 @@ namespace AutoCheck.Core{
         }
 
         private void ForEachRemoteTarget(Remote[] remote, Action<OS, string, string, string, int, string> action){
-            var originalHost = RemoteHost;
-            var originalUser = RemoteUser;
-            var originalPort = RemotePort;
-            var originalPassword = RemotePassword;            
+            var originalHost = CurrentHost;
+            var originalUser = CurrentUser;
+            var originalPort = CurrentPort;
+            var originalPassword = CurrentPassword;            
             var originalFolder = CurrentFolderPath;            
 
             foreach(var r in remote){
-                RemoteHost = r.Host;
-                RemoteUser = r.User;
-                RemotePort = r.Port;
-                RemotePassword = r.Password;    
+                CurrentHost = r.Host;
+                CurrentUser = r.User;
+                CurrentPort = r.Port;
+                CurrentPassword = r.Password;    
 
                 //local target vars should be loaded
                 Vars.Push(r.Vars);            
@@ -1688,10 +1658,10 @@ namespace AutoCheck.Core{
             }    
 
             CurrentFolderPath = originalFolder;
-            RemotePassword = originalPassword;
-            RemoteUser = originalUser;
-            RemoteHost = originalHost;
-            RemotePort = originalPort;
+            CurrentPassword = originalPassword;
+            CurrentUser = originalUser;
+            CurrentHost = originalHost;
+            CurrentPort = originalPort;
         }
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;

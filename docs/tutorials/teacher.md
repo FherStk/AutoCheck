@@ -250,23 +250,19 @@ CURRENT_SCORE | decimal | The current question (and subquestion) score.
 TOTAL_SCORE | decimal | The computed total score, it will be updated for each question close.
 MAX_SCORE | decimal | The maximum score available.
 
-##### Batch mode data (local and remote):
+##### Target data (local and remote):
 Name | Type | Description
 ------------ | -------------| -------------
-CURRENT_TARGET | text | Returns the kind of the current batch execution: `none`, `local` or `remote`.
+CURRENT_TARGET | text | Returns the kind of the current execution: `none`, `local` or `remote`.
 CURRENT_FOLDER_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FOLDER_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_NAME | text | The folder name where the script is targeting right now (local or remote); can change during the execution for batch-typed.
 CURRENT_FILE_PATH | text | The folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
-REMOTE_OS | [GNU; WIN; MAC] | Only for remote batch mode: the remote OS family for the current remote batch execution.
-REMOTE_HOST | text | Only for remote batch mode: the host name or IP address for the current remote batch execution.
-REMOTE_USER | text | Only for remote batch mode: the username for the current remote batch execution.
-REMOTE_PORT | number | Only for remote batch mode: the ssh port for the current remote batch execution.
-REMOTE_PASSWORD | text | Only for remote batch mode: the password for the current remote batch execution.
-REMOTE_FOLDER_NAME | text | An alias for CURRENT_FOLDER_NAME
-REMOTE_FOLDER_PATH | text | An alias for CURRENT_FOLDER_PATH
-REMOTE_FILE_NAME | text | An alias for CURRENT_FILE_NAME
-REMOTE_FILE_PATH | text | An alias for CURRENT_FILE_PATH
+CURRENT_OS | [GNU; WIN; MAC] | The current OS family.
+CURRENT_HOST | text | The host name or IP address for the current execution.
+CURRENT_PORT | number | The port for the current execution.
+CURRENT_USER | text | The username for the current execution.
+CURRENT_PASSWORD | text | The password for the current execution.
 
 #### Custom example vars:
 Vars can be combined within each other by injection, just call the var with `$` and surround it between brackets `{}` when definint a text var like in the following examples:
@@ -460,7 +456,7 @@ Name | Type | Mandatory | Description | Default
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target before the copy_detector and any target's body. |
 [post](#post) | sequence | no | The  defined content will be executed once per batch target after the copy_detector and all target's body. |
-[copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, not supported for `host` targets. | 
+[copy_detector](#copy_detector) | collection | no | Enables the copy detection logic, which will be executed before any body and after all pre executions. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
 [remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
 
