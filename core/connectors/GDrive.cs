@@ -374,7 +374,8 @@ namespace AutoCheck.Core.Connectors{
                 MimeType = mime
             };  
 
-            if(remoteFilePath != "\\"){
+            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            if(!string.IsNullOrEmpty(remoteFilePath)){                
                 var parent = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath), false); 
                 if(parent == null) parent = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
                 fileMetadata.Parents = new string[]{parent.Id};                    
@@ -476,9 +477,11 @@ namespace AutoCheck.Core.Connectors{
                 Name = remoteFileName
             };
             
-            if(remoteFilePath != "\\"){
+            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            if(!string.IsNullOrEmpty(remoteFilePath)){
                 var folder = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
-                fileMetadata.Parents = new string[]{folder.Id};
+                if(folder == null) folder = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
+                fileMetadata.Parents = new string[]{folder.Id};  
             }
 
             var copy = this.Drive.Files.Copy(fileMetadata, fileID);

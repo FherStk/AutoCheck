@@ -18,12 +18,15 @@
 
 inherits: "some_template.yaml"
 
+output:
+  pause: False
+  
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
         - path: "some_folder"
 
-    - setup:
+    - pre:
         - echo: "Extracting files:"
 
         - run:            
@@ -42,22 +45,23 @@ batch:
             arguments: 
                 recursive: !!bool True
                 
+        - echo: ""
         - echo: "Uploading files to Google Drive:"
 
         - run:   
-          caption: "   Looking for text files..."         
-          command:  "GetFile"
-          arguments: "--path {$CURRENT_FOLDER_PATH} --file *.txt"
-          store: "TXT_FILE"           
+            caption: "   Looking for text files..."         
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.txt"
+            store: "TXT_FILE"           
 
         - connector:  
             type: "GDrive"                    
             arguments: 
               accountFilePath: "{$APP_FOLDER_PATH}\\..\\core\\config\\gdrive_account.txt"
-              secretFilePath: "{$APP_FOLDER_PATH}\\..\\core\\config\\gdrive_secret.txt"               
+              secretFilePath: "{$APP_FOLDER_PATH}\\..\\core\\config\\gdrive_secret.json"               
 
         - run:   
-            caption: "   Uploading files from ~{$TXT_FILE}... "
+            caption: "   Uploading files from ~{#([^\\\\]*)$$TXT_FILE}... "
             connector: "GDrive"
             command: "CopyFromFile"
             arguments: 
