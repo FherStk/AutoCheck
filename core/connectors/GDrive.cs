@@ -20,9 +20,11 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Download;
@@ -39,6 +41,7 @@ namespace AutoCheck.Core.Connectors{
     /// </summary>
     public class GDrive: Base{      
 #region Properties
+        private const string _LINK_REGEX = "(http|ftp|https)://([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?"; //Regex source: https://stackoverflow.com/a/6041965
         public DriveService Drive {get; private set;}
         private Shell Remote { get; set; }
 #endregion
@@ -371,7 +374,8 @@ namespace AutoCheck.Core.Connectors{
                 MimeType = mime
             };  
 
-            if(remoteFilePath != "\\"){
+            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            if(!string.IsNullOrEmpty(remoteFilePath)){                
                 var parent = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath), false); 
                 if(parent == null) parent = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
                 fileMetadata.Parents = new string[]{parent.Id};                    
@@ -473,9 +477,11 @@ namespace AutoCheck.Core.Connectors{
                 Name = remoteFileName
             };
             
-            if(remoteFilePath != "\\"){
+            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            if(!string.IsNullOrEmpty(remoteFilePath)){
                 var folder = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
-                fileMetadata.Parents = new string[]{folder.Id};
+                if(folder == null) folder = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
+                fileMetadata.Parents = new string[]{folder.Id};  
             }
 
             var copy = this.Drive.Files.Copy(fileMetadata, fileID);
@@ -484,6 +490,45 @@ namespace AutoCheck.Core.Connectors{
             });
 
             //TODO: download and reupload if copy fails
+        }
+
+        /// <summary>
+        /// Uses a local text file in order to extract any link within it, then uses those links to copy any external found Google Drive file into the main account.
+        /// </summary>
+        /// <param name="localFile">The local text file.</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
+        public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null){
+            if(string.IsNullOrEmpty(localFile)) throw new ArgumentNullException("localFile");   
+            if(!File.Exists(localFile)) throw new ArgumentInvalidException($"Unable to find the file '{localFile}'");
+
+            var content = File.ReadAllText(localFile);
+            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){
+                var uri = new Uri(match.Value);
+                
+                try{
+                    CopyFile(uri, remoteFilePath, remoteFileName);
+                }
+                catch{
+                    //download and reupload      
+                    string local = string.Empty;
+
+                    if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);
+                    else{
+                        using (var client = new WebClient())
+                        {                                    
+                            local = Utils.TempFolder;
+                            if(!Directory.Exists(local)) Directory.CreateDirectory(local);
+
+                            local = Path.Combine(local, uri.Segments.Last());
+                            client.DownloadFile(uri, local);
+                        }
+                    }
+                    
+                    CreateFile(local, remoteFilePath, remoteFileName);
+                    File.Delete(local);
+                }                                                   
+            }           
         }
 
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
@@ -562,6 +607,26 @@ namespace AutoCheck.Core.Connectors{
             });
 
             return filePath;
+        }
+
+        /// <summary>
+        /// Uses a local text file in order to extract any link within it, then uses those links to download any external found Google Drive file.
+        /// </summary>
+        /// <param name="localFile">The local text file.</param>
+        /// <returns>The downloaded file path<returns>
+        /// <remarks>The file must be shared with the downloader's account.</remarks>
+        public string[] DownloadFromFile(string localFile, string savePath){
+            if(string.IsNullOrEmpty(localFile)) throw new ArgumentNullException("localFile");   
+            if(!File.Exists(localFile)) throw new ArgumentInvalidException($"Unable to find the file '{localFile}'");
+
+            var files = new List<string>();
+            var content = File.ReadAllText(localFile);
+                        
+            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){                
+                files.Add(Download(new Uri(match.Value), savePath));                                                                
+            }           
+
+            return files.ToArray();
         }
 
         /// <summary>
