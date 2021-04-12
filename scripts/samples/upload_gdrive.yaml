@@ -20,7 +20,7 @@ inherits: "some_template.yaml"
 
 output:
   pause: False
-  
+
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
@@ -42,6 +42,7 @@ batch:
             caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
             connector: "Zip"
             command: "Extract"
+            onexception: "SUCCESS"
             arguments: 
                 recursive: !!bool True
                 
