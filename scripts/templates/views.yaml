@@ -17,176 +17,185 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "ASIX - M02 (UF3): Views Assignment"
-version: "1.0.0.1"
-
-#TODO: try so simplify the postgres connector using raw queries within the scripts
+version: "1.1.0.0"
 
 body:
-  - connector:            
-      type: "Postgres"        
-      arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"  
+    - vars:
+        id_fabrica: 0
+        id_empleat: 0
+
+    - connector:            
+        type: "Postgres"        
+        arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"  
       
-  - question: 
-      description: "View creation"
-      content:
-
-        - question: 
-            content:        
-                - run:
-                    caption: "Checking view creation..."
-                    connector: "Postgres"
-                    command:  "ExistsTable"      
-                    arguments: "--schema gerencia --table responsables"
-                    expected: True 
-
-        - question: 
-            content:        
-                - run:
-                    caption: "Checking view definition..."
-                    connector: "Postgres"
-                    command:  "CompareSelectWithView"      
-                    arguments: 
-                        schema: "gerencia"
-                        table: "responsables"
-                        query: "SELECT  e.id AS id_responsable,
-                                    e.nom AS nom_responsable,
-                                    e.cognoms AS cognoms_responsable,
-                                    f.id AS id_fabrica,
-                                    f.nom AS nom_fabrica
-                                FROM rrhh.empleats e
-                                LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable;"
-                    expected: True
-
-#-------------- CONTINUE FROM HERE --------------
-  - question: 
-      description: "Insert rule"
-      content:        
-        - run:            
-            connector: "Postgres"
-            command:  "Insert"      
-            arguments: 
-                destination: "gerencia.responsables"
-                fields:
-                    nom_fabrica: "NEW FACTORY NAME 1" 
-                    nom_responsable: "NEW EMPLOYEE NAME 1"
-                    cognoms_responsable: "NEW EMPLOYEE SURNAME 1"
-
-        #TODO: New option to store a result directly into a new var
-        - run:            
-            connector: "Postgres"
-            command:  "ExecuteScalar"      
-            arguments: "--query SELECT MAX(id) FROM produccio.fabriques;"                
-
-        - vars:
-            id_fabrica: "{$RESULT}"
-
-        - run:            
-            connector: "Postgres"
-            command:  "ExecuteScalar"      
-            arguments: "--query SELECT MAX(id) FROM rrhh.empleats;"                
-
-        - vars:
-            id_fabrica: "{$RESULT}"
-
-        - question: 
-            content:        
-                - run:
-                    #TODO: This should be also a query to simplify the connector
-                    caption: "Checking content for gerencia.responsables..."
-                    connector: "Postgres"
-                    command:  "ContainsData"      
-                    arguments: 
-                        schema: "gerencia"
-                        table: "responsables"
-                        fields:
-                            id_responsable: "{$ID_FABRICA}" 
-                            nom_responsable: "NEW EMPLOYEE NAME 1"
-                            cognoms_responsable: "NEW EMPLOYEE SURNAME 1"
-                    expected: True
-
-                - run:
-                    caption: "Checking content for rrhh.empleats..."
-                    connector: "Postgres"
-                    command:  "ContainsData"      
-                    arguments: 
-                        schema: "rrhh"
-                        table: "empleats"
-                        fields:
-                            id: "{$ID_EMPLEAT}" 
-                            nom: "NEW EMPLOYEE NAME 1"
-                            cognoms: "NEW EMPLOYEE SURNAME 1"
-                            id_cap: !!int 1 
-                            id_departament: !!int 1
-                    expected: True
-
-        #  TODO: Continue form here but once simplified, whould be less work :)
+    - question:     
+        description: "View creation"
+        score: 2
+        content:        
+            - run:
+                caption: "Checking view creation..."
+                connector: "Postgres"
+                command:  "ExistsTable"      
+                arguments: "--schema gerencia --table responsables"
+                expected: True 
         
-        #  OpenQuestion("Question 3", "Update rule");
-        #         //Do not assume that INSERT on view is working, this question must be avaluated individually            
-        #         id_empleat = db.Connector.Insert<int>("rrhh.empleats", "id", new Dictionary<string, object>(){
-        #             {"id", "@(SELECT MAX(id)+1 FROM rrhh.empleats)"}, 
-        #             {"nom", "NEW EMPLOYEE NAME 2"}, 
-        #             {"cognoms", "NEW EMPLOYEE SURNAME 2"}, 
-        #             {"email", "NEW EMPLOYEE EMAIL 2"}, 
-        #             {"id_cap", 1}, 
-        #             {"id_departament", 1}
-        #         });
+            - run:
+                caption: "Checking view definition..."
+                connector: "Postgres"
+                command:  "CompareSelectWithView"      
+                arguments: 
+                    schema: "gerencia"
+                    table: "responsables"
+                    query: "SELECT e.id AS id_responsable,
+                                e.nom AS nom_responsable,
+                                e.cognoms AS cognoms_responsable,
+                                f.id AS id_fabrica,
+                                f.nom AS nom_fabrica
+                            FROM rrhh.empleats e
+                            LEFT JOIN produccio.fabriques f ON e.id = f.id_responsable"
+                expected: True
 
-        #         id_fabrica = db.Connector.Insert<int>("produccio.fabriques", "id", new Dictionary<string, object>(){
-        #             {"id", "@(SELECT MAX(id)+1 FROM produccio.fabriques)"}, 
-        #             {"nom", "NEW FACTORY NAME 2"}, 
-        #             {"pais", "NEW FACTORY COUNTRY 2"}, 
-        #             {"direccio", "NEW FACTORY ADDRESS 2"}, 
-        #             {"telefon", "NEW FACT. PHONE 2"}, 
-        #             {"id_responsable", id_empleat}
-        #         });
+    - question: 
+        description: "Insert rule"
+        content:        
+            - run:       
+                caption: "Inserting new data into the view..."
+                connector: "Postgres"
+                command:  "ExecuteNonQuery"      
+                arguments: --query "INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('NEW FACTORY NAME 1', 'NEW EMPLOYEE NAME 1', 'NEW EMPLOYEE SURNAME 1')"
+        
+            - run:            
+                caption: "Looking for the last 'fabrica'..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: "--query SELECT MAX(id) FROM produccio.fabriques"
+                store: "$ID_FABRICA"   
 
-        #         OpenQuestion("Question 3.1", 1);
-        #             EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", "id_responsable", id_empleat, new Dictionary<string, object>(){
-        #                 {"id", id_fabrica}, 
-        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
-        #                 {"cognoms_responsable", "UPDATED EMPLOYEE SURNAME 2"}
-        #             }));
+            - run:            
+                caption: "Looking for the last 'empleat'..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: "--query SELECT MAX(id) FROM rrhh.empleats"  
+                store: "$ID_EMPLEAT"                 
+        
+            - question: 
+                description: "Insert rule (empleats)"
+                content:  
+                    - run:
+                        caption: "Checking content from gerencia.responsables..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='NEW EMPLOYEE NAME 1' AND cognoms_responsable='NEW EMPLOYEE SURNAME 1'"
+                        expected: 1
 
-        #             EvalQuestion(db.CheckIfTableContainsData("gerencia", "responsables", new Dictionary<string, object>(){
-        #                 {"id_responsable", id_empleat}, 
-        #                 {"nom_fabrica", "NEW FACTORY NAME 2"}, 
-        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
-        #                 {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}
-        #             }));
+                    - run:
+                        caption: "Checking content from rrhh.empleats..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom_responsable='NEW EMPLOYEE NAME 1' AND cognoms_responsable='NEW EMPLOYEE SURNAME 1' AND id_cap=1 AND id_departament=1"
+                        expected: 1
 
-        #             EvalQuestion(db.CheckIfTableContainsData("rrhh", "empleats", new Dictionary<string, object>(){
-        #                 {"id", id_empleat}, 
-        #                 {"nom", "UPDATED EMPLOYEE NAME 2"}, 
-        #                 {"cognoms", "UPDATED EMPLOYEE SURNAME 2"}, 
-        #                 {"email", "NEW EMPLOYEE EMAIL 2"}, 
-        #                 {"id_cap", 1}, 
-        #                 {"id_departament", 1}
-        #             }));
-        #         CloseQuestion();
+            - question: 
+                description: "Insert rule (fabriques)"
+                content:  
+                    - run:
+                        caption: "Checking content from gerencia.responsables..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='NEW FACTORY NAME 1'"
+                        expected: 1
 
-        #         OpenQuestion("Question 3.2", 1);
-        #             EvalQuestion(db.CheckIfTableUpdatesData("gerencia", "responsables", "id_fabrica", id_fabrica, new Dictionary<string, object>(){
-        #                 {"nom_fabrica", "UPDATED FACTORY NAME 2"}
-        #             }));
+                    - run:
+                        caption: "Checking content from rrhh.empleats..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom_fabrica='NEW FACTORY NAME 1' AND id_responsable={$ID_EMPLEAT}"
+                        expected: 1
+        
+    - question: 
+        description: "Update rule"
+        content:        
+            - run:       
+                #Do not assume that INSERT on view is working, so adding directly to the table is needed
+                caption: "Inserting new data into 'empleats'..."
+                connector: "Postgres"
+                command:  "ExecuteNonQuery"      
+                arguments: --query "INSERT INTO rrhh.empleats (id, nom, cognoms, id_cap, id_departament) VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), 'NEW EMPLOYEE NAME 1', 'NEW EMPLOYEE SURNAME 1', 1, 1)"            
+            
+            - run:            
+                caption: "Looking for the last 'empleat'..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: "--query SELECT MAX(id) FROM rrhh.empleats;"  
+                store: "$ID_EMPLEAT"   
 
-        #             EvalQuestion(db.CheckIfTableContainsData("gerencia", "responsables", new Dictionary<string, object>(){
-        #                 {"id_fabrica", id_fabrica}, 
-        #                 {"nom_fabrica", "UPDATED FACTORY NAME 2"}, 
-        #                 {"nom_responsable", "UPDATED EMPLOYEE NAME 2"}, 
-        #                 {"cognoms_responsable","UPDATED EMPLOYEE SURNAME 2"}
-        #             }));
+            - run:       
+                #Do not assume that INSERT on view is working, so adding directly to the table is needed
+                caption: "Inserting new data into 'fabriques'..."
+                connector: "Postgres"
+                command:  "ExecuteNonQuery"      
+                arguments: --query "INSERT INTO produccio.fabriques (id, nom, pais, direccio, telefon, id_responsable) VALUES ((SELECT MAX(id)+1 FROM produccio.fabriques), 'NEW FACTORY NAME 2', 'NEW FACTORY COUNTRY 2', 'NEW FACTORY ADDRESS 2', 'NEW FACT. PHONE 2', {$ID_EMPLEAT})"                          
 
-        #             EvalQuestion(db.CheckIfTableContainsData("produccio", "fabriques", new Dictionary<string, object>(){
-        #                 {"id", id_fabrica}, 
-        #                 {"nom", "UPDATED FACTORY NAME 2"}, 
-        #                 {"pais", "NEW FACTORY COUNTRY 2"}, 
-        #                 {"direccio", "NEW FACTORY ADDRESS 2"}, 
-        #                 {"telefon", "NEW FACT. PHONE 2"}, 
-        #                 {"id_responsable", id_empleat}
-        #             }));
-        #         CloseQuestion();
-        #     CloseQuestion();
+            - run:            
+                caption: "Looking for the last 'fabrica'..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: "--query SELECT MAX(id) FROM produccio.fabriques;"
+                store: "$ID_FABRICA"               
+
+            - question: 
+                description: "Update rule (empleats)"    
+                content:
+                    - run:       
+                        caption: "Updating data from the view..."
+                        connector: "Postgres"
+                        command:  "ExecuteNonQuery"      
+                        arguments: --query "UPDATE gerencia.responsables SET nom_responsable='UPDATED EMPLOYEE NAME 2', cognoms_responsable='UPDATED EMPLOYEE SURNAME 2' FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT}"                          
+                        
+                    - run:
+                        caption: "Checking content from gerencia.responsables..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='UPDATED EMPLOYEE NAME 2' AND cognoms_responsable='UPDATED EMPLOYEE SURNAME 2';"                  
+                        expected: 1
+
+                    - run:
+                        caption: "Checking content from rrhh.empleats..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom_responsable='UPDATED EMPLOYEE NAME 2' AND cognoms_responsable='UPDATED EMPLOYEE SURNAME 2' AND id_cap=1 AND id_departament=1;"                  
+                        expected: 1
+
+            - question: 
+                description: "Update rule (fabriques)"    
+                content:
+                    - run:       
+                        caption: "Updating data from the view..."
+                        connector: "Postgres"
+                        command:  "ExecuteNonQuery"      
+                        arguments: --query "UPDATE gerencia.responsables SET nom_fabrica='UPDATED FACTORY NAME 2' FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"                                                  
+
+                    - run:
+                        caption: "Checking content from gerencia.responsables..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='UPDATED FACTORY NAME 2'"
+                        expected: 1
+
+                    - run:
+                        caption: "Checking content from produccio.fabriques..."
+                        connector: "Postgres"
+                        command:  "ExecuteScalar"      
+                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom_fabrica='UPDATED FACTORY NAME 2' AND id_responsable={$ID_EMPLEAT}"
+                        expected: 1
+
+
+
+
+
+
+        #  TODO: Continue form here
+        
 
         #     OpenQuestion("Question 4", "Delete rule");
         #         //Do not assume that INSERT on view is working, this question must be avaluated individually            
