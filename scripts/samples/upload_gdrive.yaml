@@ -50,7 +50,7 @@ batch:
         - echo: "Uploading files to Google Drive:"
 
         - run:   
-            caption: "   Looking for text files..."         
+            caption: "   Looking for text files... "         
             command:  "GetFile"
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.txt"
             store: "TXT_FILE"           
