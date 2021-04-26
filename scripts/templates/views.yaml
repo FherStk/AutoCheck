@@ -26,7 +26,7 @@ body:
 
     - connector:            
         type: "Postgres"        
-        arguments: "--host {$CURRENT_HOST} --database {$CURRENT_DATABASE} --username postgres --password postgres"  
+        arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
       
     - question:     
         description: "View creation"
@@ -45,7 +45,7 @@ body:
                 command:  "CompareSelectWithView"      
                 arguments: 
                     schema: "gerencia"
-                    table: "responsables"
+                    view: "responsables"
                     query: "SELECT e.id AS id_responsable,
                                 e.nom AS nom_responsable,
                                 e.cognoms AS cognoms_responsable,
@@ -57,25 +57,32 @@ body:
 
     - question: 
         description: "Insert rule"
-        content:        
+        content:
+            - run:            
+                caption: "Loading demo data..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: --query "SELECT MAX(id)+1 FROM produccio.fabriques"
+                store: "NEXT_NUM"
+
             - run:       
-                caption: "Inserting new data into the view..."
+                caption: "Inserting demo data into gerencia.responsables..."
                 connector: "Postgres"
                 command:  "ExecuteNonQuery"      
-                arguments: --query "INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('NEW FACTORY NAME 1', 'NEW EMPLOYEE NAME 1', 'NEW EMPLOYEE SURNAME 1')"
+                arguments: --query "INSERT INTO gerencia.responsables (nom_fabrica, nom_responsable, cognoms_responsable) VALUES ('NEW FACTORY NAME {$NEXT_NUM}', 'NEW EMPLOYEE NAME {$NEXT_NUM}', 'NEW EMPLOYEE SURNAME {$NEXT_NUM}')"
         
             - run:            
                 caption: "Looking for the last 'fabrica'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM produccio.fabriques"
+                arguments: --query "SELECT MAX(id) FROM produccio.fabriques"
                 store: "$ID_FABRICA"   
 
             - run:            
                 caption: "Looking for the last 'empleat'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM rrhh.empleats"  
+                arguments: --query "SELECT MAX(id) FROM rrhh.empleats"  
                 store: "$ID_EMPLEAT"                 
         
             - question: 
@@ -85,14 +92,14 @@ body:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='NEW EMPLOYEE NAME 1' AND cognoms_responsable='NEW EMPLOYEE SURNAME 1'"
+                        arguments: --query "SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='NEW EMPLOYEE NAME {$NEXT_NUM}' AND cognoms_responsable='NEW EMPLOYEE SURNAME {$NEXT_NUM}'"
                         expected: 1
 
                     - run:
                         caption: "Checking content from rrhh.empleats..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom_responsable='NEW EMPLOYEE NAME 1' AND cognoms_responsable='NEW EMPLOYEE SURNAME 1' AND id_cap=1 AND id_departament=1"
+                        arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom='NEW EMPLOYEE NAME {$NEXT_NUM}' AND cognoms='NEW EMPLOYEE SURNAME {$NEXT_NUM}' AND id_cap=1 AND id_departament=1"
                         expected: 1
 
             - question: 
@@ -102,190 +109,205 @@ body:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='NEW FACTORY NAME 1'"
+                        arguments: --query "SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='NEW FACTORY NAME {$NEXT_NUM}'"
                         expected: 1
 
                     - run:
-                        caption: "Checking content from rrhh.empleats..."
+                        caption: "Checking content from produccio.fabrique..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom_fabrica='NEW FACTORY NAME 1' AND id_responsable={$ID_EMPLEAT}"
+                        arguments: --query "SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom='NEW FACTORY NAME {$NEXT_NUM}' AND id_responsable={$ID_EMPLEAT}"
                         expected: 1
         
     - question: 
         description: "Update rule"
-        content:        
+        content:      
+            - run:            
+                caption: "Loading demo data..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: --query "SELECT MAX(id)+1 FROM rrhh.empleats"
+                store: "NEXT_NUM"
+                
             - run:       
                 #Do not assume that INSERT on view is working, so adding directly to the table is needed
-                caption: "Inserting new data into 'empleats'..."
+                caption: "Inserting demo data into rrhh.empleats..."
                 connector: "Postgres"
                 command:  "ExecuteNonQuery"      
-                arguments: --query "INSERT INTO rrhh.empleats (id, nom, cognoms, id_cap, id_departament) VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), 'NEW EMPLOYEE NAME 1', 'NEW EMPLOYEE SURNAME 1', 1, 1)"            
+                arguments: --query "INSERT INTO rrhh.empleats (id, nom, cognoms, email, id_cap, id_departament) VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), 'NEW EMPLOYEE NAME {$NEXT_NUM}', 'NEW EMPLOYEE SURNAME {$NEXT_NUM}', 'fake@email.cat', 1, 1)"            
             
             - run:            
                 caption: "Looking for the last 'empleat'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM rrhh.empleats"  
+                arguments: --query "SELECT MAX(id) FROM rrhh.empleats"  
                 store: "$ID_EMPLEAT"   
 
             - run:       
                 #Do not assume that INSERT on view is working, so adding directly to the table is needed
-                caption: "Inserting new data into 'fabriques'..."
+                caption: "Inserting demo data into produccio.fabriques..."
                 connector: "Postgres"
                 command:  "ExecuteNonQuery"      
-                arguments: --query "INSERT INTO produccio.fabriques (id, nom, pais, direccio, telefon, id_responsable) VALUES ((SELECT MAX(id)+1 FROM produccio.fabriques), 'NEW FACTORY NAME 2', 'NEW FACTORY COUNTRY 2', 'NEW FACTORY ADDRESS 2', 'NEW FACT. PHONE 2', {$ID_EMPLEAT})"                          
+                arguments: --query "INSERT INTO produccio.fabriques (id, nom, pais, direccio, telefon, id_responsable) VALUES ((SELECT MAX(id)+1 FROM produccio.fabriques), 'NEW FACTORY NAME {$NEXT_NUM}', 'NEW FACTORY COUNTRY {$NEXT_NUM}', 'NEW FACTORY ADDRESS {$NEXT_NUM}', 'NEW FACT. PHONE {$NEXT_NUM}', {$ID_EMPLEAT})"                          
 
             - run:            
                 caption: "Looking for the last 'fabrica'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM produccio.fabriques"
+                arguments: --query "SELECT MAX(id) FROM produccio.fabriques"
                 store: "$ID_FABRICA"               
 
             - question: 
                 description: "Update rule (empleats)"    
                 content:
                     - run:       
-                        caption: "Updating data from the view..."
+                        caption: "Updating data from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteNonQuery"      
-                        arguments: --query "UPDATE gerencia.responsables SET nom_responsable='UPDATED EMPLOYEE NAME 2', cognoms_responsable='UPDATED EMPLOYEE SURNAME 2' FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT}"                          
+                        arguments: --query "UPDATE gerencia.responsables SET nom_responsable='UPDATED EMPLOYEE NAME {$NEXT_NUM}', cognoms_responsable='UPDATED EMPLOYEE SURNAME {$NEXT_NUM}' WHERE id_responsable={$ID_EMPLEAT}"
                         
                     - run:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='UPDATED EMPLOYEE NAME 2' AND cognoms_responsable='UPDATED EMPLOYEE SURNAME 2'"                  
+                        arguments: --query "SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT} AND nom_responsable='UPDATED EMPLOYEE NAME {$NEXT_NUM}' AND cognoms_responsable='UPDATED EMPLOYEE SURNAME {$NEXT_NUM}'"                  
                         expected: 1
 
                     - run:
                         caption: "Checking content from rrhh.empleats..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom_responsable='UPDATED EMPLOYEE NAME 2' AND cognoms_responsable='UPDATED EMPLOYEE SURNAME 2' AND id_cap=1 AND id_departament=1"                  
+                        arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT} AND nom='UPDATED EMPLOYEE NAME {$NEXT_NUM}' AND cognoms='UPDATED EMPLOYEE SURNAME {$NEXT_NUM}' AND id_cap=1 AND id_departament=1"                  
                         expected: 1
 
             - question: 
-                description: "Update rule (fabriques)"    
+                description: "Update rule (fabriques)"
                 content:
                     - run:       
-                        caption: "Updating data from the view..."
+                        caption: "Updating data from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteNonQuery"      
-                        arguments: --query "UPDATE gerencia.responsables SET nom_fabrica='UPDATED FACTORY NAME 2' FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"                                                  
+                        arguments: --query "UPDATE gerencia.responsables SET nom_fabrica='UPDATED FACTORY NAME {$NEXT_NUM}' WHERE id_fabrica={$ID_FABRICA}"                                                  
 
                     - run:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='UPDATED FACTORY NAME 2'"
+                        arguments: --query "SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA} AND nom_fabrica='UPDATED FACTORY NAME {$NEXT_NUM}'"
                         expected: 1
 
                     - run:
                         caption: "Checking content from produccio.fabriques..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom_fabrica='UPDATED FACTORY NAME 2' AND id_responsable={$ID_EMPLEAT}"
+                        arguments: --query "SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA} AND nom='UPDATED FACTORY NAME {$NEXT_NUM}' AND id_responsable={$ID_EMPLEAT}"
                         expected: 1
 
     - question: 
         description: "Delete rule"
-        content:        
+        content:      
+            - run:            
+                caption: "Loading demo data..."
+                connector: "Postgres"
+                command:  "ExecuteScalar"      
+                arguments: --query "SELECT MAX(id)+1 FROM rrhh.empleats"
+                store: "NEXT_NUM"
+
             - run:       
                 #Do not assume that INSERT on view is working, so adding directly to the table is needed
-                caption: "Inserting new data into 'empleats'..."
+                caption: "Inserting demo data into rrhh.empleats..."
                 connector: "Postgres"
                 command:  "ExecuteNonQuery"      
-                arguments: --query "INSERT INTO rrhh.empleats (id, nom, cognoms, id_cap, id_departament) VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), 'NEW EMPLOYEE NAME 1', 'NEW EMPLOYEE SURNAME 1', 1, 1)"            
+                arguments: --query "INSERT INTO rrhh.empleats (id, nom, cognoms, email, id_cap, id_departament) VALUES ((SELECT MAX(id)+1 FROM rrhh.empleats), 'NEW EMPLOYEE NAME {$NEXT_NUM}', 'NEW EMPLOYEE SURNAME {$NEXT_NUM}', 'fake@email.cat', 1, 1)"            
             
             - run:            
                 caption: "Looking for the last 'empleat'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM rrhh.empleats"  
+                arguments: --query "SELECT MAX(id) FROM rrhh.empleats"  
                 store: "$ID_EMPLEAT"   
 
             - run:       
                 #Do not assume that INSERT on view is working, so adding directly to the table is needed
-                caption: "Inserting new data into 'fabriques'..."
+                caption: "Inserting demo data into produccio.fabriques..."
                 connector: "Postgres"
                 command:  "ExecuteNonQuery"      
-                arguments: --query "INSERT INTO produccio.fabriques (id, nom, pais, direccio, telefon, id_responsable) VALUES ((SELECT MAX(id)+1 FROM produccio.fabriques), 'NEW FACTORY NAME 2', 'NEW FACTORY COUNTRY 2', 'NEW FACTORY ADDRESS 2', 'NEW FACT. PHONE 2', {$ID_EMPLEAT})"                          
+                arguments: --query "INSERT INTO produccio.fabriques (id, nom, pais, direccio, telefon, id_responsable) VALUES ((SELECT MAX(id)+1 FROM produccio.fabriques), 'NEW FACTORY NAME {$NEXT_NUM}', 'NEW FACTORY COUNTRY {$NEXT_NUM}', 'NEW FACTORY ADDRESS {$NEXT_NUM}', 'NEW FACT. PHONE {$NEXT_NUM}', {$ID_EMPLEAT})"                          
 
             - run:            
                 caption: "Looking for the last 'fabrica'..."
                 connector: "Postgres"
                 command:  "ExecuteScalar"      
-                arguments: "--query SELECT MAX(id) FROM produccio.fabriques"
+                arguments: --query "SELECT MAX(id) FROM produccio.fabriques"
                 store: "$ID_FABRICA"               
 
             - question: 
-                description: "Delete rule (empleats)"    
+                description: "Delete rule (empleats)" 
+                score: 2   
                 content:
                     - run:       
-                        caption: "Deleting data from the view..."
+                        caption: "Deleting data from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteNonQuery"      
-                        arguments: --query "DELETE gerencia.responsables WHERE id_responsable={$ID_EMPLEAT}"
+                        arguments: --query "DELETE FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT}"
                         
                     - run:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_responsable={$ID_EMPLEAT}"
+                        arguments: --query "SELECT COUNT(id_responsable) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"
                         expected: 0
 
                     - run:
                         caption: "Checking content from rrhh.empleats..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT}"
-                        expected: 0
+                        arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id={$ID_EMPLEAT}"
+                        expected: 1
 
                     - run:
                         caption: "Checking content from produccio.fabriques..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"
-                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id_responsable={$ID_EMPLEAT}"
+                        arguments: --query "SELECT COUNT(id) FROM produccio.fabriques WHERE id_responsable={$ID_EMPLEAT}"
                         expected: 0
 
             - question: 
                 description: "Delete rule (fabriques)"    
                 content:
                     - run:       
-                        caption: "Updating data from the view..."
+                        caption: "Deleting data from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteNonQuery"      
-                        arguments: --query "DELETE gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"                                                  
+                        arguments: --query "DELETE FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"                                                  
 
                     - run:
                         caption: "Checking content from gerencia.responsables..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"
+                        arguments: --query "SELECT COUNT(id_fabrica) FROM gerencia.responsables WHERE id_fabrica={$ID_FABRICA}"
                         expected: 0
 
                     - run:
                         caption: "Checking content from produccio.fabriques..."
                         connector: "Postgres"
                         command:  "ExecuteScalar"      
-                        arguments: "--query SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA}"
-                        expected: 0
+                        arguments: --query "SELECT COUNT(id) FROM produccio.fabriques WHERE id={$ID_FABRICA}"
+                        expected: 1
 
     - question: 
         description: "Permissions"
         content:        
             - run:       
                 #Do not assume that INSERT on view is working, so adding directly to the table is needed
-                caption: "Looking for permissions into the view 'responsables'..."
+                caption: "Looking for permissions into the view gerencia.responsables..."
                 connector: "Postgres"
                 command:  "GetTablePrivileges"      
                 arguments: "--schema gerencia --table responsables --role it"
                 expected: "r"
 
             - run:            
-                caption: "Looking for permissions into the schema 'gerencia'..."
+                caption: "Looking for permissions into the schema gerencia..."
                 connector: "Postgres"
                 command:  "GetSchemaPrivileges"      
                 arguments: "--schema gerencia --role it"
