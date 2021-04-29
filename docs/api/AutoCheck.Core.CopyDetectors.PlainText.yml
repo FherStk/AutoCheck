@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordsAmountWeight
     path: ../core/copy/PlainText.cs
@@ -122,7 +122,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
@@ -198,7 +198,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
@@ -239,7 +239,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
@@ -276,7 +276,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
@@ -311,7 +311,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
@@ -353,7 +353,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
@@ -388,7 +388,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
@@ -429,7 +429,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs

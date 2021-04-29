@@ -75,3 +75,10 @@ In order to check this assignment:
 2. Edit the `AutoCheck/scripts/custom/permissions_single.yaml` script and change the `host` parameter to point the host name or IP address where your Postgres server is listening to. 
 3. Open a terminal and go to the `terminal` folder with `cd AutoCheck/terminal`.
 4. Run the script with `dotnet run ../scripts/custom/permissions_single.yaml`.
+
+#### ASIX - M02 UF3: SQL DataBase Updatable Views
+In order to check this assignment:
+1. Copy the `AutoCheck/scripts/targets/views_single.yaml` script into the `scripts/custom` folder.
+2. Edit the `AutoCheck/scripts/custom/views_single.yaml` script and change the `host` parameter to point the host name or IP address where your Postgres server is listening to. 
+3. Open a terminal and go to the `terminal` folder with `cd AutoCheck/terminal`.
+4. Run the script with `dotnet run ../scripts/custom/views_single.yaml`.

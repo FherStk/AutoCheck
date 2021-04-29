@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
@@ -113,7 +113,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ProcessRemoteFile
     path: ../core/connectors/Base.cs
