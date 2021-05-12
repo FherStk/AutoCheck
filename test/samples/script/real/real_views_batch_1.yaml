@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\permissions.yaml"  
+inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\views.yaml"  
 
 vars:
     student: "{$CURRENT_FOLDER_NAME}"
@@ -24,7 +24,7 @@ vars:
 batch: 
     - caption: "Running on batch mode for ~{$STUDENT}:"       
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"            
+        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\views"            
         - vars:
             current_host: "localhost"
             current_user: "postgres"
@@ -62,28 +62,7 @@ batch:
 
         - connector:            
             type: "Postgres"        
-            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
-        
-        - run:
-            caption: "   Dropping role rrhhadmin... "
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role rrhhadmin"
-            onexception: "SUCCESS"
-
-        - run: 
-            caption: "   Dropping role prodadmin... "           
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role prodadmin"
-            onexception: "SUCCESS"
-
-        - run:   
-            caption: "   Dropping role dbadmin... "         
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role dbadmin"
-            onexception: "SUCCESS"
+            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"          
 
         - run:   
             caption: "   Dropping user it... "         
@@ -97,27 +76,6 @@ batch:
             connector: "Postgres"
             command:  "CreateUser"
             arguments: "--user it"
-            onexception: "SUCCESS"
-
-        - run: 
-            caption: "   Creating role rrhhadmin... "           
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role rrhhadmin"
-            onexception: "SUCCESS"
-
-        - run:  
-            caption: "   Creating role prodadmin... "          
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role prodadmin"
-            onexception: "SUCCESS"
-
-        - run:  
-            caption: "   Creating role dbadmin... "          
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role dbadmin"
             onexception: "SUCCESS"
 
         - echo: ""

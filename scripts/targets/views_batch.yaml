@@ -16,20 +16,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\permissions.yaml"  
+inherits: "..\\templates\\permissions.yaml"  
 
 vars:
-    student: "{$CURRENT_FOLDER_NAME}"
+    student: "{#^[^ ]+(?= )$CURRENT_FOLDER_NAME}"
 
 batch: 
     - caption: "Running on batch mode for ~{$STUDENT}:"       
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"            
+        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\views"
         - vars:
             current_host: "localhost"
             current_user: "postgres"
             current_password: "postgres"
-            database: "empresa-{$STUDENT}"
+            database: "empresa-views-{$STUDENT}"
 
     - copy_detector:            
         type: "SqlLog"
@@ -37,7 +37,7 @@ batch:
         threshold: !!float 0.65    
 
     - setup:
-        - echo: "Extracting files at: ~{$STUDENT}"
+        - echo: "Extracting files at ~{#([^\\\\]*)$$CURRENT_FOLDER_PATH}:"
 
         - run:            
             command:  "GetFile"
@@ -56,34 +56,12 @@ batch:
             arguments: 
                 recursive: !!bool True
 
-    - pre:
         - echo: ""
-        - echo: "Restoring BBDD permissions."        
+        - echo: "Restoring BBDD permissions:"        
 
         - connector:            
             type: "Postgres"        
-            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
-        
-        - run:
-            caption: "   Dropping role rrhhadmin... "
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role rrhhadmin"
-            onexception: "SUCCESS"
-
-        - run: 
-            caption: "   Dropping role prodadmin... "           
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role prodadmin"
-            onexception: "SUCCESS"
-
-        - run:   
-            caption: "   Dropping role dbadmin... "         
-            connector: "Postgres"
-            command:  "DropRole"
-            arguments: "--role dbadmin"
-            onexception: "SUCCESS"
+            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"        
 
         - run:   
             caption: "   Dropping user it... "         
@@ -99,29 +77,8 @@ batch:
             arguments: "--user it"
             onexception: "SUCCESS"
 
-        - run: 
-            caption: "   Creating role rrhhadmin... "           
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role rrhhadmin"
-            onexception: "SUCCESS"
-
-        - run:  
-            caption: "   Creating role prodadmin... "          
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role prodadmin"
-            onexception: "SUCCESS"
-
-        - run:  
-            caption: "   Creating role dbadmin... "          
-            connector: "Postgres"
-            command:  "CreateRole"
-            arguments: "--role dbadmin"
-            onexception: "SUCCESS"
-
         - echo: ""
-        - echo: "Importing SQL dump."
+        - echo: "Importing SQL dump:"
 
         - run:            
             command:  "GetFile"
@@ -133,10 +90,9 @@ batch:
             arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
 
         - run:
-            caption: "   Restoring database using the file: ~{#([^\\\\]*)$$SQL_FILE}... "          
+            caption: "   Restoring database ~{$DATABASE}~ using the file ~{#([^\\\\]*)$$SQL_FILE}... "          
             connector: "Postgres"
             command:  "CreateDataBase"
-            onexception: "ABORT"
             arguments: 
                 dumpPath: "{$SQL_FILE}"
                 replace: True            
