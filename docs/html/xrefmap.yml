@@ -483,6 +483,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.GDrive.CopyFile
   nameWithType: GDrive.CopyFile
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  name: CopyFromFile(String, String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFromFile_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String, System.String, System.String)
+  nameWithType: GDrive.CopyFromFile(String, String, String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+  name: CopyFromFile
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFromFile_
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFromFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile
+  nameWithType: GDrive.CopyFromFile
 - uid: AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
   name: CountFiles(String, Boolean)
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CountFiles_System_String_System_Boolean_
@@ -617,6 +630,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.GDrive.Download
   nameWithType: GDrive.Download
+- uid: AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String,System.String)
+  name: DownloadFromFile(String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_DownloadFromFile_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String, System.String)
+  nameWithType: GDrive.DownloadFromFile(String, String)
+- uid: AutoCheck.Core.Connectors.GDrive.DownloadFromFile*
+  name: DownloadFromFile
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_DownloadFromFile_
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.DownloadFromFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.GDrive.DownloadFromFile
+  nameWithType: GDrive.DownloadFromFile
 - uid: AutoCheck.Core.Connectors.GDrive.Drive
   name: Drive
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_Drive

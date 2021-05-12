@@ -933,18 +933,17 @@ namespace AutoCheck.Core{
                                     break;
                             }                    
                         }));                    
-
                         Output.UnIndent();
-                        Output.BreakLine();
 
                         //Breaking log into a new file
                         Output.BreakLog();
                         
                         //Pausing if needed, but should not be logged...
-                        if(BatchPauseEnabled && Output.GetMode() == Output.Mode.VERBOSE){                               
+                        if(!BatchPauseEnabled || Output.GetMode() != Output.Mode.VERBOSE) Output.BreakLine();
+                        else {                               
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
-                            Output.BreakLine();
+                            Output.BreakLine(2);
                         }
                     }).Invoke();
                 });
@@ -953,14 +952,12 @@ namespace AutoCheck.Core{
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     //ForEachLocalTarget method setups the global vars                    
                     script.Invoke(folder);
-                    Output.BreakLine();
                 });                                  
 
                 //Executing body for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars
                     script.Invoke(folder);
-                    Output.BreakLine();
                 }); 
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
@@ -1182,7 +1179,7 @@ namespace AutoCheck.Core{
             if(question){
                 Output.Write("TOTAL SCORE: ", Output.Style.SCORE);
                 Output.Write($"{Math.Round(TotalScore, 2).ToString(CultureInfo.InvariantCulture)} / {Math.Round(MaxScore, 2).ToString(CultureInfo.InvariantCulture)}", (TotalScore < MaxScore/2 ? Output.Style.ERROR :Output.Style.SUCCESS));
-                Output.BreakLine();
+                Output.BreakLine(2);
             }
 
             //Scope out

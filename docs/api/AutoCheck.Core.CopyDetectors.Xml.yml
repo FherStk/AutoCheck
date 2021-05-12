@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Xml.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Xml
     path: ../core/copy/Xml.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: core/copy/Xml.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Xml.cs

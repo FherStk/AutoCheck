@@ -11,6 +11,7 @@ items:
   - AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.GDrive.CountFolders(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.GDrive.CreateFile(System.String,System.String,System.String)
@@ -24,6 +25,7 @@ items:
   - AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
   - AutoCheck.Core.Connectors.GDrive.Download(System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.Download(System.Uri,System.String)
+  - AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.Drive
   - AutoCheck.Core.Connectors.GDrive.ExistsFile(System.String)
   - AutoCheck.Core.Connectors.GDrive.ExistsFile(System.String,System.String,System.Boolean)
@@ -46,11 +48,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GDrive
     path: ../core/connectors/GDrive.cs
-    startLine: 39
+    startLine: 41
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -96,11 +98,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Drive
     path: ../core/connectors/GDrive.cs
-    startLine: 41
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -131,11 +133,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 50
+    startLine: 53
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -170,11 +172,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 72
+    startLine: 75
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -213,11 +215,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 85
+    startLine: 88
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -258,11 +260,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/GDrive.cs
-    startLine: 92
+    startLine: 95
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -293,11 +295,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 102
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -331,11 +333,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 112
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -372,11 +374,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 154
+    startLine: 157
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -410,11 +412,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 166
+    startLine: 169
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -455,11 +457,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/GDrive.cs
-    startLine: 177
+    startLine: 180
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -497,11 +499,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 198
+    startLine: 201
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -533,11 +535,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 208
+    startLine: 211
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -572,11 +574,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 221
+    startLine: 224
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -610,11 +612,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 233
+    startLine: 236
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -655,11 +657,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 243
+    startLine: 246
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -697,11 +699,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 254
+    startLine: 257
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -742,11 +744,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
-    startLine: 303
+    startLine: 306
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -780,11 +782,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
-    startLine: 314
+    startLine: 317
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -825,11 +827,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/GDrive.cs
-    startLine: 325
+    startLine: 328
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -867,11 +869,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFile
     path: ../core/connectors/GDrive.cs
-    startLine: 349
+    startLine: 352
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -909,11 +911,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
-    startLine: 411
+    startLine: 415
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -945,11 +947,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
-    startLine: 420
+    startLine: 424
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -984,11 +986,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 435
+    startLine: 439
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1026,11 +1028,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 446
+    startLine: 450
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1068,11 +1070,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 456
+    startLine: 460
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1096,6 +1098,48 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  id: CopyFromFile(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: CopyFromFile(String, String, String)
+  nameWithType: GDrive.CopyFromFile(String, String, String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyFromFile
+    path: ../core/connectors/GDrive.cs
+    startLine: 500
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nUses a local text file in order to extract any link within it, then uses those links to copy any external found Google Drive file into the main account.\n"
+  example: []
+  syntax:
+    content: public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null)
+    parameters:
+    - id: localFile
+      type: System.String
+      description: The local text file.
+    - id: remoteFilePath
+      type: System.String
+      description: Remote file path
+    - id: remoteFileName
+      type: System.String
+      description: Remote file name (extenssion and/or name will be infered from source if not provided).
+    content.vb: Public Sub CopyFromFile(localFile As String, remoteFilePath As String, remoteFileName As String = Nothing)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.GDrive.UploadFile(System.String,System.String,System.String)
   commentId: M:AutoCheck.Core.Connectors.GDrive.UploadFile(System.String,System.String,System.String)
   id: UploadFile(System.String,System.String,System.String)
@@ -1110,11 +1154,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFile
     path: ../core/connectors/GDrive.cs
-    startLine: 497
+    startLine: 542
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1153,11 +1197,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
-    startLine: 508
+    startLine: 553
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1190,11 +1234,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
-    startLine: 523
+    startLine: 568
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1227,11 +1271,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
-    startLine: 535
+    startLine: 580
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1250,6 +1294,43 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String,System.String)
+  id: DownloadFromFile(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: DownloadFromFile(String, String)
+  nameWithType: GDrive.DownloadFromFile(String, String)
+  fullName: AutoCheck.Core.Connectors.GDrive.DownloadFromFile(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DownloadFromFile
+    path: ../core/connectors/GDrive.cs
+    startLine: 617
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public string[] DownloadFromFile(string localFile, string savePath)
+    parameters:
+    - id: localFile
+      type: System.String
+    - id: savePath
+      type: System.String
+    return:
+      type: System.String[]
+    content.vb: Public Function DownloadFromFile(localFile As String, savePath As String) As String()
+  overload: AutoCheck.Core.Connectors.GDrive.DownloadFromFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.GDrive.ExistsFile(System.String)
   commentId: M:AutoCheck.Core.Connectors.GDrive.ExistsFile(System.String)
   id: ExistsFile(System.String)
@@ -1264,11 +1345,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs
-    startLine: 570
+    startLine: 635
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1302,11 +1383,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.7.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs
-    startLine: 581
+    startLine: 646
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1965,6 +2046,11 @@ references:
   name: Uri
   nameWithType: Uri
   fullName: System.Uri
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFromFile
+  name: CopyFromFile
+  nameWithType: GDrive.CopyFromFile
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile
 - uid: AutoCheck.Core.Connectors.GDrive.UploadFile*
   commentId: Overload:AutoCheck.Core.Connectors.GDrive.UploadFile
   name: UploadFile
@@ -1975,6 +2061,37 @@ references:
   name: Download
   nameWithType: GDrive.Download
   fullName: AutoCheck.Core.Connectors.GDrive.Download
+- uid: AutoCheck.Core.Connectors.GDrive.DownloadFromFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.DownloadFromFile
+  name: DownloadFromFile
+  nameWithType: GDrive.DownloadFromFile
+  fullName: AutoCheck.Core.Connectors.GDrive.DownloadFromFile
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: AutoCheck.Core.Connectors.GDrive.ExistsFile*
   commentId: Overload:AutoCheck.Core.Connectors.GDrive.ExistsFile
   name: ExistsFile
