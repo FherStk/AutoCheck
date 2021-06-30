@@ -29,8 +29,17 @@ namespace AutoCheck.Core{
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
-    public class Output{     
-        //Note: should be a singletone but cannot be due testing...
+    /// <remarks>Should be a singletone but cannot be due testing...</remarks>
+    public class Output{             
+       
+        //Contains the data stored as needed in order to generate diferent outputs (txt, json, etc)
+        private class Content{            
+            public string Indent {get; set;}
+            public string Text {get; set;}
+            public string Style {get; set;}
+            public bool BreakLine {get; set;}
+        }
+
         public enum Mode {
             SILENT,
             VERBOSE
@@ -60,11 +69,19 @@ namespace AutoCheck.Core{
             get {
                 return FullLog.LastOrDefault();
             }
+        }
+
+        private List<List<Content>> NewFullLog {get; set;}              //The log can be splitted into separate files    
+        private List<Content> NewLog {                                  //The current log will be always the last one
+            get {
+                return NewFullLog.LastOrDefault();
+            }
         }         
                                 
         public Output(){                                         
-            FullLog = new List<List<string>>();            
-            BreakLog();
+            NewFullLog = new List<List<Content>>();
+            FullLog = new List<List<string>>();
+            BreakLog();            
 
             //Load the styles
             var cssPath = Utils.ConfigFile("output.css");                                            
@@ -221,14 +238,18 @@ namespace AutoCheck.Core{
             for(int i=0; i < lines; i++){
                 Console.WriteLine();
                 Log.Add(string.Empty);
-            }               
-        }  
+                NewLog.Add(new Content(){
+                    BreakLine = true
+                });
+            }
+        }
         
         /// <summary>
         /// New log content will be stored into a new log space
         /// </summary>
         public void BreakLog(){
             FullLog.Add(new List<string>());
+            NewFullLog.Add(new List<Content>());
             CurrentIndent = "";
             NewLine = true;       
         }
@@ -292,9 +313,8 @@ namespace AutoCheck.Core{
             if(NewLine && !string.IsNullOrEmpty(text)){                
                 Console.Write(CurrentIndent);
                 Log.Add(string.Empty);
-                Log[Log.Count-1] += CurrentIndent;
-            } 
-           
+                Log[Log.Count-1] += CurrentIndent;            
+            }            
             
             Console.ForegroundColor = primaryColor;                 
             while(text.Contains("~")){
@@ -303,6 +323,12 @@ namespace AutoCheck.Core{
                 Console.Write(output);
                 Log[Log.Count-1] += output;
 
+                NewLog.Add(new Content(){
+                    Indent = CurrentIndent,
+                    Text = output,
+                    Style = $"{style.ToString().ToLower()}-primary"
+                });
+
                 Console.ForegroundColor = secondaryColor;     
                 text = text.Substring(i+1);
                 i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
@@ -310,18 +336,33 @@ namespace AutoCheck.Core{
 
                 output = text.Substring(0, i);
                 Console.Write(output);     
-                Log[Log.Count-1] += output;               
-                Console.ForegroundColor = primaryColor; 
+                Log[Log.Count-1] += output;   
 
+                NewLog.Add(new Content(){
+                    Indent = CurrentIndent,
+                    Text = output,
+                    Style = $"{style.ToString().ToLower()}-secondary"
+                });
+
+                Console.ForegroundColor = primaryColor; 
                 text = text.Substring(i).TrimStart('~');                                    
             }
             
-
             NewLine = newLine;
             Log[Log.Count-1] += text;   
 
             if(!newLine) Console.Write(text);    
-            else Console.WriteLine(text);                
+            else Console.WriteLine(text);     
+
+            if(string.IsNullOrEmpty(text)) NewLog[NewLog.Count-1].BreakLine = newLine;
+            else{
+                NewLog.Add(new Content(){
+                    Indent = CurrentIndent,
+                    Text = text,
+                    Style = $"{style.ToString().ToLower()}-primary",
+                    BreakLine = newLine               
+                });  
+            }                                 
 
             Console.ResetColor();   
         }        
