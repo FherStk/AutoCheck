@@ -63,24 +63,16 @@ namespace AutoCheck.Core{
         public const string SingleIndent = "   ";
         public string CurrentIndent {get; private set;}
         private bool NewLine {get; set;}              
-        private Stylesheet CssDoc {get; set;}
-        private List<List<string>> FullLog {get; set;}              //The log can be splitted into separate files        
-        private List<string> Log {                                  //The current log will be always the last one
+        private Stylesheet CssDoc {get; set;}        
+        private List<List<Content>> FullLog {get; set;}              //The log can be splitted into separate files    
+        private List<Content> Log {                                  //The current log will be always the last one
             get {
                 return FullLog.LastOrDefault();
-            }
-        }
-
-        private List<List<Content>> NewFullLog {get; set;}              //The log can be splitted into separate files    
-        private List<Content> NewLog {                                  //The current log will be always the last one
-            get {
-                return NewFullLog.LastOrDefault();
             }
         }         
                                 
         public Output(){                                         
-            NewFullLog = new List<List<Content>>();
-            FullLog = new List<List<string>>();
+            FullLog = new List<List<Content>>();            
             BreakLog();            
 
             //Load the styles
@@ -134,10 +126,13 @@ namespace AutoCheck.Core{
             foreach(var log in FullLog){
                 string output = string.Empty;
                 
-                foreach(string line in log)
-                    output = $"{output}{line}\r\n";
-                
-                result.Add(output.TrimEnd("\r\n".ToCharArray()));
+                foreach(var content in log){                   
+                    output = $"{output}{content.Indent}{content.Text}";
+                    if(content.BreakLine) output = $"{output}\r\n";                         
+                }
+
+                output = output.Trim("\r\n".ToCharArray());                
+                if(!string.IsNullOrEmpty(output)) result.Add(output);
             }
         
             return result.ToArray();
@@ -237,8 +232,7 @@ namespace AutoCheck.Core{
         public void BreakLine(int lines = 1){            
             for(int i=0; i < lines; i++){
                 Console.WriteLine();
-                Log.Add(string.Empty);
-                NewLog.Add(new Content(){
+                Log.Add(new Content(){
                     BreakLine = true
                 });
             }
@@ -247,9 +241,8 @@ namespace AutoCheck.Core{
         /// <summary>
         /// New log content will be stored into a new log space
         /// </summary>
-        public void BreakLog(){
-            FullLog.Add(new List<string>());
-            NewFullLog.Add(new List<Content>());
+        public void BreakLog(){            
+            FullLog.Add(new List<Content>());
             CurrentIndent = "";
             NewLine = true;       
         }
@@ -310,24 +303,19 @@ namespace AutoCheck.Core{
                 throw new StyleInvalidException($"Unable to apply the requested style '{style.ToString().ToLower()}'.", ex);
             }            
 
-            if(NewLine && !string.IsNullOrEmpty(text)){                
-                Console.Write(CurrentIndent);
-                Log.Add(string.Empty);
-                Log[Log.Count-1] += CurrentIndent;            
-            }            
+            if(NewLine && !string.IsNullOrEmpty(text)) Console.Write(CurrentIndent); 
+            Log.Add(new Content(){
+                //Should be done here because the text could not contain "~"
+                Indent = (NewLine ? CurrentIndent : ""),
+                Style = $"{style.ToString().ToLower()}-primary"
+            });                        
             
             Console.ForegroundColor = primaryColor;                 
             while(text.Contains("~")){
                 int i = text.IndexOf("~");
                 string output = text.Substring(0, i);
-                Console.Write(output);
-                Log[Log.Count-1] += output;
-
-                NewLog.Add(new Content(){
-                    Indent = CurrentIndent,
-                    Text = output,
-                    Style = $"{style.ToString().ToLower()}-primary"
-                });
+                Console.Write(output);                
+                Log[Log.Count-1].Text = output;                
 
                 Console.ForegroundColor = secondaryColor;     
                 text = text.Substring(i+1);
@@ -335,11 +323,9 @@ namespace AutoCheck.Core{
                 if(i == -1) i = text.Length;
 
                 output = text.Substring(0, i);
-                Console.Write(output);     
-                Log[Log.Count-1] += output;   
+                Console.Write(output);                     
 
-                NewLog.Add(new Content(){
-                    Indent = CurrentIndent,
+                Log.Add(new Content(){
                     Text = output,
                     Style = $"{style.ToString().ToLower()}-secondary"
                 });
@@ -349,15 +335,13 @@ namespace AutoCheck.Core{
             }
             
             NewLine = newLine;
-            Log[Log.Count-1] += text;   
 
             if(!newLine) Console.Write(text);    
             else Console.WriteLine(text);     
 
-            if(string.IsNullOrEmpty(text)) NewLog[NewLog.Count-1].BreakLine = newLine;
+            if(string.IsNullOrEmpty(text)) Log[Log.Count-1].BreakLine = newLine;
             else{
-                NewLog.Add(new Content(){
-                    Indent = CurrentIndent,
+                Log.Add(new Content(){
                     Text = text,
                     Style = $"{style.ToString().ToLower()}-primary",
                     BreakLine = newLine               
