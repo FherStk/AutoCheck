@@ -39,8 +39,21 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
             Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToString()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToText().LastOrDefault()));                
         } 
+
+        [Test, Category("Output"), Category("Local")]
+        public void Output_SINGLE_FILE_2()
+        {
+            //Fails, loop when serializing json             
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_2_yaml", "OUTPUT SINGLE 2_Student Name 1.log");
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
+            
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_single_2.yaml"));
+            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.IsTrue(File.Exists(logFilePath));        
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToJson().LastOrDefault()));                
+        }
 
         [Test, Category("Output"), Category("Local")]
         public void Output_BATCH_FILE_1()
@@ -66,7 +79,7 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
             }
         } 
 
@@ -82,7 +95,7 @@ namespace AutoCheck.Test
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in s.LogFiles.OrderBy(x => x)){
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
             }
         } 
     }
