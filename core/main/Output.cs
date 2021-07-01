@@ -36,7 +36,7 @@ namespace AutoCheck.Core{
         private class Content{            
             public string Indent {get; set;}
             public string Text {get; set;}
-            public string Style {get; set;}
+            public StyleRule Style {get; set;}
             public bool BreakLine {get; set;}
         }
 
@@ -62,7 +62,7 @@ namespace AutoCheck.Core{
 
         public const string SingleIndent = "   ";
         public string CurrentIndent {get; private set;}
-        private bool NewLine {get; set;}              
+        private bool IsNewLine {get; set;}              
         private Stylesheet CssDoc {get; set;}        
         private List<List<Content>> FullLog {get; set;}              //The log can be splitted into separate files    
         private List<Content> Log {                                  //The current log will be always the last one
@@ -70,8 +70,9 @@ namespace AutoCheck.Core{
                 return FullLog.LastOrDefault();
             }
         }         
-                                
-        public Output(){                                         
+        private int CurrentLogIndex {get; set;}                      //The last log entry that has been send to the terminal output    
+
+        public Output(){                                        
             FullLog = new List<List<Content>>();            
             BreakLog();            
 
@@ -143,7 +144,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n", ToArray()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
+            return string.Join("\r\n\r\n", ToArray()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
         }            
         
         // /// <summary>
@@ -222,7 +223,7 @@ namespace AutoCheck.Core{
         /// </summary>    
         public void ResetIndent(){
            CurrentIndent = "";
-           NewLine = true;
+           IsNewLine = true;
         }
         
         /// <summary>
@@ -231,10 +232,7 @@ namespace AutoCheck.Core{
         /// <param name="lines">The amount of breaklines.</param>
         public void BreakLine(int lines = 1){            
             for(int i=0; i < lines; i++){
-                Console.WriteLine();
-                Log.Add(new Content(){
-                    BreakLine = true
-                });
+                WriteColor("", Style.DEFAULT, true);
             }
         }
         
@@ -244,7 +242,8 @@ namespace AutoCheck.Core{
         public void BreakLog(){            
             FullLog.Add(new List<Content>());
             CurrentIndent = "";
-            NewLine = true;       
+            IsNewLine = true;   
+            CurrentLogIndex = 0;    
         }
 
         private ConsoleColor CssToConsoleColor(StyleRule cssRule){
@@ -285,70 +284,79 @@ namespace AutoCheck.Core{
         /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
         /// <param name="newLine">If true, a breakline will be added at the end.</param>
         private void WriteColor(string text, Style style, bool newLine){             
-            var primaryColor = ConsoleColor.White;
-            var secondaryColor = ConsoleColor.Yellow;
-            var rules = CssDoc.StyleRules.Cast<StyleRule>().Where(x => x.SelectorText.StartsWith($".{style.ToString().ToLower()}")).ToList();
-            
-            try{           
-                if(rules.Count == 1){
-                    primaryColor = CssToConsoleColor(rules[0]);
-                    secondaryColor = primaryColor;
-                }
-                else if(rules.Count > 1){
-                    primaryColor = CssToConsoleColor(rules.Where(x => x.SelectorText.EndsWith("primary")).SingleOrDefault());
-                    secondaryColor = CssToConsoleColor(rules.Where(x => x.SelectorText.EndsWith("secondary")).SingleOrDefault());
-                } 
-            }
-            catch(Exception ex){
-                throw new StyleInvalidException($"Unable to apply the requested style '{style.ToString().ToLower()}'.", ex);
-            }            
-
-            if(NewLine && !string.IsNullOrEmpty(text)) Console.Write(CurrentIndent); 
-            Log.Add(new Content(){
-                //Should be done here because the text could not contain "~"
-                Indent = (NewLine ? CurrentIndent : ""),
-                Style = $"{style.ToString().ToLower()}-primary"
-            });                        
-            
-            Console.ForegroundColor = primaryColor;                 
-            while(text.Contains("~")){
-                int i = text.IndexOf("~");
-                string output = text.Substring(0, i);
-                Console.Write(output);                
-                Log[Log.Count-1].Text = output;                
-
-                Console.ForegroundColor = secondaryColor;     
-                text = text.Substring(i+1);
-                i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
-                if(i == -1) i = text.Length;
-
-                output = text.Substring(0, i);
-                Console.Write(output);                     
-
+            if(!text.Contains("~")){
+                //Single color text
                 Log.Add(new Content(){
-                    Text = output,
-                    Style = $"{style.ToString().ToLower()}-secondary"
-                });
-
-                Console.ForegroundColor = primaryColor; 
-                text = text.Substring(i).TrimStart('~');                                    
-            }
-            
-            NewLine = newLine;
-
-            if(!newLine) Console.Write(text);    
-            else Console.WriteLine(text);     
-
-            if(string.IsNullOrEmpty(text)) Log[Log.Count-1].BreakLine = newLine;
-            else{
-                Log.Add(new Content(){
+                    Indent = (IsNewLine && !string.IsNullOrEmpty(text) ? CurrentIndent : ""),
                     Text = text,
-                    Style = $"{style.ToString().ToLower()}-primary",
-                    BreakLine = newLine               
-                });  
-            }                                 
+                    Style = GetCssRule($"{style.ToString().ToLower()}-primary"),
+                    BreakLine = newLine
+                });
+            }
+            else{
+                //Multi-color
+                while(text.Contains("~")){
+                    int i = text.IndexOf("~");
 
-            Console.ResetColor();   
-        }        
+                    //First color
+                    Log.Add(new Content(){
+                        Indent = (IsNewLine ? CurrentIndent : ""),
+                        Text = text.Substring(0, i),
+                        Style = GetCssRule($"{style.ToString().ToLower()}-primary")
+                    });            
+                    
+                    text = text.Substring(i+1);
+                    i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
+                    if(i == -1) i = text.Length;
+
+                    //Second color
+                    Log.Add(new Content(){
+                        Text = text.Substring(0, i),
+                        Style = GetCssRule($"{style.ToString().ToLower()}-secondary")
+                    });
+                    
+                    text = text.Substring(i).TrimStart('~');                               
+                }
+
+                //Last part of the text
+                if(!string.IsNullOrEmpty(text)){
+                     Log.Add(new Content(){
+                        Text = text,
+                        Style = GetCssRule($"{style.ToString().ToLower()}-primary")
+                    });
+                }
+
+                //Breakline at the end (if needed)
+                Log[Log.Count-1].BreakLine = newLine;                
+            }
+
+            IsNewLine = newLine;
+            WriteIntoTerminal();
+        }
+
+        private void WriteIntoTerminal(){
+            for(int i=CurrentLogIndex; i<Log.Count; i++){                
+                Console.Write(Log[i].Indent);
+                Console.ForegroundColor = CssToConsoleColor(Log[i].Style);
+
+                if(Log[i].BreakLine) Console.Write(Log[i].Text);
+                else Console.WriteLine(Log[i].Text);
+                Console.ResetColor();               
+            }
+
+            CurrentLogIndex = Log.Count;
+        }
+
+        private StyleRule GetCssRule(string style){
+            try{
+                var rule = CssDoc.StyleRules.Cast<StyleRule>().Where(x => x.SelectorText.Equals($".{style}")).SingleOrDefault();
+                if(rule != null) return rule;
+                else throw new StyleInvalidException($"Unable to apply the requested style '{style}'.");  
+            }
+            catch(Exception){
+                if(style.Contains("-")) return GetCssRule(style.Substring(0, style.IndexOf("-")));
+                else throw;
+            } 
+        }
     }
 }
