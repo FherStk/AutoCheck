@@ -60,6 +60,11 @@ namespace AutoCheck.Core{
             Vars = vars;
         }
     }
+
+    private enum LogFormatType {
+        TEXT,
+        JSON
+    }
 #endregion
 #region Vars
         /// <summary>
@@ -534,11 +539,14 @@ namespace AutoCheck.Core{
         private bool Abort {get; set;}
         
         private bool Skip {get; set;}
+
         private bool AutoComputeVarValues {get; set;}
 
         private bool BatchPauseEnabled {get; set;}
 
         private bool LogFilesEnabled {get; set;}   
+
+        private LogFormatType LogFormat {get; set;}   
 
         private bool IsQuestionOpen {
             get{
@@ -593,6 +601,7 @@ namespace AutoCheck.Core{
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
+                LogFormatType.TEXT,
                 "{$SCRIPT_NAME}_{$NOW}", 
                 false
             );                 
@@ -630,7 +639,19 @@ namespace AutoCheck.Core{
                                
                     //Retry if the log file is bussy
                     Utils.RunWithRetry<IOException>(new Action(() => {
-                        File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                        //File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                        var logData = string.Empty;
+                        switch(LogFormat){
+                            case LogFormatType.TEXT:
+                                logData = Output.ToText().LastOrDefault();
+                                break;
+
+                            case LogFormatType.JSON:
+                                logData = Output.ToJson().LastOrDefault();
+                                break;
+                        }
+
+                        File.WriteAllText(logFile, logData);
                     }));                                          
 
                     //Storing the generated file
@@ -683,6 +704,7 @@ namespace AutoCheck.Core{
                     case "log":
                         SetupLog(
                             ParseChild(value, "folder", LogFolderPath, false), 
+                            ParseChild(value, "format", LogFormat, false), 
                             ParseChild(value, "name", LogFileName, false),
                             ParseChild(value, "enabled", LogFilesEnabled, false)
                         );                       
@@ -1591,7 +1613,8 @@ namespace AutoCheck.Core{
             try{
                 var parsed = ParseNode(node, compute);
 
-                if(typeof(T).Equals(typeof(Single)) && parsed.GetType().Equals(typeof(Int32))) parsed = (float)(int)parsed;
+                if(typeof(T).IsEnum) return (T)Enum.Parse(typeof(T), parsed.ToString());
+                else if(typeof(T).Equals(typeof(Single)) && parsed.GetType().Equals(typeof(Int32))) parsed = (float)(int)parsed;
                 return (T)parsed;
             }
             catch(InvalidCastException){
@@ -2024,8 +2047,9 @@ namespace AutoCheck.Core{
             return original;            
         }
 
-        private void SetupLog(string logFolderPath, string logFileName, bool enabled){            
+        private void SetupLog(string logFolderPath, LogFormatType logFormatType, string logFileName, bool enabled){            
             LogFolderPath =  logFolderPath;                    
+            LogFormat = logFormatType;
             LogFilePath = Path.Combine(logFolderPath, $"{Path.GetFileNameWithoutExtension(logFileName)}.log");
             LogFilesEnabled = enabled;
         }
@@ -2195,328 +2219,5 @@ namespace AutoCheck.Core{
             Output.BreakLine();
         }
 #endregion
-// #region ZIP
-//         private void Extract(string file, bool remove, bool recursive){
-//             Output.WriteLine("DEPRECATED! Use the ZIP Connector instead.", Output.Style.WARNING);
-//             Output.BreakLine();
-
-//             Output.WriteLine($"Extracting files at: ~{CurrentFolderName}~", Output.Style.HEADER);
-//             Output.Indent();
-
-//             //CurrentFolder and CurrentFile may be modified during execution
-//             var originalCurrentFolderPath = CurrentFolderPath;    
-//             string[] files = null;
-
-//             try{
-//                 files = Directory.GetFiles(CurrentFolderPath, Utils.PathToCurrentOS(file), (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-//                 if(files.Length == 0) Output.WriteLine("No files found to extract!", Output.Style.DETAILS);
-//                 else{
-//                     foreach(string zip in files){                        
-//                         CurrentFilePath = zip;
-
-//                         try{
-//                             Output.Write($"Extracting the file ~{CurrentFileName}... ", Output.Style.DETAILS);
-//                             var zipConnector = new Connectors.Zip(null);    //TODO: change this, null will fail
-//                             zipConnector.Extract(zip);
-//                             Output.WriteResponse();
-//                         }
-//                         catch(Exception e){
-//                             Output.WriteResponse($"ERROR {e.Message}");
-//                             continue;
-//                         }
-
-//                         if(remove){                        
-//                             try{
-//                                 Output.Write($"Removing the file ~{zip}... ", Output.Style.DETAILS);
-//                                 File.Delete(zip);
-//                                 Output.WriteResponse();
-//                                 Output.BreakLine();
-//                             }
-//                             catch(Exception e){
-//                                 Output.WriteResponse($"ERROR {e.Message}");
-//                                 continue;
-//                             }  
-//                         }
-//                     }                                                                  
-//                 }                    
-//             }
-//             catch (Exception e){
-//                 Output.WriteResponse(string.Format("ERROR {0}", e.Message));
-//             }
-//             finally{    
-//                 Output.UnIndent();
-//                 if(!remove || files == null || files.Length == 0) Output.BreakLine();
-
-//                 //Restoring original values
-//                 CurrentFolderPath = originalCurrentFolderPath;
-//             }            
-//         }
-// #endregion
-// #region BBDD
-//         private void RestoreDB(string file, string dbhost, string dbuser, string dbpass, string dbname, bool @override, bool remove, bool recursive){
-//             Output.WriteLine("DEPRECATED! Use the Postgres Connector instead.", Output.Style.WARNING);
-//             Output.BreakLine();
-
-//             Output.WriteLine("Restoring databases: ", Output.Style.HEADER);
-//             Output.Indent();
-
-//             //CurrentFolder and CurrentFile may be modified during execution
-//             var originalCurrentFolderPath = CurrentFolderPath;    
-
-//             try{
-//                 string[] files = Directory.GetFiles(CurrentFolderPath, file, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));                    
-//                 if(files.Length == 0) Output.WriteLine("Done!");                   
-//                 else{
-//                     foreach(string sql in files){
-//                         CurrentFilePath =  sql;
-
-//                         try{                            
-//                             //TODO: parse DB name to avoid forbidden chars.
-//                             var parsedDbName = Path.GetFileName(ComputeVarValue(dbname)).Replace(" ", "_").Replace(".", "_");
-//                             Output.WriteLine($"Checking the database ~{parsedDbName}: ", Output.Style.HEADER);      
-//                             Output.Indent();
-
-//                             using(var db = new Connectors.Postgres(dbhost, parsedDbName, dbuser, dbpass)){
-//                                 if(!@override && db.ExistsDataBase()) Output.WriteLine("The database already exists, skipping!");
-//                                 else{
-//                                     if(@override && db.ExistsDataBase()){                
-//                                         try{
-//                                             Output.Write("Dropping the existing database: ");
-//                                             db.DropDataBase();
-//                                             Output.WriteResponse();
-//                                         }
-//                                         catch(Exception ex){
-//                                             Output.WriteResponse(ex.Message);
-//                                         } 
-//                                     } 
-
-//                                     try{
-//                                         Output.Write($"Restoring the database using the file ~{sql}... ", Output.Style.DETAILS);
-//                                         db.CreateDataBase(sql);
-//                                         Output.WriteResponse();
-//                                     }
-//                                     catch(Exception ex){
-//                                         Output.WriteResponse(ex.Message);
-//                                     }
-//                                 }
-//                             }
-//                         }
-//                         catch(Exception e){
-//                             Output.WriteResponse($"ERROR {e.Message}");
-//                             continue;
-//                         }
-
-//                         if(remove){                        
-//                             try{
-//                                 Output.Write($"Removing the file ~{sql}... ", Output.Style.DETAILS);
-//                                 File.Delete(sql);
-//                                 Output.WriteResponse();
-//                             }
-//                             catch(Exception e){
-//                                 Output.WriteResponse($"ERROR {e.Message}");
-//                                 continue;
-//                             }
-//                         }
-
-//                         Output.UnIndent();
-//                         Output.BreakLine();
-//                     }                                                                  
-//                 }                    
-//             }
-//             catch (Exception e){
-//                 Output.WriteResponse(string.Format("ERROR {0}", e.Message));
-//             }
-//             finally{    
-//                 Output.UnIndent();
-                
-//                 //Restoring original values
-//                 CurrentFolderPath = originalCurrentFolderPath;
-//             }    
-//         } 
-// #endregion
-// #region Google Drive
-//         private void UploadGDrive(string source, string account, string secret, string remoteFolder, string remoteFile, bool link, bool copy, bool remove, bool recursive){                        
-//             if(string.IsNullOrEmpty(account)) throw new ArgumentNullException("The 'username' argument must be provided when using the 'upload_gdrive' feature.");                        
-
-//             Output.WriteLine("DEPRECATED! Use the Google Drive Connector instead.", Output.Style.WARNING);
-//             Output.BreakLine();
-
-//             Output.WriteLine("Uploading files to Google Drive: ", Output.Style.HEADER);
-//             Output.Indent();
-
-//             //CurrentFolder and CurrentFile may be modified during execution
-//             var originalCurrentFolderPath = CurrentFolderPath;  
-                
-//             //Option 1: Only files within a searchpath, recursive or not, will be uploaded into the same remote folder.
-//             //Option 2: Non-recursive folders within a searchpath, including its files, will be uploaded into the same remote folder.
-//             //Option 3: Recursive folders within a searchpath, including its files, will be uploaded into the remote folder, replicating the folder tree.
-           
-//             try{                     
-//                 using(var drive = new Connectors.GDrive(account, secret)){                        
-//                     if(string.IsNullOrEmpty(Path.GetExtension(source))) UploadGDriveFolder(drive, CurrentFolderPath, source, remoteFolder, remoteFile, link, copy, recursive, remove);
-//                     else{
-//                         var files = Directory.GetFiles(CurrentFolderPath, source, (recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly));
-//                         if(files.Length == 0) Output.WriteLine("Done!");        
-
-//                         foreach(var file in files)
-//                             UploadGDriveFile(drive, file, remoteFolder, remoteFile, link, copy, remove);
-//                     }
-//                 }                                 
-//             }
-//             catch (Exception e){
-//                 Output.WriteResponse(string.Format("ERROR {0}", e.Message));
-//             }
-//             finally{    
-//                 Output.UnIndent();
-
-//                 //Restoring original values
-//                 CurrentFolderPath = originalCurrentFolderPath;
-//             }    
-//         }
-        
-//         private void UploadGDriveFile(Connectors.GDrive drive, string localFile, string remoteFolder, string remoteFile, bool link, bool copy, bool remove){
-//             //CurrentFolder and CurrentFile may be modified during execution
-//             var originalCurrentFile = CurrentFilePath;
-
-//             try{                            
-//                 CurrentFilePath =  localFile;
-//                 remoteFolder = ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar));
-//                 remoteFile = ComputeVarValue(remoteFile);
-
-//                 Output.WriteLine($"Checking the local file ~{CurrentFileName}: ", Output.Style.HEADER);      
-//                 Output.Indent();                
-
-//                 var fileName = string.Empty;
-//                 var filePath = string.Empty;                                
-//                 if(string.IsNullOrEmpty(Path.GetExtension(remoteFolder))) filePath = remoteFolder;
-//                 else{
-//                     fileName = Path.GetFileName(remoteFolder);
-//                     filePath = Path.GetDirectoryName(remoteFolder);                        
-//                 }                
-                
-//                 //Remote GDrive folder structure                    
-//                 var fileFolder = Path.GetFileName(filePath);
-//                 filePath = Path.GetDirectoryName(remoteFolder);     
-//                 if(drive.GetFolder(filePath, fileFolder) == null){                
-//                     Output.Write($"Creating folder structure in ~'{remoteFolder}': ", Output.Style.DEFAULT); 
-//                     drive.CreateFolder(filePath, fileFolder);
-//                     Output.WriteResponse();                
-//                 } 
-                
-//                 //Remote path and file name
-//                 filePath = Path.Combine(filePath, fileFolder);
-//                 fileName = remoteFile;
-
-//                 //Upload
-//                 if(link){
-//                     var content = File.ReadAllText(localFile);
-//                     //Regex source: https://stackoverflow.com/a/6041965
-//                     foreach(Match match in Regex.Matches(content, "(http|ftp|https)://([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?")){
-//                         var uri = new Uri(match.Value);
-
-//                         if(copy){
-//                             try{
-//                                 Output.Write($"Copying the file from external Google Drive's account to the own one... ", Output.Style.DEFAULT);
-//                                 drive.CopyFile(uri, filePath, fileName);
-//                                 Output.WriteResponse();
-//                             }
-//                             catch{
-//                                 Output.WriteResponse(string.Empty);
-//                                 copy = false;   //retry with download-reload method if fails
-//                             }
-//                         }
-
-//                         if(!copy){
-//                             //download and reupload       
-//                             Output.Write($"Downloading the file from external sources and uploading to the own Google Drive's account... ", Output.Style.DEFAULT);
-
-//                             string local = string.Empty;
-//                             if(match.Value.Contains("drive.google.com")) local = drive.Download(uri, Path.Combine(AppContext.BaseDirectory, "tmp"));                                        
-//                             else{
-//                                 using (var client = new WebClient())
-//                                 {                                    
-//                                     local = Path.Combine(AppContext.BaseDirectory, "tmp");
-//                                     if(!Directory.Exists(local)) Directory.CreateDirectory(local);
-
-//                                     local = Path.Combine(local, uri.Segments.Last());
-//                                     client.DownloadFile(uri, local);
-//                                 }
-//                             }
-                            
-//                             drive.CreateFile(local, filePath, fileName);
-//                             File.Delete(local);
-//                             Output.WriteResponse();
-//                         }                                                       
-//                     }
-//                 }
-//                 else{                    
-//                     Output.Write($"Uploading the local file to the own Google Drive's account... ", Output.Style.DEFAULT);
-//                     drive.CreateFile(localFile, filePath, (fileName ?? Path.GetFileName(localFile)));
-//                     Output.WriteResponse();                        
-//                 }
-
-//                 if(remove){
-//                     Output.Write($"Removing the local file... ", Output.Style.DEFAULT);
-//                     File.Delete(localFile);
-//                     Output.WriteResponse();       
-//                 } 
-//             }
-//             catch (Exception ex){
-//                 Output.WriteResponse(ex.Message);
-//             } 
-//             finally{    
-//                 Output.UnIndent();
-
-//                 //Restoring original values
-//                 CurrentFilePath = originalCurrentFile;
-//             }              
-//         }
-
-//         private void UploadGDriveFolder(Connectors.GDrive drive, string localPath, string localSource, string remoteFolder, string remoteFile, bool link, bool copy, bool recursive, bool remove){           
-//             //CurrentFolder and CurrentFile may be modified during execution
-//             var originalCurrentFolderPath = CurrentFolderPath;  
-
-//             try{                
-//                 CurrentFolderPath =  localPath;
-
-//                 var files = Directory.GetFiles(localPath, localSource, SearchOption.TopDirectoryOnly);
-//                 var folders = (recursive ? Directory.GetDirectories(localPath, localSource, SearchOption.TopDirectoryOnly) : new string[]{});
-                
-//                 if(files.Length == 0 && folders.Length == 0) Output.WriteLine("Done!");                       
-//                 else{
-//                     foreach(var file in files){
-//                         //This will setup CurrentFolder and CurrentFile
-//                         UploadGDriveFile(drive, file, remoteFolder, remoteFile, link, copy, remove);
-//                     }
-                                    
-//                     if(recursive){
-//                         foreach(var folder in folders){
-//                             var folderName = Path.GetFileName(folder);
-//                             drive.CreateFolder(ComputeVarValue(remoteFolder.TrimEnd(Path.DirectorySeparatorChar)), folderName);
-                            
-//                             //This will setup CurrentFolder and CurrentFile
-//                             UploadGDriveFolder(drive, folder, localSource, Path.Combine(remoteFolder, folderName), remoteFile, link, copy, recursive, remove);
-//                         }
-
-//                         if(remove){
-//                             //Only removes if recursive (otherwise not uploaded data could be deleted).
-//                             Output.Write($"Removing the local folder... ");
-//                             Directory.Delete(localPath);    //not-recursive delete request, should be empty, otherwise something went wrong!
-//                             Output.WriteResponse();       
-//                         } 
-//                     }
-//                 }                               
-//             }
-//             catch (Exception e){
-//                 Output.WriteResponse(string.Format("ERROR {0}", e.Message));
-//             }
-//             finally{    
-//                 Output.UnIndent();
-
-//                 //Restoring original values
-//                 CurrentFolderPath = originalCurrentFolderPath;
-//             }    
-//         }                
-// #endregion    
     }
 }

@@ -21,6 +21,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
 using ExCSS;
@@ -44,7 +46,7 @@ namespace AutoCheck.Core{
             SILENT,
             VERBOSE
         }
-
+        
         public enum Style {
             INFO,
             PROMPT,
@@ -118,10 +120,10 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// Returns the Output history as an string array, where each string represents a separated log file using \r\n as breaklines.
+        /// Returns the Output history as an string array, where each string represents a separated plain log file using \r\n as breaklines.
         /// </summary>
         /// <returns></returns>
-        public string[] ToArray(){
+        public string[] ToText(){
             List<string> result = new List<string>();
 
             foreach(var log in FullLog){
@@ -140,11 +142,24 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// Returns the Output history as a json array, where each string represents a separated json log file.
+        /// </summary>
+        /// <returns></returns>
+        public string[] ToJson(){
+            List<string> result = new List<string>();
+
+            foreach(var log in FullLog)
+                result.Add(JsonSerializer.Serialize(log));
+        
+            return result.ToArray();
+        }
+
+        /// <summary>
         /// Returns the Output history as an string, using \r\n as breaklines.
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n\r\n", ToArray()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
+            return string.Join("\r\n\r\n", ToText()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
         }            
         
         // /// <summary>
