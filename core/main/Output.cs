@@ -335,6 +335,7 @@ namespace AutoCheck.Core{
         }
 
         private void WriteIntoTerminal(){
+            //TODO: its not working properly
             for(int i=CurrentLogIndex; i<Log.Count; i++){                
                 Console.Write(Log[i].Indent);
                 Console.ForegroundColor = CssToConsoleColor(Log[i].Style);
