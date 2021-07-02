@@ -881,10 +881,7 @@ namespace AutoCheck.Core{
                                 break;
                         }                    
                     })); 
-                }); 
-
-                //Storing log for the setup data
-                Output.CloseLog(Output.Type.SETUP);
+                });               
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -900,6 +897,9 @@ namespace AutoCheck.Core{
                 })); 
                 Output.UnIndent();                   
                 if(cpydet.Count > 0) Output.BreakLine();
+
+                //Storing log for the setup data
+                Output.CloseLog(Output.Type.SETUP);
                 
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
@@ -948,10 +948,7 @@ namespace AutoCheck.Core{
                                     break;
                             }                    
                         }));                    
-                        Output.UnIndent();
-
-                        //Storing log for the script data
-                        Output.CloseLog(Output.Type.SCRIPT);
+                        Output.UnIndent();                        
                         
                         //Pausing if needed, but should not be logged...
                         if(!BatchPauseEnabled || Output.GetMode() != Output.Mode.VERBOSE) Output.BreakLine();
@@ -960,6 +957,10 @@ namespace AutoCheck.Core{
                             Console.ReadKey();
                             Output.BreakLine(2);
                         }
+
+                        //Storing log for the script data
+                        Output.CloseLog(Output.Type.SCRIPT);
+                                                
                     }).Invoke();
                 });
 

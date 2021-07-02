@@ -80,22 +80,7 @@ namespace AutoCheck.Core{
         private bool IsNewLine {get; set;}              
         
         private Stylesheet CssDoc {get; set;} 
-        
-        private List<List<Content>> FullLog {
-            get{
-                    var header = Trim(HeaderLog);
-                    var setup = Trim(SetupLog);
-                    var teardwon = Trim(TeardownLog);
-                    List<List<Content>> log = new List<List<Content>>();
-
-                    foreach(var script in ScriptLog){
-                        log.Add(header.Concat(setup).Concat(Trim(script).Concat(teardwon)).ToList());
-                    }
-                    
-                    return log;
-            }
-        } 
-
+                
         private List<Content> CurrentLog {get; set;} 
         
         private int CurrentLogIndex {get; set;}                         //The last CurrentLog entry that has been send to the terminal output                
@@ -157,7 +142,7 @@ namespace AutoCheck.Core{
         public string[] ToText(){
             List<string> result = new List<string>();
 
-            foreach(var log in FullLog){
+            foreach(var log in GetFullLog()){
                 string output = string.Empty;
                 
                 foreach(var content in log){                   
@@ -165,7 +150,7 @@ namespace AutoCheck.Core{
                     if(content.BreakLine) output = $"{output}\r\n";                         
                 }
 
-                output = output.TrimEnd("\r\n".ToCharArray());
+                output = output.TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
                 if(!string.IsNullOrEmpty(output)) result.Add(output);
             }
         
@@ -179,7 +164,7 @@ namespace AutoCheck.Core{
         public string[] ToJson(){
             List<string> result = new List<string>();
 
-            foreach(var log in FullLog){
+            foreach(var log in GetFullLog(true)){
                 result.Add(JsonSerializer.Serialize(log, new JsonSerializerOptions(){
                     ReferenceHandler = ReferenceHandler.Preserve
                 }));
@@ -423,14 +408,30 @@ namespace AutoCheck.Core{
 
         private List<Content> Trim(List<Content> content){
             var copy = content.ToArray().ToList();                
+            
+            while(copy.FirstOrDefault() != null && copy.FirstOrDefault().BreakLine && string.IsNullOrEmpty(copy.FirstOrDefault().Text.Trim()))
+                copy.RemoveAt(0);
 
             while(copy.LastOrDefault() != null && copy.LastOrDefault().BreakLine && string.IsNullOrEmpty(copy.LastOrDefault().Text.Trim()))
-                copy.RemoveAt(copy.Count-1);
+                copy.RemoveAt(copy.Count-1);            
 
             if(copy.LastOrDefault() != null && !string.IsNullOrEmpty(copy.LastOrDefault().Text))
-                copy.LastOrDefault().Text = copy.LastOrDefault().Text.Trim();
+                copy.LastOrDefault().Text = copy.LastOrDefault().Text.TrimEnd();
 
             return copy;
         }
+
+        private List<List<Content>> GetFullLog(bool trim = false) {
+            var header = trim ? Trim(HeaderLog) : HeaderLog;
+            var setup =  trim ? Trim(SetupLog) : SetupLog;
+            var teardwon =  trim ? Trim(TeardownLog) : TeardownLog;
+            List<List<Content>> log = new List<List<Content>>();
+
+            foreach(var script in ScriptLog){                
+                log.Add(header.Concat(setup).Concat((trim ? Trim(script) : script).Concat(teardwon)).ToList());
+            }
+            
+            return log;
+        } 
     }
 }
