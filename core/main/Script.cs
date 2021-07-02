@@ -625,42 +625,8 @@ namespace AutoCheck.Core{
                 Fails = 0;
 
                 //Running script body                
-                if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);                
-                
-                //Preparing the output files and folders                                                
-                if(LogFilesEnabled){                
-                    //Logfile path could contain "NOW" so must be generated here.
-                    var logFile = ComputeVarValue(LogFilePath);
-                    var logFolder = Path.GetDirectoryName(logFile);
-
-                    //Writing log output if needed                                        
-                    if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
-                    if(File.Exists(logFile)) File.Delete(logFile);                    
-                               
-                    //Retry if the log file is bussy
-                    Utils.RunWithRetry<IOException>(new Action(() => {
-                        //File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
-                        var logData = string.Empty;
-                        switch(LogFormat){
-                            case LogFormatType.TEXT:
-                                logData = Output.ToText().LastOrDefault();
-                                break;
-
-                            case LogFormatType.JSON:
-                                logData = Output.ToJson().LastOrDefault();
-                                break;
-                        }
-
-                        File.WriteAllText(logFile, logData);
-                    }));                                          
-
-                    //Storing the generated file
-                    LogFiles.Add(logFile);              
-                }
-            });
-            
-            //Display the script caption
-            Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+                if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
+            });                        
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
@@ -669,7 +635,8 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
 
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
-            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
+            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){
+                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
                 Output.Indent();
                 script.Invoke();
                 Output.UnIndent();
@@ -749,7 +716,6 @@ namespace AutoCheck.Core{
         }
         
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){  
-            //TODO: remove the node type check and also the parse (var single) and test
             children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
             else{                                    
@@ -797,6 +763,7 @@ namespace AutoCheck.Core{
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
+                    Output.WriteLine(ScriptCaption, Output.Style.HEADER);
                     Output.WriteLine(SingleCaption, Output.Style.HEADER);
                     Output.Indent();
                     action.Invoke();
@@ -910,6 +877,9 @@ namespace AutoCheck.Core{
                 
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
+                    //Display the script caption for each batch execution
+                    Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+
                     //Printing script caption
                     Output.WriteLine(BatchCaption, Output.Style.HEADER);
                     
@@ -1754,6 +1724,7 @@ namespace AutoCheck.Core{
             CurrentHost = originalHost;
             CurrentPort = originalPort;
         }
+        
         private (MethodBase method, object[] args) GetMethod(Type type, string method, Dictionary<string, object> arguments = null){            
             List<object> args = null;
             var constructor = method.Equals(type.Name);                        
@@ -2054,6 +2025,38 @@ namespace AutoCheck.Core{
             LogFilesEnabled = enabled;
         }
 
+        private void ExportLog(){
+            //Preparing the output files and folders                                                
+            if(LogFilesEnabled){                
+                //Logfile path could contain "NOW" so must be generated here.
+                var logFile = ComputeVarValue(LogFilePath);
+                var logFolder = Path.GetDirectoryName(logFile);
+
+                //Writing log output if needed                                        
+                if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
+                if(File.Exists(logFile)) File.Delete(logFile);                    
+                            
+                //Retry if the log file is bussy
+                Utils.RunWithRetry<IOException>(new Action(() => {
+                    //File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
+                    var logData = string.Empty;
+                    switch(LogFormat){
+                        case LogFormatType.TEXT:
+                            logData = Output.ToText().LastOrDefault();
+                            break;
+
+                        case LogFormatType.JSON:
+                            logData = Output.ToJson().LastOrDefault();
+                            break;
+                    }
+
+                    File.WriteAllText(logFile, logData);
+                }));                                          
+
+                //Storing the generated file
+                LogFiles.Add(logFile);              
+            }
+        }
         private string CleanPathInvalidChars(string path){
             var file = string.Empty;
             var folder = string.Empty;
