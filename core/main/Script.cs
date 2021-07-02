@@ -903,9 +903,6 @@ namespace AutoCheck.Core{
                 
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
-                    //Display the script caption for each batch execution
-                    Output.WriteLine(ScriptCaption, Output.Style.HEADER);
-
                     //Printing script caption
                     Output.WriteLine(BatchCaption, Output.Style.HEADER);
                     

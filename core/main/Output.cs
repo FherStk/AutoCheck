@@ -164,7 +164,8 @@ namespace AutoCheck.Core{
                     output = $"{output}{content.Indent}{content.Text}";
                     if(content.BreakLine) output = $"{output}\r\n";                         
                 }
-               
+
+                output = output.TrimEnd("\r\n".ToCharArray());
                 if(!string.IsNullOrEmpty(output)) result.Add(output);
             }
         
@@ -192,7 +193,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n\r\n", ToText()).TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
+            return string.Join("\r\n\r\n", ToText());
         }            
                
         /// <summary>
@@ -423,8 +424,11 @@ namespace AutoCheck.Core{
         private List<Content> Trim(List<Content> content){
             var copy = content.ToArray().ToList();                
 
-            while(copy.LastOrDefault() != null && copy.LastOrDefault().BreakLine && string.IsNullOrEmpty(copy.LastOrDefault().Text))
+            while(copy.LastOrDefault() != null && copy.LastOrDefault().BreakLine && string.IsNullOrEmpty(copy.LastOrDefault().Text.Trim()))
                 copy.RemoveAt(copy.Count-1);
+
+            if(copy.LastOrDefault() != null && !string.IsNullOrEmpty(copy.LastOrDefault().Text))
+                copy.LastOrDefault().Text = copy.LastOrDefault().Text.Trim();
 
             return copy;
         }
