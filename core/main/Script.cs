@@ -626,6 +626,11 @@ namespace AutoCheck.Core{
 
                 //Running script body                
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
+                
+                //Storing the log file path (it will be used to generate it later). 
+                //WARNING: this is based on log index, could fail if multithreading is implemented
+                var logFile = ComputeVarValue(LogFilePath);
+                LogFiles.Add(logFile); 
             });                        
 
             //Storing script execution into log
@@ -2063,24 +2068,39 @@ namespace AutoCheck.Core{
         }
         
         private void ExportLog(){           
-            //Preparing the output files and folders                                                
-            if(LogFilesEnabled){                
-                //Logfile path could contain "NOW" so must be generated here.
-                var logFile = ComputeVarValue(LogFilePath);
-                var logFolder = Path.GetDirectoryName(logFile);
+            //Preparing the output files and folders if enabled                                               
+            if(LogFilesEnabled){  
+                string[] logs = null;
 
-                //Writing log output if needed                                        
-                if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
-                if(File.Exists(logFile)) File.Delete(logFile);                    
-                            
-                //Retry if the log file is bussy
-                var logData = GetLog();
-                Utils.RunWithRetry<IOException>(new Action(() => {                    
-                    File.WriteAllText(logFile, logData);
-                }));                                          
+                 switch(LogFormat){
+                    case LogFormatType.TEXT:
+                        logs = Output.ToText();
+                        break;
 
-                //Storing the generated file
-                LogFiles.Add(logFile);              
+                    case LogFormatType.JSON:
+                        logs = Output.ToJson();
+                        break;
+
+                    default:
+                        logs = new string[0];
+                        break;
+                }
+
+                for(int i=0; i<LogFiles.Count; i++){
+                    //WARNING: this could fail if multithreading is implemented
+                    var logContent = logs[i];
+                    var logFile = LogFiles[i];
+                    var logFolder = Path.GetDirectoryName(logFile);
+
+                    //Writing log output if needed                                        
+                    if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);
+                    if(File.Exists(logFile)) File.Delete(logFile);
+
+                    //Retry if the log file is bussy
+                    Utils.RunWithRetry<IOException>(new Action(() => {                    
+                        File.WriteAllText(logFile, logContent);
+                    }));
+                }                              
             }
         }
         private string CleanPathInvalidChars(string path){
