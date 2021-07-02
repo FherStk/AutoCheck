@@ -548,6 +548,10 @@ namespace AutoCheck.Core{
 
         private LogFormatType LogFormat {get; set;}   
 
+        private string LogSetupContent {get; set;}
+
+        private string LogTeardownContent {get; set;}
+
         private bool IsQuestionOpen {
             get{
                 return Errors != null;
@@ -617,7 +621,7 @@ namespace AutoCheck.Core{
             ScriptName = ParseChild(root, "name", ScriptName, false);                        
             MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
                         
-            //Preparing script execution
+            //Preparing script body execution
             AutoComputeVarValues = true;
             var script = new Action(() => {   
                 //This data must be cleared for each script body execution (batch mode)  
@@ -717,7 +721,11 @@ namespace AutoCheck.Core{
         
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){  
             children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
-            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))){
+                //No single node defined or incorrect type
+                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+                action.Invoke();
+            } 
             else{                                    
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -753,7 +761,10 @@ namespace AutoCheck.Core{
                     switch(name){                       
                         case "setup":                            
                             ParseSetup(node, name, current);
-                            Output.BreakLine();                                
+                            Output.BreakLine();
+
+                            LogSetupContent = GetLog();
+                            Output.BreakLog();                  
                             break;
                     }                    
                 }));                            
@@ -768,6 +779,10 @@ namespace AutoCheck.Core{
                     Output.Indent();
                     action.Invoke();
                     Output.UnIndent();
+
+                    ExportLog();
+
+                    Output.BreakLog();
                 });
 
                 if(local != null){
@@ -791,6 +806,9 @@ namespace AutoCheck.Core{
                         case "teardown":                            
                             ParseTeardown(node, name, current);
                             Output.BreakLine();
+
+                            LogTeardownContent = GetLog();
+                            Output.BreakLog();   
                             break;
                     }                    
                 })); 
@@ -799,7 +817,11 @@ namespace AutoCheck.Core{
 
         private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
             children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote"};     
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke(); 
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))){
+                //No batch node defined or incorrect type
+                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+                action.Invoke();
+            } 
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
@@ -927,8 +949,8 @@ namespace AutoCheck.Core{
                         }));                    
                         Output.UnIndent();
 
-                        //Breaking log into a new file
-                        Output.BreakLog();
+                        //Exporting log for the current batch execution
+                        ExportLog();
                         
                         //Pausing if needed, but should not be logged...
                         if(!BatchPauseEnabled || Output.GetMode() != Output.Mode.VERBOSE) Output.BreakLine();
@@ -2025,7 +2047,27 @@ namespace AutoCheck.Core{
             LogFilesEnabled = enabled;
         }
 
+        private string GetLog(){
+            switch(LogFormat){
+                case LogFormatType.TEXT:
+                    return Output.ToText().LastOrDefault();
+
+                case LogFormatType.JSON:
+                    return Output.ToJson().LastOrDefault();
+
+                default:
+                    return null;
+            }
+        }
         private void ExportLog(){
+            //TODO: exporting log data should be done at the end of the script exection.
+            //  0. Store the script beeing executed
+            //  1. Store the "setup" log data.
+            //  2. Run pre+body+post for each target (single or batch)
+            //  3. Store the "teardown" log data.
+            //  4. Pack each log as setup+pre+body+post+teardown.
+            //  5. Export.
+
             //Preparing the output files and folders                                                
             if(LogFilesEnabled){                
                 //Logfile path could contain "NOW" so must be generated here.
@@ -2037,19 +2079,8 @@ namespace AutoCheck.Core{
                 if(File.Exists(logFile)) File.Delete(logFile);                    
                             
                 //Retry if the log file is bussy
-                Utils.RunWithRetry<IOException>(new Action(() => {
-                    //File.WriteAllText(logFile, Output.ToArray().LastOrDefault());
-                    var logData = string.Empty;
-                    switch(LogFormat){
-                        case LogFormatType.TEXT:
-                            logData = Output.ToText().LastOrDefault();
-                            break;
-
-                        case LogFormatType.JSON:
-                            logData = Output.ToJson().LastOrDefault();
-                            break;
-                    }
-
+                var logData = GetLog();
+                Utils.RunWithRetry<IOException>(new Action(() => {                    
                     File.WriteAllText(logFile, logData);
                 }));                                          
 

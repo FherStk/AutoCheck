@@ -148,11 +148,13 @@ namespace AutoCheck.Core{
         public string[] ToJson(){
             List<string> result = new List<string>();
 
-            foreach(var log in FullLog)
+            foreach(var log in FullLog){
                 result.Add(JsonSerializer.Serialize(log, new JsonSerializerOptions(){
                     ReferenceHandler = ReferenceHandler.Preserve
                 }));
-        
+            }
+
+            //TODO: remove the trailing empty lines
             return result.ToArray();
         }
 
@@ -375,5 +377,6 @@ namespace AutoCheck.Core{
                 else throw;
             } 
         }
+
     }
 }
