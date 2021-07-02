@@ -149,7 +149,6 @@ namespace AutoCheck.Core{
             List<string> result = new List<string>();
 
             foreach(var log in FullLog)
-                // result.Add(JsonSerializer.Serialize(log));
                 result.Add(JsonSerializer.Serialize(log, new JsonSerializerOptions(){
                     ReferenceHandler = ReferenceHandler.Preserve
                 }));
