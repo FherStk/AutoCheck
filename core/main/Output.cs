@@ -38,7 +38,7 @@ namespace AutoCheck.Core{
         private class Content{            
             public string Indent {get; set;}
             public string Text {get; set;}
-            public StyleRule Style {get; set;}
+            public string Style {get; set;}
             public bool BreakLine {get; set;}
         }
 
@@ -149,7 +149,10 @@ namespace AutoCheck.Core{
             List<string> result = new List<string>();
 
             foreach(var log in FullLog)
-                result.Add(JsonSerializer.Serialize(log));
+                // result.Add(JsonSerializer.Serialize(log));
+                result.Add(JsonSerializer.Serialize(log, new JsonSerializerOptions(){
+                    ReferenceHandler = ReferenceHandler.Preserve
+                }));
         
             return result.ToArray();
         }
@@ -304,7 +307,7 @@ namespace AutoCheck.Core{
                 Log.Add(new Content(){
                     Indent = (IsNewLine && !string.IsNullOrEmpty(text) ? CurrentIndent : ""),
                     Text = text,
-                    Style = GetCssRule($"{style.ToString().ToLower()}-primary"),
+                    Style = $"{style.ToString().ToLower()}-primary", //GetCssRule($"{style.ToString().ToLower()}-primary"),
                     BreakLine = newLine
                 });
             }
@@ -317,7 +320,7 @@ namespace AutoCheck.Core{
                     Log.Add(new Content(){
                         Indent = (IsNewLine ? CurrentIndent : ""),
                         Text = text.Substring(0, i),
-                        Style = GetCssRule($"{style.ToString().ToLower()}-primary")
+                        Style = $"{style.ToString().ToLower()}-primary" //GetCssRule($"{style.ToString().ToLower()}-primary")
                     });            
                     
                     text = text.Substring(i+1);
@@ -327,7 +330,7 @@ namespace AutoCheck.Core{
                     //Second color
                     Log.Add(new Content(){
                         Text = text.Substring(0, i),
-                        Style = GetCssRule($"{style.ToString().ToLower()}-secondary")
+                        Style = $"{style.ToString().ToLower()}-secondary" //GetCssRule($"{style.ToString().ToLower()}-secondary")
                     });
                     
                     text = text.Substring(i).TrimStart('~');                               
@@ -337,7 +340,7 @@ namespace AutoCheck.Core{
                 if(!string.IsNullOrEmpty(text)){
                      Log.Add(new Content(){
                         Text = text,
-                        Style = GetCssRule($"{style.ToString().ToLower()}-primary")
+                        Style = $"{style.ToString().ToLower()}-primary" //GetCssRule($"{style.ToString().ToLower()}-primary")
                     });
                 }
 
@@ -352,7 +355,7 @@ namespace AutoCheck.Core{
         private void WriteIntoTerminal(){
             for(int i=CurrentLogIndex; i<Log.Count; i++){                
                 Console.Write(Log[i].Indent);
-                Console.ForegroundColor = CssToConsoleColor(Log[i].Style);
+                Console.ForegroundColor = CssToConsoleColor(GetCssRule(Log[i].Style));
 
                 if(Log[i].BreakLine) Console.WriteLine(Log[i].Text);
                 else Console.Write(Log[i].Text);
