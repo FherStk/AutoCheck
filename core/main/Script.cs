@@ -548,10 +548,6 @@ namespace AutoCheck.Core{
 
         private LogFormatType LogFormat {get; set;}   
 
-        private string LogSetupContent {get; set;}
-
-        private string LogTeardownContent {get; set;}
-
         private bool IsQuestionOpen {
             get{
                 return Errors != null;
@@ -632,6 +628,10 @@ namespace AutoCheck.Core{
                 if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
             });                        
 
+            //Storing script execution into log
+            Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+            Output.CloseLog(Output.Type.HEADER);            
+
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
@@ -639,12 +639,17 @@ namespace AutoCheck.Core{
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
 
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
-            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){
-                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
                 Output.Indent();
                 script.Invoke();
                 Output.UnIndent();
+                
+                //Storing script execution log
+                Output.CloseLog(Output.Type.SCRIPT);  
             }
+
+            //Log files export (once all the teardown has been executed)
+            ExportLog();
             
             //Scope out
             Vars.Pop();
@@ -719,13 +724,10 @@ namespace AutoCheck.Core{
             ParsePre(node, current, parent, children, mandatory);
         }
         
+        //TODO: can be single and batch simplified where one uses onther?
         private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){  
             children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
-            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))){
-                //No single node defined or incorrect type
-                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
-                action.Invoke();
-            } 
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
             else{                                    
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -761,28 +763,26 @@ namespace AutoCheck.Core{
                     switch(name){                       
                         case "setup":                            
                             ParseSetup(node, name, current);
-                            Output.BreakLine();
-
-                            LogSetupContent = GetLog();
-                            Output.BreakLog();                  
+                            Output.BreakLine();                 
                             break;
                     }                    
-                }));                            
+                })); 
+
+                //Storing log for the setup data
+                Output.CloseLog(Output.Type.SETUP);
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
 
                 //Both local and remote will run exactly the same code
                 var script = new Action(() => {
-                    Output.WriteLine(ScriptCaption, Output.Style.HEADER);
                     Output.WriteLine(SingleCaption, Output.Style.HEADER);
                     Output.Indent();
                     action.Invoke();
                     Output.UnIndent();
 
-                    ExportLog();
-
-                    Output.BreakLog();
+                    //Storing log for the script data
+                    Output.CloseLog(Output.Type.SCRIPT);
                 });
 
                 if(local != null){
@@ -805,23 +805,19 @@ namespace AutoCheck.Core{
                     switch(name){                       
                         case "teardown":                            
                             ParseTeardown(node, name, current);
-                            Output.BreakLine();
-
-                            LogTeardownContent = GetLog();
-                            Output.BreakLog();   
+                            Output.BreakLine();  
                             break;
                     }                    
                 })); 
+
+                //Storing log for the teardown data
+                Output.CloseLog(Output.Type.TEARDOWN);
             }
         }
 
         private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
             children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote"};     
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))){
-                //No batch node defined or incorrect type
-                Output.WriteLine(ScriptCaption, Output.Style.HEADER);
-                action.Invoke();
-            } 
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke();
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
@@ -881,6 +877,9 @@ namespace AutoCheck.Core{
                         }                    
                     })); 
                 }); 
+
+                //Storing log for the setup data
+                Output.CloseLog(Output.Type.SETUP);
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -949,8 +948,8 @@ namespace AutoCheck.Core{
                         }));                    
                         Output.UnIndent();
 
-                        //Exporting log for the current batch execution
-                        ExportLog();
+                        //Storing log for the script data
+                        Output.CloseLog(Output.Type.SCRIPT);
                         
                         //Pausing if needed, but should not be logged...
                         if(!BatchPauseEnabled || Output.GetMode() != Output.Mode.VERBOSE) Output.BreakLine();
@@ -999,7 +998,10 @@ namespace AutoCheck.Core{
                         }                    
                     })); 
                 }); 
-                Output.UnIndent();                                 
+                Output.UnIndent(); 
+
+                //Storing log for the teardown data
+                Output.CloseLog(Output.Type.TEARDOWN);                                
             }            
         }
 
@@ -2059,15 +2061,8 @@ namespace AutoCheck.Core{
                     return null;
             }
         }
-        private void ExportLog(){
-            //TODO: exporting log data should be done at the end of the script exection.
-            //  0. Store the script beeing executed
-            //  1. Store the "setup" log data.
-            //  2. Run pre+body+post for each target (single or batch)
-            //  3. Store the "teardown" log data.
-            //  4. Pack each log as setup+pre+body+post+teardown.
-            //  5. Export.
-
+        
+        private void ExportLog(){           
             //Preparing the output files and folders                                                
             if(LogFilesEnabled){                
                 //Logfile path could contain "NOW" so must be generated here.
