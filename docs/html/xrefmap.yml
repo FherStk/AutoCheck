@@ -4784,19 +4784,19 @@ references:
   commentId: F:AutoCheck.Core.Output.Style.WARNING
   fullName: AutoCheck.Core.Output.Style.WARNING
   nameWithType: Output.Style.WARNING
-- uid: AutoCheck.Core.Output.ToArray
-  name: ToArray()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray
-  commentId: M:AutoCheck.Core.Output.ToArray
-  fullName: AutoCheck.Core.Output.ToArray()
-  nameWithType: Output.ToArray()
-- uid: AutoCheck.Core.Output.ToArray*
-  name: ToArray
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToArray_
-  commentId: Overload:AutoCheck.Core.Output.ToArray
+- uid: AutoCheck.Core.Output.ToJson
+  name: ToJson()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson
+  commentId: M:AutoCheck.Core.Output.ToJson
+  fullName: AutoCheck.Core.Output.ToJson()
+  nameWithType: Output.ToJson()
+- uid: AutoCheck.Core.Output.ToJson*
+  name: ToJson
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson_
+  commentId: Overload:AutoCheck.Core.Output.ToJson
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.ToArray
-  nameWithType: Output.ToArray
+  fullName: AutoCheck.Core.Output.ToJson
+  nameWithType: Output.ToJson
 - uid: AutoCheck.Core.Output.ToString
   name: ToString()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToString
@@ -4810,6 +4810,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.ToString
   nameWithType: Output.ToString
+- uid: AutoCheck.Core.Output.ToText
+  name: ToText()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToText
+  commentId: M:AutoCheck.Core.Output.ToText
+  fullName: AutoCheck.Core.Output.ToText()
+  nameWithType: Output.ToText()
+- uid: AutoCheck.Core.Output.ToText*
+  name: ToText
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToText_
+  commentId: Overload:AutoCheck.Core.Output.ToText
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.ToText
+  nameWithType: Output.ToText
 - uid: AutoCheck.Core.Output.UnIndent
   name: UnIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UnIndent

@@ -43,7 +43,7 @@ namespace AutoCheck.Test
             dest2 = Path.GetFileName(dest2);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("setup_ok1.yaml"));
-            Assert.AreEqual($"Running script setup_ok1 (v1.0.0.0):\r\n   Echo for setup execution over {dest1}\r\n\r\n   Echo for setup execution over {dest2}\r\n\r\nRunning on batch mode for {dest1}:\r\n   Echo for pre execution over {dest1}\r\n\r\n   Echo for body execution over {dest1}\r\n\r\n   Echo for post execution over {dest1}\r\n\r\nRunning on batch mode for {dest2}:\r\n   Echo for pre execution over {dest2}\r\n\r\n   Echo for body execution over {dest2}\r\n\r\n   Echo for post execution over {dest2}\r\n\r\n   Echo for teardown execution over {dest1}\r\n\r\n   Echo for teardown execution over {dest2}", s.Output.ToString());            
+            Assert.AreEqual($"Running script setup_ok1 (v1.0.0.0):\r\n   Echo for setup execution over folder1\r\n\r\n   Echo for setup execution over folder2\r\n\r\nRunning on batch mode for folder1:\r\n   Echo for pre execution over folder1\r\n\r\n   Echo for body execution over folder1\r\n\r\n   Echo for post execution over folder1\r\n\r\n\r\n   Echo for teardown execution over folder1\r\n\r\n   Echo for teardown execution over folder2\r\n\r\nRunning script setup_ok1 (v1.0.0.0):\r\n   Echo for setup execution over folder1\r\n\r\n   Echo for setup execution over folder2\r\n\r\nRunning on batch mode for folder2:\r\n   Echo for pre execution over folder2\r\n\r\n   Echo for body execution over folder2\r\n\r\n   Echo for post execution over folder2\r\n\r\n\r\n   Echo for teardown execution over folder1\r\n\r\n   Echo for teardown execution over folder2", s.Output.ToString());            
         }       
     }
 }

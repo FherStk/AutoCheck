@@ -57,7 +57,6 @@ batch:
                 recursive: !!bool True
 
     - pre:
-        - echo: ""
         - echo: "Restoring BBDD permissions."        
 
         - connector:            
@@ -100,21 +99,21 @@ batch:
             onexception: "SUCCESS"
 
         - run: 
-            caption: "   Dropping role rrhhadmin... "           
+            caption: "   Creating role rrhhadmin... "           
             connector: "Postgres"
             command:  "CreateRole"
             arguments: "--role rrhhadmin"
             onexception: "SUCCESS"
 
         - run:  
-            caption: "   Dropping role prodadmin... "          
+            caption: "   Creating role prodadmin... "          
             connector: "Postgres"
             command:  "CreateRole"
             arguments: "--role prodadmin"
             onexception: "SUCCESS"
 
         - run:  
-            caption: "   Dropping role dbadmin... "          
+            caption: "   Creating role dbadmin... "          
             connector: "Postgres"
             command:  "CreateRole"
             arguments: "--role dbadmin"
