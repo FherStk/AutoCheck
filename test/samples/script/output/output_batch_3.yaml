@@ -1,0 +1,33 @@
+# Copyright © 2021 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "OUTPUT BATCH 3"
+inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+
+batch: 
+  - local:
+      - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
+
+output:
+  terminal: True
+  pause: False
+  log:
+    enabled: True
+    format: "JSON"
+    folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_3_yaml"
+    name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: master
+      branch: v2.9.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Mode
     path: ../core/main/Output.cs
-    startLine: 33
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -48,11 +48,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: master
+      branch: v2.9.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SILENT
     path: ../core/main/Output.cs
-    startLine: 34
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -80,11 +80,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: master
+      branch: v2.9.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: VERBOSE
     path: ../core/main/Output.cs
-    startLine: 35
+    startLine: 46
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

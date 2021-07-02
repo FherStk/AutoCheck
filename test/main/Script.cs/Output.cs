@@ -30,7 +30,7 @@ namespace AutoCheck.Test
         public Output(): base("script"){
         }        
        
-        [Test, Category("Output"), Category("Local")]
+        [Test, Category("Output"), Category("Local"), Category("Text")]
         public void Output_SINGLE_FILE_1()
         {             
             var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
@@ -39,10 +39,23 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
             Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToString()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToText().LastOrDefault()));                
         } 
 
-        [Test, Category("Output"), Category("Local")]
+        [Test, Category("Output"), Category("Local"), Category("Json")]
+        public void Output_SINGLE_FILE_2()
+        {
+            //Fails, loop when serializing json             
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_2_yaml", "OUTPUT SINGLE 2_Student Name 1.log");
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
+            
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_single_2.yaml"));
+            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.IsTrue(File.Exists(logFilePath));        
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToJson().LastOrDefault()));                
+        }
+
+        [Test, Category("Output"), Category("Local"), Category("Text")]
         public void Output_BATCH_FILE_1()
         {         
             var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_1_yaml");  
@@ -66,11 +79,11 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
             }
         } 
 
-        [Test, Category("Output"), Category("Local")]
+        [Test, Category("Output"), Category("Local"), Category("Text")]
         public void Output_BATCH_FILE_2()
         {   
             var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_2_yaml");  
@@ -82,7 +95,35 @@ namespace AutoCheck.Test
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in s.LogFiles.OrderBy(x => x)){
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToArray()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
+            }
+        } 
+
+        [Test, Category("Output"), Category("Local"), Category("Json")]
+        public void Output_BATCH_FILE_3()
+        {         
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_3_yaml");  
+            if(Directory.Exists(path)) Directory.Delete(path, true);
+            
+            var logs = new string[]{
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 1.log"),
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 2.log"),
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 3.log")
+            };
+
+            if(Directory.Exists(path)){     
+                foreach(var l in logs)
+                    Assert.IsFalse(File.Exists(l));
+            }
+            
+            var i = 0;
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_3.yaml"));
+            
+            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+
+            foreach(var l in logs){
+                Assert.IsTrue(File.Exists(l));        
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToJson()[i++]));
             }
         } 
     }
