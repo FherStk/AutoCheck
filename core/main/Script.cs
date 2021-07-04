@@ -558,6 +558,7 @@ namespace AutoCheck.Core{
         }  
 #endregion
 #region Events
+        private event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
         private event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
         private event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
         private event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
@@ -574,17 +575,18 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path): this(path, null, null, null){ 
+        public Script(string path): this(path, null, null, null, null){ 
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
         /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
             Output = new Output();     
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
@@ -667,6 +669,13 @@ namespace AutoCheck.Core{
             
             //Storing log for the header (must be done here in order to generate correct spaces between log parts)
             Output.CloseLog(Output.Type.HEADER);
+            
+            //Script loaded
+            if(OnHeaderCompleted != null) OnHeaderCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                ExecutionMode = ExecutionModeType.SINGLE,
+                Type = Output.Type.SCRIPT,
+                Log = Output.ScriptLog.LastOrDefault()
+            });
 
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
@@ -686,9 +695,9 @@ namespace AutoCheck.Core{
 
                 //Script completed
                 if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.SINGLE,
-                    Type = Output.Type.SCRIPT,
-                    Log = Output.ScriptLog.LastOrDefault()
+                    ExecutionMode = ExecutionModeType.SINGLE | ExecutionModeType.BATCH,
+                    Type = Output.Type.HEADER,
+                    Log = Output.HeaderLog
                 });
             }
 
