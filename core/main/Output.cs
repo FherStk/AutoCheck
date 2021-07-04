@@ -32,21 +32,15 @@ namespace AutoCheck.Core{
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
-    public class Output{         
-        private Log SetupLog {get; set;}
-
-        private List<Log> ScriptLog {get; set;}
-
-        private Log TeardownLog {get; set;}          
-               
-        private class Content{            
+    public class Output{                            
+        public class Content{            
             public string Indent {get; set;}
             public string Text {get; set;}
             public string Style {get; set;}
             public bool BreakLine {get; set;}
         }
 
-        private class Log {
+        public class Log {
             public List<Content> Content {get; set;}    
 
             public Log(){
@@ -79,12 +73,7 @@ namespace AutoCheck.Core{
                 });              
             }
         }
-
-        // public enum Mode {
-        //     SILENT,
-        //     VERBOSE
-        // }
-        
+       
         public enum Style {
             INFO,
             PROMPT,
@@ -106,6 +95,12 @@ namespace AutoCheck.Core{
             TEARDOWN
         }
         
+        internal Log SetupLog {get; private set;}
+
+        internal List<Log> ScriptLog {get; private set;}
+
+        internal Log TeardownLog {get; private set;}          
+
         public const string SingleIndent = "   ";
         
         public string CurrentIndent {get; private set;}
@@ -132,38 +127,6 @@ namespace AutoCheck.Core{
                 CssDoc = parser.Parse(File.ReadAllText(cssPath));
             } 
         }
-        
-        // /// <summary>
-        // /// Changes the output mode.
-        // /// </summary>
-        // /// <param name="Mode">Requested output mode</param>
-        // public static void SetMode(Mode mode){            
-        //     switch(mode){
-        //         case Mode.VERBOSE:
-        //             var standardOutput = new StreamWriter(Console.OpenStandardOutput());
-        //             standardOutput.AutoFlush = true;
-        //             Console.SetOut(standardOutput);
-
-        //             var standardError = new StreamWriter(Console.OpenStandardError());
-        //             standardError.AutoFlush = true;
-        //             Console.SetError(standardError);
-        //             break;
-                
-        //         case Mode.SILENT:
-        //             Console.SetOut(new StringWriter());
-        //             Console.SetError(new StringWriter());                    
-        //             break;
-        //     }
-        // }
-
-        // /// <summary>
-        // /// Gets the current output mode.
-        // /// </summary>
-        // /// <returns></returns>
-        // public static Mode GetMode(){ 
-        //     //Note: IsOutputRedirected does not work properly when tests are run directly from terminal            
-        //     return (Console.IsErrorRedirected ? Mode.SILENT : Mode.VERBOSE);            
-        // }           
                
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
@@ -272,6 +235,37 @@ namespace AutoCheck.Core{
         }   
 
         /// <summary>
+        /// Returns the complete log files for each batch (or single) execution (setup + script + teardown).
+        /// </summary>
+        public Log[] GetLog(/*bool trim = false*/) {
+            List<Log> logs = new List<Log>();
+
+            var trim = true;
+            foreach(var script in ScriptLog){
+                var log = new Log();
+                log.Content.Concat(trim ? Trim(SetupLog.Content) : SetupLog.Content);
+                log.Content.Concat(trim ? Trim(script.Content) : script.Content);
+                log.Content.Concat(trim ? Trim(TeardownLog.Content) : TeardownLog.Content);
+            }
+            
+            return logs.ToArray();
+        }
+
+        /// <summary>
+        /// Writes the given into the current terminal.
+        /// </summary>
+        public void SentToTerminal(Log log){
+            foreach(Content c in log.Content){
+                Console.Write(c.Indent);
+                Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
+
+                if(c.BreakLine) Console.WriteLine(c.Text);
+                else Console.Write(c.Text);
+                Console.ResetColor();               
+            }
+        }
+
+        /// <summary>
         /// Closes the current log and setups a new one, usefull for batch mode script execution
         /// </summary>
         private void ResetLog(){ 
@@ -365,18 +359,7 @@ namespace AutoCheck.Core{
             }
 
             IsNewLine = newLine;
-        }
-
-        private void WriteIntoTerminal(Log log){
-            foreach(Content c in log.Content){
-                Console.Write(c.Indent);
-                Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
-
-                if(c.BreakLine) Console.WriteLine(c.Text);
-                else Console.Write(c.Text);
-                Console.ResetColor();               
-            }
-        }
+        }        
 
         private StyleRule GetCssRule(string style){
             try{
@@ -405,18 +388,6 @@ namespace AutoCheck.Core{
             return copy;
         }
 
-        private List<Log> GetLog(/*bool trim = false*/) {
-            List<Log> logs = new List<Log>();
-
-            var trim = true;
-            foreach(var script in ScriptLog){
-                var log = new Log();
-                log.Content.Concat(trim ? Trim(SetupLog.Content) : SetupLog.Content);
-                log.Content.Concat(trim ? Trim(script.Content) : script.Content);
-                log.Content.Concat(trim ? Trim(TeardownLog.Content) : TeardownLog.Content);
-            }
-            
-            return logs;
-        } 
+        
     }
 }

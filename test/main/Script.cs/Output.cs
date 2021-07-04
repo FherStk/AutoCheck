@@ -39,7 +39,7 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
             Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToText().LastOrDefault()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToText()));
         } 
 
         [Test, Category("Output"), Category("Local"), Category("Json")]
@@ -52,7 +52,7 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_2.yaml"));
             Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToJson().LastOrDefault()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToJson()));                
         }
 
         [Test, Category("Output"), Category("Local"), Category("Text")]
@@ -79,7 +79,7 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -95,7 +95,7 @@ namespace AutoCheck.Test
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in s.LogFiles.OrderBy(x => x)){
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -123,7 +123,7 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToJson()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToJson()));
             }
         } 
     }

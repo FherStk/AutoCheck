@@ -186,17 +186,8 @@ max-score | decimal | no | Maximum script score (overall score). | `10`
 [vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [body](#body) | sequence | no | Script body. |
 
-### <a name="output"></a> output
-Setups the output behaviour.
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
-pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
-[log](#log) | mapping | no | Allows storing log data into external files. | 
-
-#### <a name="log"></a> log
-Setups the output file-mode behaviour.
+### <a name="log"></a> log
+Setups the log output file-mode behaviour.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
