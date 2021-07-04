@@ -548,6 +548,8 @@ namespace AutoCheck.Core{
 
         private LogFormatType LogFormat {get; set;}   
 
+        private bool SendLogToTerminal {get; set;}   
+
         private bool IsQuestionOpen {
             get{
                 return Errors != null;
@@ -670,6 +672,9 @@ namespace AutoCheck.Core{
                 
                 //Storing script execution log
                 Output.CloseLog(Output.Type.SCRIPT);  
+
+                //Script completed
+                OnScriptCompleted.Invoke(this, null);
             }
 
             //Log files export (once all the teardown has been executed)
@@ -690,7 +695,7 @@ namespace AutoCheck.Core{
             ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
                 switch(name){
                     case "terminal":
-                        if(!ParseNode<bool>(value, true)) Output.SetMode(Output.Mode.SILENT); //Just alter default value (terminal) because testing system uses silent and should not be replaced here                       
+                        SendLogToTerminal = ParseNode<bool>(value, true);
                         break;
 
                     case "pause":

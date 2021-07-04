@@ -133,37 +133,37 @@ namespace AutoCheck.Core{
             } 
         }
         
-        /// <summary>
-        /// Changes the output mode.
-        /// </summary>
-        /// <param name="Mode">Requested output mode</param>
-        public static void SetMode(Mode mode){            
-            switch(mode){
-                case Mode.VERBOSE:
-                    var standardOutput = new StreamWriter(Console.OpenStandardOutput());
-                    standardOutput.AutoFlush = true;
-                    Console.SetOut(standardOutput);
+        // /// <summary>
+        // /// Changes the output mode.
+        // /// </summary>
+        // /// <param name="Mode">Requested output mode</param>
+        // public static void SetMode(Mode mode){            
+        //     switch(mode){
+        //         case Mode.VERBOSE:
+        //             var standardOutput = new StreamWriter(Console.OpenStandardOutput());
+        //             standardOutput.AutoFlush = true;
+        //             Console.SetOut(standardOutput);
 
-                    var standardError = new StreamWriter(Console.OpenStandardError());
-                    standardError.AutoFlush = true;
-                    Console.SetError(standardError);
-                    break;
+        //             var standardError = new StreamWriter(Console.OpenStandardError());
+        //             standardError.AutoFlush = true;
+        //             Console.SetError(standardError);
+        //             break;
                 
-                case Mode.SILENT:
-                    Console.SetOut(new StringWriter());
-                    Console.SetError(new StringWriter());                    
-                    break;
-            }
-        }
+        //         case Mode.SILENT:
+        //             Console.SetOut(new StringWriter());
+        //             Console.SetError(new StringWriter());                    
+        //             break;
+        //     }
+        // }
 
-        /// <summary>
-        /// Gets the current output mode.
-        /// </summary>
-        /// <returns></returns>
-        public static Mode GetMode(){ 
-            //Note: IsOutputRedirected does not work properly when tests are run directly from terminal            
-            return (Console.IsErrorRedirected ? Mode.SILENT : Mode.VERBOSE);            
-        }           
+        // /// <summary>
+        // /// Gets the current output mode.
+        // /// </summary>
+        // /// <returns></returns>
+        // public static Mode GetMode(){ 
+        //     //Note: IsOutputRedirected does not work properly when tests are run directly from terminal            
+        //     return (Console.IsErrorRedirected ? Mode.SILENT : Mode.VERBOSE);            
+        // }           
                
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
@@ -268,7 +268,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n\r\n", GetFullLog().Select(x => x.ToString().ToArray()));
+            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToString().ToArray()));
         }   
 
         /// <summary>
@@ -405,9 +405,10 @@ namespace AutoCheck.Core{
             return copy;
         }
 
-        private List<Log> GetFullLog(bool trim = false) {
+        private List<Log> GetLog(/*bool trim = false*/) {
             List<Log> logs = new List<Log>();
 
+            var trim = true;
             foreach(var script in ScriptLog){
                 var log = new Log();
                 log.Content.Concat(trim ? Trim(SetupLog.Content) : SetupLog.Content);
