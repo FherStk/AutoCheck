@@ -231,7 +231,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public new string ToString(){
-            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToString().ToArray()));
+            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
         }   
 
         /// <summary>
