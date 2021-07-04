@@ -237,15 +237,13 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Returns the complete log files for each batch (or single) execution (setup + script + teardown).
         /// </summary>
-        public Log[] GetLog(/*bool trim = false*/) {
+        public Log[] GetLog() {
             List<Log> logs = new List<Log>();
 
-            var trim = true;
             foreach(var script in ScriptLog){
                 var log = new Log();
-                log.Content.Concat(trim ? Trim(SetupLog.Content) : SetupLog.Content);
-                log.Content.Concat(trim ? Trim(script.Content) : script.Content);
-                log.Content.Concat(trim ? Trim(TeardownLog.Content) : TeardownLog.Content);
+                log.Content = log.Content.Concat(Trim(SetupLog.Content)).Concat(Trim(script.Content)).Concat(Trim(TeardownLog.Content)).ToList();
+                logs.Add(log);
             }
             
             return logs.ToArray();

@@ -681,7 +681,11 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.SCRIPT);  
 
                 //Script completed
-                OnScriptCompleted.Invoke(this, null);
+                if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.SINGLE,
+                    Type = Output.Type.SCRIPT,
+                    Log = Output.ScriptLog.LastOrDefault()
+                });
             }
 
             //Log files export (once all the teardown has been executed)
@@ -792,7 +796,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.SETUP);
 
                 //Setup completed
-                OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){                    
+                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){                    
                     ExecutionMode = ExecutionModeType.SINGLE,
                     Type = Output.Type.SETUP,
                     Log = Output.SetupLog
@@ -812,7 +816,7 @@ namespace AutoCheck.Core{
                     Output.CloseLog(Output.Type.SCRIPT);
 
                     //Script completed
-                    OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
                         ExecutionMode = ExecutionModeType.SINGLE,
                         Type = Output.Type.SCRIPT,
                         Log = Output.ScriptLog.LastOrDefault()
@@ -848,7 +852,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.TEARDOWN);
 
                 //Teardown completed
-                OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
                     ExecutionMode = ExecutionModeType.SINGLE,
                     Type = Output.Type.TEARDOWN,
                     Log = Output.TeardownLog
@@ -938,7 +942,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.SETUP);
 
                 //Setup completed
-                OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
                     ExecutionMode = ExecutionModeType.BATCH,
                     Type = Output.Type.SETUP,
                     Log = Output.SetupLog
@@ -997,7 +1001,7 @@ namespace AutoCheck.Core{
                         Output.CloseLog(Output.Type.SCRIPT);
 
                         //Script completed
-                        OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                        if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
                             //TODO: This could fail if multihreeading is implemented, the event should be fired from Output
                             //      Directly from Output or refired from here to set the execution mode?
                             ExecutionMode = ExecutionModeType.BATCH,
@@ -1051,7 +1055,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.TEARDOWN);      
 
                 //Teardown completed
-                OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
                     ExecutionMode = ExecutionModeType.BATCH,
                     Type = Output.Type.TEARDOWN,
                     Log = Output.TeardownLog
@@ -2107,13 +2111,10 @@ namespace AutoCheck.Core{
             //Preparing the output files and folders if enabled                                               
             if(LogFilesEnabled){  
                 var logs = Output.GetLog();
-
                 
-
-                for(int i=0; i<LogFiles.Count; i++){
+                for(int i=0; i < LogFiles.Count; i++){
                     //WARNING: this could fail if multithreading is implemented
-
-                    var logFile = LogFiles[i];
+                    var logFile = Utils.PathToCurrentOS(LogFiles[i]);
                     var logFolder = Path.GetDirectoryName(logFile);
                     var logContent = string.Empty;
 

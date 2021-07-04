@@ -37,9 +37,9 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToText()));
+            Assert.IsTrue(File.ReadAllText(Core.Utils.PathToCurrentOS(logFilePath)).Equals(s.Output.GetLog().LastOrDefault().ToText()));
         } 
 
         [Test, Category("Output"), Category("Local"), Category("Json")]
