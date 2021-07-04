@@ -552,18 +552,38 @@ namespace AutoCheck.Core{
             get{
                 return Errors != null;
             }
-        }        
+        }  
+#endregion
+#region Events
+        private event EventHandler OnSetupCompleted;
+        private event EventHandler OnScriptCompleted;
+        private event EventHandler OnTeardwonCompleted;
 #endregion
 #region Constructor
-        /// <summary>
+/// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         public Script(string path){    
+        }
+
+        /// <summary>
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
+        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
+        public Script(string path, EventHandler onSetupCompleted, EventHandler onScriptCompleted, EventHandler onTeardwonCompleted){    
             Output = new Output();     
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();            
+            Vars = new Stack<Dictionary<string, object>>();  
+
+            //Events
+            OnSetupCompleted = onSetupCompleted;
+            OnScriptCompleted = onScriptCompleted;
+            OnTeardwonCompleted = onTeardwonCompleted;
             
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
@@ -654,7 +674,7 @@ namespace AutoCheck.Core{
             }
 
             //Log files export (once all the teardown has been executed)
-            ExportLog();
+            ExportLog();            
             
             //Scope out
             Vars.Pop();
@@ -714,7 +734,7 @@ namespace AutoCheck.Core{
         
         private void ParseTeardown(YamlNode node, string current="teardown", string parent="root", string[] children = null, string[] mandatory = null){
             //The same as ParseSetup
-            ParseSetup(node, current, parent, children, mandatory);
+            ParseSetup(node, current, parent, children, mandatory);            
         }
 
         private void ParsePre(YamlNode node, string current="pre", string parent="batch", string[] children = null, string[] mandatory = null){
@@ -771,10 +791,13 @@ namespace AutoCheck.Core{
                             Output.BreakLine();                 
                             break;
                     }                    
-                })); 
+                }));                 
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
+
+                //Setup completed
+                OnSetupCompleted.Invoke(this, null);
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -788,6 +811,9 @@ namespace AutoCheck.Core{
 
                     //Storing log for the script data
                     Output.CloseLog(Output.Type.SCRIPT);
+
+                    //Script completed
+                    OnScriptCompleted.Invoke(this, null);
                 });
 
                 if(local != null){
@@ -817,6 +843,9 @@ namespace AutoCheck.Core{
 
                 //Storing log for the teardown data
                 Output.CloseLog(Output.Type.TEARDOWN);
+
+                //Teardown completed
+                OnTeardwonCompleted.Invoke(this, null);
             }
         }
 
@@ -881,7 +910,7 @@ namespace AutoCheck.Core{
                                 break;
                         }                    
                     })); 
-                });               
+                });                             
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -900,6 +929,9 @@ namespace AutoCheck.Core{
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
+
+                //Setup completed
+                OnSetupCompleted.Invoke(this, null);  
                 
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
@@ -960,6 +992,9 @@ namespace AutoCheck.Core{
 
                         //Storing log for the script data
                         Output.CloseLog(Output.Type.SCRIPT);
+
+                        //Script completed
+                        OnScriptCompleted.Invoke(this, null);
                                                 
                     }).Invoke();
                 });
@@ -1004,7 +1039,10 @@ namespace AutoCheck.Core{
                 Output.UnIndent(); 
 
                 //Storing log for the teardown data
-                Output.CloseLog(Output.Type.TEARDOWN);                                
+                Output.CloseLog(Output.Type.TEARDOWN);      
+
+                //Teardown completed
+                OnTeardwonCompleted.Invoke(this, null);                          
             }            
         }
 
