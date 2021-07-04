@@ -664,6 +664,10 @@ namespace AutoCheck.Core{
 
             //Storing script execution into log
             Output.WriteLine(ScriptCaption, Output.Style.HEADER);
+            
+            //Storing log for the header (must be done here in order to generate correct spaces between log parts)
+            Output.CloseLog(Output.Type.HEADER);
+
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
             if(root.Children.ContainsKey("log")) ParseLog(root.Children["log"]);

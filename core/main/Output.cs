@@ -32,8 +32,10 @@ namespace AutoCheck.Core{
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
-    public class Output{                            
-        public class Content{            
+    public class Output{
+        public class Space: Content {}
+
+        public class Content {            
             public string Indent {get; set;}
             public string Text {get; set;}
             public string Style {get; set;}
@@ -54,9 +56,12 @@ namespace AutoCheck.Core{
             public string ToText(){
                 string output = string.Empty;
                 
-                foreach(var content in Content){                   
-                    output = $"{output}{content.Indent}{content.Text}";
-                    if(content.BreakLine) output = $"{output}\r\n";                         
+                foreach(var content in Content){     
+                    if(content.GetType().Equals(typeof(Space))) output = $"{output}\r\n";
+                    else{
+                        output = $"{output}{content.Indent}{content.Text}";
+                        if(content.BreakLine) output = $"{output}\r\n";                         
+                    }
                 }
 
                 output = output.TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
@@ -68,7 +73,7 @@ namespace AutoCheck.Core{
             /// </summary>
             /// <returns></returns>
             public string ToJson(){
-                return JsonSerializer.Serialize(Content, new JsonSerializerOptions(){
+                return JsonSerializer.Serialize(Content.Select(x => !x.GetType().Equals(typeof(Space))), new JsonSerializerOptions(){
                     ReferenceHandler = ReferenceHandler.Preserve
                 });              
             }
@@ -90,11 +95,14 @@ namespace AutoCheck.Core{
         }
 
         public enum Type{
+            HEADER,
             SETUP,
             SCRIPT,
             TEARDOWN
         }
         
+        internal Log HeaderLog {get; private set;}
+
         internal Log SetupLog {get; private set;}
 
         internal List<Log> ScriptLog {get; private set;}
@@ -111,7 +119,8 @@ namespace AutoCheck.Core{
                 
         private Log CurrentLog {get; set;} 
         
-        public Output(){                                        
+        public Output(){          
+            HeaderLog = new Log();                               
             SetupLog = new Log(); 
             TeardownLog = new Log(); 
             ScriptLog = new List<Log>();
@@ -210,6 +219,10 @@ namespace AutoCheck.Core{
         /// </summary>
         public void CloseLog(Type type){ 
             switch(type){
+                case Type.HEADER:
+                    HeaderLog = CurrentLog;
+                    break;
+
                 case Type.SETUP:
                     SetupLog = CurrentLog;
                     break;
@@ -240,9 +253,24 @@ namespace AutoCheck.Core{
         public Log[] GetLog() {
             List<Log> logs = new List<Log>();
 
-            foreach(var script in ScriptLog){
+            foreach(var script in ScriptLog){                
                 var log = new Log();
-                log.Content = log.Content.Concat(Trim(SetupLog.Content)).Concat(Trim(script.Content)).Concat(Trim(TeardownLog.Content)).ToList();
+                log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
+
+                if(SetupLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
+                    log.Content.Add(new Space());
+                }
+
+                if(script.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(script.Content)).ToList();
+                    log.Content.Add(new Space());
+                }
+
+                if(TeardownLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
+                }
+
                 logs.Add(log);
             }
             
