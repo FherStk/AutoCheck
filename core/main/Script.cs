@@ -600,6 +600,7 @@ namespace AutoCheck.Core{
             Vars = new Stack<Dictionary<string, object>>();  
 
             //Events
+            OnHeaderCompleted = onHeaderCompleted;
             OnSetupCompleted = onSetupCompleted;
             OnScriptCompleted = onScriptCompleted;
             OnTeardwonCompleted = onTeardwonCompleted;

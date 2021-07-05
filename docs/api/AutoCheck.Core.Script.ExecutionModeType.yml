@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Script.ExecutionModeType
+  commentId: T:AutoCheck.Core.Script.ExecutionModeType
+  id: Script.ExecutionModeType
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Script.ExecutionModeType.BATCH
+  - AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  langs:
+  - csharp
+  - vb
+  name: Script.ExecutionModeType
+  nameWithType: Script.ExecutionModeType
+  fullName: AutoCheck.Core.Script.ExecutionModeType
+  type: Enum
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionModeType
+    path: ../core/main/Script.cs
+    startLine: 68
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum ExecutionModeType
+    content.vb: Public Enum ExecutionModeType
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  commentId: F:AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  id: SINGLE
+  parent: AutoCheck.Core.Script.ExecutionModeType
+  langs:
+  - csharp
+  - vb
+  name: SINGLE
+  nameWithType: Script.ExecutionModeType.SINGLE
+  fullName: AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  type: Field
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SINGLE
+    path: ../core/main/Script.cs
+    startLine: 69
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SINGLE = 0
+    return:
+      type: AutoCheck.Core.Script.ExecutionModeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Script.ExecutionModeType.BATCH
+  commentId: F:AutoCheck.Core.Script.ExecutionModeType.BATCH
+  id: BATCH
+  parent: AutoCheck.Core.Script.ExecutionModeType
+  langs:
+  - csharp
+  - vb
+  name: BATCH
+  nameWithType: Script.ExecutionModeType.BATCH
+  fullName: AutoCheck.Core.Script.ExecutionModeType.BATCH
+  type: Field
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BATCH
+    path: ../core/main/Script.cs
+    startLine: 70
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: BATCH = 1
+    return:
+      type: AutoCheck.Core.Script.ExecutionModeType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Script.ExecutionModeType
+  commentId: T:AutoCheck.Core.Script.ExecutionModeType
+  parent: AutoCheck.Core
+  name: Script.ExecutionModeType
+  nameWithType: Script.ExecutionModeType
+  fullName: AutoCheck.Core.Script.ExecutionModeType
