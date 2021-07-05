@@ -266,14 +266,6 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// Returns the Output history as an string, using \r\n as breaklines.
-        /// </summary>
-        /// <returns></returns>
-        public new string ToString(){
-            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
-        }   
-
-        /// <summary>
         /// Returns the complete log files for each batch (or single) execution (setup + script + teardown).
         /// </summary>
         public Log[] GetLog() {
@@ -302,6 +294,14 @@ namespace AutoCheck.Core{
             
             return logs.ToArray();
         }
+        
+        /// <summary>
+        /// Returns the Output history as an string, using \r\n as breaklines.
+        /// </summary>
+        /// <returns></returns>
+        public new string ToString(){
+            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
+        }   
 #endregion  
 #region Private             
         private void SendToTerminal(Log log){
