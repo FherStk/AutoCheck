@@ -578,6 +578,13 @@ namespace AutoCheck.Core{
         public Script(string path): this(path, null, null, null, null){ 
         }
 
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        }
+
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>

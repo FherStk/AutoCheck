@@ -220,7 +220,7 @@ namespace AutoCheck.Terminal
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated, OnLogGenerated, OnLogGenerated, OnLogGenerated);
+                    new Script(script, OnLogGenerated);
                 }
                 catch(Exception ex){
                     output.BreakLine();
