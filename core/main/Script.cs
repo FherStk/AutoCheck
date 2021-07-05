@@ -575,14 +575,16 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path): this(path, null, null, null, null){ 
+        /// <param name="redirectOutputToTerminal">When enabled, all the output will directly sent to the terminal.</param>
+        public Script(string path, bool redirectOutputToTerminal = false): this(path, null, null, null, null, redirectOutputToTerminal){ 
         }
 
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        /// <param name="redirectOutputToTerminal">When enabled, all the output will directly sent to the terminal.</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, bool redirectOutputToTerminal = false): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, redirectOutputToTerminal){ 
         }
 
         /// <summary>
@@ -593,8 +595,9 @@ namespace AutoCheck.Core{
         /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
-            Output = new Output();     
+        /// <param name="redirectOutputToTerminal">When enabled, all the output will directly sent to the terminal.</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, bool redirectOutputToTerminal = false){    
+            Output = new Output(redirectOutputToTerminal);
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();  

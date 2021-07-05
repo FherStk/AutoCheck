@@ -33,6 +33,7 @@ namespace AutoCheck.Core{
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
+#region Classes
         public class Space: Content {}
 
         public class Content {            
@@ -100,7 +101,8 @@ namespace AutoCheck.Core{
             SCRIPT,
             TEARDOWN
         }
-        
+#endregion       
+#region Attributes
         internal Log HeaderLog {get; private set;}
 
         internal Log SetupLog {get; private set;}
@@ -118,13 +120,21 @@ namespace AutoCheck.Core{
         private Stylesheet CssDoc {get; set;} 
                 
         private Log CurrentLog {get; set;} 
-        
-        public Output(){          
+
+        private bool RedirectToTerminal {get; set;} 
+#endregion   
+#region Constructor    
+        /// <summary>
+        /// Creates the new Output instance
+        /// </summary>
+        /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
+        public Output(bool redirectToTerminal = false){          
             HeaderLog = new Log();                               
             SetupLog = new Log(); 
             TeardownLog = new Log(); 
             ScriptLog = new List<Log>();
             CurrentLog = new Log();
+            RedirectToTerminal = redirectToTerminal;
 
             ResetLog();        
 
@@ -136,7 +146,8 @@ namespace AutoCheck.Core{
                 CssDoc = parser.Parse(File.ReadAllText(cssPath));
             } 
         }
-               
+#endregion             
+#region Public
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
@@ -213,11 +224,26 @@ namespace AutoCheck.Core{
                 WriteColor("", Style.DEFAULT, true);
             }
         }
+
+        /// <summary>
+        /// The current log will be closed
+        /// </summary>
+        /// <returns>The closed log</returns>
+        public Log CloseLog(){
+            try{
+                return CurrentLog;
+            }
+            finally{
+                ResetLog();
+            }
+        }
         
         /// <summary>
-        /// The current log content will be stored using the provided type
+        /// The current log content will be closed and its content stored using the provided type
         /// </summary>
-        public void CloseLog(Type type){ 
+        /// <param name="type">The log type to close (it will be stored internally in order to build the complete log (header+setup+script+teardown) for every batch execution.</param>
+        /// <returns>The closed log</returns>
+        public Log CloseLog(Type type){ 
             switch(type){
                 case Type.HEADER:
                     HeaderLog = CurrentLog;
@@ -236,7 +262,7 @@ namespace AutoCheck.Core{
                     break;
             }
 
-            ResetLog();
+            return CloseLog();            
         }
 
         /// <summary>
@@ -276,30 +302,29 @@ namespace AutoCheck.Core{
             
             return logs.ToArray();
         }
-
-        /// <summary>
-        /// Writes the given into the current terminal.
-        /// </summary>
-        public void SentToTerminal(Log log){
+#endregion  
+#region Private             
+        private void SendToTerminal(Log log){
             foreach(Content c in log.Content){
-                Console.Write(c.Indent);
-                Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
-
-                if(c.BreakLine) Console.WriteLine(c.Text);
-                else Console.Write(c.Text);
-                Console.ResetColor();               
+                SendToTerminal(c);         
             }
         }
 
-        /// <summary>
-        /// Closes the current log and setups a new one, usefull for batch mode script execution
-        /// </summary>
+        private void SendToTerminal(Content c){
+            Console.Write(c.Indent);
+            Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
+
+            if(c.BreakLine) Console.WriteLine(c.Text);
+            else Console.Write(c.Text);
+            Console.ResetColor();               
+        }
+        
         private void ResetLog(){ 
             CurrentIndent = "";
             IsNewLine = true;  
             CurrentLog = new Log(); 
         }           
-
+        
         private ConsoleColor CssToConsoleColor(StyleRule cssRule){
             var color = cssRule.Style.Color;
             color = color.Substring(color.IndexOf("(")+1);
@@ -330,20 +355,16 @@ namespace AutoCheck.Core{
             }
             return ret;
         }
-        
-        /// <summary>
-        /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
-        /// </summary>
-        /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
-        /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
-        /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private void WriteColor(string text, Style style, bool newLine){             
+                
+        private void WriteColor(string text, Style style, bool newLine){
+            var content = new List<Content>();
+
             if(!text.Contains("~")){
                 //Single color text
-                CurrentLog.Content.Add(new Content(){
+                content.Add(new Content(){
                     Indent = (IsNewLine && !string.IsNullOrEmpty(text) ? CurrentIndent : ""),
                     Text = text,
-                    Style = style.ToString().ToLower(), 
+                    Style =  $"{style.ToString().ToLower()}-primary", 
                     BreakLine = newLine
                 });
             }
@@ -353,38 +374,42 @@ namespace AutoCheck.Core{
                     int i = text.IndexOf("~");
 
                     //First color
-                    CurrentLog.Content.Add(new Content(){
+                    content.Add(new Content(){
                         Indent = (IsNewLine ? CurrentIndent : ""),
                         Text = text.Substring(0, i),
                         Style = $"{style.ToString().ToLower()}-primary" 
-                    });            
-                    
+                    });                      
                     text = text.Substring(i+1);
+
                     i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
                     if(i == -1) i = text.Length;
 
                     //Second color
-                    CurrentLog.Content.Add(new Content(){
+                    content.Add(new Content(){
                         Text = text.Substring(0, i),
                         Style = $"{style.ToString().ToLower()}-secondary"
-                    });
-                    
+                    });                    
                     text = text.Substring(i).TrimStart('~');                               
                 }
 
                 //Last part of the text
                 if(!string.IsNullOrEmpty(text)){
-                     CurrentLog.Content.Add(new Content(){
+                     content.Add(new Content(){
                         Text = text,
                         Style = $"{style.ToString().ToLower()}-primary"
-                    });
+                    });                    
                 }
 
                 //Breakline at the end (if needed)
-                CurrentLog.Content[CurrentLog.Content.Count-1].BreakLine = newLine;                
+                content.LastOrDefault().BreakLine = newLine;                
             }
 
             IsNewLine = newLine;
+
+            foreach(var c in content){
+                CurrentLog.Content.Add(c);
+                if(RedirectToTerminal) SendToTerminal(c);
+            }
         }        
 
         private StyleRule GetCssRule(string style){
@@ -413,7 +438,6 @@ namespace AutoCheck.Core{
 
             return copy;
         }
-
-        
+#endregion
     }
 }

@@ -38,14 +38,14 @@ namespace AutoCheck.Terminal
         static void Main(string[] args)
         {
             //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)                
-            var output = new Output();
+            var output = new Output(true);
 
             output.BreakLine();        
             output.WriteLine($"AutoCheck: ~v{GetProductVersion(Assembly.GetExecutingAssembly())} (Core v{GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)})", Output.Style.INFO);            
             output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", Output.Style.INFO);            
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();                                   
-            
+
             var u = false;
             var nu = false;
             var script = string.Empty;
@@ -125,8 +125,6 @@ namespace AutoCheck.Terminal
                         output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
                         output.BreakLine();
                         restart.Start();
-                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...     
-
                         return;                   
                     }
                 }            
@@ -169,6 +167,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", Output.Style.PROMPT);
+            
             var update = (Console.ReadLine() is "Y" or "y" or "");
             output.BreakLine();                 
 
@@ -210,6 +209,7 @@ namespace AutoCheck.Terminal
             output.UnIndent();
             output.BreakLine();                            
             output.WriteLine("AutoCheck has been updated.", Output.Style.SUCCESS);
+
             return true;
         }
         
@@ -220,7 +220,7 @@ namespace AutoCheck.Terminal
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated);
+                    new Script(script, OnLogGenerated, !_NO_OUTPUT);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -237,11 +237,7 @@ namespace AutoCheck.Terminal
         }
 
         private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){      
-            if(_NO_OUTPUT) return;
-                  
-            var script = (Script)sender;
-            script.Output.SentToTerminal(e.Log);
-
+            if(_NO_OUTPUT) return;                  
             if(e.Type != Output.Type.HEADER) Console.WriteLine();
             if(e.Type == Output.Type.SCRIPT){
                 if(_NO_PAUSE || e.ExecutionMode == Core.Script.ExecutionModeType.SINGLE) Console.WriteLine();
