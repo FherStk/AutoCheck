@@ -34,9 +34,9 @@ namespace AutoCheck.Core{
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
 #region Classes
-        public class Space: Content {}
+        internal class Space: Content {}
 
-        public class Content {            
+        internal class Content {            
             public string Indent {get; set;}
             public string Text {get; set;}
             public string Style {get; set;}
@@ -44,7 +44,7 @@ namespace AutoCheck.Core{
         }
 
         public class Log {
-            public List<Content> Content {get; set;}    
+            internal List<Content> Content {get; set;}    
 
             public Log(){
                 Content = new List<Content>();
@@ -226,7 +226,7 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The current log will be closed
+        /// The current log will be closed, so a new empty one will be ready to start logging again.
         /// </summary>
         /// <returns>The closed log</returns>
         public Log CloseLog(){
@@ -237,36 +237,9 @@ namespace AutoCheck.Core{
                 ResetLog();
             }
         }
-        
+                        
         /// <summary>
-        /// The current log content will be closed and its content stored using the provided type
-        /// </summary>
-        /// <param name="type">The log type to close (it will be stored internally in order to build the complete log (header+setup+script+teardown) for every batch execution.</param>
-        /// <returns>The closed log</returns>
-        public Log CloseLog(Type type){ 
-            switch(type){
-                case Type.HEADER:
-                    HeaderLog = CurrentLog;
-                    break;
-
-                case Type.SETUP:
-                    SetupLog = CurrentLog;
-                    break;
-
-                case Type.TEARDOWN:
-                    TeardownLog = CurrentLog;
-                    break;
-
-                case Type.SCRIPT:
-                    ScriptLog.Add(CurrentLog);                    
-                    break;
-            }
-
-            return CloseLog();            
-        }
-
-        /// <summary>
-        /// Returns the complete log files for each batch (or single) execution (setup + script + teardown).
+        /// Returns the complete log files for each batch (or single) execution (header + setup + script + teardown).
         /// </summary>
         public Log[] GetLog() {
             List<Log> logs = new List<Log>();
@@ -304,6 +277,28 @@ namespace AutoCheck.Core{
         }   
 #endregion  
 #region Private             
+        internal Log CloseLog(Type type){ 
+            switch(type){
+                case Type.HEADER:
+                    HeaderLog = CurrentLog;
+                    break;
+
+                case Type.SETUP:
+                    SetupLog = CurrentLog;
+                    break;
+
+                case Type.TEARDOWN:
+                    TeardownLog = CurrentLog;
+                    break;
+
+                case Type.SCRIPT:
+                    ScriptLog.Add(CurrentLog);                    
+                    break;
+            }
+
+            return CloseLog();            
+        }
+
         private void SendToTerminal(Log log){
             foreach(Content c in log.Content){
                 SendToTerminal(c);         

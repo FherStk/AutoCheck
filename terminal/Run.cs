@@ -238,16 +238,13 @@ namespace AutoCheck.Terminal
 
         private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){      
             if(_NO_OUTPUT) return;                  
-            if(e.Type != Output.Type.HEADER) Console.WriteLine();
-            if(e.Type == Output.Type.SCRIPT){
-                if(_NO_PAUSE || e.ExecutionMode == Core.Script.ExecutionModeType.SINGLE) Console.WriteLine();
-                else {                               
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
-            }
+            
+            if(e.Type == Output.Type.SCRIPT && e.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.WriteLine();
+                Console.WriteLine();
+            }            
         }
 
         private static void Info(string message, Output output){
