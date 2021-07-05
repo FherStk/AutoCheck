@@ -33,7 +33,6 @@ namespace AutoCheck.Terminal
     class Run
     { 
         private static bool _NO_PAUSE = false;
-        private static bool _NO_OUTPUT = false;
 
         static void Main(string[] args)
         {
@@ -65,11 +64,6 @@ namespace AutoCheck.Terminal
                     case "--no-pause":
                     case "-np":
                         _NO_PAUSE = true;
-                        break;
-
-                    case "--no-output":
-                    case "-no":
-                        _NO_OUTPUT = true;
                         break;
 
                     default:
@@ -220,7 +214,7 @@ namespace AutoCheck.Terminal
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated, !_NO_OUTPUT);
+                    new Script(script, OnLogGenerated, true);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -237,8 +231,6 @@ namespace AutoCheck.Terminal
         }
 
         private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){      
-            if(_NO_OUTPUT) return;                  
-            
             if(e.Type == Output.Type.SCRIPT && e.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
