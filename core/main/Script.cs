@@ -24,6 +24,7 @@ using System.Linq;
 using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Core.Exceptions;
@@ -519,6 +520,19 @@ namespace AutoCheck.Core{
                 UpdateVar("total_score", value);                
             }
         }
+
+        /// <summary>
+        /// Batch mode only: maximum concurrent script execution (0 = MAX).
+        /// </summary>
+        protected int Concurrent {
+            get{
+                return (int)GetVar("concurrent", AutoComputeVarValues);
+            }
+
+            private set{
+                UpdateVar("concurrent", value);                
+            }
+        }
 #endregion
 #region Attributes
         /// <summary>
@@ -618,7 +632,8 @@ namespace AutoCheck.Core{
             MaxScore = 10f;  
             TotalScore = 0f;
             CurrentScore = 0f;
-            CurrentQuestion = "0";     
+            CurrentQuestion = "0";    
+            Concurrent = 0; 
 
             //Setup default folders, each property will set also the related 'name' property                              
             AppFolderPath = Utils.AppFolder;            
@@ -649,14 +664,15 @@ namespace AutoCheck.Core{
         
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score", "concurrent"});
                     
             //YAML header overridable vars 
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
             ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
             ScriptName = ParseChild(root, "name", ScriptName, false);                        
-            MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
+            MaxScore = ParseChild(root, "max-score", MaxScore, false);
+            Concurrent = ParseChild(root, "concurrent", Concurrent, false);
                         
             //Preparing script body execution
             AutoComputeVarValues = true;
@@ -1035,17 +1051,62 @@ namespace AutoCheck.Core{
                     }).Invoke();
                 });
 
-                //Executing body for each local target                
+                //Multithreading queue
+                var scripts = new List<Task>();               
+                var mainOutput = this.Output;
+
+                //Queing body for each local target                
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     //ForEachLocalTarget method setups the global vars                    
-                    script.Invoke(folder);
+                    scripts.Add(new Task(() => {
+                        script.Invoke(folder);
+                    }));
                 });                                  
 
-                //Executing body for each remote target                
+                //Queing body for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars
-                    script.Invoke(folder);
+                    scripts.Add(new Task(() => {
+                        script.Invoke(folder);
+                    }));                    
                 }); 
+
+                //Multithreading execution
+                int i = 0;
+                int max = Concurrent == 0 ? scripts.Count : Concurrent;                                
+
+                //TODO: each task execution needs its own script instance (a copy of the current one, but with terminal output disabled to avoid mixed data beeing displayed)
+                //      once a script completes, the script log must be send to the output (if enabled) and merged into the main one.
+                // 
+                //      parseBody should be executen within its own context, because cannot share global vars with other tasks runnin in parallel.
+                //      isolate the global bars is complicated, because there are a lot of methods that uses them (a class containing those vars beeing passed through methods? ugly and complex)
+                //      Better -> maybe "parseBody" could be executed inside a new object? a "body" class which can be instantiated with its needed data? when completed, the "body" data can me passed again to the "script" data.
+                //                one must inherit from the other in order to share de needed global vars, but "body" will need its own constructor (cannot be empty).
+                //                idea: all the code is within "script" and "body" just inherits from "script", maibe can be called "ParallelBody".
+                //                      ParallelBody includes a constructor, which takes a script (this).
+                //                      The constructor setups all the global vars from ParallelBody as a copy (important, must be a copy) from the given script.
+                //                      The current script instantates a ParallelBody, disables its output to the terminal and invokes its "ParseBody" method                
+                //                      Once done, takes its output data and mixes it with its own
+
+                while(i < scripts.Count){
+                    var started = new List<Task>();
+
+                    for(int j=0; j<max; j++){
+                        started.Add(scripts[j]);
+                        scripts[j].Start();
+                        scripts[j].ContinueWith((t) => {
+                            //TODO: combine logs
+                            mainOutput.ScriptLog.AddRange(this.Output.ScriptLog);
+                        });
+                    }
+
+                    Task.WaitAll(started.ToArray());
+                    
+                    i+= max;
+                    
+                }
+
+                
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();

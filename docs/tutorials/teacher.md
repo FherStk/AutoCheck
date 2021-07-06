@@ -182,6 +182,7 @@ version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
 caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
+concurrent | integer | no | Batch mode only: maximum concurrent script execution (0 = MAX). | `0`
 [output](#output) | mapping | no | Setups the output behaviour. | 
 [vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [body](#body) | sequence | no | Script body. |
