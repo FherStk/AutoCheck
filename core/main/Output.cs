@@ -103,13 +103,13 @@ namespace AutoCheck.Core{
         }
 #endregion       
 #region Attributes
-        internal Log HeaderLog {get; private set;}
+        internal Log HeaderLog {get; set;}
 
-        internal Log SetupLog {get; private set;}
+        internal Log SetupLog {get; set;}
 
-        internal List<Log> ScriptLog {get; private set;}
+        internal List<Log> ScriptLog {get; set;}
 
-        internal Log TeardownLog {get; private set;}          
+        internal Log TeardownLog {get; set;}          
 
         public const string SingleIndent = "   ";
         

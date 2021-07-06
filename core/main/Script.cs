@@ -61,7 +61,7 @@ namespace AutoCheck.Core{
             Vars = vars;
         }
     }
-
+    
     private enum LogFormatType {
         TEXT,
         JSON
@@ -585,6 +585,29 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Constructor
+        private Script(bool output = false){
+            //Just to be used by the other constructors            
+            Output = new Output(output);       
+            LogFiles = new List<string>();                                                           
+            Connectors = new Stack<Dictionary<string, object>>();          
+            Vars = new Stack<Dictionary<string, object>>();
+
+            //Scope in              
+            Vars.Push(new Dictionary<string, object>());
+        }
+
+        private Script(Script script, Action<string> action, string folder): this(false){
+            //This private constructor is used just for parallelization (parallel body script execution)
+
+            //Copying script attributes
+            CopyProperties(script, this, new string[]{"Output"});
+            
+            //Copying the output
+            //CopyProperties(script.Output, this.Output);
+
+            action.Invoke(folder);
+        }
+
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
@@ -609,20 +632,14 @@ namespace AutoCheck.Core{
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
         /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, bool output = false){    
-            Output = new Output(output);
-            LogFiles = new List<string>();                                                           
-            Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();  
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, bool output = false): this(output){    
+            //NOTE: some properties are beeing setup within the private constructor
 
             //Events
             OnHeaderCompleted = onHeaderCompleted;
             OnSetupCompleted = onSetupCompleted;
             OnScriptCompleted = onScriptCompleted;
-            OnTeardwonCompleted = onTeardwonCompleted;
-            
-            //Scope in              
-            Vars.Push(new Dictionary<string, object>());
+            OnTeardwonCompleted = onTeardwonCompleted;                        
 
             //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
             AutoComputeVarValues = false;
@@ -731,8 +748,7 @@ namespace AutoCheck.Core{
             ExportLog();            
             
             //Scope out
-            Vars.Pop();
-            
+            Vars.Pop();            
         }
 #endregion
 #region Parsing
@@ -1052,23 +1068,39 @@ namespace AutoCheck.Core{
                 });
 
                 //Multithreading queue
-                var scripts = new List<Task>();               
+                var scripts = new List<Task<Script>>();               
                 var mainOutput = this.Output;
 
-                //Queing body for each local target                
+                //Queing parallel body execution for each local target                
                 ForEachLocalTarget(local.ToArray(), (folder) => {
-                    //ForEachLocalTarget method setups the global vars                    
-                    scripts.Add(new Task(() => {
-                        script.Invoke(folder);
-                    }));
+                    //ForEachLocalTarget method setups the global vars   
+
+                    //TODO: It seems that "script" its beeing executed within its original context, and not within the newly created script.
+                    //      This Actions should be modified to be methods or somethin intance-specific, otherwise the current
+                    //      context global vars will be shared along parallel executions, and an isolated context per execution is needed.
+                    var t = new Task<Script>(() => {
+                        return new Script(this, script, folder);
+                    });
+                    
+                    t.ContinueWith((t) => {
+                        this.Output.ScriptLog.AddRange(t.Result.Output.ScriptLog);
+                    });
+
+                    scripts.Add(t);
                 });                                  
 
-                //Queing body for each remote target                
+                //Queing parallel body execution for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars
-                    scripts.Add(new Task(() => {
-                        script.Invoke(folder);
-                    }));                    
+                    var t = new Task<Script>(() => {
+                        return new Script(this, script, folder);
+                    });
+                    
+                    t.ContinueWith((t) => {
+                        this.Output.ScriptLog.AddRange(t.Result.Output.ScriptLog);
+                    });
+
+                    scripts.Add(t);
                 }); 
 
                 //Multithreading execution
@@ -1093,20 +1125,12 @@ namespace AutoCheck.Core{
 
                     for(int j=0; j<max; j++){
                         started.Add(scripts[j]);
-                        scripts[j].Start();
-                        scripts[j].ContinueWith((t) => {
-                            //TODO: combine logs
-                            mainOutput.ScriptLog.AddRange(this.Output.ScriptLog);
-                        });
+                        scripts[j].Start();                        
                     }
 
-                    Task.WaitAll(started.ToArray());
-                    
-                    i+= max;
-                    
-                }
-
-                
+                    Task.WaitAll(started.ToArray());                    
+                    i+= max;                    
+                }                
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();
@@ -1812,6 +1836,19 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
+        private void CopyProperties(object source, object destination, string[] ignore = null){
+            foreach(var prop in source.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Public| BindingFlags.Instance | BindingFlags.Static)){
+                if(ignore != null && ignore.Contains(prop.Name)) continue;
+
+                try{
+                    prop.SetValue(destination, prop.GetValue(source));
+                }
+                catch(ArgumentException){
+                    //nothing to do
+                }
+            }
+        }
+
         private void SetupDefaultHostVars(){
             CurrentOS = Utils.CurrentOS;
             CurrentHost = "localhost";
