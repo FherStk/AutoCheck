@@ -37,9 +37,9 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToText().LastOrDefault()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToText()));
         } 
 
         [Test, Category("Output"), Category("Local"), Category("Json")]
@@ -50,9 +50,9 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_2.yaml"));
-            Assert.AreEqual(logFilePath, s.LogFiles.FirstOrDefault());
+            Assert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
             Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.ToJson().LastOrDefault()));                
+            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToJson()));                
         }
 
         [Test, Category("Output"), Category("Local"), Category("Text")]
@@ -79,7 +79,7 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -95,7 +95,7 @@ namespace AutoCheck.Test
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in s.LogFiles.OrderBy(x => x)){
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToText()[i++]));
+                Assert.IsTrue(File.ReadAllText(Core.Utils.PathToCurrentOS(l)).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -113,7 +113,7 @@ namespace AutoCheck.Test
 
             if(Directory.Exists(path)){     
                 foreach(var l in logs)
-                    Assert.IsFalse(File.Exists(l));
+                    Assert.IsFalse(File.Exists(Core.Utils.PathToCurrentOS(l)));
             }
             
             var i = 0;
@@ -123,7 +123,7 @@ namespace AutoCheck.Test
 
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.ToJson()[i++]));
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToJson()));
             }
         } 
     }

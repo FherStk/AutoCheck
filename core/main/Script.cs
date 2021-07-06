@@ -65,6 +65,11 @@ namespace AutoCheck.Core{
         TEXT,
         JSON
     }
+
+    public enum ExecutionModeType{
+        SINGLE,
+        BATCH
+    }
 #endregion
 #region Vars
         /// <summary>
@@ -542,28 +547,65 @@ namespace AutoCheck.Core{
 
         private bool AutoComputeVarValues {get; set;}
 
-        private bool BatchPauseEnabled {get; set;}
-
         private bool LogFilesEnabled {get; set;}   
 
-        private LogFormatType LogFormat {get; set;}   
+        private LogFormatType LogFormat {get; set;}      
 
         private bool IsQuestionOpen {
             get{
                 return Errors != null;
             }
-        }        
+        }  
+#endregion
+#region Events
+        private event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
+        private event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
+        private event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
+        private event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
+
+        public class LogGeneratedEventArgs : EventArgs
+        {
+            public Output.Type Type { get; set; }
+            public ExecutionModeType ExecutionMode { get; set; }
+            public Output.Log Log { get; set; }
+        }
 #endregion
 #region Constructor
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
+        public Script(string path, bool output = false): this(path, null, null, null, null, output){ 
+        }
+
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, bool output = false): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, output){ 
+        }
+
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path){    
-            Output = new Output();     
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
+        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
+        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
+        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, bool output = false){    
+            Output = new Output(output);
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();            
+            Vars = new Stack<Dictionary<string, object>>();  
+
+            //Events
+            OnHeaderCompleted = onHeaderCompleted;
+            OnSetupCompleted = onSetupCompleted;
+            OnScriptCompleted = onScriptCompleted;
+            OnTeardwonCompleted = onTeardwonCompleted;
             
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
@@ -596,7 +638,6 @@ namespace AutoCheck.Core{
             ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             SingleCaption = "Running on single mode:";
             BatchCaption = "Running on batch mode:";
-            BatchPauseEnabled = true;
 
             //Setup log data before starting
             SetupLog(
@@ -608,7 +649,7 @@ namespace AutoCheck.Core{
         
             //Load the YAML file
             var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "output", "vars", "body", "max-score"});
+            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
                     
             //YAML header overridable vars 
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
@@ -635,10 +676,20 @@ namespace AutoCheck.Core{
 
             //Storing script execution into log
             Output.WriteLine(ScriptCaption, Output.Style.HEADER);
-            Output.CloseLog(Output.Type.HEADER);            
+            
+            //Storing log for the header (must be done here in order to generate correct spaces between log parts)
+            Output.CloseLog(Output.Type.HEADER);
+            
+            //Script loaded
+            if(OnHeaderCompleted != null) OnHeaderCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                ExecutionMode = ExecutionModeType.SINGLE,
+                Type = Output.Type.SCRIPT,
+                Log = Output.ScriptLog.LastOrDefault()
+            });
+
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
-            if(root.Children.ContainsKey("output")) ParseOutput(root.Children["output"]);
+            if(root.Children.ContainsKey("log")) ParseLog(root.Children["log"]);
             if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
             if(root.Children.ContainsKey("single")) ParseSingle(root.Children["single"], script);
             if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
@@ -651,10 +702,17 @@ namespace AutoCheck.Core{
                 
                 //Storing script execution log
                 Output.CloseLog(Output.Type.SCRIPT);  
+
+                //Script completed
+                if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.SINGLE | ExecutionModeType.BATCH,
+                    Type = Output.Type.HEADER,
+                    Log = Output.HeaderLog
+                });
             }
 
             //Log files export (once all the teardown has been executed)
-            ExportLog();
+            ExportLog();            
             
             //Scope out
             Vars.Pop();
@@ -662,36 +720,20 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Parsing
-        private void ParseOutput(YamlNode node, string current="output", string parent="root", string[] children = null, string[] mandatory = null){
-            children ??= new string[]{"terminal", "pause", "log"};
+        private void ParseLog(YamlNode node, string current="log", string parent="root", string[] children = null, string[] mandatory = null){
+            children ??= new string[]{"folder", "format", "name", "enabled"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
             
             AutoComputeVarValues = false;
             ValidateChildren(node, current, children, mandatory);
-            ForEachChild(node, new Action<string, YamlScalarNode>((name, value) => {
-                switch(name){
-                    case "terminal":
-                        if(!ParseNode<bool>(value, true)) Output.SetMode(Output.Mode.SILENT); //Just alter default value (terminal) because testing system uses silent and should not be replaced here                       
-                        break;
 
-                    case "pause":
-                        BatchPauseEnabled = ParseNode<bool>(value, BatchPauseEnabled);
-                        break;
-                }               
-            }));  
+            SetupLog(
+                ParseChild(node, "folder", LogFolderPath, false), 
+                ParseChild(node, "format", LogFormat, false), 
+                ParseChild(node, "name", LogFileName, false),
+                ParseChild(node, "enabled", LogFilesEnabled, false)
+            );
 
-            ForEachChild(node, new Action<string, YamlMappingNode>((name, value) => {
-                switch(name){
-                    case "log":
-                        SetupLog(
-                            ParseChild(value, "folder", LogFolderPath, false), 
-                            ParseChild(value, "format", LogFormat, false), 
-                            ParseChild(value, "name", LogFileName, false),
-                            ParseChild(value, "enabled", LogFilesEnabled, false)
-                        );                       
-                        break;
-                }               
-            }));  
             AutoComputeVarValues = true;                 
         } 
 
@@ -714,7 +756,7 @@ namespace AutoCheck.Core{
         
         private void ParseTeardown(YamlNode node, string current="teardown", string parent="root", string[] children = null, string[] mandatory = null){
             //The same as ParseSetup
-            ParseSetup(node, current, parent, children, mandatory);
+            ParseSetup(node, current, parent, children, mandatory);            
         }
 
         private void ParsePre(YamlNode node, string current="pre", string parent="batch", string[] children = null, string[] mandatory = null){
@@ -730,7 +772,7 @@ namespace AutoCheck.Core{
         }
         
         //TODO: can be single and batch simplified where one uses onther?
-        private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){  
+        private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){              
             children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
             else{                                    
@@ -771,10 +813,17 @@ namespace AutoCheck.Core{
                             Output.BreakLine();                 
                             break;
                     }                    
-                })); 
+                }));                 
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
+
+                //Setup completed
+                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){                    
+                    ExecutionMode = ExecutionModeType.SINGLE,
+                    Type = Output.Type.SETUP,
+                    Log = Output.SetupLog
+                });
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -788,6 +837,13 @@ namespace AutoCheck.Core{
 
                     //Storing log for the script data
                     Output.CloseLog(Output.Type.SCRIPT);
+
+                    //Script completed
+                    if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                        ExecutionMode = ExecutionModeType.SINGLE,
+                        Type = Output.Type.SCRIPT,
+                        Log = Output.ScriptLog.LastOrDefault()
+                    });
                 });
 
                 if(local != null){
@@ -817,6 +873,13 @@ namespace AutoCheck.Core{
 
                 //Storing log for the teardown data
                 Output.CloseLog(Output.Type.TEARDOWN);
+
+                //Teardown completed
+                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.SINGLE,
+                    Type = Output.Type.TEARDOWN,
+                    Log = Output.TeardownLog
+                });
             }
         }
 
@@ -881,7 +944,7 @@ namespace AutoCheck.Core{
                                 break;
                         }                    
                     })); 
-                });               
+                });                             
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -900,6 +963,13 @@ namespace AutoCheck.Core{
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
+
+                //Setup completed
+                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.BATCH,
+                    Type = Output.Type.SETUP,
+                    Log = Output.SetupLog
+                });  
                 
                 //Both local and remote will run exactly the same code
                 var script = new Action<string>((folder) => {
@@ -948,18 +1018,19 @@ namespace AutoCheck.Core{
                                     break;
                             }                    
                         }));                    
-                        Output.UnIndent();                        
-                        
-                        //Pausing if needed, but should not be logged...
-                        if(!BatchPauseEnabled || Output.GetMode() != Output.Mode.VERBOSE) Output.BreakLine();
-                        else {                               
-                            Console.WriteLine("Press any key to continue...");
-                            Console.ReadKey();
-                            Output.BreakLine(2);
-                        }
+                        Output.UnIndent();                                                                   
 
                         //Storing log for the script data
                         Output.CloseLog(Output.Type.SCRIPT);
+
+                        //Script completed
+                        if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                            //TODO: This could fail if multihreeading is implemented, the event should be fired from Output
+                            //      Directly from Output or refired from here to set the execution mode?
+                            ExecutionMode = ExecutionModeType.BATCH,
+                            Type = Output.Type.SCRIPT,
+                            Log = Output.ScriptLog.LastOrDefault()
+                        });
                                                 
                     }).Invoke();
                 });
@@ -1004,7 +1075,14 @@ namespace AutoCheck.Core{
                 Output.UnIndent(); 
 
                 //Storing log for the teardown data
-                Output.CloseLog(Output.Type.TEARDOWN);                                
+                Output.CloseLog(Output.Type.TEARDOWN);      
+
+                //Teardown completed
+                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.BATCH,
+                    Type = Output.Type.TEARDOWN,
+                    Log = Output.TeardownLog
+                });
             }            
         }
 
@@ -2051,44 +2129,27 @@ namespace AutoCheck.Core{
             LogFilePath = Path.Combine(logFolderPath, $"{Path.GetFileNameWithoutExtension(logFileName)}.log");
             LogFilesEnabled = enabled;
         }
-
-        private string GetLog(){
-            switch(LogFormat){
-                case LogFormatType.TEXT:
-                    return Output.ToText().LastOrDefault();
-
-                case LogFormatType.JSON:
-                    return Output.ToJson().LastOrDefault();
-
-                default:
-                    return null;
-            }
-        }
         
         private void ExportLog(){           
             //Preparing the output files and folders if enabled                                               
             if(LogFilesEnabled){  
-                string[] logs = null;
-
-                 switch(LogFormat){
-                    case LogFormatType.TEXT:
-                        logs = Output.ToText();
-                        break;
-
-                    case LogFormatType.JSON:
-                        logs = Output.ToJson();
-                        break;
-
-                    default:
-                        logs = new string[0];
-                        break;
-                }
-
-                for(int i=0; i<LogFiles.Count; i++){
+                var logs = Output.GetLog();
+                
+                for(int i=0; i < LogFiles.Count; i++){
                     //WARNING: this could fail if multithreading is implemented
-                    var logContent = logs[i];
-                    var logFile = LogFiles[i];
+                    var logFile = Utils.PathToCurrentOS(LogFiles[i]);
                     var logFolder = Path.GetDirectoryName(logFile);
+                    var logContent = string.Empty;
+
+                    switch(LogFormat){
+                        case LogFormatType.TEXT:
+                            logContent = logs[i].ToText();
+                            break;
+
+                        case LogFormatType.JSON:
+                            logContent = logs[i].ToJson();
+                            break;
+                    }
 
                     //Writing log output if needed                                        
                     if(!Directory.Exists(logFolder)) Directory.CreateDirectory(logFolder);

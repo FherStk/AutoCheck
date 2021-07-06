@@ -27,30 +27,59 @@ using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
 using ExCSS;
 
-namespace AutoCheck.Core{
+namespace AutoCheck.Core{    
     /// <summary>
     /// This class is in charge of writing the output into the terminal.    
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
-    public class Output{ 
-        private List<Content> HeaderLog {get; set;}
-        private List<Content> SetupLog {get; set;}
-        private List<List<Content>> ScriptLog {get; set;}
-        private List<Content> TeardownLog {get; set;}          
-               
-        //Contains the data stored as needed in order to generate diferent outputs (txt, json, etc)
-        private class Content{            
+    public class Output{
+#region Classes
+        internal class Space: Content {}
+
+        internal class Content {            
             public string Indent {get; set;}
             public string Text {get; set;}
             public string Style {get; set;}
             public bool BreakLine {get; set;}
         }
 
-        public enum Mode {
-            SILENT,
-            VERBOSE
+        public class Log {
+            internal List<Content> Content {get; set;}    
+
+            public Log(){
+                Content = new List<Content>();
+            }
+
+            /// <summary>
+            /// Returns the log content as a text plain string
+            /// </summary>
+            /// <returns></returns>
+            public string ToText(){
+                string output = string.Empty;
+                
+                foreach(var content in Content){     
+                    if(content.GetType().Equals(typeof(Space))) output = $"{output}\r\n";
+                    else{
+                        output = $"{output}{content.Indent}{content.Text}";
+                        if(content.BreakLine) output = $"{output}\r\n";                         
+                    }
+                }
+
+                output = output.TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
+                return output;
+            }
+
+            /// <summary>
+            /// Returns the log content as a json string
+            /// </summary>
+            /// <returns></returns>
+            public string ToJson(){
+                return JsonSerializer.Serialize(Content.Select(x => !x.GetType().Equals(typeof(Space))), new JsonSerializerOptions(){
+                    ReferenceHandler = ReferenceHandler.Preserve
+                });              
+            }
         }
-        
+       
         public enum Style {
             INFO,
             PROMPT,
@@ -72,7 +101,16 @@ namespace AutoCheck.Core{
             SCRIPT,
             TEARDOWN
         }
-        
+#endregion       
+#region Attributes
+        internal Log HeaderLog {get; private set;}
+
+        internal Log SetupLog {get; private set;}
+
+        internal List<Log> ScriptLog {get; private set;}
+
+        internal Log TeardownLog {get; private set;}          
+
         public const string SingleIndent = "   ";
         
         public string CurrentIndent {get; private set;}
@@ -81,16 +119,22 @@ namespace AutoCheck.Core{
         
         private Stylesheet CssDoc {get; set;} 
                 
-        private List<Content> CurrentLog {get; set;} 
-        
-        private int CurrentLogIndex {get; set;}                         //The last CurrentLog entry that has been send to the terminal output                
+        private Log CurrentLog {get; set;} 
 
-        public Output(){                                        
-            HeaderLog = new List<Content>(); 
-            SetupLog = new List<Content>(); 
-            TeardownLog = new List<Content>(); 
-            ScriptLog = new List<List<Content>>();
-            CurrentLog = new List<Content>();
+        private bool RedirectToTerminal {get; set;} 
+#endregion   
+#region Constructor    
+        /// <summary>
+        /// Creates the new Output instance
+        /// </summary>
+        /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
+        public Output(bool redirectToTerminal = false){          
+            HeaderLog = new Log();                               
+            SetupLog = new Log(); 
+            TeardownLog = new Log(); 
+            ScriptLog = new List<Log>();
+            CurrentLog = new Log();
+            RedirectToTerminal = redirectToTerminal;
 
             ResetLog();        
 
@@ -102,85 +146,8 @@ namespace AutoCheck.Core{
                 CssDoc = parser.Parse(File.ReadAllText(cssPath));
             } 
         }
-        
-        /// <summary>
-        /// Changes the output mode.
-        /// </summary>
-        /// <param name="Mode">Requested output mode</param>
-        public static void SetMode(Mode mode){            
-            switch(mode){
-                case Mode.VERBOSE:
-                    var standardOutput = new StreamWriter(Console.OpenStandardOutput());
-                    standardOutput.AutoFlush = true;
-                    Console.SetOut(standardOutput);
-
-                    var standardError = new StreamWriter(Console.OpenStandardError());
-                    standardError.AutoFlush = true;
-                    Console.SetError(standardError);
-                    break;
-                
-                case Mode.SILENT:
-                    Console.SetOut(new StringWriter());
-                    Console.SetError(new StringWriter());                    
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Gets the current output mode.
-        /// </summary>
-        /// <returns></returns>
-        public static Mode GetMode(){ 
-            //Note: IsOutputRedirected does not work properly when tests are run directly from terminal            
-            return (Console.IsErrorRedirected ? Mode.SILENT : Mode.VERBOSE);            
-        }
-
-        /// <summary>
-        /// Returns the Output history as an string array, where each string represents a separated plain log file using \r\n as breaklines.
-        /// </summary>
-        /// <returns></returns>
-        public string[] ToText(){
-            List<string> result = new List<string>();
-
-            foreach(var log in GetFullLog()){
-                string output = string.Empty;
-                
-                foreach(var content in log){                   
-                    output = $"{output}{content.Indent}{content.Text}";
-                    if(content.BreakLine) output = $"{output}\r\n";                         
-                }
-
-                output = output.TrimEnd("\r\n".ToCharArray()).TrimEnd(' ');
-                if(!string.IsNullOrEmpty(output)) result.Add(output);
-            }
-        
-            return result.ToArray();
-        }
-
-        /// <summary>
-        /// Returns the Output history as a json array, where each string represents a separated json log file.
-        /// </summary>
-        /// <returns></returns>
-        public string[] ToJson(){
-            List<string> result = new List<string>();
-
-            foreach(var log in GetFullLog(true)){
-                result.Add(JsonSerializer.Serialize(log, new JsonSerializerOptions(){
-                    ReferenceHandler = ReferenceHandler.Preserve
-                }));
-            }
-
-            return result.ToArray();
-        }
-
-        /// <summary>
-        /// Returns the Output history as an string, using \r\n as breaklines.
-        /// </summary>
-        /// <returns></returns>
-        public new string ToString(){
-            return string.Join("\r\n\r\n", ToText());
-        }            
-               
+#endregion             
+#region Public
         /// <summary>
         /// Send new text to the output, no breakline will be added to the end.
         /// The text will be printed in gray, and everything between '~' symbols will be printed using a secondary color (or till the last ':' or '...' symbols).
@@ -257,11 +224,60 @@ namespace AutoCheck.Core{
                 WriteColor("", Style.DEFAULT, true);
             }
         }
+
+        /// <summary>
+        /// The current log will be closed, so a new empty one will be ready to start logging again.
+        /// </summary>
+        /// <returns>The closed log</returns>
+        public Log CloseLog(){
+            try{
+                return CurrentLog;
+            }
+            finally{
+                ResetLog();
+            }
+        }
+                        
+        /// <summary>
+        /// Returns the complete log files for each batch (or single) execution (header + setup + script + teardown).
+        /// </summary>
+        public Log[] GetLog() {
+            List<Log> logs = new List<Log>();
+
+            foreach(var script in ScriptLog){                
+                var log = new Log();
+                log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
+
+                if(SetupLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
+                    log.Content.Add(new Space());
+                }
+
+                if(script.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(script.Content)).ToList();
+                    log.Content.Add(new Space());
+                }
+
+                if(TeardownLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
+                }
+
+                logs.Add(log);
+            }
+            
+            return logs.ToArray();
+        }
         
         /// <summary>
-        /// The current log content will be stored using the provided type
+        /// Returns the Output history as an string, using \r\n as breaklines.
         /// </summary>
-        public void CloseLog(Type type){ 
+        /// <returns></returns>
+        public new string ToString(){
+            return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
+        }   
+#endregion  
+#region Private             
+        internal Log CloseLog(Type type){ 
             switch(type){
                 case Type.HEADER:
                     HeaderLog = CurrentLog;
@@ -280,19 +296,30 @@ namespace AutoCheck.Core{
                     break;
             }
 
-            ResetLog();
+            return CloseLog();            
         }
 
-        /// <summary>
-        /// Closes the current log and setups a new one, usefull for batch mode script execution
-        /// </summary>
+        private void SendToTerminal(Log log){
+            foreach(Content c in log.Content){
+                SendToTerminal(c);         
+            }
+        }
+
+        private void SendToTerminal(Content c){
+            Console.Write(c.Indent);
+            Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
+
+            if(c.BreakLine) Console.WriteLine(c.Text);
+            else Console.Write(c.Text);
+            Console.ResetColor();               
+        }
+        
         private void ResetLog(){ 
             CurrentIndent = "";
-            CurrentLogIndex = 0;    
             IsNewLine = true;  
-            CurrentLog = new List<Content>(); 
+            CurrentLog = new Log(); 
         }           
-
+        
         private ConsoleColor CssToConsoleColor(StyleRule cssRule){
             var color = cssRule.Style.Color;
             color = color.Substring(color.IndexOf("(")+1);
@@ -323,20 +350,16 @@ namespace AutoCheck.Core{
             }
             return ret;
         }
-        
-        /// <summary>
-        /// The text will be printed in gray, and everything between the '~' symbol will be printed using a secondary color (or till the last ':' or '...' symbols).
-        /// </summary>
-        /// <param name="text">The text to display, use ~TEXT~ to print this "text" with a secondary color (the symbols ':' or '...' can also be used as terminators).</param>
-        /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
-        /// <param name="newLine">If true, a breakline will be added at the end.</param>
-        private void WriteColor(string text, Style style, bool newLine){             
+                
+        private void WriteColor(string text, Style style, bool newLine){
+            var content = new List<Content>();
+
             if(!text.Contains("~")){
                 //Single color text
-                CurrentLog.Add(new Content(){
+                content.Add(new Content(){
                     Indent = (IsNewLine && !string.IsNullOrEmpty(text) ? CurrentIndent : ""),
                     Text = text,
-                    Style = $"{style.ToString().ToLower()}-primary", //GetCssRule($"{style.ToString().ToLower()}-primary"),
+                    Style =  $"{style.ToString().ToLower()}-primary", 
                     BreakLine = newLine
                 });
             }
@@ -346,53 +369,43 @@ namespace AutoCheck.Core{
                     int i = text.IndexOf("~");
 
                     //First color
-                    CurrentLog.Add(new Content(){
+                    content.Add(new Content(){
                         Indent = (IsNewLine ? CurrentIndent : ""),
                         Text = text.Substring(0, i),
-                        Style = $"{style.ToString().ToLower()}-primary" //GetCssRule($"{style.ToString().ToLower()}-primary")
-                    });            
-                    
+                        Style = $"{style.ToString().ToLower()}-primary" 
+                    });                      
                     text = text.Substring(i+1);
+
                     i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
                     if(i == -1) i = text.Length;
 
                     //Second color
-                    CurrentLog.Add(new Content(){
+                    content.Add(new Content(){
                         Text = text.Substring(0, i),
-                        Style = $"{style.ToString().ToLower()}-secondary" //GetCssRule($"{style.ToString().ToLower()}-secondary")
-                    });
-                    
+                        Style = $"{style.ToString().ToLower()}-secondary"
+                    });                    
                     text = text.Substring(i).TrimStart('~');                               
                 }
 
                 //Last part of the text
                 if(!string.IsNullOrEmpty(text)){
-                     CurrentLog.Add(new Content(){
+                     content.Add(new Content(){
                         Text = text,
-                        Style = $"{style.ToString().ToLower()}-primary" //GetCssRule($"{style.ToString().ToLower()}-primary")
-                    });
+                        Style = $"{style.ToString().ToLower()}-primary"
+                    });                    
                 }
 
                 //Breakline at the end (if needed)
-                CurrentLog[CurrentLog.Count-1].BreakLine = newLine;                
+                content.LastOrDefault().BreakLine = newLine;                
             }
 
             IsNewLine = newLine;
-            WriteIntoTerminal();
-        }
 
-        private void WriteIntoTerminal(){
-            for(int i=CurrentLogIndex; i<CurrentLog.Count; i++){                
-                Console.Write(CurrentLog[i].Indent);
-                Console.ForegroundColor = CssToConsoleColor(GetCssRule(CurrentLog[i].Style));
-
-                if(CurrentLog[i].BreakLine) Console.WriteLine(CurrentLog[i].Text);
-                else Console.Write(CurrentLog[i].Text);
-                Console.ResetColor();               
+            foreach(var c in content){
+                CurrentLog.Content.Add(c);
+                if(RedirectToTerminal) SendToTerminal(c);
             }
-
-            CurrentLogIndex = CurrentLog.Count;
-        }
+        }        
 
         private StyleRule GetCssRule(string style){
             try{
@@ -420,18 +433,6 @@ namespace AutoCheck.Core{
 
             return copy;
         }
-
-        private List<List<Content>> GetFullLog(bool trim = false) {
-            var header = trim ? Trim(HeaderLog) : HeaderLog;
-            var setup =  trim ? Trim(SetupLog) : SetupLog;
-            var teardwon =  trim ? Trim(TeardownLog) : TeardownLog;
-            List<List<Content>> log = new List<List<Content>>();
-
-            foreach(var script in ScriptLog){                
-                log.Add(header.Concat(setup).Concat((trim ? Trim(script) : script).Concat(teardwon)).ToList());
-            }
-            
-            return log;
-        } 
+#endregion
     }
 }

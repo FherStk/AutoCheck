@@ -5,9 +5,14 @@ items:
   id: AutoCheck.Core
   children:
   - AutoCheck.Core.Output
-  - AutoCheck.Core.Output.Mode
+  - AutoCheck.Core.Output.Content
+  - AutoCheck.Core.Output.Log
+  - AutoCheck.Core.Output.Space
   - AutoCheck.Core.Output.Style
+  - AutoCheck.Core.Output.Type
   - AutoCheck.Core.Script
+  - AutoCheck.Core.Script.ExecutionModeType
+  - AutoCheck.Core.Script.LogGeneratedEventArgs
   - AutoCheck.Core.Utils
   - AutoCheck.Core.Utils.OS
   langs:
@@ -26,23 +31,51 @@ references:
   name: Output
   nameWithType: Output
   fullName: AutoCheck.Core.Output
-- uid: AutoCheck.Core.Output.Mode
-  commentId: T:AutoCheck.Core.Output.Mode
+- uid: AutoCheck.Core.Output.Space
+  commentId: T:AutoCheck.Core.Output.Space
+  name: Output.Space
+  nameWithType: Output.Space
+  fullName: AutoCheck.Core.Output.Space
+- uid: AutoCheck.Core.Output.Content
+  commentId: T:AutoCheck.Core.Output.Content
   parent: AutoCheck.Core
-  name: Output.Mode
-  nameWithType: Output.Mode
-  fullName: AutoCheck.Core.Output.Mode
+  name: Output.Content
+  nameWithType: Output.Content
+  fullName: AutoCheck.Core.Output.Content
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
+  parent: AutoCheck.Core
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log
 - uid: AutoCheck.Core.Output.Style
   commentId: T:AutoCheck.Core.Output.Style
   parent: AutoCheck.Core
   name: Output.Style
   nameWithType: Output.Style
   fullName: AutoCheck.Core.Output.Style
+- uid: AutoCheck.Core.Output.Type
+  commentId: T:AutoCheck.Core.Output.Type
+  parent: AutoCheck.Core
+  name: Output.Type
+  nameWithType: Output.Type
+  fullName: AutoCheck.Core.Output.Type
 - uid: AutoCheck.Core.Script
   commentId: T:AutoCheck.Core.Script
   name: Script
   nameWithType: Script
   fullName: AutoCheck.Core.Script
+- uid: AutoCheck.Core.Script.ExecutionModeType
+  commentId: T:AutoCheck.Core.Script.ExecutionModeType
+  parent: AutoCheck.Core
+  name: Script.ExecutionModeType
+  nameWithType: Script.ExecutionModeType
+  fullName: AutoCheck.Core.Script.ExecutionModeType
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs
+  commentId: T:AutoCheck.Core.Script.LogGeneratedEventArgs
+  name: Script.LogGeneratedEventArgs
+  nameWithType: Script.LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs
 - uid: AutoCheck.Core.Utils
   commentId: T:AutoCheck.Core.Utils
   name: Utils

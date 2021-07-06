@@ -1,0 +1,178 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Output.Type
+  commentId: T:AutoCheck.Core.Output.Type
+  id: Output.Type
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Output.Type.HEADER
+  - AutoCheck.Core.Output.Type.SCRIPT
+  - AutoCheck.Core.Output.Type.SETUP
+  - AutoCheck.Core.Output.Type.TEARDOWN
+  langs:
+  - csharp
+  - vb
+  name: Output.Type
+  nameWithType: Output.Type
+  fullName: AutoCheck.Core.Output.Type
+  type: Enum
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Type
+    path: ../core/main/Output.cs
+    startLine: 96
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public enum Type
+    content.vb: Public Enum Type
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Output.Type.HEADER
+  commentId: F:AutoCheck.Core.Output.Type.HEADER
+  id: HEADER
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: HEADER
+  nameWithType: Output.Type.HEADER
+  fullName: AutoCheck.Core.Output.Type.HEADER
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: HEADER
+    path: ../core/main/Output.cs
+    startLine: 97
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: HEADER = 0
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.SETUP
+  commentId: F:AutoCheck.Core.Output.Type.SETUP
+  id: SETUP
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: SETUP
+  nameWithType: Output.Type.SETUP
+  fullName: AutoCheck.Core.Output.Type.SETUP
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SETUP
+    path: ../core/main/Output.cs
+    startLine: 98
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SETUP = 1
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.SCRIPT
+  commentId: F:AutoCheck.Core.Output.Type.SCRIPT
+  id: SCRIPT
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: SCRIPT
+  nameWithType: Output.Type.SCRIPT
+  fullName: AutoCheck.Core.Output.Type.SCRIPT
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SCRIPT
+    path: ../core/main/Output.cs
+    startLine: 99
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SCRIPT = 2
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.TEARDOWN
+  commentId: F:AutoCheck.Core.Output.Type.TEARDOWN
+  id: TEARDOWN
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: TEARDOWN
+  nameWithType: Output.Type.TEARDOWN
+  fullName: AutoCheck.Core.Output.Type.TEARDOWN
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: TEARDOWN
+    path: ../core/main/Output.cs
+    startLine: 100
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: TEARDOWN = 3
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Output.Type
+  commentId: T:AutoCheck.Core.Output.Type
+  parent: AutoCheck.Core
+  name: Output.Type
+  nameWithType: Output.Type
+  fullName: AutoCheck.Core.Output.Type

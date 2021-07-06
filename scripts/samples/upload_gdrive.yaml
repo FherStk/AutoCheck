@@ -18,9 +18,6 @@
 
 inherits: "some_template.yaml"
 
-output:
-  pause: False
-
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             

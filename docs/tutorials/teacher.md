@@ -186,17 +186,8 @@ max-score | decimal | no | Maximum script score (overall score). | `10`
 [vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [body](#body) | sequence | no | Script body. |
 
-### <a name="output"></a> output
-Setups the output behaviour.
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-terminal | boolean | no | When enabled, all log mesages will be directed to the standard output (terminal). | `True`
-pause | boolean | no | When enabled, a terminal pause will be produced between each batch execution (batch-mode only). | `True`
-[log](#log) | mapping | no | Allows storing log data into external files. | 
-
-#### <a name="log"></a> log
-Setups the output file-mode behaviour.
+### <a name="log"></a> log
+Setups the log output file-mode behaviour.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
@@ -421,6 +412,17 @@ inherits | text | no | Relative path to a YAML script file; any script can inher
 
 So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.
 
+### <a name="single"></a> single
+Single mode definition.
+
+Name | Type | Mandatory | Description | Default
+------------ | -------------
+caption | text | no | Message to display before the single execution. | `Running on single mode:`
+[setup](#setup) | mapping | no | The defined content will be executed once before the copy_detector and any target's body. |
+[teardown](#teardown) | mapping | no | The  defined content will be executed once after the copy_detector and all target's body. |
+[local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
+[remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
+
 ## Batch mode execution
 The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.
 
@@ -440,17 +442,6 @@ Recommended structure:
         </ul>
     </li>
 </ul>
-
-### <a name="single"></a> single
-Single mode definition.
-
-Name | Type | Mandatory | Description | Default
------------- | -------------
-caption | text | no | Message to display before the single execution. | `Running on single mode:`
-[setup](#setup) | mapping | no | The defined content will be executed once before the copy_detector and any target's body. |
-[teardown](#teardown) | mapping | no | The  defined content will be executed once after the copy_detector and all target's body. |
-[local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
-[remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
 ### <a name="batch"></a> batch
 Batch mode definition.

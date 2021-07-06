@@ -7,16 +7,14 @@ items:
   children:
   - AutoCheck.Core.Output.#ctor
   - AutoCheck.Core.Output.BreakLine(System.Int32)
-  - AutoCheck.Core.Output.BreakLog
+  - AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
   - AutoCheck.Core.Output.CurrentIndent
-  - AutoCheck.Core.Output.GetMode
+  - AutoCheck.Core.Output.GetLog
   - AutoCheck.Core.Output.Indent
   - AutoCheck.Core.Output.ResetIndent
-  - AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
+  - AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
   - AutoCheck.Core.Output.SingleIndent
-  - AutoCheck.Core.Output.ToJson
   - AutoCheck.Core.Output.ToString
-  - AutoCheck.Core.Output.ToText
   - AutoCheck.Core.Output.UnIndent
   - AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
   - AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
@@ -32,7 +30,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -75,11 +73,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
-    startLine: 64
+    startLine: 111
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -108,11 +106,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
-    startLine: 65
+    startLine: 113
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -143,11 +141,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 76
+    startLine: 121
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -155,185 +153,6 @@ items:
     content: public Output()
     content.vb: Public Sub New
   overload: AutoCheck.Core.Output.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  commentId: M:AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  id: SetMode(AutoCheck.Core.Output.Mode)
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: SetMode(Output.Mode)
-  nameWithType: Output.SetMode(Output.Mode)
-  fullName: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.9.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: SetMode
-    path: ../core/main/Output.cs
-    startLine: 93
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nChanges the output mode.\n"
-  example: []
-  syntax:
-    content: public static void SetMode(Output.Mode mode)
-    parameters:
-    - id: mode
-      type: AutoCheck.Core.Output.Mode
-    content.vb: Public Shared Sub SetMode(mode As Output.Mode)
-  overload: AutoCheck.Core.Output.SetMode*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Output.GetMode
-  commentId: M:AutoCheck.Core.Output.GetMode
-  id: GetMode
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: GetMode()
-  nameWithType: Output.GetMode()
-  fullName: AutoCheck.Core.Output.GetMode()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.9.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: GetMode
-    path: ../core/main/Output.cs
-    startLine: 116
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nGets the current output mode.\n"
-  example: []
-  syntax:
-    content: public static Output.Mode GetMode()
-    return:
-      type: AutoCheck.Core.Output.Mode
-      description: ''
-    content.vb: Public Shared Function GetMode As Output.Mode
-  overload: AutoCheck.Core.Output.GetMode*
-  modifiers.csharp:
-  - public
-  - static
-  modifiers.vb:
-  - Public
-  - Shared
-- uid: AutoCheck.Core.Output.ToText
-  commentId: M:AutoCheck.Core.Output.ToText
-  id: ToText
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: ToText()
-  nameWithType: Output.ToText()
-  fullName: AutoCheck.Core.Output.ToText()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.9.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ToText
-    path: ../core/main/Output.cs
-    startLine: 125
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns the Output history as an string array, where each string represents a separated plain log file using \\r\\n as breaklines.\n"
-  example: []
-  syntax:
-    content: public string[] ToText()
-    return:
-      type: System.String[]
-      description: ''
-    content.vb: Public Function ToText As String()
-  overload: AutoCheck.Core.Output.ToText*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.ToJson
-  commentId: M:AutoCheck.Core.Output.ToJson
-  id: ToJson
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: ToJson()
-  nameWithType: Output.ToJson()
-  fullName: AutoCheck.Core.Output.ToJson()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.9.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ToJson
-    path: ../core/main/Output.cs
-    startLine: 147
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns the Output history as a json array, where each string represents a separated json log file.\n"
-  example: []
-  syntax:
-    content: public string[] ToJson()
-    return:
-      type: System.String[]
-      description: ''
-    content.vb: Public Function ToJson As String()
-  overload: AutoCheck.Core.Output.ToJson*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.ToString
-  commentId: M:AutoCheck.Core.Output.ToString
-  id: ToString
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: ToString()
-  nameWithType: Output.ToString()
-  fullName: AutoCheck.Core.Output.ToString()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.9.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ToString
-    path: ../core/main/Output.cs
-    startLine: 160
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
-  example: []
-  syntax:
-    content: public string ToString()
-    return:
-      type: System.String
-      description: ''
-    content.vb: Public Function ToString As String
-  overload: AutoCheck.Core.Output.ToString*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -352,11 +171,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 182
+    startLine: 145
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -391,11 +210,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 192
+    startLine: 155
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -430,11 +249,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 201
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -473,11 +292,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 217
+    startLine: 180
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -512,11 +331,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 224
+    startLine: 187
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -544,11 +363,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 231
+    startLine: 194
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -576,11 +395,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 238
+    startLine: 201
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -608,11 +427,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 247
+    startLine: 210
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -630,34 +449,141 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.BreakLog
-  commentId: M:AutoCheck.Core.Output.BreakLog
-  id: BreakLog
+- uid: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  commentId: M:AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  id: CloseLog(AutoCheck.Core.Output.Type)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: BreakLog()
-  nameWithType: Output.BreakLog()
-  fullName: AutoCheck.Core.Output.BreakLog()
+  name: CloseLog(Output.Type)
+  nameWithType: Output.CloseLog(Output.Type)
+  fullName: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
   type: Method
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: BreakLog
+    id: CloseLog
     path: ../core/main/Output.cs
-    startLine: 256
+    startLine: 219
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nNew log content will be stored into a new log space\n"
+  summary: "\nThe current log content will be stored using the provided type\n"
   example: []
   syntax:
-    content: public void BreakLog()
-    content.vb: Public Sub BreakLog
-  overload: AutoCheck.Core.Output.BreakLog*
+    content: public void CloseLog(Output.Type type)
+    parameters:
+    - id: type
+      type: AutoCheck.Core.Output.Type
+    content.vb: Public Sub CloseLog(type As Output.Type)
+  overload: AutoCheck.Core.Output.CloseLog*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.ToString
+  commentId: M:AutoCheck.Core.Output.ToString
+  id: ToString
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Output.ToString()
+  fullName: AutoCheck.Core.Output.ToString()
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToString
+    path: ../core/main/Output.cs
+    startLine: 245
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
+  example: []
+  syntax:
+    content: public string ToString()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Function ToString As String
+  overload: AutoCheck.Core.Output.ToString*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.GetLog
+  commentId: M:AutoCheck.Core.Output.GetLog
+  id: GetLog
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: GetLog()
+  nameWithType: Output.GetLog()
+  fullName: AutoCheck.Core.Output.GetLog()
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetLog
+    path: ../core/main/Output.cs
+    startLine: 252
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the complete log files for each batch (or single) execution (setup + script + teardown).\n"
+  example: []
+  syntax:
+    content: public Output.Log[] GetLog()
+    return:
+      type: AutoCheck.Core.Output.Log[]
+    content.vb: Public Function GetLog As Output.Log()
+  overload: AutoCheck.Core.Output.GetLog*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  commentId: M:AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  id: SentToTerminal(AutoCheck.Core.Output.Log)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: SentToTerminal(Output.Log)
+  nameWithType: Output.SentToTerminal(Output.Log)
+  fullName: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SentToTerminal
+    path: ../core/main/Output.cs
+    startLine: 282
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nWrites the given into the current terminal.\n"
+  example: []
+  syntax:
+    content: public void SentToTerminal(Output.Log log)
+    parameters:
+    - id: log
+      type: AutoCheck.Core.Output.Log
+    content.vb: Public Sub SentToTerminal(log As Output.Log)
+  overload: AutoCheck.Core.Output.SentToTerminal*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -946,63 +872,6 @@ references:
   name: Output
   nameWithType: Output.Output
   fullName: AutoCheck.Core.Output.Output
-- uid: AutoCheck.Core.Output.SetMode*
-  commentId: Overload:AutoCheck.Core.Output.SetMode
-  name: SetMode
-  nameWithType: Output.SetMode
-  fullName: AutoCheck.Core.Output.SetMode
-- uid: AutoCheck.Core.Output.Mode
-  commentId: T:AutoCheck.Core.Output.Mode
-  parent: AutoCheck.Core
-  name: Output.Mode
-  nameWithType: Output.Mode
-  fullName: AutoCheck.Core.Output.Mode
-- uid: AutoCheck.Core.Output.GetMode*
-  commentId: Overload:AutoCheck.Core.Output.GetMode
-  name: GetMode
-  nameWithType: Output.GetMode
-  fullName: AutoCheck.Core.Output.GetMode
-- uid: AutoCheck.Core.Output.ToText*
-  commentId: Overload:AutoCheck.Core.Output.ToText
-  name: ToText
-  nameWithType: Output.ToText
-  fullName: AutoCheck.Core.Output.ToText
-- uid: System.String[]
-  isExternal: true
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullName.vb: System.String()
-  name.vb: String()
-  spec.csharp:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-- uid: AutoCheck.Core.Output.ToJson*
-  commentId: Overload:AutoCheck.Core.Output.ToJson
-  name: ToJson
-  nameWithType: Output.ToJson
-  fullName: AutoCheck.Core.Output.ToJson
-- uid: AutoCheck.Core.Output.ToString*
-  commentId: Overload:AutoCheck.Core.Output.ToString
-  name: ToString
-  nameWithType: Output.ToString
-  fullName: AutoCheck.Core.Output.ToString
 - uid: AutoCheck.Core.Output.Write*
   commentId: Overload:AutoCheck.Core.Output.Write
   name: Write
@@ -1140,8 +1009,59 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-- uid: AutoCheck.Core.Output.BreakLog*
-  commentId: Overload:AutoCheck.Core.Output.BreakLog
-  name: BreakLog
-  nameWithType: Output.BreakLog
-  fullName: AutoCheck.Core.Output.BreakLog
+- uid: AutoCheck.Core.Output.CloseLog*
+  commentId: Overload:AutoCheck.Core.Output.CloseLog
+  name: CloseLog
+  nameWithType: Output.CloseLog
+  fullName: AutoCheck.Core.Output.CloseLog
+- uid: AutoCheck.Core.Output.Type
+  commentId: T:AutoCheck.Core.Output.Type
+  parent: AutoCheck.Core
+  name: Output.Type
+  nameWithType: Output.Type
+  fullName: AutoCheck.Core.Output.Type
+- uid: AutoCheck.Core.Output.ToString*
+  commentId: Overload:AutoCheck.Core.Output.ToString
+  name: ToString
+  nameWithType: Output.ToString
+  fullName: AutoCheck.Core.Output.ToString
+- uid: AutoCheck.Core.Output.GetLog*
+  commentId: Overload:AutoCheck.Core.Output.GetLog
+  name: GetLog
+  nameWithType: Output.GetLog
+  fullName: AutoCheck.Core.Output.GetLog
+- uid: AutoCheck.Core.Output.Log[]
+  isExternal: true
+  name: Output.Log[]
+  nameWithType: Output.Log[]
+  fullName: AutoCheck.Core.Output.Log[]
+  nameWithType.vb: Output.Log()
+  fullName.vb: AutoCheck.Core.Output.Log()
+  name.vb: Output.Log()
+  spec.csharp:
+  - uid: AutoCheck.Core.Output.Log
+    name: Output.Log
+    nameWithType: Output.Log
+    fullName: AutoCheck.Core.Output.Log
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: AutoCheck.Core.Output.Log
+    name: Output.Log
+    nameWithType: Output.Log
+    fullName: AutoCheck.Core.Output.Log
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: AutoCheck.Core.Output.SentToTerminal*
+  commentId: Overload:AutoCheck.Core.Output.SentToTerminal
+  name: SentToTerminal
+  nameWithType: Output.SentToTerminal
+  fullName: AutoCheck.Core.Output.SentToTerminal
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
+  parent: AutoCheck.Core
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log

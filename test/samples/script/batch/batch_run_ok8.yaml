@@ -25,11 +25,11 @@ batch:
         - host: "localhost"
         - user: "usuario"
         - password: "usuario"
-        - folder: "/home/usuario"
+        - folder: "/home/usuario/test"
 
     - remote:     
         - os: "GNU" 
         - host: "localhost"
         - user: "usuario"
         - password: "usuario"   
-        - path: "/home/usuario"
+        - path: "/home/usuario/test"

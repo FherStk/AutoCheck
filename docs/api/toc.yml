@@ -4,12 +4,22 @@
   items:
   - uid: AutoCheck.Core.Output
     name: Output
-  - uid: AutoCheck.Core.Output.Mode
-    name: Output.Mode
+  - uid: AutoCheck.Core.Output.Content
+    name: Output.Content
+  - uid: AutoCheck.Core.Output.Log
+    name: Output.Log
+  - uid: AutoCheck.Core.Output.Space
+    name: Output.Space
   - uid: AutoCheck.Core.Output.Style
     name: Output.Style
+  - uid: AutoCheck.Core.Output.Type
+    name: Output.Type
   - uid: AutoCheck.Core.Script
     name: Script
+  - uid: AutoCheck.Core.Script.ExecutionModeType
+    name: Script.ExecutionModeType
+  - uid: AutoCheck.Core.Script.LogGeneratedEventArgs
+    name: Script.LogGeneratedEventArgs
   - uid: AutoCheck.Core.Utils
     name: Utils
   - uid: AutoCheck.Core.Utils.OS

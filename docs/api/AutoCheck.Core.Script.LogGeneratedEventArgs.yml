@@ -1,0 +1,501 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs
+  commentId: T:AutoCheck.Core.Script.LogGeneratedEventArgs
+  id: Script.LogGeneratedEventArgs
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  - AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  - AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  langs:
+  - csharp
+  - vb
+  name: Script.LogGeneratedEventArgs
+  nameWithType: Script.LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs
+  type: Class
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogGeneratedEventArgs
+    path: ../core/main/Script.cs
+    startLine: 565
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: 'public class LogGeneratedEventArgs : EventArgs'
+    content.vb: >-
+      Public Class LogGeneratedEventArgs
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  inheritedMembers:
+  - System.EventArgs.Empty
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  id: Type
+  parent: AutoCheck.Core.Script.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: Script.LogGeneratedEventArgs.Type
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Type
+    path: ../core/main/Script.cs
+    startLine: 567
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Output.Type Type { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output.Type
+    content.vb: Public Property Type As Output.Type
+  overload: AutoCheck.Core.Script.LogGeneratedEventArgs.Type*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  id: ExecutionMode
+  parent: AutoCheck.Core.Script.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ExecutionMode
+  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionMode
+    path: ../core/main/Script.cs
+    startLine: 568
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Script.ExecutionModeType ExecutionMode { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Script.ExecutionModeType
+    content.vb: Public Property ExecutionMode As Script.ExecutionModeType
+  overload: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  id: Log
+  parent: AutoCheck.Core.Script.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Log
+  nameWithType: Script.LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.10.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Log
+    path: ../core/main/Script.cs
+    startLine: 569
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Output.Log Log { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output.Log
+    content.vb: Public Property Log As Output.Log
+  overload: AutoCheck.Core.Script.LogGeneratedEventArgs.Log*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type*
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  name: Type
+  nameWithType: Script.LogGeneratedEventArgs.Type
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+- uid: AutoCheck.Core.Output.Type
+  commentId: T:AutoCheck.Core.Output.Type
+  parent: AutoCheck.Core
+  name: Output.Type
+  nameWithType: Output.Type
+  fullName: AutoCheck.Core.Output.Type
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode*
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  name: ExecutionMode
+  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+- uid: AutoCheck.Core.Script.ExecutionModeType
+  commentId: T:AutoCheck.Core.Script.ExecutionModeType
+  parent: AutoCheck.Core
+  name: Script.ExecutionModeType
+  nameWithType: Script.ExecutionModeType
+  fullName: AutoCheck.Core.Script.ExecutionModeType
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log*
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  name: Log
+  nameWithType: Script.LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
+  parent: AutoCheck.Core
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log
