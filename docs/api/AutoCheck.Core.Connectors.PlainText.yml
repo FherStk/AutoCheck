@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -146,7 +146,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -230,7 +230,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
@@ -265,7 +265,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
@@ -304,7 +304,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.9.0
+      branch: v2.10.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs

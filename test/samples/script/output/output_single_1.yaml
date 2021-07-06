@@ -23,10 +23,7 @@ single:
   local:
     folder: "{$APP_FOLDER_PATH}\\samples\\private\\html5\\Student Name 1"
     
-output:
-  terminal: !!bool True
-  pause: !!bool False
-  log:
-    enabled: !!bool True
-    folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_single_1_yaml"
-    name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
+log:
+  enabled: !!bool True
+  folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_single_1_yaml"
+  name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

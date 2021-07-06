@@ -4604,19 +4604,77 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.BreakLine
   nameWithType: Output.BreakLine
-- uid: AutoCheck.Core.Output.BreakLog
-  name: BreakLog()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_BreakLog
-  commentId: M:AutoCheck.Core.Output.BreakLog
-  fullName: AutoCheck.Core.Output.BreakLog()
-  nameWithType: Output.BreakLog()
-- uid: AutoCheck.Core.Output.BreakLog*
-  name: BreakLog
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_BreakLog_
-  commentId: Overload:AutoCheck.Core.Output.BreakLog
+- uid: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  name: CloseLog(Output.Type)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CloseLog_AutoCheck_Core_Output_Type_
+  commentId: M:AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  fullName: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  nameWithType: Output.CloseLog(Output.Type)
+- uid: AutoCheck.Core.Output.CloseLog*
+  name: CloseLog
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CloseLog_
+  commentId: Overload:AutoCheck.Core.Output.CloseLog
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.BreakLog
-  nameWithType: Output.BreakLog
+  fullName: AutoCheck.Core.Output.CloseLog
+  nameWithType: Output.CloseLog
+- uid: AutoCheck.Core.Output.Content
+  name: Output.Content
+  href: api/AutoCheck.Core.Output.Content.html
+  commentId: T:AutoCheck.Core.Output.Content
+  fullName: AutoCheck.Core.Output.Content
+  nameWithType: Output.Content
+- uid: AutoCheck.Core.Output.Content.BreakLine
+  name: BreakLine
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_BreakLine
+  commentId: P:AutoCheck.Core.Output.Content.BreakLine
+  fullName: AutoCheck.Core.Output.Content.BreakLine
+  nameWithType: Output.Content.BreakLine
+- uid: AutoCheck.Core.Output.Content.BreakLine*
+  name: BreakLine
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_BreakLine_
+  commentId: Overload:AutoCheck.Core.Output.Content.BreakLine
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Content.BreakLine
+  nameWithType: Output.Content.BreakLine
+- uid: AutoCheck.Core.Output.Content.Indent
+  name: Indent
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Indent
+  commentId: P:AutoCheck.Core.Output.Content.Indent
+  fullName: AutoCheck.Core.Output.Content.Indent
+  nameWithType: Output.Content.Indent
+- uid: AutoCheck.Core.Output.Content.Indent*
+  name: Indent
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Indent_
+  commentId: Overload:AutoCheck.Core.Output.Content.Indent
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Content.Indent
+  nameWithType: Output.Content.Indent
+- uid: AutoCheck.Core.Output.Content.Style
+  name: Style
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Style
+  commentId: P:AutoCheck.Core.Output.Content.Style
+  fullName: AutoCheck.Core.Output.Content.Style
+  nameWithType: Output.Content.Style
+- uid: AutoCheck.Core.Output.Content.Style*
+  name: Style
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Style_
+  commentId: Overload:AutoCheck.Core.Output.Content.Style
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Content.Style
+  nameWithType: Output.Content.Style
+- uid: AutoCheck.Core.Output.Content.Text
+  name: Text
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Text
+  commentId: P:AutoCheck.Core.Output.Content.Text
+  fullName: AutoCheck.Core.Output.Content.Text
+  nameWithType: Output.Content.Text
+- uid: AutoCheck.Core.Output.Content.Text*
+  name: Text
+  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Text_
+  commentId: Overload:AutoCheck.Core.Output.Content.Text
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Content.Text
+  nameWithType: Output.Content.Text
 - uid: AutoCheck.Core.Output.CurrentIndent
   name: CurrentIndent
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CurrentIndent
@@ -4630,19 +4688,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.CurrentIndent
   nameWithType: Output.CurrentIndent
-- uid: AutoCheck.Core.Output.GetMode
-  name: GetMode()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetMode
-  commentId: M:AutoCheck.Core.Output.GetMode
-  fullName: AutoCheck.Core.Output.GetMode()
-  nameWithType: Output.GetMode()
-- uid: AutoCheck.Core.Output.GetMode*
-  name: GetMode
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetMode_
-  commentId: Overload:AutoCheck.Core.Output.GetMode
+- uid: AutoCheck.Core.Output.GetLog
+  name: GetLog()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetLog
+  commentId: M:AutoCheck.Core.Output.GetLog
+  fullName: AutoCheck.Core.Output.GetLog()
+  nameWithType: Output.GetLog()
+- uid: AutoCheck.Core.Output.GetLog*
+  name: GetLog
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_GetLog_
+  commentId: Overload:AutoCheck.Core.Output.GetLog
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.GetMode
-  nameWithType: Output.GetMode
+  fullName: AutoCheck.Core.Output.GetLog
+  nameWithType: Output.GetLog
 - uid: AutoCheck.Core.Output.Indent
   name: Indent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_Indent
@@ -4656,24 +4714,64 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.Indent
   nameWithType: Output.Indent
-- uid: AutoCheck.Core.Output.Mode
-  name: Output.Mode
-  href: api/AutoCheck.Core.Output.Mode.html
-  commentId: T:AutoCheck.Core.Output.Mode
-  fullName: AutoCheck.Core.Output.Mode
-  nameWithType: Output.Mode
-- uid: AutoCheck.Core.Output.Mode.SILENT
-  name: SILENT
-  href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_SILENT
-  commentId: F:AutoCheck.Core.Output.Mode.SILENT
-  fullName: AutoCheck.Core.Output.Mode.SILENT
-  nameWithType: Output.Mode.SILENT
-- uid: AutoCheck.Core.Output.Mode.VERBOSE
-  name: VERBOSE
-  href: api/AutoCheck.Core.Output.Mode.html#AutoCheck_Core_Output_Mode_VERBOSE
-  commentId: F:AutoCheck.Core.Output.Mode.VERBOSE
-  fullName: AutoCheck.Core.Output.Mode.VERBOSE
-  nameWithType: Output.Mode.VERBOSE
+- uid: AutoCheck.Core.Output.Log
+  name: Output.Log
+  href: api/AutoCheck.Core.Output.Log.html
+  commentId: T:AutoCheck.Core.Output.Log
+  fullName: AutoCheck.Core.Output.Log
+  nameWithType: Output.Log
+- uid: AutoCheck.Core.Output.Log.#ctor
+  name: Log()
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log__ctor
+  commentId: M:AutoCheck.Core.Output.Log.#ctor
+  fullName: AutoCheck.Core.Output.Log.Log()
+  nameWithType: Output.Log.Log()
+- uid: AutoCheck.Core.Output.Log.#ctor*
+  name: Log
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log__ctor_
+  commentId: Overload:AutoCheck.Core.Output.Log.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Log.Log
+  nameWithType: Output.Log.Log
+- uid: AutoCheck.Core.Output.Log.Content
+  name: Content
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_Content
+  commentId: P:AutoCheck.Core.Output.Log.Content
+  fullName: AutoCheck.Core.Output.Log.Content
+  nameWithType: Output.Log.Content
+- uid: AutoCheck.Core.Output.Log.Content*
+  name: Content
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_Content_
+  commentId: Overload:AutoCheck.Core.Output.Log.Content
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Log.Content
+  nameWithType: Output.Log.Content
+- uid: AutoCheck.Core.Output.Log.ToJson
+  name: ToJson()
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_ToJson
+  commentId: M:AutoCheck.Core.Output.Log.ToJson
+  fullName: AutoCheck.Core.Output.Log.ToJson()
+  nameWithType: Output.Log.ToJson()
+- uid: AutoCheck.Core.Output.Log.ToJson*
+  name: ToJson
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_ToJson_
+  commentId: Overload:AutoCheck.Core.Output.Log.ToJson
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Log.ToJson
+  nameWithType: Output.Log.ToJson
+- uid: AutoCheck.Core.Output.Log.ToText
+  name: ToText()
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_ToText
+  commentId: M:AutoCheck.Core.Output.Log.ToText
+  fullName: AutoCheck.Core.Output.Log.ToText()
+  nameWithType: Output.Log.ToText()
+- uid: AutoCheck.Core.Output.Log.ToText*
+  name: ToText
+  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_ToText_
+  commentId: Overload:AutoCheck.Core.Output.Log.ToText
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.Log.ToText
+  nameWithType: Output.Log.ToText
 - uid: AutoCheck.Core.Output.ResetIndent
   name: ResetIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ResetIndent
@@ -4687,25 +4785,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.ResetIndent
   nameWithType: Output.ResetIndent
-- uid: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  name: SetMode(Output.Mode)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SetMode_AutoCheck_Core_Output_Mode_
-  commentId: M:AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  fullName: AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode)
-  nameWithType: Output.SetMode(Output.Mode)
-- uid: AutoCheck.Core.Output.SetMode*
-  name: SetMode
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SetMode_
-  commentId: Overload:AutoCheck.Core.Output.SetMode
+- uid: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  name: SentToTerminal(Output.Log)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SentToTerminal_AutoCheck_Core_Output_Log_
+  commentId: M:AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  fullName: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  nameWithType: Output.SentToTerminal(Output.Log)
+- uid: AutoCheck.Core.Output.SentToTerminal*
+  name: SentToTerminal
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SentToTerminal_
+  commentId: Overload:AutoCheck.Core.Output.SentToTerminal
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.SetMode
-  nameWithType: Output.SetMode
+  fullName: AutoCheck.Core.Output.SentToTerminal
+  nameWithType: Output.SentToTerminal
 - uid: AutoCheck.Core.Output.SingleIndent
   name: SingleIndent
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SingleIndent
   commentId: F:AutoCheck.Core.Output.SingleIndent
   fullName: AutoCheck.Core.Output.SingleIndent
   nameWithType: Output.SingleIndent
+- uid: AutoCheck.Core.Output.Space
+  name: Output.Space
+  href: api/AutoCheck.Core.Output.Space.html
+  commentId: T:AutoCheck.Core.Output.Space
+  fullName: AutoCheck.Core.Output.Space
+  nameWithType: Output.Space
 - uid: AutoCheck.Core.Output.Style
   name: Output.Style
   href: api/AutoCheck.Core.Output.Style.html
@@ -4784,19 +4888,6 @@ references:
   commentId: F:AutoCheck.Core.Output.Style.WARNING
   fullName: AutoCheck.Core.Output.Style.WARNING
   nameWithType: Output.Style.WARNING
-- uid: AutoCheck.Core.Output.ToJson
-  name: ToJson()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson
-  commentId: M:AutoCheck.Core.Output.ToJson
-  fullName: AutoCheck.Core.Output.ToJson()
-  nameWithType: Output.ToJson()
-- uid: AutoCheck.Core.Output.ToJson*
-  name: ToJson
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson_
-  commentId: Overload:AutoCheck.Core.Output.ToJson
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.ToJson
-  nameWithType: Output.ToJson
 - uid: AutoCheck.Core.Output.ToString
   name: ToString()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToString
@@ -4810,19 +4901,36 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.ToString
   nameWithType: Output.ToString
-- uid: AutoCheck.Core.Output.ToText
-  name: ToText()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToText
-  commentId: M:AutoCheck.Core.Output.ToText
-  fullName: AutoCheck.Core.Output.ToText()
-  nameWithType: Output.ToText()
-- uid: AutoCheck.Core.Output.ToText*
-  name: ToText
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToText_
-  commentId: Overload:AutoCheck.Core.Output.ToText
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.ToText
-  nameWithType: Output.ToText
+- uid: AutoCheck.Core.Output.Type
+  name: Output.Type
+  href: api/AutoCheck.Core.Output.Type.html
+  commentId: T:AutoCheck.Core.Output.Type
+  fullName: AutoCheck.Core.Output.Type
+  nameWithType: Output.Type
+- uid: AutoCheck.Core.Output.Type.HEADER
+  name: HEADER
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_HEADER
+  commentId: F:AutoCheck.Core.Output.Type.HEADER
+  fullName: AutoCheck.Core.Output.Type.HEADER
+  nameWithType: Output.Type.HEADER
+- uid: AutoCheck.Core.Output.Type.SCRIPT
+  name: SCRIPT
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_SCRIPT
+  commentId: F:AutoCheck.Core.Output.Type.SCRIPT
+  fullName: AutoCheck.Core.Output.Type.SCRIPT
+  nameWithType: Output.Type.SCRIPT
+- uid: AutoCheck.Core.Output.Type.SETUP
+  name: SETUP
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_SETUP
+  commentId: F:AutoCheck.Core.Output.Type.SETUP
+  fullName: AutoCheck.Core.Output.Type.SETUP
+  nameWithType: Output.Type.SETUP
+- uid: AutoCheck.Core.Output.Type.TEARDOWN
+  name: TEARDOWN
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_TEARDOWN
+  commentId: F:AutoCheck.Core.Output.Type.TEARDOWN
+  fullName: AutoCheck.Core.Output.Type.TEARDOWN
+  nameWithType: Output.Type.TEARDOWN
 - uid: AutoCheck.Core.Output.UnIndent
   name: UnIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UnIndent
@@ -4896,6 +5004,24 @@ references:
   commentId: M:AutoCheck.Core.Script.#ctor(System.String)
   fullName: AutoCheck.Core.Script.Script(System.String)
   nameWithType: Script.Script(String)
+- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name: Script(String, EventHandler<Script.LogGeneratedEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name: Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
 - uid: AutoCheck.Core.Script.#ctor*
   name: Script
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_
@@ -5124,6 +5250,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ExecutionFolderPath
   nameWithType: Script.ExecutionFolderPath
+- uid: AutoCheck.Core.Script.ExecutionModeType
+  name: Script.ExecutionModeType
+  href: api/AutoCheck.Core.Script.ExecutionModeType.html
+  commentId: T:AutoCheck.Core.Script.ExecutionModeType
+  fullName: AutoCheck.Core.Script.ExecutionModeType
+  nameWithType: Script.ExecutionModeType
+- uid: AutoCheck.Core.Script.ExecutionModeType.BATCH
+  name: BATCH
+  href: api/AutoCheck.Core.Script.ExecutionModeType.html#AutoCheck_Core_Script_ExecutionModeType_BATCH
+  commentId: F:AutoCheck.Core.Script.ExecutionModeType.BATCH
+  fullName: AutoCheck.Core.Script.ExecutionModeType.BATCH
+  nameWithType: Script.ExecutionModeType.BATCH
+- uid: AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  name: SINGLE
+  href: api/AutoCheck.Core.Script.ExecutionModeType.html#AutoCheck_Core_Script_ExecutionModeType_SINGLE
+  commentId: F:AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  fullName: AutoCheck.Core.Script.ExecutionModeType.SINGLE
+  nameWithType: Script.ExecutionModeType.SINGLE
 - uid: AutoCheck.Core.Script.LogFileName
   name: LogFileName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFileName
@@ -5189,6 +5333,51 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.LogFolderPath
   nameWithType: Script.LogFolderPath
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs
+  name: Script.LogGeneratedEventArgs
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html
+  commentId: T:AutoCheck.Core.Script.LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs
+  nameWithType: Script.LogGeneratedEventArgs
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  name: ExecutionMode
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_ExecutionMode
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode*
+  name: ExecutionMode
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_ExecutionMode_
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
+  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  name: Log
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Log
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  nameWithType: Script.LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log*
+  name: Log
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Log_
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
+  nameWithType: Script.LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  name: Type
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Type
+  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  nameWithType: Script.LogGeneratedEventArgs.Type
+- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type*
+  name: Type
+  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Type_
+  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
+  nameWithType: Script.LogGeneratedEventArgs.Type
 - uid: AutoCheck.Core.Script.MaxScore
   name: MaxScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_MaxScore

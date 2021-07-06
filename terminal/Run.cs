@@ -31,19 +31,20 @@ using AutoCheck.Core.Connectors;
 namespace AutoCheck.Terminal
 {
     class Run
-    {    
+    { 
+        private static bool _NO_PAUSE = false;
+
         static void Main(string[] args)
         {
             //TODO: check for updates and ask to the user if wants to update the app before continuing (use git to check for updates)                
-            var output = new Output();
+            var output = new Output(true);
 
             output.BreakLine();        
             output.WriteLine($"AutoCheck: ~v{GetProductVersion(Assembly.GetExecutingAssembly())} (Core v{GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)})", Output.Style.INFO);            
             output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", Output.Style.INFO);            
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
-            output.BreakLine();              
-            
-            
+            output.BreakLine();                                   
+
             var u = false;
             var nu = false;
             var script = string.Empty;
@@ -58,6 +59,11 @@ namespace AutoCheck.Terminal
                     case "--no-update":
                     case "-nu":
                         nu = true;
+                        break;
+
+                    case "--no-pause":
+                    case "-np":
+                        _NO_PAUSE = true;
                         break;
 
                     default:
@@ -113,8 +119,6 @@ namespace AutoCheck.Terminal
                         output.WriteLine("Restarting, please wait...", Output.Style.PROMPT);
                         output.BreakLine();
                         restart.Start();
-                        //proc.WaitForExit(); //Can't wait or the current app dll will be in use when trying to update...     
-
                         return;                   
                     }
                 }            
@@ -157,6 +161,7 @@ namespace AutoCheck.Terminal
             } 
 
             output.WriteLine("A new version of AutoCheck is available, YAML script files within 'AutoCheck\\scripts\\custom\' folder will be preserved but all other changes you made will be reverted. Do you still want to update [Y/n]?:", Output.Style.PROMPT);
+            
             var update = (Console.ReadLine() is "Y" or "y" or "");
             output.BreakLine();                 
 
@@ -198,6 +203,7 @@ namespace AutoCheck.Terminal
             output.UnIndent();
             output.BreakLine();                            
             output.WriteLine("AutoCheck has been updated.", Output.Style.SUCCESS);
+
             return true;
         }
         
@@ -208,7 +214,7 @@ namespace AutoCheck.Terminal
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script);
+                    new Script(script, OnLogGenerated, true);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -224,15 +230,27 @@ namespace AutoCheck.Terminal
             }      
         }
 
+        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){      
+            if(e.Type == Output.Type.SCRIPT && e.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.WriteLine();
+                Console.WriteLine();
+            }            
+        }
+
         private static void Info(string message, Output output){
             output.WriteLine(message, Output.Style.ERROR);
             output.BreakLine(); 
 
+            output.WriteLine("dotnet run [arguments] FILE_PATH: ", Output.Style.HEADER);
             output.WriteLine("Allowed arguments: ", Output.Style.HEADER);
             output.Indent();
 
             output.WriteLine("-u, --update: ~updates the application.", Output.Style.DETAILS);
-            output.WriteLine("-nu, --no-update FILE_PATH: ~executes the given YAML script.", Output.Style.DETAILS);
+            output.WriteLine("-nu, --no-update: ~disables the update mechanism.", Output.Style.DETAILS);
+            output.WriteLine("-np, --no-pause: ~disables the pause between batch script executions.", Output.Style.DETAILS);
+            output.WriteLine("-no, --no-output: ~disables the terminal output.", Output.Style.DETAILS);
             output.WriteLine("FILE_PATH: ~updated the application and executes the given YAML script.", Output.Style.DETAILS);                
 
             output.BreakLine(); 

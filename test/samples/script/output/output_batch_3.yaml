@@ -23,11 +23,8 @@ batch:
   - local:
       - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
 
-output:
-  terminal: True
-  pause: False
-  log:
-    enabled: True
-    format: "JSON"
-    folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_3_yaml"
-    name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
+log:
+  enabled: True
+  format: "JSON"
+  folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_3_yaml"
+  name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

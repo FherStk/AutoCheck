@@ -81,10 +81,7 @@ namespace AutoCheck.Test
 
         [OneTimeSetUp]
         public virtual void OneTimeSetUp() 
-        {        
-            //Hide the output    
-            AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.SILENT);
-           
+        {                   
             //Mandatory folders
             if(!Directory.Exists(SamplesRootFolder)) Directory.CreateDirectory(SamplesRootFolder);
             if(!Directory.Exists(TempRootFolder)) Directory.CreateDirectory(TempRootFolder);
@@ -112,9 +109,6 @@ namespace AutoCheck.Test
             var log = Path.Combine(LogRootFolder, _testPath);
             if(Directory.Exists(temp)) Directory.Delete(temp, true);    
             if(Directory.Exists(log)) Directory.Delete(log, true);  
-
-            //Restore output     
-            AutoCheck.Core.Output.SetMode(AutoCheck.Core.Output.Mode.VERBOSE);
         } 
 
         /// <summary>

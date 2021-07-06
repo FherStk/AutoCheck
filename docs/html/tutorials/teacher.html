@@ -319,44 +319,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
-<h3 id="output"> output</h3>
-<p>Setups the output behaviour.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>terminal</td>
-<td>boolean</td>
-<td>no</td>
-<td>When enabled, all log mesages will be directed to the standard output (terminal).</td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td>pause</td>
-<td>boolean</td>
-<td>no</td>
-<td>When enabled, a terminal pause will be produced between each batch execution (batch-mode only).</td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td><a href="#log">log</a></td>
-<td>mapping</td>
-<td>no</td>
-<td>Allows storing log data into external files.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="log"> log</h4>
-<p>Setups the output file-mode behaviour.</p>
+<h3 id="log"> log</h3>
+<p>Setups the log output file-mode behaviour.</p>
 <table>
 <thead>
 <tr>
@@ -1017,45 +981,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tbody>
 </table>
 <p>So running this script will load the template data (the inherited one) and will add (and override if needed) the single script data.</p>
-<h2 id="batch-mode-execution">Batch mode execution</h2>
-<p>The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Mandatory</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>inherits</td>
-<td>text</td>
-<td>no</td>
-<td>Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.</td>
-<td><code>&quot;NONE&quot;</code></td>
-</tr>
-<tr>
-<td><a href="#batch">batch</a></td>
-<td>sequence</td>
-<td>no</td>
-<td>Batch mode definition.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Script definition can be defined here exactly as a single-typed script, however, inheriting from a single-typed script is strongly recommended.</p>
-<p>Recommended structure:</p>
-<ul>
-    <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
-        <ul>
-            <li><i>single_script.yaml</i>: inherits and defines 'single' property</li>
-            <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
-        </ul>
-    </li>
-</ul>
 <h3 id="single"> single</h3>
 <p>Single mode definition.</p>
 <table>
@@ -1106,6 +1031,45 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
+<h2 id="batch-mode-execution">Batch mode execution</h2>
+<p>The main idea of a batch-typed script is to iterate through a set of destinations and run a single-typed script over it, so inherits behaviour has been designed in order to allow the same code execution over a single target or a batch one just by adding this values at root level.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inherits</td>
+<td>text</td>
+<td>no</td>
+<td>Relative path to a YAML script file; any script can inherit from any other and overwrite whatever it needs.</td>
+<td><code>&quot;NONE&quot;</code></td>
+</tr>
+<tr>
+<td><a href="#batch">batch</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>Batch mode definition.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Script definition can be defined here exactly as a single-typed script, however, inheriting from a single-typed script is strongly recommended.</p>
+<p>Recommended structure:</p>
+<ul>
+    <li><i>main_script.yaml</i>: as neutral so no folder or batch definition
+        <ul>
+            <li><i>single_script.yaml</i>: inherits and defines 'single' property</li>
+            <li><i>batch_script.yaml</i>: inherits and defines 'batch' property</li>
+        </ul>
+    </li>
+</ul>
 <h3 id="batch"> batch</h3>
 <p>Batch mode definition.</p>
 <table>

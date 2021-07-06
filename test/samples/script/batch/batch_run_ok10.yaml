@@ -25,7 +25,7 @@ batch:
         - host: "localhost"
         - user: "usuario"
         - password: "usuario"
-        - folder: "/home/usuario"
+        - folder: "/home/usuario/test"
         - vars:
             local_var1: "LOCAL1"
             local_var2: "LOCAL2"
@@ -35,7 +35,7 @@ batch:
         - host: "localhost"
         - user: "usuario"
         - password: "usuario"   
-        - path: "/home/usuario"
+        - path: "/home/usuario/test"
         - vars:
             local_var1: "LOCAL3"
             local_var2: "LOCAL4"
