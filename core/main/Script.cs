@@ -978,6 +978,7 @@ namespace AutoCheck.Core{
                         return s;
                     });
                     
+                    if(string.IsNullOrEmpty(folder)) folder = DateTime.Now.ToFileTimeUtc().ToString();
                     t.ContinueWith((t) => {
                         logContent.Add(folder, t.Result.Output.ScriptLog);
                     });
