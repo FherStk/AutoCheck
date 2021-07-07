@@ -969,7 +969,8 @@ namespace AutoCheck.Core{
                 var scripts = new List<Task<Script>>();
                 var finished = new ConcurrentBag<Task>();
                 var mainOutput = this.Output;
-                var logs = new ConcurrentDictionary<string, List<Output.Log>>();
+                var logContent = new ConcurrentDictionary<string, List<Output.Log>>();
+                var logFiles = new ConcurrentDictionary<string, string>();
 
                 var action = new Action<string>((folder) => {
                     var s = this.DeepClone();
@@ -979,8 +980,9 @@ namespace AutoCheck.Core{
                     });
                     
                     var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //needed to order the log output, must be ordered for unit testing
-                    finished.Add(t.ContinueWith((t) => {
-                        logs.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
+                    finished.Add(t.ContinueWith((t) => {                        
+                        logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
+                        logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
                     }));
 
                     scripts.Add(t);
@@ -1015,10 +1017,9 @@ namespace AutoCheck.Core{
                 }                
 
                 //Rebuilding main log, this must keep an order because unit testing
-                Task.WaitAll(finished.ToArray()); 
-                foreach(var item in logs.Keys.OrderBy(x => x).ToArray()){
-                    this.Output.ScriptLog.AddRange(logs[item]);
-                }                        
+                Task.WaitAll(finished.ToArray());
+                LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
+                Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();
