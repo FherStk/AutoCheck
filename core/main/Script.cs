@@ -24,9 +24,9 @@ using System.Linq;
 using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Core.Exceptions;
 using CopyDetector = AutoCheck.Core.CopyDetectors.Base;
@@ -967,9 +967,9 @@ namespace AutoCheck.Core{
 
                 //Multithreading queue
                 var scripts = new List<Task<Script>>();
+                var finished = new ConcurrentBag<Task>();
                 var mainOutput = this.Output;
-                var logOrder = new List<string>();
-                var logContent = new Dictionary<string, List<Output.Log>>();
+                var logs = new ConcurrentDictionary<string, List<Output.Log>>();
 
                 var action = new Action<string>((folder) => {
                     var s = this.DeepClone();
@@ -978,13 +978,12 @@ namespace AutoCheck.Core{
                         return s;
                     });
                     
-                    if(string.IsNullOrEmpty(folder)) folder = DateTime.Now.ToFileTimeUtc().ToString();
-                    t.ContinueWith((t) => {
-                        logContent.Add(folder, t.Result.Output.ScriptLog);
-                    });
+                    var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //needed to order the log output, must be ordered for unit testing
+                    finished.Add(t.ContinueWith((t) => {
+                        logs.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
+                    }));
 
                     scripts.Add(t);
-                    logOrder.Add(folder);
                 });
                 
                 //Queing parallel body execution for each local target                
@@ -1004,7 +1003,7 @@ namespace AutoCheck.Core{
                 int max = Concurrent <= 0 ? scripts.Count : Concurrent;                                
 
                 while(i < scripts.Count){
-                    var started = new List<Task>();
+                    var started = new ConcurrentBag<Task>();
 
                     for(int j=0; j<max; j++){
                         started.Add(scripts[j]);
@@ -1016,8 +1015,9 @@ namespace AutoCheck.Core{
                 }                
 
                 //Rebuilding main log, this must keep an order because unit testing
-                foreach(var item in logOrder){
-                    this.Output.ScriptLog.AddRange(logContent[item]);
+                Task.WaitAll(finished.ToArray()); 
+                foreach(var item in logs.Keys.OrderBy(x => x).ToArray()){
+                    this.Output.ScriptLog.AddRange(logs[item]);
                 }                        
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
