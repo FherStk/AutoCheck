@@ -597,6 +597,36 @@ namespace AutoCheck.Core{
 
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
+
+            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
+            AutoComputeVarValues = false;
+            Abort = false;
+            Skip = false;
+            Result = null;                                   
+            MaxScore = 10f;  
+            TotalScore = 0f;
+            CurrentScore = 0f;
+            CurrentQuestion = "0";    
+            Concurrent = 0;
+
+            //Setup default folders, each property will set also the related 'name' property                              
+            AppFolderPath = Utils.AppFolder;            
+            ExecutionFolderPath = Utils.ExecutionFolder;
+            ScriptFolderPath = string.Empty;
+            ScriptFilePath = string.Empty;
+            CurrentFolderPath = string.Empty;
+            CurrentFilePath = string.Empty; 
+
+            //Setup local/remote batch mode vars
+            CurrentTarget = "none";
+            SetupDefaultHostVars();
+
+            //Setup the remaining vars            
+            ScriptVersion = "1.0.0.0";
+            ScriptName = string.Empty;
+            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
+            SingleCaption = "Running on single mode:";
+            BatchCaption = "Running on batch mode:";
         }
 
         /// Creates a new script instance using the given script file.
@@ -629,36 +659,11 @@ namespace AutoCheck.Core{
             OnScriptCompleted = onScriptCompleted;
             OnTeardwonCompleted = onTeardwonCompleted;                        
 
-            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
-            AutoComputeVarValues = false;
-            Abort = false;
-            Skip = false;
-            Result = null;                                   
-            MaxScore = 10f;  
-            TotalScore = 0f;
-            CurrentScore = 0f;
-            CurrentQuestion = "0";    
-            Concurrent = 0; 
-
-            //Setup default folders, each property will set also the related 'name' property                              
-            AppFolderPath = Utils.AppFolder;            
-            ExecutionFolderPath = Utils.ExecutionFolder;
-            ScriptFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
-            ScriptFilePath = path;
-            CurrentFolderPath = string.Empty;
-            CurrentFilePath = string.Empty; 
-
-            //Setup local/remote batch mode vars
-            CurrentTarget = "none";
-            SetupDefaultHostVars();
-
             //Setup the remaining vars            
-            ScriptVersion = "1.0.0.0";
-            ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
-            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            SingleCaption = "Running on single mode:";
-            BatchCaption = "Running on batch mode:";
-
+            ScriptFilePath = path;
+            ScriptFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
+            ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");            
+            
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -669,15 +674,14 @@ namespace AutoCheck.Core{
         
             //Load the YAML file
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(Root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score", "concurrent"});
+            ValidateChildren(Root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
                     
             //YAML header overridable vars 
             CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(Root, "folder", CurrentFolderPath, false));            
             ScriptVersion = ParseChild(Root, "version", ScriptVersion, false);
             ScriptCaption = ParseChild(Root, "caption", ScriptCaption, false);
             ScriptName = ParseChild(Root, "name", ScriptName, false);                        
-            MaxScore = ParseChild(Root, "max-score", MaxScore, false);
-            Concurrent = ParseChild(Root, "concurrent", Concurrent, false);
+            MaxScore = ParseChild(Root, "max-score", MaxScore, false);            
                         
             //Preparing script body execution
             AutoComputeVarValues = true;                      
@@ -873,15 +877,16 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBatch(YamlNode node, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
-            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote"};     
+            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote", "concurrent"};     
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) ExecuteBody(Root);
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
-                var originalIP = CurrentHost;                                          
-                                
-                //Collecting all the folders and IPs      
+                var originalIP = CurrentHost;                                                                                         
+
+                //Collecting data
                 ValidateChildren(node, current, children, mandatory);
+                Concurrent = ParseChild(Root, "concurrent", Concurrent, false); 
                 
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -961,8 +966,10 @@ namespace AutoCheck.Core{
                 });                                  
 
                 //Multithreading queue
-                var scripts = new List<Task<Script>>();               
+                var scripts = new List<Task<Script>>();
                 var mainOutput = this.Output;
+                var logOrder = new List<string>();
+                var logContent = new Dictionary<string, List<Output.Log>>();
 
                 var action = new Action<string>((folder) => {
                     var s = this.DeepClone();
@@ -972,11 +979,11 @@ namespace AutoCheck.Core{
                     });
                     
                     t.ContinueWith((t) => {
-                        //TODO: this must keep an order, usefull for unit testing
-                        this.Output.ScriptLog.AddRange(t.Result.Output.ScriptLog);
+                        logContent.Add(folder, t.Result.Output.ScriptLog);
                     });
 
                     scripts.Add(t);
+                    logOrder.Add(folder);
                 });
                 
                 //Queing parallel body execution for each local target                
@@ -993,7 +1000,7 @@ namespace AutoCheck.Core{
 
                 //Multithreading execution
                 int i = 0;
-                int max = Concurrent == 0 ? scripts.Count : Concurrent;                                
+                int max = Concurrent <= 0 ? scripts.Count : Concurrent;                                
 
                 while(i < scripts.Count){
                     var started = new List<Task>();
@@ -1006,6 +1013,11 @@ namespace AutoCheck.Core{
                     Task.WaitAll(started.ToArray());                    
                     i+= max;                    
                 }                
+
+                //Rebuilding main log, this must keep an order because unit testing
+                foreach(var item in logOrder){
+                    this.Output.ScriptLog.AddRange(logContent[item]);
+                }                        
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();

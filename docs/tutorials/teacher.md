@@ -182,7 +182,6 @@ version | text | no | The script version. | `1.0.0.0`
 name | text | no | The script name will be displayed at the output. | `Current file's name`
 caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
-concurrent | integer | no | Batch mode only: maximum concurrent script execution (0 = MAX). | `0`
 [output](#output) | mapping | no | Setups the output behaviour. | 
 [vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
 [body](#body) | sequence | no | Script body. |
@@ -450,6 +449,7 @@ Batch mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
+concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
 [setup](#setup) | sequence | no | The defined content will be executed once before the copy_detector and any target's body. |
 [teardown](#teardown) | sequence | no | The  defined content will be executed once after the copy_detector and all target's body. |
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target before each body. |
