@@ -274,7 +274,17 @@ namespace AutoCheck.Core{
         /// <returns></returns>
         public new string ToString(){
             return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
-        }   
+        }  
+        
+        /// <summary>
+        /// Sends the given log to the terminal.
+        /// </summary>   
+        /// <param name="log">The log to print.</param>     
+        public void SendToTerminal(Log log){
+            foreach(Content c in log.Content){
+                SendToTerminal(c);         
+            }
+        } 
 #endregion  
 #region Private             
         internal Log CloseLog(Type type){ 
@@ -297,13 +307,7 @@ namespace AutoCheck.Core{
             }
 
             return CloseLog();            
-        }
-
-        private void SendToTerminal(Log log){
-            foreach(Content c in log.Content){
-                SendToTerminal(c);         
-            }
-        }
+        }        
 
         private void SendToTerminal(Content c){
             Console.Write(c.Indent);
