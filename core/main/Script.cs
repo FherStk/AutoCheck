@@ -975,7 +975,7 @@ namespace AutoCheck.Core{
                 var action = new Action<string>((folder) => {
                     var s = this.DeepClone();
                     var t = new Task<Script>(() => {                        
-                        s.ExecuteBodyForBatch(Root, current, cpydet, folder);
+                        s.ExecuteBodyForBatch((YamlSequenceNode)node, current, cpydet, folder);
                         return s;
                     });
                     
@@ -1758,12 +1758,12 @@ namespace AutoCheck.Core{
             });
         }
 
-        private void ExecuteBodyForBatch(YamlMappingNode node, string current, List<CopyDetector> cpydet, string folder){
+        private void ExecuteBodyForBatch(YamlSequenceNode node, string current, List<CopyDetector> cpydet, string folder){
             //NOTE: before implementing multithreading, this method was an action, simplier code but has problems with script context when running on parallel.
             Output.WriteLine(BatchCaption, Output.Style.HEADER);
                     
             //Pre content
-            Output.Indent();      
+            Output.Indent();
             ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
                 if(Abort) return;
                 switch(name){                       
@@ -1784,7 +1784,7 @@ namespace AutoCheck.Core{
                 }                        
 
                 if(!match){
-                    ExecuteBody(node);  
+                    ExecuteBody(Root);  
                     Output.BreakLine();
                 } 
             }
