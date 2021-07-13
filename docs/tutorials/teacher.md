@@ -449,6 +449,7 @@ Batch mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
+concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
 [setup](#setup) | sequence | no | The defined content will be executed once before the copy_detector and any target's body. |
 [teardown](#teardown) | sequence | no | The  defined content will be executed once after the copy_detector and all target's body. |
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target before each body. |

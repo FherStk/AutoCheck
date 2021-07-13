@@ -214,7 +214,7 @@ namespace AutoCheck.Terminal
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated, true);
+                    new Script(script, OnLogGenerated);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -230,7 +230,10 @@ namespace AutoCheck.Terminal
             }      
         }
 
-        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){      
+        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){
+            var script = (Script)sender;
+            script.Output.SendToTerminal(e.Log);
+
             if(e.Type == Output.Type.SCRIPT && e.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
