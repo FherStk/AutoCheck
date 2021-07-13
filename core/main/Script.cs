@@ -24,6 +24,8 @@ using System.Linq;
 using System.Reflection;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Core.Exceptions;
@@ -33,7 +35,7 @@ using OS = AutoCheck.Core.Utils.OS;
 
 
 namespace AutoCheck.Core{        
-    public class Script{
+    public class Script {
 #region Classes
     private class Remote: Local{
         public OS OS {get; set;}
@@ -60,7 +62,7 @@ namespace AutoCheck.Core{
             Vars = vars;
         }
     }
-
+    
     private enum LogFormatType {
         TEXT,
         JSON
@@ -519,6 +521,19 @@ namespace AutoCheck.Core{
                 UpdateVar("total_score", value);                
             }
         }
+
+        /// <summary>
+        /// Batch mode only: maximum concurrent script execution (0 = MAX).
+        /// </summary>
+        protected int Concurrent {
+            get{
+                return (int)GetVar("concurrent", AutoComputeVarValues);
+            }
+
+            private set{
+                UpdateVar("concurrent", value);                
+            }
+        }
 #endregion
 #region Attributes
         /// <summary>
@@ -549,7 +564,9 @@ namespace AutoCheck.Core{
 
         private bool LogFilesEnabled {get; set;}   
 
-        private LogFormatType LogFormat {get; set;}      
+        private LogFormatType LogFormat {get; set;}     
+
+        private YamlMappingNode Root {get; set;}     
 
         private bool IsQuestionOpen {
             get{
@@ -571,42 +588,13 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Constructor
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
-        public Script(string path, bool output = false): this(path, null, null, null, null, output){ 
-        }
-
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, bool output = false): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, output){ 
-        }
-
-        /// <summary>
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
-        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
-        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
-        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
-        /// <param name="output">When enabled, all the output will be directly send to the terminal.</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, bool output = false){    
-            Output = new Output(output);
+        private Script(){
+            //Just to be used by the other constructors            
+            Output = new Output();       
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();  
+            Vars = new Stack<Dictionary<string, object>>();
 
-            //Events
-            OnHeaderCompleted = onHeaderCompleted;
-            OnSetupCompleted = onSetupCompleted;
-            OnScriptCompleted = onScriptCompleted;
-            OnTeardwonCompleted = onTeardwonCompleted;
-            
             //Scope in              
             Vars.Push(new Dictionary<string, object>());
 
@@ -618,13 +606,14 @@ namespace AutoCheck.Core{
             MaxScore = 10f;  
             TotalScore = 0f;
             CurrentScore = 0f;
-            CurrentQuestion = "0";     
+            CurrentQuestion = "0";    
+            Concurrent = 0;
 
             //Setup default folders, each property will set also the related 'name' property                              
             AppFolderPath = Utils.AppFolder;            
             ExecutionFolderPath = Utils.ExecutionFolder;
-            ScriptFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
-            ScriptFilePath = path;
+            ScriptFolderPath = string.Empty;
+            ScriptFilePath = string.Empty;
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
 
@@ -634,11 +623,46 @@ namespace AutoCheck.Core{
 
             //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
-            ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");
+            ScriptName = string.Empty;
             ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             SingleCaption = "Running on single mode:";
             BatchCaption = "Running on batch mode:";
+        }
 
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        public Script(string path): this(path, null, null, null, null){ 
+        }
+
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        }
+
+        /// <summary>
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
+        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
+        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
+            //NOTE: some properties are beeing setup within the private constructor
+
+            //Events
+            OnHeaderCompleted = onHeaderCompleted;
+            OnSetupCompleted = onSetupCompleted;
+            OnScriptCompleted = onScriptCompleted;
+            OnTeardwonCompleted = onTeardwonCompleted;                        
+
+            //Setup the remaining vars            
+            ScriptFilePath = Utils.PathToCurrentOS(path);
+            ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");            
+            
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -648,31 +672,18 @@ namespace AutoCheck.Core{
             );                 
         
             //Load the YAML file
-            var root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
-            ValidateChildren(root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
+            Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+            ValidateChildren(Root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
                     
             //YAML header overridable vars 
-            CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(root, "folder", CurrentFolderPath, false));            
-            ScriptVersion = ParseChild(root, "version", ScriptVersion, false);
-            ScriptCaption = ParseChild(root, "caption", ScriptCaption, false);
-            ScriptName = ParseChild(root, "name", ScriptName, false);                        
-            MaxScore = ParseChild(root, "max-score", MaxScore, false);                                
+            CurrentFolderPath = Utils.PathToCurrentOS(ParseChild(Root, "folder", CurrentFolderPath, false));            
+            ScriptVersion = ParseChild(Root, "version", ScriptVersion, false);
+            ScriptCaption = ParseChild(Root, "caption", ScriptCaption, false);
+            ScriptName = ParseChild(Root, "name", ScriptName, false);                        
+            MaxScore = ParseChild(Root, "max-score", MaxScore, false);            
                         
             //Preparing script body execution
-            AutoComputeVarValues = true;
-            var script = new Action(() => {   
-                //This data must be cleared for each script body execution (batch mode)  
-                Success = 0;
-                Fails = 0;
-
-                //Running script body                
-                if(root.Children.ContainsKey("body")) ParseBody(root.Children["body"]);
-                
-                //Storing the log file path (it will be used to generate it later). 
-                //WARNING: this is based on log index, could fail if multithreading is implemented
-                var logFile = ComputeVarValue(LogFilePath);
-                LogFiles.Add(logFile); 
-            });                        
+            AutoComputeVarValues = true;                      
 
             //Storing script execution into log
             Output.WriteLine(ScriptCaption, Output.Style.HEADER);
@@ -689,15 +700,15 @@ namespace AutoCheck.Core{
 
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
-            if(root.Children.ContainsKey("log")) ParseLog(root.Children["log"]);
-            if(root.Children.ContainsKey("vars")) ParseVars(root.Children["vars"]);
-            if(root.Children.ContainsKey("single")) ParseSingle(root.Children["single"], script);
-            if(root.Children.ContainsKey("batch")) ParseBatch(root.Children["batch"], script);   
+            if(Root.Children.ContainsKey("log")) ParseLog(Root.Children["log"]);
+            if(Root.Children.ContainsKey("vars")) ParseVars(Root.Children["vars"]);
+            if(Root.Children.ContainsKey("single")) ParseSingle(Root.Children["single"]);
+            if(Root.Children.ContainsKey("batch")) ParseBatch(Root.Children["batch"]);   
 
             //If no batch and no single, force just an execution (usefull for simple script like test\samples\script\vars\vars_ok5.yaml)   
-            if(!root.Children.ContainsKey("single") && !root.Children.ContainsKey("batch")){                
+            if(!Root.Children.ContainsKey("single") && !Root.Children.ContainsKey("batch")){                
                 Output.Indent();
-                script.Invoke();
+                ExecuteBody(Root);
                 Output.UnIndent();
                 
                 //Storing script execution log
@@ -715,8 +726,7 @@ namespace AutoCheck.Core{
             ExportLog();            
             
             //Scope out
-            Vars.Pop();
-            
+            Vars.Pop();            
         }
 #endregion
 #region Parsing
@@ -772,9 +782,9 @@ namespace AutoCheck.Core{
         }
         
         //TODO: can be single and batch simplified where one uses onther?
-        private void ParseSingle(YamlNode node, Action action, string current="single", string parent="root", string[] children = null, string[] mandatory = null){              
+        private void ParseSingle(YamlNode node, string current="single", string parent="root", string[] children = null, string[] mandatory = null){              
             children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
-            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) action.Invoke();
+            if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) ExecuteBody(Root);
             else{                                    
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -828,35 +838,17 @@ namespace AutoCheck.Core{
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
 
-                //Both local and remote will run exactly the same code
-                var script = new Action(() => {
-                    Output.WriteLine(SingleCaption, Output.Style.HEADER);
-                    Output.Indent();
-                    action.Invoke();
-                    Output.UnIndent();
-
-                    //Storing log for the script data
-                    Output.CloseLog(Output.Type.SCRIPT);
-
-                    //Script completed
-                    if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                        ExecutionMode = ExecutionModeType.SINGLE,
-                        Type = Output.Type.SCRIPT,
-                        Log = Output.ScriptLog.LastOrDefault()
-                    });
-                });
-
                 if(local != null){
                     ForEachLocalTarget(new Local[]{local}, (folder) => {
                         //ForEachLocalTarget method setups the global vars
-                        script.Invoke();
+                        ExecuteBodyForSingle(Root);
                     });
                 }
 
                 if(remote != null){
                     ForEachRemoteTarget(new Remote[]{remote}, (os, host, username, password, port, folder) => {
                         //ForEachLocalTarget method setups the global vars
-                        script.Invoke();
+                        ExecuteBodyForSingle(Root);
                     });
                 }
 
@@ -883,16 +875,17 @@ namespace AutoCheck.Core{
             }
         }
 
-        private void ParseBatch(YamlNode node, Action action, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
-            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote"};     
-            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) action.Invoke();
+        private void ParseBatch(YamlNode node, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
+            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote", "concurrent"};     
+            if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) ExecuteBody(Root);
             else{    
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
-                var originalIP = CurrentHost;                                          
-                                
-                //Collecting all the folders and IPs      
+                var originalIP = CurrentHost;                                                                                         
+
+                //Collecting data
                 ValidateChildren(node, current, children, mandatory);
+                Concurrent = ParseChild(node, "concurrent", Concurrent, false); 
                 
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -969,83 +962,64 @@ namespace AutoCheck.Core{
                     ExecutionMode = ExecutionModeType.BATCH,
                     Type = Output.Type.SETUP,
                     Log = Output.SetupLog
-                });  
-                
-                //Both local and remote will run exactly the same code
-                var script = new Action<string>((folder) => {
-                    //Printing script caption
-                    Output.WriteLine(BatchCaption, Output.Style.HEADER);
-                    
-                    //Running copy detectors and script body
-                    new Action(() => {
-                        //Pre content
-                        Output.Indent();      
-                        ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
-                            if(Abort) return;
-                            switch(name){                       
-                                case "pre":                            
-                                    ParsePre(node, name, current);
-                                    Output.BreakLine();                                
-                                    break;
-                            }                    
-                        }));                                        
-                        
-                        var match = false;
-                        try{                        
-                            foreach(var cd in cpydet){                            
-                                if(cd != null){
-                                    match = match || cd.CopyDetected(folder);                        
-                                    if(match) PrintCopies(cd, folder);                            
-                                }
-                            }                        
-
-                            if(!match){
-                                action.Invoke();  
-                                Output.BreakLine();
-                            } 
-                        }
-                        catch(Exception ex){
-                            Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
-                        }
-
-                        //Post content
-                        ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
-                            if(Abort) return;
-                            switch(name){                       
-                                case "post":                            
-                                    ParsePost(node, name, current);
-                                    Output.BreakLine();
-                                    break;
-                            }                    
-                        }));                    
-                        Output.UnIndent();                                                                   
-
-                        //Storing log for the script data
-                        Output.CloseLog(Output.Type.SCRIPT);
-
-                        //Script completed
-                        if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                            //TODO: This could fail if multihreeading is implemented, the event should be fired from Output
-                            //      Directly from Output or refired from here to set the execution mode?
-                            ExecutionMode = ExecutionModeType.BATCH,
-                            Type = Output.Type.SCRIPT,
-                            Log = Output.ScriptLog.LastOrDefault()
-                        });
-                                                
-                    }).Invoke();
-                });
-
-                //Executing body for each local target                
-                ForEachLocalTarget(local.ToArray(), (folder) => {
-                    //ForEachLocalTarget method setups the global vars                    
-                    script.Invoke(folder);
                 });                                  
 
-                //Executing body for each remote target                
+                //Multithreading queue
+                var scripts = new List<Task<Script>>();
+                var finished = new ConcurrentBag<Task>();
+                var mainOutput = this.Output;
+                var logContent = new ConcurrentDictionary<string, List<Output.Log>>();
+                var logFiles = new ConcurrentDictionary<string, string>();
+
+                var action = new Action<string>((folder) => {
+                    var s = this.DeepClone();
+                    var t = new Task<Script>(() => {                        
+                        s.ExecuteBodyForBatch((YamlSequenceNode)node, current, cpydet, folder);
+                        return s;
+                    });
+                    
+                    var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //need to order the log output for unit testing
+                    finished.Add(t.ContinueWith((t) => {                        
+                        logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
+                        logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
+                    }));
+
+                    scripts.Add(t);
+                });
+                
+                //Queing parallel body execution for each local target                
+                ForEachLocalTarget(local.ToArray(), (folder) => {
+                    //ForEachLocalTarget method setups the global vars, which are copied to the task script on instantiation   
+                    action.Invoke(folder);
+                });                                  
+
+                //Queing parallel body execution for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    //ForEachLocalTarget method setups the global vars
-                    script.Invoke(folder);
+                    //ForEachLocalTarget method setups the global vars, which are copied to the task script on instantiation
+                    action.Invoke(folder);
                 }); 
+
+                //Multithreading execution                
+                var started = new ConcurrentBag<Task>();
+                var max = Concurrent <= 0 ? scripts.Count : Concurrent;
+                var last = 0;
+
+                while(started.Count < scripts.Count){
+                    var end = Math.Min(last+max, scripts.Count);
+                   
+                    for(int i=last; i < end; i++){
+                        started.Add(scripts[i]);
+                        scripts[i].Start();
+                    }
+                    
+                    last += end;
+                    Task.WaitAll(started.ToArray());                                       
+                }
+
+                //Rebuilding main log, this must keep an order because unit testing
+                Task.WaitAll(finished.ToArray());
+                LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
+                Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
 
                 //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
                 Output.Indent();
@@ -1751,6 +1725,98 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
+        private void ExecuteBody(YamlMappingNode node){
+            //This data must be cleared for each script body execution (batch mode)  
+            Success = 0;
+            Fails = 0;
+
+            //Running script body                
+            if(node.Children.ContainsKey("body")) ParseBody(node.Children["body"]);
+            
+            //Storing the log file path (it will be used to generate it later). 
+            //WARNING: this is based on log index, could fail if multithreading is implemented
+            var logFile = ComputeVarValue(LogFilePath);
+            LogFiles.Add(logFile); 
+        }
+
+        private void ExecuteBodyForSingle(YamlMappingNode node){
+            //NOTE: before implementing multithreading, this method was an action, simplier code but has problems with script context when running on parallel.
+            Output.WriteLine(SingleCaption, Output.Style.HEADER);
+
+            Output.Indent();
+            ExecuteBody(node);
+            Output.UnIndent();
+
+            //Storing log for the script data
+            Output.CloseLog(Output.Type.SCRIPT);
+
+            //Script completed
+            if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                ExecutionMode = ExecutionModeType.SINGLE,
+                Type = Output.Type.SCRIPT,
+                Log = Output.ScriptLog.LastOrDefault()
+            });
+        }
+
+        private void ExecuteBodyForBatch(YamlSequenceNode node, string current, List<CopyDetector> cpydet, string folder){
+            //NOTE: before implementing multithreading, this method was an action, simplier code but has problems with script context when running on parallel.
+            Output.WriteLine(BatchCaption, Output.Style.HEADER);
+                    
+            //Pre content
+            Output.Indent();
+            ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                if(Abort) return;
+                switch(name){                       
+                    case "pre":                            
+                        ParsePre(node, name, current);
+                        Output.BreakLine();                                
+                        break;
+                }                    
+            }));                                        
+            
+            var match = false;
+            try{                        
+                foreach(var cd in cpydet){                            
+                    if(cd != null){
+                        match = match || cd.CopyDetected(folder);                        
+                        if(match) PrintCopies(cd, folder);                            
+                    }
+                }                        
+
+                if(!match){
+                    ExecuteBody(Root);  
+                    Output.BreakLine();
+                } 
+            }
+            catch(Exception ex){
+                Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
+            }
+
+            //Post content
+            ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                if(Abort) return;
+                switch(name){                       
+                    case "post":                            
+                        ParsePost(node, name, current);
+                        Output.BreakLine();
+                        break;
+                }                    
+            }));                    
+            Output.UnIndent();                                                                   
+
+            //Storing log for the script data
+            Output.CloseLog(Output.Type.SCRIPT);
+
+            //Script completed
+            if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                //TODO: This could fail if multihreeading is implemented, the event should be fired from Output
+                //      Directly from Output or refired from here to set the execution mode?
+                ExecutionMode = ExecutionModeType.BATCH,
+                Type = Output.Type.SCRIPT,
+                Log = Output.ScriptLog.LastOrDefault()
+            });
+        }
+
         private void SetupDefaultHostVars(){
             CurrentOS = Utils.CurrentOS;
             CurrentHost = "localhost";
@@ -2162,6 +2228,7 @@ namespace AutoCheck.Core{
                 }                              
             }
         }
+        
         private string CleanPathInvalidChars(string path){
             var file = string.Empty;
             var folder = string.Empty;
@@ -2184,11 +2251,6 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Scope
-        /// <summary>
-        /// Returns the requested var value.
-        /// </summary>
-        /// <param name="key">Var name</param>
-        /// <returns>Var value</returns>
         private object GetVar(string name, bool compute = true){
             try{
                 var value = FindItemWithinScope(Vars, name);                

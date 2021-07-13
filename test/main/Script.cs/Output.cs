@@ -78,8 +78,10 @@ namespace AutoCheck.Test
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in logs){
-                Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
+                var logFile = Core.Utils.PathToCurrentOS(l);
+
+                Assert.IsTrue(File.Exists(logFile));
+                Assert.IsTrue(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -94,8 +96,11 @@ namespace AutoCheck.Test
 
             Assert.AreEqual(3, Directory.GetFiles(path).Length);
 
-            foreach(var l in s.LogFiles.OrderBy(x => x)){
-                Assert.IsTrue(File.ReadAllText(Core.Utils.PathToCurrentOS(l)).Equals(s.Output.GetLog()[i++].ToText()));
+            foreach(var l in s.LogFiles){
+                var logFile = Core.Utils.PathToCurrentOS(l);
+                
+                Assert.IsTrue(File.Exists(logFile));
+                Assert.IsTrue(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 

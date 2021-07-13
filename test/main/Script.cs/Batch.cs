@@ -194,5 +194,13 @@ namespace AutoCheck.Test
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok10.yaml"));            
             Assert.AreEqual("Running script batch_run_ok10 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\n\r\nRunning script batch_run_ok10 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
         }
+
+        [Test, Category("Batch"), Category("Remote")]
+        public void Script_BATCH_NO_CONCURRENT()
+        {                      
+            //TODO: this test could fail if there is no empty folder within /home/usuario/test (with no hidden folders)
+            var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok11.yaml"));            
+            Assert.AreEqual("Running script batch_run_ok11 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL1\r\n   This is the value for LOCAL_VAR2: LOCAL2\r\n\r\nRunning script batch_run_ok11 (v1.0.0.0):\r\nRunning on batch mode for localhost:\r\n   This is the value for LOCAL_VAR1: LOCAL3\r\n   This is the value for LOCAL_VAR2: LOCAL4", s.Output.ToString());
+        }
     }
 }

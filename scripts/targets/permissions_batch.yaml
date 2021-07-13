@@ -22,6 +22,7 @@ vars:
     student: "{#^[^ ]+(?= )$CURRENT_FOLDER_NAME}"
 
 batch: 
+    - concurrent: !!int 1 #cannot run in parallel due permissions over users
     - caption: "Running on batch mode for ~{$STUDENT}:"       
     - local:                             
         - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\permissions"

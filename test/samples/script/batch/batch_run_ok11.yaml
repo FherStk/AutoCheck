@@ -16,13 +16,27 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "OUTPUT BATCH 2"
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+inherits: "batch_base5.yaml"
 
 batch: 
-  - local:
-      - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
+    - caption: "Running on batch mode for ~{$CURRENT_HOST}:"
+    - concurrent: !!int 1
+    - remote: 
+        - os: "GNU"
+        - host: "localhost"
+        - user: "usuario"
+        - password: "usuario"
+        - folder: "/home/usuario/test"
+        - vars:
+            local_var1: "LOCAL1"
+            local_var2: "LOCAL2"
 
-log:
-  enabled: True
-  folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_2_yaml"
+    - remote:     
+        - os: "GNU" 
+        - host: "localhost"
+        - user: "usuario"
+        - password: "usuario"   
+        - path: "/home/usuario/test"
+        - vars:
+            local_var1: "LOCAL3"
+            local_var2: "LOCAL4"
