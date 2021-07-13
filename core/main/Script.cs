@@ -885,7 +885,7 @@ namespace AutoCheck.Core{
 
                 //Collecting data
                 ValidateChildren(node, current, children, mandatory);
-                Concurrent = ParseChild(Root, "concurrent", Concurrent, false); 
+                Concurrent = ParseChild(node, "concurrent", Concurrent, false); 
                 
                 //Parsing caption (scalar)
                 AutoComputeVarValues = false;
@@ -999,21 +999,22 @@ namespace AutoCheck.Core{
                     action.Invoke(folder);
                 }); 
 
-                //Multithreading execution
-                int i = 0;
-                int max = Concurrent <= 0 ? scripts.Count : Concurrent;                                
+                //Multithreading execution                
+                var started = new ConcurrentBag<Task>();
+                var max = Concurrent <= 0 ? scripts.Count : Concurrent;
+                var last = 0;
 
-                while(i < scripts.Count){
-                    var started = new ConcurrentBag<Task>();
-
-                    for(int j=0; j<max; j++){
-                        started.Add(scripts[j]);
-                        scripts[j].Start();                        
+                while(started.Count < scripts.Count){
+                    var end = Math.Min(last+max, scripts.Count);
+                   
+                    for(int i=last; i < end; i++){
+                        started.Add(scripts[i]);
+                        scripts[i].Start();
                     }
-
-                    Task.WaitAll(started.ToArray());                    
-                    i+= max;                    
-                }                
+                    
+                    last += end;
+                    Task.WaitAll(started.ToArray());                                       
+                }
 
                 //Rebuilding main log, this must keep an order because unit testing
                 Task.WaitAll(finished.ToArray());
