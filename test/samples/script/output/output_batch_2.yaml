@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "OUTPUT BATCH 1"
+name: "OUTPUT BATCH 2"
 inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
 
 batch: 

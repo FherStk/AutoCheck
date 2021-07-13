@@ -660,8 +660,7 @@ namespace AutoCheck.Core{
             OnTeardwonCompleted = onTeardwonCompleted;                        
 
             //Setup the remaining vars            
-            ScriptFilePath = path;
-            ScriptFolderPath = Utils.PathToCurrentOS(Path.GetDirectoryName(path));
+            ScriptFilePath = Utils.PathToCurrentOS(path);
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");            
             
             //Setup log data before starting
@@ -979,7 +978,7 @@ namespace AutoCheck.Core{
                         return s;
                     });
                     
-                    var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //needed to order the log output, must be ordered for unit testing
+                    var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //need to order the log output for unit testing
                     finished.Add(t.ContinueWith((t) => {                        
                         logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
                         logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
