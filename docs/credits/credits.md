@@ -5,6 +5,10 @@ Further details about the license can be found at [https://github.com/FherStk/Au
 # Third party software and licenses:
 Please notice than this project could not be possible without the help of:
 
+## [Chonky](https://www.npmjs.com/package/chonky)
+Under the MIT license by [TimboKZ](https://github.com/TimboKZ/Chonky)\
+Further details about the license can be found at [https://github.com/TimboKZ/Chonky/blob/2.x/LICENSE](https://github.com/TimboKZ/Chonky/blob/2.x/LICENSE).
+
 ## [DocFX](https://github.com/dotnet/docfx)
 Under the MIT license by [Microsoft Corporation](https://github.com/dotnet)\
 Further details about the license can be found at [https://github.com/dotnet/docfx/blob/dev/LICENSE](https://github.com/dotnet/docfx/blob/dev/LICENSE).
