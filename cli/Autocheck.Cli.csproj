@@ -5,9 +5,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
-    <Product>AutoCheck.Terminal</Product>
+    <Product>AutoCheck.Cli</Product>
     <Copyright>Copyright © 2020</Copyright>
-    <VersionPrefix>2.3.0</VersionPrefix>
+    <VersionPrefix>2.4.0</VersionPrefix>
     <VersionSuffix>stable</VersionSuffix>  
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>

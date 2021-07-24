@@ -28,7 +28,7 @@ using System.Linq;
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
 
-namespace AutoCheck.Terminal
+namespace AutoCheck.Cli
 {
     class Run
     { 
@@ -40,7 +40,7 @@ namespace AutoCheck.Terminal
             var output = new Output(true);
 
             output.BreakLine();        
-            output.WriteLine($"AutoCheck: ~v{GetProductVersion(Assembly.GetExecutingAssembly())} (Core v{GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)})", Output.Style.INFO);            
+            output.WriteLine($"AutoCheck's Command Line Interface: ~v{GetProductVersion(Assembly.GetExecutingAssembly())} (Core v{GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)})", Output.Style.INFO);            
             output.WriteLine($"Copyright © {DateTime.Now.Year}: ~Fernando Porrino Serrano.", Output.Style.INFO);            
             output.WriteLine("Under the AGPL license: ~https://github.com/FherStk/AutoCheck/blob/master/LICENSE~", Output.Style.INFO);            
             output.BreakLine();                                   

@@ -1,7 +1,7 @@
 # Developer's guide
 ## Solution's overview
-### AutoCheck.Terminal
-Within the `terminal` folder you'll find the `AutoCheck.Terminal` project, which is the recommended way for a user to run the application.
+### AutoCheck.Cli
+Within the `terminal` folder you'll find the `AutoCheck.Cli` project, which is the recommended way for a user to run the application.
 
 ### AutoCheck.Docs
 Within the `docs` folder you'll find the `AutoCheck.Docs` project, where the entire project's documentation lives.
