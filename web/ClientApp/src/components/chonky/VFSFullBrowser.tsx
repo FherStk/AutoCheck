@@ -14,7 +14,7 @@
     FullFileBrowser,
 } from 'chonky';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import DemoFsMap from './demo.fs_map.json'
+import DemoFsMap from './files.demo.json'
 import Button from '@material-ui/core/Button';
 //import { showActionNotification } from '../util';
 

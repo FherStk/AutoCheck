@@ -1,0 +1,66 @@
+{
+    "rootFolderId": "9514a3d74d57",
+    "fileMap": {
+        "9514a3d74d57": {
+            "id": "9514a3d74d57",
+            "name": "scripts",
+            "isDir": true,
+            "childrenIds": [
+                "ed918037b975",
+                "c21e08daf308"
+            ],
+            "childrenCount": 2
+        },
+        "ed918037b975": {
+            "id": "ed918037b975",
+            "name": "custom",
+            "isDir": true,
+            "childrenIds": [                
+                "0729af954fe6",
+                "a1361e98e01d",
+                "12dd195bb146"                
+            ],
+            "childrenCount": 3,
+            "parentId": "9514a3d74d57"
+        },
+        "c21e08daf308": {
+            "id": "c21e08daf308",
+            "name": "targets",
+            "isDir": true,
+            "childrenIds": [                
+                "f9b3b8472664",
+                "998c5fed54dc"
+            ],
+            "childrenCount": 2,
+            "parentId": "9514a3d74d57"
+        },
+        "0729af954fe6": {
+            "id": "0729af954fe6",
+            "name": "extract_zip.yaml",
+            "parentId": "ed918037b975"
+        },
+        "a1361e98e01d": {
+            "id": "a1361e98e01d",
+            "name": "views_single.yaml",
+            "parentId": "ed918037b975"
+        },
+        "12dd195bb146": {
+            "id": "12dd195bb146",
+            "name": "web_sindication_single.yaml",
+            "parentId": "ed918037b975"
+        },
+
+        "f9b3b8472664": {
+            "id": "f9b3b8472664",
+            "name": "single",
+            "isDir": true,           
+            "parentId": "c21e08daf308"
+        },
+        "998c5fed54dc": {
+            "id": "998c5fed54dc",
+            "name": "batch",
+            "isDir": true,          
+            "parentId": "c21e08daf308"
+        }
+    }
+}
