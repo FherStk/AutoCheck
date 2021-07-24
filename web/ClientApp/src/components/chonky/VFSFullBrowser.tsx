@@ -258,7 +258,7 @@ export const useFileActionHandler = (
 
 export type VFSProps = Partial<FileBrowserProps>;
 
-export const VFSBrowser: React.FC<VFSProps> = React.memo((props) => {
+export const VFSFullBrowser: React.FC<VFSProps> = React.memo((props) => {
     const {
         fileMap,
         currentFolderId,
