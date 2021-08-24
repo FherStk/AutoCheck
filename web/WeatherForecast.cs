@@ -1,6 +1,6 @@
 using System;
 
-namespace web
+namespace AutoCheck.Web
 {
     public class WeatherForecast
     {
