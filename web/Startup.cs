@@ -13,9 +13,15 @@ namespace AutoCheck.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConfigureAvailableYamlScripts();
         }
 
         public IConfiguration Configuration { get; }
+
+        public void ConfigureAvailableYamlScripts(){
+            //TODO: build the JSON file within ClientApp\src\components\chonky\files.production.json
+            
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
