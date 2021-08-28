@@ -28,77 +28,52 @@ namespace AutoCheck.Web
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureAvailableYamlScripts(){
-            //Sample:
-            /*
-                {
-                    "rootFolderId": "9514a3d74d57",
-                    "fileMap": {                   
-                        "ed918037b975": {
-                            "id": "ed918037b975",
-                            "name": "custom",
-                            "isDir": true,
-                            "childrenIds": [                
-                                "0729af954fe6",
-                                "a1361e98e01d",
-                                "12dd195bb146"                
-                            ],
-                            "childrenCount": 3,
-                            "parentId": "9514a3d74d57"
-                        },
-                        ...    
-                        "a1361e98e01d": {
-                            "id": "a1361e98e01d",
-                            "name": "views_single.yaml",
-                            "parentId": "ed918037b975"
-                        },
-                        "12dd195bb146": {
-                            "id": "12dd195bb146",
-                            "name": "web_sindication_single.yaml",
-                            "parentId": "ed918037b975"
-                        },  
-                        ...              
-                    }
-                }
-            */       
-
+        public void ConfigureAvailableYamlScripts(){                 
             //scripts root folder    
-            JsonRootNode root = new JsonRootNode();
-            root.rootFolderId = Core.Utils.ScriptsFolder.GetHashCode().ToString();
-            root.fileMap = new Dictionary<string, Dictionary<string, object>>();
+            var scriptsFolder = Core.Utils.ScriptsFolder;
+            JsonRootNode rootNode = new JsonRootNode();
+            rootNode.rootFolderId = System.Math.Abs(scriptsFolder.GetHashCode()).ToString();
+            rootNode.fileMap = new Dictionary<string, Dictionary<string, object>>();
 
-            //scripts child folders
-            foreach(var folder in Directory.GetDirectories(Core.Utils.ScriptsFolder)){
-                var info = new Dictionary<string, object>();
-                info.Add("id", folder.GetHashCode().ToString());
-                info.Add("name", Path.GetFileName(folder));
-                info.Add("isDir", true);
-                info.Add("parentId", root.rootFolderId);
+            ConfigureAvailableYamlScriptsRec(null, scriptsFolder, rootNode.fileMap);          
 
-                var children = Directory.GetDirectories(folder).Select(x => Path.GetFileName(x).GetHashCode().ToString()).ToList();
-                children.AddRange(Directory.GetFiles(folder).Select(x => Path.GetFileName(x).GetHashCode().ToString()).ToList());
-
-                info.Add("childrenIds", children.ToArray());
-                info.Add("childrenCount", children.Count); 
-
-                root.fileMap.Add(info["id"].ToString(), info);           
-            }
-
-            //scripts child files
-            foreach(var file in Directory.GetFiles(Core.Utils.ScriptsFolder, "*.yaml")){
-                var info = new Dictionary<string, object>();
-                info.Add("id", file.GetHashCode().ToString());
-                info.Add("name", Path.GetFileName(file));
-                info.Add("isDir", false);
-                info.Add("parentId", root.rootFolderId);    
-
-                root.fileMap.Add(info["id"].ToString(), info);  
-            }
-
-            //TODO: make it recursive
-
-            string json = JsonSerializer.Serialize(root);
+            string json = JsonSerializer.Serialize(rootNode);
             File.WriteAllText(@"ClientApp\src\components\chonky\files.production.json", json);
+        }
+
+        private void ConfigureAvailableYamlScriptsRec(string parentID, string currentPath, Dictionary<string, Dictionary<string, object>> fileMap){
+            //current folder
+            var info = new Dictionary<string, object>();
+            info.Add("id",  System.Math.Abs(currentPath.GetHashCode()).ToString());
+            info.Add("name", Path.GetFileName(currentPath));
+            info.Add("isDir", true);
+            info.Add("parentId", parentID);
+        
+            var children = Directory.GetDirectories(currentPath).Select(x => System.Math.Abs(x.GetHashCode()).ToString()).ToList();
+            children.AddRange(Directory.GetFiles(currentPath, "*.yaml").Select(x => System.Math.Abs(x.GetHashCode()).ToString()).ToList());
+
+            info.Add("childrenIds", children.ToArray());
+            info.Add("childrenCount", children.Count); 
+
+            fileMap.Add(info["id"].ToString(), info);
+
+            if(children.Count > 0) {
+                //child folders (recursive)
+                foreach(var folder in Directory.GetDirectories(currentPath)){
+                    ConfigureAvailableYamlScriptsRec(info["id"].ToString(), folder, fileMap);
+                }
+
+                //child files
+                foreach(var file in Directory.GetFiles(currentPath, "*.yaml")){
+                    info = new Dictionary<string, object>();
+                    info.Add("id", System.Math.Abs(file.GetHashCode()).ToString());
+                    info.Add("name", Path.GetFileName(file));
+                    info.Add("isDir", false);
+                    info.Add("parentId", parentID);    
+
+                    fileMap.Add(info["id"].ToString(), info);  
+                }
+            }
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
