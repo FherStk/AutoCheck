@@ -21,7 +21,7 @@ import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 import React, { useCallback, useMemo, useState } from 'react';
 
 //import { showActionNotification, useStoryLinks } from '../util';
-import DemoFsMap from './files.production.json';
+import DemoFsMap from './files.demo.json';
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 

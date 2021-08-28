@@ -66,6 +66,16 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// Returns the current app scripts folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string ScriptsFolder{
+            get{
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "scripts");
+            }
+        }
+
+        /// <summary>
         /// Returns the current app config folder
         /// </summary>
         /// <returns>A folder's path.</returns>
