@@ -21,12 +21,12 @@ import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 import React, { useCallback, useMemo, useState } from 'react';
 
 import { showActionNotification/*, useStoryLinks*/ } from './util';
-import DemoFsMap from './files.production.json';
+import ProdFsMap from './files.production.json';
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
 
-const rootFolderId = DemoFsMap.rootFolderId;
-const fileMap = (DemoFsMap.fileMap as unknown) as {
+const rootFolderId = ProdFsMap.rootFolderId;
+const fileMap = (ProdFsMap.fileMap as unknown) as {
     [fileId: string]: FileData & { childrenIds: string[] };
 };
 
@@ -66,6 +66,8 @@ export const useFileActionHandler = (
 ) => {
     return useCallback(
         (data: ChonkyFileActionData) => {
+            var filePath = "";
+
             if (data.id === ChonkyActions.OpenFiles.id) {
                 const { targetFile, files } = data.payload;
                 const fileToOpen = targetFile ?? files[0];
@@ -73,8 +75,22 @@ export const useFileActionHandler = (
                     setCurrentFolderId(fileToOpen.id);
                     return;
                 }
+                
+                //building the file path
+                var path = [];
+                var current = fileToOpen;
+                while(current.parentId != null){
+                    path.push(current.name);
+                    current = fileMap[current.parentId];
+                }
+                path.push(current.name);
+                
+                while(path.length > 0){
+                    filePath += path.pop() + "/";
+                }
+                filePath = filePath.slice(0, -1);                
             }
-
+                        
             showActionNotification(data);
         },
         [setCurrentFolderId]
