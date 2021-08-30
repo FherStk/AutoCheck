@@ -57,10 +57,11 @@ namespace AutoCheck.Web
 
             fileMap.Add(info["id"].ToString(), info);
 
+            parentID = info["id"].ToString();
             if(children.Count > 0) {
                 //child folders (recursive)
                 foreach(var folder in Directory.GetDirectories(currentPath)){
-                    ConfigureAvailableYamlScriptsRec(info["id"].ToString(), folder, fileMap);
+                    ConfigureAvailableYamlScriptsRec(parentID, folder, fileMap);
                 }
 
                 //child files
