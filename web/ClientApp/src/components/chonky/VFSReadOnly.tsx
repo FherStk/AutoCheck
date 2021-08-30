@@ -20,7 +20,7 @@
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 import React, { useCallback, useMemo, useState } from 'react';
 
-//import { showActionNotification, useStoryLinks } from '../util';
+import { showActionNotification/*, useStoryLinks*/ } from './util';
 import DemoFsMap from './files.production.json';
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
@@ -75,7 +75,7 @@ export const useFileActionHandler = (
                 }
             }
 
-            //showActionNotification(data);
+            showActionNotification(data);
         },
         [setCurrentFolderId]
     );

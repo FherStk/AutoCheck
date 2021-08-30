@@ -33,6 +33,10 @@ Further details about the license can be found at [https://github.com/khalidabuh
 Under the MIT license by [Sebastian Klose](https://github.com/sklose)\
 Further details about the license can be found at [https://github.com/sklose/NCalc2/blob/master/LICENSE](https://github.com/sklose/NCalc2/blob/master/LICENSE).
 
+## [Noty](https://github.com/needim/noty)
+Under the MIT license by [Nedim Arabacı](https://github.com/needim)\
+Further details about the license can be found at [https://github.com/needim/noty/blob/master/LICENSE.txt](https://github.com/needim/noty/blob/master/LICENSE.txt).
+
 ## [Npgsql](https://www.npgsql.org/)
 Under the PostgreSQL license by [The Npgsql Development Team](https://www.npgsql.org/index.html)\
 Further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt).

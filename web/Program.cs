@@ -9,6 +9,12 @@ using Microsoft.Extensions.Logging;
 
 namespace AutoCheck.Web
 {
+    //TODO: install dependencies on startup
+    //          npm install chonky
+    //          npm install chonky-icon-fontawesome
+    //          npm install noty
+
+
     public class Program
     {
         public static void Main(string[] args)
