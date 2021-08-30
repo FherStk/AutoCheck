@@ -90,7 +90,16 @@ export const useFileActionHandler = (
                 }
                 filePath = filePath.slice(0, -1);                
             }
-                        
+            
+            //TODO:
+            //  1. remove the call to showActionNotification
+            //  2. remove the dependencies over 'util' and 'override.css'
+            //  3. hide the file browser
+            //  4. display an infinite loading bar 
+            //  5. display a log under the loading bar
+            //  6. call to AutoCheck's core on parallel 
+            //  7. get the entire execution when done and display the log
+            
             showActionNotification(data);
         },
         [setCurrentFolderId]
