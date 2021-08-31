@@ -12,7 +12,7 @@ namespace AutoCheck.Web
     //TODO: install dependencies on startup
     //          npm install chonky
     //          npm install chonky-icon-fontawesome
-    //          npm install noty
+    //          npm install noty <-- delete
 
 
     public class Program
