@@ -6,9 +6,14 @@ export class RunScript extends Component {
   constructor(props) {
     super(props);
     this.state = { forecasts: [], loading: true };
+    this.reload = this.reload.bind(this);
   }
 
   componentDidMount() {
+    this.populateWeatherData();
+  }
+
+  reload() {    
     this.populateWeatherData();
   }
 
@@ -44,8 +49,8 @@ export class RunScript extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
         <p>This component demonstrates fetching data from the server.</p>
+        <button className="btn btn-primary" onClick={this.reload}>Reload</button>
         {contents}
       </div>
     );
