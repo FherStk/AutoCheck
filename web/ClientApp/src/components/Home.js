@@ -13,9 +13,13 @@ export class Home extends Component {
     return (
       <div>
         <h1>Wellcome to AutoCheck!</h1>
-        <p>Select the AutoCheck's YAML script that you want to launch, double clicking will execute it:</p>
-        <VFSReadOnly instanceId="1" />
-        <RunScript />
+        <div id="step-1">
+          <p>Select the AutoCheck's YAML script that you want to launch, double clicking will execute it:</p>
+          <VFSReadOnly instanceId="1" />
+        </div>
+        <div id="step-2">
+          <RunScript />
+        </div>        
       </div>
     );
   }

@@ -20,7 +20,7 @@
 import { ChonkyIconFA } from 'chonky-icon-fontawesome';
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { showActionNotification/*, useStoryLinks*/ } from './util';
+//import { showActionNotification, useStoryLinks } from './util';
 import ProdFsMap from './files.production.json';
 
 setChonkyDefaults({ iconComponent: ChonkyIconFA });
@@ -76,35 +76,48 @@ export const useFileActionHandler = (
                     return;
                 }
                 
-                //building the file path
-                var path = [];
-                var current = fileToOpen;
-                while(current.parentId != null){
-                    path.push(current.name);
-                    current = fileMap[current.parentId];
-                }
-                path.push(current.name);
+                filePath = getFilePath(fileToOpen);
                 
-                while(path.length > 0){
-                    filePath += path.pop() + "/";
-                }
-                filePath = filePath.slice(0, -1);                
+                var div = document.querySelector('#step-1');
+                if(div != null) div.style.display = 'none';
+
+                div = document.querySelector('#step-2');
+                if(div != null) div.style.visibility = 'block';
+            
             }
             
             //TODO:
-            //  1. remove the call to showActionNotification
-            //  2. remove the dependencies over 'util' and 'override.css'
+            //  -1. remove the call to showActionNotification
+            //  - 2. remove the dependencies over 'util' and 'override.css'
             //  3. hide the file browser
             //  4. display an infinite loading bar 
             //  5. display a log under the loading bar
             //  6. call to AutoCheck's core on parallel 
             //  7. get the entire execution when done and display the log
             
-            showActionNotification(data);
+            //showActionNotification(data);
+
+
         },
         [setCurrentFolderId]
     );
 };
+function getFilePath(current: FileData){
+    var path = [];
+    var filePath = "";
+
+    while(current.parentId != null){
+        path.push(current.name);
+        current = fileMap[current.parentId];
+    }
+
+    path.push(current.name);    
+    while(path.length > 0){
+        filePath += path.pop() + "/";
+    }
+
+    return filePath.slice(0, -1);  
+}
 
 export const VFSReadOnly: React.FC<{ instanceId: string }> = (props) => {
     const [currentFolderId, setCurrentFolderId] = useState(rootFolderId);
