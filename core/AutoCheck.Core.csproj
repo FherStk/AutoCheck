@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
+    <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">true</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
@@ -12,6 +12,9 @@
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);MSB3253</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="dein.ToolBox" Version="1.6.4"/>
