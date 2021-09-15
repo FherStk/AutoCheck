@@ -1,12 +1,9 @@
 {
   "homepages": [],
-  "source_base_path": "/home/fher/repo/AutoCheck/docs",
+  "source_base_path": "/home/fher/repos/AutoCheck/docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.Css.yml",
       "output": {
@@ -61,9 +58,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.Html.yml",
       "output": {
@@ -148,9 +142,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.Postgres.yml",
       "output": {
@@ -175,12 +166,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.html",
-          "hash": "Isk46fGTalGS76AHrIwNeA=="
+          "hash": "5p0NdL9b8FpoaONKGzB/bQ=="
         }
       },
       "is_incremental": true,
@@ -199,6 +193,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.CopyDetectors.Html.yml",
       "output": {
@@ -223,6 +220,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.CopyDetectors.PlainText.yml",
       "output": {
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.CopyDetectors.html",
-          "hash": "44omRX0UuTHw9V48accgpQ=="
+          "hash": "W2A1ErOB77FX0vSDlNw2Ug=="
         }
       },
       "is_incremental": true,
@@ -289,6 +289,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.Css.yml",
       "output": {
@@ -340,6 +343,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.Html.yml",
       "output": {
@@ -415,6 +421,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.Postgres.yml",
       "output": {
@@ -487,15 +496,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.html",
-          "hash": "mUKb3pGJbrTCK/TGL/1kWw=="
+          "hash": "EunQ8bdWDYTGwJiojMdZwg=="
         }
       },
       "is_incremental": true,
@@ -529,9 +535,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.CopyDetectors.Html.yml",
       "output": {
@@ -544,9 +547,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.CopyDetectors.PlainText.yml",
       "output": {
@@ -588,7 +588,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.CopyDetectors.html",
-          "hash": "EwXDnYATdolTaHoGlI/bbg=="
+          "hash": "sy1OwNccN4Pa4kPswGFYPQ=="
         }
       },
       "is_incremental": true,
@@ -619,6 +619,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.ConnectionInvalidException.yml",
       "output": {
@@ -655,6 +658,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.DocumentInvalidException.yml",
       "output": {
@@ -703,9 +709,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.QueryInvalidException.yml",
       "output": {
@@ -718,6 +721,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.RegexInvalidException.yml",
       "output": {
@@ -754,9 +760,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.StyleNotAppliedException.yml",
       "output": {
@@ -769,9 +772,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.StyleNotFoundException.yml",
       "output": {
@@ -784,6 +784,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Exceptions.TableInconsistencyException.yml",
       "output": {
@@ -994,9 +997,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.ConnectionInvalidException.yml",
       "output": {
@@ -1009,9 +1009,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.DocumentInvalidException.yml",
       "output": {
@@ -1039,6 +1036,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.QueryInvalidException.yml",
       "output": {
@@ -1051,9 +1051,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.RegexInvalidException.yml",
       "output": {
@@ -1066,6 +1063,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.StyleNotAppliedException.yml",
       "output": {
@@ -1078,6 +1078,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.StyleNotFoundException.yml",
       "output": {
@@ -1090,9 +1093,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Exceptions.TableInconsistencyException.yml",
       "output": {
