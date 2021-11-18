@@ -1672,7 +1672,7 @@ namespace AutoCheck.Core{
         }
 
         private object ParseNode(YamlScalarNode node, bool compute=true){    
-            object  value = ComputeTypeValue(node.Tag, node.Value);
+            object  value = ComputeTypeValue(node.Tag.Value, node.Value);
 
             if(value.GetType().Equals(typeof(string))){                
                 //Always check if the computed value requested is correct, otherwise throws an exception
@@ -1961,7 +1961,7 @@ namespace AutoCheck.Core{
         }
 
         private object ComputeArgument(string name, YamlScalarNode node){
-            var value = ComputeTypeValue(node.Tag, node.Value);            
+            var value = ComputeTypeValue(node.Tag.Value, node.Value);            
             if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
             return value;
         }
