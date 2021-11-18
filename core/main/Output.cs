@@ -281,6 +281,7 @@ namespace AutoCheck.Core{
         /// </summary>   
         /// <param name="log">The log to print.</param>     
         public void SendToTerminal(Log log){
+            if(log == null || log.Content == null) return;
             foreach(Content c in log.Content){
                 SendToTerminal(c);         
             }
