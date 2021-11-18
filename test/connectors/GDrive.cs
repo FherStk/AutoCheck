@@ -84,7 +84,7 @@ namespace AutoCheck.Test.Connectors
             //Create a new and unique remote connector for the current context, local connectors can be shared but not the remote ones because 
             //remote connectors cannot share its internal ssh connection or it can be closed by one when another is using it.        
             var added = false;
-            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "usuario", "usuario", _user, _secret));             
+            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "autocheck", "autocheck", _user, _secret));             
             while(!added);      
 
             added = false;

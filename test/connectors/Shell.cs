@@ -82,7 +82,7 @@ namespace AutoCheck.Test.Connectors
             while(!added); 
 
             added = false;
-            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "usuario", "usuario"));
+            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.Shell(OS.GNU, "localhost", "autocheck", "autocheck"));
             while(!added);  
         }        
 
@@ -128,7 +128,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase(OS.GNU, "localhost", "usuario", "usuario")]
+        [TestCase(OS.GNU, "localhost", "autocheck", "autocheck")]
         public void TestConnection_Remote_DoesNotThrow(OS remoteOS, string host, string username, string password)
         {                
             Assert.DoesNotThrow(() => RemoteConnectors[TestContext.CurrentContext.Test.ID].TestConnection());

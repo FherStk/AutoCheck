@@ -41,8 +41,8 @@ namespace AutoCheck.Test.Connectors
             //Remote
             const OS remoteOS = OS.GNU;
             const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
+            const string username = "autocheck";
+            const string password = "autocheck";
 
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, string.Empty));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, _FAKE));
