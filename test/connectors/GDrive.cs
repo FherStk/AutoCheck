@@ -31,7 +31,7 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class GDrive : Test
     {
-        private const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";       //TODO: delete because not all tests can use it and I prefer to standarize all of them
+        private const string _driveFolder = "/AutoCheck/test/Connectors.GDrive";       //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");     //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");   //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive> LocalConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive>();

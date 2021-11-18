@@ -67,7 +67,7 @@ namespace AutoCheck.Test
         
         protected string Name { 
             get {
-                return GetType().Name.ToCamelCase();
+                return GetType().Name.ToLower();
             }
         } 
 
