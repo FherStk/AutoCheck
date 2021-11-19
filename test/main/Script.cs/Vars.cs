@@ -38,7 +38,7 @@ namespace AutoCheck.Test
         [Test, Category("Vars"), Category("Remote")]
         public void ParseVars_COMPUTED_OPPERATION()
         {  
-            //NOTE: needs a remote GNU users to work (usuario@usuario)
+            //NOTE: needs a remote GNU users to work (autocheck@autocheck)
             var s = new AutoCheck.Core.Script(GetSampleFile("vars_ok5.yaml"));             
             Assert.AreEqual("Running script vars_ok5 (v1.0.0.0):\r\n   Running opperation 1+2+3: OK", s.Output.ToString());                          
         }

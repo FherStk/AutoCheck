@@ -24,7 +24,7 @@ vars:
 body:
     - connector:            
         type: "Shell"        
-        arguments: "--remoteOS GNU --host localhost --username usuario --password usuario"       
+        arguments: "--remoteOS GNU --host localhost --username autocheck --password autocheck"       
 
     - run:        
         caption:  "Running opperation {$NUM1}+{$NUM2}+{$NUM3}: "

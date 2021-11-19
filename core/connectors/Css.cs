@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Xml;
 using System.Linq;
 using System.Collections.Generic;
@@ -100,26 +101,21 @@ namespace AutoCheck.Core.Connectors{
         /// Throws an exception if the document is invalid.
         /// </summary>
         public void ValidateCss3AgainstW3C(){
-            string html = string.Empty;
-            string url = "http://jigsaw.w3.org/css-validator/validator";
-            string css = System.Web.HttpUtility.UrlEncode(Raw.Replace("\r\n", ""));
-            string parameters = string.Format("profile=css3&output=soap12&warning=no&text={0}", css);            
-            byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
-
             //Documentation:    https://jigsaw.w3.org/css-validator/manual.html
-            //                  https://jigsaw.w3.org/css-validator/api.html#requestformat            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format("{0}?{1}", url, parameters));
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;            
-    
+            //                  https://jigsaw.w3.org/css-validator/api.html#requestformat        
+            var httpClient = new HttpClient();
+            var css = System.Web.HttpUtility.UrlEncode(Raw.Replace("\r\n", ""));
+            var asyncGet = httpClient.GetAsync($"http://jigsaw.w3.org/css-validator/validator?profile=css3&output=soap12&warning=no&text={css}");
+            asyncGet.Wait();
+
+            asyncGet.Result.EnsureSuccessStatusCode();
+            
+            var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
+            asyncRead.Wait();
+            
             XmlDocument document = new XmlDocument();
-            using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using(Stream stream = response.GetResponseStream())            
-            using(StreamReader reader = new StreamReader(stream))
-            {
-                string output = reader.ReadToEnd();                             
-                document.LoadXml(output); 
-            }
-                        
+            document.LoadXml(asyncRead.Result); 
+            
             int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
             if(errorCount > 0){
                 //TODO: add the error list to the description

@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Odoo
     path: ../core/connectors/Odoo.cs
@@ -64,17 +64,14 @@ items:
   summary: "\nAllows in/out operations and/or data validations with an Odoo instance.\n"
   example: []
   syntax:
-    content: 'public class Odoo : Postgres, IDisposable'
+    content: 'public class Odoo : Postgres'
     content.vb: >-
       Public Class Odoo
           Inherits Postgres
-          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connectors.Base
   - AutoCheck.Core.Connectors.Postgres
-  implements:
-  - System.IDisposable
   inheritedMembers:
   - AutoCheck.Core.Connectors.Postgres.Conn
   - AutoCheck.Core.Connectors.Postgres.Host
@@ -113,14 +110,9 @@ items:
   - AutoCheck.Core.Connectors.Postgres.GetForeignKeys(System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsForeignKey(System.String,System.String,System.String,System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.Postgres.ExistsTable(System.String,System.String)
-  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Odoo.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -141,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyID
     path: ../core/connectors/Odoo.cs
@@ -179,7 +171,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompanyName
     path: ../core/connectors/Odoo.cs
@@ -217,7 +209,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -267,7 +259,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Odoo.cs
@@ -317,7 +309,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyID
     path: ../core/connectors/Odoo.cs
@@ -359,7 +351,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -376,7 +368,7 @@ items:
       type: System.String
       description: The company name wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The company data (all the &apos;res.company&apos; table fields, logo).
     content.vb: Public Function GetCompanyData(companyName As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetCompanyData*
@@ -398,7 +390,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetCompanyData
     path: ../core/connectors/Odoo.cs
@@ -415,7 +407,7 @@ items:
       type: System.Int32
       description: The company ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The company data (all the &apos;res.company&apos; table fields, logo).
     content.vb: Public Function GetCompanyData(companyID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetCompanyData*
@@ -437,7 +429,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderID
     path: ../core/connectors/Odoo.cs
@@ -479,7 +471,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -496,7 +488,7 @@ items:
       type: System.String
       description: The provider name wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The provider data (all the &apos;res.partner&apos; table fields, logo).
     content.vb: Public Function GetProviderData(providerName As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetProviderData*
@@ -518,7 +510,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProviderData
     path: ../core/connectors/Odoo.cs
@@ -535,7 +527,7 @@ items:
       type: System.Int32
       description: The provider ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The provider data (all the &apos;res.partner&apos; table fields, logo).
     content.vb: Public Function GetProviderData(providerID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetProviderData*
@@ -557,7 +549,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateID
     path: ../core/connectors/Odoo.cs
@@ -599,7 +591,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -616,7 +608,7 @@ items:
       type: System.String
       description: The product name wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The product template data, including variants (product_id, template_id, name, type, sell_price, purchase_price, supplier_id, file_size, attribute, value).
     content.vb: Public Function GetProductTemplateData(productName As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetProductTemplateData*
@@ -638,7 +630,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductTemplateData
     path: ../core/connectors/Odoo.cs
@@ -655,7 +647,7 @@ items:
       type: System.Int32
       description: The product template ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The product template data, including variants (product_id, template_id, name, type, sell_price, purchase_price, supplier_id, file_size, attribute, value).
     content.vb: Public Function GetProductTemplateData(templateID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetProductTemplateData*
@@ -677,7 +669,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -712,7 +704,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseID
     path: ../core/connectors/Odoo.cs
@@ -751,7 +743,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseCode
     path: ../core/connectors/Odoo.cs
@@ -790,7 +782,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -807,7 +799,7 @@ items:
       type: System.String
       description: The purchase code wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The purchase data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id)
     content.vb: Public Function GetPurchaseData(purchaseCode As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetPurchaseData*
@@ -829,7 +821,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPurchaseData
     path: ../core/connectors/Odoo.cs
@@ -846,7 +838,7 @@ items:
       type: System.Int32
       description: The purchase ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The purchase data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id)
     content.vb: Public Function GetPurchaseData(purchaseID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetPurchaseData*
@@ -868,7 +860,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastSaleID
     path: ../core/connectors/Odoo.cs
@@ -903,7 +895,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleID
     path: ../core/connectors/Odoo.cs
@@ -942,7 +934,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleCode
     path: ../core/connectors/Odoo.cs
@@ -981,7 +973,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -998,7 +990,7 @@ items:
       type: System.String
       description: The sale code wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
     content.vb: Public Function GetSaleData(saleCode As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetSaleData*
@@ -1020,7 +1012,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSaleData
     path: ../core/connectors/Odoo.cs
@@ -1037,7 +1029,7 @@ items:
       type: System.Int32
       description: The sale ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The sale data (id, code, amount_total, product_name, product_qty, product_price_unit, product_id).
     content.vb: Public Function GetSaleData(saleID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetSaleData*
@@ -1059,7 +1051,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLastPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1094,7 +1086,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleID
     path: ../core/connectors/Odoo.cs
@@ -1133,7 +1125,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleCode
     path: ../core/connectors/Odoo.cs
@@ -1172,7 +1164,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1188,7 +1180,7 @@ items:
     - id: posSaleCode
       type: System.String
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The POS sale data.
     content.vb: Public Function GetPosSaleData(posSaleCode As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetPosSaleData*
@@ -1210,7 +1202,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetPosSaleData
     path: ../core/connectors/Odoo.cs
@@ -1226,7 +1218,7 @@ items:
     - id: posSaleID
       type: System.Int32
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The POS sale data.
     content.vb: Public Function GetPosSaleData(posSaleID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetPosSaleData*
@@ -1248,7 +1240,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetStockMovementData
     path: ../core/connectors/Odoo.cs
@@ -1268,7 +1260,7 @@ items:
       type: System.Boolean
       description: If true, the stock movement is related with a return.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The stock movement data (id, product_id, product_name, product_qty, location_id, state).
     content.vb: Public Function GetStockMovementData(orderCode As String, isReturn As Boolean) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetStockMovementData*
@@ -1290,7 +1282,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetScrappedStockData
     path: ../core/connectors/Odoo.cs
@@ -1303,7 +1295,7 @@ items:
   syntax:
     content: public DataTable GetScrappedStockData()
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The scrapped stock data.
     content.vb: Public Function GetScrappedStockData As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetScrappedStockData*
@@ -1325,7 +1317,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceID
     path: ../core/connectors/Odoo.cs
@@ -1364,7 +1356,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceCode
     path: ../core/connectors/Odoo.cs
@@ -1403,7 +1395,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1420,7 +1412,7 @@ items:
       type: System.Int32
       description: The invoiceID ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The purchase data.
     content.vb: Public Function GetInvoiceData(invoiceID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetInvoiceData*
@@ -1442,7 +1434,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetInvoiceData
     path: ../core/connectors/Odoo.cs
@@ -1459,7 +1451,7 @@ items:
       type: System.String
       description: The order code, related to the invoice, wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The invoice data.
     content.vb: Public Function GetInvoiceData(orderCode As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetInvoiceData*
@@ -1481,7 +1473,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserID
     path: ../core/connectors/Odoo.cs
@@ -1523,7 +1515,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserName
     path: ../core/connectors/Odoo.cs
@@ -1562,7 +1554,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs
@@ -1579,7 +1571,7 @@ items:
       type: System.String
       description: The user name wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The user data (id, name, active, group).
     content.vb: Public Function GetUserData(userName As String) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetUserData*
@@ -1601,7 +1593,7 @@ items:
   source:
     remote:
       path: core/connectors/Odoo.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUserData
     path: ../core/connectors/Odoo.cs
@@ -1618,7 +1610,7 @@ items:
       type: System.Int32
       description: The user ID wich will be used to request.
     return:
-      type: System.Data.DataTable
+      type: DataTable
       description: The user data (id, name, active, group).
     content.vb: Public Function GetUserData(userID As Integer) As DataTable
   overload: AutoCheck.Core.Connectors.Odoo.GetUserData*
@@ -1633,8 +1625,7 @@ references:
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
@@ -1651,13 +1642,6 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Core.Connectors.Postgres
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
 - uid: AutoCheck.Core.Connectors.Postgres.Conn
   commentId: P:AutoCheck.Core.Connectors.Postgres.Conn
   parent: AutoCheck.Core.Connectors.Postgres
@@ -3074,18 +3058,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   parent: AutoCheck.Core.Connectors.Base
   isExternal: true
   name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
   nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
-  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action<System.String>)
   nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
-  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action(Of System.String))
   name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -3139,10 +3123,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -3159,7 +3143,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -3213,10 +3197,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -3232,117 +3216,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Connectors.Odoo.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Odoo>()
+  nameWithType: ObjectExtensions.DeepClone<Odoo>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Odoo>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Odoo)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Odoo)()
+  name.vb: DeepClone(Of Odoo)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Odoo>
+    nameWithType: ObjectExtensions.DeepClone<Odoo>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Odoo>
   - name: (
     nameWithType: (
     fullName: (
@@ -3350,181 +3238,63 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Odoo)
+    nameWithType: ObjectExtensions.DeepClone(Of Odoo)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Odoo)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Odoo.CompanyID*
   commentId: Overload:AutoCheck.Core.Connectors.Odoo.CompanyID
   name: CompanyID
   nameWithType: Odoo.CompanyID
   fullName: AutoCheck.Core.Connectors.Odoo.CompanyID
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -3535,8 +3305,6 @@ references:
   nameWithType: Odoo.CompanyName
   fullName: AutoCheck.Core.Connectors.Odoo.CompanyName
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -3552,8 +3320,6 @@ references:
   nameWithType: Odoo.GetCompanyID
   fullName: AutoCheck.Core.Connectors.Odoo.GetCompanyID
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -3563,19 +3329,11 @@ references:
   name: GetCompanyData
   nameWithType: Odoo.GetCompanyData
   fullName: AutoCheck.Core.Connectors.Odoo.GetCompanyData
-- uid: System.Data.DataTable
-  commentId: T:System.Data.DataTable
-  parent: System.Data
+- uid: DataTable
   isExternal: true
   name: DataTable
   nameWithType: DataTable
-  fullName: System.Data.DataTable
-- uid: System.Data
-  commentId: N:System.Data
-  isExternal: true
-  name: System.Data
-  nameWithType: System.Data
-  fullName: System.Data
+  fullName: DataTable
 - uid: AutoCheck.Core.Connectors.Odoo.GetProviderID*
   commentId: Overload:AutoCheck.Core.Connectors.Odoo.GetProviderID
   name: GetProviderID

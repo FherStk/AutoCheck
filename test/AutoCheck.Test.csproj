@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.12.0"/>
-    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1"/>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0"/>    
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.27"/>
+    <PackageReference Include="nunit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />    
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.38" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\core\AutoCheck.Core.csproj"/>
+    <ProjectReference Include="..\core\AutoCheck.Core.csproj" />
   </ItemGroup>
    <Target Name="ObliterateAfterClean" AfterTargets="Build">
-    <RemoveDir Directories="bin\Debug\net5.0\temp"/>    
+    <RemoveDir Directories="bin\Debug\net6.0\temp" />    
   </Target>
 </Project>

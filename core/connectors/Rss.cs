@@ -21,6 +21,7 @@
 using System.IO;
 using System.Xml;
 using System.Net;
+using System.Net.Http;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Core.Connectors{       
@@ -70,26 +71,21 @@ namespace AutoCheck.Core.Connectors{
         /// Validates the currently loaded RSS document against the W3C public API. 
         /// Throws an exception if the document is invalid.
         /// </summary>
-        public void ValidateRssAgainstW3C(){
-            string html = string.Empty;
-            string url = "http://validator.w3.org/feed/check.cgi";
-            string rss = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));
-            string parameters = string.Format("output=soap12&rawdata={0}", rss);            
-            byte[] dataBytes = System.Web.HttpUtility.UrlEncodeToBytes(parameters);
-
+        public void ValidateRssAgainstW3C(){            
             //Documentation:    https://validator.w3.org/feed/docs/soap.html
-            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body           
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format("{0}?{1}", url, parameters));
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;            
-    
+            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body         
+            var httpClient = new HttpClient();
+            var rss = System.Web.HttpUtility.UrlEncode(this.Raw.Replace("\r\n", ""));    
+            var asyncGet = httpClient.GetAsync($"http://validator.w3.org/feed/check.cgi?output=soap12&rawdata={rss}");
+            asyncGet.Wait();
+
+            asyncGet.Result.EnsureSuccessStatusCode();
+            
+            var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
+            asyncRead.Wait();
+            
             XmlDocument document = new XmlDocument();
-            using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using(Stream stream = response.GetResponseStream())            
-            using(StreamReader reader = new StreamReader(stream))
-            {
-                string output = reader.ReadToEnd();                             
-                document.LoadXml(output); 
-            }
+            document.LoadXml(asyncRead.Result); 
                         
             int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
             if(errorCount > 0){

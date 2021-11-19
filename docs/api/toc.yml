@@ -4,12 +4,8 @@
   items:
   - uid: AutoCheck.Core.Output
     name: Output
-  - uid: AutoCheck.Core.Output.Content
-    name: Output.Content
   - uid: AutoCheck.Core.Output.Log
     name: Output.Log
-  - uid: AutoCheck.Core.Output.Space
-    name: Output.Space
   - uid: AutoCheck.Core.Output.Style
     name: Output.Style
   - uid: AutoCheck.Core.Output.Type

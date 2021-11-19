@@ -41,14 +41,14 @@ namespace AutoCheck.Test.Connectors
             //Remote
             const OS remoteOS = OS.GNU;
             const string host = "localhost";
-            const string username = "usuario";
-            const string password = "usuario";
+            const string username = "autocheck";
+            const string password = "autocheck";
 
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, string.Empty));
             Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, _FAKE));
 
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToWsl(GetSampleFile("sample1_simple_ok.xml"));
+            var file = LocalPathToRemote(GetSampleFile("sample1_simple_ok.xml"), username);
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(OS.GNU, host, username, password, file));
         }
 

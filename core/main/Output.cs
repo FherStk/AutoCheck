@@ -311,6 +311,8 @@ namespace AutoCheck.Core{
         }        
 
         private void SendToTerminal(Content c){
+            if(c == null || c.Style == null) return;
+            
             Console.Write(c.Indent);
             Console.ForegroundColor = CssToConsoleColor(GetCssRule(c.Style));
 

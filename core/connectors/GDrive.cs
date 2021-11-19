@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
@@ -104,7 +105,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to create including its path (all needed subfolders will be created also).</param>
         public Google.Apis.Drive.v3.Data.File CreateFolder(string folder){
-            folder = folder.TrimEnd('\\');            
+            folder = Utils.PathToCurrentOS(folder);
+            folder = (Utils.CurrentOS == Utils.OS.WIN ? folder.TrimEnd('\\') : folder.TrimEnd('/'));
             return CreateFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -115,9 +117,13 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="folder">The folder to create (all needed subfolders will be created also).</param>
         public Google.Apis.Drive.v3.Data.File CreateFolder(string path, string folder){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");            
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("folder");
-            if(!path.StartsWith("\\")) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\')");
-                        
+            path = Utils.PathToCurrentOS(path);
+
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("folder");            
+            folder = Utils.PathToCurrentOS(folder);            
+
+            if(!path.StartsWith(Path.DirectorySeparatorChar)) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\' or '/')");
+
             Google.Apis.Drive.v3.Data.File root = null;
             var exists = Path.Combine(path, folder);
             var create = "";
@@ -156,7 +162,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to get including its path.</param>
         public Google.Apis.Drive.v3.Data.File GetFolder(string folder){
-            folder = folder.Trim('\\');            
+            folder = Utils.PathToCurrentOS(folder);
+            folder = (Utils.CurrentOS == Utils.OS.WIN ? folder.TrimEnd('\\') : folder.TrimEnd('/'));
             return GetFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder), false);
         }
         
@@ -200,7 +207,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to get including its path.</param>
         public void DeleteFolder(string folder){
-            folder = folder.TrimEnd('\\');
+            folder = Utils.PathToCurrentOS(folder);
+            folder = (Utils.CurrentOS == Utils.OS.WIN ? folder.TrimEnd('\\') : folder.TrimEnd('/'));
             DeleteFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -223,7 +231,8 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="folder">The folder to get including its path.</param>
         public bool ExistsFolder(string folder){
-            folder = folder.TrimEnd('\\');
+            folder = Utils.PathToCurrentOS(folder);
+            folder = (Utils.CurrentOS == Utils.OS.WIN ? folder.TrimEnd('\\') : folder.TrimEnd('/'));
             return ExistsFolder(Path.GetDirectoryName(folder), Path.GetFileName(folder));
         }
 
@@ -374,7 +383,8 @@ namespace AutoCheck.Core.Connectors{
                 MimeType = mime
             };  
 
-            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            remoteFilePath = Utils.PathToCurrentOS(remoteFilePath);
+            remoteFilePath = (Utils.CurrentOS == Utils.OS.WIN ? remoteFilePath.TrimEnd('\\') : remoteFilePath.TrimEnd('/'));
             if(!string.IsNullOrEmpty(remoteFilePath)){                
                 var parent = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath), false); 
                 if(parent == null) parent = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
@@ -477,7 +487,8 @@ namespace AutoCheck.Core.Connectors{
                 Name = remoteFileName
             };
             
-            remoteFilePath = remoteFilePath.TrimEnd('\\');
+            remoteFilePath = Utils.PathToCurrentOS(remoteFilePath);
+            remoteFilePath = (Utils.CurrentOS == Utils.OS.WIN ? remoteFilePath.TrimEnd('\\') : remoteFilePath.TrimEnd('/'));
             if(!string.IsNullOrEmpty(remoteFilePath)){
                 var folder = GetFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
                 if(folder == null) folder = CreateFolder(Path.GetDirectoryName(remoteFilePath), Path.GetFileName(remoteFilePath));
@@ -515,13 +526,13 @@ namespace AutoCheck.Core.Connectors{
 
                     if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);
                     else{
-                        using (var client = new WebClient())
+                        using (var client = new HttpClient())
                         {                                    
                             local = Utils.TempFolder;
                             if(!Directory.Exists(local)) Directory.CreateDirectory(local);
 
                             local = Path.Combine(local, uri.Segments.Last());
-                            client.DownloadFile(uri, local);
+                            client.DownloadFileTaskAsync(uri, local).Wait();
                         }
                     }
                     
@@ -671,26 +682,22 @@ namespace AutoCheck.Core.Connectors{
             {                                        
                 UserCredential credential;
                 string userName = File.ReadAllText(accountFilePath).Trim();                
-
-                using (var stream = new FileStream(secretFilePath, FileMode.Open, FileAccess.Read))
-                {
-                    string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                    credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-                    
-                    // These are the scopes of permissions you need. It is best to request only what you need and not all of them
-                    string[] scopes = new string[] { 
-                        DriveService.Scope.Drive
-                    };
-                    
-                    // Requesting Authentication or loading previously stored authentication for userName
-                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        GoogleClientSecrets.Load(stream).Secrets,
-                        scopes,
-                        userName,
-                        CancellationToken.None,
-                        new FileDataStore(credPath, true)
-                    ).Result;
-                }
+                string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                
+                // These are the scopes of permissions you need. It is best to request only what you need and not all of them
+                string[] scopes = new string[] { 
+                    DriveService.Scope.Drive
+                };
+                
+                // Requesting Authentication or loading previously stored authentication for userName
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.FromFile(secretFilePath).Secrets,
+                    scopes,
+                    userName,
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)
+                ).Result;
 
                 // Create Drive API service.
                 return new DriveService(new BaseClientService.Initializer()
@@ -732,7 +739,8 @@ namespace AutoCheck.Core.Connectors{
 
         private Google.Apis.Drive.v3.Data.File GetFileOrFolder(string path, string item, bool isFolder, bool recursive = true){         
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");    
-            if(!path.StartsWith("\\")) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\')");
+            path = Utils.PathToCurrentOS(path);
+            if(!path.StartsWith(Path.DirectorySeparatorChar)) throw new ArgumentInvalidException("The path argument must be absolute (starting with '\\' or '/')");
             
             var original = path;            
             foreach(var folder in GetList(string.Format("name='{0}'", item), isFolder)){
@@ -745,7 +753,7 @@ namespace AutoCheck.Core.Connectors{
                 });
                 
                 path = original;
-                while(path.Length > 0 && !path.Equals("\\")){
+                while(path.Length > 0 && !path.Equals(Path.DirectorySeparatorChar.ToString())){
                     //note: if there's two parents with the same name, this won't work!
                     //      in this case, an extra loop over parents is needed (so GetParent should return an array)                    
                     var parent = Path.GetFileName(path);

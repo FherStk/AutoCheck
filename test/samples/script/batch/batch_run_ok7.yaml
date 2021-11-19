@@ -23,10 +23,10 @@ batch:
     - remote: 
         - os: "GNU"
         - host: "localhost"
-        - user: "usuario"
-        - password: "usuario"
+        - user: "autocheck"
+        - password: "autocheck"
 
     - remote:      
         - host: "127.0.0.1"
-        - user: "usuario"
-        - password: "usuario"   
+        - user: "autocheck"
+        - password: "autocheck"   

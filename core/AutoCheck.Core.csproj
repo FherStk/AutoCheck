@@ -2,11 +2,11 @@
   <PropertyGroup>
     <BuildDocFx Condition=" '$(Configuration)'=='Debug' ">false</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Core</Product>
     <Copyright>Copyright © 2021</Copyright>
-    <VersionPrefix>2.11.1</VersionPrefix>
+    <VersionPrefix>2.12.0</VersionPrefix>
     <VersionSuffix>stable</VersionSuffix>
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion> 
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
@@ -14,43 +14,48 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="dein.ToolBox" Version="1.6.4"/>
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.27"/>
-    <PackageReference Include="ExCSS" Version="4.0.0"/>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3"/>
-    <PackageReference Include="Npgsql" Version="4.1.5"/>
-    <PackageReference Include="System.Text.Json" Version="5.0.0"/>
-    <PackageReference Include="SharpZipLib" Version="1.3.0"/>
-    <PackageReference Include="docfx.console" Version="2.56.6"/>
-    <PackageReference Include="SSH.NET" Version="2016.1.0"/>
-    <PackageReference Include="Google.Apis.Drive.v3" Version="1.49.0.2117"/>
-    <PackageReference Include="Google.Apis.Storage.v1" Version="1.49.0.2117"/>
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
-    <PackageReference Include="XPath2" Version="1.1.0"/>
-    <PackageReference Include="YamlDotNet" Version="8.1.2"/>
-    <PackageReference Include="NCalc2" Version="2.1.0"/>
+    <PackageReference Include="dein.ToolBox" Version="1.7.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.38" />
+    <PackageReference Include="ExCSS" Version="4.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+    <PackageReference Include="SharpZipLib" Version="1.3.3" />
+    <PackageReference Include="docfx.console" Version="2.58.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.55.0.2502" />
+    <PackageReference Include="Google.Apis.Storage.v1" Version="1.55.0.2482" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="XPath2" Version="1.1.2" />
+    <PackageReference Include="YamlDotNet" Version="11.2.1" />
+    <PackageReference Include="NCalc2" Version="2.1.0" />
   </ItemGroup>
   <Target Name="GitHubReadme">
     <ItemGroup>
-      <ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md"/>
+      <ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md" />
     </ItemGroup>
     <ItemGroup>
-      <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))"/>
+      <FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))" />
     </ItemGroup>
-    <WriteLinesToFile File="..\README.md" Lines="@(FileContents)" Overwrite="true"/>
+    <WriteLinesToFile File="..\README.md" Lines="@(FileContents)" Overwrite="true" />
   </Target>
   <Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
-    <Message Importance="High" Text="Generating README.md for GitHub..."/>
-    <Message Importance="High" Text="Generating documentation..."/>
-    <CallTarget Targets="GitHubReadme"/>
-    <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets"/>
+    <Message Importance="High" Text="Generating README.md for GitHub..." />
+    <Message Importance="High" Text="Generating documentation..." />
+    <CallTarget Targets="GitHubReadme" />
+    <Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets" />
   </Target>
   <Target Name="ObliterateAfterClean" AfterTargets="Clean">
-    <RemoveDir Directories="bin"/>
-    <RemoveDir Directories="..\docs\obj"/>
-    <RemoveDir Directories="$(BaseIntermediateOutputPath)"/>
+    <RemoveDir Directories="bin" />
+    <RemoveDir Directories="..\docs\obj" />
+    <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
   </Target>
   <Target Name="ObliterateAfterClean" AfterTargets="Build">
-    <RemoveDir Directories="bin\Debug\net5.0\temp"/>    
+    <RemoveDir Directories="bin\Debug\net6.0\temp" />    
   </Target>
 </Project>

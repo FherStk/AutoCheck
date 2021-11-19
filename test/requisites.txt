@@ -1,0 +1,16 @@
+This is a list of prerequisites 
+
+For all:
+    Postgres:        
+        user: postgres
+        password: postgres                    
+
+    SSH:
+        ssh must be enabled in order to test remote connections to localhost
+
+For linux:
+    user: autocheck
+    password: autocheck
+        
+    Within /home/autocheck/repos must be the AutoCheck repo:
+    $ git clone https://github.com/FherStk/AutoCheck.git

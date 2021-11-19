@@ -3,7 +3,7 @@
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Terminal</Product>
     <Copyright>Copyright © 2020</Copyright>

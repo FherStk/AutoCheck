@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Xml;
 using System.Text;
 using System.Linq;
@@ -101,30 +102,22 @@ namespace AutoCheck.Core.Connectors{
         /// Throws an exception if the document is invalid.
         /// </summary>
         public void ValidateHtml5AgainstW3C(){
-            string html = string.Empty;
-            string url = "https://validator.nu?out=xml";
-            byte[] dataBytes = Encoding.UTF8.GetBytes(this.Raw);
-
             //Documentation:    https://validator.w3.org/docs/api.html
-            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body            
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            request.ContentLength = dataBytes.Length;
-            request.Method = "POST";
-            request.ContentType = "text/html; charset=utf-8";
-            request.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36";
+            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body 
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
 
-            using(Stream requestBody = request.GetRequestStream())
-                requestBody.Write(dataBytes, 0, dataBytes.Length);
-        
+            var asyncGet = httpClient.PostAsync("https://validator.nu?out=xml", new StringContent(this.Raw, Encoding.UTF8, "text/html"));                
+            asyncGet.Wait();
+
+            asyncGet.Result.EnsureSuccessStatusCode();
+            
+            var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
+            asyncRead.Wait();
+            
             XmlDocument document = new XmlDocument();
-            using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using(Stream stream = response.GetResponseStream())             
-            using(StreamReader reader = new StreamReader(stream)){
-                string output = reader.ReadToEnd();                                
-                document.LoadXml(output); 
-            }
-                        
+            document.LoadXml(asyncRead.Result); 
+
             foreach(XmlNode msg in document.GetElementsByTagName("info")){               
                 XmlAttribute type = msg.Attributes["type"];
                 if(type != null && type.InnerText.Equals("error"))

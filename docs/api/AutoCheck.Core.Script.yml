@@ -6,11 +6,12 @@ items:
   parent: AutoCheck.Core
   children:
   - AutoCheck.Core.Script.#ctor(System.String)
-  - AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  - AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  - AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  - AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   - AutoCheck.Core.Script.AppFolderName
   - AutoCheck.Core.Script.AppFolderPath
   - AutoCheck.Core.Script.BatchCaption
+  - AutoCheck.Core.Script.Concurrent
   - AutoCheck.Core.Script.CurrentFileName
   - AutoCheck.Core.Script.CurrentFilePath
   - AutoCheck.Core.Script.CurrentFolderName
@@ -53,27 +54,23 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
-    startLine: 35
+    startLine: 37
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public class Script
-    content.vb: Public Class Script
+    content: 'public class Script : object'
+    content.vb: >-
+      Public Class Script
+          Inherits Object
   inheritance:
   - System.Object
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  extensionMethods:
+  - AutoCheck.Core.Script.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -94,11 +91,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
-    startLine: 77
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -131,11 +128,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptVersion
     path: ../core/main/Script.cs
-    startLine: 90
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -168,11 +165,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
-    startLine: 103
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -205,11 +202,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleCaption
     path: ../core/main/Script.cs
-    startLine: 116
+    startLine: 118
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -242,11 +239,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
-    startLine: 129
+    startLine: 131
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -279,11 +276,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderPath
     path: ../core/main/Script.cs
-    startLine: 142
+    startLine: 144
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -316,11 +313,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderName
     path: ../core/main/Script.cs
-    startLine: 163
+    startLine: 165
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -353,11 +350,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderPath
     path: ../core/main/Script.cs
-    startLine: 172
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -390,11 +387,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderName
     path: ../core/main/Script.cs
-    startLine: 186
+    startLine: 188
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -427,11 +424,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderPath
     path: ../core/main/Script.cs
-    startLine: 195
+    startLine: 197
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -464,11 +461,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderName
     path: ../core/main/Script.cs
-    startLine: 214
+    startLine: 216
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -501,11 +498,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFilePath
     path: ../core/main/Script.cs
-    startLine: 223
+    startLine: 225
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -538,11 +535,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFileName
     path: ../core/main/Script.cs
-    startLine: 241
+    startLine: 243
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -575,11 +572,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderPath
     path: ../core/main/Script.cs
-    startLine: 250
+    startLine: 252
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -612,11 +609,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderName
     path: ../core/main/Script.cs
-    startLine: 269
+    startLine: 271
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -649,11 +646,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFilePath
     path: ../core/main/Script.cs
-    startLine: 278
+    startLine: 280
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -686,11 +683,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFileName
     path: ../core/main/Script.cs
-    startLine: 296
+    startLine: 298
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -723,11 +720,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderPath
     path: ../core/main/Script.cs
-    startLine: 305
+    startLine: 307
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -760,11 +757,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderName
     path: ../core/main/Script.cs
-    startLine: 325
+    startLine: 327
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -797,11 +794,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFilePath
     path: ../core/main/Script.cs
-    startLine: 335
+    startLine: 337
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -834,11 +831,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFileName
     path: ../core/main/Script.cs
-    startLine: 354
+    startLine: 356
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -871,11 +868,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentTarget
     path: ../core/main/Script.cs
-    startLine: 364
+    startLine: 366
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -908,11 +905,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Script.cs
-    startLine: 377
+    startLine: 379
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -945,11 +942,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
-    startLine: 390
+    startLine: 392
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -982,11 +979,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentUser
     path: ../core/main/Script.cs
-    startLine: 403
+    startLine: 405
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1019,11 +1016,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPassword
     path: ../core/main/Script.cs
-    startLine: 416
+    startLine: 418
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1056,11 +1053,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPort
     path: ../core/main/Script.cs
-    startLine: 429
+    startLine: 431
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1093,11 +1090,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
-    startLine: 442
+    startLine: 444
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1130,11 +1127,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
-    startLine: 456
+    startLine: 458
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1168,11 +1165,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
-    startLine: 477
+    startLine: 479
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1205,11 +1202,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
-    startLine: 486
+    startLine: 488
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1242,11 +1239,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
-    startLine: 499
+    startLine: 501
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1279,11 +1276,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
-    startLine: 512
+    startLine: 514
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1296,6 +1293,43 @@ items:
       type: System.Single
     content.vb: Protected ReadOnly Property TotalScore As Single
   overload: AutoCheck.Core.Script.TotalScore*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.Concurrent
+  commentId: P:AutoCheck.Core.Script.Concurrent
+  id: Concurrent
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Concurrent
+  nameWithType: Script.Concurrent
+  fullName: AutoCheck.Core.Script.Concurrent
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.12.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Concurrent
+    path: ../core/main/Script.cs
+    startLine: 527
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nBatch mode only: maximum concurrent script execution (0 = MAX).\n"
+  example: []
+  syntax:
+    content: protected int Concurrent { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Protected ReadOnly Property Concurrent As Integer
+  overload: AutoCheck.Core.Script.Concurrent*
   modifiers.csharp:
   - protected
   - get
@@ -1316,11 +1350,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
-    startLine: 526
+    startLine: 541
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1353,11 +1387,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFiles
     path: ../core/main/Script.cs
-    startLine: 531
+    startLine: 546
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1367,7 +1401,7 @@ items:
     content: public List<string> LogFiles { get; }
     parameters: []
     return:
-      type: System.Collections.Generic.List{System.String}
+      type: List{System.String}
     content.vb: Public ReadOnly Property LogFiles As List(Of String)
   overload: AutoCheck.Core.Script.LogFiles*
   modifiers.csharp:
@@ -1390,47 +1424,44 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 577
+    startLine: 634
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nCreates a new script instance using the given script file.\n"
-  example: []
   syntax:
     content: public Script(string path)
     parameters:
     - id: path
       type: System.String
-      description: Path to the script file (yaml).
     content.vb: Public Sub New(path As String)
   overload: AutoCheck.Core.Script.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  id: '#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  id: '#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
   parent: AutoCheck.Core.Script
   langs:
   - csharp
   - vb
   name: Script(String, EventHandler<Script.LogGeneratedEventArgs>)
   nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>)
-  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
   type: Constructor
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 584
+    startLine: 641
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1440,7 +1471,7 @@ items:
     - id: path
       type: System.String
     - id: onLogGenerated
-      type: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
     content.vb: Public Sub New(path As String, onLogGenerated As EventHandler(Of Script.LogGeneratedEventArgs))
   overload: AutoCheck.Core.Script.#ctor*
   nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
@@ -1448,27 +1479,27 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
-- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  id: '#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  id: '#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
   parent: AutoCheck.Core.Script
   langs:
   - csharp
   - vb
   name: Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
   nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
   type: Constructor
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 595
+    startLine: 652
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1481,16 +1512,16 @@ items:
       type: System.String
       description: Path to the script file (yaml).
     - id: onHeaderCompleted
-      type: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
       description: This event will be raised once the script has been loaded (before the setup execution).
     - id: onSetupCompleted
-      type: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
       description: This event will be raised once the setup has been completed (before any script execution).
     - id: onScriptCompleted
-      type: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
       description: This event will be raised once the script has been completed (after the post execution).
     - id: onTeardwonCompleted
-      type: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
       description: This event will be raised once the teardown has been completed (after all scripts execution).
     content.vb: Public Sub New(path As String, onHeaderCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onSetupCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onScriptCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onTeardwonCompleted As EventHandler(Of Script.LogGeneratedEventArgs))
   overload: AutoCheck.Core.Script.#ctor*
@@ -1499,7 +1530,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
 references:
 - uid: AutoCheck.Core
@@ -1508,123 +1539,26 @@ references:
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Script.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Script>()
+  nameWithType: ObjectExtensions.DeepClone<Script>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Script>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Script)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Script)()
+  name.vb: DeepClone(Of Script)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Script>
+    nameWithType: ObjectExtensions.DeepClone<Script>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Script>
   - name: (
     nameWithType: (
     fullName: (
@@ -1632,181 +1566,63 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Script)
+    nameWithType: ObjectExtensions.DeepClone(Of Script)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Script)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Script.ScriptName*
   commentId: Overload:AutoCheck.Core.Script.ScriptName
   name: ScriptName
   nameWithType: Script.ScriptName
   fullName: AutoCheck.Core.Script.ScriptName
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -1948,8 +1764,6 @@ references:
   nameWithType: Script.CurrentPort
   fullName: AutoCheck.Core.Script.CurrentPort
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1975,8 +1789,6 @@ references:
   nameWithType: Script.CurrentScore
   fullName: AutoCheck.Core.Script.CurrentScore
 - uid: System.Single
-  commentId: T:System.Single
-  parent: System
   isExternal: true
   name: Single
   nameWithType: Single
@@ -1991,6 +1803,11 @@ references:
   name: TotalScore
   nameWithType: Script.TotalScore
   fullName: AutoCheck.Core.Script.TotalScore
+- uid: AutoCheck.Core.Script.Concurrent*
+  commentId: Overload:AutoCheck.Core.Script.Concurrent
+  name: Concurrent
+  nameWithType: Script.Concurrent
+  fullName: AutoCheck.Core.Script.Concurrent
 - uid: AutoCheck.Core.Script.Output*
   commentId: Overload:AutoCheck.Core.Script.Output
   name: Output
@@ -2007,21 +1824,20 @@ references:
   name: LogFiles
   nameWithType: Script.LogFiles
   fullName: AutoCheck.Core.Script.LogFiles
-- uid: System.Collections.Generic.List{System.String}
-  commentId: T:System.Collections.Generic.List{System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
+- uid: List{System.String}
+  commentId: '!:List{System.String}'
+  definition: List`1
   name: List<String>
   nameWithType: List<String>
-  fullName: System.Collections.Generic.List<System.String>
+  fullName: List<System.String>
   nameWithType.vb: List(Of String)
-  fullName.vb: System.Collections.Generic.List(Of System.String)
+  fullName.vb: List(Of System.String)
   name.vb: List(Of String)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
@@ -2035,10 +1851,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2051,71 +1867,63 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
+- uid: List`1
   isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Script.#ctor*
   commentId: Overload:AutoCheck.Core.Script.#ctor
   name: Script
   nameWithType: Script.Script
   fullName: AutoCheck.Core.Script.Script
-- uid: System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
-  commentId: T:System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
-  parent: System
-  definition: System.EventHandler`1
+- uid: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+  commentId: '!:EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}'
+  definition: EventHandler`1
   name: EventHandler<Script.LogGeneratedEventArgs>
   nameWithType: EventHandler<Script.LogGeneratedEventArgs>
-  fullName: System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>
+  fullName: EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>
   nameWithType.vb: EventHandler(Of Script.LogGeneratedEventArgs)
-  fullName.vb: System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs)
+  fullName.vb: EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs)
   name.vb: EventHandler(Of Script.LogGeneratedEventArgs)
   spec.csharp:
-  - uid: System.EventHandler`1
+  - uid: EventHandler`1
     name: EventHandler
     nameWithType: EventHandler
-    fullName: System.EventHandler
+    fullName: EventHandler
     isExternal: true
   - name: <
     nameWithType: <
@@ -2128,10 +1936,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.EventHandler`1
+  - uid: EventHandler`1
     name: EventHandler
     nameWithType: EventHandler
-    fullName: System.EventHandler
+    fullName: EventHandler
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -2143,42 +1951,41 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.EventHandler`1
-  commentId: T:System.EventHandler`1
+- uid: EventHandler`1
   isExternal: true
-  name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
-  fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
-  fullName.vb: System.EventHandler(Of TEventArgs)
-  name.vb: EventHandler(Of TEventArgs)
+  name: EventHandler<>
+  nameWithType: EventHandler<>
+  fullName: EventHandler<>
+  nameWithType.vb: EventHandler(Of )
+  fullName.vb: EventHandler(Of )
+  name.vb: EventHandler(Of )
   spec.csharp:
-  - uid: System.EventHandler`1
+  - uid: EventHandler`1
     name: EventHandler
     nameWithType: EventHandler
-    fullName: System.EventHandler
+    fullName: EventHandler
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TEventArgs
-    nameWithType: TEventArgs
-    fullName: TEventArgs
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.EventHandler`1
+  - uid: EventHandler`1
     name: EventHandler
     nameWithType: EventHandler
-    fullName: System.EventHandler
+    fullName: EventHandler
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TEventArgs
-    nameWithType: TEventArgs
-    fullName: TEventArgs
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

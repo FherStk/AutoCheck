@@ -6,7 +6,7 @@
           "files": [
             "**.csproj"
           ],
-          "src": "C:\\Users\\fher\\source\\repos\\AutoCheck\\core"
+          "src": "../core"
         }
       ],
       "dest": "../docs/api",
