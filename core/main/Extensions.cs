@@ -1,8 +1,29 @@
 //Source: https://www.ryadel.com/en/how-to-perform-deep-copy-clone-object-asp-net-c-sharp/
 
 using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Net.Http;
 using System.Reflection;
 using System.Collections.Generic;
+
+/// <summary>
+/// C# extension method for easy file downloading.
+/// Source: https://stackoverflow.com/a/66270371
+/// </summary>
+public static class HttpClientUtils
+{
+    public static async Task DownloadFileTaskAsync(this HttpClient client, Uri uri, string FileName)
+    {
+        using (var s = await client.GetStreamAsync(uri))
+        {
+            using (var fs = new FileStream(FileName, FileMode.CreateNew))
+            {
+                await s.CopyToAsync(fs);
+            }
+        }
+    }
+}
 
 /// <summary>
 /// C# extension method for fast object cloning.

@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../core/connectors/Base.cs
@@ -33,8 +33,10 @@ items:
   summary: "\nAvailable option for comparing items\n"
   example: []
   syntax:
-    content: public enum Operator
-    content.vb: Public Enum Operator
+    content: 'public enum Operator : int'
+    content.vb: Public Enum Operator As Integer
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Operator.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - enum
@@ -55,7 +57,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWER
     path: ../core/connectors/Base.cs
@@ -64,9 +66,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: LOWER = 60
+    content: LOWER = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: LOWER = Nothing
   modifiers.csharp:
   - public
   - const
@@ -87,7 +90,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWEREQUALS
     path: ../core/connectors/Base.cs
@@ -96,9 +99,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: LOWEREQUALS = 8804
+    content: LOWEREQUALS = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: LOWEREQUALS = Nothing
   modifiers.csharp:
   - public
   - const
@@ -119,7 +123,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATER
     path: ../core/connectors/Base.cs
@@ -128,9 +132,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: GREATER = 62
+    content: GREATER = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: GREATER = Nothing
   modifiers.csharp:
   - public
   - const
@@ -151,7 +156,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATEREQUALS
     path: ../core/connectors/Base.cs
@@ -160,9 +165,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: GREATEREQUALS = 8805
+    content: GREATEREQUALS = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: GREATEREQUALS = Nothing
   modifiers.csharp:
   - public
   - const
@@ -183,7 +189,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../core/connectors/Base.cs
@@ -192,9 +198,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: EQUALS = 61
+    content: EQUALS = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: EQUALS = Nothing
   modifiers.csharp:
   - public
   - const
@@ -215,7 +222,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: NOTEQUALS
     path: ../core/connectors/Base.cs
@@ -224,9 +231,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: NOTEQUALS = 33
+    content: NOTEQUALS = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: NOTEQUALS = Nothing
   modifiers.csharp:
   - public
   - const
@@ -247,7 +255,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LIKE
     path: ../core/connectors/Base.cs
@@ -256,9 +264,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: LIKE = 37
+    content: LIKE = null
     return:
       type: AutoCheck.Core.Connectors.Operator
+    content.vb: LIKE = Nothing
   modifiers.csharp:
   - public
   - const
@@ -271,6 +280,79 @@ references:
   name: AutoCheck.Core.Connectors
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
+- uid: AutoCheck.Core.Connectors.Operator.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Operator>()
+  nameWithType: ObjectExtensions.DeepClone<Operator>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Operator>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Operator)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Operator)()
+  name.vb: DeepClone(Of Operator)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Operator>
+    nameWithType: ObjectExtensions.DeepClone<Operator>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Operator>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Operator)
+    nameWithType: ObjectExtensions.DeepClone(Of Operator)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Operator)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Operator
   commentId: T:AutoCheck.Core.Connectors.Operator
   parent: AutoCheck.Core.Connectors

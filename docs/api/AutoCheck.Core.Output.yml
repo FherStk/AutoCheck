@@ -5,20 +5,20 @@ items:
   id: Output
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.Output.#ctor
+  - AutoCheck.Core.Output.#ctor(System.Boolean)
   - AutoCheck.Core.Output.BreakLine(System.Int32)
-  - AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  - AutoCheck.Core.Output.CloseLog
   - AutoCheck.Core.Output.CurrentIndent
   - AutoCheck.Core.Output.GetLog
   - AutoCheck.Core.Output.Indent
   - AutoCheck.Core.Output.ResetIndent
-  - AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  - AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
   - AutoCheck.Core.Output.SingleIndent
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UnIndent
   - AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
   - AutoCheck.Core.Output.WriteLine(System.String,AutoCheck.Core.Output.Style)
-  - AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+  - AutoCheck.Core.Output.WriteResponse(List{System.String},System.String,System.String)
   - AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
   langs:
   - csharp
@@ -30,7 +30,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -42,17 +42,14 @@ items:
   remarks: Should be a singletone but cannot be due testing...
   example: []
   syntax:
-    content: public class Output
-    content.vb: Public Class Output
+    content: 'public class Output : object'
+    content.vb: >-
+      Public Class Output
+          Inherits Object
   inheritance:
   - System.Object
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
+  extensionMethods:
+  - AutoCheck.Core.Output.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -73,19 +70,19 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
-    startLine: 111
+    startLine: 113
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public const string SingleIndent = "   "
+    content: public const string SingleIndent = null
     return:
       type: System.String
-    content.vb: Public Const SingleIndent As String = "   "
+    content.vb: Public Const SingleIndent As String = Nothing
   modifiers.csharp:
   - public
   - const
@@ -106,11 +103,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
-    startLine: 113
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -127,31 +124,37 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Output.#ctor
-  commentId: M:AutoCheck.Core.Output.#ctor
-  id: '#ctor'
+- uid: AutoCheck.Core.Output.#ctor(System.Boolean)
+  commentId: M:AutoCheck.Core.Output.#ctor(System.Boolean)
+  id: '#ctor(System.Boolean)'
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: Output()
-  nameWithType: Output.Output()
-  fullName: AutoCheck.Core.Output.Output()
+  name: Output(Boolean)
+  nameWithType: Output.Output(Boolean)
+  fullName: AutoCheck.Core.Output.Output(System.Boolean)
   type: Constructor
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 121
+    startLine: 130
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
+  summary: "\nCreates the new Output instance\n"
+  example: []
   syntax:
-    content: public Output()
-    content.vb: Public Sub New
+    content: public Output(bool redirectToTerminal = false)
+    parameters:
+    - id: redirectToTerminal
+      type: System.Boolean
+      description: When enabled, every log entry will be send to the terminal
+    content.vb: Public Sub New(redirectToTerminal As Boolean = False)
   overload: AutoCheck.Core.Output.#ctor*
   modifiers.csharp:
   - public
@@ -171,11 +174,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 145
+    startLine: 156
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -210,11 +213,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 155
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -235,25 +238,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
-  commentId: M:AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
-  id: WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+- uid: AutoCheck.Core.Output.WriteResponse(List{System.String},System.String,System.String)
+  commentId: M:AutoCheck.Core.Output.WriteResponse(List{System.String},System.String,System.String)
+  id: WriteResponse(List{System.String},System.String,System.String)
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
   name: WriteResponse(List<String>, String, String)
   nameWithType: Output.WriteResponse(List<String>, String, String)
-  fullName: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List<System.String>, System.String, System.String)
+  fullName: AutoCheck.Core.Output.WriteResponse(List<System.String>, System.String, System.String)
   type: Method
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 164
+    startLine: 175
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -263,7 +266,7 @@ items:
     content: public void WriteResponse(List<string> errors = null, string captionOk = "OK", string captionError = "ERROR")
     parameters:
     - id: errors
-      type: System.Collections.Generic.List{System.String}
+      type: List{System.String}
       description: A list of errors, usually the return of a checker&apos;s method.
     - id: captionOk
       type: System.String
@@ -276,7 +279,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List(Of System.String), System.String, System.String)
+  fullName.vb: AutoCheck.Core.Output.WriteResponse(List(Of System.String), System.String, System.String)
   name.vb: WriteResponse(List(Of String), String, String)
 - uid: AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
   commentId: M:AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
@@ -292,11 +295,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 180
+    startLine: 191
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -331,11 +334,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 187
+    startLine: 198
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -363,11 +366,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 194
+    startLine: 205
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -395,11 +398,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 201
+    startLine: 212
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -427,11 +430,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 210
+    startLine: 221
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -449,72 +452,37 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
-  commentId: M:AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
-  id: CloseLog(AutoCheck.Core.Output.Type)
+- uid: AutoCheck.Core.Output.CloseLog
+  commentId: M:AutoCheck.Core.Output.CloseLog
+  id: CloseLog
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: CloseLog(Output.Type)
-  nameWithType: Output.CloseLog(Output.Type)
-  fullName: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
+  name: CloseLog()
+  nameWithType: Output.CloseLog()
+  fullName: AutoCheck.Core.Output.CloseLog()
   type: Method
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseLog
     path: ../core/main/Output.cs
-    startLine: 219
+    startLine: 231
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nThe current log content will be stored using the provided type\n"
+  summary: "\nThe current log will be closed, so a new empty one will be ready to start logging again.\n"
   example: []
   syntax:
-    content: public void CloseLog(Output.Type type)
-    parameters:
-    - id: type
-      type: AutoCheck.Core.Output.Type
-    content.vb: Public Sub CloseLog(type As Output.Type)
-  overload: AutoCheck.Core.Output.CloseLog*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Output.ToString
-  commentId: M:AutoCheck.Core.Output.ToString
-  id: ToString
-  parent: AutoCheck.Core.Output
-  langs:
-  - csharp
-  - vb
-  name: ToString()
-  nameWithType: Output.ToString()
-  fullName: AutoCheck.Core.Output.ToString()
-  type: Method
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.10.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: ToString
-    path: ../core/main/Output.cs
-    startLine: 245
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
-  example: []
-  syntax:
-    content: public string ToString()
+    content: public Output.Log CloseLog()
     return:
-      type: System.String
-      description: ''
-    content.vb: Public Function ToString As String
-  overload: AutoCheck.Core.Output.ToString*
+      type: AutoCheck.Core.Output.Log
+      description: The closed log
+    content.vb: Public Function CloseLog As Output.Log
+  overload: AutoCheck.Core.Output.CloseLog*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -533,15 +501,15 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLog
     path: ../core/main/Output.cs
-    startLine: 252
+    startLine: 243
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nReturns the complete log files for each batch (or single) execution (setup + script + teardown).\n"
+  summary: "\nReturns the complete log files for each batch (or single) execution (header + setup + script + teardown).\n"
   example: []
   syntax:
     content: public Output.Log[] GetLog()
@@ -553,37 +521,73 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
-  commentId: M:AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
-  id: SentToTerminal(AutoCheck.Core.Output.Log)
+- uid: AutoCheck.Core.Output.ToString
+  commentId: M:AutoCheck.Core.Output.ToString
+  id: ToString
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: SentToTerminal(Output.Log)
-  nameWithType: Output.SentToTerminal(Output.Log)
-  fullName: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
+  name: ToString()
+  nameWithType: Output.ToString()
+  fullName: AutoCheck.Core.Output.ToString()
   type: Method
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: SentToTerminal
+    id: ToString
+    path: ../core/main/Output.cs
+    startLine: 274
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
+  example: []
+  syntax:
+    content: public string ToString()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Function ToString As String
+  overload: AutoCheck.Core.Output.ToString*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  commentId: M:AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  id: SendToTerminal(AutoCheck.Core.Output.Log)
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: SendToTerminal(Output.Log)
+  nameWithType: Output.SendToTerminal(Output.Log)
+  fullName: AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.12.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SendToTerminal
     path: ../core/main/Output.cs
     startLine: 282
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
-  summary: "\nWrites the given into the current terminal.\n"
+  summary: "\nSends the given log to the terminal.\n"
   example: []
   syntax:
-    content: public void SentToTerminal(Output.Log log)
+    content: public void SendToTerminal(Output.Log log)
     parameters:
     - id: log
       type: AutoCheck.Core.Output.Log
-    content.vb: Public Sub SentToTerminal(log As Output.Log)
-  overload: AutoCheck.Core.Output.SentToTerminal*
+      description: The log to print.
+    content.vb: Public Sub SendToTerminal(log As Output.Log)
+  overload: AutoCheck.Core.Output.SendToTerminal*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -595,123 +599,26 @@ references:
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Output.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Output>()
+  nameWithType: ObjectExtensions.DeepClone<Output>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Output>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Output)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Output)()
+  name.vb: DeepClone(Of Output)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Output>
+    nameWithType: ObjectExtensions.DeepClone<Output>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Output>
   - name: (
     nameWithType: (
     fullName: (
@@ -719,145 +626,58 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Output)
+    nameWithType: ObjectExtensions.DeepClone(Of Output)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Output)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -872,6 +692,11 @@ references:
   name: Output
   nameWithType: Output.Output
   fullName: AutoCheck.Core.Output.Output
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: AutoCheck.Core.Output.Write*
   commentId: Overload:AutoCheck.Core.Output.Write
   name: Write
@@ -893,21 +718,20 @@ references:
   name: WriteResponse
   nameWithType: Output.WriteResponse
   fullName: AutoCheck.Core.Output.WriteResponse
-- uid: System.Collections.Generic.List{System.String}
-  commentId: T:System.Collections.Generic.List{System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
+- uid: List{System.String}
+  commentId: '!:List{System.String}'
+  definition: List`1
   name: List<String>
   nameWithType: List<String>
-  fullName: System.Collections.Generic.List<System.String>
+  fullName: List<System.String>
   nameWithType.vb: List(Of String)
-  fullName.vb: System.Collections.Generic.List(Of System.String)
+  fullName.vb: List(Of System.String)
   name.vb: List(Of String)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
@@ -921,10 +745,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -937,51 +761,44 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
+- uid: List`1
   isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Output.Indent*
   commentId: Overload:AutoCheck.Core.Output.Indent
   name: Indent
@@ -1003,8 +820,6 @@ references:
   nameWithType: Output.BreakLine
   fullName: AutoCheck.Core.Output.BreakLine
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1014,17 +829,12 @@ references:
   name: CloseLog
   nameWithType: Output.CloseLog
   fullName: AutoCheck.Core.Output.CloseLog
-- uid: AutoCheck.Core.Output.Type
-  commentId: T:AutoCheck.Core.Output.Type
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
   parent: AutoCheck.Core
-  name: Output.Type
-  nameWithType: Output.Type
-  fullName: AutoCheck.Core.Output.Type
-- uid: AutoCheck.Core.Output.ToString*
-  commentId: Overload:AutoCheck.Core.Output.ToString
-  name: ToString
-  nameWithType: Output.ToString
-  fullName: AutoCheck.Core.Output.ToString
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log
 - uid: AutoCheck.Core.Output.GetLog*
   commentId: Overload:AutoCheck.Core.Output.GetLog
   name: GetLog
@@ -1054,14 +864,13 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Core.Output.SentToTerminal*
-  commentId: Overload:AutoCheck.Core.Output.SentToTerminal
-  name: SentToTerminal
-  nameWithType: Output.SentToTerminal
-  fullName: AutoCheck.Core.Output.SentToTerminal
-- uid: AutoCheck.Core.Output.Log
-  commentId: T:AutoCheck.Core.Output.Log
-  parent: AutoCheck.Core
-  name: Output.Log
-  nameWithType: Output.Log
-  fullName: AutoCheck.Core.Output.Log
+- uid: AutoCheck.Core.Output.ToString*
+  commentId: Overload:AutoCheck.Core.Output.ToString
+  name: ToString
+  nameWithType: Output.ToString
+  fullName: AutoCheck.Core.Output.ToString
+- uid: AutoCheck.Core.Output.SendToTerminal*
+  commentId: Overload:AutoCheck.Core.Output.SendToTerminal
+  name: SendToTerminal
+  nameWithType: Output.SendToTerminal
+  fullName: AutoCheck.Core.Output.SendToTerminal

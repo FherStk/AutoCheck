@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: OS
     path: ../core/main/Utils.cs
@@ -27,8 +27,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public enum OS
-    content.vb: Public Enum OS
+    content: 'public enum OS : int'
+    content.vb: Public Enum OS As Integer
+  extensionMethods:
+  - AutoCheck.Core.Utils.OS.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - enum
@@ -49,7 +51,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GNU
     path: ../core/main/Utils.cs
@@ -81,7 +83,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: MAC
     path: ../core/main/Utils.cs
@@ -113,7 +115,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WIN
     path: ../core/main/Utils.cs
@@ -137,6 +139,79 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Utils.OS.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Utils.OS>()
+  nameWithType: ObjectExtensions.DeepClone<Utils.OS>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Utils.OS>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Utils.OS)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Utils.OS)()
+  name.vb: DeepClone(Of Utils.OS)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Utils.OS>
+    nameWithType: ObjectExtensions.DeepClone<Utils.OS>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Utils.OS>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Utils.OS)
+    nameWithType: ObjectExtensions.DeepClone(Of Utils.OS)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Utils.OS)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Utils.OS
   commentId: T:AutoCheck.Core.Utils.OS
   parent: AutoCheck.Core

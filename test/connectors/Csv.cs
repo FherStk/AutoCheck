@@ -39,11 +39,11 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("empty.csv", OS.GNU, "localhost", "usuario", "usuario")]
+        [TestCase("empty.csv", OS.GNU, "localhost", "autocheck", "autocheck")]
         public void Constructor_Remote_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {      
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, LocalPathToWsl(GetSampleFile(file))));  
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));  
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("", OS.GNU, "localhost", "usuario", "usuario")]
+        [TestCase("", OS.GNU, "localhost", "autocheck", "autocheck")]
         public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
         {      
             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, file));
@@ -68,7 +68,7 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase(_FAKE, OS.GNU, "localhost", "usuario", "usuario")]        
+        [TestCase(_FAKE, OS.GNU, "localhost", "autocheck", "autocheck")]        
         public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
         {      
              Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Csv(remoteOS, host, username, password, file));

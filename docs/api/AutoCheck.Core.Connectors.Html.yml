@@ -8,25 +8,25 @@ items:
   - AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
   - AutoCheck.Core.Connectors.Html.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.Html.#ctor(System.String)
-  - AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.ContentLength(System.String)
-  - AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.CountNodes(System.String)
-  - AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.CountRelatedLabels(System.String)
-  - AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
   - AutoCheck.Core.Connectors.Html.Dispose
-  - AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
-  - AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
   - AutoCheck.Core.Connectors.Html.HtmlDoc
   - AutoCheck.Core.Connectors.Html.Raw
-  - AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
   - AutoCheck.Core.Connectors.Html.ValidateHtml5AgainstW3C
-  - AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+  - AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode,System.String)
   - AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   langs:
   - csharp
@@ -38,36 +38,28 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/connectors/Html.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with web files (html, css, etc.).\n"
   example: []
   syntax:
-    content: 'public class Html : Base, IDisposable'
+    content: 'public class Html : Base'
     content.vb: >-
       Public Class Html
           Inherits Base
-          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connectors.Base
-  implements:
-  - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Html.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -88,11 +80,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: HtmlDoc
     path: ../core/connectors/Html.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -102,7 +94,7 @@ items:
     content: public HtmlDocument HtmlDoc { get; }
     parameters: []
     return:
-      type: HtmlAgilityPack.HtmlDocument
+      type: HtmlDocument
       description: ''
     content.vb: Public ReadOnly Property HtmlDoc As HtmlDocument
   overload: AutoCheck.Core.Connectors.Html.HtmlDoc*
@@ -126,11 +118,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Html.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -164,11 +156,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 53
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -200,11 +192,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 66
+    startLine: 67
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -243,11 +235,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Html.cs
-    startLine: 80
+    startLine: 81
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -284,11 +276,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Html.cs
-    startLine: 95
+    startLine: 96
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -319,11 +311,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateHtml5AgainstW3C
     path: ../core/connectors/Html.cs
-    startLine: 102
+    startLine: 103
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -351,11 +343,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 149
+    startLine: 142
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -368,7 +360,7 @@ items:
       type: System.String
       description: XPath expression.
     return:
-      type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+      type: List{HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(xpath As String) As List(Of HtmlNode)
   overload: AutoCheck.Core.Connectors.Html.SelectNodes*
@@ -376,25 +368,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
-  id: SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode,System.String)
+  id: SelectNodes(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: SelectNodes(HtmlNode, String)
   nameWithType: Html.SelectNodes(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SelectNodes
     path: ../core/connectors/Html.cs
-    startLine: 159
+    startLine: 152
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -404,13 +396,13 @@ items:
     content: public List<HtmlNode> SelectNodes(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
       description: XPath expression.
     return:
-      type: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
+      type: List{HtmlNode}
       description: A list of nodes.
     content.vb: Public Function SelectNodes(root As HtmlNode, xpath As String) As List(Of HtmlNode)
   overload: AutoCheck.Core.Connectors.Html.SelectNodes*
@@ -432,11 +424,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 169
+    startLine: 162
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -457,25 +449,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
-  id: CountNodes(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode,System.String)
+  id: CountNodes(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountNodes(HtmlNode, String)
   nameWithType: Html.CountNodes(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountNodes
     path: ../core/connectors/Html.cs
-    startLine: 179
+    startLine: 172
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -485,7 +477,7 @@ items:
     content: public int CountNodes(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
@@ -513,11 +505,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 192
+    startLine: 185
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -530,7 +522,7 @@ items:
       type: System.String
       description: XPath expression.
     return:
-      type: HtmlAgilityPack.HtmlNode[][]
+      type: HtmlNode[][]
       description: A list of node groups.
     content.vb: Public Function GroupSiblings(xpath As String) As HtmlNode()()
   overload: AutoCheck.Core.Connectors.Html.GroupSiblings*
@@ -538,25 +530,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  id: GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode,System.String)
+  id: GroupSiblings(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GroupSiblings(HtmlNode, String)
   nameWithType: Html.GroupSiblings(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GroupSiblings
     path: ../core/connectors/Html.cs
-    startLine: 202
+    startLine: 195
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -566,13 +558,13 @@ items:
     content: public HtmlNode[][] GroupSiblings(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
       description: XPath expression.
     return:
-      type: HtmlAgilityPack.HtmlNode[][]
+      type: HtmlNode[][]
       description: A list of node groups.
     content.vb: Public Function GroupSiblings(root As HtmlNode, xpath As String) As HtmlNode()()
   overload: AutoCheck.Core.Connectors.Html.GroupSiblings*
@@ -594,11 +586,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 218
+    startLine: 211
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -619,25 +611,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
-  id: CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode,System.String)
+  id: CountSiblings(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountSiblings(HtmlNode, String)
   nameWithType: Html.CountSiblings(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountSiblings
     path: ../core/connectors/Html.cs
-    startLine: 228
+    startLine: 221
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -647,7 +639,7 @@ items:
     content: public int[] CountSiblings(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
@@ -675,11 +667,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 237
+    startLine: 230
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -700,25 +692,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
-  id: ContentLength(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode,System.String)
+  id: ContentLength(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ContentLength(HtmlNode, String)
   nameWithType: Html.ContentLength(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ContentLength
     path: ../core/connectors/Html.cs
-    startLine: 247
+    startLine: 240
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -728,7 +720,7 @@ items:
     content: public int ContentLength(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
@@ -756,11 +748,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 260
+    startLine: 253
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -773,7 +765,7 @@ items:
       type: System.String
       description: XPath expression.
     return:
-      type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+      type: Dictionary{HtmlNode,HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
   overload: AutoCheck.Core.Connectors.Html.GetRelatedLabels*
@@ -781,25 +773,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  id: GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode,System.String)
+  id: GetRelatedLabels(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: GetRelatedLabels(HtmlNode, String)
   nameWithType: Html.GetRelatedLabels(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 270
+    startLine: 263
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -809,13 +801,13 @@ items:
     content: public Dictionary<HtmlNode, HtmlNode[]> GetRelatedLabels(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
       description: XPath expression.
     return:
-      type: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
+      type: Dictionary{HtmlNode,HtmlNode[]}
       description: Dictonary with key-pair values, where the key is the main field node, and the value is a set of its related label nodes.
     content.vb: Public Function GetRelatedLabels(root As HtmlNode, xpath As String) As Dictionary(Of HtmlNode, HtmlNode())
   overload: AutoCheck.Core.Connectors.Html.GetRelatedLabels*
@@ -837,11 +829,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 292
+    startLine: 285
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -862,25 +854,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  id: CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode,System.String)
+  id: CountRelatedLabels(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: CountRelatedLabels(HtmlNode, String)
   nameWithType: Html.CountRelatedLabels(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRelatedLabels
     path: ../core/connectors/Html.cs
-    startLine: 302
+    startLine: 295
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -890,7 +882,7 @@ items:
     content: public int CountRelatedLabels(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
@@ -918,11 +910,11 @@ items:
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 311
+    startLine: 304
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -940,25 +932,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
-  id: ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode,System.String)
+  id: ValidateTable(HtmlNode,System.String)
   parent: AutoCheck.Core.Connectors.Html
   langs:
   - csharp
   - vb
   name: ValidateTable(HtmlNode, String)
   nameWithType: Html.ValidateTable(HtmlNode, String)
-  fullName: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode, System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Html.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateTable
     path: ../core/connectors/Html.cs
-    startLine: 321
+    startLine: 314
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -968,7 +960,7 @@ items:
     content: public void ValidateTable(HtmlNode root, string xpath)
     parameters:
     - id: root
-      type: HtmlAgilityPack.HtmlNode
+      type: HtmlNode
       description: Root node from where the XPath expression will be evaluated.
     - id: xpath
       type: System.String
@@ -986,8 +978,7 @@ references:
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
@@ -998,25 +989,18 @@ references:
   name: Base
   nameWithType: Base
   fullName: AutoCheck.Core.Connectors.Base
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   parent: AutoCheck.Core.Connectors.Base
   isExternal: true
   name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
   nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
-  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action<System.String>)
   nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
-  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action(Of System.String))
   name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -1070,10 +1054,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -1090,7 +1074,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -1144,10 +1128,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1163,117 +1147,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Connectors.Html.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Html>()
+  nameWithType: ObjectExtensions.DeepClone<Html>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Html>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Html)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Html)()
+  name.vb: DeepClone(Of Html)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Html>
+    nameWithType: ObjectExtensions.DeepClone<Html>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Html>
   - name: (
     nameWithType: (
     fullName: (
@@ -1281,199 +1169,73 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Html)
+    nameWithType: ObjectExtensions.DeepClone(Of Html)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Html)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Html.HtmlDoc*
   commentId: Overload:AutoCheck.Core.Connectors.Html.HtmlDoc
   name: HtmlDoc
   nameWithType: Html.HtmlDoc
   fullName: AutoCheck.Core.Connectors.Html.HtmlDoc
-- uid: HtmlAgilityPack.HtmlDocument
-  commentId: T:HtmlAgilityPack.HtmlDocument
-  parent: HtmlAgilityPack
+- uid: HtmlDocument
   isExternal: true
   name: HtmlDocument
   nameWithType: HtmlDocument
-  fullName: HtmlAgilityPack.HtmlDocument
-- uid: HtmlAgilityPack
-  commentId: N:HtmlAgilityPack
-  isExternal: true
-  name: HtmlAgilityPack
-  nameWithType: HtmlAgilityPack
-  fullName: HtmlAgilityPack
+  fullName: HtmlDocument
 - uid: AutoCheck.Core.Connectors.Html.Raw*
   commentId: Overload:AutoCheck.Core.Connectors.Html.Raw
   name: Raw
   nameWithType: Html.Raw
   fullName: AutoCheck.Core.Connectors.Html.Raw
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -1490,8 +1252,6 @@ references:
   nameWithType: Utils.OS
   fullName: AutoCheck.Core.Utils.OS
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1544,102 +1304,92 @@ references:
   name: SelectNodes
   nameWithType: Html.SelectNodes
   fullName: AutoCheck.Core.Connectors.Html.SelectNodes
-- uid: System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
-  commentId: T:System.Collections.Generic.List{HtmlAgilityPack.HtmlNode}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.List`1
+- uid: List{HtmlNode}
+  commentId: '!:List{HtmlNode}'
+  definition: List`1
   name: List<HtmlNode>
   nameWithType: List<HtmlNode>
-  fullName: System.Collections.Generic.List<HtmlAgilityPack.HtmlNode>
+  fullName: List<HtmlNode>
   nameWithType.vb: List(Of HtmlNode)
-  fullName.vb: System.Collections.Generic.List(Of HtmlAgilityPack.HtmlNode)
+  fullName.vb: List(Of HtmlNode)
   name.vb: List(Of HtmlNode)
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.List`1
-  commentId: T:System.Collections.Generic.List`1
+- uid: List`1
   isExternal: true
-  name: List<T>
-  nameWithType: List<T>
-  fullName: System.Collections.Generic.List<T>
-  nameWithType.vb: List(Of T)
-  fullName.vb: System.Collections.Generic.List(Of T)
-  name.vb: List(Of T)
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
   spec.csharp:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.List`1
+  - uid: List`1
     name: List
     nameWithType: List
-    fullName: System.Collections.Generic.List
+    fullName: List
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: T
-    nameWithType: T
-    fullName: T
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: HtmlAgilityPack.HtmlNode
-  commentId: T:HtmlAgilityPack.HtmlNode
-  parent: HtmlAgilityPack
+- uid: HtmlNode
   isExternal: true
   name: HtmlNode
   nameWithType: HtmlNode
-  fullName: HtmlAgilityPack.HtmlNode
+  fullName: HtmlNode
 - uid: AutoCheck.Core.Connectors.Html.CountNodes*
   commentId: Overload:AutoCheck.Core.Connectors.Html.CountNodes
   name: CountNodes
@@ -1650,19 +1400,19 @@ references:
   name: GroupSiblings
   nameWithType: Html.GroupSiblings
   fullName: AutoCheck.Core.Connectors.Html.GroupSiblings
-- uid: HtmlAgilityPack.HtmlNode[][]
+- uid: HtmlNode[][]
   isExternal: true
   name: HtmlNode[][]
   nameWithType: HtmlNode[][]
-  fullName: HtmlAgilityPack.HtmlNode[][]
+  fullName: HtmlNode[][]
   nameWithType.vb: HtmlNode()()
-  fullName.vb: HtmlAgilityPack.HtmlNode()()
+  fullName.vb: HtmlNode()()
   name.vb: HtmlNode()()
   spec.csharp:
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: '[]'
     nameWithType: '[]'
@@ -1671,10 +1421,10 @@ references:
     nameWithType: '[]'
     fullName: '[]'
   spec.vb:
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: ()
     nameWithType: ()
@@ -1723,37 +1473,36 @@ references:
   name: GetRelatedLabels
   nameWithType: Html.GetRelatedLabels
   fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels
-- uid: System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
-  commentId: T:System.Collections.Generic.Dictionary{HtmlAgilityPack.HtmlNode,HtmlAgilityPack.HtmlNode[]}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
+- uid: Dictionary{HtmlNode,HtmlNode[]}
+  commentId: '!:Dictionary{HtmlNode,HtmlNode[]}'
+  definition: Dictionary`2
   name: Dictionary<HtmlNode, HtmlNode[]>
   nameWithType: Dictionary<HtmlNode, HtmlNode[]>
-  fullName: System.Collections.Generic.Dictionary<HtmlAgilityPack.HtmlNode, HtmlAgilityPack.HtmlNode[]>
+  fullName: Dictionary<HtmlNode, HtmlNode[]>
   nameWithType.vb: Dictionary(Of HtmlNode, HtmlNode())
-  fullName.vb: System.Collections.Generic.Dictionary(Of HtmlAgilityPack.HtmlNode, HtmlAgilityPack.HtmlNode())
+  fullName.vb: Dictionary(Of HtmlNode, HtmlNode())
   name.vb: Dictionary(Of HtmlNode, HtmlNode())
   spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: '[]'
     nameWithType: '[]'
@@ -1762,26 +1511,26 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: HtmlAgilityPack.HtmlNode
+  - uid: HtmlNode
     name: HtmlNode
     nameWithType: HtmlNode
-    fullName: HtmlAgilityPack.HtmlNode
+    fullName: HtmlNode
     isExternal: true
   - name: ()
     nameWithType: ()
@@ -1789,54 +1538,53 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
+- uid: Dictionary`2
   isExternal: true
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
   spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

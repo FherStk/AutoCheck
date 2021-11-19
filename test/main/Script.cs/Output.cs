@@ -37,7 +37,15 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            s.Output.SendToTerminal(s.Output.GetLog().FirstOrDefault());            
+            
+            //Disabling terminal output
+            System.Console.SetOut(new StringWriter());
+            s.Output.SendToTerminal(s.Output.GetLog().FirstOrDefault());   
+
+            //Enabling terminal output
+            var standardOutput = new StreamWriter(System.Console.OpenStandardOutput());
+            standardOutput.AutoFlush = true;
+            System.Console.SetOut(standardOutput);         
         } 
 
         [Test, Category("Output"), Category("Local"), Category("Text")]

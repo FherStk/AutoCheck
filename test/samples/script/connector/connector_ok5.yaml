@@ -19,8 +19,8 @@
 single:
   remote:
     host: "localhost"
-    user: "usuario"
-    password: "usuario"
+    user: "autocheck"
+    password: "autocheck"
 
 body:
   - connector:  

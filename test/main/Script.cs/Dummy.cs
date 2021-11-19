@@ -56,7 +56,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("dummy_single_2.yaml"));             
-            Assert.AreEqual("Running script Test Script #1 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n   Aborting execution!\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
+            Assert.AreEqual("Running script Test Script #1 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -Heading cannot be a child of another heading.>\n                 <h1>This i\r\n\r\n   Aborting execution!\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
         }
 
         [Test, Category("Dummy"), Category("Local")]
@@ -69,7 +69,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("dummy_single_3.yaml"));             
-            Assert.AreEqual("Running script Test Script #2 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... ERROR:\n            -Expected -> >=1; Found -> 0\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 10\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
+            Assert.AreEqual("Running script Test Script #2 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -Heading cannot be a child of another heading.>\n                 <h1>This i\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 21\r\n\r\n   TOTAL SCORE: 5 / 10", s.Output.ToString());            
         }
 
         [Test, Category("Dummy"), Category("Local")]
@@ -82,7 +82,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "index.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("dummy_single_4.yaml"));             
-            Assert.AreEqual("Running script Test Script #3 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... ERROR:\n            -Expected -> >=1; Found -> 0\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 10\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());            
+            Assert.AreEqual("Running script Test Script #3 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 1.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 1.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 21\r\n\r\n   TOTAL SCORE: 5 / 10", s.Output.ToString());
         }
 
         [Test, Category("Dummy"), Category("Local")]
@@ -97,7 +97,7 @@ namespace AutoCheck.Test
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "contact.html")));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("dummy_single_5.yaml"));             
-            Assert.AreEqual("Running script Test Script #4 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -No p element in scope but a p end tag seen.</h1>\n             </p>\n         </bod\r\n\r\n   Question 2 [2 points] - Checking Contact.html:\r\n      Looking for contact.html... OK\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 2.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 144\r\n\r\n   TOTAL SCORE: 2.5 / 10", s.Output.ToString());            
+            Assert.AreEqual("Running script Test Script #4 (v1.0.0.1):\r\nRunning on single mode:\r\n   Question 1 [2 points] - Checking Index.html:\r\n      Looking for index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -Heading cannot be a child of another heading.>\n                 <h1>This i\r\n\r\n   Question 2 [2 points] - Checking Contact.html:\r\n      Looking for contact.html... OK\r\n      Validating document against the W3C validation service... OK\r\n\r\n      Question 2.1 [1 point] - Validating headers:\r\n         Checking amount of level-1 headers... OK\r\n         Checking amount of level-2 headers... OK\r\n\r\n      Question 2.2 [1 point] - Validating paragraphs:\r\n         Checking amount of paragraphs... OK\r\n         Checking content legth within paragraphs... ERROR:\n            -Expected -> >=1500; Found -> 144\r\n\r\n   TOTAL SCORE: 2.5 / 10", s.Output.ToString());            
         }  
 
         [Test, Category("Dummy"), Category("Local")]

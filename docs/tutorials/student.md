@@ -4,8 +4,8 @@ Despite that you'll find a complete tutorial below this lines, a video tutorial 
 
 ## How to use the application
 ### Pre-requisites
-This application has been developed over the **.NET 5.0**, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app:
-* [.NET 5.0 SDK x64](https://dotnet.microsoft.com/download)
+This application has been developed over the **.NET 6.0**, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app:
+* [.NET 6.0 SDK x64](https://dotnet.microsoft.com/download)
 * [Git](https://git-scm.com/downloads)
 
 ### Installation
