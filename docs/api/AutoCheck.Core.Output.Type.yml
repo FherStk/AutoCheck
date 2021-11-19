@@ -19,17 +19,19 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Type
     path: ../core/main/Output.cs
-    startLine: 96
+    startLine: 97
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public enum Type
-    content.vb: Public Enum Type
+    content: 'public enum Type : int'
+    content.vb: Public Enum Type As Integer
+  extensionMethods:
+  - AutoCheck.Core.Output.Type.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - enum
@@ -50,11 +52,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: HEADER
     path: ../core/main/Output.cs
-    startLine: 97
+    startLine: 98
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -82,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SETUP
     path: ../core/main/Output.cs
-    startLine: 98
+    startLine: 99
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -114,11 +116,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SCRIPT
     path: ../core/main/Output.cs
-    startLine: 99
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -146,11 +148,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.10.0
+      branch: v2.12.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TEARDOWN
     path: ../core/main/Output.cs
-    startLine: 100
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -170,6 +172,79 @@ references:
   name: AutoCheck.Core
   nameWithType: AutoCheck.Core
   fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Output.Type.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Output.Type>()
+  nameWithType: ObjectExtensions.DeepClone<Output.Type>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Output.Type>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Output.Type)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Output.Type)()
+  name.vb: DeepClone(Of Output.Type)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Output.Type>
+    nameWithType: ObjectExtensions.DeepClone<Output.Type>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Output.Type>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Output.Type)
+    nameWithType: ObjectExtensions.DeepClone(Of Output.Type)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Output.Type)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Output.Type
   commentId: T:AutoCheck.Core.Output.Type
   parent: AutoCheck.Core
