@@ -575,10 +575,11 @@ namespace AutoCheck.Core{
         }  
 #endregion
 #region Events
-        private event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
+        //Notice: must be static because will be shared along parrallel tasks
+        private static event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
 
         public class LogGeneratedEventArgs : EventArgs
         {
