@@ -422,7 +422,7 @@ namespace AutoCheck.Test.Connectors
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
            
             Assert.IsFalse(conn.ExistsFolder(remoteFilePath));
-            Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToWsl(GetSampleFile(localFilePath), "autocheck"), remoteFilePath, remoteFileName));
+            Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToRemote(GetSampleFile(localFilePath), "autocheck"), remoteFilePath, remoteFileName));
             Thread.Sleep(5000);
             Assert.IsTrue(conn.ExistsFile(remoteFilePath, expectedFileName));            
         }
@@ -454,7 +454,7 @@ namespace AutoCheck.Test.Connectors
             remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
 
             Assert.IsFalse(conn.ExistsFolder(remoteFolderPath));
-            Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToWsl(Path.Combine(SamplesScriptFolder, localFolderPath), "autocheck"), remoteFolderPath, remoteFolderName, recursive));
+            Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToRemote(Path.Combine(SamplesScriptFolder, localFolderPath), "autocheck"), remoteFolderPath, remoteFolderName, recursive));
             
             Thread.Sleep(5000);            
             Assert.IsTrue(conn.ExistsFolder(remoteFolderPath, expectedFolderName));

@@ -169,7 +169,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("testFolder21", true, ExpectedResult = "testFolder21")]        
         public string GetFolder_Remote_DoesNotThrow(string folder, bool recursive)
         {
-            var found = RemoteConnector.GetFolder(LocalPathToWsl(SamplesScriptFolder), folder, recursive);
+            var found = RemoteConnector.GetFolder(LocalPathToRemote(SamplesScriptFolder, "autocheck"), folder, recursive);
             return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
         } 
 
@@ -204,7 +204,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("testFile211.txt", true, ExpectedResult = "testFile211.txt")]
         public string GetFile_Remote_DoesNotThrow(string folder, bool recursive)
         {
-            var found = RemoteConnector.GetFile(LocalPathToWsl(SamplesScriptFolder), folder, recursive);
+            var found = RemoteConnector.GetFile(LocalPathToRemote(SamplesScriptFolder, "autocheck"), folder, recursive);
             return (string.IsNullOrEmpty(found) ? found : Path.GetFileName(found));
         } 
 
@@ -228,7 +228,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(true, ExpectedResult = new string[]{"testFolder1", "testFolder2", "testFolder21"})]
         public string[] GetFolders_Remote_DoesNotThrow(bool recursive)
         {
-            return RemoteConnector.GetFolders(LocalPathToWsl(SamplesScriptFolder), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+            return RemoteConnector.GetFolders(LocalPathToRemote(SamplesScriptFolder, "autocheck"), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
         }
 
         [Test]
@@ -251,7 +251,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(true, ExpectedResult = new string[]{"testFile11.txt", "testFile21.txt", "testFile211.txt"})]
         public string[] GetFiles_Remote_DoesNotThrow(bool recursive)
         {
-            return RemoteConnector.GetFiles(LocalPathToWsl(SamplesScriptFolder), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
+            return RemoteConnector.GetFiles(LocalPathToRemote(SamplesScriptFolder, "autocheck"), recursive).ToList().Select(x => Path.GetFileName(x)).OrderBy(x => x).ToArray();
         }
 
         [Test]
@@ -274,7 +274,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(true, ExpectedResult = 3)]
         public int CountFolders_Remote_DoesNotThrow(bool recursive)
         {
-            return RemoteConnector.CountFolders(LocalPathToWsl(SamplesScriptFolder), recursive);
+            return RemoteConnector.CountFolders(LocalPathToRemote(SamplesScriptFolder, "autocheck"), recursive);
         }
 
          [Test]
@@ -297,7 +297,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(true, ExpectedResult = 3)]
         public int CountFiles_Remote_DoesNotThrow(bool recursive)
         {
-            return RemoteConnector.CountFiles(LocalPathToWsl(SamplesScriptFolder), recursive);
+            return RemoteConnector.CountFiles(LocalPathToRemote(SamplesScriptFolder, "autocheck"), recursive);
         }
 
         [Test]
@@ -335,7 +335,7 @@ namespace AutoCheck.Test.Connectors
             Assert.IsTrue(File.Exists(sourceFile));
 
             //Preparing remote path and local copy one
-            var remoteFile = LocalPathToWsl(sourceFile);
+            var remoteFile = LocalPathToRemote(sourceFile, "autocheck");
             var destFile = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFile));            
             Assert.IsFalse(File.Exists(destFile));
 
@@ -354,7 +354,7 @@ namespace AutoCheck.Test.Connectors
             Assert.IsTrue(Directory.Exists(sourceFolder));
 
             //Preparing remote path and local copy one
-            var remoteFolder = LocalPathToWsl(sourceFolder);
+            var remoteFolder = LocalPathToRemote(sourceFolder, "autocheck");
             var destFolder = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFolder));            
             Assert.IsFalse(Directory.Exists(destFolder));
 
