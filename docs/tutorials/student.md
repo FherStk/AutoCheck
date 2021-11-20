@@ -26,7 +26,7 @@ Please, notice that **AutoCheck will revert all changes when updates** which inc
 Follow this instructions in order to run the application:
 1. Open a terminal and go into the application's root folder: `cd AutoCheck`.
 2. Go into the application's terminal folder: `cd terminal`.
-3. Run the application with `dotnet bin/Release/net6.0/AutoCheck.Terminal.dll "path_to_file.yaml"`, for example: `dotnet bin/Release/net6.0/AutoCheck.Terminal.dll ../scripts/custom/xml_validation_single.yaml`'  
+3. Run the application with `dotnet bin/Release/net6.0/AutoCheck.Terminal.dll "path_to_file.yaml"`, for example: `dotnet bin/Release/net6.0/AutoCheck.Terminal.dll ../scripts/custom/xml_validation_single.yaml`  
 
 ### Run (with no update)
 AutoCheck will automatically check for updates on startup, but update avoidance can be requested:
