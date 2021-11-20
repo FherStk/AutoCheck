@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.0
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Type
     path: ../core/main/Output.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.0
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: HEADER
     path: ../core/main/Output.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.0
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SETUP
     path: ../core/main/Output.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.0
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SCRIPT
     path: ../core/main/Output.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.0
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: TEARDOWN
     path: ../core/main/Output.cs
