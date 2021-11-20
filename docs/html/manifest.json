@@ -1113,10 +1113,10 @@
       "output": {
         ".html": {
           "relative_path": "credits/credits.html",
-          "hash": "bxobfm3cnx1SMOFMntl1MKzdxFtWyESAXAHGd0p5R0A="
+          "hash": "Va1zChmAF3Q9UFtJUOtivxhDZW8GM6pyNzNstRPpcss="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1196,7 +1196,7 @@
           "hash": "2pdvy/ylJ40iYLE3OL6FJPAPwjkg3Frmv2v8JNjNU7U="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
