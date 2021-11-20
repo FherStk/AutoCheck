@@ -1169,10 +1169,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "5QTzcinN6H2IKPuHnZsqVoXBg75HgI89G8nP/MiMPYE="
+          "hash": "4tQGK6N2bdCoMmDUpQ9T3L2n7pNhRFyYJ7gqIT/S2wM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1196,7 +1196,7 @@
           "hash": "Eoi3YoEu5rTrA0R7WmQQtFzD+EUSM5oOH3IUFnRoI5E="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
