@@ -1116,7 +1116,7 @@
           "hash": "Va1zChmAF3Q9UFtJUOtivxhDZW8GM6pyNzNstRPpcss="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1193,10 +1193,10 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/student.html",
-          "hash": "2pdvy/ylJ40iYLE3OL6FJPAPwjkg3Frmv2v8JNjNU7U="
+          "hash": "Eoi3YoEu5rTrA0R7WmQQtFzD+EUSM5oOH3IUFnRoI5E="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
