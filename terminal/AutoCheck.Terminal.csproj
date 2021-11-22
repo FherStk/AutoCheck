@@ -7,7 +7,7 @@
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Terminal</Product>
     <Copyright>Copyright © 2020</Copyright>
-    <VersionPrefix>2.3.1</VersionPrefix>
+    <VersionPrefix>2.3.2</VersionPrefix>
     <VersionSuffix>stable</VersionSuffix>  
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
