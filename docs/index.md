@@ -1,5 +1,5 @@
 # AutoCheck
-Multi purpose and extensible automated assignment validator, designed for academic purposes only, which has been developed usign C# over .NET 6.0.
+Multipurpose and extensible automated assignment validator, designed for academic purposes only, which has been developed using C# over .NET 6.0.
 It has been created in order to automatically check the correctness of a set of students assignments including a score suggestion, but manual supervision is still needed.
 
 Feel free to use, copy, fork or modify this code; but please refer a mention to this project and its author respecting also the licenses of the included third party software.
