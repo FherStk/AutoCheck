@@ -8,7 +8,7 @@
     <title>Student's guide </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Student's guide ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -106,11 +106,12 @@
 
 <h2 id="video-tutorial">Video tutorial</h2>
 <p>Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run it is also available : <a href="https://youtu.be/PHIZlj9Ly3Q">https://youtu.be/PHIZlj9Ly3Q</a></p>
+<p><strong>WARNING</strong>: Running the application as seen in the video wont work with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, the following tutorial describes a method that works for any kind of OS and installation type.</p>
 <h2 id="how-to-use-the-application">How to use the application</h2>
 <h3 id="pre-requisites">Pre-requisites</h3>
-<p>This application has been developed over the <strong>.NET 5.0</strong>, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on <strong>GitHub</strong> repository, so <strong>Git</strong> must be installed in order to download and update the app:</p>
+<p>This application has been developed over the <strong>.NET 6.0</strong>, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on <strong>GitHub</strong> repository, so <strong>Git</strong> must be installed in order to download and update the app:</p>
 <ul>
-<li><a href="https://dotnet.microsoft.com/download">.NET 5.0 SDK x64</a></li>
+<li><a href="https://dotnet.microsoft.com/download">.NET 6.0 SDK x64</a></li>
 <li><a href="https://git-scm.com/downloads">Git</a></li>
 <li>[Node.js] //sudo apt install nodejs npm</li>
 </ul>
@@ -120,6 +121,9 @@
 <li>Create a folder where the application will be downloaded in.</li>
 <li>Open a terminal and go into the newly crated folder.</li>
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
+<li>Go to the client app folder with the following command: <code>cd AutoCheck/terminal</code>.</li>
+<li>Compile the application with the following command: <code>dotnet build -c Release</code>.</li>
+<li>GNU/Linux only: give permissions to the startup file with: <code>chmod +x start.sh</code>.</li>
 </ol>
 <h3 id="preparation">Preparation</h3>
 <p>Please, notice that <strong>AutoCheck will revert all changes when updates</strong> which includes the removal of new files, so it's important to <strong>copy the scripts</strong> you want to modify into the <code>AutoCheck/scripts/custom</code> folder:</p>
@@ -131,73 +135,82 @@
 <h3 id="run-with-update">Run (with update)</h3>
 <p>Follow this instructions in order to run the application:</p>
 <ol>
-<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
-<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
-<li>Run the application with <code>dotnet run &quot;path_to_file.yaml&quot;</code>, for example: <code>dotnet run ../scripts/custom/xml_validation.yaml</code>'</li>
+<li>Open a terminal and go into the application's terminal folder: <code>cd AutoCheck/terminal</code>.</li>
+<li>Go into the application's binary (executable) folder: <code>cd bin/Release/net6.0</code>.</li>
+<li>For GNU/Linux: run the application with <code>./run.sh &quot;path_to_file.yaml&quot;</code>, for example: <code>./run.sh ../scripts/custom/xml_validation_single.yaml</code></li>
+<li>For Windows: run the application with <code>run &quot;path_to_file.yaml&quot;</code>, for example: <code>run ../scripts/custom/xml_validation_single.yaml</code></li>
 </ol>
 <h3 id="run-with-no-update">Run (with no update)</h3>
 <p>AutoCheck will automatically check for updates on startup, but update avoidance can be requested:</p>
 <ol>
-<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
-<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
-<li>Update the application with the following command: <code>dotnet run --no-update &quot;path_to_file.yaml&quot;</code>.</li>
+<li>Open a terminal and go into the application's terminal folder: <code>cd AutoCheck/terminal</code>.</li>
+<li>Go into the application's binary (executable) folder: <code>cd bin/Release/net6.0</code>.</li>
+<li>For GNU/Linux: run the application avoiding updates with the following command: <code>./run.sh --no-update &quot;path_to_file.yaml&quot;</code>.</li>
+<li>For Windows: run the application avoiding updates with the following command: <code>run --no-update &quot;path_to_file.yaml&quot;</code>.</li>
 </ol>
 <h3 id="manual-update">Manual update</h3>
 <p>AutoCheck will automatically check for updates on startup, but a manual update can be requested:</p>
 <ol>
-<li>Open a terminal and go into the application's root folder: <code>cd AutoCheck</code>.</li>
-<li>Go into the application's terminal folder: <code>cd terminal</code>.</li>
-<li>Update the application with the following command: <code>dotnet run --update</code>.</li>
+<li>Open a terminal and go into the application's terminal folder: <code>cd AutoCheck/terminal</code>.</li>
+<li>Go into the application's binary (executable) folder: <code>cd bin/Release/net6.0</code>.</li>
+<li>For GNU/Linux: update the application with the following command: <code>./run.sh --update</code>.</li>
+<li>For Windows: update the application with the following command: <code>run --update</code>.</li>
 </ol>
 <h3 id="avaliable-scripts">Avaliable scripts</h3>
 <p>Here you will find different excamples about how to invoke existing scripts, but remember: you need to setup the target first, just need to copy the original one to the <code>scripts/custom</code> folder and change the target parameter (<code>host</code>, <code>path</code> or <code>folder</code>).</p>
 <h4 id="dam---m04-uf1-xml-validation-assignment-namespaces--dtd--xsd">DAM - M04 UF1: XML Validation assignment (Namespaces + DTD + XSD)</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/xml_validation.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/xml_validation.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/xml_validation.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/xml_validation_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/xml_validation_single.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/xml_validation_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/xml_validation_single.yaml</code>.</li>
 </ol>
 <h4 id="dam---m04-uf1-html5-assignment">DAM - M04 UF1: HTML5 assignment</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/html5.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/html5.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/html5.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/html5_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/html5_single.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/html5_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/html5_single.yaml</code>.</li>
 </ol>
 <h4 id="dam---m04-uf1-css3-assignment">DAM - M04 UF1: CSS3 assignment</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/css3.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/css3.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/css3.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/css3_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/css3_single.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/css3_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/css3_single.yaml</code>.</li>
 </ol>
 <h4 id="dam---m04-uf2-web-syndication-rss--atom">DAM - M04 UF2: Web Syndication (RSS + ATOM)</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/web_syndication.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/web_syndication.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/web_syndication.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/web_syndication_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/web_syndication_single.yaml</code> script and change the <code>folder</code> parameter to point the folder where your assignment is.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/web_syndication_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/web_syndication_single.yaml</code>.</li>
 </ol>
 <h4 id="asix---m02-uf3-sql-database-permissions">ASIX - M02 UF3: SQL DataBase Permissions</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/permissions.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/permissions.yaml</code> script and change the <code>host</code> parameter to point the host name or IP address where your Postgres server is listening to.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/permissions.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/permissions_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/permissions_single.yaml</code> script and change the <code>host</code> parameter to point the host name or IP address where your Postgres server is listening to.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/permissions_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/permissions_single.yaml</code>.</li>
 </ol>
 <h4 id="asix---m02-uf3-sql-database-updatable-views">ASIX - M02 UF3: SQL DataBase Updatable Views</h4>
 <p>In order to check this assignment:</p>
 <ol>
-<li>Copy the <code>AutoCheck/scripts/targets/single/views.yaml</code> script into the <code>scripts/custom</code> folder.</li>
-<li>Edit the <code>AutoCheck/scripts/custom/views.yaml</code> script and change the <code>host</code> parameter to point the host name or IP address where your Postgres server is listening to.</li>
-<li>Open a terminal and go to the <code>terminal</code> folder with <code>cd AutoCheck/terminal</code>.</li>
-<li>Run the script with <code>dotnet run ../scripts/custom/views.yaml</code>.</li>
+<li>Copy the <code>AutoCheck/scripts/targets/views_single.yaml</code> script into the <code>scripts/custom</code> folder.</li>
+<li>Edit the <code>AutoCheck/scripts/custom/views_single.yaml</code> script and change the <code>host</code> parameter to point the host name or IP address where your Postgres server is listening to.</li>
+<li>Open a terminal and go to the <code>terminal</code> binary (executable) folder with <code>cd AutoCheck/terminal/bin/Release/net6.0</code>.</li>
+<li>GNU/Linux: run the script with <code>./run.sh ../scripts/custom/views_single.yaml</code>.</li>
+<li>Windows: run the script with <code>run ../scripts/custom/views_single.yaml</code>.</li>
 </ol>
 </article>
           </div>

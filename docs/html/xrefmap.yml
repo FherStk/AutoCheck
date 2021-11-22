@@ -89,13 +89,13 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Base.Dispose
   nameWithType: Base.Dispose
-- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
-  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_ProcessRemoteFile_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Action_System_String__
-  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  href: api/AutoCheck.Core.Connectors.Base.html#AutoCheck_Core_Connectors_Base_ProcessRemoteFile_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_Action_System_String__
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
-  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
-  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action<System.String>)
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action(Of System.String))
   nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
   nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
 - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile*
@@ -168,13 +168,13 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Css.Dispose
   nameWithType: Css.Dispose
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
   name: PropertyApplied(Html, Dictionary<String, String>)
-  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_System_Collections_Generic_Dictionary_System_String_System_String__
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_AutoCheck_Core_Connectors_Html_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
   name.vb: PropertyApplied(Html, Dictionary(Of String, String))
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.Collections.Generic.Dictionary<System.String, System.String>)
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, Dictionary(Of System.String, System.String))
   nameWithType: Css.PropertyApplied(Html, Dictionary<String, String>)
   nameWithType.vb: Css.PropertyApplied(Html, Dictionary(Of String, String))
 - uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String,System.String)
@@ -192,28 +192,34 @@ references:
   fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.String())
   nameWithType: Css.PropertyApplied(Html, String[])
   nameWithType.vb: Css.PropertyApplied(Html, String())
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
-  name: PropertyApplied(HtmlDocument, Dictionary<String, String>)
-  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_Collections_Generic_Dictionary_System_String_System_String__
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
-  name.vb: PropertyApplied(HtmlDocument, Dictionary(Of String, String))
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary<System.String, System.String>)
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary(Of System.String, System.String))
-  nameWithType: Css.PropertyApplied(HtmlDocument, Dictionary<String, String>)
-  nameWithType.vb: Css.PropertyApplied(HtmlDocument, Dictionary(Of String, String))
 - uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   name: PropertyApplied(HtmlDocument, String, String)
   href: api/AutoCheck.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String_System_String_
   commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
   fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
   nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
+  name: PropertyApplied(HtmlDocument, Dictionary<String, String>)
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlDocument_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
+  name.vb: PropertyApplied(HtmlDocument, Dictionary(Of String, String))
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, Dictionary(Of System.String, System.String))
+  nameWithType: Css.PropertyApplied(HtmlDocument, Dictionary<String, String>)
+  nameWithType.vb: Css.PropertyApplied(HtmlDocument, Dictionary(Of String, String))
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String,System.String)
+  name: PropertyApplied(HtmlDocument, String, String)
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlDocument_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String, System.String)
+  nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String[])
   name: PropertyApplied(HtmlDocument, String[])
-  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlAgilityPack_HtmlDocument_System_String___
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyApplied_HtmlDocument_System_String___
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String[])
   name.vb: PropertyApplied(HtmlDocument, String())
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String[])
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String())
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String[])
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String())
   nameWithType: Css.PropertyApplied(HtmlDocument, String[])
   nameWithType.vb: Css.PropertyApplied(HtmlDocument, String())
 - uid: AutoCheck.Core.Connectors.Css.PropertyApplied*
@@ -223,13 +229,13 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Css.PropertyApplied
   nameWithType: Css.PropertyApplied
-- uid: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
+- uid: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary{System.String,System.String})
   name: PropertyExists(Dictionary<String, String>)
-  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyExists_System_Collections_Generic_Dictionary_System_String_System_String__
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
+  href: api/AutoCheck.Core.Connectors.Css.html#AutoCheck_Core_Connectors_Css_PropertyExists_Dictionary_System_String_System_String__
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary{System.String,System.String})
   name.vb: PropertyExists(Dictionary(Of String, String))
-  fullName: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary<System.String, System.String>)
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary<System.String, System.String>)
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary(Of System.String, System.String))
   nameWithType: Css.PropertyExists(Dictionary<String, String>)
   nameWithType.vb: Css.PropertyExists(Dictionary(Of String, String))
 - uid: AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
@@ -476,6 +482,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri,System.String,System.String)
   fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(System.Uri, System.String, System.String)
   nameWithType: GDrive.CopyFile(Uri, String, String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(Uri,System.String,System.String)
+  name: CopyFile(Uri, String, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFile_Uri_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(Uri,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(Uri, System.String, System.String)
+  nameWithType: GDrive.CopyFile(Uri, String, String)
 - uid: AutoCheck.Core.Connectors.GDrive.CopyFile*
   name: CopyFile
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFile_
@@ -622,6 +634,12 @@ references:
   href: api/AutoCheck.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_Download_System_Uri_System_String_
   commentId: M:AutoCheck.Core.Connectors.GDrive.Download(System.Uri,System.String)
   fullName: AutoCheck.Core.Connectors.GDrive.Download(System.Uri, System.String)
+  nameWithType: GDrive.Download(Uri, String)
+- uid: AutoCheck.Core.Connectors.GDrive.Download(Uri,System.String)
+  name: Download(Uri, String)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_Download_Uri_System_String_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(Uri,System.String)
+  fullName: AutoCheck.Core.Connectors.GDrive.Download(Uri, System.String)
   nameWithType: GDrive.Download(Uri, String)
 - uid: AutoCheck.Core.Connectors.GDrive.Download*
   name: Download
@@ -807,6 +825,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.ContentLength(HtmlAgilityPack.HtmlNode, System.String)
   nameWithType: Html.ContentLength(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode,System.String)
+  name: ContentLength(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ContentLength_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ContentLength(HtmlNode, System.String)
+  nameWithType: Html.ContentLength(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.ContentLength(System.String)
   name: ContentLength(String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ContentLength_System_String_
@@ -826,6 +850,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.CountNodes(HtmlAgilityPack.HtmlNode, System.String)
   nameWithType: Html.CountNodes(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode,System.String)
+  name: CountNodes(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountNodes_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountNodes(HtmlNode, System.String)
+  nameWithType: Html.CountNodes(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.CountNodes(System.String)
   name: CountNodes(String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountNodes_System_String_
@@ -839,11 +869,11 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Html.CountNodes
   nameWithType: Html.CountNodes
-- uid: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
+- uid: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode,System.String)
   name: CountRelatedLabels(HtmlNode, String)
-  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountRelatedLabels_HtmlAgilityPack_HtmlNode_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
-  fullName: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountRelatedLabels_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountRelatedLabels(HtmlNode, System.String)
   nameWithType: Html.CountRelatedLabels(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.CountRelatedLabels(System.String)
   name: CountRelatedLabels(String)
@@ -863,6 +893,12 @@ references:
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountSiblings_HtmlAgilityPack_HtmlNode_System_String_
   commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.CountSiblings(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode,System.String)
+  name: CountSiblings(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_CountSiblings_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.CountSiblings(HtmlNode, System.String)
   nameWithType: Html.CountSiblings(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.CountSiblings(System.String)
   name: CountSiblings(String)
@@ -896,6 +932,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlAgilityPack.HtmlNode, System.String)
   nameWithType: Html.GetRelatedLabels(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode,System.String)
+  name: GetRelatedLabels(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_GetRelatedLabels_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GetRelatedLabels(HtmlNode, System.String)
+  nameWithType: Html.GetRelatedLabels(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.GetRelatedLabels(System.String)
   name: GetRelatedLabels(String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_GetRelatedLabels_System_String_
@@ -914,6 +956,12 @@ references:
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_GroupSiblings_HtmlAgilityPack_HtmlNode_System_String_
   commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.GroupSiblings(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode,System.String)
+  name: GroupSiblings(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_GroupSiblings_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.GroupSiblings(HtmlNode, System.String)
   nameWithType: Html.GroupSiblings(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.GroupSiblings(System.String)
   name: GroupSiblings(String)
@@ -960,6 +1008,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlAgilityPack.HtmlNode, System.String)
   nameWithType: Html.SelectNodes(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode,System.String)
+  name: SelectNodes(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_SelectNodes_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.SelectNodes(HtmlNode, System.String)
+  nameWithType: Html.SelectNodes(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.SelectNodes(System.String)
   name: SelectNodes(String)
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_SelectNodes_System_String_
@@ -991,6 +1045,12 @@ references:
   href: api/AutoCheck.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateTable_HtmlAgilityPack_HtmlNode_System_String_
   commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode,System.String)
   fullName: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlAgilityPack.HtmlNode, System.String)
+  nameWithType: Html.ValidateTable(HtmlNode, String)
+- uid: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode,System.String)
+  name: ValidateTable(HtmlNode, String)
+  href: api/AutoCheck.Core.Connectors.Html.html#AutoCheck_Core_Connectors_Html_ValidateTable_HtmlNode_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode,System.String)
+  fullName: AutoCheck.Core.Connectors.Html.ValidateTable(HtmlNode, System.String)
   nameWithType: Html.ValidateTable(HtmlNode, String)
 - uid: AutoCheck.Core.Connectors.Html.ValidateTable(System.String)
   name: ValidateTable(String)
@@ -3397,23 +3457,23 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Xml
   fullName: AutoCheck.Core.Connectors.Xml
   nameWithType: Xml
-- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,ValidationType)
   name: Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Xml_ValidationType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Xml.ValidationType)
-  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Xml.ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, ValidationType)
   nameWithType: Xml.Xml(Utils.OS, String, String, String, Int32, String, ValidationType)
-- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,ValidationType)
   name: Xml(Utils.OS, String, String, String, String, ValidationType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_Xml_ValidationType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Xml.ValidationType)
-  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Xml.ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, ValidationType)
   nameWithType: Xml.Xml(Utils.OS, String, String, String, String, ValidationType)
-- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
+- uid: AutoCheck.Core.Connectors.Xml.#ctor(System.String,ValidationType)
   name: Xml(String, ValidationType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_System_String_System_Xml_ValidationType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,System.Xml.ValidationType)
-  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, System.Xml.ValidationType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml__ctor_System_String_ValidationType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.#ctor(System.String,ValidationType)
+  fullName: AutoCheck.Core.Connectors.Xml.Xml(System.String, ValidationType)
   nameWithType: Xml.Xml(String, ValidationType)
 - uid: AutoCheck.Core.Connectors.Xml.#ctor*
   name: Xml
@@ -3441,11 +3501,11 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
   nameWithType: Xml.CountNodes(String, Xml.XmlNodeType)
-- uid: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.CountNodes(XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   name: CountNodes(XmlNode, String, Xml.XmlNodeType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_CountNodes_System_Xml_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
-  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_CountNodes_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.CountNodes(XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.CountNodes(XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
   nameWithType: Xml.CountNodes(XmlNode, String, Xml.XmlNodeType)
 - uid: AutoCheck.Core.Connectors.Xml.CountNodes*
   name: CountNodes
@@ -3473,11 +3533,11 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml,System.Boolean)
   fullName: AutoCheck.Core.Connectors.Xml.Equals(AutoCheck.Core.Connectors.Xml, System.Boolean)
   nameWithType: Xml.Equals(Xml, Boolean)
-- uid: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
+- uid: AutoCheck.Core.Connectors.Xml.Equals(XmlDocument,System.Boolean)
   name: Equals(XmlDocument, Boolean)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Equals_System_Xml_XmlDocument_System_Boolean_
-  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument,System.Boolean)
-  fullName: AutoCheck.Core.Connectors.Xml.Equals(System.Xml.XmlDocument, System.Boolean)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_Equals_XmlDocument_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Xml.Equals(XmlDocument,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Xml.Equals(XmlDocument, System.Boolean)
   nameWithType: Xml.Equals(XmlDocument, Boolean)
 - uid: AutoCheck.Core.Connectors.Xml.Equals*
   name: Equals
@@ -3505,11 +3565,11 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
   nameWithType: Xml.SelectNodes(String, Xml.XmlNodeType)
-- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+- uid: AutoCheck.Core.Connectors.Xml.SelectNodes(XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
   name: SelectNodes(XmlNode, String, Xml.XmlNodeType)
-  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_System_Xml_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
-  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
-  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(System.Xml.XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  href: api/AutoCheck.Core.Connectors.Xml.html#AutoCheck_Core_Connectors_Xml_SelectNodes_XmlNode_System_String_AutoCheck_Core_Connectors_Xml_XmlNodeType_
+  commentId: M:AutoCheck.Core.Connectors.Xml.SelectNodes(XmlNode,System.String,AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  fullName: AutoCheck.Core.Connectors.Xml.SelectNodes(XmlNode, System.String, AutoCheck.Core.Connectors.Xml.XmlNodeType)
   nameWithType: Xml.SelectNodes(XmlNode, String, Xml.XmlNodeType)
 - uid: AutoCheck.Core.Connectors.Xml.SelectNodes*
   name: SelectNodes
@@ -4134,9 +4194,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException()
   nameWithType: ArgumentInvalidException.ArgumentInvalidException()
+- uid: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,Exception)
+  name: ArgumentInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ArgumentInvalidException.html#AutoCheck_Core_Exceptions_ArgumentInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException(System.String, Exception)
+  nameWithType: ArgumentInvalidException.ArgumentInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
   name: ArgumentInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ArgumentInvalidException.html#AutoCheck_Core_Exceptions_ArgumentInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.ArgumentInvalidException.html#AutoCheck_Core_Exceptions_ArgumentInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.ArgumentInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.ArgumentInvalidException.ArgumentInvalidException(System.String, System.Exception)
   nameWithType: ArgumentInvalidException.ArgumentInvalidException(String, Exception)
@@ -4159,11 +4225,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.ArgumentNotFoundException.ArgumentNotFoundException()
   nameWithType: ArgumentNotFoundException.ArgumentNotFoundException()
-- uid: AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor(System.String,Exception)
   name: ArgumentNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ArgumentNotFoundException.html#AutoCheck_Core_Exceptions_ArgumentNotFoundException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.ArgumentNotFoundException.ArgumentNotFoundException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.ArgumentNotFoundException.html#AutoCheck_Core_Exceptions_ArgumentNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ArgumentNotFoundException.ArgumentNotFoundException(System.String, Exception)
   nameWithType: ArgumentNotFoundException.ArgumentNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ArgumentNotFoundException.#ctor*
   name: ArgumentNotFoundException
@@ -4184,9 +4250,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException()
   nameWithType: ConnectionInvalidException.ConnectionInvalidException()
+- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+  name: ConnectionInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ConnectionInvalidException.html#AutoCheck_Core_Exceptions_ConnectionInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, Exception)
+  nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
   name: ConnectionInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ConnectionInvalidException.html#AutoCheck_Core_Exceptions_ConnectionInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.ConnectionInvalidException.html#AutoCheck_Core_Exceptions_ConnectionInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, System.Exception)
   nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
@@ -4209,11 +4281,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException()
   nameWithType: ConnectorInvalidException.ConnectorInvalidException()
-- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,Exception)
   name: ConnectorInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html#AutoCheck_Core_Exceptions_ConnectorInvalidException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.ConnectorInvalidException.html#AutoCheck_Core_Exceptions_ConnectorInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ConnectorInvalidException.ConnectorInvalidException(System.String, Exception)
   nameWithType: ConnectorInvalidException.ConnectorInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ConnectorInvalidException.#ctor*
   name: ConnectorInvalidException
@@ -4234,11 +4306,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.ConnectorNotFoundException.ConnectorNotFoundException()
   nameWithType: ConnectorNotFoundException.ConnectorNotFoundException()
-- uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor(System.String,Exception)
   name: ConnectorNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ConnectorNotFoundException.html#AutoCheck_Core_Exceptions_ConnectorNotFoundException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.ConnectorNotFoundException.ConnectorNotFoundException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.ConnectorNotFoundException.html#AutoCheck_Core_Exceptions_ConnectorNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ConnectorNotFoundException.ConnectorNotFoundException(System.String, Exception)
   nameWithType: ConnectorNotFoundException.ConnectorNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ConnectorNotFoundException.#ctor*
   name: ConnectorNotFoundException
@@ -4259,9 +4331,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException()
   nameWithType: DocumentInvalidException.DocumentInvalidException()
+- uid: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,Exception)
+  name: DocumentInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.DocumentInvalidException.html#AutoCheck_Core_Exceptions_DocumentInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException(System.String, Exception)
+  nameWithType: DocumentInvalidException.DocumentInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
   name: DocumentInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.DocumentInvalidException.html#AutoCheck_Core_Exceptions_DocumentInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.DocumentInvalidException.html#AutoCheck_Core_Exceptions_DocumentInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.DocumentInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.DocumentInvalidException.DocumentInvalidException(System.String, System.Exception)
   nameWithType: DocumentInvalidException.DocumentInvalidException(String, Exception)
@@ -4284,9 +4362,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor
   fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException()
   nameWithType: DownloadFailedException.DownloadFailedException()
+- uid: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,Exception)
+  name: DownloadFailedException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.DownloadFailedException.html#AutoCheck_Core_Exceptions_DownloadFailedException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException(System.String, Exception)
+  nameWithType: DownloadFailedException.DownloadFailedException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
   name: DownloadFailedException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.DownloadFailedException.html#AutoCheck_Core_Exceptions_DownloadFailedException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.DownloadFailedException.html#AutoCheck_Core_Exceptions_DownloadFailedException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.DownloadFailedException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.DownloadFailedException.DownloadFailedException(System.String, System.Exception)
   nameWithType: DownloadFailedException.DownloadFailedException(String, Exception)
@@ -4309,11 +4393,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.ItemNotFoundException.ItemNotFoundException()
   nameWithType: ItemNotFoundException.ItemNotFoundException()
-- uid: AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor(System.String,Exception)
   name: ItemNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ItemNotFoundException.html#AutoCheck_Core_Exceptions_ItemNotFoundException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.ItemNotFoundException.ItemNotFoundException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.ItemNotFoundException.html#AutoCheck_Core_Exceptions_ItemNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ItemNotFoundException.ItemNotFoundException(System.String, Exception)
   nameWithType: ItemNotFoundException.ItemNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ItemNotFoundException.#ctor*
   name: ItemNotFoundException
@@ -4334,11 +4418,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.PorpertyNotFoundException.PorpertyNotFoundException()
   nameWithType: PorpertyNotFoundException.PorpertyNotFoundException()
-- uid: AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor(System.String,Exception)
   name: PorpertyNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.PorpertyNotFoundException.html#AutoCheck_Core_Exceptions_PorpertyNotFoundException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.PorpertyNotFoundException.PorpertyNotFoundException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.PorpertyNotFoundException.html#AutoCheck_Core_Exceptions_PorpertyNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.PorpertyNotFoundException.PorpertyNotFoundException(System.String, Exception)
   nameWithType: PorpertyNotFoundException.PorpertyNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.PorpertyNotFoundException.#ctor*
   name: PorpertyNotFoundException
@@ -4359,9 +4443,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException()
   nameWithType: QueryInvalidException.QueryInvalidException()
+- uid: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,Exception)
+  name: QueryInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.QueryInvalidException.html#AutoCheck_Core_Exceptions_QueryInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException(System.String, Exception)
+  nameWithType: QueryInvalidException.QueryInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
   name: QueryInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.QueryInvalidException.html#AutoCheck_Core_Exceptions_QueryInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.QueryInvalidException.html#AutoCheck_Core_Exceptions_QueryInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.QueryInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.QueryInvalidException.QueryInvalidException(System.String, System.Exception)
   nameWithType: QueryInvalidException.QueryInvalidException(String, Exception)
@@ -4384,9 +4474,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException()
   nameWithType: RegexInvalidException.RegexInvalidException()
+- uid: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,Exception)
+  name: RegexInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.RegexInvalidException.html#AutoCheck_Core_Exceptions_RegexInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException(System.String, Exception)
+  nameWithType: RegexInvalidException.RegexInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
   name: RegexInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.RegexInvalidException.html#AutoCheck_Core_Exceptions_RegexInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.RegexInvalidException.html#AutoCheck_Core_Exceptions_RegexInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.RegexInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.RegexInvalidException.RegexInvalidException(System.String, System.Exception)
   nameWithType: RegexInvalidException.RegexInvalidException(String, Exception)
@@ -4409,11 +4505,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.ResultMismatchException.#ctor
   fullName: AutoCheck.Core.Exceptions.ResultMismatchException.ResultMismatchException()
   nameWithType: ResultMismatchException.ResultMismatchException()
-- uid: AutoCheck.Core.Exceptions.ResultMismatchException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.ResultMismatchException.#ctor(System.String,Exception)
   name: ResultMismatchException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.ResultMismatchException.html#AutoCheck_Core_Exceptions_ResultMismatchException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.ResultMismatchException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.ResultMismatchException.ResultMismatchException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.ResultMismatchException.html#AutoCheck_Core_Exceptions_ResultMismatchException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ResultMismatchException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ResultMismatchException.ResultMismatchException(System.String, Exception)
   nameWithType: ResultMismatchException.ResultMismatchException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.ResultMismatchException.#ctor*
   name: ResultMismatchException
@@ -4434,11 +4530,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException()
   nameWithType: StyleInvalidException.StyleInvalidException()
-- uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,Exception)
   name: StyleInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html#AutoCheck_Core_Exceptions_StyleInvalidException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html#AutoCheck_Core_Exceptions_StyleInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.StyleInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleInvalidException.StyleInvalidException(System.String, Exception)
   nameWithType: StyleInvalidException.StyleInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.StyleInvalidException.#ctor*
   name: StyleInvalidException
@@ -4459,9 +4555,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor
   fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException()
   nameWithType: StyleNotAppliedException.StyleNotAppliedException()
+- uid: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,Exception)
+  name: StyleNotAppliedException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.StyleNotAppliedException.html#AutoCheck_Core_Exceptions_StyleNotAppliedException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException(System.String, Exception)
+  nameWithType: StyleNotAppliedException.StyleNotAppliedException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
   name: StyleNotAppliedException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.StyleNotAppliedException.html#AutoCheck_Core_Exceptions_StyleNotAppliedException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.StyleNotAppliedException.html#AutoCheck_Core_Exceptions_StyleNotAppliedException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.StyleNotAppliedException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.StyleNotAppliedException.StyleNotAppliedException(System.String, System.Exception)
   nameWithType: StyleNotAppliedException.StyleNotAppliedException(String, Exception)
@@ -4484,9 +4586,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException()
   nameWithType: StyleNotFoundException.StyleNotFoundException()
+- uid: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,Exception)
+  name: StyleNotFoundException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.StyleNotFoundException.html#AutoCheck_Core_Exceptions_StyleNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException(System.String, Exception)
+  nameWithType: StyleNotFoundException.StyleNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
   name: StyleNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.StyleNotFoundException.html#AutoCheck_Core_Exceptions_StyleNotFoundException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.StyleNotFoundException.html#AutoCheck_Core_Exceptions_StyleNotFoundException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.StyleNotFoundException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.StyleNotFoundException.StyleNotFoundException(System.String, System.Exception)
   nameWithType: StyleNotFoundException.StyleNotFoundException(String, Exception)
@@ -4509,9 +4617,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor
   fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException()
   nameWithType: TableInconsistencyException.TableInconsistencyException()
+- uid: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,Exception)
+  name: TableInconsistencyException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.TableInconsistencyException.html#AutoCheck_Core_Exceptions_TableInconsistencyException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException(System.String, Exception)
+  nameWithType: TableInconsistencyException.TableInconsistencyException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
   name: TableInconsistencyException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.TableInconsistencyException.html#AutoCheck_Core_Exceptions_TableInconsistencyException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.TableInconsistencyException.html#AutoCheck_Core_Exceptions_TableInconsistencyException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.TableInconsistencyException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.TableInconsistencyException.TableInconsistencyException(System.String, System.Exception)
   nameWithType: TableInconsistencyException.TableInconsistencyException(String, Exception)
@@ -4534,9 +4648,15 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor
   fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException()
   nameWithType: VariableInvalidException.VariableInvalidException()
+- uid: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,Exception)
+  name: VariableInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.VariableInvalidException.html#AutoCheck_Core_Exceptions_VariableInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException(System.String, Exception)
+  nameWithType: VariableInvalidException.VariableInvalidException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
   name: VariableInvalidException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.VariableInvalidException.html#AutoCheck_Core_Exceptions_VariableInvalidException__ctor_System_String_System_Exception_
+  href: api/AutoCheck.Exceptions.VariableInvalidException.html#AutoCheck_Core_Exceptions_VariableInvalidException__ctor_System_String_System_Exception_
   commentId: M:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
   fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException(System.String, System.Exception)
   nameWithType: VariableInvalidException.VariableInvalidException(String, Exception)
@@ -4559,11 +4679,11 @@ references:
   commentId: M:AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor
   fullName: AutoCheck.Core.Exceptions.VariableNotFoundException.VariableNotFoundException()
   nameWithType: VariableNotFoundException.VariableNotFoundException()
-- uid: AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor(System.String,System.Exception)
+- uid: AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor(System.String,Exception)
   name: VariableNotFoundException(String, Exception)
-  href: api/AutoCheck.Core.Exceptions.VariableNotFoundException.html#AutoCheck_Core_Exceptions_VariableNotFoundException__ctor_System_String_System_Exception_
-  commentId: M:AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor(System.String,System.Exception)
-  fullName: AutoCheck.Core.Exceptions.VariableNotFoundException.VariableNotFoundException(System.String, System.Exception)
+  href: api/AutoCheck.Core.Exceptions.VariableNotFoundException.html#AutoCheck_Core_Exceptions_VariableNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.VariableNotFoundException.VariableNotFoundException(System.String, Exception)
   nameWithType: VariableNotFoundException.VariableNotFoundException(String, Exception)
 - uid: AutoCheck.Core.Exceptions.VariableNotFoundException.#ctor*
   name: VariableNotFoundException
@@ -4578,12 +4698,12 @@ references:
   commentId: T:AutoCheck.Core.Output
   fullName: AutoCheck.Core.Output
   nameWithType: Output
-- uid: AutoCheck.Core.Output.#ctor
-  name: Output()
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output__ctor
-  commentId: M:AutoCheck.Core.Output.#ctor
-  fullName: AutoCheck.Core.Output.Output()
-  nameWithType: Output.Output()
+- uid: AutoCheck.Core.Output.#ctor(System.Boolean)
+  name: Output(Boolean)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output__ctor_System_Boolean_
+  commentId: M:AutoCheck.Core.Output.#ctor(System.Boolean)
+  fullName: AutoCheck.Core.Output.Output(System.Boolean)
+  nameWithType: Output.Output(Boolean)
 - uid: AutoCheck.Core.Output.#ctor*
   name: Output
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output__ctor_
@@ -4604,12 +4724,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.BreakLine
   nameWithType: Output.BreakLine
-- uid: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
-  name: CloseLog(Output.Type)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CloseLog_AutoCheck_Core_Output_Type_
-  commentId: M:AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
-  fullName: AutoCheck.Core.Output.CloseLog(AutoCheck.Core.Output.Type)
-  nameWithType: Output.CloseLog(Output.Type)
+- uid: AutoCheck.Core.Output.CloseLog
+  name: CloseLog()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CloseLog
+  commentId: M:AutoCheck.Core.Output.CloseLog
+  fullName: AutoCheck.Core.Output.CloseLog()
+  nameWithType: Output.CloseLog()
 - uid: AutoCheck.Core.Output.CloseLog*
   name: CloseLog
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CloseLog_
@@ -4617,64 +4737,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.CloseLog
   nameWithType: Output.CloseLog
-- uid: AutoCheck.Core.Output.Content
-  name: Output.Content
-  href: api/AutoCheck.Core.Output.Content.html
-  commentId: T:AutoCheck.Core.Output.Content
-  fullName: AutoCheck.Core.Output.Content
-  nameWithType: Output.Content
-- uid: AutoCheck.Core.Output.Content.BreakLine
-  name: BreakLine
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_BreakLine
-  commentId: P:AutoCheck.Core.Output.Content.BreakLine
-  fullName: AutoCheck.Core.Output.Content.BreakLine
-  nameWithType: Output.Content.BreakLine
-- uid: AutoCheck.Core.Output.Content.BreakLine*
-  name: BreakLine
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_BreakLine_
-  commentId: Overload:AutoCheck.Core.Output.Content.BreakLine
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Content.BreakLine
-  nameWithType: Output.Content.BreakLine
-- uid: AutoCheck.Core.Output.Content.Indent
-  name: Indent
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Indent
-  commentId: P:AutoCheck.Core.Output.Content.Indent
-  fullName: AutoCheck.Core.Output.Content.Indent
-  nameWithType: Output.Content.Indent
-- uid: AutoCheck.Core.Output.Content.Indent*
-  name: Indent
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Indent_
-  commentId: Overload:AutoCheck.Core.Output.Content.Indent
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Content.Indent
-  nameWithType: Output.Content.Indent
-- uid: AutoCheck.Core.Output.Content.Style
-  name: Style
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Style
-  commentId: P:AutoCheck.Core.Output.Content.Style
-  fullName: AutoCheck.Core.Output.Content.Style
-  nameWithType: Output.Content.Style
-- uid: AutoCheck.Core.Output.Content.Style*
-  name: Style
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Style_
-  commentId: Overload:AutoCheck.Core.Output.Content.Style
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Content.Style
-  nameWithType: Output.Content.Style
-- uid: AutoCheck.Core.Output.Content.Text
-  name: Text
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Text
-  commentId: P:AutoCheck.Core.Output.Content.Text
-  fullName: AutoCheck.Core.Output.Content.Text
-  nameWithType: Output.Content.Text
-- uid: AutoCheck.Core.Output.Content.Text*
-  name: Text
-  href: api/AutoCheck.Core.Output.Content.html#AutoCheck_Core_Output_Content_Text_
-  commentId: Overload:AutoCheck.Core.Output.Content.Text
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Content.Text
-  nameWithType: Output.Content.Text
 - uid: AutoCheck.Core.Output.CurrentIndent
   name: CurrentIndent
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_CurrentIndent
@@ -4733,19 +4795,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.Log.Log
   nameWithType: Output.Log.Log
-- uid: AutoCheck.Core.Output.Log.Content
-  name: Content
-  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_Content
-  commentId: P:AutoCheck.Core.Output.Log.Content
-  fullName: AutoCheck.Core.Output.Log.Content
-  nameWithType: Output.Log.Content
-- uid: AutoCheck.Core.Output.Log.Content*
-  name: Content
-  href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_Content_
-  commentId: Overload:AutoCheck.Core.Output.Log.Content
-  isSpec: "True"
-  fullName: AutoCheck.Core.Output.Log.Content
-  nameWithType: Output.Log.Content
 - uid: AutoCheck.Core.Output.Log.ToJson
   name: ToJson()
   href: api/AutoCheck.Core.Output.Log.html#AutoCheck_Core_Output_Log_ToJson
@@ -4785,31 +4834,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.ResetIndent
   nameWithType: Output.ResetIndent
-- uid: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
-  name: SentToTerminal(Output.Log)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SentToTerminal_AutoCheck_Core_Output_Log_
-  commentId: M:AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
-  fullName: AutoCheck.Core.Output.SentToTerminal(AutoCheck.Core.Output.Log)
-  nameWithType: Output.SentToTerminal(Output.Log)
-- uid: AutoCheck.Core.Output.SentToTerminal*
-  name: SentToTerminal
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SentToTerminal_
-  commentId: Overload:AutoCheck.Core.Output.SentToTerminal
+- uid: AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  name: SendToTerminal(Output.Log)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SendToTerminal_AutoCheck_Core_Output_Log_
+  commentId: M:AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  fullName: AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
+  nameWithType: Output.SendToTerminal(Output.Log)
+- uid: AutoCheck.Core.Output.SendToTerminal*
+  name: SendToTerminal
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SendToTerminal_
+  commentId: Overload:AutoCheck.Core.Output.SendToTerminal
   isSpec: "True"
-  fullName: AutoCheck.Core.Output.SentToTerminal
-  nameWithType: Output.SentToTerminal
+  fullName: AutoCheck.Core.Output.SendToTerminal
+  nameWithType: Output.SendToTerminal
 - uid: AutoCheck.Core.Output.SingleIndent
   name: SingleIndent
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_SingleIndent
   commentId: F:AutoCheck.Core.Output.SingleIndent
   fullName: AutoCheck.Core.Output.SingleIndent
   nameWithType: Output.SingleIndent
-- uid: AutoCheck.Core.Output.Space
-  name: Output.Space
-  href: api/AutoCheck.Core.Output.Space.html
-  commentId: T:AutoCheck.Core.Output.Space
-  fullName: AutoCheck.Core.Output.Space
-  nameWithType: Output.Space
 - uid: AutoCheck.Core.Output.Style
   name: Output.Style
   href: api/AutoCheck.Core.Output.Style.html
@@ -4970,13 +5013,13 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.WriteLine
   nameWithType: Output.WriteLine
-- uid: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+- uid: AutoCheck.Core.Output.WriteResponse(List{System.String},System.String,System.String)
   name: WriteResponse(List<String>, String, String)
-  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteResponse_System_Collections_Generic_List_System_String__System_String_System_String_
-  commentId: M:AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List{System.String},System.String,System.String)
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_WriteResponse_List_System_String__System_String_System_String_
+  commentId: M:AutoCheck.Core.Output.WriteResponse(List{System.String},System.String,System.String)
   name.vb: WriteResponse(List(Of String), String, String)
-  fullName: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List<System.String>, System.String, System.String)
-  fullName.vb: AutoCheck.Core.Output.WriteResponse(System.Collections.Generic.List(Of System.String), System.String, System.String)
+  fullName: AutoCheck.Core.Output.WriteResponse(List<System.String>, System.String, System.String)
+  fullName.vb: AutoCheck.Core.Output.WriteResponse(List(Of System.String), System.String, System.String)
   nameWithType: Output.WriteResponse(List<String>, String, String)
   nameWithType.vb: Output.WriteResponse(List(Of String), String, String)
 - uid: AutoCheck.Core.Output.WriteResponse(System.String,System.String,System.String)
@@ -5004,22 +5047,22 @@ references:
   commentId: M:AutoCheck.Core.Script.#ctor(System.String)
   fullName: AutoCheck.Core.Script.Script(System.String)
   nameWithType: Script.Script(String)
-- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   name: Script(String, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>)
   nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
-- uid: AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   name: Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__System_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},System.EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(System.String, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, System.EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), System.EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
   nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
 - uid: AutoCheck.Core.Script.#ctor*
@@ -5068,6 +5111,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.BatchCaption
   nameWithType: Script.BatchCaption
+- uid: AutoCheck.Core.Script.Concurrent
+  name: Concurrent
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_Concurrent
+  commentId: P:AutoCheck.Core.Script.Concurrent
+  fullName: AutoCheck.Core.Script.Concurrent
+  nameWithType: Script.Concurrent
+- uid: AutoCheck.Core.Script.Concurrent*
+  name: Concurrent
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_Concurrent_
+  commentId: Overload:AutoCheck.Core.Script.Concurrent
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.Concurrent
+  nameWithType: Script.Concurrent
 - uid: AutoCheck.Core.Script.CurrentFileName
   name: CurrentFileName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFileName
@@ -5688,22 +5744,22 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.RunWithRetry
   nameWithType: Utils.RunWithRetry
-- uid: AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+- uid: AutoCheck.Core.Utils.RunWithRetry``1(Action,System.Int32,System.Int32)
   name: RunWithRetry<T>(Action, Int32, Int32)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__1_System_Action_System_Int32_System_Int32_
-  commentId: M:AutoCheck.Core.Utils.RunWithRetry``1(System.Action,System.Int32,System.Int32)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__1_Action_System_Int32_System_Int32_
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``1(Action,System.Int32,System.Int32)
   name.vb: RunWithRetry(Of T)(Action, Int32, Int32)
-  fullName: AutoCheck.Core.Utils.RunWithRetry<T>(System.Action, System.Int32, System.Int32)
-  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of T)(System.Action, System.Int32, System.Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<T>(Action, System.Int32, System.Int32)
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of T)(Action, System.Int32, System.Int32)
   nameWithType: Utils.RunWithRetry<T>(Action, Int32, Int32)
   nameWithType.vb: Utils.RunWithRetry(Of T)(Action, Int32, Int32)
-- uid: AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+- uid: AutoCheck.Core.Utils.RunWithRetry``2(Func{``0},System.Int32,System.Int32)
   name: RunWithRetry<R, T>(Func<R>, Int32, Int32)
-  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__2_System_Func___0__System_Int32_System_Int32_
-  commentId: M:AutoCheck.Core.Utils.RunWithRetry``2(System.Func{``0},System.Int32,System.Int32)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_RunWithRetry__2_Func___0__System_Int32_System_Int32_
+  commentId: M:AutoCheck.Core.Utils.RunWithRetry``2(Func{``0},System.Int32,System.Int32)
   name.vb: RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
-  fullName: AutoCheck.Core.Utils.RunWithRetry<R, T>(System.Func<R>, System.Int32, System.Int32)
-  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(System.Func(Of R), System.Int32, System.Int32)
+  fullName: AutoCheck.Core.Utils.RunWithRetry<R, T>(Func<R>, System.Int32, System.Int32)
+  fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(Func(Of R), System.Int32, System.Int32)
   nameWithType: Utils.RunWithRetry<R, T>(Func<R>, Int32, Int32)
   nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
 - uid: AutoCheck.Core.Utils.TempFolder

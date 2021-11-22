@@ -23,13 +23,13 @@ batch:
     - remote: 
         - os: "GNU"
         - host: "localhost"
-        - user: "usuario"
-        - password: "usuario"
+        - user: "autocheck"
+        - password: "autocheck"
         - folder: "/home/usuario/test"
 
     - remote:     
         - os: "GNU" 
         - host: "localhost"
-        - user: "usuario"
-        - password: "usuario"   
+        - user: "autocheck"
+        - password: "autocheck"   
         - path: "/home/usuario/test"

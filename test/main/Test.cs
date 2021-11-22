@@ -67,7 +67,7 @@ namespace AutoCheck.Test
         
         protected string Name { 
             get {
-                return GetType().Name.ToCamelCase();
+                return GetType().Name.ToLower();
             }
         } 
 
@@ -150,14 +150,26 @@ namespace AutoCheck.Test
         }
 
         /// <summary>
-        /// Converts an absolute local Win path to a remote one under WSL (Windows Subsystem Linux).
+        /// This is for remote testing purposes only, so the remote machine will be the localhost. 
+        /// If the host OS is Windows, converts an absolute local Win path to a remote one under WSL (Windows Subsystem Linux); otherwise remains as is and just replaces the local user for the remote one if given (and found).
         /// </summary>
         /// <example>"C:\folder\file.ext" -> "/mnt/c/folder/file.ext"</example>
+        /// <example>"/home/old_user/folder/file.ext" -> "/home/new_user/folder/file.ext"</example>
         /// <param name="localPath">Absolute local path to convert.</param>        
         /// <returns>The absolute remote path.</returns>
-        protected string LocalPathToWsl(string localPath){
+        protected string LocalPathToRemote(string localPath, string user=null){
             if(!Path.IsPathFullyQualified(localPath)) throw new ArgumentInvalidException("The argument localPath must be an absolute path.");
 
+            if(!string.IsNullOrEmpty(user) && Core.Utils.CurrentOS != OS.WIN){
+                var find = "/home/";
+                if(localPath.Contains(find)){
+                    //replacing as is for avoinding matches with other folders
+                    var start = $"{find}{user}";
+                    localPath = localPath.Substring(localPath.IndexOf(find) + find.Length);
+                    localPath = localPath.Substring(localPath.IndexOf('/')); 
+                    localPath = $"{find}{user}{localPath}";
+                }
+            }
             if(Core.Utils.CurrentOS == OS.WIN){
                 var drive = localPath.Substring(0, localPath.IndexOf(":")).ToLower();
                 localPath = localPath.Replace($"{drive}:\\", $"/mnt/{drive}/", StringComparison.InvariantCultureIgnoreCase).Replace("\\", "/");    

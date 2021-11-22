@@ -28,7 +28,35 @@ namespace AutoCheck.Test
     public class Output : Test
     {
         public Output(): base("script"){
-        }        
+        }   
+
+        [Test, Category("Output"), Category("Local"), Category("Text")]
+        public void Output_SendToTerminal_NotNull()
+        {             
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
+            
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
+            
+            //Disabling terminal output
+            System.Console.SetOut(new StringWriter());
+            s.Output.SendToTerminal(s.Output.GetLog().FirstOrDefault());   
+
+            //Enabling terminal output
+            var standardOutput = new StreamWriter(System.Console.OpenStandardOutput());
+            standardOutput.AutoFlush = true;
+            System.Console.SetOut(standardOutput);         
+        } 
+
+        [Test, Category("Output"), Category("Local"), Category("Text")]
+        public void Output_SendToTerminal_Null()
+        {             
+            var logFilePath = Path.Combine(LogRootFolder, "script", "output", "output_single_1_yaml", "OUTPUT SINGLE 1_Student Name 1.log");
+            if(File.Exists(logFilePath)) File.Delete(logFilePath);
+            
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
+            s.Output.SendToTerminal(null);            
+        }     
        
         [Test, Category("Output"), Category("Local"), Category("Text")]
         public void Output_SINGLE_FILE_1()

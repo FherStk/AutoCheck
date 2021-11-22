@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Postgres
     path: ../core/connectors/Postgres.cs
@@ -64,27 +64,19 @@ items:
   summary: "\nAllows in/out operations and/or data validations with a PostgreSQL instance.\n"
   example: []
   syntax:
-    content: 'public class Postgres : Base, IDisposable'
+    content: 'public class Postgres : Base'
     content.vb: >-
       Public Class Postgres
           Inherits Base
-          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connectors.Base
   derivedClasses:
   - AutoCheck.Core.Connectors.Odoo
-  implements:
-  - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Postgres.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -105,7 +97,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Conn
     path: ../core/connectors/Postgres.cs
@@ -119,7 +111,7 @@ items:
     content: public NpgsqlConnection Conn { get; }
     parameters: []
     return:
-      type: Npgsql.NpgsqlConnection
+      type: NpgsqlConnection
       description: ''
     content.vb: Public ReadOnly Property Conn As NpgsqlConnection
   overload: AutoCheck.Core.Connectors.Postgres.Conn*
@@ -143,7 +135,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Postgres.cs
@@ -181,7 +173,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Database
     path: ../core/connectors/Postgres.cs
@@ -219,7 +211,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: User
     path: ../core/connectors/Postgres.cs
@@ -257,7 +249,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Postgres.cs
@@ -295,7 +287,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: BinPath
     path: ../core/connectors/Postgres.cs
@@ -333,7 +325,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Postgres.cs
@@ -381,7 +373,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Postgres.cs
@@ -416,7 +408,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Postgres.cs
@@ -448,7 +440,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteQuery
     path: ../core/connectors/Postgres.cs
@@ -465,7 +457,7 @@ items:
       type: System.String
       description: The query to run.
     return:
-      type: System.Data.DataSet
+      type: DataSet
       description: The dataset containing all the output.
     content.vb: Public Function ExecuteQuery(query As String) As DataSet
   overload: AutoCheck.Core.Connectors.Postgres.ExecuteQuery*
@@ -487,7 +479,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteNonQuery
     path: ../core/connectors/Postgres.cs
@@ -523,7 +515,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecuteScalar
     path: ../core/connectors/Postgres.cs
@@ -567,7 +559,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsDataBase
     path: ../core/connectors/Postgres.cs
@@ -602,7 +594,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -640,7 +632,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateDataBase
     path: ../core/connectors/Postgres.cs
@@ -676,7 +668,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ImportSqlDump
     path: ../core/connectors/Postgres.cs
@@ -712,7 +704,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropDataBase
     path: ../core/connectors/Postgres.cs
@@ -744,7 +736,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetUsers
     path: ../core/connectors/Postgres.cs
@@ -757,7 +749,7 @@ items:
   syntax:
     content: public DataSet GetUsers()
     return:
-      type: System.Data.DataSet
+      type: DataSet
       description: A dataset containing the requested data (&apos;username&apos;, &apos;attributes&apos;).
     content.vb: Public Function GetUsers As DataSet
   overload: AutoCheck.Core.Connectors.Postgres.GetUsers*
@@ -779,7 +771,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountUsers
     path: ../core/connectors/Postgres.cs
@@ -814,7 +806,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateUser
     path: ../core/connectors/Postgres.cs
@@ -851,7 +843,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUser
     path: ../core/connectors/Postgres.cs
@@ -886,7 +878,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsUser
     path: ../core/connectors/Postgres.cs
@@ -921,7 +913,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropUserMembership
     path: ../core/connectors/Postgres.cs
@@ -957,7 +949,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetRoles
     path: ../core/connectors/Postgres.cs
@@ -970,7 +962,7 @@ items:
   syntax:
     content: public DataSet GetRoles()
     return:
-      type: System.Data.DataSet
+      type: DataSet
       description: A dataset containing the requested data (&apos;rolname&apos;).
     content.vb: Public Function GetRoles As DataSet
   overload: AutoCheck.Core.Connectors.Postgres.GetRoles*
@@ -992,7 +984,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountRoles
     path: ../core/connectors/Postgres.cs
@@ -1027,7 +1019,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateRole
     path: ../core/connectors/Postgres.cs
@@ -1063,7 +1055,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRole
     path: ../core/connectors/Postgres.cs
@@ -1099,7 +1091,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsRole
     path: ../core/connectors/Postgres.cs
@@ -1134,7 +1126,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: DropRoleMembership
     path: ../core/connectors/Postgres.cs
@@ -1170,7 +1162,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetMembership
     path: ../core/connectors/Postgres.cs
@@ -1209,7 +1201,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetTablePrivileges
     path: ../core/connectors/Postgres.cs
@@ -1254,7 +1246,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetSchemaPrivileges
     path: ../core/connectors/Postgres.cs
@@ -1296,7 +1288,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelectWithView
     path: ../core/connectors/Postgres.cs
@@ -1341,7 +1333,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CompareSelects
     path: ../core/connectors/Postgres.cs
@@ -1383,7 +1375,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetViewDefinition
     path: ../core/connectors/Postgres.cs
@@ -1425,7 +1417,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetForeignKeys
     path: ../core/connectors/Postgres.cs
@@ -1445,7 +1437,7 @@ items:
       type: System.String
       description: The view which data will be requested.
     return:
-      type: System.Data.DataSet
+      type: DataSet
       description: The view definition as an SQL SELECT query.
     content.vb: Public Function GetForeignKeys(schema As String, table As String) As DataSet
   overload: AutoCheck.Core.Connectors.Postgres.GetForeignKeys*
@@ -1467,7 +1459,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsForeignKey
     path: ../core/connectors/Postgres.cs
@@ -1521,7 +1513,7 @@ items:
   source:
     remote:
       path: core/connectors/Postgres.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsTable
     path: ../core/connectors/Postgres.cs
@@ -1556,8 +1548,7 @@ references:
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
@@ -1568,25 +1559,18 @@ references:
   name: Base
   nameWithType: Base
   fullName: AutoCheck.Core.Connectors.Base
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   parent: AutoCheck.Core.Connectors.Base
   isExternal: true
   name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
   nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
-  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action<System.String>)
   nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
-  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action(Of System.String))
   name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -1640,10 +1624,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -1660,7 +1644,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -1714,10 +1698,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1733,117 +1717,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Connectors.Postgres.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Postgres>()
+  nameWithType: ObjectExtensions.DeepClone<Postgres>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Postgres>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Postgres)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Postgres)()
+  name.vb: DeepClone(Of Postgres)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Postgres>
+    nameWithType: ObjectExtensions.DeepClone<Postgres>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Postgres>
   - name: (
     nameWithType: (
     fullName: (
@@ -1851,199 +1739,74 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Postgres)
+    nameWithType: ObjectExtensions.DeepClone(Of Postgres)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Postgres)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Postgres.Conn*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.Conn
   name: Conn
   nameWithType: Postgres.Conn
   fullName: AutoCheck.Core.Connectors.Postgres.Conn
-- uid: Npgsql.NpgsqlConnection
-  commentId: T:Npgsql.NpgsqlConnection
-  parent: Npgsql
+- uid: NpgsqlConnection
+  commentId: '!:NpgsqlConnection'
   isExternal: true
   name: NpgsqlConnection
   nameWithType: NpgsqlConnection
-  fullName: Npgsql.NpgsqlConnection
-- uid: Npgsql
-  commentId: N:Npgsql
-  isExternal: true
-  name: Npgsql
-  nameWithType: Npgsql
-  fullName: Npgsql
+  fullName: NpgsqlConnection
 - uid: AutoCheck.Core.Connectors.Postgres.Host*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.Host
   name: Host
   nameWithType: Postgres.Host
   fullName: AutoCheck.Core.Connectors.Postgres.Host
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -2116,19 +1879,11 @@ references:
   name: ExecuteQuery
   nameWithType: Postgres.ExecuteQuery
   fullName: AutoCheck.Core.Connectors.Postgres.ExecuteQuery
-- uid: System.Data.DataSet
-  commentId: T:System.Data.DataSet
-  parent: System.Data
+- uid: DataSet
   isExternal: true
   name: DataSet
   nameWithType: DataSet
-  fullName: System.Data.DataSet
-- uid: System.Data
-  commentId: N:System.Data
-  isExternal: true
-  name: System.Data
-  nameWithType: System.Data
-  fullName: System.Data
+  fullName: DataSet
 - uid: AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery*
   commentId: Overload:AutoCheck.Core.Connectors.Postgres.ExecuteNonQuery
   name: ExecuteNonQuery
@@ -2156,8 +1911,6 @@ references:
   nameWithType: Postgres.ExistsDataBase
   fullName: AutoCheck.Core.Connectors.Postgres.ExistsDataBase
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -2188,8 +1941,6 @@ references:
   nameWithType: Postgres.CountUsers
   fullName: AutoCheck.Core.Connectors.Postgres.CountUsers
 - uid: System.Int64
-  commentId: T:System.Int64
-  parent: System
   isExternal: true
   name: Int64
   nameWithType: Int64

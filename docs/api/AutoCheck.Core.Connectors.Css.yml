@@ -10,13 +10,13 @@ items:
   - AutoCheck.Core.Connectors.Css.#ctor(System.String)
   - AutoCheck.Core.Connectors.Css.CssDoc
   - AutoCheck.Core.Connectors.Css.Dispose
-  - AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
+  - AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
   - AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String,System.String)
   - AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String[])
-  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
-  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
-  - AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
+  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
+  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String,System.String)
+  - AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String[])
+  - AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary{System.String,System.String})
   - AutoCheck.Core.Connectors.Css.PropertyExists(System.String,System.String)
   - AutoCheck.Core.Connectors.Css.PropertyExists(System.String[])
   - AutoCheck.Core.Connectors.Css.Raw
@@ -31,36 +31,28 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/connectors/Css.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nAllows in/out operations and/or data validations with CSS files.\n"
   example: []
   syntax:
-    content: 'public class Css : Base, IDisposable'
+    content: 'public class Css : Base'
     content.vb: >-
       Public Class Css
           Inherits Base
-          Implements IDisposable
   inheritance:
   - System.Object
   - AutoCheck.Core.Connectors.Base
-  implements:
-  - System.IDisposable
   inheritedMembers:
-  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Css.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -81,11 +73,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../core/connectors/Css.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -95,7 +87,7 @@ items:
     content: public Stylesheet CssDoc { get; }
     parameters: []
     return:
-      type: ExCSS.Stylesheet
+      type: Stylesheet
       description: ''
     content.vb: Public ReadOnly Property CssDoc As Stylesheet
   overload: AutoCheck.Core.Connectors.Css.CssDoc*
@@ -119,11 +111,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Css.cs
-    startLine: 46
+    startLine: 47
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -157,11 +149,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
-    startLine: 52
+    startLine: 53
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -193,11 +185,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -236,11 +228,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
-    startLine: 79
+    startLine: 80
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -277,11 +269,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Css.cs
-    startLine: 94
+    startLine: 95
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -312,11 +304,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCss3AgainstW3C
     path: ../core/connectors/Css.cs
-    startLine: 101
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -344,11 +336,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 137
+    startLine: 133
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -386,11 +378,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 151
+    startLine: 147
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -405,7 +397,7 @@ items:
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyExists(properties As String()) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyExists(properties As String()) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyExists*
   nameWithType.vb: Css.PropertyExists(String())
   modifiers.csharp:
@@ -414,25 +406,25 @@ items:
   - Public
   fullName.vb: AutoCheck.Core.Connectors.Css.PropertyExists(System.String())
   name.vb: PropertyExists(String())
-- uid: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
-  id: PropertyExists(System.Collections.Generic.Dictionary{System.String,System.String})
+- uid: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary{System.String,System.String})
+  id: PropertyExists(Dictionary{System.String,System.String})
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyExists(Dictionary<String, String>)
   nameWithType: Css.PropertyExists(Dictionary<String, String>)
-  fullName: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary<System.String, System.String>)
   type: Method
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 160
+    startLine: 156
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -442,39 +434,39 @@ items:
     content: public (int count, string[] exists) PropertyExists(Dictionary<string, string> properties)
     parameters:
     - id: properties
-      type: System.Collections.Generic.Dictionary{System.String,System.String}
+      type: Dictionary{System.String,System.String}
       description: The CSS property names and its expected values.
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyExists(properties As Dictionary(Of String, String)) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyExists(properties As Dictionary(Of String, String)) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyExists*
   nameWithType.vb: Css.PropertyExists(Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyExists(System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyExists(Dictionary(Of System.String, System.String))
   name.vb: PropertyExists(Dictionary(Of String, String))
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
-  id: PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String,System.String)
+  id: PropertyApplied(HtmlDocument,System.String,System.String)
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyApplied(HtmlDocument, String, String)
   nameWithType: Css.PropertyApplied(HtmlDocument, String, String)
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String, System.String)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 178
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -482,7 +474,7 @@ items:
     content: public bool PropertyApplied(HtmlDocument htmlDoc, string property, string value = null)
     parameters:
     - id: htmlDoc
-      type: HtmlAgilityPack.HtmlDocument
+      type: HtmlDocument
     - id: property
       type: System.String
     - id: value
@@ -495,25 +487,25 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
-  id: PropertyApplied(HtmlAgilityPack.HtmlDocument,System.String[])
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String[])
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,System.String[])
+  id: PropertyApplied(HtmlDocument,System.String[])
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyApplied(HtmlDocument, String[])
   nameWithType: Css.PropertyApplied(HtmlDocument, String[])
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String[])
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String[])
   type: Method
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 203
+    startLine: 199
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -523,7 +515,7 @@ items:
     content: public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, string[] properties)
     parameters:
     - id: htmlDoc
-      type: HtmlAgilityPack.HtmlDocument
+      type: HtmlDocument
       description: The HTML document that must be using the property.
     - id: properties
       type: System.String[]
@@ -531,34 +523,34 @@ items:
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, properties As String()) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, properties As String()) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyApplied*
   nameWithType.vb: Css.PropertyApplied(HtmlDocument, String())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.String())
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, System.String())
   name.vb: PropertyApplied(HtmlDocument, String())
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
-  id: PropertyApplied(HtmlAgilityPack.HtmlDocument,System.Collections.Generic.Dictionary{System.String,System.String})
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
+  id: PropertyApplied(HtmlDocument,Dictionary{System.String,System.String})
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyApplied(HtmlDocument, Dictionary<String, String>)
   nameWithType: Css.PropertyApplied(HtmlDocument, Dictionary<String, String>)
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, Dictionary<System.String, System.String>)
   type: Method
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 213
+    startLine: 209
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -568,22 +560,22 @@ items:
     content: public (int count, string[] exists) PropertyApplied(HtmlDocument htmlDoc, Dictionary<string, string> properties)
     parameters:
     - id: htmlDoc
-      type: HtmlAgilityPack.HtmlDocument
+      type: HtmlDocument
       description: The HTML document that must be using the property.
     - id: properties
-      type: System.Collections.Generic.Dictionary{System.String,System.String}
+      type: Dictionary{System.String,System.String}
       description: The CSS property names and its expected values.
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, properties As Dictionary(Of String, String)) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyApplied(htmlDoc As HtmlDocument, properties As Dictionary(Of String, String)) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyApplied*
   nameWithType.vb: Css.PropertyApplied(HtmlDocument, Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlAgilityPack.HtmlDocument, System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(HtmlDocument, Dictionary(Of System.String, System.String))
   name.vb: PropertyApplied(HtmlDocument, Dictionary(Of String, String))
 - uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String,System.String)
   commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.String,System.String)
@@ -599,11 +591,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 231
+    startLine: 227
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -638,11 +630,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 241
+    startLine: 237
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -660,7 +652,7 @@ items:
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyApplied(htmlConn As Html, properties As String()) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyApplied(htmlConn As Html, properties As String()) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyApplied*
   nameWithType.vb: Css.PropertyApplied(Html, String())
   modifiers.csharp:
@@ -669,25 +661,25 @@ items:
   - Public
   fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.String())
   name.vb: PropertyApplied(Html, String())
-- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
-  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
-  id: PropertyApplied(AutoCheck.Core.Connectors.Html,System.Collections.Generic.Dictionary{System.String,System.String})
+- uid: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
+  commentId: M:AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
+  id: PropertyApplied(AutoCheck.Core.Connectors.Html,Dictionary{System.String,System.String})
   parent: AutoCheck.Core.Connectors.Css
   langs:
   - csharp
   - vb
   name: PropertyApplied(Html, Dictionary<String, String>)
   nameWithType: Css.PropertyApplied(Html, Dictionary<String, String>)
-  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.Collections.Generic.Dictionary<System.String, System.String>)
+  fullName: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, Dictionary<System.String, System.String>)
   type: Method
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 251
+    startLine: 247
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -700,19 +692,19 @@ items:
       type: AutoCheck.Core.Connectors.Html
       description: The HTML connector containing the document to check.
     - id: properties
-      type: System.Collections.Generic.Dictionary{System.String,System.String}
+      type: Dictionary{System.String,System.String}
       description: The CSS property names and its expected values.
     return:
       type: System.ValueTuple{System.Int32,System.String[]}
       description: Total amount of existing properties, plus the name of those properties
-    content.vb: Public Function PropertyApplied(htmlConn As Html, properties As Dictionary(Of String, String)) As(count As Integer, exists As String())
+    content.vb: Public Function PropertyApplied(htmlConn As Html, properties As Dictionary(Of String, String)) As(count As Integer, exists As String())(Of Integer , String())
   overload: AutoCheck.Core.Connectors.Css.PropertyApplied*
   nameWithType.vb: Css.PropertyApplied(Html, Dictionary(Of String, String))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, System.Collections.Generic.Dictionary(Of System.String, System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Css.PropertyApplied(AutoCheck.Core.Connectors.Html, Dictionary(Of System.String, System.String))
   name.vb: PropertyApplied(Html, Dictionary(Of String, String))
 references:
 - uid: AutoCheck.Core.Connectors
@@ -721,8 +713,7 @@ references:
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
@@ -733,25 +724,18 @@ references:
   name: Base
   nameWithType: Base
   fullName: AutoCheck.Core.Connectors.Base
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
-- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
-  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+- uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
+  commentId: M:AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   parent: AutoCheck.Core.Connectors.Base
   isExternal: true
   name: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
   nameWithType: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action<String>)
-  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action<System.String>)
+  fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action<System.String>)
   nameWithType.vb: Base.ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
-  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Action(Of System.String))
+  fullName.vb: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, Action(Of System.String))
   name.vb: ProcessRemoteFile(Utils.OS, String, String, String, Int32, String, Action(Of String))
   spec.csharp:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -805,10 +789,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: <
     nameWithType: <
@@ -825,7 +809,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Action{System.String})
+  - uid: AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
     name: ProcessRemoteFile
     nameWithType: Base.ProcessRemoteFile
     fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
@@ -879,10 +863,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: System.Action`1
+  - uid: Action`1
     name: Action
     nameWithType: Action
-    fullName: System.Action
+    fullName: Action
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -898,117 +882,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.Connectors.Css.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Css>()
+  nameWithType: ObjectExtensions.DeepClone<Css>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Css>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Css)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Css)()
+  name.vb: DeepClone(Of Css)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Css>
+    nameWithType: ObjectExtensions.DeepClone<Css>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Css>
   - name: (
     nameWithType: (
     fullName: (
@@ -1016,199 +904,74 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Css)
+    nameWithType: ObjectExtensions.DeepClone(Of Css)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Css)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Css.CssDoc*
   commentId: Overload:AutoCheck.Core.Connectors.Css.CssDoc
   name: CssDoc
   nameWithType: Css.CssDoc
   fullName: AutoCheck.Core.Connectors.Css.CssDoc
-- uid: ExCSS.Stylesheet
-  commentId: T:ExCSS.Stylesheet
-  parent: ExCSS
+- uid: Stylesheet
+  commentId: '!:Stylesheet'
   isExternal: true
   name: Stylesheet
   nameWithType: Stylesheet
-  fullName: ExCSS.Stylesheet
-- uid: ExCSS
-  commentId: N:ExCSS
-  isExternal: true
-  name: ExCSS
-  nameWithType: ExCSS
-  fullName: ExCSS
+  fullName: Stylesheet
 - uid: AutoCheck.Core.Connectors.Css.Raw*
   commentId: Overload:AutoCheck.Core.Connectors.Css.Raw
   name: Raw
   nameWithType: Css.Raw
   fullName: AutoCheck.Core.Connectors.Css.Raw
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -1225,8 +988,6 @@ references:
   nameWithType: Utils.OS
   fullName: AutoCheck.Core.Utils.OS
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -1280,8 +1041,6 @@ references:
   nameWithType: Css.PropertyExists
   fullName: AutoCheck.Core.Connectors.Css.PropertyExists
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -1313,19 +1072,18 @@ references:
     nameWithType: ()
     fullName: ()
 - uid: System.ValueTuple{System.Int32,System.String[]}
-  commentId: T:System.ValueTuple{System.Int32,System.String[]}
-  parent: System
-  isExternal: true
-  name: ValueTuple<Int32, String[]>
-  nameWithType: ValueTuple<Int32, String[]>
+  commentId: '!:System.ValueTuple{System.Int32,System.String[]}'
+  definition: System.ValueTuple`2
+  name: (, )<Int32, String[]>
+  nameWithType: (, )<Int32, String[]>
   fullName: System.ValueTuple<System.Int32, System.String[]>
-  nameWithType.vb: ValueTuple(Of Int32, String())
+  nameWithType.vb: (, )(Of Int32, String())
   fullName.vb: System.ValueTuple(Of System.Int32, System.String())
-  name.vb: ValueTuple(Of Int32, String())
+  name.vb: (, )(Of Int32, String())
   spec.csharp:
   - uid: System.ValueTuple`2
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, )
+    nameWithType: (, )
     fullName: System.ValueTuple
     isExternal: true
   - name: <
@@ -1352,8 +1110,8 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.ValueTuple`2
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, )
+    nameWithType: (, )
     fullName: System.ValueTuple
     isExternal: true
   - name: '(Of '
@@ -1378,21 +1136,70 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.Dictionary{System.String,System.String}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
+- uid: System.ValueTuple`2
+  isExternal: true
+  name: (, )<, >
+  nameWithType: (, )<, >
+  fullName: System.ValueTuple<, >
+  nameWithType.vb: (, )(Of , )
+  fullName.vb: System.ValueTuple(Of , )
+  name.vb: (, )(Of , )
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: (, )
+    nameWithType: (, )
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: (, )
+    nameWithType: (, )
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary{System.String,System.String}
+  commentId: '!:Dictionary{System.String,System.String}'
+  definition: Dictionary`2
   name: Dictionary<String, String>
   nameWithType: Dictionary<String, String>
-  fullName: System.Collections.Generic.Dictionary<System.String, System.String>
+  fullName: Dictionary<System.String, System.String>
   nameWithType.vb: Dictionary(Of String, String)
-  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.String)
+  fullName.vb: Dictionary(Of System.String, System.String)
   name.vb: Dictionary(Of String, String)
   spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: <
     nameWithType: <
@@ -1414,10 +1221,10 @@ references:
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
@@ -1438,81 +1245,66 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
+- uid: Dictionary`2
   isExternal: true
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
   spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: <
     nameWithType: <
     fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: '>'
     nameWithType: '>'
     fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
+  - uid: Dictionary`2
     name: Dictionary
     nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
+    fullName: Dictionary
     isExternal: true
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: true
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
 - uid: AutoCheck.Core.Connectors.Css.PropertyApplied*
   commentId: Overload:AutoCheck.Core.Connectors.Css.PropertyApplied
   name: PropertyApplied
   nameWithType: Css.PropertyApplied
   fullName: AutoCheck.Core.Connectors.Css.PropertyApplied
-- uid: HtmlAgilityPack.HtmlDocument
-  commentId: T:HtmlAgilityPack.HtmlDocument
-  parent: HtmlAgilityPack
+- uid: HtmlDocument
   isExternal: true
   name: HtmlDocument
   nameWithType: HtmlDocument
-  fullName: HtmlAgilityPack.HtmlDocument
-- uid: HtmlAgilityPack
-  commentId: N:HtmlAgilityPack
-  isExternal: true
-  name: HtmlAgilityPack
-  nameWithType: HtmlAgilityPack
-  fullName: HtmlAgilityPack
+  fullName: HtmlDocument
 - uid: AutoCheck.Core.Connectors.Html
   commentId: T:AutoCheck.Core.Connectors.Html
   parent: AutoCheck.Core.Connectors

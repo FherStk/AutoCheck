@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlNodeType
     path: ../core/connectors/Xml.cs
@@ -28,8 +28,10 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: public enum XmlNodeType
-    content.vb: Public Enum XmlNodeType
+    content: 'public enum XmlNodeType : int'
+    content.vb: Public Enum XmlNodeType As Integer
+  extensionMethods:
+  - AutoCheck.Core.Connectors.Xml.XmlNodeType.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - enum
@@ -50,7 +52,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: ALL
     path: ../core/connectors/Xml.cs
@@ -82,7 +84,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: STRING
     path: ../core/connectors/Xml.cs
@@ -114,7 +116,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: BOOLEAN
     path: ../core/connectors/Xml.cs
@@ -146,7 +148,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: NUMERIC
     path: ../core/connectors/Xml.cs
@@ -170,6 +172,79 @@ references:
   name: AutoCheck.Core.Connectors
   nameWithType: AutoCheck.Core.Connectors
   fullName: AutoCheck.Core.Connectors
+- uid: AutoCheck.Core.Connectors.Xml.XmlNodeType.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Xml.XmlNodeType>()
+  nameWithType: ObjectExtensions.DeepClone<Xml.XmlNodeType>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Xml.XmlNodeType>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Xml.XmlNodeType)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Xml.XmlNodeType)()
+  name.vb: DeepClone(Of Xml.XmlNodeType)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Xml.XmlNodeType>
+    nameWithType: ObjectExtensions.DeepClone<Xml.XmlNodeType>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Xml.XmlNodeType>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Xml.XmlNodeType)
+    nameWithType: ObjectExtensions.DeepClone(Of Xml.XmlNodeType)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Xml.XmlNodeType)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
   commentId: T:AutoCheck.Core.Connectors.Xml.XmlNodeType
   parent: AutoCheck.Core.Connectors

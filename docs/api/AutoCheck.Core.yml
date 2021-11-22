@@ -5,9 +5,7 @@ items:
   id: AutoCheck.Core
   children:
   - AutoCheck.Core.Output
-  - AutoCheck.Core.Output.Content
   - AutoCheck.Core.Output.Log
-  - AutoCheck.Core.Output.Space
   - AutoCheck.Core.Output.Style
   - AutoCheck.Core.Output.Type
   - AutoCheck.Core.Script
@@ -31,17 +29,6 @@ references:
   name: Output
   nameWithType: Output
   fullName: AutoCheck.Core.Output
-- uid: AutoCheck.Core.Output.Space
-  commentId: T:AutoCheck.Core.Output.Space
-  name: Output.Space
-  nameWithType: Output.Space
-  fullName: AutoCheck.Core.Output.Space
-- uid: AutoCheck.Core.Output.Content
-  commentId: T:AutoCheck.Core.Output.Content
-  parent: AutoCheck.Core
-  name: Output.Content
-  nameWithType: Output.Content
-  fullName: AutoCheck.Core.Output.Content
 - uid: AutoCheck.Core.Output.Log
   commentId: T:AutoCheck.Core.Output.Log
   parent: AutoCheck.Core

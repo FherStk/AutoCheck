@@ -575,10 +575,11 @@ namespace AutoCheck.Core{
         }  
 #endregion
 #region Events
-        private event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
-        private event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
+        //Notice: must be static because will be shared along parrallel tasks
+        private static event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
 
         public class LogGeneratedEventArgs : EventArgs
         {
@@ -1672,7 +1673,7 @@ namespace AutoCheck.Core{
         }
 
         private object ParseNode(YamlScalarNode node, bool compute=true){    
-            object  value = ComputeTypeValue(node.Tag, node.Value);
+            object  value = ComputeTypeValue(node.Tag.ToString(), node.Value);
 
             if(value.GetType().Equals(typeof(string))){                
                 //Always check if the computed value requested is correct, otherwise throws an exception
@@ -1961,7 +1962,7 @@ namespace AutoCheck.Core{
         }
 
         private object ComputeArgument(string name, YamlScalarNode node){
-            var value = ComputeTypeValue(node.Tag, node.Value);            
+            var value = ComputeTypeValue(node.Tag.ToString(), node.Value);            
             if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
             return value;
         }
@@ -2012,7 +2013,7 @@ namespace AutoCheck.Core{
         }        
 
         private object ComputeTypeValue(string tag, string value){
-            if(string.IsNullOrEmpty(tag)){
+            if(string.IsNullOrEmpty(tag) || tag.Equals("?")){
                 bool boolValue;
                 if(bool.TryParse(value, out boolValue)) return boolValue;
 

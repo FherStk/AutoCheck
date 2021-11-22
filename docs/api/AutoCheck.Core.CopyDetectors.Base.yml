@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/copy/Base.cs
@@ -41,21 +41,13 @@ items:
     content: 'public abstract class Base : IDisposable'
     content.vb: >-
       Public MustInherit Class Base
-          Implements IDisposable
+          Inherits IDisposable
   inheritance:
   - System.Object
   derivedClasses:
   - AutoCheck.Core.CopyDetectors.PlainText
-  implements:
-  - System.IDisposable
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.ToString
+  extensionMethods:
+  - AutoCheck.Core.CopyDetectors.Base.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - abstract
@@ -78,7 +70,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
@@ -118,7 +110,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
@@ -158,7 +150,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
@@ -198,7 +190,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
@@ -235,7 +227,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
@@ -249,8 +241,6 @@ items:
     content: public abstract void Dispose()
     content.vb: Public MustOverride Sub Dispose
   overload: AutoCheck.Core.CopyDetectors.Base.Dispose*
-  implements:
-  - System.IDisposable.Dispose
   modifiers.csharp:
   - public
   - abstract
@@ -271,7 +261,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -309,7 +299,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -357,7 +347,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -408,7 +398,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -449,7 +439,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
@@ -483,7 +473,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
@@ -524,7 +514,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs
@@ -543,7 +533,7 @@ items:
     return:
       type: System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}
       description: Left file followed by all the right files compared with its matching score.
-    content.vb: Public MustOverride Function GetDetails(path As String) As(folder As String, file As String, matches As(folder As String, file As String, match As Single)())
+    content.vb: Public MustOverride Function GetDetails(path As String) As(folder As String, file As String, matches As(folder As String, file As String, match As Single)(Of String , String, Single)())(Of String , String, (folder
   overload: AutoCheck.Core.CopyDetectors.Base.GetDetails*
   modifiers.csharp:
   - public
@@ -558,130 +548,26 @@ references:
   nameWithType: AutoCheck.Core.CopyDetectors
   fullName: AutoCheck.Core.CopyDetectors
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.IDisposable
-  commentId: T:System.IDisposable
-  parent: System
-  isExternal: true
-  name: IDisposable
-  nameWithType: IDisposable
-  fullName: System.IDisposable
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
+- uid: AutoCheck.Core.CopyDetectors.Base.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Base>()
+  nameWithType: ObjectExtensions.DeepClone<Base>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Base>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Base)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Base)()
+  name.vb: DeepClone(Of Base)()
   spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Base>
+    nameWithType: ObjectExtensions.DeepClone<Base>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Base>
   - name: (
     nameWithType: (
     fullName: (
@@ -689,181 +575,63 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Base)
+    nameWithType: ObjectExtensions.DeepClone(Of Base)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Base)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.GetType
-  commentId: M:System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  nameWithType: Object.GetType()
-  fullName: System.Object.GetType()
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    nameWithType: Object.GetType
-    fullName: System.Object.GetType
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ToString
-  commentId: M:System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  nameWithType: Object.ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    nameWithType: Object.ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.CopyDetectors.Base.Threshold*
   commentId: Overload:AutoCheck.Core.CopyDetectors.Base.Threshold
   name: Threshold
   nameWithType: Base.Threshold
   fullName: AutoCheck.Core.CopyDetectors.Base.Threshold
 - uid: System.Single
-  commentId: T:System.Single
-  parent: System
   isExternal: true
   name: Single
   nameWithType: Single
@@ -874,8 +642,6 @@ references:
   nameWithType: Base.FilePattern
   fullName: AutoCheck.Core.CopyDetectors.Base.FilePattern
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
@@ -886,8 +652,6 @@ references:
   nameWithType: Base.Count
   fullName: AutoCheck.Core.CopyDetectors.Base.Count
 - uid: System.Int32
-  commentId: T:System.Int32
-  parent: System
   isExternal: true
   name: Int32
   nameWithType: Int32
@@ -902,37 +666,6 @@ references:
   name: Dispose
   nameWithType: Base.Dispose
   fullName: AutoCheck.Core.CopyDetectors.Base.Dispose
-- uid: System.IDisposable.Dispose
-  commentId: M:System.IDisposable.Dispose
-  parent: System.IDisposable
-  isExternal: true
-  name: Dispose()
-  nameWithType: IDisposable.Dispose()
-  fullName: System.IDisposable.Dispose()
-  spec.csharp:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.IDisposable.Dispose
-    name: Dispose
-    nameWithType: IDisposable.Dispose
-    fullName: System.IDisposable.Dispose
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
 - uid: AutoCheck.Core.CopyDetectors.Base.Load*
   commentId: Overload:AutoCheck.Core.CopyDetectors.Base.Load
   name: Load
@@ -960,8 +693,6 @@ references:
   nameWithType: Base.CopyDetected
   fullName: AutoCheck.Core.CopyDetectors.Base.CopyDetected
 - uid: System.Boolean
-  commentId: T:System.Boolean
-  parent: System
   isExternal: true
   name: Boolean
   nameWithType: Boolean
@@ -972,19 +703,18 @@ references:
   nameWithType: Base.GetDetails
   fullName: AutoCheck.Core.CopyDetectors.Base.GetDetails
 - uid: System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}
-  commentId: T:System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}
-  parent: System
-  isExternal: true
-  name: ValueTuple<String, String, ValueTuple<String, String, Single>[]>
-  nameWithType: ValueTuple<String, String, ValueTuple<String, String, Single>[]>
+  commentId: '!:System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}'
+  definition: System.ValueTuple`3
+  name: (, , )<String, String, (, , )<String, String, Single>[]>
+  nameWithType: (, , )<String, String, (, , )<String, String, Single>[]>
   fullName: System.ValueTuple<System.String, System.String, System.ValueTuple<System.String, System.String, System.Single>[]>
-  nameWithType.vb: ValueTuple(Of String, String, ValueTuple(Of String, String, Single)())
+  nameWithType.vb: (, , )(Of String, String, (, , )(Of String, String, Single)())
   fullName.vb: System.ValueTuple(Of System.String, System.String, System.ValueTuple(Of System.String, System.String, System.Single)())
-  name.vb: ValueTuple(Of String, String, ValueTuple(Of String, String, Single)())
+  name.vb: (, , )(Of String, String, (, , )(Of String, String, Single)())
   spec.csharp:
   - uid: System.ValueTuple`3
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, , )
+    nameWithType: (, , )
     fullName: System.ValueTuple
     isExternal: true
   - name: <
@@ -1007,8 +737,8 @@ references:
     nameWithType: ', '
     fullName: ', '
   - uid: System.ValueTuple`3
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, , )
+    nameWithType: (, , )
     fullName: System.ValueTuple
     isExternal: true
   - name: <
@@ -1046,8 +776,8 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.ValueTuple`3
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, , )
+    nameWithType: (, , )
     fullName: System.ValueTuple
     isExternal: true
   - name: '(Of '
@@ -1070,8 +800,8 @@ references:
     nameWithType: ', '
     fullName: ', '
   - uid: System.ValueTuple`3
-    name: ValueTuple
-    nameWithType: ValueTuple
+    name: (, , )
+    nameWithType: (, , )
     fullName: System.ValueTuple
     isExternal: true
   - name: '(Of '
@@ -1104,6 +834,68 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueTuple`3
+  isExternal: true
+  name: (, , )<, , >
+  nameWithType: (, , )<, , >
+  fullName: System.ValueTuple<, , >
+  nameWithType.vb: (, , )(Of , , )
+  fullName.vb: System.ValueTuple(Of , , )
+  name.vb: (, , )(Of , , )
+  spec.csharp:
+  - uid: System.ValueTuple`3
+    name: (, , )
+    nameWithType: (, , )
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`3
+    name: (, , )
+    nameWithType: (, , )
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

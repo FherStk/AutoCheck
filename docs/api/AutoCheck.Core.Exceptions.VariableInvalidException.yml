@@ -6,7 +6,7 @@ items:
   parent: AutoCheck.Core.Exceptions
   children:
   - AutoCheck.Core.Exceptions.VariableInvalidException.#ctor
-  - AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
+  - AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,Exception)
   langs:
   - csharp
   - vb
@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: VariableInvalidException
     path: ../core/main/Exceptions.cs
@@ -26,44 +26,14 @@ items:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: >-
-      [Serializable]
-
-      public class VariableInvalidException : Exception, ISerializable
+    content: 'public class VariableInvalidException : Exception'
     content.vb: >-
-      <Serializable>
-
       Public Class VariableInvalidException
           Inherits Exception
-          Implements ISerializable
   inheritance:
   - System.Object
-  - System.Exception
-  implements:
-  - System.Runtime.Serialization.ISerializable
-  inheritedMembers:
-  - System.Exception.GetBaseException
-  - System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  - System.Exception.GetType
-  - System.Exception.ToString
-  - System.Exception.Data
-  - System.Exception.HelpLink
-  - System.Exception.HResult
-  - System.Exception.InnerException
-  - System.Exception.Message
-  - System.Exception.Source
-  - System.Exception.StackTrace
-  - System.Exception.TargetSite
-  - System.Exception.SerializeObjectState
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.MemberwiseClone
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  attributes:
-  - type: System.SerializableAttribute
-    ctor: System.SerializableAttribute.#ctor
-    arguments: []
+  extensionMethods:
+  - AutoCheck.Core.Exceptions.VariableInvalidException.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
@@ -84,7 +54,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -100,21 +70,21 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
-  commentId: M:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,System.Exception)
-  id: '#ctor(System.String,System.Exception)'
+- uid: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,Exception)
+  commentId: M:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor(System.String,Exception)
+  id: '#ctor(System.String,Exception)'
   parent: AutoCheck.Core.Exceptions.VariableInvalidException
   langs:
   - csharp
   - vb
   name: VariableInvalidException(String, Exception)
   nameWithType: VariableInvalidException.VariableInvalidException(String, Exception)
-  fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException(System.String, System.Exception)
+  fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException(System.String, Exception)
   type: Constructor
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.10.0
+      branch: v2.12.2
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -128,7 +98,7 @@ items:
     - id: message
       type: System.String
     - id: innerException
-      type: System.Exception
+      type: Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
   overload: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor*
   modifiers.csharp:
@@ -142,39 +112,26 @@ references:
   nameWithType: AutoCheck.Core.Exceptions
   fullName: AutoCheck.Core.Exceptions
 - uid: System.Object
-  commentId: T:System.Object
-  parent: System
+  commentId: '!:System.Object'
   isExternal: true
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: System.Exception
-  commentId: T:System.Exception
-  parent: System
-  isExternal: true
-  name: Exception
-  nameWithType: Exception
-  fullName: System.Exception
-- uid: System.Runtime.Serialization.ISerializable
-  commentId: T:System.Runtime.Serialization.ISerializable
-  parent: System.Runtime.Serialization
-  isExternal: true
-  name: ISerializable
-  nameWithType: ISerializable
-  fullName: System.Runtime.Serialization.ISerializable
-- uid: System.Exception.GetBaseException
-  commentId: M:System.Exception.GetBaseException
-  parent: System.Exception
-  isExternal: true
-  name: GetBaseException()
-  nameWithType: Exception.GetBaseException()
-  fullName: System.Exception.GetBaseException()
+- uid: AutoCheck.Core.Exceptions.VariableInvalidException.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<VariableInvalidException>()
+  nameWithType: ObjectExtensions.DeepClone<VariableInvalidException>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.VariableInvalidException>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of VariableInvalidException)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.VariableInvalidException)()
+  name.vb: DeepClone(Of VariableInvalidException)()
   spec.csharp:
-  - uid: System.Exception.GetBaseException
-    name: GetBaseException
-    nameWithType: Exception.GetBaseException
-    fullName: System.Exception.GetBaseException
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<VariableInvalidException>
+    nameWithType: ObjectExtensions.DeepClone<VariableInvalidException>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.VariableInvalidException>
   - name: (
     nameWithType: (
     fullName: (
@@ -182,437 +139,69 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Exception.GetBaseException
-    name: GetBaseException
-    nameWithType: Exception.GetBaseException
-    fullName: System.Exception.GetBaseException
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of VariableInvalidException)
+    nameWithType: ObjectExtensions.DeepClone(Of VariableInvalidException)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.VariableInvalidException)
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  commentId: M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  parent: System.Exception
-  isExternal: true
-  name: GetObjectData(SerializationInfo, StreamingContext)
-  nameWithType: Exception.GetObjectData(SerializationInfo, StreamingContext)
-  fullName: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
   spec.csharp:
-  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-    name: GetObjectData
-    nameWithType: Exception.GetObjectData
-    fullName: System.Exception.GetObjectData
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Runtime.Serialization.SerializationInfo
-    name: SerializationInfo
-    nameWithType: SerializationInfo
-    fullName: System.Runtime.Serialization.SerializationInfo
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Runtime.Serialization.StreamingContext
-    name: StreamingContext
-    nameWithType: StreamingContext
-    fullName: System.Runtime.Serialization.StreamingContext
-    isExternal: true
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-    name: GetObjectData
-    nameWithType: Exception.GetObjectData
-    fullName: System.Exception.GetObjectData
-    isExternal: true
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
   - name: (
     nameWithType: (
     fullName: (
-  - uid: System.Runtime.Serialization.SerializationInfo
-    name: SerializationInfo
-    nameWithType: SerializationInfo
-    fullName: System.Runtime.Serialization.SerializationInfo
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Runtime.Serialization.StreamingContext
-    name: StreamingContext
-    nameWithType: StreamingContext
-    fullName: System.Runtime.Serialization.StreamingContext
-    isExternal: true
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Exception.GetType
-  commentId: M:System.Exception.GetType
-  parent: System.Exception
-  isExternal: true
-  name: GetType()
-  nameWithType: Exception.GetType()
-  fullName: System.Exception.GetType()
-  spec.csharp:
-  - uid: System.Exception.GetType
-    name: GetType
-    nameWithType: Exception.GetType
-    fullName: System.Exception.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Exception.GetType
-    name: GetType
-    nameWithType: Exception.GetType
-    fullName: System.Exception.GetType
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Exception.ToString
-  commentId: M:System.Exception.ToString
-  parent: System.Exception
-  isExternal: true
-  name: ToString()
-  nameWithType: Exception.ToString()
-  fullName: System.Exception.ToString()
-  spec.csharp:
-  - uid: System.Exception.ToString
-    name: ToString
-    nameWithType: Exception.ToString
-    fullName: System.Exception.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Exception.ToString
-    name: ToString
-    nameWithType: Exception.ToString
-    fullName: System.Exception.ToString
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Exception.Data
-  commentId: P:System.Exception.Data
-  parent: System.Exception
-  isExternal: true
-  name: Data
-  nameWithType: Exception.Data
-  fullName: System.Exception.Data
-- uid: System.Exception.HelpLink
-  commentId: P:System.Exception.HelpLink
-  parent: System.Exception
-  isExternal: true
-  name: HelpLink
-  nameWithType: Exception.HelpLink
-  fullName: System.Exception.HelpLink
-- uid: System.Exception.HResult
-  commentId: P:System.Exception.HResult
-  parent: System.Exception
-  isExternal: true
-  name: HResult
-  nameWithType: Exception.HResult
-  fullName: System.Exception.HResult
-- uid: System.Exception.InnerException
-  commentId: P:System.Exception.InnerException
-  parent: System.Exception
-  isExternal: true
-  name: InnerException
-  nameWithType: Exception.InnerException
-  fullName: System.Exception.InnerException
-- uid: System.Exception.Message
-  commentId: P:System.Exception.Message
-  parent: System.Exception
-  isExternal: true
-  name: Message
-  nameWithType: Exception.Message
-  fullName: System.Exception.Message
-- uid: System.Exception.Source
-  commentId: P:System.Exception.Source
-  parent: System.Exception
-  isExternal: true
-  name: Source
-  nameWithType: Exception.Source
-  fullName: System.Exception.Source
-- uid: System.Exception.StackTrace
-  commentId: P:System.Exception.StackTrace
-  parent: System.Exception
-  isExternal: true
-  name: StackTrace
-  nameWithType: Exception.StackTrace
-  fullName: System.Exception.StackTrace
-- uid: System.Exception.TargetSite
-  commentId: P:System.Exception.TargetSite
-  parent: System.Exception
-  isExternal: true
-  name: TargetSite
-  nameWithType: Exception.TargetSite
-  fullName: System.Exception.TargetSite
-- uid: System.Exception.SerializeObjectState
-  commentId: E:System.Exception.SerializeObjectState
-  parent: System.Exception
-  isExternal: true
-  name: SerializeObjectState
-  nameWithType: Exception.SerializeObjectState
-  fullName: System.Exception.SerializeObjectState
-- uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  nameWithType: Object.Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    nameWithType: Object.Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  nameWithType: Object.GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    nameWithType: Object.GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    nameWithType: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System
-  commentId: N:System
-  isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: System.Runtime.Serialization
-  commentId: N:System.Runtime.Serialization
-  isExternal: true
-  name: System.Runtime.Serialization
-  nameWithType: System.Runtime.Serialization
-  fullName: System.Runtime.Serialization
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
 - uid: AutoCheck.Core.Exceptions.VariableInvalidException.#ctor*
   commentId: Overload:AutoCheck.Core.Exceptions.VariableInvalidException.#ctor
   name: VariableInvalidException
   nameWithType: VariableInvalidException.VariableInvalidException
   fullName: AutoCheck.Core.Exceptions.VariableInvalidException.VariableInvalidException
 - uid: System.String
-  commentId: T:System.String
-  parent: System
   isExternal: true
   name: String
   nameWithType: String
   fullName: System.String
+- uid: Exception
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: Exception

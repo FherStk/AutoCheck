@@ -31,7 +31,7 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class GDrive : Test
     {
-        private const string _driveFolder = "\\AutoCheck\\test\\Connectors.GDrive";       //TODO: delete because not all tests can use it and I prefer to standarize all of them
+        private const string _driveFolder = "/AutoCheck/test/Connectors.GDrive";       //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private string _user = AutoCheck.Core.Utils.ConfigFile("gdrive_account.txt");     //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private string _secret = AutoCheck.Core.Utils.ConfigFile("gdrive_secret.json");   //TODO: delete because not all tests can use it and I prefer to standarize all of them
         private ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive> LocalConnectors = new ConcurrentDictionary<string, AutoCheck.Core.Connectors.GDrive>();
@@ -84,7 +84,7 @@ namespace AutoCheck.Test.Connectors
             //Create a new and unique remote connector for the current context, local connectors can be shared but not the remote ones because 
             //remote connectors cannot share its internal ssh connection or it can be closed by one when another is using it.        
             var added = false;
-            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "usuario", "usuario", _user, _secret));             
+            do added = RemoteConnectors.TryAdd(TestContext.CurrentContext.Test.ID, new AutoCheck.Core.Connectors.GDrive(OS.GNU, "localhost", "autocheck", "autocheck", _user, _secret));             
             while(!added);      
 
             added = false;
@@ -422,7 +422,7 @@ namespace AutoCheck.Test.Connectors
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
            
             Assert.IsFalse(conn.ExistsFolder(remoteFilePath));
-            Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToWsl(GetSampleFile(localFilePath)), remoteFilePath, remoteFileName));
+            Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToRemote(GetSampleFile(localFilePath), "autocheck"), remoteFilePath, remoteFileName));
             Thread.Sleep(5000);
             Assert.IsTrue(conn.ExistsFile(remoteFilePath, expectedFileName));            
         }
@@ -454,7 +454,7 @@ namespace AutoCheck.Test.Connectors
             remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
 
             Assert.IsFalse(conn.ExistsFolder(remoteFolderPath));
-            Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToWsl(Path.Combine(SamplesScriptFolder, localFolderPath)), remoteFolderPath, remoteFolderName, recursive));
+            Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToRemote(Path.Combine(SamplesScriptFolder, localFolderPath), "autocheck"), remoteFolderPath, remoteFolderName, recursive));
             
             Thread.Sleep(5000);            
             Assert.IsTrue(conn.ExistsFolder(remoteFolderPath, expectedFolderName));

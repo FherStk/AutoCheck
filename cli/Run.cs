@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Reflection;
 using System.Linq;
 
@@ -33,6 +34,8 @@ namespace AutoCheck.Cli
     class Run
     { 
         private static bool _NO_PAUSE = false;
+        private static bool _displaying = false;
+        private static ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>();        
 
         static void Main(string[] args)
         {
@@ -230,16 +233,27 @@ namespace AutoCheck.Cli
             }      
         }
 
-        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){
-            var script = (Script)sender;
-            script.Output.SendToTerminal(e.Log);
+        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){            
+            _logs.Enqueue(((Script)sender, e));            
+            if(!_displaying) DisplayLogs();       
+        }
 
-            if(e.Type == Output.Type.SCRIPT && e.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-                Console.WriteLine();
-                Console.WriteLine();
-            }            
+        private static void DisplayLogs(){
+            _displaying = true;
+            (Script Script, Script.LogGeneratedEventArgs Data) item;
+
+            while(_logs.TryDequeue(out item)){
+                item.Script.Output.SendToTerminal(item.Data.Log);
+
+                if(item.Data.Type == Output.Type.SCRIPT && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                }
+            }
+            
+            _displaying = false;
         }
 
         private static void Info(string message, Output output){
