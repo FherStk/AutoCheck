@@ -1,0 +1,96 @@
+# Copyright © 2020 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+inherits: "dani_base.yaml"  
+
+vars:
+    student: "{#^[^_]+(?= )$CURRENT_FOLDER_NAME}"
+
+batch: 
+    - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - local:                             
+        - path: "{$APP_FOLDER_PATH}\\samples\\private\\multi_copy"
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "1.html"
+        threshold: !!float 0.97    
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "2.html"
+        threshold: !!float 0.8  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "3.html"
+        threshold: !!float 0.8  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "4.html"
+        threshold: !!float 0.8  
+     
+    - copy_detector:            
+        type: "HTML"            
+        file: "5.html"
+        threshold: !!float 0.9  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "6.html"
+        threshold: !!float 0.9  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "7.html"
+        threshold: !!float 0.99  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "8.html"
+        threshold: !!float 0.99  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "9.html"
+        threshold: !!float 0.8  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "10.html"
+        threshold: !!float 0.8  
+
+    - setup:
+        - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
+
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
+            store: "ZIP_FILE"    
+            
+        - connector:  
+            type: "Zip"                    
+            arguments: "--filePath {$ZIP_FILE}"
+        
+        - run:   
+            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            connector: "Zip"
+            command: "Extract"
+            arguments: 
+                recursive: !!bool True
