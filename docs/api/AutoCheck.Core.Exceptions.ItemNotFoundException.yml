@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: ItemNotFoundException
     path: ../core/main/Exceptions.cs
@@ -59,7 +59,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -89,7 +89,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
