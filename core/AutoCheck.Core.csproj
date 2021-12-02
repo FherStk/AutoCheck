@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <BuildDocFx>false</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
+    <BuildDocFx>true</BuildDocFx>  <!-- Set this value to 'true' in order to build the documentation. -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <TargetFramework>net6.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
