@@ -952,8 +952,7 @@ namespace AutoCheck.Core{
                             break;
                     }                    
                 })); 
-                Output.UnIndent();                   
-                if(cpydet.Count > 0) Output.BreakLine();
+                Output.UnIndent();                                   
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
@@ -1198,7 +1197,8 @@ namespace AutoCheck.Core{
             Output.WriteLine($"Starting the copy detector for ~{type}:", Output.Style.HEADER);                 
             Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote));
-            Output.UnIndent();                        
+            Output.UnIndent();   
+            Output.BreakLine();                     
 
             return cds.ToArray();
         }
@@ -1791,6 +1791,7 @@ namespace AutoCheck.Core{
             }
             catch(Exception ex){
                 Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
+                Output.BreakLine();
             }
 
             //Post content

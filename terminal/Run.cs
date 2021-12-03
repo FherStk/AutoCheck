@@ -246,6 +246,7 @@ namespace AutoCheck.Terminal
                 item.Script.Output.SendToTerminal(item.Data.Log);
 
                 if(item.Data.Type == Output.Type.SCRIPT && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+                    Console.WriteLine();
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     Console.WriteLine();
