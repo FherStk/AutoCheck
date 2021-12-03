@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "dani_base.yaml"  
+inherits: "real_multi_copy_base.yaml"  
 
 vars:
     student: "{#^[^_]+(?= )$CURRENT_FOLDER_NAME}"
