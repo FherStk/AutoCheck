@@ -105,6 +105,28 @@ namespace AutoCheck.Core.Exceptions
 
     [Serializable]
     /// <summary>
+    /// The exception that is thrown when a yaml script file cannot be correctly loaded.
+    /// </summary>
+    public class ScriptNotFoundException : ItemNotFoundException
+    {
+        public ScriptNotFoundException(){}
+        public ScriptNotFoundException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a script cannot be correctly loaded.
+    /// </summary>
+    public class ScriptInvalidException : Exception
+    {
+        public ScriptInvalidException(){}
+        public ScriptInvalidException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    
+
+    [Serializable]
+    /// <summary>
     /// The exception that is thrown when a connector cannot be correctly loaded.
     /// </summary>
     public class ConnectorInvalidException : Exception

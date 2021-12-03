@@ -2156,7 +2156,7 @@ namespace AutoCheck.Core{
         }
 
         private YamlStream LoadYamlFile(string path){     
-            if(!File.Exists(path)) throw new FileNotFoundException(path);
+            if(!File.Exists(path)) throw new Exceptions.ScriptNotFoundException($"Unable to find the YAML script file '{path}'.");
             
             var yaml = new YamlStream();            
             try{
@@ -2172,8 +2172,15 @@ namespace AutoCheck.Core{
             if(string.IsNullOrEmpty(inherits)) return yaml;
             else {
                 var file = Path.Combine(Path.GetDirectoryName(path), Utils.PathToCurrentOS(inherits));
-                var parent = LoadYamlFile(file);
-                return MergeYamlFiles(parent, yaml);
+
+                try{
+                    var parent = LoadYamlFile(file);
+                    return MergeYamlFiles(parent, yaml);
+                }
+                catch(ScriptNotFoundException ex){
+                    throw new Exceptions.ScriptInvalidException($"Unable to load the YAML script file '{path}' because its inheriting from an unexisting file: '{file}'.", ex);
+                }
+                
             }            
         }     
 
