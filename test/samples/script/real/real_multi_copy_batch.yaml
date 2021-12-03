@@ -24,7 +24,7 @@ vars:
 batch: 
     - caption: "Running on batch mode for ~{$STUDENT}:"       
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\samples\\private\\multi_copy"
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/multi_copy"
 
     - copy_detector:            
         type: "HTML"            

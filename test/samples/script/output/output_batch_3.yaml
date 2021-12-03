@@ -17,14 +17,14 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "OUTPUT BATCH 3"
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+inherits: "{$APP_FOLDER_PATH}/../scripts/templates/html5.yaml"  
 
 batch: 
   - local:
-      - path: "{$APP_FOLDER_PATH}\\samples\\private\\html5"
+      - path: "{$APP_FOLDER_PATH}/samples/private/html5"
 
 log:
   enabled: True
   format: "JSON"
-  folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_batch_3_yaml"
+  folder: "{$APP_FOLDER_PATH}/logs/script/output/output_batch_3_yaml"
   name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"
