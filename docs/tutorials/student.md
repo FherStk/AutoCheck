@@ -16,8 +16,7 @@ Follow this instructions in order to install the application for the first time:
 2. Open a terminal and go into the newly crated folder.
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 4. Go to the client app folder with the following command: `cd AutoCheck/terminal`.
-5. Compile the application with the following command: `dotnet build -c Release`.
-6. GNU/Linux only: give permissions to the startup file with: `chmod +x run.sh`.
+5. GNU/Linux only: give permissions to the startup file with: `chmod +x run.sh`.
 
 ### Preparation
 Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **copy the scripts** you want to modify into the `AutoCheck/scripts/custom` folder:

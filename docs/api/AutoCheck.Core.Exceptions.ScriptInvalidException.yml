@@ -1,55 +1,55 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
-  commentId: T:AutoCheck.Core.Exceptions.ConnectionInvalidException
-  id: ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ScriptInvalidException
+  id: ScriptInvalidException
   parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+  - AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  - AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor(System.String,Exception)
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  name: ScriptInvalidException
+  nameWithType: ScriptInvalidException
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException
   type: Class
   source:
     remote:
       path: core/main/Exceptions.cs
       branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ConnectionInvalidException
+    id: ScriptInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 177
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: 'public class ConnectionInvalidException : Exception'
+    content: 'public class ScriptInvalidException : Exception'
     content.vb: >-
-      Public Class ConnectionInvalidException
+      Public Class ScriptInvalidException
           Inherits Exception
   inheritance:
   - System.Object
   extensionMethods:
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.Exceptions.ScriptInvalidException.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ScriptInvalidException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException()
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException()
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException()
+  name: ScriptInvalidException()
+  nameWithType: ScriptInvalidException.ScriptInvalidException()
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException()
   type: Constructor
   source:
     remote:
@@ -58,28 +58,28 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 183
+    startLine: 121
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException()
+    content: public ScriptInvalidException()
     content.vb: Public Sub New
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor(System.String,Exception)
+  commentId: M:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor(System.String,Exception)
   id: '#ctor(System.String,Exception)'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ScriptInvalidException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException(String, Exception)
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, Exception)
+  name: ScriptInvalidException(String, Exception)
+  nameWithType: ScriptInvalidException.ScriptInvalidException(String, Exception)
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException(System.String, Exception)
   type: Constructor
   source:
     remote:
@@ -88,19 +88,19 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 184
+    startLine: 122
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException(string message, Exception innerException = null)
+    content: public ScriptInvalidException(string message, Exception innerException = null)
     parameters:
     - id: message
       type: System.String
     - id: innerException
       type: Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -117,21 +117,21 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<ConnectionInvalidException>()
-  nameWithType: ObjectExtensions.DeepClone<ConnectionInvalidException>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConnectionInvalidException>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of ConnectionInvalidException)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConnectionInvalidException)()
-  name.vb: DeepClone(Of ConnectionInvalidException)()
+  name: DeepClone<ScriptInvalidException>()
+  nameWithType: ObjectExtensions.DeepClone<ScriptInvalidException>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ScriptInvalidException>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of ScriptInvalidException)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ScriptInvalidException)()
+  name.vb: DeepClone(Of ScriptInvalidException)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<ConnectionInvalidException>
-    nameWithType: ObjectExtensions.DeepClone<ConnectionInvalidException>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConnectionInvalidException>
+    name: DeepClone<ScriptInvalidException>
+    nameWithType: ObjectExtensions.DeepClone<ScriptInvalidException>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ScriptInvalidException>
   - name: (
     nameWithType: (
     fullName: (
@@ -140,9 +140,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of ConnectionInvalidException)
-    nameWithType: ObjectExtensions.DeepClone(Of ConnectionInvalidException)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConnectionInvalidException)
+    name: DeepClone(Of ScriptInvalidException)
+    nameWithType: ObjectExtensions.DeepClone(Of ScriptInvalidException)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ScriptInvalidException)
   - name: (
     nameWithType: (
     fullName: (
@@ -190,11 +190,11 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  name: ScriptInvalidException
+  nameWithType: ScriptInvalidException.ScriptInvalidException
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException
 - uid: System.String
   isExternal: true
   name: String

@@ -36,6 +36,7 @@ items:
   - AutoCheck.Core.Exceptions.ArgumentNotFoundException
   - AutoCheck.Core.Exceptions.ConnectorNotFoundException
   - AutoCheck.Core.Exceptions.PorpertyNotFoundException
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException
   - AutoCheck.Core.Exceptions.VariableNotFoundException
   extensionMethods:
   - AutoCheck.Core.Exceptions.ItemNotFoundException.ObjectExtensions.DeepClone``1
