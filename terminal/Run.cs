@@ -86,25 +86,12 @@ namespace AutoCheck.Terminal
                     
                     if(updated && !string.IsNullOrEmpty(script)){
                         //If correctly updated and a script has been provided, its necessary to restart the script in order to build and use the new version; otherwise the old one (current one) would be used. 
-                        var file = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));
-
-                        if(Core.Utils.CurrentOS == Utils.OS.GNU){
-                            //On Ubuntu, the sh file needs execution permissions
-                            var chmod = new Process
-                            {
-                                StartInfo = new ProcessStartInfo
-                                {
-                                    RedirectStandardOutput = false,
-                                    UseShellExecute = false,
-                                    WorkingDirectory = Environment.CurrentDirectory,
-                                    FileName = "/bin/bash",
-                                    Arguments = $"-c \"chmod +x {file}\""
-                                }
-                            }; 
-
-                            chmod.Start();
-                            chmod.WaitForExit();
-                        }
+                        var runScript = (Core.Utils.CurrentOS == Utils.OS.WIN ? "run.bat" : "run.sh");
+                        var restartScript = Path.Combine("utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));                        
+                        
+                        //On Ubuntu, the sh files needs execution permissions
+                        SetExecPermissions(runScript);
+                        SetExecPermissions(restartScript);
 
                         var restart = new Process
                         {
@@ -113,7 +100,7 @@ namespace AutoCheck.Terminal
                                 RedirectStandardOutput = false,
                                 UseShellExecute = false,
                                 WorkingDirectory = Environment.CurrentDirectory,
-                                FileName = file,
+                                FileName = restartScript,
                                 Arguments = script
                             }
                         };                                                                                                
@@ -132,6 +119,26 @@ namespace AutoCheck.Terminal
                     output.BreakLine(); 
                 } 
             }  
+        }
+
+        private static void SetExecPermissions(string file){
+             if(Core.Utils.CurrentOS == Utils.OS.GNU){
+                //On Ubuntu, the sh files needs execution permissions
+                var chmod = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        RedirectStandardOutput = false,
+                        UseShellExecute = false,
+                        WorkingDirectory = Environment.CurrentDirectory,
+                        FileName = "/bin/bash",
+                        Arguments = $"-c \"chmod +x {file}\""
+                    }
+                }; 
+
+                chmod.Start();
+                chmod.WaitForExit();
+            }
         }
 
         private static bool Update(Output output){
