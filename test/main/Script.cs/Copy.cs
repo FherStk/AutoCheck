@@ -55,7 +55,7 @@ namespace AutoCheck.Test
             dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok1.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for {dest1}:\r\n      Match score with {dest2}... 100,00 %\r\n\r\nRunning script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for {dest2}:\r\n      Match score with {dest1}... 100,00 %", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for {dest1}:\r\n      Match score with {dest2}... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for {dest2}:\r\n      Match score with {dest1}... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -67,16 +67,22 @@ namespace AutoCheck.Test
             var dest2 = Path.Combine(dest, "folder2");
 
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
-            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);    
 
-            File.Copy(GetSampleFile("plaintext", "lorem1.txt"), GetSampleFile(dest1, "sample1.txt"));
-            File.Copy(GetSampleFile("plaintext", "lorem2.txt"), GetSampleFile(dest2, "sample2.txt"));
- 
-            Assert.IsTrue(File.Exists(GetSampleFile(dest1, "sample1.txt")));
-            Assert.IsTrue(File.Exists(GetSampleFile(dest2, "sample2.txt")));
+            dest1 = GetSampleFile(dest1, "sample1.txt");
+            dest2 = GetSampleFile(dest2, "sample2.txt");
+            File.Copy(GetSampleFile("plaintext", "lorem1.txt"), dest1);
+            File.Copy(GetSampleFile("plaintext", "lorem2.txt"), dest2);                             
+           
+            Assert.IsTrue(File.Exists(dest1));
+            Assert.IsTrue(File.Exists(dest2));
+
+            //Getting folder and file for the current OS type in order to check the output
+            dest1 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest1)), Path.GetFileName(dest1));
+            dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok2.yaml")); 
-            Assert.AreEqual($"Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n\r\nRunning script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:", s.Output.ToString());            
+            Assert.AreEqual($"Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   No potential copy detected for {dest1}:\r\n      Match score with {dest2}... 58,99 %\r\n\r\n   No potential copy has been detected.\r\n\r\nRunning script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   No potential copy detected for {dest2}:\r\n      Match score with {dest1}... 58,99 %\r\n\r\n   No potential copy has been detected.", s.Output.ToString());            
             Directory.Delete(dest, true);
         }
     }

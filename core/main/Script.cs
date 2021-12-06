@@ -724,7 +724,13 @@ namespace AutoCheck.Core{
             }
 
             //Log files export (once all the teardown has been executed)
-            ExportLog();            
+            try{
+                ExportLog();            
+            }   
+            catch(Exception ex){
+                Output.WriteLine($"Unable to export the log files: {ex.Message}", Output.Style.CRITICAL);
+                throw;
+            }         
             
             //Scope out
             Vars.Pop();            
@@ -952,8 +958,7 @@ namespace AutoCheck.Core{
                             break;
                     }                    
                 })); 
-                Output.UnIndent();                   
-                if(cpydet.Count > 0) Output.BreakLine();
+                Output.UnIndent();                                   
 
                 //Storing log for the setup data
                 Output.CloseLog(Output.Type.SETUP);
@@ -966,13 +971,13 @@ namespace AutoCheck.Core{
                 });                                  
 
                 //Multithreading queue
-                var scripts = new List<Task<Script>>();
-                var finished = new ConcurrentBag<Task>();
+                var queuedScripts = new List<Task<Script>>();
+                var finishedScripts = new ConcurrentBag<Task>();
                 var mainOutput = this.Output;
                 var logContent = new ConcurrentDictionary<string, List<Output.Log>>();
                 var logFiles = new ConcurrentDictionary<string, string>();
 
-                var action = new Action<string>((folder) => {
+                var setupQueue = new Action<string>((folder) => {
                     var s = this.DeepClone();
                     var t = new Task<Script>(() => {                        
                         s.ExecuteBodyForBatch((YamlSequenceNode)node, current, cpydet, folder);
@@ -980,37 +985,37 @@ namespace AutoCheck.Core{
                     });
                     
                     var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //need to order the log output for unit testing
-                    finished.Add(t.ContinueWith((t) => {                        
+                    finishedScripts.Add(t.ContinueWith((t) => {                        
                         logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
                         logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
                     }));
 
-                    scripts.Add(t);
+                    queuedScripts.Add(t);
                 });
                 
                 //Queing parallel body execution for each local target                
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     //ForEachLocalTarget method setups the global vars, which are copied to the task script on instantiation   
-                    action.Invoke(folder);
+                    setupQueue.Invoke(folder);
                 });                                  
 
                 //Queing parallel body execution for each remote target                
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
                     //ForEachLocalTarget method setups the global vars, which are copied to the task script on instantiation
-                    action.Invoke(folder);
+                    setupQueue.Invoke(folder);
                 }); 
 
                 //Multithreading execution                
                 var started = new ConcurrentBag<Task>();
-                var max = Concurrent <= 0 ? scripts.Count : Concurrent;
+                var max = Concurrent <= 0 ? queuedScripts.Count : Concurrent;
                 var last = 0;
 
-                while(started.Count < scripts.Count){
-                    var end = Math.Min(last+max, scripts.Count);
+                while(started.Count < queuedScripts.Count){
+                    var end = Math.Min(last+max, queuedScripts.Count);
                    
                     for(int i=last; i < end; i++){
-                        started.Add(scripts[i]);
-                        scripts[i].Start();
+                        started.Add(queuedScripts[i]);
+                        queuedScripts[i].Start();
                     }
                     
                     last += end;
@@ -1018,7 +1023,7 @@ namespace AutoCheck.Core{
                 }
 
                 //Rebuilding main log, this must keep an order because unit testing
-                Task.WaitAll(finished.ToArray());
+                Task.WaitAll(finishedScripts.ToArray());
                 LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
                 Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
 
@@ -1198,7 +1203,8 @@ namespace AutoCheck.Core{
             Output.WriteLine($"Starting the copy detector for ~{type}:", Output.Style.HEADER);                 
             Output.Indent();
             cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote));
-            Output.UnIndent();                        
+            Output.UnIndent();   
+            Output.BreakLine();                     
 
             return cds.ToArray();
         }
@@ -1726,18 +1732,23 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
-        private void ExecuteBody(YamlMappingNode node){
+        private void ExecuteBody(YamlMappingNode node, bool abort = false){
             //This data must be cleared for each script body execution (batch mode)  
             Success = 0;
             Fails = 0;
-
-            //Running script body                
-            if(node.Children.ContainsKey("body")) ParseBody(node.Children["body"]);
             
-            //Storing the log file path (it will be used to generate it later). 
-            //WARNING: this is based on log index, could fail if multithreading is implemented
-            var logFile = ComputeVarValue(LogFilePath);
-            LogFiles.Add(logFile); 
+            try{
+                //Running script body
+                if(node.Children.ContainsKey("body") && !abort) ParseBody(node.Children["body"]);
+            }                
+            catch{
+                throw;
+            }
+            finally{
+                //Storing the log file path (it will be used to generate it later). 
+                var logFile = ComputeVarValue(LogFilePath);
+                LogFiles.Add(logFile); 
+            }
         }
 
         private void ExecuteBodyForSingle(YamlMappingNode node){
@@ -1775,22 +1786,38 @@ namespace AutoCheck.Core{
                 }                    
             }));                                        
             
+            //The script body will be executed only if no copies has been detected, otherwise the execution is aborted and the copy detector matches are displayed (all of them, in order to help adjusting the threshold if needed)
             var match = false;
-            try{                        
-                foreach(var cd in cpydet){                            
-                    if(cd != null){
-                        match = match || cd.CopyDetected(folder);                        
-                        if(match) PrintCopies(cd, folder);                            
-                    }
+            var missing = false;
+            try{          
+                PrintCopies(cpydet, folder);
+                foreach(var cd in cpydet.Where(x => x != null)){
+                    try{
+                        match = (match || cd.CopyDetected(folder));
+                    }   
+                    catch{
+                        //missing files should not stop the script exection.
+                        missing = true;
+                    }                                                                
                 }                        
 
-                if(!match){
+                //Please, note that copy detector messages will be displayed only when the copy detector has been used (including the end breakline)
+                if(match){
+                    Output.WriteLine($"Script execution aborted due potential copy detection.", Output.Style.CRITICAL);
+                    ExecuteBody(Root, true);  //must run with abort=true in order to get the log file path (log content will not get yet)
+                } 
+                else {
+                    if(missing) Output.WriteLine($"Warning: some files were not found when performing the copy detection mechanism.", Output.Style.WARNING);
+                    else if(cpydet.Count > 0) Output.WriteLine($"No potential copy has been detected.", Output.Style.SUCCESS);                                                            
+                    if(cpydet.Count > 0) Output.BreakLine();
+
                     ExecuteBody(Root);  
                     Output.BreakLine();
-                } 
-            }
+                }                 
+            }            
             catch(Exception ex){
                 Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
+                Output.BreakLine();
             }
 
             //Post content
@@ -1810,8 +1837,6 @@ namespace AutoCheck.Core{
 
             //Script completed
             if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                //TODO: This could fail if multihreeading is implemented, the event should be fired from Output
-                //      Directly from Output or refired from here to set the execution mode?
                 ExecutionMode = ExecutionModeType.BATCH,
                 Type = Output.Type.SCRIPT,
                 Log = Output.ScriptLog.LastOrDefault()
@@ -2156,7 +2181,7 @@ namespace AutoCheck.Core{
         }
 
         private YamlStream LoadYamlFile(string path){     
-            if(!File.Exists(path)) throw new FileNotFoundException(path);
+            if(!File.Exists(path)) throw new Exceptions.ScriptNotFoundException($"Unable to find the YAML script file '{path}'.");
             
             var yaml = new YamlStream();            
             try{
@@ -2172,8 +2197,15 @@ namespace AutoCheck.Core{
             if(string.IsNullOrEmpty(inherits)) return yaml;
             else {
                 var file = Path.Combine(Path.GetDirectoryName(path), Utils.PathToCurrentOS(inherits));
-                var parent = LoadYamlFile(file);
-                return MergeYamlFiles(parent, yaml);
+
+                try{
+                    var parent = LoadYamlFile(file);
+                    return MergeYamlFiles(parent, yaml);
+                }
+                catch(ScriptNotFoundException ex){
+                    throw new Exceptions.ScriptInvalidException($"Unable to load the YAML script file '{path}' because its inheriting from an unexisting file: '{file}'.", ex);
+                }
+                
             }            
         }     
 
@@ -2370,24 +2402,38 @@ namespace AutoCheck.Core{
             return cd;
         }                          
         
-        private void PrintCopies(CopyDetector cd, string folder){                        
-            var details = cd.GetDetails(folder);
-            folder = Path.GetDirectoryName(folder);
-            folder = details.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
+        private void PrintCopies(List<CopyDetector> copies, string folder){
+            foreach(var cd in copies)
+                PrintCopies(cd, folder);
+        }
 
-            Output.WriteLine($"Potential copy detected for ~{folder}:", Output.Style.CRITICAL);                                                      
-            Output.Indent();
+        private void PrintCopies(CopyDetector cd, string folder){ 
+            try{                                 
+                var details = cd.GetDetails(folder);
+                var file = Path.Combine(Path.GetFileName(details.folder), Path.GetFileName(details.file));
+                
+                if(cd.CopyDetected(folder)) Output.WriteLine($"Potential copy detected for ~{file}:", Output.Style.CRITICAL);
+                else Output.WriteLine($"No potential copy detected for ~{file}:", Output.Style.SUCCESS);
+                Output.Indent();
 
-            foreach(var item in details.matches){  
-                folder = Path.GetDirectoryName(item.folder);
-                folder = item.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
+                foreach(var item in details.matches){  
+                    file = Path.Combine(Path.GetFileName(item.folder), Path.GetFileName(item.file));
 
-                Output.Write($"Match score with ~{folder}... ", Output.Style.DETAILS);     
-                Output.WriteLine(string.Format("{0:P2} ", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                    Output.Write($"Match score with ~{file}... ", Output.Style.DETAILS);     
+                    Output.WriteLine(string.Format("{0:P2}", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                }     
+
+                Output.UnIndent();
+                
             }
-            
-            Output.UnIndent();
-            Output.BreakLine();
+            catch(KeyNotFoundException){
+                //The folder has not been found within the current copy detector instance
+                folder = Path.GetFileName(folder);
+                Output.WriteLine($"The copy detector was unable to find and compare some files using the search pattern ~{Path.Combine(folder, cd.FilePattern)}:", Output.Style.CRITICAL);
+            }            
+            finally{
+                Output.BreakLine();
+            }
         }
 #endregion
     }

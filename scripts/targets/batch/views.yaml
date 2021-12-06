@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "..\\templates\\permissions.yaml"  
+inherits: "../templates/permissions.yaml"  
 
 vars:
     student: "{#^[^ ]+(?= )$CURRENT_FOLDER_NAME}"
@@ -25,7 +25,7 @@ batch:
     - caption: "Running on batch mode for ~{$STUDENT}:"    
     - concurrent: !!int 1 #cannot run in parallel due permissions over users   
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\views"
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/views"
         - vars:
             current_host: "localhost"
             current_user: "postgres"

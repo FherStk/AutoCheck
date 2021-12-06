@@ -21,13 +21,13 @@ inherits: "batch_base5.yaml"
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                                 
-        - path: "{$APP_FOLDER_PATH}\\temp\\script\\batch\\test9"
+        - path: "{$APP_FOLDER_PATH}/temp/script/batch/test9"
         - vars:
             local_var1: "LOCAL1"
             local_var2: "LOCAL2"
 
     - local:                                 
-        - folder: "{$APP_FOLDER_PATH}\\temp\\script\\batch\\test9"
+        - folder: "{$APP_FOLDER_PATH}/temp/script/batch/test9"
         - vars:
             local_var1: "LOCAL3"
             local_var2: "LOCAL4"
