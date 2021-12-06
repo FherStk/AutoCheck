@@ -101,6 +101,10 @@
     name: RegexInvalidException
   - uid: AutoCheck.Core.Exceptions.ResultMismatchException
     name: ResultMismatchException
+  - uid: AutoCheck.Core.Exceptions.ScriptInvalidException
+    name: ScriptInvalidException
+  - uid: AutoCheck.Core.Exceptions.ScriptNotFoundException
+    name: ScriptNotFoundException
   - uid: AutoCheck.Core.Exceptions.StyleInvalidException
     name: StyleInvalidException
   - uid: AutoCheck.Core.Exceptions.StyleNotAppliedException

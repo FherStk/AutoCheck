@@ -16,12 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "..\\templates\\web_syndication.yaml"  
+inherits: "../templates/web_syndication.yaml"  
 
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"              
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\web_syndication"
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/web_syndication"
 
     - copy_detector:            
         type: "XML"            

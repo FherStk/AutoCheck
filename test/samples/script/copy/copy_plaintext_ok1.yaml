@@ -18,7 +18,7 @@
 
 batch:      
   - local:                                 
-      - path: "{$APP_FOLDER_PATH}\\temp\\script\\copy\\test1"
+      - path: "{$APP_FOLDER_PATH}/temp/script/copy/test1"
   
   - copy_detector:            
       type: "PLAINTEXT"            

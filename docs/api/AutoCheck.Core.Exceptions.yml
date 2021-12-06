@@ -16,6 +16,8 @@ items:
   - AutoCheck.Core.Exceptions.QueryInvalidException
   - AutoCheck.Core.Exceptions.RegexInvalidException
   - AutoCheck.Core.Exceptions.ResultMismatchException
+  - AutoCheck.Core.Exceptions.ScriptInvalidException
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException
   - AutoCheck.Core.Exceptions.StyleInvalidException
   - AutoCheck.Core.Exceptions.StyleNotAppliedException
   - AutoCheck.Core.Exceptions.StyleNotFoundException
@@ -73,6 +75,16 @@ references:
   name: ConnectorNotFoundException
   nameWithType: ConnectorNotFoundException
   fullName: AutoCheck.Core.Exceptions.ConnectorNotFoundException
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  commentId: T:AutoCheck.Core.Exceptions.ScriptNotFoundException
+  name: ScriptNotFoundException
+  nameWithType: ScriptNotFoundException
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException
+  commentId: T:AutoCheck.Core.Exceptions.ScriptInvalidException
+  name: ScriptInvalidException
+  nameWithType: ScriptInvalidException
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException
 - uid: AutoCheck.Core.Exceptions.ConnectorInvalidException
   commentId: T:AutoCheck.Core.Exceptions.ConnectorInvalidException
   name: ConnectorInvalidException

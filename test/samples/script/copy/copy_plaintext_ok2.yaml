@@ -19,8 +19,8 @@
 batch:  
   - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
   - local:                                 
-      - folder: "{$APP_FOLDER_PATH}\\temp\\script\\copy\\test2\\folder1"
-      - folder: "{$APP_FOLDER_PATH}\\temp\\script\\copy\\test2\\folder2"
+      - folder: "{$APP_FOLDER_PATH}/temp/script/copy/test2/folder1"
+      - folder: "{$APP_FOLDER_PATH}/temp/script/copy/test2/folder2"
   
   - copy_detector:            
       type: "PLAINTEXT"            

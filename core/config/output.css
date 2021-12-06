@@ -54,12 +54,16 @@
     color: yellow;
 }
 
-.score{
-    color: cyan;
+.success-primary{
+    color: green;
 }
 
-.success{
-    color: green;
+.success-secondary{
+    color: yellow;
+}
+
+.score{
+    color: cyan;
 }
 
 .error{

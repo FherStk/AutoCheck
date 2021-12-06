@@ -4518,6 +4518,56 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Exceptions.ResultMismatchException.ResultMismatchException
   nameWithType: ResultMismatchException.ResultMismatchException
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException
+  name: ScriptInvalidException
+  href: api/AutoCheck.Core.Exceptions.ScriptInvalidException.html
+  commentId: T:AutoCheck.Core.Exceptions.ScriptInvalidException
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException
+  nameWithType: ScriptInvalidException
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  name: ScriptInvalidException()
+  href: api/AutoCheck.Core.Exceptions.ScriptInvalidException.html#AutoCheck_Core_Exceptions_ScriptInvalidException__ctor
+  commentId: M:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException()
+  nameWithType: ScriptInvalidException.ScriptInvalidException()
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor(System.String,Exception)
+  name: ScriptInvalidException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ScriptInvalidException.html#AutoCheck_Core_Exceptions_ScriptInvalidException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException(System.String, Exception)
+  nameWithType: ScriptInvalidException.ScriptInvalidException(String, Exception)
+- uid: AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor*
+  name: ScriptInvalidException
+  href: api/AutoCheck.Core.Exceptions.ScriptInvalidException.html#AutoCheck_Core_Exceptions_ScriptInvalidException__ctor_
+  commentId: Overload:AutoCheck.Core.Exceptions.ScriptInvalidException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Exceptions.ScriptInvalidException.ScriptInvalidException
+  nameWithType: ScriptInvalidException.ScriptInvalidException
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  name: ScriptNotFoundException
+  href: api/AutoCheck.Core.Exceptions.ScriptNotFoundException.html
+  commentId: T:AutoCheck.Core.Exceptions.ScriptNotFoundException
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  nameWithType: ScriptNotFoundException
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  name: ScriptNotFoundException()
+  href: api/AutoCheck.Core.Exceptions.ScriptNotFoundException.html#AutoCheck_Core_Exceptions_ScriptNotFoundException__ctor
+  commentId: M:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException()
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException()
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor(System.String,Exception)
+  name: ScriptNotFoundException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ScriptNotFoundException.html#AutoCheck_Core_Exceptions_ScriptNotFoundException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException(System.String, Exception)
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException(String, Exception)
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor*
+  name: ScriptNotFoundException
+  href: api/AutoCheck.Core.Exceptions.ScriptNotFoundException.html#AutoCheck_Core_Exceptions_ScriptNotFoundException__ctor_
+  commentId: Overload:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException
 - uid: AutoCheck.Core.Exceptions.StyleInvalidException
   name: StyleInvalidException
   href: api/AutoCheck.Core.Exceptions.StyleInvalidException.html

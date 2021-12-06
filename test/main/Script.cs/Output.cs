@@ -112,6 +112,7 @@ namespace AutoCheck.Test
                 Assert.IsTrue(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
+        
 
         [Test, Category("Output"), Category("Local"), Category("Text")]
         public void Output_BATCH_FILE_2()
@@ -157,6 +158,34 @@ namespace AutoCheck.Test
             foreach(var l in logs){
                 Assert.IsTrue(File.Exists(l));        
                 Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToJson()));
+            }
+        } 
+
+        [Test, Category("Output"), Category("Local"), Category("Text")]
+        public void Output_BATCH_FILE_4()
+        {         
+            var path = Path.Combine(LogRootFolder, "script", "output", "output_batch_4_yaml");  
+            if(Directory.Exists(path)) Directory.Delete(path, true);
+            
+            var logs = new string[]{
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 1.log"),
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 2.log"),
+                Path.Combine(path, "OUTPUT BATCH 3_Student Name 3.log")
+            };
+
+            if(Directory.Exists(path)){     
+                foreach(var l in logs)
+                    Assert.IsFalse(File.Exists(Core.Utils.PathToCurrentOS(l)));
+            }
+            
+            var i = 0;
+            var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_4.yaml"));
+            
+            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+
+            foreach(var l in logs){
+                Assert.IsTrue(File.Exists(l));        
+                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
     }

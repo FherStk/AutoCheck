@@ -19,4 +19,4 @@
 inherits: "dummy_base_4.yaml"
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}\\temp\\script\\dummy\\test5"
+    folder: "{$APP_FOLDER_PATH}/temp/script/dummy/test5"

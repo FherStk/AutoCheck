@@ -55,8 +55,8 @@ batch:
         - connector:  
             type: "GDrive"                    
             arguments: 
-              accountFilePath: "{$APP_FOLDER_PATH}\\..\\core\\config\\gdrive_account.txt"
-              secretFilePath: "{$APP_FOLDER_PATH}\\..\\core\\config\\gdrive_secret.json"               
+              accountFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_account.txt"
+              secretFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_secret.json"               
 
         - run:   
             caption: "   Uploading files from ~{#([^\\\\]*)$$TXT_FILE}... "
@@ -64,4 +64,4 @@ batch:
             command: "CopyFromFile"
             arguments: 
                 localFile: "{$TXT_FILE}"
-                remoteFolderPath: "\\AutoCheck\\scripts\\M10\\"
+                remoteFolderPath: "/AutoCheck/scripts/M10/"

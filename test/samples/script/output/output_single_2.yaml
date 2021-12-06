@@ -17,14 +17,14 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "OUTPUT SINGLE 2"
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+inherits: "{$APP_FOLDER_PATH}/../scripts/templates/html5.yaml"  
 
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\private\\html5\\Student Name 1"
+    folder: "{$APP_FOLDER_PATH}/samples/private/html5/Student Name 1"
     
 log:
   enabled: !!bool True
   format: "JSON"
-  folder: "{$APP_FOLDER_PATH}\\logs\\script\\output\\output_single_2_yaml"
+  folder: "{$APP_FOLDER_PATH}/logs/script/output/output_single_2_yaml"
   name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

@@ -1,0 +1,214 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  commentId: T:AutoCheck.Core.Exceptions.ScriptNotFoundException
+  id: ScriptNotFoundException
+  parent: AutoCheck.Core.Exceptions
+  children:
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor(System.String,Exception)
+  langs:
+  - csharp
+  - vb
+  name: ScriptNotFoundException
+  nameWithType: ScriptNotFoundException
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  type: Class
+  source:
+    remote:
+      path: core/main/Exceptions.cs
+      branch: v2.12.3
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ScriptNotFoundException
+    path: ../core/main/Exceptions.cs
+    startLine: 105
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Exceptions
+  syntax:
+    content: 'public class ScriptNotFoundException : ItemNotFoundException'
+    content.vb: >-
+      Public Class ScriptNotFoundException
+          Inherits ItemNotFoundException
+  inheritance:
+  - System.Object
+  - AutoCheck.Core.Exceptions.ItemNotFoundException
+  extensionMethods:
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: ScriptNotFoundException()
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException()
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException()
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Exceptions.cs
+      branch: v2.12.3
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Exceptions.cs
+    startLine: 111
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Exceptions
+  syntax:
+    content: public ScriptNotFoundException()
+    content.vb: Public Sub New
+  overload: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor(System.String,Exception)
+  commentId: M:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor(System.String,Exception)
+  id: '#ctor(System.String,Exception)'
+  parent: AutoCheck.Core.Exceptions.ScriptNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: ScriptNotFoundException(String, Exception)
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException(String, Exception)
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException(System.String, Exception)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Exceptions.cs
+      branch: v2.12.3
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Exceptions.cs
+    startLine: 112
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Exceptions
+  syntax:
+    content: public ScriptNotFoundException(string message, Exception innerException = null)
+    parameters:
+    - id: message
+      type: System.String
+    - id: innerException
+      type: Exception
+    content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
+  overload: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Exceptions
+  commentId: N:AutoCheck.Core.Exceptions
+  name: AutoCheck.Core.Exceptions
+  nameWithType: AutoCheck.Core.Exceptions
+  fullName: AutoCheck.Core.Exceptions
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Exceptions.ItemNotFoundException
+  commentId: T:AutoCheck.Core.Exceptions.ItemNotFoundException
+  parent: AutoCheck.Core.Exceptions
+  name: ItemNotFoundException
+  nameWithType: ItemNotFoundException
+  fullName: AutoCheck.Core.Exceptions.ItemNotFoundException
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<ScriptNotFoundException>()
+  nameWithType: ObjectExtensions.DeepClone<ScriptNotFoundException>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ScriptNotFoundException>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of ScriptNotFoundException)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ScriptNotFoundException)()
+  name.vb: DeepClone(Of ScriptNotFoundException)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<ScriptNotFoundException>
+    nameWithType: ObjectExtensions.DeepClone<ScriptNotFoundException>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ScriptNotFoundException>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of ScriptNotFoundException)
+    nameWithType: ObjectExtensions.DeepClone(Of ScriptNotFoundException)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ScriptNotFoundException)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.ScriptNotFoundException.#ctor
+  name: ScriptNotFoundException
+  nameWithType: ScriptNotFoundException.ScriptNotFoundException
+  fullName: AutoCheck.Core.Exceptions.ScriptNotFoundException.ScriptNotFoundException
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Exception
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: Exception

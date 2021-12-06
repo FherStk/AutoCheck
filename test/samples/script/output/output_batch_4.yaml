@@ -16,14 +16,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\html5.yaml"  
+name: "OUTPUT BATCH 3"
+inherits: "{$APP_FOLDER_PATH}/../scripts/templates/html5.yaml"  
 
 batch: 
-  - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
-  - local:                             
-      - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\html5"
+  - local:
+      - path: "{$APP_FOLDER_PATH}/samples/private/html5"
 
   - copy_detector:            
       type: "HTML"            
-      file: "index.html"
-      threshold: !!float 0.6  
+      file: "*.html"
+      threshold: !!float 0    
+
+log:
+  enabled: True
+  format: "TEXT"
+  folder: "{$APP_FOLDER_PATH}/logs/script/output/output_batch_4_yaml"
+  name: "{$SCRIPT_NAME}_{$CURRENT_FOLDER_NAME}"

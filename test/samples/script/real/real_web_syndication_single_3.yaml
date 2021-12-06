@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "{$APP_FOLDER_PATH}\\..\\scripts\\templates\\web_syndication.yaml"  
+inherits: "{$APP_FOLDER_PATH}/../scripts/templates/web_syndication.yaml"  
 caption: "Running script '{$SCRIPT_NAME}' (v{$SCRIPT_VERSION}):"
 
 single:
   caption: "Running on single mode for '{$CURRENT_FOLDER_NAME}':"
   local:
-    folder: "{$APP_FOLDER_PATH}\\samples\\private\\web_syndication\\Student Name 3"
+    folder: "{$APP_FOLDER_PATH}/samples/private/web_syndication/Student Name 3"

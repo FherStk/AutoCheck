@@ -21,5 +21,5 @@ inherits: "batch_base1.yaml"
 batch:   
   - caption: "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION})~ on batch mode for ~{$CURRENT_FOLDER_NAME}:"
   - local:                              
-      - folder: "{$APP_FOLDER_PATH}\\temp\\script\\batch\\test2\\folder1"  
-      - folder: "{$APP_FOLDER_PATH}\\temp\\script\\batch\\test2\\folder2"
+      - folder: "{$APP_FOLDER_PATH}/temp/script/batch/test2/folder1"  
+      - folder: "{$APP_FOLDER_PATH}/temp/script/batch/test2/folder2"

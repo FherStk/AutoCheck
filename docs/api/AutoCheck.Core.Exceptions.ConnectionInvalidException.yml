@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConnectionInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 155
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 161
+    startLine: 183
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.12.2
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 162
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

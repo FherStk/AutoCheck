@@ -1,0 +1,329 @@
+# Copyright © 2021 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "El script de Dani"
+version: "1.0.0.0"
+
+body:
+    - vars:
+        filename: "1.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+
+    - vars:
+            filename: "2.html"
+            filepath: NULL
+            
+    - question: 
+            description: "Checking {$FILENAME}"
+            content:                            
+                - run:
+                    caption:  "Looking for ~{$FILENAME}... "
+                    command:  "GetFile"
+                    arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                    store: "$FILEPATH"
+                    expected: "%{$FILENAME}" 
+                    onerror: "SKIP"      
+                
+                - connector:  
+                    caption:  "Loading ~{$FILENAME}... "          
+                    type: "Html"        
+                    arguments: "--filePath {$FILEPATH}"
+                    onexception: "SKIP"
+                
+                - run:
+                    caption:  "Validating document against the W3C validation service... "
+                    connector: "Html"
+                    command:  "ValidateHtml5AgainstW3C"            
+                    onexception: "SKIP"
+
+
+    - vars:
+        filename: "3.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "4.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "5.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "6.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "7.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "8.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "9.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+    - vars:
+        filename: "10.html"
+        filepath: NULL
+        
+    - question: 
+        description: "Checking {$FILENAME}"
+        content:                            
+            - run:
+                caption:  "Looking for ~{$FILENAME}... "
+                command:  "GetFile"
+                arguments: "--path {$CURRENT_FOLDER_PATH} --file {$FILENAME}"
+                store: "$FILEPATH"
+                expected: "%{$FILENAME}" 
+                onerror: "SKIP"      
+            
+            - connector:  
+                caption:  "Loading ~{$FILENAME}... "          
+                type: "Html"        
+                arguments: "--filePath {$FILEPATH}"
+                onexception: "SKIP"
+            
+            - run:
+                caption:  "Validating document against the W3C validation service... "
+                connector: "Html"
+                command:  "ValidateHtml5AgainstW3C"            
+                onexception: "SKIP"
+
+
+        #Aquí irían otras preguntas a verificar, se ponen aqui dentro para que no se hagan si el documento no valida.
+        #   - question:                     
+        #       description: "Validating headers"
+        #       content:                            
+        #           - run:
+        #               caption:  "Checking amount of level-1 headers... "
+        #               connector: "Html"
+        #               command:  "CountNodes"
+        #               arguments: "--xpath //h1"                  
+        #               expected: ">=1"
+
+        #           - run:
+        #               caption:  "Checking amount of level-2 headers... "
+        #               connector: "Html"
+        #               command:  "CountNodes"
+        #               arguments: "--xpath //h2"                  
+        #               expected: ">=1"
+
+        #   - question:                     
+        #       description: "Validating paragraphs"
+        #       content:                            
+        #           - run:
+        #               caption:  "Checking amount of paragraphs... "
+        #               connector: "Html"
+        #               command:  "CountNodes"
+        #               arguments: "--xpath //p"                  
+        #               expected: ">=1"
+
+        #           - run:
+        #               caption:  "Checking content legth within paragraphs... "
+        #               connector: "Html"
+        #               command:  "ContentLength"
+        #               arguments: "--xpath //p"                  
+        #               expected: ">=1500"
