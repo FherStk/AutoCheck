@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFailedException
     path: ../core/main/Exceptions.cs
-    startLine: 185
+    startLine: 207
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 191
+    startLine: 213
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 192
+    startLine: 214
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

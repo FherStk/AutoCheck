@@ -18,7 +18,7 @@
 
 single:
     local:  
-      folder: "{$APP_FOLDER_PATH}\\samples"
+      folder: "{$APP_FOLDER_PATH}/samples"
 
 vars:
     folder: "{$CURRENT_FOLDER_PATH}"
@@ -26,8 +26,8 @@ vars:
 body:
   - connector:  
       type: "CSS"
-      arguments: "--folder {$FOLDER}\\css\\ --file correct.css"
+      arguments: "--folder {$FOLDER}/css/ --file correct.css"
 
   - connector:  
       type: "HTML"
-      arguments: "--folder {$FOLDER}\\html\\ --file correct.html"
+      arguments: "--folder {$FOLDER}/html/ --file correct.html"

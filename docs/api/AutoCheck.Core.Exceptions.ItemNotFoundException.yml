@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: ItemNotFoundException
     path: ../core/main/Exceptions.cs
@@ -36,6 +36,7 @@ items:
   - AutoCheck.Core.Exceptions.ArgumentNotFoundException
   - AutoCheck.Core.Exceptions.ConnectorNotFoundException
   - AutoCheck.Core.Exceptions.PorpertyNotFoundException
+  - AutoCheck.Core.Exceptions.ScriptNotFoundException
   - AutoCheck.Core.Exceptions.VariableNotFoundException
   extensionMethods:
   - AutoCheck.Core.Exceptions.ItemNotFoundException.ObjectExtensions.DeepClone``1
@@ -59,7 +60,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -89,7 +90,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: master
+      branch: v2.12.3
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

@@ -16,12 +16,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-inherits: "..\\templates\\html5.yaml"  
+inherits: "../templates/html5.yaml"  
 
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
     - local:                             
-        - path: "{$APP_FOLDER_PATH}\\..\\test\\samples\\private\\html5"
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/html5"
 
     - copy_detector:            
         type: "HTML"            

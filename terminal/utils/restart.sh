@@ -1,3 +1,3 @@
 #!/bin/bash
 sleep 1
-dotnet run -nu $1
+./run.sh -nu $1 $2
