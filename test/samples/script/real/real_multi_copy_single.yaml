@@ -19,4 +19,4 @@
 inherits: "real_multi_copy_base.yaml"  
 single:    
   local:                             
-    folder: "{$APP_FOLDER_PATH}/samples/private/multi_copy/Student Name 1" 
+    folder: "{$APP_FOLDER_PATH}/../test/samples/private/multi_copy/Student Name 1" 

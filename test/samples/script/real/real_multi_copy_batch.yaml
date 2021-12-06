@@ -22,7 +22,7 @@ vars:
     student: "{#^[^_]+(?= )$CURRENT_FOLDER_NAME}"
 
 batch: 
-    - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
     - local:                             
         - path: "{$APP_FOLDER_PATH}/../test/samples/private/multi_copy"
 

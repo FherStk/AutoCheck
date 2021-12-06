@@ -1775,20 +1775,30 @@ namespace AutoCheck.Core{
                 }                    
             }));                                        
             
+            //The script body will be executed only if no copies has been detected, otherwise the execution is aborted and the copy detector matches are displayed (all of them, in order to help adjusting the threshold if needed)
             var match = false;
-            try{                        
-                foreach(var cd in cpydet){                            
-                    if(cd != null){
-                        match = match || cd.CopyDetected(folder);                        
-                        if(match) PrintCopies(cd, folder);                            
-                    }
+            var missing = false;
+            try{          
+                PrintCopies(cpydet, folder);
+                foreach(var cd in cpydet.Where(x => x != null)){
+                    try{
+                        match = (match || cd.CopyDetected(folder));
+                    }   
+                    catch{
+                        //missing files should not stop the script exection.
+                        missing = true;
+                    }                                                                
                 }                        
 
-                if(!match){
+                if(match) Output.WriteLine($"Script execution aborted due potential copy detection.", Output.Style.CRITICAL);
+                else {
+                    if(missing) Output.WriteLine($"Warning: some files were not found when performing the copy detection mechanism.", Output.Style.WARNING);
+                    else Output.WriteLine($"No potential copy has been detected.", Output.Style.SUCCESS);
+                    Output.BreakLine();
                     ExecuteBody(Root);  
                     Output.BreakLine();
-                } 
-            }
+                }                 
+            }            
             catch(Exception ex){
                 Output.WriteLine($"ERROR: {ExceptionToOutput(ex)}", Output.Style.ERROR);
                 Output.BreakLine();
@@ -2378,24 +2388,38 @@ namespace AutoCheck.Core{
             return cd;
         }                          
         
-        private void PrintCopies(CopyDetector cd, string folder){                        
-            var details = cd.GetDetails(folder);
-            folder = Path.GetDirectoryName(folder);
-            folder = details.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
+        private void PrintCopies(List<CopyDetector> copies, string folder){
+            foreach(var cd in copies)
+                PrintCopies(cd, folder);
+        }
 
-            Output.WriteLine($"Potential copy detected for ~{folder}:", Output.Style.CRITICAL);                                                      
-            Output.Indent();
+        private void PrintCopies(CopyDetector cd, string folder){ 
+            try{                                 
+                var details = cd.GetDetails(folder);
+                var file = Path.Combine(Path.GetFileName(details.folder), Path.GetFileName(details.file));
+                
+                if(cd.CopyDetected(folder)) Output.WriteLine($"Potential copy detected for ~{file}:", Output.Style.CRITICAL);
+                else Output.WriteLine($"No potential copy detected for ~{file}:", Output.Style.SUCCESS);
+                Output.Indent();
 
-            foreach(var item in details.matches){  
-                folder = Path.GetDirectoryName(item.folder);
-                folder = item.file.Substring(folder.Length).TrimStart(Path.DirectorySeparatorChar);
+                foreach(var item in details.matches){  
+                    file = Path.Combine(Path.GetFileName(item.folder), Path.GetFileName(item.file));
 
-                Output.Write($"Match score with ~{folder}... ", Output.Style.DETAILS);     
-                Output.WriteLine(string.Format("{0:P2} ", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                    Output.Write($"Match score with ~{file}... ", Output.Style.DETAILS);     
+                    Output.WriteLine(string.Format("{0:P2} ", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                }     
+
+                Output.UnIndent();
+                
             }
-            
-            Output.UnIndent();
-            Output.BreakLine();
+            catch(KeyNotFoundException){
+                //The folder has not been found within the current copy detector instance
+                folder = Path.GetFileName(folder);
+                Output.WriteLine($"The copy detector was unable to find and compare some files using the search pattern ~{Path.Combine(folder, cd.FilePattern)}:", Output.Style.CRITICAL);
+            }            
+            finally{
+                Output.BreakLine();
+            }
         }
 #endregion
     }
