@@ -1790,11 +1790,13 @@ namespace AutoCheck.Core{
                     }                                                                
                 }                        
 
+                //Please, note that copy detector messages will be displayed only when the copy detector has been used (including the end breakline)
                 if(match) Output.WriteLine($"Script execution aborted due potential copy detection.", Output.Style.CRITICAL);
                 else {
                     if(missing) Output.WriteLine($"Warning: some files were not found when performing the copy detection mechanism.", Output.Style.WARNING);
-                    else Output.WriteLine($"No potential copy has been detected.", Output.Style.SUCCESS);
-                    Output.BreakLine();
+                    else if(cpydet.Count > 0) Output.WriteLine($"No potential copy has been detected.", Output.Style.SUCCESS);                                                            
+                    if(cpydet.Count > 0) Output.BreakLine();
+
                     ExecuteBody(Root);  
                     Output.BreakLine();
                 }                 
@@ -2406,7 +2408,7 @@ namespace AutoCheck.Core{
                     file = Path.Combine(Path.GetFileName(item.folder), Path.GetFileName(item.file));
 
                     Output.Write($"Match score with ~{file}... ", Output.Style.DETAILS);     
-                    Output.WriteLine(string.Format("{0:P2} ", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                    Output.WriteLine(string.Format("{0:P2}", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
                 }     
 
                 Output.UnIndent();
