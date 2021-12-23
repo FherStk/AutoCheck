@@ -1,4 +1,4 @@
-namespace web;
+namespace AutoCheck.Web;
 
 public class WeatherForecast
 {

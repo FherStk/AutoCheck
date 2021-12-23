@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace web.Controllers;
+namespace AutoCheck.Web.Controllers;
 
 [ApiController]
 [Route("[controller]")]

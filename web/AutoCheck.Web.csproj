@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <Authors>Fernando Porrino Serrano</Authors>
+    <Product>AutoCheck.Core</Product>
+    <Copyright>Copyright © 2021</Copyright>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>stable</VersionSuffix>
+    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion> 
+    <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
     <Nullable>enable</Nullable>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
@@ -14,7 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\core\AutoCheck.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.1" />
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
