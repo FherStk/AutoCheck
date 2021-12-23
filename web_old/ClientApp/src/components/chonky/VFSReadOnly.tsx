@@ -78,12 +78,13 @@ export const useFileActionHandler = (
                 
                 filePath = getFilePath(fileToOpen);
                 
+                /*
                 var div = document.querySelector('#step-1');
                 if(div != null) div.style.display = 'none';
 
                 div = document.querySelector('#step-2');
                 if(div != null) div.style.visibility = 'block';
-            
+                */            
             }
             
             //TODO:
@@ -102,6 +103,7 @@ export const useFileActionHandler = (
         [setCurrentFolderId]
     );
 };
+
 function getFilePath(current: FileData){
     var path = [];
     var filePath = "";
