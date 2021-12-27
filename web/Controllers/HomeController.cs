@@ -15,40 +15,42 @@ public class HomeController : Controller
     private class WebScript : AutoCheck.Core.Script{
         //LoadYamlFile is protected, because make it public could be danegerous; also, the Script constructors executes the scripts, so inheriting will do the trick.
 
-        private string path;
+        private string Path {get; set;}
+
         public WebScript(string path): base(){
-            this.path = path;
+            this.Path = path;
         }
-        
-        // public string[] GetTargetInfo(){
-        //     var info = new List<string>();
-        //     var local = new List<Local>();  
-        //     var remote = new List<Remote>(); 
 
-        //     var root = (YamlMappingNode)this.LoadYamlFile(this.path).Documents[0].RootNode;
-        //     if(root.Children.ContainsKey("single") || root.Children.ContainsKey("batch")){
-        //         ForEachChild(root, new Action<string, YamlMappingNode>((name, node) => { 
-        //             switch(name){                        
-        //                 case "local":                        
-        //                     local.Add(ParseLocal(node, name, string.Empty));                            
-        //                     break;
+        public void InjectTarget(string target){
+            var yaml = this.LoadYamlFile(Path);            
+            var root = (YamlMappingNode)yaml.Documents[0].RootNode;
 
-        //                 case "remote":                        
-        //                     remote.Add(ParseRemote(node, name, string.Empty));
-        //                     break;
-        //             }
-        //         }));
-        //     }             
 
-        //     //TODO: handle remote scripts
-        //     if(remote.Count > 0) throw new NotImplementedException("Remote script execution has not been implemented yet, use the console client app instead.");
+            if(root.Children.ContainsKey("single") || root.Children.ContainsKey("batch")){
+                ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
+                    switch(name){                        
+                        case "local":   
+                            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
+                                switch(name){                        
+                                    case "folder":
+                                    case "path":
+                                        var scalar = (YamlScalarNode)node;
+                                        scalar.Value = target;                                        
+                                    break;
+                                }
+                            }));
 
-        //     foreach(var l in local){
-                
-        //     }
-          
-        //     return info.ToArray();
-        // }
+                            break;
+
+                        case "remote":                        
+                            throw new NotImplementedException();
+                    }
+                }));
+            }   
+
+            var file = yaml.ToString();
+
+        }     
     }    
 
     private readonly ILogger<HomeController> _logger;
@@ -63,11 +65,11 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult GetScripts(string type)
+    public IActionResult GetScripts(string mode)
     {
         var items = new List<ScriptInfo>();
         try{            
-            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "targets", type.ToLower())).OrderBy(x => x)){
+            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "targets", mode.ToLower())).OrderBy(x => x)){
                 items.Add(new ScriptInfo{
                     Name = Path.GetFileName(item), 
                     Path = item
@@ -81,21 +83,21 @@ public class HomeController : Controller
         return Json(items);
     }
 
-    // public IActionResult GetExecutionInputs(string script)
-    // {
-    //     //Still not available for remote scripts        
-    //     //TODO: file / path within a script will be ignored and will be injected from web into the script (multi file/path)
-    //     //TODO: enable remote
+    public IActionResult Run(string script, string mode, string target)
+    {
+        //Still not available for remote scripts        
+        //TODO: file / path within a script will be ignored and will be injected from web into the script (multi file/path)
+        //TODO: enable remote
 
-    //     //1. Get local YAML data
-    //     //2. Generate file / path inputs
+        
+        //2. Generate file / path inputs
+        
+        //1. Getting the local YAML data
+        var ws = new WebScript(script);
+        ws.InjectTarget(target);
 
-    //     // var ws = new WebScript();
-    //     // ws.Load
-
-
-    //     // return Json(items);
-    // }
+        return Json(true);
+    }
 
     public IActionResult Privacy()
     {

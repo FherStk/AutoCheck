@@ -7,10 +7,10 @@
 }
 
 @section Scripts { 
-    <script type="text/javascript">       
-        $(function(){
-            $("#type").change(function() {
-                $.post("/home/GetScripts", { type: this.value}, function(data){ 
+    <script type="text/javascript">      
+        $(function(){                
+            $("#mode").change(function() {
+                $.post("/home/GetScripts", { mode: this.value}, function(data){ 
                     $("#script").empty();
                     $("#script").append('<option value="none" selected>- Select -</option>');
 
@@ -18,25 +18,39 @@
                         $("#script").append('<option value="'  + this.path + '">' + this.name + '</option>');
                     });
                     
-                    $("#step-2-single, #step-2-batch").hide();
+                    $("#step-2").hide();
                     if(data.length == 0) $("#script").hide();
                     else $("#script").show();
                 });
             });
 
             $("#script").change(function() {
-                debugger;
-                var type = $("#type").val();
+                var mode = $("#mode").val();
+                $("#step-2").show();
 
-                if(type == "single"){
-                    $("#step-2-batch").hide();
-                    $("#step-2-single").show();
+                if(mode == "single"){
+                    $("#info-batch").hide();
+                    $("#info-single").show();
                 }
-                else if(type == "batch"){
-                    $("#step-2-single").hide();
-                    $("#step-2-batch").show();
+                else if(mode == "batch"){
+                    $("#info-single").hide();
+                    $("#info-batch").show();
                 }
-            });
+            });  
+
+            $("#target").keyup(function() {
+                if(this.value.length > 0) $("#run").show();
+                else $("#run").hide();
+            });  
+
+            $("#run").click(function() {
+                $("#mode, #script, #target, #run").prop( "disabled", true );  
+                $("#step-3").show();  
+
+                $.post("/home/Run", { script: $("#script").val(), mode: $("#mode").val(), target: $("#target").val()}, function(data){ 
+                  
+                });
+            });         
         });
     </script>
 }
@@ -48,7 +62,7 @@
 
 <div id="step-1" class="text-center">
     <h2>Step 1: Select the YAML script to run</h2>
-    <select id="type">
+    <select id="mode">
         <option value="none" selected>- Select -</option>
         <option value="single">Single</option>
         <option value="batch">Batch</option>
@@ -57,20 +71,18 @@
     <select id="script"></select>  
 </div>
 
-<div id="step-2-single" class="text-center">
-    <h2>Step 2: Fill the execution data</h2>
-    <select id="mode-single">      
-        <option value="single">Folder</option>
-    </select>    
+<div id="step-2" class="text-center">
+    <h2>Step 2: Select the target folder</h2>
+    <label id="info-single">AutoCheck will be executed once for the given folder, so this should contain the files you want to validate.</label>
+    <label id="info-batch">AutoCheck will be executed in batch mode, once per folder within the given one.</label>
+    <br>
+    <input id="target" type="text" placeholder="/home/user/Documents/folder" /> 
+    <input id="run" type="button" value="Run" />
 </div>
 
-<div id="step-2-batch" class="text-center">
-    <h2>Step 2: Fill the execution data</h2>
-    <select id="mode-batch">        
-        @* TODO: batch mode can add multiple folder/path lines *@
-        @* <option value="none" selected>- Select -</option>
-        <option value="single">Folder (just this)</option> *@
-        <option value="batch">Subfolders</option>        
-        <input type="file" name="path" accept="image/*" multiple directory webkitdirectory mozdirectory />
-    </select>    
+<div id="step-3" class="text-center">
+    <h2>Step 3: The script is beeing executed</h2>
+    <textarea id="log">
+
+    </textarea>
 </div>
