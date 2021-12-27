@@ -7,7 +7,7 @@
 }
 
 @section Scripts { 
-    <script type="text/javascript">
+    <script type="text/javascript">       
         $(function(){
             $("#type").change(function() {
                 $.post("/home/GetScripts", { type: this.value}, function(data){ 
@@ -39,7 +39,6 @@
             });
         });
     </script>
-
 }
 
 <div id="wellcome" class="text-center">
@@ -71,6 +70,7 @@
         @* TODO: batch mode can add multiple folder/path lines *@
         @* <option value="none" selected>- Select -</option>
         <option value="single">Folder (just this)</option> *@
-        <option value="batch">Subfolders</option>
+        <option value="batch">Subfolders</option>        
+        <input type="file" name="path" accept="image/*" multiple directory webkitdirectory mozdirectory />
     </select>    
 </div>
