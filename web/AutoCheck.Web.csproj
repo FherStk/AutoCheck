@@ -1,34 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-AutoCheck.Web-EA0B1CED-FEB6-41C9-8621-4079FE198576</UserSecretsId>
-    <TargetFramework>net6.0</TargetFramework>
-    <Authors>Fernando Porrino Serrano</Authors>
-    <Product>AutoCheck.Core</Product>
-    <Copyright>Copyright © 2021</Copyright>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>stable</VersionSuffix>
-    <AssemblyVersion>$(VersionPrefix)</AssemblyVersion> 
-    <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\core\AutoCheck.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1" />
-  </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>aspnet-AutoCheck.Web-EA0B1CED-FEB6-41C9-8621-4079FE198576</UserSecretsId>
+		<TargetFramework>net6.0</TargetFramework>
+		<Authors>Fernando Porrino Serrano</Authors>
+		<Product>AutoCheck.Core</Product>
+		<Copyright>Copyright © 2021</Copyright>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix>stable</VersionSuffix>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\core\AutoCheck.Core.csproj"/>
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1"/>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1"/>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1"/>
+	</ItemGroup>
 </Project>

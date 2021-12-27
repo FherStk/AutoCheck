@@ -2,7 +2,44 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section Styles { 
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+}
+
+@section Scripts { 
+    <script type="text/javascript">
+        $(function(){
+            $("#type").change(function() {
+                $.post("/home/GetScripts", { type: this.value}, function(data){
+                    $("#script").empty();
+                    $("#script").append('<option value="none" selected>- Select -</option>');
+
+                    $.each(data, function() {                        
+                        $("#script").append('<option value="'  + this.path + '">' + this.name + '</option>');
+                    });
+                    
+                    if(data.length > 0) $("#script").show();
+                    else $("#script").hide();
+                });
+            });
+        });
+    </script>
+
+}
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to AutoCheck</h1>
+    <p>Learn about AutoCheck at his <a href="https://fherstk.github.io/AutoCheck/html/">documentation site</a>.</p>
+
+    <h2>Step 1: Select the YAML script to run</h2>
+    <select id="type">
+        <option id="single" value="none" selected>- Select -</option>
+        <option id="single" value="single">Single</option>
+        <option id="batch" value="batch">Batch</option>
+    </select>
+
+    <select id="script"></select>
+
+
+    
 </div>

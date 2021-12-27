@@ -6,6 +6,11 @@ namespace AutoCheck.Web.Controllers;
 
 public class HomeController : Controller
 {
+    private class ScriptInfo{
+        public string Name {get; set;}
+        public string Path {get; set;}
+    }
+
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -16,6 +21,24 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         return View();
+    }
+
+    public IActionResult GetScripts(string type)
+    {
+        var items = new List<ScriptInfo>();
+        try{            
+            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "targets", type.ToLower())).OrderBy(x => x)){
+                items.Add(new ScriptInfo{
+                    Name = Path.GetFileName(item), 
+                    Path = item
+                });
+            }
+        }
+        catch{
+
+        }
+                
+        return Json(items);
     }
 
     public IActionResult Privacy()
