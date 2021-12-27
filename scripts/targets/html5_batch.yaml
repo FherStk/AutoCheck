@@ -26,7 +26,12 @@ batch:
     - copy_detector:            
         type: "HTML"            
         file: "index.html"
-        threshold: !!float 0.8    
+        threshold: !!float 0.8  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "contacte.html"
+        threshold: !!float 0.9  
      
     - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"

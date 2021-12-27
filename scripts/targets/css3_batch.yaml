@@ -24,6 +24,11 @@ batch:
         - path: "{$APP_FOLDER_PATH}/../test/samples/private/css3"
 
     - copy_detector:            
+        type: "HTML"            
+        file: "index.html"
+        threshold: !!float 0.7   
+
+    - copy_detector:            
         type: "CSS"            
         file: "index.css"
         threshold: !!float 0.7    
