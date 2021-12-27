@@ -589,7 +589,7 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Constructor
-        private Script(){
+        protected Script(){
             //Just to be used by the other constructors            
             Output = new Output();       
             LogFiles = new List<string>();                                                           
@@ -2180,7 +2180,7 @@ namespace AutoCheck.Core{
             return match;
         }
 
-        private YamlStream LoadYamlFile(string path){     
+        protected YamlStream LoadYamlFile(string path){     
             if(!File.Exists(path)) throw new Exceptions.ScriptNotFoundException($"Unable to find the YAML script file '{path}'.");
             
             var yaml = new YamlStream();            
