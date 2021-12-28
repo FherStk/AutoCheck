@@ -140,18 +140,15 @@ public class HomeController : Controller
     public IActionResult PerformUpdate()
     {
         var shell = new Shell();
-        // var result = shell.RunCommand("git fetch --all");
-        // if(result.code != 0) throw new Exception(result.response);            
+        var result = shell.RunCommand("git fetch --all");
+        if(result.code != 0) throw new Exception(result.response);            
 
-        // result = shell.RunCommand("git reset --hard origin/master");
-        // if(result.code != 0) throw new Exception(result.response);     
+        result = shell.RunCommand("git reset --hard origin/master");
+        if(result.code != 0) throw new Exception(result.response);     
 
-        // result = shell.RunCommand("git pull");
-        // if(result.code != 0) throw new Exception(result.response);   
+        result = shell.RunCommand("git pull");
+        if(result.code != 0) throw new Exception(result.response);   
         
-        //TODO: restart the server engine
-        //      the client must reload also
-
         var runScript = Path.Combine(Utils.AppFolder, (Core.Utils.CurrentOS == Utils.OS.WIN ? "run.bat" : "run.sh"));
         var restartScript = Path.Combine(Utils.AppFolder, "Utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));                        
         
@@ -169,10 +166,18 @@ public class HomeController : Controller
                 FileName = restartScript
             }
         }; 
-
-        _applicationLifetime.StopApplication();
-        restart.Start(); 
         
+        _applicationLifetime.ApplicationStopped.Register(() => {
+            restart.Start(); 
+        });        
+
+        ShutDown();
+        return Json(true);
+    }
+
+    public IActionResult ShutDown()
+    {
+        _applicationLifetime.StopApplication();
         return Json(true);
     }
 

@@ -20,3 +20,7 @@ body {
 #logo{
   width: 35px;
 }
+
+#shutdown{
+  cursor: pointer;
+}
