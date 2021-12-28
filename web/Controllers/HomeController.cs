@@ -145,6 +145,9 @@ public class HomeController : Controller
         result = shell.RunCommand("git pull");
         if(result.code != 0) throw new Exception(result.response);   
         
+        //TODO: restart the server engine
+        //      the client must reload also
+
         return Json(true);
     }
 
