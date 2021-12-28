@@ -21,7 +21,7 @@ public class HomeController : Controller
             this.YAML = this.LoadYamlFile(path);  
         }
 
-        public void InjectTarget(string target){                      
+        public YamlStream InjectTarget(string target){                      
             var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
             
             ForEachChild(root, new Action<string, YamlMappingNode>((name, node) => { 
@@ -49,20 +49,9 @@ public class HomeController : Controller
                         break;
                 }
             }));
+
+            return this.YAML;
         }     
-
-        public string Save(){
-            var folder = Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "tmp");
-            if(!Directory.Exists(folder)) Directory.CreateDirectory(folder);
-
-            var filePath = Path.Combine(folder, $"{DateTime.Now.ToString("yyyyMMddHHmmssffff")}.yaml");
-            using (StreamWriter outputFile = new StreamWriter(filePath))
-            {
-               this.YAML.Save(outputFile);
-            }
-            
-            return filePath;
-        }
     }    
 
     private readonly ILogger<HomeController> _logger;
@@ -106,11 +95,9 @@ public class HomeController : Controller
         
         //1. Getting the local YAML data
         var ws = new WebScript(script);
-        ws.InjectTarget(target);
-        
-        var injectedScript = ws.Save();
-        var result = new AutoCheck.Core.Script(injectedScript);        
-        System.IO.File.Delete(injectedScript);
+        var yaml = ws.InjectTarget(target);
+                
+        var result = new AutoCheck.Core.Script(yaml);        
 
         return Json(result.LogFiles);
     }

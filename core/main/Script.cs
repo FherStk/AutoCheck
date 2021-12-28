@@ -655,7 +655,7 @@ namespace AutoCheck.Core{
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
         public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
         }
-        
+
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
@@ -666,6 +666,16 @@ namespace AutoCheck.Core{
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
         public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
             //NOTE: some properties are beeing setup within the private constructor
+            
+            //Setup the remaining vars            
+            ScriptFilePath = Utils.ScriptsFolder;
+            ScriptName = "YAML Stream Script";
+                        
+            //Load the YAML file
+            Root = (YamlMappingNode)yaml.Documents[0].RootNode;
+            
+            //Setup the script
+            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);  
         }
 
         /// <summary>
@@ -677,18 +687,26 @@ namespace AutoCheck.Core{
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
         public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
-            //NOTE: some properties are beeing setup within the private constructor
-
-            //Events
-            OnHeaderCompleted = onHeaderCompleted;
-            OnSetupCompleted = onSetupCompleted;
-            OnScriptCompleted = onScriptCompleted;
-            OnTeardwonCompleted = onTeardwonCompleted;                        
+            //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
             ScriptFilePath = Utils.PathToCurrentOS(path);
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");            
             
+            //Load the YAML file
+            Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+
+            //Setup the script
+            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);          
+        }
+
+        private void SetupScript(EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
+            //Events
+            OnHeaderCompleted = onHeaderCompleted;
+            OnSetupCompleted = onSetupCompleted;
+            OnScriptCompleted = onScriptCompleted;
+            OnTeardwonCompleted = onTeardwonCompleted;                        
+                       
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -696,9 +714,8 @@ namespace AutoCheck.Core{
                 "{$SCRIPT_NAME}_{$NOW}", 
                 false
             );                 
-        
-            //Load the YAML file
-            Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+
+            //Validating required children        
             ValidateChildren(Root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
                     
             //YAML header overridable vars 
@@ -760,6 +777,8 @@ namespace AutoCheck.Core{
             //Scope out
             Vars.Pop();            
         }
+
+        
 #endregion
 #region Parsing
         private void ParseLog(YamlNode node, string current="log", string parent="root", string[] children = null, string[] mandatory = null){
