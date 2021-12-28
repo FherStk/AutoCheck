@@ -1,9 +1,9 @@
 .info-primary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
 .info-secondary{
-    color: white;
+    color: black;
 }
 
 .prompt-primary{
@@ -11,15 +11,18 @@
 }
 
 .prompt-secondary{
-    color: white;
+    color: black;
 }
 
 .header-primary{
-    color: blue;
+    color: rgb(38, 74, 151);
+    font-weight: bold;
 }
 
 .header-secondary{
-    color: yellow;
+    color: #4373e1;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .critical-primary{
@@ -27,23 +30,23 @@
 }
 
 .critical-secondary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
 .details-primary{
-    color: white;
+    color: black;
 }
 
 .details-secondary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
 .question-primary{
-    color: cyan;
+    color: #004dff;
 }
 
 .question-secondary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
 .echo-primary{
@@ -51,29 +54,37 @@
 }
 
 .echo-secondary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
 .success-primary{
     color: green;
+    margin-left: 10px;
 }
 
 .success-secondary{
-    color: yellow;
+    color: rgb(126 0 239);
 }
 
-.score{
-    color: cyan;
+.score,
+.score-primary{
+    color: #004dff;
+    font-weight: bold;
 }
 
-.error{
+.error,
+.error-primary{
     color: red;
+    margin-left: 10px;
 }
 
-.warning{
+.warning,
+.warningprimary{
     color: orange;
+    margin-left: 10px;
 }
 
-.default{
-    color: white;
+.default,
+.default-primary{
+    color: black;
 }

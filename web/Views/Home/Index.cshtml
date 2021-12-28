@@ -15,7 +15,6 @@
                     $("#script").empty();
                     $("#script").append('<option value="none" selected>- Select -</option>');
 
-                    debugger;
                     $.each(data, function() {                        
                         $("#script").append('<option value="'  + this.path + '">' + this.name + '</option>');
                     });
@@ -41,20 +40,35 @@
             });  
 
             $("#target").keyup(function() {
-                if(this.value.length > 0) $("#run").show();
-                else $("#run").hide();
+                if(this.value.length > 0) $("#run").prop( "disabled", false ); 
+                else $("#run").prop( "disabled", true ); 
             });  
 
             $("#run").click(function() {
                 $("#mode, #script, #target, #run").prop( "disabled", true );  
                 $("#step-3").show();  
-                $("#log").empty();
+                $("#log > div").empty();
+                $("#log > img").show();
 
-                $.post("/home/Run", { script: $("#script").val(), mode: $("#mode").val(), target: $("#target").val()}, function(data){ 
-                    //TODO: this must be append in async mode                                  
-                    $.each(data, function() {                        
-                        $("#log").append('<label class="'  + this.Style + '">' + this.Indent +  this.Text + '</label>');
-                        if(this.BreakLine) $("#log").append('<br>');
+                $.post("/home/Run", { script: $("#script").val(), mode: $("#mode").val(), target: $("#target").val()}, function(data){                        
+                    $("#log > img").hide();
+
+                    //TODO: this must be append in async mode   
+                    $.each(data, function() {      
+                        //Multiple log files     
+
+                        $.each(this, function() {                        
+                            //TODO: this should come in two lines
+                            if(this.Text != null && this.Text.startsWith("ERROR:")){
+                                $("#log > div").append('<label class="'  + this.Style + '">ERROR:</label><br>');
+                                this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
+                            }
+                            
+                            $("#log > div").append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
+                            if(this.BreakLine || this.Style == null) $("#log > div").append('<br>');
+                        });
+
+                        $("#log > div").append('<br>');
                     });
                 });
 
@@ -86,10 +100,13 @@
     <label id="info-batch">AutoCheck will be executed in batch mode, once per folder within the given one.</label>
     <br>
     <input id="target" type="text" placeholder="/home/user/Documents/folder" /> 
-    <input id="run" type="button" value="Run" />
+    <input id="run" type="button" value="Run" disabled="true" />
 </div>
 
 <div id="step-3" class="text-center">
-    <h2>Step 3: The script is beeing executed</h2>
-    <div id="log"></div>
+    <h2>Step 3: The script is beeing executed</h2>    
+    <div id="log">
+        <img alt="Loading" src="~/img/loading.gif" />
+        <div></div>
+    </div>
 </div>

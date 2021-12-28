@@ -283,7 +283,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <returns></returns>
         public string ToJson(){
-            return String.Join(",", GetLog().Select(x => x.ToJson()).ToArray());
+            return "[" + String.Join(",", GetLog().Select(x => x.ToJson()).ToArray()) + "]";
         } 
         
         /// <summary>
