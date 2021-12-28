@@ -643,6 +643,31 @@ namespace AutoCheck.Core{
         public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
         }
 
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        public Script(YamlStream yaml): this(yaml, null, null, null, null){ 
+        }
+
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        }
+        
+        /// <summary>
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
+        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
+        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
+            //NOTE: some properties are beeing setup within the private constructor
+        }
+
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>

@@ -14,43 +14,55 @@ public class HomeController : Controller
 
     private class WebScript : AutoCheck.Core.Script{
         //LoadYamlFile is protected, because make it public could be danegerous; also, the Script constructors executes the scripts, so inheriting will do the trick.
-
-        private string Path {get; set;}
+        
+        private YamlStream YAML {get; set;}
 
         public WebScript(string path): base(){
-            this.Path = path;
+            this.YAML = this.LoadYamlFile(path);  
         }
 
-        public void InjectTarget(string target){
-            var yaml = this.LoadYamlFile(Path);            
-            var root = (YamlMappingNode)yaml.Documents[0].RootNode;
-
-
-            if(root.Children.ContainsKey("single") || root.Children.ContainsKey("batch")){
-                ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
-                    switch(name){                        
-                        case "local":   
-                            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
-                                switch(name){                        
-                                    case "folder":
-                                    case "path":
-                                        var scalar = (YamlScalarNode)node;
-                                        scalar.Value = target;                                        
+        public void InjectTarget(string target){                      
+            var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
+            
+            ForEachChild(root, new Action<string, YamlMappingNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":      
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        switch(name){                        
+                                            case "folder":                       
+                                            case "path":                            
+                                                var scalar = (YamlScalarNode)node;
+                                                scalar.Value = target;       
+                                            break;             
+                                        }
+                                    }));                     
                                     break;
-                                }
-                            }));
 
-                            break;
-
-                        case "remote":                        
-                            throw new NotImplementedException();
-                    }
-                }));
-            }   
-
-            var file = yaml.ToString();
-
+                                case "remote":   
+                                    throw new NotImplementedException();                     
+                            }
+                        }));
+                        break;
+                }
+            }));
         }     
+
+        public string Save(){
+            var folder = Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "tmp");
+            if(!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+            var filePath = Path.Combine(folder, $"{DateTime.Now.ToString("yyyyMMddHHmmssffff")}.yaml");
+            using (StreamWriter outputFile = new StreamWriter(filePath))
+            {
+               this.YAML.Save(outputFile);
+            }
+            
+            return filePath;
+        }
     }    
 
     private readonly ILogger<HomeController> _logger;
@@ -95,8 +107,12 @@ public class HomeController : Controller
         //1. Getting the local YAML data
         var ws = new WebScript(script);
         ws.InjectTarget(target);
+        
+        var injectedScript = ws.Save();
+        var result = new AutoCheck.Core.Script(injectedScript);        
+        System.IO.File.Delete(injectedScript);
 
-        return Json(true);
+        return Json(result.LogFiles);
     }
 
     public IActionResult Privacy()
