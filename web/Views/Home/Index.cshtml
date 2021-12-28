@@ -19,10 +19,12 @@
             });
 
             $("#update-yes").click(function(){
-                $("#update-card").hide();
-                $("#step-1").hide();
+                $("#update-card, #step-1, #step-2, #step-3").hide();
                 $("#updating").show();
-                $(this).modal('show');
+
+                $.post("/home/PerformUpdate", function(data){
+
+                });
             });
 
             $("#mode").change(function() {

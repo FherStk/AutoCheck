@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
 using AutoCheck.Web.Models;
@@ -63,10 +64,13 @@ public class HomeController : Controller
 
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IHostApplicationLifetime _applicationLifetime;
+
+    public HomeController(IHostApplicationLifetime applicationLifetime, ILogger<HomeController> logger)
     {
+        _applicationLifetime = applicationLifetime;
         _logger = logger;
-    }
+    }    
 
     public IActionResult Index()
     {
@@ -136,18 +140,39 @@ public class HomeController : Controller
     public IActionResult PerformUpdate()
     {
         var shell = new Shell();
-        var result = shell.RunCommand("git fetch --all");
-        if(result.code != 0) throw new Exception(result.response);            
+        // var result = shell.RunCommand("git fetch --all");
+        // if(result.code != 0) throw new Exception(result.response);            
 
-        result = shell.RunCommand("git reset --hard origin/master");
-        if(result.code != 0) throw new Exception(result.response);     
+        // result = shell.RunCommand("git reset --hard origin/master");
+        // if(result.code != 0) throw new Exception(result.response);     
 
-        result = shell.RunCommand("git pull");
-        if(result.code != 0) throw new Exception(result.response);   
+        // result = shell.RunCommand("git pull");
+        // if(result.code != 0) throw new Exception(result.response);   
         
         //TODO: restart the server engine
         //      the client must reload also
 
+        var runScript = Path.Combine(Utils.AppFolder, (Core.Utils.CurrentOS == Utils.OS.WIN ? "run.bat" : "run.sh"));
+        var restartScript = Path.Combine(Utils.AppFolder, "Utils", (Core.Utils.CurrentOS == Utils.OS.WIN ? "restart.bat" : "restart.sh"));                        
+        
+        //On Ubuntu, the sh files needs execution permissions
+        SetExecPermissions(runScript);
+        SetExecPermissions(restartScript);
+
+        var restart = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                RedirectStandardOutput = false,
+                UseShellExecute = false,
+                WorkingDirectory = Environment.CurrentDirectory,
+                FileName = restartScript
+            }
+        }; 
+
+        _applicationLifetime.StopApplication();
+        restart.Start(); 
+        
         return Json(true);
     }
 
@@ -160,5 +185,25 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    private static void SetExecPermissions(string file){
+            if(Core.Utils.CurrentOS == Utils.OS.GNU){
+            //On Ubuntu, the sh files needs execution permissions
+            var chmod = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    RedirectStandardOutput = false,
+                    UseShellExecute = false,
+                    WorkingDirectory = Environment.CurrentDirectory,
+                    FileName = "/bin/bash",
+                    Arguments = $"-c \"chmod +x {file}\""
+                }
+            }; 
+
+            chmod.Start();
+            chmod.WaitForExit();
+        }
     }
 }
