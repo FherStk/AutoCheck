@@ -4,16 +4,18 @@
 
 @section Styles { 
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
 }
 
 @section Scripts { 
     <script type="text/javascript">      
         $(function(){                
             $("#mode").change(function() {
-                $.post("/home/GetScripts", { mode: this.value}, function(data){ 
+                $.post("/home/GetScripts", { mode: this.value}, function(data){                     
                     $("#script").empty();
                     $("#script").append('<option value="none" selected>- Select -</option>');
 
+                    debugger;
                     $.each(data, function() {                        
                         $("#script").append('<option value="'  + this.path + '">' + this.name + '</option>');
                     });
@@ -46,11 +48,18 @@
             $("#run").click(function() {
                 $("#mode, #script, #target, #run").prop( "disabled", true );  
                 $("#step-3").show();  
+                $("#log").empty();
 
                 $.post("/home/Run", { script: $("#script").val(), mode: $("#mode").val(), target: $("#target").val()}, function(data){ 
-                  
+                    //TODO: this must be append in async mode                                  
+                    $.each(data, function() {                        
+                        $("#log").append('<label class="'  + this.Style + '">' + this.Indent +  this.Text + '</label>');
+                        if(this.BreakLine) $("#log").append('<br>');
+                    });
                 });
-            });         
+
+                $("#run").prop( "disabled", false ); 
+            });
         });
     </script>
 }
@@ -82,7 +91,5 @@
 
 <div id="step-3" class="text-center">
     <h2>Step 3: The script is beeing executed</h2>
-    <textarea id="log">
-
-    </textarea>
+    <div id="log"></div>
 </div>

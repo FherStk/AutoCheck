@@ -10,6 +10,11 @@ public class HomeController : Controller
     private class ScriptInfo{
         public string Name {get; set;}
         public string Path {get; set;}
+
+        public ScriptInfo(string name, string path){
+            Name = name;
+            Path = path;
+        }
     }
 
     private class WebScript : AutoCheck.Core.Script{
@@ -71,10 +76,7 @@ public class HomeController : Controller
         var items = new List<ScriptInfo>();
         try{            
             foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, "targets", mode.ToLower())).OrderBy(x => x)){
-                items.Add(new ScriptInfo{
-                    Name = Path.GetFileName(item), 
-                    Path = item
-                });
+                items.Add(new ScriptInfo(Path.GetFileName(item), item));            
             }
         }
         catch{
@@ -90,16 +92,31 @@ public class HomeController : Controller
         //TODO: file / path within a script will be ignored and will be injected from web into the script (multi file/path)
         //TODO: enable remote
 
-        
-        //2. Generate file / path inputs
-        
-        //1. Getting the local YAML data
+            
         var ws = new WebScript(script);
         var yaml = ws.InjectTarget(target);
-                
-        var result = new AutoCheck.Core.Script(yaml);        
+        AutoCheck.Core.Script? result = null;
 
-        return Json(result.LogFiles);
+        try{
+            //TODO: write log in async mode
+            result = new AutoCheck.Core.Script(yaml);              
+        }
+        catch(Exception ex){
+            if(result != null){
+                result.Output.BreakLine();
+                result.Output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+                
+                while(ex.InnerException != null){
+                    ex = ex.InnerException;
+                    result.Output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+                }
+
+                result.Output.BreakLine();
+            }
+        }
+
+        if(result == null) return Json(false);
+        else return Content(result.Output.ToJson(), "application/json");
     }
 
     public IActionResult Privacy()
