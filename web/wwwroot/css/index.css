@@ -39,3 +39,23 @@ input{
 xmp{
   margin: 0px;
 }
+
+#update-card{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 460px;
+  border: solid 1px black;
+  background-color: #ffffa7;
+  padding: 20px;
+  text-align: center;
+  display: none;
+}
+
+#updating{
+  display: none;
+}
+
+#updating > img {
+  width: 200px;
+}

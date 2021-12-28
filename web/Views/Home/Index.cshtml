@@ -9,7 +9,22 @@
 
 @section Scripts { 
     <script type="text/javascript">      
-        $(function(){                
+        $(function(){  
+            $.post("/home/CheckForUpdate", function(data){  
+                if(data) $("#update-card").show();
+            });
+
+            $("#update-no").click(function(){
+                $("#update-card").hide();
+            });
+
+            $("#update-yes").click(function(){
+                $("#update-card").hide();
+                $("#step-1").hide();
+                $("#updating").show();
+                $(this).modal('show');
+            });
+
             $("#mode").change(function() {
                 $.post("/home/GetScripts", { mode: this.value}, function(data){                     
                     $("#script").empty();
@@ -78,6 +93,14 @@
     </script>
 }
 
+<div id="update-card">
+    <p>A new version of AutoCheck is available, YAML script files within <code>'AutoCheck\\scripts\\custom\'</code> folder will be preserved but all other changes you made will be reverted.</p>
+    <p> Do you want to update AutoCheck to its newer version?:</p>
+
+    <button id="update-yes">Yes</button>
+    <button id="update-no">No</button>
+</div>
+
 <div id="wellcome" class="text-center">
     <h1 class="display-4">Welcome to AutoCheck</h1>
     <p>Learn about AutoCheck at his <a href="https://fherstk.github.io/AutoCheck/html/" target="_blank">documentation site</a>.</p>
@@ -109,4 +132,10 @@
         <img alt="Loading" src="~/img/loading.gif" />
         <div></div>
     </div>
+</div>
+
+<div id="updating" class="text-center">
+    <h2>Updating AutoCheck, please wait...</h2>        
+    <br>
+    <img alt="Updating" src="~/img/loading.gif" />
 </div>

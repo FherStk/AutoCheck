@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using AutoCheck.Core;
+using AutoCheck.Core.Connectors;
 using AutoCheck.Web.Models;
 using YamlDotNet.RepresentationModel;
 
@@ -117,6 +119,33 @@ public class HomeController : Controller
 
         if(result == null) return Json(false);
         else return Content(result.Output.ToJson(), "application/json");
+    }
+
+    public IActionResult CheckForUpdate()
+    {
+        var shell = new Shell();
+        var result = shell.RunCommand("git remote update");
+        if(result.code != 0) throw new Exception(result.response);            
+
+        result = shell.RunCommand((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
+        if(result.code != 0) throw new Exception(result.response);            
+        
+        return Json(!result.response.Contains("Your branch is up to date with 'origin/master'"));
+    }
+
+    public IActionResult PerformUpdate()
+    {
+        var shell = new Shell();
+        var result = shell.RunCommand("git fetch --all");
+        if(result.code != 0) throw new Exception(result.response);            
+
+        result = shell.RunCommand("git reset --hard origin/master");
+        if(result.code != 0) throw new Exception(result.response);     
+
+        result = shell.RunCommand("git pull");
+        if(result.code != 0) throw new Exception(result.response);   
+        
+        return Json(true);
     }
 
     public IActionResult Privacy()
