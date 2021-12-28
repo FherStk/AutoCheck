@@ -52,7 +52,20 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - AutoCheck.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <label>AutoCheck's Web Interface: v
+                @Html.Raw(AutoCheck.Core.Utils.GetProductVersion(typeof(AutoCheck.Web.Controllers.HomeController).Assembly))                
+                (Core v
+                @Html.Raw(AutoCheck.Core.Utils.GetProductVersion(typeof(AutoCheck.Core.Script).Assembly)))
+            </label>
+            |
+            <label>
+                Copyright &copy; 
+                @Html.Raw(DateTime.Now.Year.ToString()): Fernando Porrino Serrano.
+            </label>
+            |
+            <label>
+                Under the AGPL license: <a href="https://github.com/FherStk/AutoCheck/blob/master/LICENSE" target="_blank">https://github.com/FherStk/AutoCheck/blob/master/LICENSE</a>
+            </label>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

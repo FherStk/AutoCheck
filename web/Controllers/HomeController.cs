@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
 using AutoCheck.Web.Models;
