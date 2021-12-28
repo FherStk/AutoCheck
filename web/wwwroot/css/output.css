@@ -1,5 +1,5 @@
 .info-primary{
-    color: rgb(126 0 239);
+    color: #4373e1;
 }
 
 .info-secondary{
@@ -7,7 +7,7 @@
 }
 
 .prompt-primary{
-    color: magenta;
+    color: #004dff;
 }
 
 .prompt-secondary{
@@ -30,7 +30,7 @@
 }
 
 .critical-secondary{
-    color: rgb(126 0 239);
+    color: #4373e1;
 }
 
 .details-primary{
@@ -38,7 +38,7 @@
 }
 
 .details-secondary{
-    color: rgb(126 0 239);
+    color: #004dff;
 }
 
 .question-primary{
@@ -46,15 +46,15 @@
 }
 
 .question-secondary{
-    color: rgb(126 0 239);
+    color: #4373e1;
 }
 
 .echo-primary{
-    color: magenta;
+    color: rgb(38, 74, 151);
 }
 
 .echo-secondary{
-    color: rgb(126 0 239);
+    color: #004dff;
 }
 
 .success-primary{
@@ -63,7 +63,7 @@
 }
 
 .success-secondary{
-    color: rgb(126 0 239);
+    color: #004dff;
 }
 
 .score,
