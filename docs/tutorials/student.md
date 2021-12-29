@@ -27,7 +27,7 @@ Follow this instructions in order to install the application for the first time:
 #### Preparation
 Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **store the scripts** you create into the `AutoCheck/scripts/custom` folder.
 
-**WARNING:** AutoCheck's web interface is still in an early development stage and does not includes all the features which are currently available when using its command line interface. Currently, only `target` scripts will be available through the web interface but, as a workaround, new scripts can be added to those folders to make those available (but remember: will be removed on update so store also a copy within `custom` folder).
+**WARNING:** AutoCheck's web interface is still in an early development stage and does not include all the features which are currently available when using its command line interface. Currently, only `target` scripts will be available through the web interface but, as a workaround, new scripts can be added to those folders to make those available (but remember: will be removed on update so store also a copy within `custom` folder).
 
 #### Run
 Follow this instructions in order to run the application:
