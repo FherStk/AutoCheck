@@ -31,7 +31,7 @@ public class HomeController : Controller
         public YamlStream InjectTarget(string target){                      
             var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
             
-            ForEachChild(root, new Action<string, YamlMappingNode>((name, node) => { 
+            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
                 switch(name){                        
                     case "single":                           
                     case "batch":                        
