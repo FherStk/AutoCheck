@@ -101,28 +101,36 @@ public class HomeController : Controller
         var ws = new WebScript(script);
         var yaml = ws.InjectTarget(target);
         AutoCheck.Core.Script? result = null;
+        Output output;
 
         try{
             //TODO: write log in async mode
             result = new AutoCheck.Core.Script(yaml);              
         }
-        catch(Exception ex){
-            if(result == null) return Json(ex.Message);          
-            else{
-                result.Output.BreakLine();
-                result.Output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-                
-                while(ex.InnerException != null){
-                    ex = ex.InnerException;
-                    result.Output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-                }
-
-                result.Output.BreakLine();
+        catch(Exception ex){            
+            if(result == null) output = new Output();
+            else output = result.Output;
+            
+            output.BreakLine();
+            output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+            
+            while(ex.InnerException != null){
+                ex = ex.InnerException;
+                output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
             }
-        }
 
-        if(result == null) return Json(false);
-        else return Content(result.Output.ToJson(), "application/json");
+            output.BreakLine();
+        }
+        finally{
+            if(result != null) output = result.Output;
+            else {
+                output = new Output();
+                output.WriteLine($"ERROR: Unknown error.", AutoCheck.Core.Output.Style.ERROR);  
+                output.BreakLine();
+            }
+        }        
+
+        return Content(output.ToJson(), "application/json");
     }
 
     public IActionResult CheckForUpdate()
