@@ -107,7 +107,8 @@ public class HomeController : Controller
             result = new AutoCheck.Core.Script(yaml);              
         }
         catch(Exception ex){
-            if(result != null){
+            if(result == null) return Json(ex.Message);          
+            else{
                 result.Output.BreakLine();
                 result.Output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
                 
