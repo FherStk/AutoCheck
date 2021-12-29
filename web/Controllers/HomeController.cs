@@ -106,31 +106,17 @@ public class HomeController : Controller
         try{
             //TODO: write log in async mode
             result = new AutoCheck.Core.Script(yaml);          
+            output = result.Output;
         }
-        catch(Exception ex){     
-            return Json(ex.Message);
-
-            if(result == null) output = new Output();
-            else output = result.Output;
-            
-            output.BreakLine();
+        catch(Exception ex){                 
+            output = new Output();            
             output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
             
             while(ex.InnerException != null){
                 ex = ex.InnerException;
                 output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
             }
-
-            output.BreakLine();     
-        }
-        finally{
-            if(result != null) output = result.Output;
-            else {
-                output = new Output();
-                output.WriteLine($"ERROR: Unknown error.", AutoCheck.Core.Output.Style.ERROR);  
-                output.BreakLine();
-            }
-        }        
+        }               
 
         return Content(output.ToJson(), "application/json");
     }
