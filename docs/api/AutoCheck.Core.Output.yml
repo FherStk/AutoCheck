@@ -14,6 +14,7 @@ items:
   - AutoCheck.Core.Output.ResetIndent
   - AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
   - AutoCheck.Core.Output.SingleIndent
+  - AutoCheck.Core.Output.ToJson
   - AutoCheck.Core.Output.ToString
   - AutoCheck.Core.Output.UnIndent
   - AutoCheck.Core.Output.Write(System.String,AutoCheck.Core.Output.Style)
@@ -30,7 +31,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -70,11 +71,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
-    startLine: 113
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -103,11 +104,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
-    startLine: 115
+    startLine: 117
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -138,11 +139,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 130
+    startLine: 132
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -174,11 +175,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 156
+    startLine: 158
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -213,11 +214,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 166
+    startLine: 168
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -252,11 +253,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 175
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -295,11 +296,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 191
+    startLine: 193
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -334,11 +335,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 198
+    startLine: 200
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -366,11 +367,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 205
+    startLine: 207
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -398,11 +399,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 212
+    startLine: 214
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -430,11 +431,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 221
+    startLine: 223
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -466,11 +467,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseLog
     path: ../core/main/Output.cs
-    startLine: 231
+    startLine: 233
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -501,11 +502,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLog
     path: ../core/main/Output.cs
-    startLine: 243
+    startLine: 245
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -535,11 +536,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 274
+    startLine: 276
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -552,6 +553,41 @@ items:
       description: ''
     content.vb: Public Function ToString As String
   overload: AutoCheck.Core.Output.ToString*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Output.ToJson
+  commentId: M:AutoCheck.Core.Output.ToJson
+  id: ToJson
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: ToJson()
+  nameWithType: Output.ToJson()
+  fullName: AutoCheck.Core.Output.ToJson()
+  type: Method
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToJson
+    path: ../core/main/Output.cs
+    startLine: 284
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the Output history as an string, using \\r\\n as breaklines.\n"
+  example: []
+  syntax:
+    content: public string ToJson()
+    return:
+      type: System.String
+      description: ''
+    content.vb: Public Function ToJson As String
+  overload: AutoCheck.Core.Output.ToJson*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -570,11 +606,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SendToTerminal
     path: ../core/main/Output.cs
-    startLine: 282
+    startLine: 292
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -869,6 +905,11 @@ references:
   name: ToString
   nameWithType: Output.ToString
   fullName: AutoCheck.Core.Output.ToString
+- uid: AutoCheck.Core.Output.ToJson*
+  commentId: Overload:AutoCheck.Core.Output.ToJson
+  name: ToJson
+  nameWithType: Output.ToJson
+  fullName: AutoCheck.Core.Output.ToJson
 - uid: AutoCheck.Core.Output.SendToTerminal*
   commentId: Overload:AutoCheck.Core.Output.SendToTerminal
   name: SendToTerminal

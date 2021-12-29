@@ -1,7 +1,10 @@
 # Developer's guide
 ## Solution's overview
 ### AutoCheck.Cli
-Within the `terminal` folder you'll find the `AutoCheck.Cli` project, which is the recommended way for a user to run the application.
+Within the `cli` folder you'll find the `AutoCheck.Cli` project, which is the command line interface to run the application.
+
+### AutoCheck.Web
+Within the `web` folder you'll find the `AutoCheck.Web` project, which is the web interface to run the application.
 
 ### AutoCheck.Docs
 Within the `docs` folder you'll find the `AutoCheck.Docs` project, where the entire project's documentation lives.
@@ -19,8 +22,8 @@ Follow this instructions in order to download and compile the application for th
 1. Create a folder where the application will be downloaded in.
 2. Open a terminal and go into the newly crated folder.
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
-4. Go into the downloaded application folder and go to terminal with: `cd terminal`.
-5. Build the application before using it with the following command: `dotnet build`. 
+4. Go into the downloaded application folder and go to cli with: `cd cli`.
+5. Build the application before using it with the following command: `dotnet build -c Release`. 
 
 ### Import the libraries
 Once compiled, a set of `dll` files will be available in the `\bin\Release\net6.0` folder (recomended) or in the `\bin\Debug\net6.0` folder (the default build option), import this files into your project. 

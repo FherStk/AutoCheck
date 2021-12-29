@@ -106,7 +106,9 @@
 
 <h2 id="solutions-overview">Solution's overview</h2>
 <h3 id="autocheckcli">AutoCheck.Cli</h3>
-<p>Within the <code>terminal</code> folder you'll find the <code>AutoCheck.Cli</code> project, which is the recommended way for a user to run the application.</p>
+<p>Within the <code>cli</code> folder you'll find the <code>AutoCheck.Cli</code> project, which is the command line interface to run the application.</p>
+<h3 id="autocheckweb">AutoCheck.Web</h3>
+<p>Within the <code>web</code> folder you'll find the <code>AutoCheck.Web</code> project, which is the web interface to run the application.</p>
 <h3 id="autocheckdocs">AutoCheck.Docs</h3>
 <p>Within the <code>docs</code> folder you'll find the <code>AutoCheck.Docs</code> project, where the entire project's documentation lives.</p>
 <h3 id="autochecktest">AutoCheck.Test</h3>
@@ -120,8 +122,8 @@
 <li>Create a folder where the application will be downloaded in.</li>
 <li>Open a terminal and go into the newly crated folder.</li>
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
-<li>Go into the downloaded application folder and go to terminal with: <code>cd terminal</code>.</li>
-<li>Build the application before using it with the following command: <code>dotnet build</code>.</li>
+<li>Go into the downloaded application folder and go to cli with: <code>cd cli</code>.</li>
+<li>Build the application before using it with the following command: <code>dotnet build -c Release</code>.</li>
 </ol>
 <h3 id="import-the-libraries">Import the libraries</h3>
 <p>Once compiled, a set of <code>dll</code> files will be available in the <code>\bin\Release\net6.0</code> folder (recomended) or in the <code>\bin\Debug\net6.0</code> folder (the default build option), import this files into your project.</p>

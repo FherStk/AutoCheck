@@ -5,9 +5,9 @@ Further details about the license can be found at [https://github.com/FherStk/Au
 # Third party software and licenses:
 Please notice than this project could not be possible without the help of:
 
-## [DevExtreme](https://js.devexpress.com/NonCommercial/)
-Under the DevExtreme Non-Commercial, Non-Competitive End User License Agreement license by [DevExpress](https://js.devexpress.com/Licensing/#NonCommercial)\
-Further details about the license can be found at [https://js.devexpress.com/Licensing/#NonCommercial](https://js.devexpress.com/Licensing/#NonCommercial).
+## [Bootstrap](https://getbootstrap.com/)
+Under the MIT license by [Bootstrap](https://github.com/twbs)\
+Further details about the license can be found at [https://github.com/twbs/bootstrap/blob/main/LICENSE](https://github.com/twbs/bootstrap/blob/main/LICENSE).
 
 ## [DocFX](https://github.com/dotnet/docfx)
 Under the MIT license by [Microsoft Corporation](https://github.com/dotnet)\
@@ -28,6 +28,10 @@ Further details about the license can be found at [https://github.com/googleapis
 ## [HtmlAgilityPack](https://html-agility-pack.net/)
 Under the MIT license by [zzzprojects](https://github.com/zzzprojects)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
+
+## [jQuery](https://jquery.com/)
+Under the MIT license by [jquery](https://github.com/jquery)\
+Further details about the license can be found at [https://github.com/jquery/jquery/blob/main/LICENSE.txt](https://github.com/jquery/jquery/blob/main/LICENSE.txt).
 
 ## [NCalc2](https://github.com/sklose/NCalc2)
 Under the MIT license by [Sebastian Klose](https://github.com/sklose)\

@@ -4981,6 +4981,19 @@ references:
   commentId: F:AutoCheck.Core.Output.Style.WARNING
   fullName: AutoCheck.Core.Output.Style.WARNING
   nameWithType: Output.Style.WARNING
+- uid: AutoCheck.Core.Output.ToJson
+  name: ToJson()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson
+  commentId: M:AutoCheck.Core.Output.ToJson
+  fullName: AutoCheck.Core.Output.ToJson()
+  nameWithType: Output.ToJson()
+- uid: AutoCheck.Core.Output.ToJson*
+  name: ToJson
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToJson_
+  commentId: Overload:AutoCheck.Core.Output.ToJson
+  isSpec: "True"
+  fullName: AutoCheck.Core.Output.ToJson
+  nameWithType: Output.ToJson
 - uid: AutoCheck.Core.Output.ToString
   name: ToString()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ToString
@@ -5091,6 +5104,12 @@ references:
   commentId: T:AutoCheck.Core.Script
   fullName: AutoCheck.Core.Script
   nameWithType: Script
+- uid: AutoCheck.Core.Script.#ctor
+  name: Script()
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor
+  commentId: M:AutoCheck.Core.Script.#ctor
+  fullName: AutoCheck.Core.Script.Script()
+  nameWithType: Script.Script()
 - uid: AutoCheck.Core.Script.#ctor(System.String)
   name: Script(String)
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_
@@ -5115,6 +5134,30 @@ references:
   fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
   nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream)
+  name: Script(YamlStream)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream)
+  fullName: AutoCheck.Core.Script.Script(YamlStream)
+  nameWithType: Script.Script(YamlStream)
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
 - uid: AutoCheck.Core.Script.#ctor*
   name: Script
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_
@@ -5374,6 +5417,35 @@ references:
   commentId: F:AutoCheck.Core.Script.ExecutionModeType.SINGLE
   fullName: AutoCheck.Core.Script.ExecutionModeType.SINGLE
   nameWithType: Script.ExecutionModeType.SINGLE
+- uid: AutoCheck.Core.Script.ForEachChild*
+  name: ForEachChild
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ForEachChild_
+  commentId: Overload:AutoCheck.Core.Script.ForEachChild
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.ForEachChild
+  nameWithType: Script.ForEachChild
+- uid: AutoCheck.Core.Script.ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  name: ForEachChild<T>(YamlNode, Action<String, T>, Boolean)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ForEachChild__1_YamlNode_Action_System_String___0__System_Boolean_
+  commentId: M:AutoCheck.Core.Script.ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  name.vb: ForEachChild(Of T)(YamlNode, Action(Of String, T), Boolean)
+  fullName: AutoCheck.Core.Script.ForEachChild<T>(YamlNode, Action<System.String, T>, System.Boolean)
+  fullName.vb: AutoCheck.Core.Script.ForEachChild(Of T)(YamlNode, Action(Of System.String, T), System.Boolean)
+  nameWithType: Script.ForEachChild<T>(YamlNode, Action<String, T>, Boolean)
+  nameWithType.vb: Script.ForEachChild(Of T)(YamlNode, Action(Of String, T), Boolean)
+- uid: AutoCheck.Core.Script.LoadYamlFile(System.String)
+  name: LoadYamlFile(String)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LoadYamlFile_System_String_
+  commentId: M:AutoCheck.Core.Script.LoadYamlFile(System.String)
+  fullName: AutoCheck.Core.Script.LoadYamlFile(System.String)
+  nameWithType: Script.LoadYamlFile(String)
+- uid: AutoCheck.Core.Script.LoadYamlFile*
+  name: LoadYamlFile
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LoadYamlFile_
+  commentId: Overload:AutoCheck.Core.Script.LoadYamlFile
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.LoadYamlFile
+  nameWithType: Script.LoadYamlFile
 - uid: AutoCheck.Core.Script.LogFileName
   name: LogFileName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_LogFileName
@@ -5724,6 +5796,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ExecutionFolder
   nameWithType: Utils.ExecutionFolder
+- uid: AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  name: GetProductVersion(Assembly)
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_GetProductVersion_Assembly_
+  commentId: M:AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  fullName: AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  nameWithType: Utils.GetProductVersion(Assembly)
+- uid: AutoCheck.Core.Utils.GetProductVersion*
+  name: GetProductVersion
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_GetProductVersion_
+  commentId: Overload:AutoCheck.Core.Utils.GetProductVersion
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.GetProductVersion
+  nameWithType: Utils.GetProductVersion
 - uid: AutoCheck.Core.Utils.OS
   name: Utils.OS
   href: api/AutoCheck.Core.Utils.OS.html
@@ -5812,6 +5897,19 @@ references:
   fullName.vb: AutoCheck.Core.Utils.RunWithRetry(Of R, T)(Func(Of R), System.Int32, System.Int32)
   nameWithType: Utils.RunWithRetry<R, T>(Func<R>, Int32, Int32)
   nameWithType.vb: Utils.RunWithRetry(Of R, T)(Func(Of R), Int32, Int32)
+- uid: AutoCheck.Core.Utils.ScriptsFolder
+  name: ScriptsFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ScriptsFolder
+  commentId: P:AutoCheck.Core.Utils.ScriptsFolder
+  fullName: AutoCheck.Core.Utils.ScriptsFolder
+  nameWithType: Utils.ScriptsFolder
+- uid: AutoCheck.Core.Utils.ScriptsFolder*
+  name: ScriptsFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_ScriptsFolder_
+  commentId: Overload:AutoCheck.Core.Utils.ScriptsFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.ScriptsFolder
+  nameWithType: Utils.ScriptsFolder
 - uid: AutoCheck.Core.Utils.TempFolder
   name: TempFolder
   href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_TempFolder
