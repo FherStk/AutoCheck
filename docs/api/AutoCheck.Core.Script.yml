@@ -5,9 +5,13 @@ items:
   id: Script
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Script.#ctor
   - AutoCheck.Core.Script.#ctor(System.String)
   - AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   - AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  - AutoCheck.Core.Script.#ctor(YamlStream)
+  - AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  - AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   - AutoCheck.Core.Script.AppFolderName
   - AutoCheck.Core.Script.AppFolderPath
   - AutoCheck.Core.Script.BatchCaption
@@ -26,6 +30,8 @@ items:
   - AutoCheck.Core.Script.CurrentUser
   - AutoCheck.Core.Script.ExecutionFolderName
   - AutoCheck.Core.Script.ExecutionFolderPath
+  - AutoCheck.Core.Script.ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  - AutoCheck.Core.Script.LoadYamlFile(System.String)
   - AutoCheck.Core.Script.LogFileName
   - AutoCheck.Core.Script.LogFilePath
   - AutoCheck.Core.Script.LogFiles
@@ -54,7 +60,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
@@ -91,7 +97,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
@@ -128,7 +134,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptVersion
     path: ../core/main/Script.cs
@@ -165,7 +171,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
@@ -202,7 +208,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleCaption
     path: ../core/main/Script.cs
@@ -239,7 +245,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
@@ -276,7 +282,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderPath
     path: ../core/main/Script.cs
@@ -313,7 +319,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderName
     path: ../core/main/Script.cs
@@ -350,7 +356,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderPath
     path: ../core/main/Script.cs
@@ -387,7 +393,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderName
     path: ../core/main/Script.cs
@@ -424,7 +430,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderPath
     path: ../core/main/Script.cs
@@ -461,7 +467,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderName
     path: ../core/main/Script.cs
@@ -498,7 +504,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFilePath
     path: ../core/main/Script.cs
@@ -535,7 +541,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFileName
     path: ../core/main/Script.cs
@@ -572,7 +578,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderPath
     path: ../core/main/Script.cs
@@ -609,7 +615,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderName
     path: ../core/main/Script.cs
@@ -646,7 +652,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFilePath
     path: ../core/main/Script.cs
@@ -683,7 +689,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFileName
     path: ../core/main/Script.cs
@@ -720,7 +726,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderPath
     path: ../core/main/Script.cs
@@ -757,7 +763,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderName
     path: ../core/main/Script.cs
@@ -794,7 +800,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFilePath
     path: ../core/main/Script.cs
@@ -831,7 +837,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFileName
     path: ../core/main/Script.cs
@@ -868,7 +874,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentTarget
     path: ../core/main/Script.cs
@@ -905,7 +911,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Script.cs
@@ -942,7 +948,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
@@ -979,7 +985,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentUser
     path: ../core/main/Script.cs
@@ -1016,7 +1022,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPassword
     path: ../core/main/Script.cs
@@ -1053,7 +1059,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPort
     path: ../core/main/Script.cs
@@ -1090,7 +1096,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
@@ -1127,7 +1133,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
@@ -1165,7 +1171,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
@@ -1202,7 +1208,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
@@ -1239,7 +1245,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
@@ -1276,7 +1282,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
@@ -1313,7 +1319,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Concurrent
     path: ../core/main/Script.cs
@@ -1350,7 +1356,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
@@ -1387,7 +1393,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFiles
     path: ../core/main/Script.cs
@@ -1410,6 +1416,36 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: AutoCheck.Core.Script.#ctor
+  commentId: M:AutoCheck.Core.Script.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Script()
+  nameWithType: Script.Script()
+  fullName: AutoCheck.Core.Script.Script()
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Script.cs
+    startLine: 591
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: protected Script()
+    content.vb: Protected Sub New
+  overload: AutoCheck.Core.Script.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
 - uid: AutoCheck.Core.Script.#ctor(System.String)
   commentId: M:AutoCheck.Core.Script.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -1424,7 +1460,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1457,7 +1493,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1481,6 +1517,128 @@ items:
   - Public
   fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream)
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream)
+  id: '#ctor(YamlStream)'
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Script(YamlStream)
+  nameWithType: Script.Script(YamlStream)
+  fullName: AutoCheck.Core.Script.Script(YamlStream)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Script.cs
+    startLine: 648
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Script(YamlStream yaml)
+    parameters:
+    - id: yaml
+      type: YamlStream
+    content.vb: Public Sub New(yaml As YamlStream)
+  overload: AutoCheck.Core.Script.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  id: '#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Script.cs
+    startLine: 655
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public Script(YamlStream yaml, EventHandler<Script.LogGeneratedEventArgs> onLogGenerated)
+    parameters:
+    - id: yaml
+      type: YamlStream
+    - id: onLogGenerated
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+    content.vb: Public Sub New(yaml As YamlStream, onLogGenerated As EventHandler(Of Script.LogGeneratedEventArgs))
+  overload: AutoCheck.Core.Script.#ctor*
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
+  id: '#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Script.cs
+    startLine: 666
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nCreates a new script instance using the given script file.\n"
+  example: []
+  syntax:
+    content: public Script(YamlStream yaml, EventHandler<Script.LogGeneratedEventArgs> onHeaderCompleted, EventHandler<Script.LogGeneratedEventArgs> onSetupCompleted, EventHandler<Script.LogGeneratedEventArgs> onScriptCompleted, EventHandler<Script.LogGeneratedEventArgs> onTeardwonCompleted)
+    parameters:
+    - id: yaml
+      type: YamlStream
+      description: An already parsed YAML script.
+    - id: onHeaderCompleted
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      description: This event will be raised once the script has been loaded (before the setup execution).
+    - id: onSetupCompleted
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      description: This event will be raised once the setup has been completed (before any script execution).
+    - id: onScriptCompleted
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      description: This event will be raised once the script has been completed (after the post execution).
+    - id: onTeardwonCompleted
+      type: EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs}
+      description: This event will be raised once the teardown has been completed (after all scripts execution).
+    content.vb: Public Sub New(yaml As YamlStream, onHeaderCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onSetupCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onScriptCompleted As EventHandler(Of Script.LogGeneratedEventArgs), onTeardwonCompleted As EventHandler(Of Script.LogGeneratedEventArgs))
+  overload: AutoCheck.Core.Script.#ctor*
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
+  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
 - uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
   id: '#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})'
@@ -1495,11 +1653,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 653
+    startLine: 688
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1532,6 +1690,85 @@ items:
   - Public
   fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
   name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  commentId: M:AutoCheck.Core.Script.ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  id: ForEachChild``1(YamlNode,Action{System.String,``0},System.Boolean)
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: ForEachChild<T>(YamlNode, Action<String, T>, Boolean)
+  nameWithType: Script.ForEachChild<T>(YamlNode, Action<String, T>, Boolean)
+  fullName: AutoCheck.Core.Script.ForEachChild<T>(YamlNode, Action<System.String, T>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ForEachChild
+    path: ../core/main/Script.cs
+    startLine: 1754
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: >-
+      protected void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true)
+          where T : YamlNode
+    parameters:
+    - id: node
+      type: YamlNode
+    - id: action
+      type: Action{System.String,{T}}
+    - id: parseEmpty
+      type: System.Boolean
+    typeParameters:
+    - id: T
+    content.vb: Protected Sub ForEachChild(Of T As YamlNode)(node As YamlNode, action As Action(Of String, T), parseEmpty As Boolean = True)
+  overload: AutoCheck.Core.Script.ForEachChild*
+  nameWithType.vb: Script.ForEachChild(Of T)(YamlNode, Action(Of String, T), Boolean)
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: AutoCheck.Core.Script.ForEachChild(Of T)(YamlNode, Action(Of System.String, T), System.Boolean)
+  name.vb: ForEachChild(Of T)(YamlNode, Action(Of String, T), Boolean)
+- uid: AutoCheck.Core.Script.LoadYamlFile(System.String)
+  commentId: M:AutoCheck.Core.Script.LoadYamlFile(System.String)
+  id: LoadYamlFile(System.String)
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: LoadYamlFile(String)
+  nameWithType: Script.LoadYamlFile(String)
+  fullName: AutoCheck.Core.Script.LoadYamlFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LoadYamlFile
+    path: ../core/main/Script.cs
+    startLine: 2226
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: protected YamlStream LoadYamlFile(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: YamlStream
+    content.vb: Protected Function LoadYamlFile(path As String) As YamlStream
+  overload: AutoCheck.Core.Script.LoadYamlFile*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
 references:
 - uid: AutoCheck.Core
   commentId: N:AutoCheck.Core
@@ -1989,3 +2226,135 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: YamlStream
+  isExternal: true
+  name: YamlStream
+  nameWithType: YamlStream
+  fullName: YamlStream
+- uid: AutoCheck.Core.Script.ForEachChild*
+  commentId: Overload:AutoCheck.Core.Script.ForEachChild
+  name: ForEachChild
+  nameWithType: Script.ForEachChild
+  fullName: AutoCheck.Core.Script.ForEachChild
+- uid: YamlNode
+  commentId: '!:YamlNode'
+  isExternal: true
+  name: YamlNode
+  nameWithType: YamlNode
+  fullName: YamlNode
+- uid: Action{System.String,{T}}
+  commentId: '!:Action{System.String,``0}'
+  definition: Action`2
+  name: Action<String, T>
+  nameWithType: Action<String, T>
+  fullName: Action<System.String, T>
+  nameWithType.vb: Action(Of String, T)
+  fullName.vb: Action(Of System.String, T)
+  name.vb: Action(Of String, T)
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Action`2
+  commentId: '!:Action`2'
+  isExternal: true
+  name: Action<, >
+  nameWithType: Action<, >
+  fullName: Action<, >
+  nameWithType.vb: Action(Of , )
+  fullName.vb: Action(Of , )
+  name.vb: Action(Of , )
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.Script.LoadYamlFile*
+  commentId: Overload:AutoCheck.Core.Script.LoadYamlFile
+  name: LoadYamlFile
+  nameWithType: Script.LoadYamlFile
+  fullName: AutoCheck.Core.Script.LoadYamlFile

@@ -10,11 +10,13 @@ items:
   - AutoCheck.Core.Utils.ConfigFolder
   - AutoCheck.Core.Utils.CurrentOS
   - AutoCheck.Core.Utils.ExecutionFolder
+  - AutoCheck.Core.Utils.GetProductVersion(Assembly)
   - AutoCheck.Core.Utils.PathToCurrentOS(System.String)
   - AutoCheck.Core.Utils.PathToRemoteOS(System.String,AutoCheck.Core.Utils.OS)
   - AutoCheck.Core.Utils.RemoveDiacritics(System.String)
   - AutoCheck.Core.Utils.RunWithRetry``1(Action,System.Int32,System.Int32)
   - AutoCheck.Core.Utils.RunWithRetry``2(Func{``0},System.Int32,System.Int32)
+  - AutoCheck.Core.Utils.ScriptsFolder
   - AutoCheck.Core.Utils.TempFolder
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
   langs:
@@ -27,11 +29,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
-    startLine: 27
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -63,11 +65,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
-    startLine: 40
+    startLine: 42
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -103,11 +105,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
-    startLine: 51
+    startLine: 53
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -143,11 +145,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
-    startLine: 61
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -161,6 +163,46 @@ items:
       description: A folder&apos;s path.
     content.vb: Public Shared ReadOnly Property ConfigFolder As String
   overload: AutoCheck.Core.Utils.ConfigFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: AutoCheck.Core.Utils.ScriptsFolder
+  commentId: P:AutoCheck.Core.Utils.ScriptsFolder
+  id: ScriptsFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: ScriptsFolder
+  nameWithType: Utils.ScriptsFolder
+  fullName: AutoCheck.Core.Utils.ScriptsFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ScriptsFolder
+    path: ../core/main/Utils.cs
+    startLine: 73
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app scripts folder\n"
+  example: []
+  syntax:
+    content: public static string ScriptsFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property ScriptsFolder As String
+  overload: AutoCheck.Core.Utils.ScriptsFolder*
   modifiers.csharp:
   - public
   - static
@@ -183,11 +225,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TempFolder
     path: ../core/main/Utils.cs
-    startLine: 71
+    startLine: 83
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -223,11 +265,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
-    startLine: 81
+    startLine: 93
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -264,11 +306,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
-    startLine: 93
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -309,11 +351,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
-    startLine: 104
+    startLine: 116
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -339,6 +381,47 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  commentId: M:AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  id: GetProductVersion(Assembly)
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: GetProductVersion(Assembly)
+  nameWithType: Utils.GetProductVersion(Assembly)
+  fullName: AutoCheck.Core.Utils.GetProductVersion(Assembly)
+  type: Method
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: v2.13.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: GetProductVersion
+    path: ../core/main/Utils.cs
+    startLine: 141
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the product version for the given assembly, which has been setup within the .csproj file.\n"
+  example: []
+  syntax:
+    content: public static string GetProductVersion(Assembly assembly)
+    parameters:
+    - id: assembly
+      type: Assembly
+      description: The assembly to use.
+    return:
+      type: System.String
+      description: The product version.
+    content.vb: Public Shared Function GetProductVersion(assembly As Assembly) As String
+  overload: AutoCheck.Core.Utils.GetProductVersion*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Utils.RunWithRetry``1(Action,System.Int32,System.Int32)
   commentId: M:AutoCheck.Core.Utils.RunWithRetry``1(Action,System.Int32,System.Int32)
   id: RunWithRetry``1(Action,System.Int32,System.Int32)
@@ -353,11 +436,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 130
+    startLine: 151
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -404,11 +487,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 143
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -457,11 +540,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
-    startLine: 163
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -497,11 +580,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
-    startLine: 174
+    startLine: 195
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -539,11 +622,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 185
+    startLine: 206
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -597,6 +680,11 @@ references:
   name: ConfigFolder
   nameWithType: Utils.ConfigFolder
   fullName: AutoCheck.Core.Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.ScriptsFolder*
+  commentId: Overload:AutoCheck.Core.Utils.ScriptsFolder
+  name: ScriptsFolder
+  nameWithType: Utils.ScriptsFolder
+  fullName: AutoCheck.Core.Utils.ScriptsFolder
 - uid: AutoCheck.Core.Utils.TempFolder*
   commentId: Overload:AutoCheck.Core.Utils.TempFolder
   name: TempFolder
@@ -623,6 +711,17 @@ references:
   name: RemoveDiacritics
   nameWithType: Utils.RemoveDiacritics
   fullName: AutoCheck.Core.Utils.RemoveDiacritics
+- uid: AutoCheck.Core.Utils.GetProductVersion*
+  commentId: Overload:AutoCheck.Core.Utils.GetProductVersion
+  name: GetProductVersion
+  nameWithType: Utils.GetProductVersion
+  fullName: AutoCheck.Core.Utils.GetProductVersion
+- uid: Assembly
+  commentId: '!:Assembly'
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: Assembly
 - uid: AutoCheck.Core.Utils.RunWithRetry*
   commentId: Overload:AutoCheck.Core.Utils.RunWithRetry
   name: RunWithRetry

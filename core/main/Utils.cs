@@ -21,6 +21,8 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Linq;
+using System.Reflection;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -62,6 +64,16 @@ namespace AutoCheck.Core{
         public static string ConfigFolder{
             get{
                 return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "config");
+            }
+        }
+
+        /// <summary>
+        /// Returns the current app scripts folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string ScriptsFolder{
+            get{
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "scripts");
             }
         }
 
@@ -122,6 +134,15 @@ namespace AutoCheck.Core{
         }        
 #endregion
 #region Methods   
+        /// <summary>
+        /// Returns the product version for the given assembly, which has been setup within the .csproj file.
+        /// </summary>
+        /// <param name="assembly">The assembly to use.</param>
+         /// <returns>The product version.</returns>
+        public static string GetProductVersion(Assembly assembly){
+            return ((AssemblyInformationalVersionAttribute)assembly.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false).FirstOrDefault()).InformationalVersion;
+        }
+
         /// <summary>
         /// Runs the given action and retries it only for the given exception type (use Exception for generic behaviour).
         /// </summary>

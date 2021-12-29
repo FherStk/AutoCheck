@@ -5,6 +5,10 @@ Further details about the license can be found at [https://github.com/FherStk/Au
 # Third party software and licenses:
 Please notice than this project could not be possible without the help of:
 
+## [Bootstrap](https://getbootstrap.com/)
+Under the MIT license by [Bootstrap](https://github.com/twbs)\
+Further details about the license can be found at [https://github.com/twbs/bootstrap/blob/main/LICENSE](https://github.com/twbs/bootstrap/blob/main/LICENSE).
+
 ## [DocFX](https://github.com/dotnet/docfx)
 Under the MIT license by [Microsoft Corporation](https://github.com/dotnet)\
 Further details about the license can be found at [https://github.com/dotnet/docfx/blob/dev/LICENSE](https://github.com/dotnet/docfx/blob/dev/LICENSE).
@@ -25,9 +29,17 @@ Further details about the license can be found at [https://github.com/googleapis
 Under the MIT license by [zzzprojects](https://github.com/zzzprojects)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
 
+## [jQuery](https://jquery.com/)
+Under the MIT license by [jquery](https://github.com/jquery)\
+Further details about the license can be found at [https://github.com/jquery/jquery/blob/main/LICENSE.txt](https://github.com/jquery/jquery/blob/main/LICENSE.txt).
+
 ## [NCalc2](https://github.com/sklose/NCalc2)
 Under the MIT license by [Sebastian Klose](https://github.com/sklose)\
 Further details about the license can be found at [https://github.com/sklose/NCalc2/blob/master/LICENSE](https://github.com/sklose/NCalc2/blob/master/LICENSE).
+
+## [Noty](https://github.com/needim/noty)
+Under the MIT license by [Nedim Arabacı](https://github.com/needim)\
+Further details about the license can be found at [https://github.com/needim/noty/blob/master/LICENSE.txt](https://github.com/needim/noty/blob/master/LICENSE.txt).
 
 ## [Npgsql](https://www.npgsql.org/)
 Under the PostgreSQL license by [The Npgsql Development Team](https://www.npgsql.org/index.html)\

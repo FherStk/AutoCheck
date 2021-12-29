@@ -1,0 +1,53 @@
+# Copyright © 2021 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+inherits: "../../templates/html5.yaml"  
+
+batch: 
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
+    - local:                             
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/html5"
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "index.html"
+        threshold: !!float 0.8  
+
+    - copy_detector:            
+        type: "HTML"            
+        file: "contacte.html"
+        threshold: !!float 0.9  
+     
+    - setup:
+        - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
+
+        - run:            
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.zip"
+            store: "ZIP_FILE"    
+            
+        - connector:  
+            type: "Zip"                    
+            arguments: "--filePath {$ZIP_FILE}"
+        
+        - run:   
+            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            connector: "Zip"
+            command: "Extract"
+            arguments: 
+                recursive: !!bool True

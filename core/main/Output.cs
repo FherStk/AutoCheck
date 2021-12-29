@@ -74,9 +74,11 @@ namespace AutoCheck.Core{
             /// </summary>
             /// <returns></returns>
             public string ToJson(){
-                return JsonSerializer.Serialize(Content.Select(x => !x.GetType().Equals(typeof(Space))), new JsonSerializerOptions(){
+                /*return JsonSerializer.Serialize(Content.Select(x => !x.GetType().Equals(typeof(Space))), new JsonSerializerOptions(){
                     ReferenceHandler = ReferenceHandler.Preserve
-                });              
+                });*/
+
+                return JsonSerializer.Serialize(Content);              
             }
         }
        
@@ -275,6 +277,14 @@ namespace AutoCheck.Core{
         public new string ToString(){
             return string.Join("\r\n\r\n", GetLog().Select(x => x.ToText()).ToArray());
         }  
+
+        /// <summary>
+        /// Returns the Output history as an string, using \r\n as breaklines.
+        /// </summary>
+        /// <returns></returns>
+        public string ToJson(){
+            return "[" + String.Join(",", GetLog().Select(x => x.ToJson()).ToArray()) + "]";
+        } 
         
         /// <summary>
         /// Sends the given log to the terminal.

@@ -589,7 +589,7 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Constructor
-        private Script(){
+        protected Script(){
             //Just to be used by the other constructors            
             Output = new Output();       
             LogFiles = new List<string>();                                                           
@@ -643,6 +643,41 @@ namespace AutoCheck.Core{
         public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
         }
 
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        public Script(YamlStream yaml): this(yaml, null, null, null, null){ 
+        }
+
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        }
+
+        /// <summary>
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
+        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
+        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
+            //NOTE: some properties are beeing setup within the private constructor
+            
+            //Setup the remaining vars            
+            ScriptFilePath = Utils.ScriptsFolder;
+            ScriptName = "YAML Stream Script";
+                        
+            //Load the YAML file
+            Root = (YamlMappingNode)yaml.Documents[0].RootNode;
+            
+            //Setup the script
+            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);  
+        }
+
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
@@ -652,18 +687,26 @@ namespace AutoCheck.Core{
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
         /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
         public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
-            //NOTE: some properties are beeing setup within the private constructor
-
-            //Events
-            OnHeaderCompleted = onHeaderCompleted;
-            OnSetupCompleted = onSetupCompleted;
-            OnScriptCompleted = onScriptCompleted;
-            OnTeardwonCompleted = onTeardwonCompleted;                        
+            //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
             ScriptFilePath = Utils.PathToCurrentOS(path);
             ScriptName = Regex.Replace(Path.GetFileNameWithoutExtension(path), "[A-Z]", " $0");            
             
+            //Load the YAML file
+            Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+
+            //Setup the script
+            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);          
+        }
+
+        private void SetupScript(EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
+            //Events
+            OnHeaderCompleted = onHeaderCompleted;
+            OnSetupCompleted = onSetupCompleted;
+            OnScriptCompleted = onScriptCompleted;
+            OnTeardwonCompleted = onTeardwonCompleted;                        
+                       
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -671,9 +714,8 @@ namespace AutoCheck.Core{
                 "{$SCRIPT_NAME}_{$NOW}", 
                 false
             );                 
-        
-            //Load the YAML file
-            Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
+
+            //Validating required children        
             ValidateChildren(Root, "root", new string[]{"inherits", "version", "caption", "name", "single", "batch", "log", "vars", "body", "max-score"});
                     
             //YAML header overridable vars 
@@ -735,6 +777,8 @@ namespace AutoCheck.Core{
             //Scope out
             Vars.Pop();            
         }
+
+        
 #endregion
 #region Parsing
         private void ParseLog(YamlNode node, string current="log", string parent="root", string[] children = null, string[] mandatory = null){
@@ -1708,7 +1752,7 @@ namespace AutoCheck.Core{
             }
         }      
 
-        private void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
+        protected void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
             foreach(var child in GetChildren(node)){
                 //Continue if the node type matches or if it's the generic YamlNode
                 if(child.Value.GetType().Equals(typeof(T)) || child.Value.GetType().BaseType.Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);
@@ -2180,7 +2224,7 @@ namespace AutoCheck.Core{
             return match;
         }
 
-        private YamlStream LoadYamlFile(string path){     
+        protected YamlStream LoadYamlFile(string path){     
             if(!File.Exists(path)) throw new Exceptions.ScriptNotFoundException($"Unable to find the YAML script file '{path}'.");
             
             var yaml = new YamlStream();            
