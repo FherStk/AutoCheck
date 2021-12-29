@@ -1752,7 +1752,9 @@ namespace AutoCheck.Core{
             }
         }      
 
-        protected void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{                              
+        protected void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true) where T: YamlNode{   
+            //TODO: optimization: allow searching to select node by names and skip other nodes
+
             foreach(var child in GetChildren(node)){
                 //Continue if the node type matches or if it's the generic YamlNode
                 if(child.Value.GetType().Equals(typeof(T)) || child.Value.GetType().BaseType.Equals(typeof(T))) action.Invoke(child.Key.ToString(), (T)child.Value);

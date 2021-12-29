@@ -31,7 +31,7 @@ public class HomeController : Controller
         public YamlStream InjectTarget(string target){                      
             var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
             
-            ForEachChild(root, new Action<string, YamlMappingNode>((name, node) => { 
+            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
                 switch(name){                        
                     case "single":                           
                     case "batch":                        
@@ -101,27 +101,24 @@ public class HomeController : Controller
         var ws = new WebScript(script);
         var yaml = ws.InjectTarget(target);
         AutoCheck.Core.Script? result = null;
+        Output output;
 
         try{
             //TODO: write log in async mode
-            result = new AutoCheck.Core.Script(yaml);              
+            result = new AutoCheck.Core.Script(yaml);        
+            output = result.Output;
         }
-        catch(Exception ex){
-            if(result != null){
-                result.Output.BreakLine();
-                result.Output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-                
-                while(ex.InnerException != null){
-                    ex = ex.InnerException;
-                    result.Output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-                }
-
-                result.Output.BreakLine();
+        catch(Exception ex){                 
+            output = new Output();            
+            output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+            
+            while(ex.InnerException != null){
+                ex = ex.InnerException;
+                output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
             }
-        }
+        }               
 
-        if(result == null) return Json(false);
-        else return Content(result.Output.ToJson(), "application/json");
+        return Content(output.ToJson(), "application/json");
     }
 
     public IActionResult CheckForUpdate()
