@@ -105,7 +105,7 @@ public class HomeController : Controller
 
         try{
             //TODO: write log in async mode
-            result = new AutoCheck.Core.Script(yaml);              
+            result = new AutoCheck.Core.Script(yaml);          
         }
         catch(Exception ex){            
             if(result == null) output = new Output();
@@ -119,7 +119,7 @@ public class HomeController : Controller
                 output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
             }
 
-            output.BreakLine();
+            output.BreakLine();     
         }
         finally{
             if(result != null) output = result.Output;

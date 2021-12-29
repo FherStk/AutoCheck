@@ -260,6 +260,11 @@ namespace AutoCheck.Core{
                     log.Content.Add(new Space());
                 }
 
+                if(CurrentLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(CurrentLog.Content)).ToList();
+                    log.Content.Add(new Space());
+                }
+
                 if(TeardownLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
                 }
