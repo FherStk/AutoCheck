@@ -1,6 +1,6 @@
 # Student's guide
 ## Video tutorial
-Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run it is also available : [https://youtu.be/PHIZlj9Ly3Q](https://youtu.be/PHIZlj9Ly3Q)
+Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run its **command line application** is also available : [https://youtu.be/PHIZlj9Ly3Q](https://youtu.be/PHIZlj9Ly3Q)
 
 **WARNING**: Running the application as seen in the video wont work with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, the following tutorial describes a method that works for any kind of OS and installation type.
 
@@ -17,7 +17,7 @@ Follow this instructions in order to install the application for the first time:
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 
 ### Permissions
-For GNU/Linux only. In order to work properly under diferent installation scenarios some execution permissions are needed:
+**For GNU/Linux only.** In order to work properly under diferent installation scenarios, some execution permissions are needed:
 1. Go to the web app folder with the following command: `cd AutoCheck/web`.
 2. Give permissions to the startup file with: `chmod +x run.sh`.
 3. Go to the cli app folder with the following command: `cd AutoCheck/cli`.
