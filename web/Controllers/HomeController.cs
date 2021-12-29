@@ -107,7 +107,9 @@ public class HomeController : Controller
             //TODO: write log in async mode
             result = new AutoCheck.Core.Script(yaml);          
         }
-        catch(Exception ex){            
+        catch(Exception ex){     
+            return Json(ex.Message);
+
             if(result == null) output = new Output();
             else output = result.Output;
             
