@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operator
     path: ../core/connectors/Base.cs
@@ -57,7 +57,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWER
     path: ../core/connectors/Base.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LOWEREQUALS
     path: ../core/connectors/Base.cs
@@ -123,7 +123,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATER
     path: ../core/connectors/Base.cs
@@ -156,7 +156,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GREATEREQUALS
     path: ../core/connectors/Base.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUALS
     path: ../core/connectors/Base.cs
@@ -222,7 +222,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: NOTEQUALS
     path: ../core/connectors/Base.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LIKE
     path: ../core/connectors/Base.cs

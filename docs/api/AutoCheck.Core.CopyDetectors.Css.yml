@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/copy/Css.cs
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.12.3
+      branch: v2.13.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Css.cs

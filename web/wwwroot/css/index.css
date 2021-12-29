@@ -1,0 +1,61 @@
+#script,
+#step-2,
+#step-3
+{
+  display: none;
+}
+
+#step-1,
+#step-2
+{
+  margin-bottom: 30px;
+}
+
+select,
+input{
+  height: 40px;  
+}
+
+#mode,
+#script,
+#run{
+  cursor: pointer;
+}
+
+#log{
+  text-align: left;
+  border: solid 1px rgb(80, 80, 80);
+  padding: 20px;
+  background-color: #cccccc;
+}
+
+#log > img{
+  width: 100px;
+  position: relative;
+  left: 50%;
+  margin-left: -50px;
+}
+
+xmp{
+  margin: 0px;
+}
+
+#update-card{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 460px;
+  border: solid 1px black;
+  background-color: #ffffa7;
+  padding: 20px;
+  text-align: center;
+  display: none;
+}
+
+#updating{
+  display: none;
+}
+
+#updating > img {
+  width: 200px;
+}
