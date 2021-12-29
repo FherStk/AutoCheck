@@ -105,7 +105,7 @@ public class HomeController : Controller
 
         try{
             //TODO: write log in async mode
-            result = new AutoCheck.Core.Script(yaml);          
+            result = new AutoCheck.Core.Script(yaml);        
             output = result.Output;
         }
         catch(Exception ex){                 

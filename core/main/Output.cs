@@ -246,6 +246,7 @@ namespace AutoCheck.Core{
         public Log[] GetLog() {
             List<Log> logs = new List<Log>();
 
+            //Getting info for each script log (head+setup+script+teardown)
             foreach(var script in ScriptLog){                
                 var log = new Log();
                 log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
@@ -258,18 +259,21 @@ namespace AutoCheck.Core{
                 if(script.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(script.Content)).ToList();
                     log.Content.Add(new Space());
-                }
-
-                if(CurrentLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(CurrentLog.Content)).ToList();
-                    log.Content.Add(new Space());
-                }
+                }               
 
                 if(TeardownLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
                 }
 
                 logs.Add(log);
+            }
+
+            //Getting trailing log data
+            if(CurrentLog.Content.Count > 0){
+                var log = new Log();
+                log.Content.Add(new Space());
+                log.Content = log.Content.Concat(Trim(CurrentLog.Content)).ToList();   
+                logs.Add(log);             
             }
             
             return logs.ToArray();
