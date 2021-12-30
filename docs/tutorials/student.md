@@ -1,8 +1,6 @@
 # Student's guide
 ## Video tutorial
-Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run its **command line application** is also available : [https://youtu.be/PHIZlj9Ly3Q](https://youtu.be/PHIZlj9Ly3Q)
-
-**WARNING**: The `terminal` folder has been renamed to `cli`; also running the application as seen in the video wont work with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, the following tutorial describes a method that works for any kind of OS and installation type.
+Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run its **command line interface** and also its **web application interface** : [https://youtu.be/1ObOx6oYZ3w](https://youtu.be/1ObOx6oYZ3w)
 
 ## How to use the application
 ### Pre-requisites
@@ -17,7 +15,7 @@ Follow this instructions in order to install the application for the first time:
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 
 ### Permissions
-**For GNU/Linux only.** In order to work properly under diferent installation scenarios, some execution permissions are needed:
+**For GNU/Linux only.** Running a .NET application with `dotnet run` wont work properly with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, so **shelscript launchers** has been distributed in order to use AutoCheck under any kind of OS and installation type, but some execution permissions are needed:
 1. Go to the web app folder with the following command: `cd AutoCheck/web`.
 2. Give permissions to the startup file with: `chmod +x run.sh`.
 3. Go to the cli app folder with the following command: `cd AutoCheck/cli`.
