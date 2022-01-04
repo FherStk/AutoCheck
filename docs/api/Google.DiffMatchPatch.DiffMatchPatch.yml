@@ -1,0 +1,2338 @@
+### YamlMime:ManagedReference
+items:
+- uid: Google.DiffMatchPatch.DiffMatchPatch
+  commentId: T:Google.DiffMatchPatch.DiffMatchPatch
+  id: DiffMatchPatch
+  parent: Google.DiffMatchPatch
+  children:
+  - Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)
+  - Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  - Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  - Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)
+  - Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  - Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)
+  - Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  - Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  - Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})
+  langs:
+  - csharp
+  - vb
+  name: DiffMatchPatch
+  nameWithType: DiffMatchPatch
+  fullName: Google.DiffMatchPatch.DiffMatchPatch
+  type: Class
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffMatchPatch
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 185
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: 'public class DiffMatchPatch : object'
+    content.vb: >-
+      Public Class DiffMatchPatch
+          Inherits Object
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - Google.DiffMatchPatch.DiffMatchPatch.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  id: DiffTimeout
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffTimeout
+  nameWithType: DiffMatchPatch.DiffTimeout
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffTimeout
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 190
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public float DiffTimeout
+    return:
+      type: System.Single
+    content.vb: Public DiffTimeout As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  id: DiffEditCost
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffEditCost
+  nameWithType: DiffMatchPatch.DiffEditCost
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffEditCost
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 192
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public short DiffEditCost
+    return:
+      type: System.Int16
+    content.vb: Public DiffEditCost As Short
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  id: MatchThreshold
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: MatchThreshold
+  nameWithType: DiffMatchPatch.MatchThreshold
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MatchThreshold
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 194
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public float MatchThreshold
+    return:
+      type: System.Single
+    content.vb: Public MatchThreshold As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  id: MatchDistance
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: MatchDistance
+  nameWithType: DiffMatchPatch.MatchDistance
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MatchDistance
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 198
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public int MatchDistance
+    return:
+      type: System.Int32
+    content.vb: Public MatchDistance As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  id: PatchDeleteThreshold
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchDeleteThreshold
+  nameWithType: DiffMatchPatch.PatchDeleteThreshold
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchDeleteThreshold
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 203
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public float PatchDeleteThreshold
+    return:
+      type: System.Single
+    content.vb: Public PatchDeleteThreshold As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  id: PatchMargin
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchMargin
+  nameWithType: DiffMatchPatch.PatchMargin
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchMargin
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 205
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public short PatchMargin
+    return:
+      type: System.Int16
+    content.vb: Public PatchMargin As Short
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)
+  id: DiffMain(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffMain(String, String)
+  nameWithType: DiffMatchPatch.DiffMain(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffMain
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 223
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Diff> DiffMain(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Function DiffMain(text1 As String, text2 As String) As List(Of Diff)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffMain*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)
+  id: DiffMain(System.String,System.String,System.Boolean)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffMain(String, String, Boolean)
+  nameWithType: DiffMatchPatch.DiffMain(String, String, Boolean)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffMain
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 236
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Diff> DiffMain(string text1, string text2, bool checklines)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    - id: checklines
+      type: System.Boolean
+    return:
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Function DiffMain(text1 As String, text2 As String, checklines As Boolean) As List(Of Diff)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffMain*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)
+  id: diff_bisect(System.String,System.String,DateTime)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: diff_bisect(String, String, DateTime)
+  nameWithType: DiffMatchPatch.diff_bisect(String, String, DateTime)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String, System.String, DateTime)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diff_bisect
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 452
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected List<Diff> diff_bisect(string text1, string text2, DateTime deadline)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    - id: deadline
+      type: DateTime
+    return:
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Protected Function diff_bisect(text1 As String, text2 As String, deadline As DateTime) As List(Of Diff)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)
+  id: diff_linesToChars(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: diff_linesToChars(String, String)
+  nameWithType: DiffMatchPatch.diff_linesToChars(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diff_linesToChars
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 599
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected Object[] diff_linesToChars(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: Object[]
+    content.vb: Protected Function diff_linesToChars(text1 As String, text2 As String) As Object()
+  overload: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  id: diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: diff_charsToLines(ICollection<Diff>, IList<String>)
+  nameWithType: DiffMatchPatch.diff_charsToLines(ICollection<Diff>, IList<String>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection<Google.DiffMatchPatch.Diff>, IList<System.String>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diff_charsToLines
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 663
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected void diff_charsToLines(ICollection<Diff> diffs, IList<string> lineArray)
+    parameters:
+    - id: diffs
+      type: ICollection{Google.DiffMatchPatch.Diff}
+    - id: lineArray
+      type: IList{System.String}
+    content.vb: Protected Sub diff_charsToLines(diffs As ICollection(Of Diff), lineArray As IList(Of String))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines*
+  nameWithType.vb: DiffMatchPatch.diff_charsToLines(ICollection(Of Diff), IList(Of String))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection(Of Google.DiffMatchPatch.Diff), IList(Of System.String))
+  name.vb: diff_charsToLines(ICollection(Of Diff), IList(Of String))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)
+  id: DiffCommonPrefix(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCommonPrefix(String, String)
+  nameWithType: DiffMatchPatch.DiffCommonPrefix(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCommonPrefix
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 681
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public int DiffCommonPrefix(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Function DiffCommonPrefix(text1 As String, text2 As String) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)
+  id: DiffCommonSuffix(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCommonSuffix(String, String)
+  nameWithType: DiffMatchPatch.DiffCommonSuffix(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCommonSuffix
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 698
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public int DiffCommonSuffix(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Public Function DiffCommonSuffix(text1 As String, text2 As String) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)
+  id: diff_commonOverlap(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: diff_commonOverlap(String, String)
+  nameWithType: DiffMatchPatch.diff_commonOverlap(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diff_commonOverlap
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 718
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected int diff_commonOverlap(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: System.Int32
+    content.vb: Protected Function diff_commonOverlap(text1 As String, text2 As String) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)
+  id: diff_halfMatch(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: diff_halfMatch(String, String)
+  nameWithType: DiffMatchPatch.diff_halfMatch(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diff_halfMatch
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 769
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected string[] diff_halfMatch(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: System.String[]
+    content.vb: Protected Function diff_halfMatch(text1 As String, text2 As String) As String()
+  overload: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  id: DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCleanupSemantic(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffCleanupSemantic(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCleanupSemantic
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 852
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public void DiffCleanupSemantic(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Sub DiffCleanupSemantic(diffs As List(Of Diff))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic*
+  nameWithType.vb: DiffMatchPatch.DiffCleanupSemantic(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffCleanupSemantic(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  id: DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCleanupSemanticLossless(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffCleanupSemanticLossless(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCleanupSemanticLossless
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 966
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public void DiffCleanupSemanticLossless(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Sub DiffCleanupSemanticLossless(diffs As List(Of Diff))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless*
+  nameWithType.vb: DiffMatchPatch.DiffCleanupSemanticLossless(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffCleanupSemanticLossless(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  id: DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCleanupEfficiency(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffCleanupEfficiency(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCleanupEfficiency
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1089
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public void DiffCleanupEfficiency(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Sub DiffCleanupEfficiency(diffs As List(Of Diff))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency*
+  nameWithType.vb: DiffMatchPatch.DiffCleanupEfficiency(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffCleanupEfficiency(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  id: DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffCleanupMerge(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffCleanupMerge(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffCleanupMerge
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1173
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public void DiffCleanupMerge(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Sub DiffCleanupMerge(diffs As List(Of Diff))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge*
+  nameWithType.vb: DiffMatchPatch.DiffCleanupMerge(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffCleanupMerge(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  id: DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffxIndex(List<Diff>, Int32)
+  nameWithType: DiffMatchPatch.DiffxIndex(List<Diff>, Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List<Google.DiffMatchPatch.Diff>, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffxIndex
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1305
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public int DiffxIndex(List<Diff> diffs, int loc)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    - id: loc
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Function DiffxIndex(diffs As List(Of Diff), loc As Integer) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex*
+  nameWithType.vb: DiffMatchPatch.DiffxIndex(List(Of Diff), Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List(Of Google.DiffMatchPatch.Diff), System.Int32)
+  name.vb: DiffxIndex(List(Of Diff), Int32)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  id: DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffPrettyHtml(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffPrettyHtml(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffPrettyHtml
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1341
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string DiffPrettyHtml(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: System.String
+    content.vb: Public Function DiffPrettyHtml(diffs As List(Of Diff)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml*
+  nameWithType.vb: DiffMatchPatch.DiffPrettyHtml(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffPrettyHtml(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})
+  id: DiffText1(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffText1(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffText1(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffText1
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1368
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string DiffText1(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: System.String
+    content.vb: Public Function DiffText1(diffs As List(Of Diff)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffText1*
+  nameWithType.vb: DiffMatchPatch.DiffText1(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffText1(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})
+  id: DiffText2(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffText2(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffText2(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffText2
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1383
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string DiffText2(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: System.String
+    content.vb: Public Function DiffText2(diffs As List(Of Diff)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffText2*
+  nameWithType.vb: DiffMatchPatch.DiffText2(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffText2(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  id: DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffLevenshtein(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffLevenshtein(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffLevenshtein
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1399
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public int DiffLevenshtein(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: System.Int32
+    content.vb: Public Function DiffLevenshtein(diffs As List(Of Diff)) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein*
+  nameWithType.vb: DiffMatchPatch.DiffLevenshtein(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffLevenshtein(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  id: DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffToDelta(List<Diff>)
+  nameWithType: DiffMatchPatch.DiffToDelta(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffToDelta
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1432
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string DiffToDelta(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: System.String
+    content.vb: Public Function DiffToDelta(diffs As List(Of Diff)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta*
+  nameWithType.vb: DiffMatchPatch.DiffToDelta(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: DiffToDelta(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)
+  id: DiffFromDelta(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: DiffFromDelta(String, String)
+  nameWithType: DiffMatchPatch.DiffFromDelta(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DiffFromDelta
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1463
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Diff> DiffFromDelta(string text1, string delta)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: delta
+      type: System.String
+    return:
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public Function DiffFromDelta(text1 As String, delta As String) As List(Of Diff)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)
+  id: MatchMain(System.String,System.String,System.Int32)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: MatchMain(String, String, Int32)
+  nameWithType: DiffMatchPatch.MatchMain(String, String, Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: MatchMain
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1546
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public int MatchMain(string text, string pattern, int loc)
+    parameters:
+    - id: text
+      type: System.String
+    - id: pattern
+      type: System.String
+    - id: loc
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Function MatchMain(text As String, pattern As String, loc As Integer) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.MatchMain*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)
+  id: match_bitap(System.String,System.String,System.Int32)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: match_bitap(String, String, Int32)
+  nameWithType: DiffMatchPatch.match_bitap(String, String, Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: match_bitap
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1574
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected int match_bitap(string text, string pattern, int loc)
+    parameters:
+    - id: text
+      type: System.String
+    - id: pattern
+      type: System.String
+    - id: loc
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Protected Function match_bitap(text As String, pattern As String, loc As Integer) As Integer
+  overload: Google.DiffMatchPatch.DiffMatchPatch.match_bitap*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  id: match_alphabet(System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: match_alphabet(String)
+  nameWithType: DiffMatchPatch.match_alphabet(String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: match_alphabet
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1694
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected Dictionary<char, int> match_alphabet(string pattern)
+    parameters:
+    - id: pattern
+      type: System.String
+    return:
+      type: Dictionary{System.Char,System.Int32}
+    content.vb: Protected Function match_alphabet(pattern As String) As Dictionary(Of Char, Integer)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  id: patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: patch_addContext(Patch, String)
+  nameWithType: DiffMatchPatch.patch_addContext(Patch, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: patch_addContext
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1721
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: protected void patch_addContext(Patch patch, string text)
+    parameters:
+    - id: patch
+      type: Google.DiffMatchPatch.Patch
+    - id: text
+      type: System.String
+    content.vb: Protected Sub patch_addContext(patch As Patch, text As String)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)
+  id: PatchMake(System.String,System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchMake(String, String)
+  nameWithType: DiffMatchPatch.PatchMake(String, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchMake
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1768
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Patch> PatchMake(string text1, string text2)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchMake(text1 As String, text2 As String) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})
+  id: PatchMake(List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchMake(List<Diff>)
+  nameWithType: DiffMatchPatch.PatchMake(List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchMake
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1785
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Patch> PatchMake(List<Diff> diffs)
+    parameters:
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchMake(diffs As List(Of Diff)) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  nameWithType.vb: DiffMatchPatch.PatchMake(List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List(Of Google.DiffMatchPatch.Diff))
+  name.vb: PatchMake(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  id: PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchMake(String, String, List<Diff>)
+  nameWithType: DiffMatchPatch.PatchMake(String, String, List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String, List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchMake
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1801
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public List<Patch> PatchMake(string text1, string text2, List<Diff> diffs)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: text2
+      type: System.String
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchMake(text1 As String, text2 As String, diffs As List(Of Diff)) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  nameWithType.vb: DiffMatchPatch.PatchMake(String, String, List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String, List(Of Google.DiffMatchPatch.Diff))
+  name.vb: PatchMake(String, String, List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  id: PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchMake(String, List<Diff>)
+  nameWithType: DiffMatchPatch.PatchMake(String, List<Diff>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, List<Google.DiffMatchPatch.Diff>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchMake
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1813
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Patch> PatchMake(string text1, List<Diff> diffs)
+    parameters:
+    - id: text1
+      type: System.String
+    - id: diffs
+      type: List{Google.DiffMatchPatch.Diff}
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchMake(text1 As String, diffs As List(Of Diff)) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  nameWithType.vb: DiffMatchPatch.PatchMake(String, List(Of Diff))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, List(Of Google.DiffMatchPatch.Diff))
+  name.vb: PatchMake(String, List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  id: PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchDeepCopy(List<Patch>)
+  nameWithType: DiffMatchPatch.PatchDeepCopy(List<Patch>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List<Google.DiffMatchPatch.Patch>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchDeepCopy
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1894
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Patch> PatchDeepCopy(List<Patch> patches)
+    parameters:
+    - id: patches
+      type: List{Google.DiffMatchPatch.Patch}
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchDeepCopy(patches As List(Of Patch)) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy*
+  nameWithType.vb: DiffMatchPatch.PatchDeepCopy(List(Of Patch))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List(Of Google.DiffMatchPatch.Patch))
+  name.vb: PatchDeepCopy(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  id: PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchApply(List<Patch>, String)
+  nameWithType: DiffMatchPatch.PatchApply(List<Patch>, String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List<Google.DiffMatchPatch.Patch>, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchApply
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 1919
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public Object[] PatchApply(List<Patch> patches, string text)
+    parameters:
+    - id: patches
+      type: List{Google.DiffMatchPatch.Patch}
+    - id: text
+      type: System.String
+    return:
+      type: Object[]
+    content.vb: Public Function PatchApply(patches As List(Of Patch), text As String) As Object()
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchApply*
+  nameWithType.vb: DiffMatchPatch.PatchApply(List(Of Patch), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List(Of Google.DiffMatchPatch.Patch), System.String)
+  name.vb: PatchApply(List(Of Patch), String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  id: PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchAddPadding(List<Patch>)
+  nameWithType: DiffMatchPatch.PatchAddPadding(List<Patch>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List<Google.DiffMatchPatch.Patch>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchAddPadding
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 2026
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string PatchAddPadding(List<Patch> patches)
+    parameters:
+    - id: patches
+      type: List{Google.DiffMatchPatch.Patch}
+    return:
+      type: System.String
+    content.vb: Public Function PatchAddPadding(patches As List(Of Patch)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding*
+  nameWithType.vb: DiffMatchPatch.PatchAddPadding(List(Of Patch))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List(Of Google.DiffMatchPatch.Patch))
+  name.vb: PatchAddPadding(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  id: PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchSplitMax(List<Patch>)
+  nameWithType: DiffMatchPatch.PatchSplitMax(List<Patch>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List<Google.DiffMatchPatch.Patch>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchSplitMax
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 2087
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public void PatchSplitMax(List<Patch> patches)
+    parameters:
+    - id: patches
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Sub PatchSplitMax(patches As List(Of Patch))
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax*
+  nameWithType.vb: DiffMatchPatch.PatchSplitMax(List(Of Patch))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List(Of Google.DiffMatchPatch.Patch))
+  name.vb: PatchSplitMax(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})
+  id: PatchToText(List{Google.DiffMatchPatch.Patch})
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchToText(List<Patch>)
+  nameWithType: DiffMatchPatch.PatchToText(List<Patch>)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List<Google.DiffMatchPatch.Patch>)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchToText
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 2187
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public string PatchToText(List<Patch> patches)
+    parameters:
+    - id: patches
+      type: List{Google.DiffMatchPatch.Patch}
+    return:
+      type: System.String
+    content.vb: Public Function PatchToText(patches As List(Of Patch)) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchToText*
+  nameWithType.vb: DiffMatchPatch.PatchToText(List(Of Patch))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List(Of Google.DiffMatchPatch.Patch))
+  name.vb: PatchToText(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  id: PatchFromText(System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: PatchFromText(String)
+  nameWithType: DiffMatchPatch.PatchFromText(String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: PatchFromText
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 2202
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public List<Patch> PatchFromText(string textline)
+    parameters:
+    - id: textline
+      type: System.String
+    return:
+      type: List{Google.DiffMatchPatch.Patch}
+    content.vb: Public Function PatchFromText(textline As String) As List(Of Patch)
+  overload: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  id: EncodeURI(System.String)
+  parent: Google.DiffMatchPatch.DiffMatchPatch
+  langs:
+  - csharp
+  - vb
+  name: EncodeURI(String)
+  nameWithType: DiffMatchPatch.EncodeURI(String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EncodeURI
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 2287
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public static string EncodeURI(string str)
+    parameters:
+    - id: str
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function EncodeURI(str As String) As String
+  overload: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Google.DiffMatchPatch
+  commentId: N:Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Google.DiffMatchPatch.DiffMatchPatch.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<DiffMatchPatch>()
+  nameWithType: ObjectExtensions.DeepClone<DiffMatchPatch>()
+  fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.DiffMatchPatch>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of DiffMatchPatch)()
+  fullName.vb: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.DiffMatchPatch)()
+  name.vb: DeepClone(Of DiffMatchPatch)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<DiffMatchPatch>
+    nameWithType: ObjectExtensions.DeepClone<DiffMatchPatch>
+    fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.DiffMatchPatch>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of DiffMatchPatch)
+    nameWithType: ObjectExtensions.DeepClone(Of DiffMatchPatch)
+    fullName: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.DiffMatchPatch)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: System.Single
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Int16
+  isExternal: true
+  name: Int16
+  nameWithType: Int16
+  fullName: System.Int16
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffMain
+  name: DiffMain
+  nameWithType: DiffMatchPatch.DiffMain
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: List{Google.DiffMatchPatch.Diff}
+  commentId: '!:List{Google.DiffMatchPatch.Diff}'
+  definition: List`1
+  name: List<Diff>
+  nameWithType: List<Diff>
+  fullName: List<Google.DiffMatchPatch.Diff>
+  nameWithType.vb: List(Of Diff)
+  fullName.vb: List(Of Google.DiffMatchPatch.Diff)
+  name.vb: List(Of Diff)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_bisect
+  name: diff_bisect
+  nameWithType: DiffMatchPatch.diff_bisect
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect
+- uid: DateTime
+  commentId: '!:DateTime'
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: DateTime
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars
+  name: diff_linesToChars
+  nameWithType: DiffMatchPatch.diff_linesToChars
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars
+- uid: Object[]
+  isExternal: true
+  name: Object[]
+  nameWithType: Object[]
+  fullName: Object[]
+  nameWithType.vb: Object()
+  fullName.vb: Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: Object
+    name: Object
+    nameWithType: Object
+    fullName: Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Object
+    name: Object
+    nameWithType: Object
+    fullName: Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines
+  name: diff_charsToLines
+  nameWithType: DiffMatchPatch.diff_charsToLines
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines
+- uid: ICollection{Google.DiffMatchPatch.Diff}
+  commentId: '!:ICollection{Google.DiffMatchPatch.Diff}'
+  definition: ICollection`1
+  name: ICollection<Diff>
+  nameWithType: ICollection<Diff>
+  fullName: ICollection<Google.DiffMatchPatch.Diff>
+  nameWithType.vb: ICollection(Of Diff)
+  fullName.vb: ICollection(Of Google.DiffMatchPatch.Diff)
+  name.vb: ICollection(Of Diff)
+  spec.csharp:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IList{System.String}
+  commentId: '!:IList{System.String}'
+  definition: IList`1
+  name: IList<String>
+  nameWithType: IList<String>
+  fullName: IList<System.String>
+  nameWithType.vb: IList(Of String)
+  fullName.vb: IList(Of System.String)
+  name.vb: IList(Of String)
+  spec.csharp:
+  - uid: IList`1
+    name: IList
+    nameWithType: IList
+    fullName: IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IList`1
+    name: IList
+    nameWithType: IList
+    fullName: IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ICollection`1
+  commentId: '!:ICollection`1'
+  isExternal: true
+  name: ICollection<>
+  nameWithType: ICollection<>
+  fullName: ICollection<>
+  nameWithType.vb: ICollection(Of )
+  fullName.vb: ICollection(Of )
+  name.vb: ICollection(Of )
+  spec.csharp:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: IList`1
+  commentId: '!:IList`1'
+  isExternal: true
+  name: IList<>
+  nameWithType: IList<>
+  fullName: IList<>
+  nameWithType.vb: IList(Of )
+  fullName.vb: IList(Of )
+  name.vb: IList(Of )
+  spec.csharp:
+  - uid: IList`1
+    name: IList
+    nameWithType: IList
+    fullName: IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: IList`1
+    name: IList
+    nameWithType: IList
+    fullName: IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix
+  name: DiffCommonPrefix
+  nameWithType: DiffMatchPatch.DiffCommonPrefix
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix
+  name: DiffCommonSuffix
+  nameWithType: DiffMatchPatch.DiffCommonSuffix
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap
+  name: diff_commonOverlap
+  nameWithType: DiffMatchPatch.diff_commonOverlap
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch
+  name: diff_halfMatch
+  nameWithType: DiffMatchPatch.diff_halfMatch
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic
+  name: DiffCleanupSemantic
+  nameWithType: DiffMatchPatch.DiffCleanupSemantic
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless
+  name: DiffCleanupSemanticLossless
+  nameWithType: DiffMatchPatch.DiffCleanupSemanticLossless
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency
+  name: DiffCleanupEfficiency
+  nameWithType: DiffMatchPatch.DiffCleanupEfficiency
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge
+  name: DiffCleanupMerge
+  nameWithType: DiffMatchPatch.DiffCleanupMerge
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex
+  name: DiffxIndex
+  nameWithType: DiffMatchPatch.DiffxIndex
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml
+  name: DiffPrettyHtml
+  nameWithType: DiffMatchPatch.DiffPrettyHtml
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText1*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffText1
+  name: DiffText1
+  nameWithType: DiffMatchPatch.DiffText1
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText1
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText2*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffText2
+  name: DiffText2
+  nameWithType: DiffMatchPatch.DiffText2
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText2
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein
+  name: DiffLevenshtein
+  nameWithType: DiffMatchPatch.DiffLevenshtein
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta
+  name: DiffToDelta
+  nameWithType: DiffMatchPatch.DiffToDelta
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta
+  name: DiffFromDelta
+  nameWithType: DiffMatchPatch.DiffFromDelta
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchMain*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.MatchMain
+  name: MatchMain
+  nameWithType: DiffMatchPatch.MatchMain
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchMain
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_bitap*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.match_bitap
+  name: match_bitap
+  nameWithType: DiffMatchPatch.match_bitap
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_bitap
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.match_alphabet
+  name: match_alphabet
+  nameWithType: DiffMatchPatch.match_alphabet
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet
+- uid: Dictionary{System.Char,System.Int32}
+  commentId: '!:Dictionary{System.Char,System.Int32}'
+  definition: Dictionary`2
+  name: Dictionary<Char, Int32>
+  nameWithType: Dictionary<Char, Int32>
+  fullName: Dictionary<System.Char, System.Int32>
+  nameWithType.vb: Dictionary(Of Char, Int32)
+  fullName.vb: Dictionary(Of System.Char, System.Int32)
+  name.vb: Dictionary(Of Char, Int32)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.patch_addContext
+  name: patch_addContext
+  nameWithType: DiffMatchPatch.patch_addContext
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext
+- uid: Google.DiffMatchPatch.Patch
+  commentId: T:Google.DiffMatchPatch.Patch
+  parent: Google.DiffMatchPatch
+  name: Patch
+  nameWithType: Patch
+  fullName: Google.DiffMatchPatch.Patch
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchMake
+  name: PatchMake
+  nameWithType: DiffMatchPatch.PatchMake
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake
+- uid: List{Google.DiffMatchPatch.Patch}
+  commentId: '!:List{Google.DiffMatchPatch.Patch}'
+  definition: List`1
+  name: List<Patch>
+  nameWithType: List<Patch>
+  fullName: List<Google.DiffMatchPatch.Patch>
+  nameWithType.vb: List(Of Patch)
+  fullName.vb: List(Of Google.DiffMatchPatch.Patch)
+  name.vb: List(Of Patch)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Google.DiffMatchPatch.Patch
+    name: Patch
+    nameWithType: Patch
+    fullName: Google.DiffMatchPatch.Patch
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Google.DiffMatchPatch.Patch
+    name: Patch
+    nameWithType: Patch
+    fullName: Google.DiffMatchPatch.Patch
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy
+  name: PatchDeepCopy
+  nameWithType: DiffMatchPatch.PatchDeepCopy
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchApply*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchApply
+  name: PatchApply
+  nameWithType: DiffMatchPatch.PatchApply
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchApply
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding
+  name: PatchAddPadding
+  nameWithType: DiffMatchPatch.PatchAddPadding
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax
+  name: PatchSplitMax
+  nameWithType: DiffMatchPatch.PatchSplitMax
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchToText*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchToText
+  name: PatchToText
+  nameWithType: DiffMatchPatch.PatchToText
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchToText
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchFromText
+  name: PatchFromText
+  nameWithType: DiffMatchPatch.PatchFromText
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText
+- uid: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI*
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.EncodeURI
+  name: EncodeURI
+  nameWithType: DiffMatchPatch.EncodeURI
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI

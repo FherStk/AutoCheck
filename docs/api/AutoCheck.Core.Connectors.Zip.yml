@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Zip
     path: ../core/connectors/Zip.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ZipFile
     path: ../core/connectors/Zip.cs
@@ -97,7 +97,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Zip.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Zip.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Zip.cs
@@ -217,7 +217,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Zip.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
     path: ../core/connectors/Zip.cs
@@ -291,7 +291,7 @@ items:
   source:
     remote:
       path: core/connectors/Zip.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
     path: ../core/connectors/Zip.cs

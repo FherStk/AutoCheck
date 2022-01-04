@@ -13,8 +13,8 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
-  - AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   langs:
   - csharp
   - vb
@@ -25,11 +25,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -62,38 +62,38 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
-  id: WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  id: SentenceMatchWeight
   parent: AutoCheck.Core.CopyDetectors.PlainText
   langs:
   - csharp
   - vb
-  name: WordsAmountWeight
-  nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  name: SentenceMatchWeight
+  nameWithType: PlainText.SentenceMatchWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   type: Property
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: WordsAmountWeight
+    id: SentenceMatchWeight
     path: ../core/copy/PlainText.cs
-    startLine: 65
+    startLine: 62
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nThe weight that different words counting will have when computing the global matching percentage.\n"
+  summary: "\nThe weight that sentence matching (different documents with the same sentences within) will have when computing the global matching percentage.\n"
   example: []
   syntax:
-    content: protected float WordsAmountWeight { get; set; }
+    content: protected float SentenceMatchWeight { get; set; }
     parameters: []
     return:
       type: System.Single
       description: ''
-    content.vb: Protected Property WordsAmountWeight As Single
-  overload: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight*
+    content.vb: Protected Property SentenceMatchWeight As Single
+  overload: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight*
   modifiers.csharp:
   - protected
   - get
@@ -114,15 +114,15 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 71
+    startLine: 68
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nThe weight that word counting will have when computing the global matching percentage.\n"
+  summary: "\nThe weight that word counting (different documents with the same amount of words) will have when computing the global matching percentage.\n"
   example: []
   syntax:
     content: protected float WordCountWeight { get; set; }
@@ -152,15 +152,15 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 77
+    startLine: 74
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nThe weight that line counting will have when computing the global matching percentage.\n"
+  summary: "\nThe weight that line counting (different documents with the same amount of lines) will have when computing the global matching percentage.\n"
   example: []
   syntax:
     content: protected float LineCountWeight { get; set; }
@@ -190,11 +190,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
-    startLine: 83
+    startLine: 80
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -231,11 +231,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
-    startLine: 92
+    startLine: 89
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -268,11 +268,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
-    startLine: 105
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -303,11 +303,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
-    startLine: 115
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -345,11 +345,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
-    startLine: 127
+    startLine: 124
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -380,11 +380,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
-    startLine: 162
+    startLine: 170
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -421,18 +421,18 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs
-    startLine: 181
+    startLine: 189
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
   summary: "\nReturns a printable details list, containing information about the comparissons (student, source and % of match).\n"
   example: []
   syntax:
-    content: public override (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path)
+    content: public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path)
     parameters:
     - id: path
       type: System.String
@@ -440,7 +440,7 @@ items:
     return:
       type: System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}
       description: Left file followed by all the right files compared with its matching score.
-    content.vb: Public Overrides Function GetDetails(path As String) As(folder As String, file As String, matches As(folder As String, file As String, match As Single)(Of String , String, Single)())(Of String , String, (folder
+    content.vb: Public Overrides Function GetDetails(path As String) As(Folder As String, File As String, matches As(Folder As String, File As String, Match As Single)(Of String , String, Single)())(Of String , String, (Folder
   overridden: AutoCheck.Core.CopyDetectors.Base.GetDetails(System.String)
   overload: AutoCheck.Core.CopyDetectors.PlainText.GetDetails*
   modifiers.csharp:
@@ -809,11 +809,11 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
-  name: WordsAmountWeight
-  nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  name: SentenceMatchWeight
+  nameWithType: PlainText.SentenceMatchWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
 - uid: System.Single
   isExternal: true
   name: Single

@@ -1,0 +1,221 @@
+### YamlMime:ManagedReference
+items:
+- uid: Google.DiffMatchPatch.Operation
+  commentId: T:Google.DiffMatchPatch.Operation
+  id: Operation
+  parent: Google.DiffMatchPatch
+  children:
+  - Google.DiffMatchPatch.Operation.DELETE
+  - Google.DiffMatchPatch.Operation.EQUAL
+  - Google.DiffMatchPatch.Operation.INSERT
+  langs:
+  - csharp
+  - vb
+  name: Operation
+  nameWithType: Operation
+  fullName: Google.DiffMatchPatch.Operation
+  type: Enum
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Operation
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 54
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: 'public enum Operation : int'
+    content.vb: Public Enum Operation As Integer
+  extensionMethods:
+  - Google.DiffMatchPatch.Operation.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Google.DiffMatchPatch.Operation.DELETE
+  commentId: F:Google.DiffMatchPatch.Operation.DELETE
+  id: DELETE
+  parent: Google.DiffMatchPatch.Operation
+  langs:
+  - csharp
+  - vb
+  name: DELETE
+  nameWithType: Operation.DELETE
+  fullName: Google.DiffMatchPatch.Operation.DELETE
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DELETE
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: DELETE = 0
+    return:
+      type: Google.DiffMatchPatch.Operation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Google.DiffMatchPatch.Operation.INSERT
+  commentId: F:Google.DiffMatchPatch.Operation.INSERT
+  id: INSERT
+  parent: Google.DiffMatchPatch.Operation
+  langs:
+  - csharp
+  - vb
+  name: INSERT
+  nameWithType: Operation.INSERT
+  fullName: Google.DiffMatchPatch.Operation.INSERT
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: INSERT
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: INSERT = 1
+    return:
+      type: Google.DiffMatchPatch.Operation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Google.DiffMatchPatch.Operation.EQUAL
+  commentId: F:Google.DiffMatchPatch.Operation.EQUAL
+  id: EQUAL
+  parent: Google.DiffMatchPatch.Operation
+  langs:
+  - csharp
+  - vb
+  name: EQUAL
+  nameWithType: Operation.EQUAL
+  fullName: Google.DiffMatchPatch.Operation.EQUAL
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EQUAL
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: EQUAL = 2
+    return:
+      type: Google.DiffMatchPatch.Operation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Google.DiffMatchPatch
+  commentId: N:Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch
+- uid: Google.DiffMatchPatch.Operation.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Operation>()
+  nameWithType: ObjectExtensions.DeepClone<Operation>()
+  fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.Operation>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Operation)()
+  fullName.vb: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.Operation)()
+  name.vb: DeepClone(Of Operation)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Operation>
+    nameWithType: ObjectExtensions.DeepClone<Operation>
+    fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.Operation>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Operation)
+    nameWithType: ObjectExtensions.DeepClone(Of Operation)
+    fullName: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.Operation)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: Google.DiffMatchPatch.Operation
+  commentId: T:Google.DiffMatchPatch.Operation
+  parent: Google.DiffMatchPatch
+  name: Operation
+  nameWithType: Operation
+  fullName: Google.DiffMatchPatch.Operation

@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/connectors/Css.cs
@@ -73,7 +73,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CssDoc
     path: ../core/connectors/Css.cs
@@ -111,7 +111,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Raw
     path: ../core/connectors/Css.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
@@ -185,7 +185,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Css.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Css.cs
@@ -304,7 +304,7 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateCss3AgainstW3C
     path: ../core/connectors/Css.cs
@@ -336,11 +336,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 133
+    startLine: 146
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -378,11 +378,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 147
+    startLine: 160
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -420,11 +420,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyExists
     path: ../core/connectors/Css.cs
-    startLine: 156
+    startLine: 169
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -462,11 +462,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 174
+    startLine: 187
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -501,11 +501,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 199
+    startLine: 212
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -546,11 +546,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 209
+    startLine: 222
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -591,11 +591,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 227
+    startLine: 240
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -630,11 +630,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 237
+    startLine: 250
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -675,11 +675,11 @@ items:
   source:
     remote:
       path: core/connectors/Css.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PropertyApplied
     path: ../core/connectors/Css.cs
-    startLine: 247
+    startLine: 260
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
