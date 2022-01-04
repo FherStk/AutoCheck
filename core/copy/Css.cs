@@ -28,7 +28,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>     
         public Css(float threshold, string filePattern = "*.css"): base(threshold, filePattern)
         {                 
-            this.WordsAmountWeight = 0.5f;
+            this.SentenceMatchWeight = 0.5f;
             this.WordCountWeight = 0.3f;
             this.LineCountWeight = 0.2f;    
 

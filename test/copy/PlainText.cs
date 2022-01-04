@@ -203,13 +203,13 @@ namespace AutoCheck.Test.Checkers
                 Assert.DoesNotThrow(() => cd.Compare());
 
                 var res = cd.GetDetails(dest1); 
-                Assert.AreEqual(dest1, res.folder);               
-                Assert.AreEqual(dest2, res.matches[0].folder);
+                Assert.AreEqual(dest1, res.Folder);               
+                Assert.AreEqual(dest2, res.matches[0].Folder);
 
-                Assert.AreEqual(Path.GetFileName(file1), res.file);               
-                Assert.AreEqual(Path.GetFileName(file2), res.matches[0].file);
+                Assert.AreEqual(Path.GetFileName(file1), res.File);               
+                Assert.AreEqual(Path.GetFileName(file2), res.matches[0].File);
                 
-                Assert.AreEqual(0.589857578f, res.matches[0].match);
+                Assert.AreEqual(0.582976282f, res.matches[0].Match);
             }
         }                    
     }
