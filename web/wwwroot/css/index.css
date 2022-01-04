@@ -40,6 +40,11 @@ xmp{
   margin: 0px;
 }
 
+.error-primary > xmp{
+  white-space: pre-wrap;
+  margin-left: 90px;
+}
+
 #update-card{
   position: fixed;
   top: 0px;

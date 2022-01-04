@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/copy/Base.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
@@ -150,7 +150,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
@@ -227,7 +227,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
@@ -261,7 +261,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -299,7 +299,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -347,7 +347,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -398,7 +398,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
@@ -439,7 +439,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
@@ -473,7 +473,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
@@ -514,7 +514,7 @@ items:
   source:
     remote:
       path: core/copy/Base.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs
@@ -525,7 +525,7 @@ items:
   summary: "\nReturns a printable details list, containing information about the comparissons (student, source and % of match).\n"
   example: []
   syntax:
-    content: public abstract (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path)
+    content: public abstract (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path)
     parameters:
     - id: path
       type: System.String
@@ -533,7 +533,7 @@ items:
     return:
       type: System.ValueTuple{System.String,System.String,System.ValueTuple{System.String,System.String,System.Single}[]}
       description: Left file followed by all the right files compared with its matching score.
-    content.vb: Public MustOverride Function GetDetails(path As String) As(folder As String, file As String, matches As(folder As String, file As String, match As Single)(Of String , String, Single)())(Of String , String, (folder
+    content.vb: Public MustOverride Function GetDetails(path As String) As(Folder As String, File As String, matches As(Folder As String, File As String, Match As Single)(Of String , String, Single)())(Of String , String, (Folder
   overload: AutoCheck.Core.CopyDetectors.Base.GetDetails*
   modifiers.csharp:
   - public

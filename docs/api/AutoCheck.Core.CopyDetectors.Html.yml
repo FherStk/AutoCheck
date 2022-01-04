@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Html.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/copy/Html.cs
@@ -36,7 +36,7 @@ items:
   - AutoCheck.Core.CopyDetectors.Base
   - AutoCheck.Core.CopyDetectors.PlainText
   inheritedMembers:
-  - AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  - AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   - AutoCheck.Core.CopyDetectors.PlainText.Count
@@ -72,7 +72,7 @@ items:
   source:
     remote:
       path: core/copy/Html.cs
-      branch: v2.13.2
+      branch: v2.14.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Html.cs
@@ -119,12 +119,12 @@ references:
   name: PlainText
   nameWithType: PlainText
   fullName: AutoCheck.Core.CopyDetectors.PlainText
-- uid: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   parent: AutoCheck.Core.CopyDetectors.PlainText
-  name: WordsAmountWeight
-  nameWithType: PlainText.WordsAmountWeight
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
+  name: SentenceMatchWeight
+  nameWithType: PlainText.SentenceMatchWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
 - uid: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   commentId: P:AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   parent: AutoCheck.Core.CopyDetectors.PlainText

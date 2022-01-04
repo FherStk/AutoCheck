@@ -1,0 +1,2195 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DiffMatchPatch
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DiffMatchPatch
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc">
+    <meta property="docfx:tocrel" content="toc">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+                
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../tutorials/student.html" title="Tutorials">Tutorials</a>
+                      </li>
+                      <li>
+                          <a href="../api/AutoCheck.Core.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/FherStk/AutoCheck" title="Download">Download</a>
+                      </li>
+                      <li>
+                          <a href="../credits/credits.html" title="Credits">Credits</a>
+                      </li>
+                </ul>    </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+                  
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.html" title="AutoCheck.Core" class="">AutoCheck.Core</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.html" title="Output" class="">Output</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.Log.html" title="Output.Log" class="">Output.Log</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.Style.html" title="Output.Style" class="">Output.Style</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Output.Type.html" title="Output.Type" class="">Output.Type</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script.html" title="Script" class="">Script</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script.ExecutionModeType.html" title="Script.ExecutionModeType" class="">Script.ExecutionModeType</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Script.LogGeneratedEventArgs.html" title="Script.LogGeneratedEventArgs" class="">Script.LogGeneratedEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Utils.html" title="Utils" class="">Utils</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Utils.OS.html" title="Utils.OS" class="">Utils.OS</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Connectors.html" title="AutoCheck.Core.Connectors" class="">AutoCheck.Core.Connectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Atom.html" title="Atom" class="">Atom</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Base.html" title="Base" class="">Base</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Csv.html" title="Csv" class="">Csv</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.CsvDocument.html" title="CsvDocument" class="">CsvDocument</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.GDrive.html" title="GDrive" class="">GDrive</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Math.html" title="Math" class="">Math</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Odoo.html" title="Odoo" class="">Odoo</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Operator.html" title="Operator" class="">Operator</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.PlainText.html" title="PlainText" class="">PlainText</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html" title="PlainText.PlainTextDocument" class="">PlainText.PlainTextDocument</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Connectors.Postgres.html" title="Postgres" class="">Postgres</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Rss.html" title="Rss" class="">Rss</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Shell.html" title="Shell" class="">Shell</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Xml.html" title="Xml" class="">Xml</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Xml.XmlNodeType.html" title="Xml.XmlNodeType" class="">Xml.XmlNodeType</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Connectors.Zip.html" title="Zip" class="">Zip</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.CopyDetectors.html" title="AutoCheck.Core.CopyDetectors" class="">AutoCheck.Core.CopyDetectors</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetectors.Base.html" title="Base" class="">Base</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Css.html" title="Css" class="">Css</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.Html.html" title="Html" class="">Html</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.PlainText.html" title="PlainText" class="">PlainText</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetectors.Xml.html" title="Xml" class="">Xml</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="AutoCheck.Core.Exceptions.html" title="AutoCheck.Core.Exceptions" class="">AutoCheck.Core.Exceptions</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ArgumentInvalidException.html" title="ArgumentInvalidException" class="">ArgumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ArgumentNotFoundException.html" title="ArgumentNotFoundException" class="">ArgumentNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ConnectionInvalidException.html" title="ConnectionInvalidException" class="">ConnectionInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ConnectorInvalidException.html" title="ConnectorInvalidException" class="">ConnectorInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ConnectorNotFoundException.html" title="ConnectorNotFoundException" class="">ConnectorNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.DocumentInvalidException.html" title="DocumentInvalidException" class="">DocumentInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.DownloadFailedException.html" title="DownloadFailedException" class="">DownloadFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ItemNotFoundException.html" title="ItemNotFoundException" class="">ItemNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.PorpertyNotFoundException.html" title="PorpertyNotFoundException" class="">PorpertyNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.QueryInvalidException.html" title="QueryInvalidException" class="">QueryInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.RegexInvalidException.html" title="RegexInvalidException" class="">RegexInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ResultMismatchException.html" title="ResultMismatchException" class="">ResultMismatchException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ScriptInvalidException.html" title="ScriptInvalidException" class="">ScriptInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.ScriptNotFoundException.html" title="ScriptNotFoundException" class="">ScriptNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.StyleInvalidException.html" title="StyleInvalidException" class="">StyleInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.StyleNotAppliedException.html" title="StyleNotAppliedException" class="">StyleNotAppliedException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.StyleNotFoundException.html" title="StyleNotFoundException" class="">StyleNotFoundException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.TableInconsistencyException.html" title="TableInconsistencyException" class="">TableInconsistencyException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.VariableInvalidException.html" title="VariableInvalidException" class="">VariableInvalidException</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.Exceptions.VariableNotFoundException.html" title="VariableNotFoundException" class="">VariableNotFoundException</a>
+                          </li>
+                        </ul>  </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="Google.DiffMatchPatch.html" title="Google.DiffMatchPatch" class="">Google.DiffMatchPatch</a>
+                        
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="Google.DiffMatchPatch.Diff.html" title="Diff" class="">Diff</a>
+                          </li>
+                          <li class="active">
+                            <a href="Google.DiffMatchPatch.DiffMatchPatch.html" title="DiffMatchPatch" class="active">DiffMatchPatch</a>
+                          </li>
+                          <li class="">
+                            <a href="Google.DiffMatchPatch.Operation.html" title="Operation" class="">Operation</a>
+                          </li>
+                          <li class="">
+                            <a href="Google.DiffMatchPatch.Patch.html" title="Patch" class="">Patch</a>
+                          </li>
+                        </ul>  </li>
+                  </ul>        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Google.DiffMatchPatch.DiffMatchPatch">
+  
+  
+  <h1 id="Google_DiffMatchPatch_DiffMatchPatch" data-uid="Google.DiffMatchPatch.DiffMatchPatch" class="text-break">Class DiffMatchPatch
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DiffMatchPatch</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Google.DiffMatchPatch.html">Google.DiffMatchPatch</a></h6>
+  <h6><strong>Assembly</strong>: AutoCheck.Core.dll</h6>
+  <h5 id="Google_DiffMatchPatch_DiffMatchPatch_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DiffMatchPatch : object</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffEditCost.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L193">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffEditCost" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost">DiffEditCost</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short DiffEditCost</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffTimeout.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L191">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffTimeout" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout">DiffTimeout</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float DiffTimeout</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_MatchDistance.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.MatchDistance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L199">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_MatchDistance" data-uid="Google.DiffMatchPatch.DiffMatchPatch.MatchDistance">MatchDistance</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MatchDistance</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_MatchThreshold.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L195">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_MatchThreshold" data-uid="Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold">MatchThreshold</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MatchThreshold</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchDeleteThreshold.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L204">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchDeleteThreshold" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold">PatchDeleteThreshold</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float PatchDeleteThreshold</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchMargin.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchMargin%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L206">View Source</a>
+  </span>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchMargin" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMargin">PatchMargin</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public short PatchMargin</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int16</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_diff_bisect_System_String_System_String_DateTime_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String%2CSystem.String%2CDateTime)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L453">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_diff_bisect_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_bisect*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_diff_bisect_System_String_System_String_DateTime_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)">diff_bisect(String, String, DateTime)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;Diff&gt; diff_bisect(string text1, string text2, DateTime deadline)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">deadline</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_diff_charsToLines_ICollection_Google_DiffMatchPatch_Diff__IList_System_String__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection%7BGoogle.DiffMatchPatch.Diff%7D%2CIList%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L664">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_diff_charsToLines_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_diff_charsToLines_ICollection_Google_DiffMatchPatch_Diff__IList_System_String__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})">diff_charsToLines(ICollection&lt;Diff&gt;, IList&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void diff_charsToLines(ICollection&lt;Diff&gt; diffs, IList&lt;string&gt; lineArray)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IList</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">lineArray</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_diff_commonOverlap_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L719">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_diff_commonOverlap_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_diff_commonOverlap_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)">diff_commonOverlap(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int diff_commonOverlap(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_diff_halfMatch_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L770">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_diff_halfMatch_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_diff_halfMatch_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)">diff_halfMatch(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string[] diff_halfMatch(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_diff_linesToChars_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L600">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_diff_linesToChars_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_diff_linesToChars_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)">diff_linesToChars(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Object[] diff_linesToChars(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Object</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupEfficiency_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1090">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupEfficiency_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupEfficiency_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})">DiffCleanupEfficiency(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DiffCleanupEfficiency(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupMerge_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1174">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupMerge_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupMerge_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})">DiffCleanupMerge(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DiffCleanupMerge(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemantic_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L853">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemantic_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemantic_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})">DiffCleanupSemantic(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DiffCleanupSemantic(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemanticLossless_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L967">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemanticLossless_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemanticLossless_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})">DiffCleanupSemanticLossless(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DiffCleanupSemanticLossless(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCommonPrefix_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L682">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCommonPrefix_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCommonPrefix_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)">DiffCommonPrefix(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DiffCommonPrefix(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffCommonSuffix_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L699">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffCommonSuffix_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffCommonSuffix_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)">DiffCommonSuffix(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DiffCommonSuffix(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffFromDelta_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1464">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffFromDelta_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffFromDelta_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)">DiffFromDelta(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Diff&gt; DiffFromDelta(string text1, string delta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">delta</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffLevenshtein_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1400">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffLevenshtein_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffLevenshtein_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})">DiffLevenshtein(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DiffLevenshtein(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L224">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffMain_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffMain*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)">DiffMain(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Diff&gt; DiffMain(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L237">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffMain_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffMain*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_System_Boolean_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)">DiffMain(String, String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Diff&gt; DiffMain(string text1, string text2, bool checklines)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">checklines</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffPrettyHtml_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1342">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffPrettyHtml_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffPrettyHtml_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})">DiffPrettyHtml(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DiffPrettyHtml(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffText1_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1369">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffText1_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffText1*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffText1_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})">DiffText1(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DiffText1(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffText2_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1384">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffText2_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffText2*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffText2_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})">DiffText2(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DiffText2(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffToDelta_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1433">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffToDelta_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffToDelta_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})">DiffToDelta(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DiffToDelta(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_DiffxIndex_List_Google_DiffMatchPatch_Diff__System_Int32_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List%7BGoogle.DiffMatchPatch.Diff%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1306">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_DiffxIndex_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_DiffxIndex_List_Google_DiffMatchPatch_Diff__System_Int32_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)">DiffxIndex(List&lt;Diff&gt;, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DiffxIndex(List&lt;Diff&gt; diffs, int loc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">loc</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_EncodeURI_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L2288">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_EncodeURI_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.EncodeURI*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_EncodeURI_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)">EncodeURI(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string EncodeURI(string str)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">str</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_match_alphabet_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1695">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_match_alphabet_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.match_alphabet*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_match_alphabet_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)">match_alphabet(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;char, int&gt; match_alphabet(string pattern)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.Char</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_match_bitap_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1575">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_match_bitap_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.match_bitap*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_match_bitap_System_String_System_String_System_Int32_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)">match_bitap(String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int match_bitap(string text, string pattern, int loc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">loc</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_MatchMain_System_String_System_String_System_Int32_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String%2CSystem.String%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1547">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_MatchMain_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.MatchMain*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_MatchMain_System_String_System_String_System_Int32_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)">MatchMain(String, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MatchMain(string text, string pattern, int loc)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pattern</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">loc</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_patch_addContext_Google_DiffMatchPatch_Patch_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1722">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_patch_addContext_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.patch_addContext*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_patch_addContext_Google_DiffMatchPatch_Patch_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)">patch_addContext(Patch, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void patch_addContext(Patch patch, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a></td>
+        <td><span class="parametername">patch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchAddPadding_List_Google_DiffMatchPatch_Patch__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List%7BGoogle.DiffMatchPatch.Patch%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L2027">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchAddPadding_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchAddPadding_List_Google_DiffMatchPatch_Patch__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})">PatchAddPadding(List&lt;Patch&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PatchAddPadding(List&lt;Patch&gt; patches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td><span class="parametername">patches</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchApply_List_Google_DiffMatchPatch_Patch__System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List%7BGoogle.DiffMatchPatch.Patch%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1920">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchApply_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchApply*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchApply_List_Google_DiffMatchPatch_Patch__System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)">PatchApply(List&lt;Patch&gt;, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Object[] PatchApply(List&lt;Patch&gt; patches, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td><span class="parametername">patches</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Object</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchDeepCopy_List_Google_DiffMatchPatch_Patch__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List%7BGoogle.DiffMatchPatch.Patch%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1895">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchDeepCopy_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchDeepCopy_List_Google_DiffMatchPatch_Patch__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})">PatchDeepCopy(List&lt;Patch&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchDeepCopy(List&lt;Patch&gt; patches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td><span class="parametername">patches</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchFromText_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L2203">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchFromText_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchFromText*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchFromText_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)">PatchFromText(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchFromText(string textline)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">textline</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchMake_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1786">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})">PatchMake(List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchMake(List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String%2CList%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1814">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})">PatchMake(String, List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchMake(string text1, List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1769">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)">PatchMake(String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchMake(string text1, string text2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_List_Google_DiffMatchPatch_Diff__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String%2CSystem.String%2CList%7BGoogle.DiffMatchPatch.Diff%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L1802">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_List_Google_DiffMatchPatch_Diff__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})">PatchMake(String, String, List&lt;Diff&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;Patch&gt; PatchMake(string text1, string text2, List&lt;Diff&gt; diffs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">text2</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;</td>
+        <td><span class="parametername">diffs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchSplitMax_List_Google_DiffMatchPatch_Patch__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List%7BGoogle.DiffMatchPatch.Patch%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L2088">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchSplitMax_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchSplitMax_List_Google_DiffMatchPatch_Patch__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})">PatchSplitMax(List&lt;Patch&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PatchSplitMax(List&lt;Patch&gt; patches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td><span class="parametername">patches</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch_PatchToText_List_Google_DiffMatchPatch_Patch__.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List%7BGoogle.DiffMatchPatch.Patch%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L2188">View Source</a>
+  </span>
+  <a id="Google_DiffMatchPatch_DiffMatchPatch_PatchToText_" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchToText*"></a>
+  <h4 id="Google_DiffMatchPatch_DiffMatchPatch_PatchToText_List_Google_DiffMatchPatch_Patch__" data-uid="Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})">PatchToText(List&lt;Patch&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string PatchToText(List&lt;Patch&gt; patches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Patch.html">Patch</a>&gt;</td>
+        <td><span class="parametername">patches</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <span class="xref">ObjectExtensions.DeepClone&lt;T&gt;(T)</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=Google_DiffMatchPatch_DiffMatchPatch.md&amp;value=---%0Auid%3A%20Google.DiffMatchPatch.DiffMatchPatch%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.0/core/copy/DiffMatchPatch.cs/#L186" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

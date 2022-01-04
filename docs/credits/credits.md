@@ -9,6 +9,10 @@ Please notice than this project could not be possible without the help of:
 Under the MIT license by [Bootstrap](https://github.com/twbs)\
 Further details about the license can be found at [https://github.com/twbs/bootstrap/blob/main/LICENSE](https://github.com/twbs/bootstrap/blob/main/LICENSE).
 
+## [Diff Match and Patch](https://github.com/google/diff-match-patch)
+Under the Apache 2.0 license by [Google](https://github.com/google/diff-match-patch)\
+Further details about the license can be found at [https://github.com/google/diff-match-patch/blob/master/LICENSE](https://github.com/google/diff-match-patch/blob/master/LICENSE).
+
 ## [DocFX](https://github.com/dotnet/docfx)
 Under the MIT license by [Microsoft Corporation](https://github.com/dotnet)\
 Further details about the license can be found at [https://github.com/dotnet/docfx/blob/dev/LICENSE](https://github.com/dotnet/docfx/blob/dev/LICENSE).

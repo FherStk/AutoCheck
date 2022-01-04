@@ -29,7 +29,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>     
         public SqlLog(float threshold, string filePattern = "*.log"): base(threshold, filePattern)
         {
-            this.WordsAmountWeight = 0.85f;
+            this.SentenceMatchWeight = 0.85f;
             this.WordCountWeight = 0.1f;
             this.LineCountWeight = 0.05f; 
         }                                       
