@@ -34,7 +34,7 @@ namespace AutoCheck.Core.CopyDetectors{
             //  Amount of children (hierarchy per node)            
             //  Node or attribute naming are not so important
             
-            this.WordsAmountWeight = 0.3f;
+            this.SentenceMatchWeight = 0.3f;
             this.WordCountWeight = 0.5f;
             this.LineCountWeight = 0.2f;    
         }                                                

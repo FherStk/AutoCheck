@@ -1,0 +1,48 @@
+### YamlMime:ManagedReference
+items:
+- uid: Google.DiffMatchPatch
+  commentId: N:Google.DiffMatchPatch
+  id: Google.DiffMatchPatch
+  children:
+  - Google.DiffMatchPatch.Diff
+  - Google.DiffMatchPatch.DiffMatchPatch
+  - Google.DiffMatchPatch.Operation
+  - Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch
+  type: Namespace
+  assemblies:
+  - AutoCheck.Core
+references:
+- uid: Google.DiffMatchPatch.Operation
+  commentId: T:Google.DiffMatchPatch.Operation
+  parent: Google.DiffMatchPatch
+  name: Operation
+  nameWithType: Operation
+  fullName: Google.DiffMatchPatch.Operation
+- uid: Google.DiffMatchPatch.Diff
+  commentId: T:Google.DiffMatchPatch.Diff
+  parent: Google.DiffMatchPatch
+  name: Diff
+  nameWithType: Diff
+  fullName: Google.DiffMatchPatch.Diff
+- uid: Google.DiffMatchPatch.Patch
+  commentId: T:Google.DiffMatchPatch.Patch
+  parent: Google.DiffMatchPatch
+  name: Patch
+  nameWithType: Patch
+  fullName: Google.DiffMatchPatch.Patch
+- uid: Google.DiffMatchPatch.DiffMatchPatch
+  commentId: T:Google.DiffMatchPatch.DiffMatchPatch
+  name: DiffMatchPatch
+  nameWithType: DiffMatchPatch
+  fullName: Google.DiffMatchPatch.DiffMatchPatch
+- uid: Google.DiffMatchPatch
+  commentId: N:Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch

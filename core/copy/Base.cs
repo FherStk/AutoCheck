@@ -151,6 +151,6 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         /// <param name="path">Student name</param>
         /// <returns>Left file followed by all the right files compared with its matching score.</returns>
-        public abstract (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path);
+        public abstract (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path);
     }
 }

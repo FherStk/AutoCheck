@@ -1,0 +1,416 @@
+### YamlMime:ManagedReference
+items:
+- uid: Google.DiffMatchPatch.Patch
+  commentId: T:Google.DiffMatchPatch.Patch
+  id: Patch
+  parent: Google.DiffMatchPatch
+  children:
+  - Google.DiffMatchPatch.Patch.diffs
+  - Google.DiffMatchPatch.Patch.length1
+  - Google.DiffMatchPatch.Patch.length2
+  - Google.DiffMatchPatch.Patch.start1
+  - Google.DiffMatchPatch.Patch.start2
+  - Google.DiffMatchPatch.Patch.ToString
+  langs:
+  - csharp
+  - vb
+  name: Patch
+  nameWithType: Patch
+  fullName: Google.DiffMatchPatch.Patch
+  type: Class
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Patch
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 128
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: 'public class Patch : object'
+    content.vb: >-
+      Public Class Patch
+          Inherits Object
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - Google.DiffMatchPatch.Patch.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Google.DiffMatchPatch.Patch.diffs
+  commentId: F:Google.DiffMatchPatch.Patch.diffs
+  id: diffs
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: diffs
+  nameWithType: Patch.diffs
+  fullName: Google.DiffMatchPatch.Patch.diffs
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: diffs
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 129
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public List<Diff> diffs
+    return:
+      type: List{Google.DiffMatchPatch.Diff}
+    content.vb: Public diffs As List(Of Diff)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.Patch.start1
+  commentId: F:Google.DiffMatchPatch.Patch.start1
+  id: start1
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: start1
+  nameWithType: Patch.start1
+  fullName: Google.DiffMatchPatch.Patch.start1
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: start1
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 130
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public int start1
+    return:
+      type: System.Int32
+    content.vb: Public start1 As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.Patch.start2
+  commentId: F:Google.DiffMatchPatch.Patch.start2
+  id: start2
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: start2
+  nameWithType: Patch.start2
+  fullName: Google.DiffMatchPatch.Patch.start2
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: start2
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 131
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public int start2
+    return:
+      type: System.Int32
+    content.vb: Public start2 As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.Patch.length1
+  commentId: F:Google.DiffMatchPatch.Patch.length1
+  id: length1
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: length1
+  nameWithType: Patch.length1
+  fullName: Google.DiffMatchPatch.Patch.length1
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: length1
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 132
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public int length1
+    return:
+      type: System.Int32
+    content.vb: Public length1 As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.Patch.length2
+  commentId: F:Google.DiffMatchPatch.Patch.length2
+  id: length2
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: length2
+  nameWithType: Patch.length2
+  fullName: Google.DiffMatchPatch.Patch.length2
+  type: Field
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: length2
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 133
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  syntax:
+    content: public int length2
+    return:
+      type: System.Int32
+    content.vb: Public length2 As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Google.DiffMatchPatch.Patch.ToString
+  commentId: M:Google.DiffMatchPatch.Patch.ToString
+  id: ToString
+  parent: Google.DiffMatchPatch.Patch
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Patch.ToString()
+  fullName: Google.DiffMatchPatch.Patch.ToString()
+  type: Method
+  source:
+    remote:
+      path: core/copy/DiffMatchPatch.cs
+      branch: v2.14.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToString
+    path: ../core/copy/DiffMatchPatch.cs
+    startLine: 141
+  assemblies:
+  - AutoCheck.Core
+  namespace: Google.DiffMatchPatch
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: Google.DiffMatchPatch.Patch.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: Google.DiffMatchPatch
+  commentId: N:Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Google.DiffMatchPatch.Patch.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Patch>()
+  nameWithType: ObjectExtensions.DeepClone<Patch>()
+  fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.Patch>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Patch)()
+  fullName.vb: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.Patch)()
+  name.vb: DeepClone(Of Patch)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Patch>
+    nameWithType: ObjectExtensions.DeepClone<Patch>
+    fullName: ObjectExtensions.DeepClone<Google.DiffMatchPatch.Patch>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Patch)
+    nameWithType: ObjectExtensions.DeepClone(Of Patch)
+    fullName: ObjectExtensions.DeepClone(Of Google.DiffMatchPatch.Patch)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: List{Google.DiffMatchPatch.Diff}
+  commentId: '!:List{Google.DiffMatchPatch.Diff}'
+  definition: List`1
+  name: List<Diff>
+  nameWithType: List<Diff>
+  fullName: List<Google.DiffMatchPatch.Diff>
+  nameWithType.vb: List(Of Diff)
+  fullName.vb: List(Of Google.DiffMatchPatch.Diff)
+  name.vb: List(Of Diff)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Google.DiffMatchPatch.Patch.ToString*
+  commentId: Overload:Google.DiffMatchPatch.Patch.ToString
+  name: ToString
+  nameWithType: Patch.ToString
+  fullName: Google.DiffMatchPatch.Patch.ToString
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

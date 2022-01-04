@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
+using Google.DiffMatchPatch;
 
 namespace AutoCheck.Core.CopyDetectors{
     /// <summary>
@@ -34,45 +35,41 @@ namespace AutoCheck.Core.CopyDetectors{
             public string Path {get; set;}
             public int WordCount {get; set;}
             public int LineCount {get; set;}
-            public Dictionary<string, int> WordsAmount {get; set;}
             public List<string> Content {get; set;}
 
             public File(string folder, string file){                         
                 Content = System.IO.File.ReadAllLines(System.IO.Path.Combine(folder, file)).ToList();
-                WordsAmount = new Dictionary<string, int>();
-
-                foreach(string line in Content){
-                    foreach(string word in line.Split(" ")){
-                        if(!WordsAmount.ContainsKey(word)) WordsAmount.Add(word, 0);
-                        WordsAmount[word]+=1;
-                    }
-                }
-                
-                WordCount = WordsAmount.Sum(x => x.Value);
-                LineCount = Content.Count();                
+                                
+                WordCount = Content.SelectMany(x => x.Split(" ")).Count();
+                LineCount = Content.Count();
                 Folder = folder;                  
                 Path = file;
             }
+
+            public override string ToString(){
+                return string.Join(System.Environment.NewLine, Content);
+            } 
         }        
         
         private Dictionary<string, int> Index {get; set;}        
         private List<File> Files {get; set;}
         private float[,] Matches {get; set;}                
+        private List<Diff>[,] Diffs {get; set;}
         
         /// <summary>
-        /// The weight that different words counting will have when computing the global matching percentage.
+        /// The weight that sentence matching (different documents with the same sentences within) will have when computing the global matching percentage.
         /// </summary>
         /// <value></value>
-        protected float WordsAmountWeight {get; set;}
+        protected float SentenceMatchWeight {get; set;}
         
         /// <summary>
-        /// The weight that word counting will have when computing the global matching percentage.
+        /// The weight that word counting (different documents with the same amount of words) will have when computing the global matching percentage.
         /// </summary>
         /// <value></value>
         protected float WordCountWeight {get; set;}
         
         /// <summary>
-        /// The weight that line counting will have when computing the global matching percentage.
+        /// The weight that line counting (different documents with the same amount of lines) will have when computing the global matching percentage.
         /// </summary>
         /// <value></value>
         protected float LineCountWeight {get; set;}   
@@ -92,7 +89,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>     
         public PlainText(float threshold, string filePattern = "*.txt"): base(threshold, filePattern)
         {                 
-            WordsAmountWeight = 0.7f;
+            SentenceMatchWeight = 0.7f;
             WordCountWeight = 0.2f;
             LineCountWeight = 0.1f;            
 
@@ -106,7 +103,7 @@ namespace AutoCheck.Core.CopyDetectors{
         public override void Dispose(){
             Index.Clear();
             Files.Clear();
-        }      
+        }     
 
         /// <summary>
         /// Loads the given file into the local collection, in order to compare it when Compare() is called.
@@ -126,22 +123,32 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Compares all the previously loaded files, between each other.
         /// </summary>
         public override void Compare(){  
-            if(WordCountWeight + LineCountWeight + WordsAmountWeight != 1f)
+            if(WordCountWeight + LineCountWeight + SentenceMatchWeight != 1f)
                 throw new Exception("The summary of all the weights must be 100%, set the correct values and try again.");
-
+            
             //Compute the changes and store the result in a matrix
+            DiffMatchPatch dmp = new DiffMatchPatch();
+            dmp.DiffTimeout = 0;
+
             Matches = new float[Files.Count(), Files.Count()];                
+            Diffs = new List<Diff>[Files.Count(), Files.Count()];
             for(int i=0; i < Files.Count(); i++){
                 File left = Files[i];
 
-                for(int j=i+1; j < Files.Count(); j++){                                                                                            
+                for(int j=i; j < Files.Count(); j++){                                                                                            
                     File right = Files[j];
+                                        
+                    List<Diff> diff = dmp.DiffMain(left.ToString(), right.ToString());
+                    if(i == j) Matches[i,j] = 1;    //Optimization
+                    else{
+                        float diffAmount = (float)diff.Where(x => x.Operation == Operation.EQUAL).Count() / diff.Count;
+                        float diffWordCount = (left.WordCount <= right.WordCount ? ((float)left.WordCount / right.WordCount) : ((float)right.WordCount / left.WordCount));                    
+                        float diffLineCount = (left.LineCount <= right.LineCount ? ((float)left.LineCount / right.LineCount) : ((float)right.LineCount / left.LineCount));
+                        Matches[i,j] = (float)(diffWordCount * WordCountWeight) + (diffLineCount * LineCountWeight) + (diffAmount * SentenceMatchWeight);  
+                    }
 
-                    float diffWordCount = (left.WordCount <= right.WordCount ? ((float)left.WordCount / right.WordCount) : ((float)right.WordCount / left.WordCount));                    
-                    float diffLineCount = (left.LineCount <= right.LineCount ? ((float)left.LineCount / right.LineCount) : ((float)right.LineCount / left.LineCount));
-                    float diffAmount = (float)(CompareWordsAmount(left, right) + CompareWordsAmount(right, left))/2;
-                    
-                    Matches[i,j] = (float)(diffWordCount * WordCountWeight) + (diffLineCount * LineCountWeight) + (diffAmount * WordsAmountWeight);                        
+                    //This should be always added                                        
+                    Diffs[i,j] = diff;          
                 } 
             }
 
@@ -149,10 +156,11 @@ namespace AutoCheck.Core.CopyDetectors{
             for(int i=0; i < Files.Count(); i++){
                 for(int j=i+1; j < Files.Count(); j++){
                     Matches[j,i] = Matches[i,j];
+                    Diffs[j,i] = Diffs[i,j];
                 }
             }
-        }  
-        
+        }                 
+                
         /// <summary>
         /// Checks if a potential copy has been detected.
         /// The Compare() method should be called firts.
@@ -179,7 +187,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         /// <param name="path">Path where the files has been loaded.</param>
         /// <returns>Left file followed by all the right files compared with its matching score.</returns>
-        public override (string folder, string file, (string folder, string file, float match)[] matches) GetDetails(string path){
+        public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path){
             int i = Index[path];   
             var matches = new List<(string, string, float)>();            
             for(int j=0; j < Files.Count(); j++){                
@@ -187,27 +195,6 @@ namespace AutoCheck.Core.CopyDetectors{
             }            
            
             return (Files[i].Folder, Files[i].Path, matches.ToArray());
-        }
-        
-        private float CompareWordsAmount(File left, File right){            
-            int count = 0;            
-            float diff = 0;                        
-            
-            foreach(string l in left.WordsAmount.Keys){                
-                int wordsAmountRight = (right.WordsAmount.ContainsKey(l) ? right.WordsAmount[l] : 0);
-
-                try{                    
-                    diff += (left.WordsAmount[l] <= wordsAmountRight ? ((float)left.WordsAmount[l] / wordsAmountRight) : ((float)wordsAmountRight / left.WordsAmount[l]));
-                }
-                catch(DivideByZeroException){
-                    diff += 0;
-                }
-                finally{
-                    count ++;
-                }
-            }
-
-            return diff / count;
-        }          
+        }       
     }
 }

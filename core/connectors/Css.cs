@@ -121,7 +121,20 @@ namespace AutoCheck.Core.Connectors{
                 //TODO: add the error list to the description
                 //Loop through all the "m:error" nodes
                 //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
-                throw new DocumentInvalidException(); 
+                foreach(XmlNode error in document.GetElementsByTagName("m:message")){
+                    //TODO: add the error list to the description
+                    //Loop through all the "m:error" nodes
+                    //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"                    
+                    var message = error.InnerText.Trim();
+
+                    while(message.Contains('\n')){
+                        int i = message.IndexOf('\n');
+                        string temp = message.Substring(0, i);
+                        message = $"{temp}\\${message.Substring(i+1).TrimStart()}";
+                    }
+                    
+                    throw new DocumentInvalidException(message.Replace("\\$", System.Environment.NewLine));         
+                }
             } 
         }          
         

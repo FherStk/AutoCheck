@@ -117,3 +117,14 @@
     name: VariableInvalidException
   - uid: AutoCheck.Core.Exceptions.VariableNotFoundException
     name: VariableNotFoundException
+- uid: Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  items:
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+  - uid: Google.DiffMatchPatch.DiffMatchPatch
+    name: DiffMatchPatch
+  - uid: Google.DiffMatchPatch.Operation
+    name: Operation
+  - uid: Google.DiffMatchPatch.Patch
+    name: Patch

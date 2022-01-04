@@ -2456,17 +2456,17 @@ namespace AutoCheck.Core{
         private void PrintCopies(CopyDetector cd, string folder){ 
             try{                                 
                 var details = cd.GetDetails(folder);
-                var file = Path.Combine(Path.GetFileName(details.folder), Path.GetFileName(details.file));
+                var file = Path.Combine(Path.GetFileName(details.Folder), Path.GetFileName(details.File));
                 
                 if(cd.CopyDetected(folder)) Output.WriteLine($"Potential copy detected for ~{file}:", Output.Style.CRITICAL);
                 else Output.WriteLine($"No potential copy detected for ~{file}:", Output.Style.SUCCESS);
                 Output.Indent();
 
                 foreach(var item in details.matches){  
-                    file = Path.Combine(Path.GetFileName(item.folder), Path.GetFileName(item.file));
+                    file = Path.Combine(Path.GetFileName(item.Folder), Path.GetFileName(item.File));
 
                     Output.Write($"Match score with ~{file}... ", Output.Style.DETAILS);     
-                    Output.WriteLine(string.Format("{0:P2}", item.match), (item.match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
+                    Output.WriteLine(string.Format("{0:P2}", item.Match), (item.Match < cd.Threshold ?Output.Style.SUCCESS : Output.Style.ERROR));
                 }     
 
                 Output.UnIndent();

@@ -105,8 +105,7 @@
 <h1 id="students-guide">Student's guide</h1>
 
 <h2 id="video-tutorial">Video tutorial</h2>
-<p>Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run its <strong>command line application</strong> is also available : <a href="https://youtu.be/PHIZlj9Ly3Q">https://youtu.be/PHIZlj9Ly3Q</a></p>
-<p><strong>WARNING</strong>: The <code>terminal</code> folder has been renamed to <code>cli</code>; also running the application as seen in the video wont work with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, the following tutorial describes a method that works for any kind of OS and installation type.</p>
+<p>Despite that you'll find a complete tutorial below this lines, a video tutorial about how to install and setup AutoCheck in order to run its <strong>command line interface</strong> and also its <strong>web application interface</strong> : <a href="https://youtu.be/1ObOx6oYZ3w">https://youtu.be/1ObOx6oYZ3w</a></p>
 <h2 id="how-to-use-the-application">How to use the application</h2>
 <h3 id="pre-requisites">Pre-requisites</h3>
 <p>This application has been developed over the <strong>.NET 6.0</strong>, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on <strong>GitHub</strong> repository, so <strong>Git</strong> must be installed in order to download and update the app:</p>
@@ -122,7 +121,7 @@
 <li>Download the application with the following command: <code>git clone https://github.com/FherStk/AutoCheck.git</code>.</li>
 </ol>
 <h3 id="permissions">Permissions</h3>
-<p><strong>For GNU/Linux only.</strong> In order to work properly under diferent installation scenarios, some execution permissions are needed:</p>
+<p><strong>For GNU/Linux only.</strong> Running a .NET application with <code>dotnet run</code> wont work properly with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, so <strong>shelscript launchers</strong> has been distributed in order to use AutoCheck under any kind of OS and installation type, but some execution permissions are needed:</p>
 <ol>
 <li>Go to the web app folder with the following command: <code>cd AutoCheck/web</code>.</li>
 <li>Give permissions to the startup file with: <code>chmod +x run.sh</code>.</li>
@@ -132,7 +131,6 @@
 <h3 id="web-application-interface">Web Application Interface</h3>
 <h4 id="preparation">Preparation</h4>
 <p>Please, notice that <strong>AutoCheck will revert all changes when updates</strong> which includes the removal of new files, so it's important to <strong>store the scripts</strong> you create into the <code>AutoCheck/scripts/custom</code> folder.</p>
-<p><strong>WARNING:</strong> AutoCheck's web interface is still in an early development stage and does not include all the features which are currently available when using its command line interface. Currently, only <code>target</code> scripts will be available through the web interface but, as a workaround, new scripts can be added to those folders to make those available (but remember: will be removed on update so store also a copy within <code>custom</code> folder).</p>
 <h4 id="run">Run</h4>
 <p>Follow this instructions in order to run the application:</p>
 <ol>

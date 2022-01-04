@@ -4106,6 +4106,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.Load
   nameWithType: PlainText.Load
+- uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  name: SentenceMatchWeight
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  nameWithType: PlainText.SentenceMatchWeight
+- uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight*
+  name: SentenceMatchWeight
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
+  nameWithType: PlainText.SentenceMatchWeight
 - uid: AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   name: WordCountWeight
   href: api/AutoCheck.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_WordCountWeight
@@ -5936,3 +5949,684 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ToCamelCase
   nameWithType: Utils.ToCamelCase
+- uid: Google.DiffMatchPatch
+  name: Google.DiffMatchPatch
+  href: api/Google.DiffMatchPatch.html
+  commentId: N:Google.DiffMatchPatch
+  fullName: Google.DiffMatchPatch
+  nameWithType: Google.DiffMatchPatch
+- uid: Google.DiffMatchPatch.Diff
+  name: Diff
+  href: api/Google.DiffMatchPatch.Diff.html
+  commentId: T:Google.DiffMatchPatch.Diff
+  fullName: Google.DiffMatchPatch.Diff
+  nameWithType: Diff
+- uid: Google.DiffMatchPatch.Diff.#ctor(Google.DiffMatchPatch.Operation,System.String)
+  name: Diff(Operation, String)
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff__ctor_Google_DiffMatchPatch_Operation_System_String_
+  commentId: M:Google.DiffMatchPatch.Diff.#ctor(Google.DiffMatchPatch.Operation,System.String)
+  fullName: Google.DiffMatchPatch.Diff.Diff(Google.DiffMatchPatch.Operation, System.String)
+  nameWithType: Diff.Diff(Operation, String)
+- uid: Google.DiffMatchPatch.Diff.#ctor*
+  name: Diff
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff__ctor_
+  commentId: Overload:Google.DiffMatchPatch.Diff.#ctor
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.Diff.Diff
+  nameWithType: Diff.Diff
+- uid: Google.DiffMatchPatch.Diff.Equals(Google.DiffMatchPatch.Diff)
+  name: Equals(Diff)
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_Equals_Google_DiffMatchPatch_Diff_
+  commentId: M:Google.DiffMatchPatch.Diff.Equals(Google.DiffMatchPatch.Diff)
+  fullName: Google.DiffMatchPatch.Diff.Equals(Google.DiffMatchPatch.Diff)
+  nameWithType: Diff.Equals(Diff)
+- uid: Google.DiffMatchPatch.Diff.Equals(Object)
+  name: Equals(Object)
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_Equals_Object_
+  commentId: M:Google.DiffMatchPatch.Diff.Equals(Object)
+  fullName: Google.DiffMatchPatch.Diff.Equals(Object)
+  nameWithType: Diff.Equals(Object)
+- uid: Google.DiffMatchPatch.Diff.Equals*
+  name: Equals
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_Equals_
+  commentId: Overload:Google.DiffMatchPatch.Diff.Equals
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.Diff.Equals
+  nameWithType: Diff.Equals
+- uid: Google.DiffMatchPatch.Diff.GetHashCode
+  name: GetHashCode()
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_GetHashCode
+  commentId: M:Google.DiffMatchPatch.Diff.GetHashCode
+  fullName: Google.DiffMatchPatch.Diff.GetHashCode()
+  nameWithType: Diff.GetHashCode()
+- uid: Google.DiffMatchPatch.Diff.GetHashCode*
+  name: GetHashCode
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_GetHashCode_
+  commentId: Overload:Google.DiffMatchPatch.Diff.GetHashCode
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.Diff.GetHashCode
+  nameWithType: Diff.GetHashCode
+- uid: Google.DiffMatchPatch.Diff.Operation
+  name: Operation
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_Operation
+  commentId: F:Google.DiffMatchPatch.Diff.Operation
+  fullName: Google.DiffMatchPatch.Diff.Operation
+  nameWithType: Diff.Operation
+- uid: Google.DiffMatchPatch.Diff.Text
+  name: Text
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_Text
+  commentId: F:Google.DiffMatchPatch.Diff.Text
+  fullName: Google.DiffMatchPatch.Diff.Text
+  nameWithType: Diff.Text
+- uid: Google.DiffMatchPatch.Diff.ToString
+  name: ToString()
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_ToString
+  commentId: M:Google.DiffMatchPatch.Diff.ToString
+  fullName: Google.DiffMatchPatch.Diff.ToString()
+  nameWithType: Diff.ToString()
+- uid: Google.DiffMatchPatch.Diff.ToString*
+  name: ToString
+  href: api/Google.DiffMatchPatch.Diff.html#Google_DiffMatchPatch_Diff_ToString_
+  commentId: Overload:Google.DiffMatchPatch.Diff.ToString
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.Diff.ToString
+  nameWithType: Diff.ToString
+- uid: Google.DiffMatchPatch.DiffMatchPatch
+  name: DiffMatchPatch
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html
+  commentId: T:Google.DiffMatchPatch.DiffMatchPatch
+  fullName: Google.DiffMatchPatch.DiffMatchPatch
+  nameWithType: DiffMatchPatch
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)
+  name: diff_bisect(String, String, DateTime)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_bisect_System_String_System_String_DateTime_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String,System.String,DateTime)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect(System.String, System.String, DateTime)
+  nameWithType: DiffMatchPatch.diff_bisect(String, String, DateTime)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect*
+  name: diff_bisect
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_bisect_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_bisect
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_bisect
+  nameWithType: DiffMatchPatch.diff_bisect
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  name: diff_charsToLines(ICollection<Diff>, IList<String>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_charsToLines_ICollection_Google_DiffMatchPatch_Diff__IList_System_String__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection{Google.DiffMatchPatch.Diff},IList{System.String})
+  name.vb: diff_charsToLines(ICollection(Of Diff), IList(Of String))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection<Google.DiffMatchPatch.Diff>, IList<System.String>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines(ICollection(Of Google.DiffMatchPatch.Diff), IList(Of System.String))
+  nameWithType: DiffMatchPatch.diff_charsToLines(ICollection<Diff>, IList<String>)
+  nameWithType.vb: DiffMatchPatch.diff_charsToLines(ICollection(Of Diff), IList(Of String))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines*
+  name: diff_charsToLines
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_charsToLines_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_charsToLines
+  nameWithType: DiffMatchPatch.diff_charsToLines
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)
+  name: diff_commonOverlap(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_commonOverlap_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap(System.String, System.String)
+  nameWithType: DiffMatchPatch.diff_commonOverlap(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap*
+  name: diff_commonOverlap
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_commonOverlap_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_commonOverlap
+  nameWithType: DiffMatchPatch.diff_commonOverlap
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)
+  name: diff_halfMatch(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_halfMatch_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch(System.String, System.String)
+  nameWithType: DiffMatchPatch.diff_halfMatch(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch*
+  name: diff_halfMatch
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_halfMatch_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_halfMatch
+  nameWithType: DiffMatchPatch.diff_halfMatch
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)
+  name: diff_linesToChars(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_linesToChars_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars(System.String, System.String)
+  nameWithType: DiffMatchPatch.diff_linesToChars(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars*
+  name: diff_linesToChars
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_diff_linesToChars_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.diff_linesToChars
+  nameWithType: DiffMatchPatch.diff_linesToChars
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  name: DiffCleanupEfficiency(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupEfficiency_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffCleanupEfficiency(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffCleanupEfficiency(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffCleanupEfficiency(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency*
+  name: DiffCleanupEfficiency
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupEfficiency_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupEfficiency
+  nameWithType: DiffMatchPatch.DiffCleanupEfficiency
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  name: DiffCleanupMerge(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupMerge_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffCleanupMerge(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffCleanupMerge(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffCleanupMerge(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge*
+  name: DiffCleanupMerge
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupMerge_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupMerge
+  nameWithType: DiffMatchPatch.DiffCleanupMerge
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  name: DiffCleanupSemantic(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemantic_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffCleanupSemantic(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffCleanupSemantic(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffCleanupSemantic(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic*
+  name: DiffCleanupSemantic
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemantic_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemantic
+  nameWithType: DiffMatchPatch.DiffCleanupSemantic
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  name: DiffCleanupSemanticLossless(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemanticLossless_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffCleanupSemanticLossless(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffCleanupSemanticLossless(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffCleanupSemanticLossless(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless*
+  name: DiffCleanupSemanticLossless
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCleanupSemanticLossless_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCleanupSemanticLossless
+  nameWithType: DiffMatchPatch.DiffCleanupSemanticLossless
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)
+  name: DiffCommonPrefix(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCommonPrefix_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix(System.String, System.String)
+  nameWithType: DiffMatchPatch.DiffCommonPrefix(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix*
+  name: DiffCommonPrefix
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCommonPrefix_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonPrefix
+  nameWithType: DiffMatchPatch.DiffCommonPrefix
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)
+  name: DiffCommonSuffix(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCommonSuffix_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix(System.String, System.String)
+  nameWithType: DiffMatchPatch.DiffCommonSuffix(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix*
+  name: DiffCommonSuffix
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffCommonSuffix_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffCommonSuffix
+  nameWithType: DiffMatchPatch.DiffCommonSuffix
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  name: DiffEditCost
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffEditCost
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffEditCost
+  nameWithType: DiffMatchPatch.DiffEditCost
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)
+  name: DiffFromDelta(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffFromDelta_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta(System.String, System.String)
+  nameWithType: DiffMatchPatch.DiffFromDelta(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta*
+  name: DiffFromDelta
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffFromDelta_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffFromDelta
+  nameWithType: DiffMatchPatch.DiffFromDelta
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  name: DiffLevenshtein(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffLevenshtein_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffLevenshtein(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffLevenshtein(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffLevenshtein(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein*
+  name: DiffLevenshtein
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffLevenshtein_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffLevenshtein
+  nameWithType: DiffMatchPatch.DiffLevenshtein
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)
+  name: DiffMain(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String, System.String)
+  nameWithType: DiffMatchPatch.DiffMain(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)
+  name: DiffMain(String, String, Boolean)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffMain_System_String_System_String_System_Boolean_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String,System.String,System.Boolean)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain(System.String, System.String, System.Boolean)
+  nameWithType: DiffMatchPatch.DiffMain(String, String, Boolean)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffMain*
+  name: DiffMain
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffMain_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffMain
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffMain
+  nameWithType: DiffMatchPatch.DiffMain
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  name: DiffPrettyHtml(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffPrettyHtml_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffPrettyHtml(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffPrettyHtml(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffPrettyHtml(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml*
+  name: DiffPrettyHtml
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffPrettyHtml_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffPrettyHtml
+  nameWithType: DiffMatchPatch.DiffPrettyHtml
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})
+  name: DiffText1(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffText1_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffText1(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffText1(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffText1(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffText1(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText1*
+  name: DiffText1
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffText1_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffText1
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText1
+  nameWithType: DiffMatchPatch.DiffText1
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})
+  name: DiffText2(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffText2_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffText2(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffText2(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffText2(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffText2(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffText2*
+  name: DiffText2
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffText2_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffText2
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffText2
+  nameWithType: DiffMatchPatch.DiffText2
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  name: DiffTimeout
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffTimeout
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffTimeout
+  nameWithType: DiffMatchPatch.DiffTimeout
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  name: DiffToDelta(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffToDelta_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List{Google.DiffMatchPatch.Diff})
+  name.vb: DiffToDelta(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.DiffToDelta(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.DiffToDelta(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta*
+  name: DiffToDelta
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffToDelta_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffToDelta
+  nameWithType: DiffMatchPatch.DiffToDelta
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  name: DiffxIndex(List<Diff>, Int32)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffxIndex_List_Google_DiffMatchPatch_Diff__System_Int32_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List{Google.DiffMatchPatch.Diff},System.Int32)
+  name.vb: DiffxIndex(List(Of Diff), Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List<Google.DiffMatchPatch.Diff>, System.Int32)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex(List(Of Google.DiffMatchPatch.Diff), System.Int32)
+  nameWithType: DiffMatchPatch.DiffxIndex(List<Diff>, Int32)
+  nameWithType.vb: DiffMatchPatch.DiffxIndex(List(Of Diff), Int32)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex*
+  name: DiffxIndex
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_DiffxIndex_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.DiffxIndex
+  nameWithType: DiffMatchPatch.DiffxIndex
+- uid: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  name: EncodeURI(String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_EncodeURI_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI(System.String)
+  nameWithType: DiffMatchPatch.EncodeURI(String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI*
+  name: EncodeURI
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_EncodeURI_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.EncodeURI
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.EncodeURI
+  nameWithType: DiffMatchPatch.EncodeURI
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  name: match_alphabet(String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_match_alphabet_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet(System.String)
+  nameWithType: DiffMatchPatch.match_alphabet(String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet*
+  name: match_alphabet
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_match_alphabet_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.match_alphabet
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_alphabet
+  nameWithType: DiffMatchPatch.match_alphabet
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)
+  name: match_bitap(String, String, Int32)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_match_bitap_System_String_System_String_System_Int32_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String,System.String,System.Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_bitap(System.String, System.String, System.Int32)
+  nameWithType: DiffMatchPatch.match_bitap(String, String, Int32)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.match_bitap*
+  name: match_bitap
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_match_bitap_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.match_bitap
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.match_bitap
+  nameWithType: DiffMatchPatch.match_bitap
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  name: MatchDistance
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_MatchDistance
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchDistance
+  nameWithType: DiffMatchPatch.MatchDistance
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)
+  name: MatchMain(String, String, Int32)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_MatchMain_System_String_System_String_System_Int32_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String,System.String,System.Int32)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchMain(System.String, System.String, System.Int32)
+  nameWithType: DiffMatchPatch.MatchMain(String, String, Int32)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchMain*
+  name: MatchMain
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_MatchMain_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.MatchMain
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchMain
+  nameWithType: DiffMatchPatch.MatchMain
+- uid: Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  name: MatchThreshold
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_MatchThreshold
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.MatchThreshold
+  nameWithType: DiffMatchPatch.MatchThreshold
+- uid: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  name: patch_addContext(Patch, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_patch_addContext_Google_DiffMatchPatch_Patch_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext(Google.DiffMatchPatch.Patch, System.String)
+  nameWithType: DiffMatchPatch.patch_addContext(Patch, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext*
+  name: patch_addContext
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_patch_addContext_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.patch_addContext
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.patch_addContext
+  nameWithType: DiffMatchPatch.patch_addContext
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  name: PatchAddPadding(List<Patch>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchAddPadding_List_Google_DiffMatchPatch_Patch__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List{Google.DiffMatchPatch.Patch})
+  name.vb: PatchAddPadding(List(Of Patch))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List<Google.DiffMatchPatch.Patch>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding(List(Of Google.DiffMatchPatch.Patch))
+  nameWithType: DiffMatchPatch.PatchAddPadding(List<Patch>)
+  nameWithType.vb: DiffMatchPatch.PatchAddPadding(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding*
+  name: PatchAddPadding
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchAddPadding_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchAddPadding
+  nameWithType: DiffMatchPatch.PatchAddPadding
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  name: PatchApply(List<Patch>, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchApply_List_Google_DiffMatchPatch_Patch__System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List{Google.DiffMatchPatch.Patch},System.String)
+  name.vb: PatchApply(List(Of Patch), String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List<Google.DiffMatchPatch.Patch>, System.String)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchApply(List(Of Google.DiffMatchPatch.Patch), System.String)
+  nameWithType: DiffMatchPatch.PatchApply(List<Patch>, String)
+  nameWithType.vb: DiffMatchPatch.PatchApply(List(Of Patch), String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchApply*
+  name: PatchApply
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchApply_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchApply
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchApply
+  nameWithType: DiffMatchPatch.PatchApply
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  name: PatchDeepCopy(List<Patch>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchDeepCopy_List_Google_DiffMatchPatch_Patch__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List{Google.DiffMatchPatch.Patch})
+  name.vb: PatchDeepCopy(List(Of Patch))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List<Google.DiffMatchPatch.Patch>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy(List(Of Google.DiffMatchPatch.Patch))
+  nameWithType: DiffMatchPatch.PatchDeepCopy(List<Patch>)
+  nameWithType.vb: DiffMatchPatch.PatchDeepCopy(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy*
+  name: PatchDeepCopy
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchDeepCopy_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeepCopy
+  nameWithType: DiffMatchPatch.PatchDeepCopy
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  name: PatchDeleteThreshold
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchDeleteThreshold
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchDeleteThreshold
+  nameWithType: DiffMatchPatch.PatchDeleteThreshold
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  name: PatchFromText(String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchFromText_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText(System.String)
+  nameWithType: DiffMatchPatch.PatchFromText(String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText*
+  name: PatchFromText
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchFromText_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchFromText
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchFromText
+  nameWithType: DiffMatchPatch.PatchFromText
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})
+  name: PatchMake(List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMake_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List{Google.DiffMatchPatch.Diff})
+  name.vb: PatchMake(List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.PatchMake(List<Diff>)
+  nameWithType.vb: DiffMatchPatch.PatchMake(List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  name: PatchMake(String, List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,List{Google.DiffMatchPatch.Diff})
+  name.vb: PatchMake(String, List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.PatchMake(String, List<Diff>)
+  nameWithType.vb: DiffMatchPatch.PatchMake(String, List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)
+  name: PatchMake(String, String)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String)
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String)
+  nameWithType: DiffMatchPatch.PatchMake(String, String)
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  name: PatchMake(String, String, List<Diff>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMake_System_String_System_String_List_Google_DiffMatchPatch_Diff__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String,System.String,List{Google.DiffMatchPatch.Diff})
+  name.vb: PatchMake(String, String, List(Of Diff))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String, List<Google.DiffMatchPatch.Diff>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchMake(System.String, System.String, List(Of Google.DiffMatchPatch.Diff))
+  nameWithType: DiffMatchPatch.PatchMake(String, String, List<Diff>)
+  nameWithType.vb: DiffMatchPatch.PatchMake(String, String, List(Of Diff))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMake*
+  name: PatchMake
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMake_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchMake
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMake
+  nameWithType: DiffMatchPatch.PatchMake
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  name: PatchMargin
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchMargin
+  commentId: F:Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchMargin
+  nameWithType: DiffMatchPatch.PatchMargin
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  name: PatchSplitMax(List<Patch>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchSplitMax_List_Google_DiffMatchPatch_Patch__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List{Google.DiffMatchPatch.Patch})
+  name.vb: PatchSplitMax(List(Of Patch))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List<Google.DiffMatchPatch.Patch>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax(List(Of Google.DiffMatchPatch.Patch))
+  nameWithType: DiffMatchPatch.PatchSplitMax(List<Patch>)
+  nameWithType.vb: DiffMatchPatch.PatchSplitMax(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax*
+  name: PatchSplitMax
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchSplitMax_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchSplitMax
+  nameWithType: DiffMatchPatch.PatchSplitMax
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})
+  name: PatchToText(List<Patch>)
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchToText_List_Google_DiffMatchPatch_Patch__
+  commentId: M:Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List{Google.DiffMatchPatch.Patch})
+  name.vb: PatchToText(List(Of Patch))
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List<Google.DiffMatchPatch.Patch>)
+  fullName.vb: Google.DiffMatchPatch.DiffMatchPatch.PatchToText(List(Of Google.DiffMatchPatch.Patch))
+  nameWithType: DiffMatchPatch.PatchToText(List<Patch>)
+  nameWithType.vb: DiffMatchPatch.PatchToText(List(Of Patch))
+- uid: Google.DiffMatchPatch.DiffMatchPatch.PatchToText*
+  name: PatchToText
+  href: api/Google.DiffMatchPatch.DiffMatchPatch.html#Google_DiffMatchPatch_DiffMatchPatch_PatchToText_
+  commentId: Overload:Google.DiffMatchPatch.DiffMatchPatch.PatchToText
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.DiffMatchPatch.PatchToText
+  nameWithType: DiffMatchPatch.PatchToText
+- uid: Google.DiffMatchPatch.Operation
+  name: Operation
+  href: api/Google.DiffMatchPatch.Operation.html
+  commentId: T:Google.DiffMatchPatch.Operation
+  fullName: Google.DiffMatchPatch.Operation
+  nameWithType: Operation
+- uid: Google.DiffMatchPatch.Operation.DELETE
+  name: DELETE
+  href: api/Google.DiffMatchPatch.Operation.html#Google_DiffMatchPatch_Operation_DELETE
+  commentId: F:Google.DiffMatchPatch.Operation.DELETE
+  fullName: Google.DiffMatchPatch.Operation.DELETE
+  nameWithType: Operation.DELETE
+- uid: Google.DiffMatchPatch.Operation.EQUAL
+  name: EQUAL
+  href: api/Google.DiffMatchPatch.Operation.html#Google_DiffMatchPatch_Operation_EQUAL
+  commentId: F:Google.DiffMatchPatch.Operation.EQUAL
+  fullName: Google.DiffMatchPatch.Operation.EQUAL
+  nameWithType: Operation.EQUAL
+- uid: Google.DiffMatchPatch.Operation.INSERT
+  name: INSERT
+  href: api/Google.DiffMatchPatch.Operation.html#Google_DiffMatchPatch_Operation_INSERT
+  commentId: F:Google.DiffMatchPatch.Operation.INSERT
+  fullName: Google.DiffMatchPatch.Operation.INSERT
+  nameWithType: Operation.INSERT
+- uid: Google.DiffMatchPatch.Patch
+  name: Patch
+  href: api/Google.DiffMatchPatch.Patch.html
+  commentId: T:Google.DiffMatchPatch.Patch
+  fullName: Google.DiffMatchPatch.Patch
+  nameWithType: Patch
+- uid: Google.DiffMatchPatch.Patch.diffs
+  name: diffs
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_diffs
+  commentId: F:Google.DiffMatchPatch.Patch.diffs
+  fullName: Google.DiffMatchPatch.Patch.diffs
+  nameWithType: Patch.diffs
+- uid: Google.DiffMatchPatch.Patch.length1
+  name: length1
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_length1
+  commentId: F:Google.DiffMatchPatch.Patch.length1
+  fullName: Google.DiffMatchPatch.Patch.length1
+  nameWithType: Patch.length1
+- uid: Google.DiffMatchPatch.Patch.length2
+  name: length2
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_length2
+  commentId: F:Google.DiffMatchPatch.Patch.length2
+  fullName: Google.DiffMatchPatch.Patch.length2
+  nameWithType: Patch.length2
+- uid: Google.DiffMatchPatch.Patch.start1
+  name: start1
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_start1
+  commentId: F:Google.DiffMatchPatch.Patch.start1
+  fullName: Google.DiffMatchPatch.Patch.start1
+  nameWithType: Patch.start1
+- uid: Google.DiffMatchPatch.Patch.start2
+  name: start2
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_start2
+  commentId: F:Google.DiffMatchPatch.Patch.start2
+  fullName: Google.DiffMatchPatch.Patch.start2
+  nameWithType: Patch.start2
+- uid: Google.DiffMatchPatch.Patch.ToString
+  name: ToString()
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_ToString
+  commentId: M:Google.DiffMatchPatch.Patch.ToString
+  fullName: Google.DiffMatchPatch.Patch.ToString()
+  nameWithType: Patch.ToString()
+- uid: Google.DiffMatchPatch.Patch.ToString*
+  name: ToString
+  href: api/Google.DiffMatchPatch.Patch.html#Google_DiffMatchPatch_Patch_ToString_
+  commentId: Overload:Google.DiffMatchPatch.Patch.ToString
+  isSpec: "True"
+  fullName: Google.DiffMatchPatch.Patch.ToString
+  nameWithType: Patch.ToString

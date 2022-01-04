@@ -32,7 +32,7 @@ $(function(){
             $("#script").append('<option value="none" selected>- Select -</option>');
 
             $.each(data, function() {                        
-                $("#script").append('<option value="'  + this.path + '">' + this.name + '</option>');
+                $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
             });
             
             $("#step-2").hide();
