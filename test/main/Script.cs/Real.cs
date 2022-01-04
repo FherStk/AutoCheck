@@ -49,7 +49,7 @@ namespace AutoCheck.Test
         {              
             var s = new AutoCheck.Core.Script(GetSampleFile("real_xml_single_3.yaml"));                         
             Assert.AreEqual("Running script 'DAM - M04 (UF1): XML Validation Assignment (Namespaces + DTD + XSD)' (v1.0.0.2):\r\nRunning on single mode for 'Student Name 9':\r\n   Question 1 [4 points] - Starting validation over file1.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Checking amount of nodes... ERROR:\n         -Expected -> >=15; Found -> 13\r\n\r\n   Question 2 [4 points] - Starting validation over file2.xml:\r\n      Looking for file1.xml... OK\r\n      Loading file1.xml... OK\r\n      Looking for file2.xml... ERROR:\n         -Expected -> %file2.xml; Found -> NULL\r\n\r\n   Question 3 [2 points] - Starting validation over file3.xml:\r\n      Looking for file3.xml... ERROR:\n         -Expected -> %file3.xml; Found -> NULL\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());
-        }  
+        }   
 
         [Test, Category("FullScriptXml"), Category("Real"), Category("Local")]    
         public void Real_XML_SCRIPT_BATCH() 
