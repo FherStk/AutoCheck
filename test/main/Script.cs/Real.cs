@@ -121,6 +121,13 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("FullScriptCss3"), Category("Real"), Category("Local")]
+        public void Real_CSS3_SCRIPT_SINGLE_4()
+        {             
+            var s = new AutoCheck.Core.Script(GetSampleFile("real_css3_single_4.yaml"));
+            Assert.AreEqual("Running script 'DAM - M04 (UF1): CSS3 Assignment' (v1.0.0.2):\r\nRunning on single mode for 'Student Name 4':\r\n   Question 1 [3 points] - Checking index.html:\r\n      Looking for index.html... OK\r\n      Loading index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -Element head is missing a required instance of child element title.tyle>\n             <h1>La MusContent model for element head:If the document is an iframesrcdoc document or if title information is available from a higher-level protocol: Zero or more elements of metadata content, of which no more than one is a title element and no more than one is a base element.Otherwise: One or more elements of metadata content, of which exactly one is a title element and no more than one is a base element.\r\n\r\n   Question 2 [14 points] - Checking index.css:\r\n      Looking for index.css... OK\r\n      Loading index.css... OK\r\n      Loading index.html... OK\r\n      Validating document against the W3C validation service... ERROR:\n         -Value Error :  padding (nullbox.html#propdef-padding)\n         “,” is an incorrect operator :\r\n\r\n   TOTAL SCORE: 0 / 10", s.Output.ToString());
+        }
+
+        [Test, Category("FullScriptCss3"), Category("Real"), Category("Local")]
         public void Real_CSS3_SCRIPT_BATCH()
         {             
             var s = new AutoCheck.Core.Script(GetSampleFile("real_css3_batch.yaml"));
