@@ -21,6 +21,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
 using ToolBox.Bridge;
@@ -162,18 +164,33 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path = ""){
-            if(IsLocal){
-                Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
-                return (r.code, (r.code > 0 ? r.stderr : r.stdout));
-            }
-            else{        
-                this.RemoteShell.Connect();
-                SshCommand s = this.RemoteShell.RunCommand(command);
-                this.RemoteShell.Disconnect();
+        public (int code, string response) RunCommand(string command, string path = ""){    
+            //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
+            using (var tokenSource = new CancellationTokenSource()){
+                var cancelToken = tokenSource.Token;
 
-                //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
-                return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
+                var task = Task.Run(() => {
+                    if(IsLocal){
+                        Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
+                        return (r.code, (r.code > 0 ? r.stderr : r.stdout));
+                    }
+                    else{        
+                        this.RemoteShell.Connect();
+                        SshCommand s = this.RemoteShell.RunCommand(command);
+                        this.RemoteShell.Disconnect();
+
+                        //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
+                        return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
+                    }
+                }, cancelToken);
+                
+                task.Wait(1000);
+                if(task.Status == TaskStatus.Running){
+                    //timeout 
+                    tokenSource.Cancel();    
+                    throw new TimeoutException();                
+                }
+                else return task.Result;
             }
         }                     
 
