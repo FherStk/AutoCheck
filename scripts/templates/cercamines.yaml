@@ -1,0 +1,77 @@
+# Copyright © 2021 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "DAM - M03 (UF1): Cercamines"
+version: "1.0.0.0"
+
+body:
+  - vars:
+      java: NULL                 
+        
+  - question: 
+      description: "Checking main java file"                          
+      content:                            
+        - run:
+            caption:  "Looking for ~.java... "
+            command:  "GetFile"
+            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.java"
+            store: "$JAVA"
+            expected: "%.java" 
+            onerror: "SKIP"      
+                    
+        - run:
+            caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "            
+            command:  "javac {$JAVA}"            
+            expected: "" 
+            onexception: "SKIP"
+
+        - question:                     
+            description: "Main menu"
+            content:                            
+              - run:
+                    caption:  "Checking the main menu... "            
+                    command:  "echo 3 | java {$JAVA}"            
+                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+
+        - question:                     
+            description: "Fill the board"
+            content:                            
+              - run:
+                    caption:  "Checking the input data... "            
+                    command:  "echo 1 5 4 1 3 | java {$JAVA}"            
+                    expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
+
+        - echo: "WARNING: the board internal creation must be checked manually."
+        - echo: ""
+
+        - echo: "WARNING: the board internal filling must be checked manually."
+        - echo: ""
+
+        - echo: "WARNING: the mines internal random positioning must be checked manually."
+        - echo: ""
+
+        - question:                     
+            description: "Fill the board"
+            content:                            
+              - run:
+                    caption:  "Checking the input data... "            
+                    command:  "echo 1 5 4 1 3 | java {$JAVA}"            
+                    expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
+
+
+       
