@@ -7,7 +7,7 @@
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
 		<Copyright>Copyright © 2021</Copyright>
-		<VersionPrefix>2.14.0</VersionPrefix>
+		<VersionPrefix>2.14.1</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
