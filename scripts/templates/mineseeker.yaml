@@ -154,7 +154,7 @@ body:
                         expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
       - connector:  
-            type: "Regex"  
+            type: "TextStream"  
             
       - question:                     
             description: "Displaying board's empty cells"
@@ -164,7 +164,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 1x1 board with no mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "(?:\[\s\]\s*(?:\n|\\n)){1}"
                         expected: "1" 
@@ -174,7 +174,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 5x3 board with no mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[\s\]\s){2}\[\s\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
@@ -184,7 +184,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 3x5 board with no mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
@@ -194,7 +194,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 5x5 board with no mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s]\s*(?:\n|\\n)){5}"
                         expected: "1" 
@@ -207,7 +207,7 @@ body:
                   
                   - run:
                         caption:  "Checking the display for a 1x1 board full of mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "(?:\[O\]\s*(?:\n|\\n)){1}"
                         expected: "1"                   
@@ -217,7 +217,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 5x3 board full of mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[O\]\s){2}\[O\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
@@ -227,7 +227,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 3x5 board full of mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
@@ -237,7 +237,7 @@ body:
 
                   - run:
                         caption:  "Checking the display for a 5x5 board full of mines... "            
-                        connector: "Regex"         
+                        connector: "TextStream"         
                         command:  "Count"            
                         arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){5}"
                         expected: "1" 

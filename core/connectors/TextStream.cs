@@ -27,12 +27,12 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows data manipulation using regular expressions
     /// </summary>
-    public class Regex: Base{               
+    public class TextStream: Base{               
         
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>     
-        public Regex(){            
+        public TextStream(){            
         }
                
         /// <summary>
@@ -49,11 +49,22 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>A set of matches.</returns>
         public string[] Find(string content, string regex){
             var found = new List<string>();
-            foreach(Match match in System.Text.RegularExpressions.Regex.Matches(content, regex)){
+            foreach(Match match in Regex.Matches(content, regex)){
                 found.Add(match.Value);
             }            
 
             return found.ToArray();
+        }
+
+        /// <summary>
+        /// Gets the substring found within the given text using a regular expression (first match)
+        /// </summary>
+        /// <param name="content">The content where the regex will be applied to.</param>
+        /// <param name="regex">The regular expression which will be used to search the content.</param>
+        /// <returns>A set of matches.</returns>
+        public string Substring(string content, string regex){
+            var found = Find(content, regex);
+            return (found.Length > 0 ? found[0] : string.Empty);
         }
 
         /// <summary>

@@ -132,7 +132,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="regex">The regular expression which will be used to search the content.</param>
         /// <returns>A set of matches.</returns>
         public string[] Find(string regex){
-            var conn = new Regex();            
+            var conn = new TextStream();            
             return conn.Find(plainTextDoc.Content, regex);
         }
 
