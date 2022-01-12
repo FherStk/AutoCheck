@@ -32,10 +32,19 @@ body:
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.java"
             store: "$JAVA"
             expected: "%.java" 
-            onerror: "SKIP"      
+            onerror: "SKIP"   
+
+        - connector:  
+            caption:  "Loading the file ~{#([^\\\\]*)$$JAVA}... "
+            type: "PlainText"        
+            arguments: "--filePath {$JAVA}"
+            onexception: "SKIP"  
+
+        - connector:  
+            type: "Regex"        
                     
         - run:
-            caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "            
+            caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "
             command:  "javac {$JAVA}"            
             expected: "" 
             onexception: "SKIP"
@@ -49,29 +58,69 @@ body:
                     expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
         - question:                     
-            description: "Fill the board"
+            description: "Input data"
             content:                            
               - run:
                     caption:  "Checking the input data... "            
-                    command:  "echo 1 5 4 1 3 | java {$JAVA}"            
+                    command:  "echo 1 5 4 1 3 | java {$JAVA}"
+                    timeout:  1000            
                     expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
-
-        - echo: "WARNING: the board internal creation must be checked manually."
-        - echo: ""
-
-        - echo: "WARNING: the board internal filling must be checked manually."
-        - echo: ""
-
-        - echo: "WARNING: the mines internal random positioning must be checked manually."
-        - echo: ""
 
         - question:                     
-            description: "Fill the board"
+            description: "Board internal creation"
+            content:                         
+              - echo: "WARNING: the board internal creation must be confirmed manually."   
+              - run:
+                    caption:  "Checking the internal board creation... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "(\w*\[\]\[\])"     
+                    expected: ">0"                 
+
+        - question:                     
+            description: "Board internal filling"
+            content:              
+              - echo: "WARNING: the board internal filling must be confirmed manually."              
+              - run:
+                    caption:  "Checking the internal board filling... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "(for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}\s*\w*\[\w\]\[\w\]\s*=" 
+                    expected: ">0"              
+
+        - question:                     
+            description: "Mines internal filling"
+            content:                            
+              - echo: "WARNING: the mines internal random positioning must be checked manually."
+              - run:
+                    caption:  "Checking the internal mines filling within the board... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\){\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)"
+                    expected: ">0"              
+
+        - question:                     
+            description: "Return to the menu after filling the board"
             content:                            
               - run:
-                    caption:  "Checking the input data... "            
+                    caption:  "Checking the return to the main menu... "            
                     command:  "echo 1 5 4 1 3 | java {$JAVA}"            
-                    expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
+                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+
+        - question:                     
+            description: "Displaying board's empty cells"
+            content:                            
+              - run:
+                    caption:  "Checking the empty cells disply... "            
+                    command:  "echo 1 5 4 1 2 3 | java {$JAVA}"            
+                    expected: "%[ ]%" 
+
+              - run:
+                    caption:  "Checking the displayed amount of columns... "   
+                    connector: "Regex"         
+                    command:  "Count"            
+                    arguments: --content {$RESULT} --regex "(\[(?:\s|O)\]\s*){1}$"
+                    expected: "4" 
 
 
        
