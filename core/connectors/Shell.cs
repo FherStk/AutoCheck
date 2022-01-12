@@ -163,9 +163,9 @@ namespace AutoCheck.Core.Connectors{
         /// Runs a shell command.
         /// </summary>
         /// <param name="command">The command to run.</param>
-        /// <param name="timeout">Timeout in milliseconds.</param>
+        /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, int timeout=1000){    
+        public (int code, string response) RunCommand(string command, int timeout=0){    
             return RunCommand(command, "", timeout);
         }
 
@@ -174,9 +174,9 @@ namespace AutoCheck.Core.Connectors{
         /// </summary>
         /// <param name="command">The command to run.</param>
         /// <param name="path">The path where the command must run.</param>
-        /// <param name="timeout">Timeout in milliseconds.</param>
+        /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path, int timeout=1000){    
+        public (int code, string response) RunCommand(string command, string path, int timeout=0){    
             //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
             using (var tokenSource = new CancellationTokenSource()){
                 var cancelToken = tokenSource.Token;
@@ -196,7 +196,9 @@ namespace AutoCheck.Core.Connectors{
                     }
                 }, cancelToken);
                 
-                task.Wait(timeout);
+                if(timeout == 0) task.Wait();
+                else task.Wait(timeout);
+
                 if(task.Status == TaskStatus.Running){
                     //timeout 
                     tokenSource.Cancel();    

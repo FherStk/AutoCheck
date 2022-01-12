@@ -1377,7 +1377,7 @@ namespace AutoCheck.Core{
         }  
 
         private void ParseRun(YamlNode node, string current="run", string parent="body", string[] children = null, string[] mandatory = null){
-            children ??= new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store"};
+            children ??= new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store", "timeout"};
             mandatory ??= new string[]{"command"};
 
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
@@ -1387,10 +1387,11 @@ namespace AutoCheck.Core{
             ValidateChildren(run, current, children, mandatory);                                                     
                        
             //Data is loaded outside the try statement to rise exception on YAML errors
-            var name = ParseChild(run, "connector", "LOCALSHELL");     
+            var name = ParseChild(run, "connector", "SHELL");     
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
+            var timeout = ParseChild(run, "timeout", 0);
             var store = ParseChild(run, "store", string.Empty);            
             var error = false;            
 
@@ -1403,7 +1404,7 @@ namespace AutoCheck.Core{
             try{                         
                 var connector = GetConnector(name); //Could throw an exception if the connector has not been instantiated correctly
                 var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null); //Could throw an exception if an argument is a connector
-                data = InvokeCommand(connector, command, arguments);             
+                data = InvokeCommand(connector, command, arguments, timeout);
             }
             catch(ArgumentInvalidException){
                 //Exception when trying to run the command (command not executed) with invalid arguments, so YAML script is no correct
@@ -2002,7 +2003,7 @@ namespace AutoCheck.Core{
             throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : $"method called '{method}'")} for the Connector '{type.Name}' that matches with the given set of arguments.");
         }
                
-        private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments = null){
+        private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments, int timeout){
             //Loading command data                        
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
             
@@ -2020,6 +2021,7 @@ namespace AutoCheck.Core{
                 shellExecuted = connector.GetType().Equals(typeof(Connectors.Shell)) || connector.GetType().IsSubclassOf(typeof(Connectors.Shell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
+                    if(!arguments.ContainsKey("timeout")) arguments.Add("timeout", timeout);
                     arguments.Add("command", command);
                     command = "RunCommand";
                 }
@@ -2048,8 +2050,9 @@ namespace AutoCheck.Core{
                 var original = match.Value;
                 if(original.TrimStart('{').Contains('{')) original = original.Substring(original.LastIndexOf('{'));
 
-                var replace = original.TrimStart('{').TrimEnd('}');                 
-                if(replace.StartsWith("#") || replace.StartsWith("$")){                        
+                var replace = original.TrimStart('{').TrimEnd('}');       
+                if(!replace.StartsWith("#") && !replace.StartsWith("$")) replace = original;
+                else{   
                     //Check if the regex is valid and/or also the referred var exists.
                     var regex = string.Empty;
                     if(replace.StartsWith("#")){
