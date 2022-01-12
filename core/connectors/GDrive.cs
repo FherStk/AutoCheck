@@ -514,7 +514,7 @@ namespace AutoCheck.Core.Connectors{
             if(!File.Exists(localFile)) throw new ArgumentInvalidException($"Unable to find the file '{localFile}'");
 
             var content = File.ReadAllText(localFile);
-            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){
+            foreach(Match match in System.Text.RegularExpressions.Regex.Matches(content, _LINK_REGEX)){
                 var uri = new Uri(match.Value);
                 
                 try{
@@ -633,7 +633,7 @@ namespace AutoCheck.Core.Connectors{
             var files = new List<string>();
             var content = File.ReadAllText(localFile);
                         
-            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){                
+            foreach(Match match in System.Text.RegularExpressions.Regex.Matches(content, _LINK_REGEX)){                
                 files.Add(Download(new Uri(match.Value), savePath));                                                                
             }           
 
