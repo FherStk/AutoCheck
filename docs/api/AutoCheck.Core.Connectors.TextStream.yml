@@ -1,28 +1,32 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Connectors.Regex
-  commentId: T:AutoCheck.Core.Connectors.Regex
-  id: Regex
+- uid: AutoCheck.Core.Connectors.TextStream
+  commentId: T:AutoCheck.Core.Connectors.TextStream
+  id: TextStream
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Regex.#ctor
-  - AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
-  - AutoCheck.Core.Connectors.Regex.Dispose
-  - AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
+  - AutoCheck.Core.Connectors.TextStream.#ctor
+  - AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
+  - AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  - AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  - AutoCheck.Core.Connectors.TextStream.Dispose
+  - AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  - AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
+  - AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
   langs:
   - csharp
   - vb
-  name: Regex
-  nameWithType: Regex
-  fullName: AutoCheck.Core.Connectors.Regex
+  name: TextStream
+  nameWithType: TextStream
+  fullName: AutoCheck.Core.Connectors.TextStream
   type: Class
   source:
     remote:
-      path: core/connectors/Regex.cs
+      path: core/connectors/TextStream.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Regex
-    path: ../core/connectors/Regex.cs
+    id: TextStream
+    path: ../core/connectors/TextStream.cs
     startLine: 29
   assemblies:
   - AutoCheck.Core
@@ -30,9 +34,9 @@ items:
   summary: "\nAllows data manipulation using regular expressions\n"
   example: []
   syntax:
-    content: 'public class Regex : Base'
+    content: 'public class TextStream : Base'
     content.vb: >-
-      Public Class Regex
+      Public Class TextStream
           Inherits Base
   inheritance:
   - System.Object
@@ -40,31 +44,31 @@ items:
   inheritedMembers:
   - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   extensionMethods:
-  - AutoCheck.Core.Connectors.Regex.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.Connectors.TextStream.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Connectors.Regex.#ctor
-  commentId: M:AutoCheck.Core.Connectors.Regex.#ctor
+- uid: AutoCheck.Core.Connectors.TextStream.#ctor
+  commentId: M:AutoCheck.Core.Connectors.TextStream.#ctor
   id: '#ctor'
-  parent: AutoCheck.Core.Connectors.Regex
+  parent: AutoCheck.Core.Connectors.TextStream
   langs:
   - csharp
   - vb
-  name: Regex()
-  nameWithType: Regex.Regex()
-  fullName: AutoCheck.Core.Connectors.Regex.Regex()
+  name: TextStream()
+  nameWithType: TextStream.TextStream()
+  fullName: AutoCheck.Core.Connectors.TextStream.TextStream()
   type: Constructor
   source:
     remote:
-      path: core/connectors/Regex.cs
+      path: core/connectors/TextStream.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/connectors/Regex.cs
+    path: ../core/connectors/TextStream.cs
     startLine: 34
   assemblies:
   - AutoCheck.Core
@@ -72,31 +76,31 @@ items:
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Regex()
+    content: public TextStream()
     content.vb: Public Sub New
-  overload: AutoCheck.Core.Connectors.Regex.#ctor*
+  overload: AutoCheck.Core.Connectors.TextStream.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Regex.Dispose
-  commentId: M:AutoCheck.Core.Connectors.Regex.Dispose
+- uid: AutoCheck.Core.Connectors.TextStream.Dispose
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Dispose
   id: Dispose
-  parent: AutoCheck.Core.Connectors.Regex
+  parent: AutoCheck.Core.Connectors.TextStream
   langs:
   - csharp
   - vb
   name: Dispose()
-  nameWithType: Regex.Dispose()
-  fullName: AutoCheck.Core.Connectors.Regex.Dispose()
+  nameWithType: TextStream.Dispose()
+  fullName: AutoCheck.Core.Connectors.TextStream.Dispose()
   type: Method
   source:
     remote:
-      path: core/connectors/Regex.cs
+      path: core/connectors/TextStream.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../core/connectors/Regex.cs
+    path: ../core/connectors/TextStream.cs
     startLine: 40
   assemblies:
   - AutoCheck.Core
@@ -107,31 +111,31 @@ items:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connectors.Base.Dispose
-  overload: AutoCheck.Core.Connectors.Regex.Dispose*
+  overload: AutoCheck.Core.Connectors.TextStream.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
   id: Find(System.String,System.String)
-  parent: AutoCheck.Core.Connectors.Regex
+  parent: AutoCheck.Core.Connectors.TextStream
   langs:
   - csharp
   - vb
   name: Find(String, String)
-  nameWithType: Regex.Find(String, String)
-  fullName: AutoCheck.Core.Connectors.Regex.Find(System.String, System.String)
+  nameWithType: TextStream.Find(String, String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Find(System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/Regex.cs
+      path: core/connectors/TextStream.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
-    path: ../core/connectors/Regex.cs
+    path: ../core/connectors/TextStream.cs
     startLine: 49
   assemblies:
   - AutoCheck.Core
@@ -151,30 +155,72 @@ items:
       type: System.String[]
       description: A set of matches.
     content.vb: Public Function Find(content As String, regex As String) As String()
-  overload: AutoCheck.Core.Connectors.Regex.Find*
+  overload: AutoCheck.Core.Connectors.TextStream.Find*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
+  id: Substring(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.TextStream
+  langs:
+  - csharp
+  - vb
+  name: Substring(String, String)
+  nameWithType: TextStream.Substring(String, String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Substring(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/TextStream.cs
+      branch: v2.14.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Substring
+    path: ../core/connectors/TextStream.cs
+    startLine: 64
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nGets the substring found within the given text using a regular expression (first match)\n"
+  example: []
+  syntax:
+    content: public string Substring(string content, string regex)
+    parameters:
+    - id: content
+      type: System.String
+      description: The content where the regex will be applied to.
+    - id: regex
+      type: System.String
+      description: The regular expression which will be used to search the content.
+    return:
+      type: System.String
+      description: A set of matches.
+    content.vb: Public Function Substring(content As String, regex As String) As String
+  overload: AutoCheck.Core.Connectors.TextStream.Substring*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
   id: Count(System.String,System.String)
-  parent: AutoCheck.Core.Connectors.Regex
+  parent: AutoCheck.Core.Connectors.TextStream
   langs:
   - csharp
   - vb
   name: Count(String, String)
-  nameWithType: Regex.Count(String, String)
-  fullName: AutoCheck.Core.Connectors.Regex.Count(System.String, System.String)
+  nameWithType: TextStream.Count(String, String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Count(System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/Regex.cs
+      path: core/connectors/TextStream.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../core/connectors/Regex.cs
-    startLine: 64
+    path: ../core/connectors/TextStream.cs
+    startLine: 75
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -193,7 +239,124 @@ items:
       type: System.Int32
       description: The number of matches.
     content.vb: Public Function Count(content As String, regex As String) As Integer
-  overload: AutoCheck.Core.Connectors.Regex.Count*
+  overload: AutoCheck.Core.Connectors.TextStream.Count*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  id: DirectoryPath(System.String)
+  parent: AutoCheck.Core.Connectors.TextStream
+  langs:
+  - csharp
+  - vb
+  name: DirectoryPath(String)
+  nameWithType: TextStream.DirectoryPath(String)
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/TextStream.cs
+      branch: v2.14.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DirectoryPath
+    path: ../core/connectors/TextStream.cs
+    startLine: 84
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the directory path (removes the file name)\n"
+  example: []
+  syntax:
+    content: public string DirectoryPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: A path to a file
+    return:
+      type: System.String
+      description: A path to a directory
+    content.vb: Public Function DirectoryPath(path As String) As String
+  overload: AutoCheck.Core.Connectors.TextStream.DirectoryPath*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  id: DirectoryName(System.String)
+  parent: AutoCheck.Core.Connectors.TextStream
+  langs:
+  - csharp
+  - vb
+  name: DirectoryName(String)
+  nameWithType: TextStream.DirectoryName(String)
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/TextStream.cs
+      branch: v2.14.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DirectoryName
+    path: ../core/connectors/TextStream.cs
+    startLine: 94
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the directory name (removes the path and also the filename)\n"
+  example: []
+  syntax:
+    content: public string DirectoryName(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: A path to a file or folder.
+    return:
+      type: System.String
+      description: A directory name.
+    content.vb: Public Function DirectoryName(path As String) As String
+  overload: AutoCheck.Core.Connectors.TextStream.DirectoryName*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  id: FileName(System.String)
+  parent: AutoCheck.Core.Connectors.TextStream
+  langs:
+  - csharp
+  - vb
+  name: FileName(String)
+  nameWithType: TextStream.FileName(String)
+  fullName: AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/TextStream.cs
+      branch: v2.14.1
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FileName
+    path: ../core/connectors/TextStream.cs
+    startLine: 104
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReturns the file name (removes the path)\n"
+  example: []
+  syntax:
+    content: public string FileName(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: A path to a file.
+    return:
+      type: System.String
+      description: A file name.
+    content.vb: Public Function FileName(path As String) As String
+  overload: AutoCheck.Core.Connectors.TextStream.FileName*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -374,21 +537,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Regex.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.Connectors.TextStream.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<Regex>()
-  nameWithType: ObjectExtensions.DeepClone<Regex>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Regex>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of Regex)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Regex)()
-  name.vb: DeepClone(Of Regex)()
+  name: DeepClone<TextStream>()
+  nameWithType: ObjectExtensions.DeepClone<TextStream>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.TextStream>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of TextStream)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.TextStream)()
+  name.vb: DeepClone(Of TextStream)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<Regex>
-    nameWithType: ObjectExtensions.DeepClone<Regex>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Regex>
+    name: DeepClone<TextStream>
+    nameWithType: ObjectExtensions.DeepClone<TextStream>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.TextStream>
   - name: (
     nameWithType: (
     fullName: (
@@ -397,9 +560,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of Regex)
-    nameWithType: ObjectExtensions.DeepClone(Of Regex)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Regex)
+    name: DeepClone(Of TextStream)
+    nameWithType: ObjectExtensions.DeepClone(Of TextStream)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.TextStream)
   - name: (
     nameWithType: (
     fullName: (
@@ -447,11 +610,11 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.Connectors.Regex.#ctor*
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.#ctor
-  name: Regex
-  nameWithType: Regex.Regex
-  fullName: AutoCheck.Core.Connectors.Regex.Regex
+- uid: AutoCheck.Core.Connectors.TextStream.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.#ctor
+  name: TextStream
+  nameWithType: TextStream.TextStream
+  fullName: AutoCheck.Core.Connectors.TextStream.TextStream
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
@@ -480,16 +643,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Regex.Dispose*
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Dispose
+- uid: AutoCheck.Core.Connectors.TextStream.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Dispose
   name: Dispose
-  nameWithType: Regex.Dispose
-  fullName: AutoCheck.Core.Connectors.Regex.Dispose
-- uid: AutoCheck.Core.Connectors.Regex.Find*
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Find
+  nameWithType: TextStream.Dispose
+  fullName: AutoCheck.Core.Connectors.TextStream.Dispose
+- uid: AutoCheck.Core.Connectors.TextStream.Find*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Find
   name: Find
-  nameWithType: Regex.Find
-  fullName: AutoCheck.Core.Connectors.Regex.Find
+  nameWithType: TextStream.Find
+  fullName: AutoCheck.Core.Connectors.TextStream.Find
 - uid: System.String
   isExternal: true
   name: String
@@ -521,13 +684,33 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Core.Connectors.Regex.Count*
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Count
+- uid: AutoCheck.Core.Connectors.TextStream.Substring*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Substring
+  name: Substring
+  nameWithType: TextStream.Substring
+  fullName: AutoCheck.Core.Connectors.TextStream.Substring
+- uid: AutoCheck.Core.Connectors.TextStream.Count*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Count
   name: Count
-  nameWithType: Regex.Count
-  fullName: AutoCheck.Core.Connectors.Regex.Count
+  nameWithType: TextStream.Count
+  fullName: AutoCheck.Core.Connectors.TextStream.Count
 - uid: System.Int32
   isExternal: true
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryPath*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.DirectoryPath
+  name: DirectoryPath
+  nameWithType: TextStream.DirectoryPath
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryPath
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryName*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.DirectoryName
+  name: DirectoryName
+  nameWithType: TextStream.DirectoryName
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryName
+- uid: AutoCheck.Core.Connectors.TextStream.FileName*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.FileName
+  name: FileName
+  nameWithType: TextStream.FileName
+  fullName: AutoCheck.Core.Connectors.TextStream.FileName

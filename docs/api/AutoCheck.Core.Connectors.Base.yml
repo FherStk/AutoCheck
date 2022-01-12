@@ -42,8 +42,8 @@ items:
   - AutoCheck.Core.Connectors.Math
   - AutoCheck.Core.Connectors.PlainText
   - AutoCheck.Core.Connectors.Postgres
-  - AutoCheck.Core.Connectors.Regex
   - AutoCheck.Core.Connectors.Shell
+  - AutoCheck.Core.Connectors.TextStream
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Zip
   extensionMethods:

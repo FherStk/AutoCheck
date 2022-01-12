@@ -49,12 +49,12 @@
     name: PlainText.PlainTextDocument
   - uid: AutoCheck.Core.Connectors.Postgres
     name: Postgres
-  - uid: AutoCheck.Core.Connectors.Regex
-    name: Regex
   - uid: AutoCheck.Core.Connectors.Rss
     name: Rss
   - uid: AutoCheck.Core.Connectors.Shell
     name: Shell
+  - uid: AutoCheck.Core.Connectors.TextStream
+    name: TextStream
   - uid: AutoCheck.Core.Connectors.Xml
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType

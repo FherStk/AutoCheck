@@ -250,7 +250,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
       expected: &quot;TEST_FOLDER&quot;
 
   - run:
-      command: &quot;echo {$FOLDER_REGEX}&quot;
+      command: &quot;echo {$FOLDER_NAME}&quot;
       expected: &quot;FOLDER&quot;
 </code></pre>
 <h2 id="script-nodes-definition">Script nodes definition</h2>
@@ -307,7 +307,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#vars">vars</a></td>
 <td>mapping</td>
 <td>no</td>
-<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
+<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>.</td>
 <td></td>
 </tr>
 <tr>
@@ -363,7 +363,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tbody>
 </table>
 <h3 id="vars"> vars</h3>
-<p>Custom global vars can be defined wihtin <code>vars</code> node and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</p>
+<p>Custom global vars can be defined wihtin <code>vars</code> node and refered later as <code>$VARNAME</code>.</p>
 <h4 id="predefined-vars">Predefined vars:</h4>
 <h5 id="application-data">Application data:</h5>
 <table>
@@ -605,16 +605,6 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
     var3: !!bool False
     var4: !!int 1986    
 </code></pre>
-<h4 id="regular-expressions-over-vars-example">Regular expressions over vars example:</h4>
-<p>Regular expressions (regex) can be used to extract text (produces a substring) from an original var, just add the regex expression before calling the var surrounding it between a hashtag <code>#</code> and a dollar <code>$</code> like in the following examples:</p>
-<pre><code>vars:    
-    var1: &quot;VALUE1&quot;
-    var2: &quot;PRE_POST&quot;
-    var3: &quot;This is the result of applying a regular expression to var1: {#regex$VAR1}&quot;
-    var4: &quot;This will display the word after the last underscore: {#(?&lt;=_)(.*)$VAR2}&quot;
-    var5: &quot;This will display the filename for a given path: {#([^\\\\]*)$$CURRENT_FOLDER_PATH}&quot; #two $$ symbols are needed for this example
-    var5: &quot;This will display the student name for a downloaded assignment Moodle path: {#^[^_]+(?=_)$MOODLE_FOLDER_PATH}&quot;
-</code></pre>
 <h4 id="scopes">Scopes:</h4>
 <p>Because <code>vars</code> can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:</p>
 <pre><code>vars:
@@ -784,7 +774,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>expected</td>
 <td>text</td>
 <td>no</td>
-<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression (produces a substring): <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER_NAME}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
+<td>Expected value from the run command, which can be: <ul><li>Variables (exact match)</li><li>Typed data (exact match): <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>SQL-like opperators over previous data: <ul><li><code>&gt;=75.1</code></li><li><code>starts_with%</code></li><li><code>%substring%</code></li><li><code>%ends_with</code></li><li><code>LIKE %{$CURRENT_FOLDER_NAME}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1248,7 +1238,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>file</td>
 <td>text</td>
 <td>no</td>
-<td>Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. The first file found using the search pattern will be loaded into the copy detector engine.</td>
+<td>Search patthern used to find files for extraction, OS file naming convetions allowed. The first file found using the search pattern will be loaded into the copy detector engine.</td>
 <td><code>&quot;*&quot;</code></td>
 </tr>
 <tr>
@@ -1298,7 +1288,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#vars">vars</a></td>
 <td>mapping</td>
 <td>no</td>
-<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
+<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>.</td>
 <td></td>
 </tr>
 </tbody>
@@ -1369,7 +1359,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#vars">vars</a></td>
 <td>mapping</td>
 <td>no</td>
-<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>, allowing regex and string formatters.</td>
+<td>Custom global vars can be defined here and refered later as <code>$VARNAME</code>.</td>
 <td></td>
 </tr>
 </tbody>

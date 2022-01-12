@@ -2873,64 +2873,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Postgres.User
   nameWithType: Postgres.User
-- uid: AutoCheck.Core.Connectors.Regex
-  name: Regex
-  href: api/AutoCheck.Core.Connectors.Regex.html
-  commentId: T:AutoCheck.Core.Connectors.Regex
-  fullName: AutoCheck.Core.Connectors.Regex
-  nameWithType: Regex
-- uid: AutoCheck.Core.Connectors.Regex.#ctor
-  name: Regex()
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex__ctor
-  commentId: M:AutoCheck.Core.Connectors.Regex.#ctor
-  fullName: AutoCheck.Core.Connectors.Regex.Regex()
-  nameWithType: Regex.Regex()
-- uid: AutoCheck.Core.Connectors.Regex.#ctor*
-  name: Regex
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex__ctor_
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Regex.Regex
-  nameWithType: Regex.Regex
-- uid: AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
-  name: Count(String, String)
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Count_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.Regex.Count(System.String, System.String)
-  nameWithType: Regex.Count(String, String)
-- uid: AutoCheck.Core.Connectors.Regex.Count*
-  name: Count
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Count_
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Count
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Regex.Count
-  nameWithType: Regex.Count
-- uid: AutoCheck.Core.Connectors.Regex.Dispose
-  name: Dispose()
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Dispose
-  commentId: M:AutoCheck.Core.Connectors.Regex.Dispose
-  fullName: AutoCheck.Core.Connectors.Regex.Dispose()
-  nameWithType: Regex.Dispose()
-- uid: AutoCheck.Core.Connectors.Regex.Dispose*
-  name: Dispose
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Dispose_
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Dispose
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Regex.Dispose
-  nameWithType: Regex.Dispose
-- uid: AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
-  name: Find(String, String)
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Find_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.Regex.Find(System.String, System.String)
-  nameWithType: Regex.Find(String, String)
-- uid: AutoCheck.Core.Connectors.Regex.Find*
-  name: Find
-  href: api/AutoCheck.Core.Connectors.Regex.html#AutoCheck_Core_Connectors_Regex_Find_
-  commentId: Overload:AutoCheck.Core.Connectors.Regex.Find
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Regex.Find
-  nameWithType: Regex.Find
 - uid: AutoCheck.Core.Connectors.RemoteShell
   name: RemoteShell
   href: api/AutoCheck.Connectors.RemoteShell.html
@@ -3515,6 +3457,116 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.Username
   nameWithType: Shell.Username
+- uid: AutoCheck.Core.Connectors.TextStream
+  name: TextStream
+  href: api/AutoCheck.Core.Connectors.TextStream.html
+  commentId: T:AutoCheck.Core.Connectors.TextStream
+  fullName: AutoCheck.Core.Connectors.TextStream
+  nameWithType: TextStream
+- uid: AutoCheck.Core.Connectors.TextStream.#ctor
+  name: TextStream()
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream__ctor
+  commentId: M:AutoCheck.Core.Connectors.TextStream.#ctor
+  fullName: AutoCheck.Core.Connectors.TextStream.TextStream()
+  nameWithType: TextStream.TextStream()
+- uid: AutoCheck.Core.Connectors.TextStream.#ctor*
+  name: TextStream
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.TextStream
+  nameWithType: TextStream.TextStream
+- uid: AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
+  name: Count(String, String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Count_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Count(System.String, System.String)
+  nameWithType: TextStream.Count(String, String)
+- uid: AutoCheck.Core.Connectors.TextStream.Count*
+  name: Count
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Count_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Count
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.Count
+  nameWithType: TextStream.Count
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  name: DirectoryName(String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_DirectoryName_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryName(System.String)
+  nameWithType: TextStream.DirectoryName(String)
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryName*
+  name: DirectoryName
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_DirectoryName_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.DirectoryName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryName
+  nameWithType: TextStream.DirectoryName
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  name: DirectoryPath(String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_DirectoryPath_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryPath(System.String)
+  nameWithType: TextStream.DirectoryPath(String)
+- uid: AutoCheck.Core.Connectors.TextStream.DirectoryPath*
+  name: DirectoryPath
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_DirectoryPath_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.DirectoryPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.DirectoryPath
+  nameWithType: TextStream.DirectoryPath
+- uid: AutoCheck.Core.Connectors.TextStream.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Dispose
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Dispose
+  fullName: AutoCheck.Core.Connectors.TextStream.Dispose()
+  nameWithType: TextStream.Dispose()
+- uid: AutoCheck.Core.Connectors.TextStream.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.Dispose
+  nameWithType: TextStream.Dispose
+- uid: AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  name: FileName(String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_FileName_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.FileName(System.String)
+  nameWithType: TextStream.FileName(String)
+- uid: AutoCheck.Core.Connectors.TextStream.FileName*
+  name: FileName
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_FileName_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.FileName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.FileName
+  nameWithType: TextStream.FileName
+- uid: AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
+  name: Find(String, String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Find_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Find(System.String, System.String)
+  nameWithType: TextStream.Find(String, String)
+- uid: AutoCheck.Core.Connectors.TextStream.Find*
+  name: Find
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Find_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Find
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.Find
+  nameWithType: TextStream.Find
+- uid: AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
+  name: Substring(String, String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Substring_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Substring(System.String, System.String)
+  nameWithType: TextStream.Substring(String, String)
+- uid: AutoCheck.Core.Connectors.TextStream.Substring*
+  name: Substring
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Substring_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Substring
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.Substring
+  nameWithType: TextStream.Substring
 - uid: AutoCheck.Core.Connectors.Xml
   name: Xml
   href: api/AutoCheck.Core.Connectors.Xml.html
