@@ -25,6 +25,8 @@ using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
 {
+    //NOTE: PlainText Connector uses the Regex Connector, so no need to test both.
+
     [Parallelizable(ParallelScope.All)]    
     public class PlainText : Test
     { 
@@ -63,8 +65,6 @@ namespace AutoCheck.Test.Connectors
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.PlainText(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));            
         }
-
-
 
         [Test]
         [TestCase("dtd_no_comments.dtd", "<!--[\\s\\S\n]*?-->", ExpectedResult=0)]
