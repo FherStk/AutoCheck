@@ -606,7 +606,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
     var4: !!int 1986    
 </code></pre>
 <h4 id="regular-expressions-over-vars-example">Regular expressions over vars example:</h4>
-<p>Regular expressions (regex) can be used to extract text from an original var, just add the regex expression before calling the var surrounding it between a hashtag <code>#</code> and a dollar <code>$</code> like in the following examples:</p>
+<p>Regular expressions (regex) can be used to extract text (produces a substring) from an original var, just add the regex expression before calling the var surrounding it between a hashtag <code>#</code> and a dollar <code>$</code> like in the following examples:</p>
 <pre><code>vars:    
     var1: &quot;VALUE1&quot;
     var2: &quot;PRE_POST&quot;
@@ -774,10 +774,17 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td></td>
 </tr>
 <tr>
+<td>timeout</td>
+<td>number</td>
+<td>no</td>
+<td>In milliseconds. The execution will be aborted after this time.</td>
+<td>0 (no timeout)</td>
+</tr>
+<tr>
 <td>expected</td>
 <td>text</td>
 <td>no</td>
-<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression: <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER_NAME}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
+<td>Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li><code>True</code></li><li><code>75.7</code></li><li><code>&quot;Example&quot;</code></li></ul></li><li>Regular expression (produces a substring): <ul><li><code>{#regex$VARNAME}</code></li></ul><li>SQL-like opperators: <ul><li><code>&gt;=75.1</code></li><li><code>%substring%</code></li><li><code>%endwith</code></li><li><code>LIKE %{#regex$CURRENT_FOLDER_NAME}%</code></li></ul></li><li>Arrays opperators: <ul><li><code>LENGTH =x</code></li><li><code>CONTAINS &gt;=x</code></li><li><code>UNORDEREDEQUALS [x,y,z]</code></li><li><code>ORDEREDEQUALS [x,y,z]</code></li></ul></li></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). <strong>Warning: no AND/OR combinations still supported.</strong></td>
 <td></td>
 </tr>
 <tr>

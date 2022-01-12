@@ -49,6 +49,8 @@
     name: PlainText.PlainTextDocument
   - uid: AutoCheck.Core.Connectors.Postgres
     name: Postgres
+  - uid: AutoCheck.Core.Connectors.Regex
+    name: Regex
   - uid: AutoCheck.Core.Connectors.Rss
     name: Rss
   - uid: AutoCheck.Core.Connectors.Shell

@@ -1,41 +1,38 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Connectors.PlainText
-  commentId: T:AutoCheck.Core.Connectors.PlainText
-  id: PlainText
+- uid: AutoCheck.Core.Connectors.Regex
+  commentId: T:AutoCheck.Core.Connectors.Regex
+  id: Regex
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  - AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  - AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
-  - AutoCheck.Core.Connectors.PlainText.Count(System.String)
-  - AutoCheck.Core.Connectors.PlainText.Dispose
-  - AutoCheck.Core.Connectors.PlainText.Find(System.String)
-  - AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  - AutoCheck.Core.Connectors.Regex.#ctor
+  - AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
+  - AutoCheck.Core.Connectors.Regex.Dispose
+  - AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
   langs:
   - csharp
   - vb
-  name: PlainText
-  nameWithType: PlainText
-  fullName: AutoCheck.Core.Connectors.PlainText
+  name: Regex
+  nameWithType: Regex
+  fullName: AutoCheck.Core.Connectors.Regex
   type: Class
   source:
     remote:
-      path: core/connectors/PlainText.cs
+      path: core/connectors/Regex.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
-    id: PlainText
-    path: ../core/connectors/PlainText.cs
-    startLine: 27
+    id: Regex
+    path: ../core/connectors/Regex.cs
+    startLine: 29
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nAllows in/out operations and/or data validations with plaint text files.\n"
+  summary: "\nAllows data manipulation using regular expressions\n"
   example: []
   syntax:
-    content: 'public class PlainText : Base'
+    content: 'public class Regex : Base'
     content.vb: >-
-      Public Class PlainText
+      Public Class Regex
           Inherits Base
   inheritance:
   - System.Object
@@ -43,190 +40,64 @@ items:
   inheritedMembers:
   - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   extensionMethods:
-  - AutoCheck.Core.Connectors.PlainText.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.Connectors.Regex.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Connectors.PlainText.plainTextDoc
-  commentId: P:AutoCheck.Core.Connectors.PlainText.plainTextDoc
-  id: plainTextDoc
-  parent: AutoCheck.Core.Connectors.PlainText
+- uid: AutoCheck.Core.Connectors.Regex.#ctor
+  commentId: M:AutoCheck.Core.Connectors.Regex.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Connectors.Regex
   langs:
   - csharp
   - vb
-  name: plainTextDoc
-  nameWithType: PlainText.plainTextDoc
-  fullName: AutoCheck.Core.Connectors.PlainText.plainTextDoc
-  type: Property
-  source:
-    remote:
-      path: core/connectors/PlainText.cs
-      branch: v2.14.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: plainTextDoc
-    path: ../core/connectors/PlainText.cs
-    startLine: 77
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  summary: "\nThe plain text document content.\n"
-  example: []
-  syntax:
-    content: public PlainText.PlainTextDocument plainTextDoc { get; }
-    parameters: []
-    return:
-      type: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
-      description: ''
-    content.vb: Public ReadOnly Property plainTextDoc As PlainText.PlainTextDocument
-  overload: AutoCheck.Core.Connectors.PlainText.plainTextDoc*
-  modifiers.csharp:
-  - public
-  - get
-  modifiers.vb:
-  - Public
-  - ReadOnly
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(System.String)
-  id: '#ctor(System.String)'
-  parent: AutoCheck.Core.Connectors.PlainText
-  langs:
-  - csharp
-  - vb
-  name: PlainText(String)
-  nameWithType: PlainText.PlainText(String)
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(System.String)
+  name: Regex()
+  nameWithType: Regex.Regex()
+  fullName: AutoCheck.Core.Connectors.Regex.Regex()
   type: Constructor
   source:
     remote:
-      path: core/connectors/PlainText.cs
+      path: core/connectors/Regex.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/connectors/PlainText.cs
-    startLine: 85
+    path: ../core/connectors/Regex.cs
+    startLine: 34
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public PlainText(string filePath)
-    parameters:
-    - id: filePath
-      type: System.String
-      description: The file path.
-    content.vb: Public Sub New(filePath As String)
-  overload: AutoCheck.Core.Connectors.PlainText.#ctor*
+    content: public Regex()
+    content.vb: Public Sub New
+  overload: AutoCheck.Core.Connectors.Regex.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
-  parent: AutoCheck.Core.Connectors.PlainText
-  langs:
-  - csharp
-  - vb
-  name: PlainText(Utils.OS, String, String, String, Int32, String)
-  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, Int32, String)
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
-  type: Constructor
-  source:
-    remote:
-      path: core/connectors/PlainText.cs
-      branch: v2.14.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: .ctor
-    path: ../core/connectors/PlainText.cs
-    startLine: 98
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  syntax:
-    content: public PlainText(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
-    parameters:
-    - id: remoteOS
-      type: AutoCheck.Core.Utils.OS
-    - id: host
-      type: System.String
-    - id: username
-      type: System.String
-    - id: password
-      type: System.String
-    - id: port
-      type: System.Int32
-    - id: filePath
-      type: System.String
-    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
-  overload: AutoCheck.Core.Connectors.PlainText.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
-  parent: AutoCheck.Core.Connectors.PlainText
-  langs:
-  - csharp
-  - vb
-  name: PlainText(Utils.OS, String, String, String, String)
-  nameWithType: PlainText.PlainText(Utils.OS, String, String, String, String)
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
-  type: Constructor
-  source:
-    remote:
-      path: core/connectors/PlainText.cs
-      branch: v2.14.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: .ctor
-    path: ../core/connectors/PlainText.cs
-    startLine: 112
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  syntax:
-    content: public PlainText(Utils.OS remoteOS, string host, string username, string password, string filePath)
-    parameters:
-    - id: remoteOS
-      type: AutoCheck.Core.Utils.OS
-    - id: host
-      type: System.String
-    - id: username
-      type: System.String
-    - id: password
-      type: System.String
-    - id: filePath
-      type: System.String
-    content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
-  overload: AutoCheck.Core.Connectors.PlainText.#ctor*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Connectors.PlainText.Dispose
-  commentId: M:AutoCheck.Core.Connectors.PlainText.Dispose
+- uid: AutoCheck.Core.Connectors.Regex.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Regex.Dispose
   id: Dispose
-  parent: AutoCheck.Core.Connectors.PlainText
+  parent: AutoCheck.Core.Connectors.Regex
   langs:
   - csharp
   - vb
   name: Dispose()
-  nameWithType: PlainText.Dispose()
-  fullName: AutoCheck.Core.Connectors.PlainText.Dispose()
+  nameWithType: Regex.Dispose()
+  fullName: AutoCheck.Core.Connectors.Regex.Dispose()
   type: Method
   source:
     remote:
-      path: core/connectors/PlainText.cs
+      path: core/connectors/Regex.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../core/connectors/PlainText.cs
-    startLine: 125
+    path: ../core/connectors/Regex.cs
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -236,87 +107,93 @@ items:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connectors.Base.Dispose
-  overload: AutoCheck.Core.Connectors.PlainText.Dispose*
+  overload: AutoCheck.Core.Connectors.Regex.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Core.Connectors.PlainText.Find(System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.Find(System.String)
-  id: Find(System.String)
-  parent: AutoCheck.Core.Connectors.PlainText
+- uid: AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Regex.Find(System.String,System.String)
+  id: Find(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Regex
   langs:
   - csharp
   - vb
-  name: Find(String)
-  nameWithType: PlainText.Find(String)
-  fullName: AutoCheck.Core.Connectors.PlainText.Find(System.String)
+  name: Find(String, String)
+  nameWithType: Regex.Find(String, String)
+  fullName: AutoCheck.Core.Connectors.Regex.Find(System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/PlainText.cs
+      path: core/connectors/Regex.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
-    path: ../core/connectors/PlainText.cs
-    startLine: 133
+    path: ../core/connectors/Regex.cs
+    startLine: 49
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nGets the matches found within the document content using a regular expression.\n"
+  summary: "\nGets the matches found within the given text using a regular expression.\n"
   example: []
   syntax:
-    content: public string[] Find(string regex)
+    content: public string[] Find(string content, string regex)
     parameters:
+    - id: content
+      type: System.String
+      description: The content where the regex will be applied to.
     - id: regex
       type: System.String
       description: The regular expression which will be used to search the content.
     return:
       type: System.String[]
       description: A set of matches.
-    content.vb: Public Function Find(regex As String) As String()
-  overload: AutoCheck.Core.Connectors.PlainText.Find*
+    content.vb: Public Function Find(content As String, regex As String) As String()
+  overload: AutoCheck.Core.Connectors.Regex.Find*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.PlainText.Count(System.String)
-  commentId: M:AutoCheck.Core.Connectors.PlainText.Count(System.String)
-  id: Count(System.String)
-  parent: AutoCheck.Core.Connectors.PlainText
+- uid: AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Regex.Count(System.String,System.String)
+  id: Count(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.Regex
   langs:
   - csharp
   - vb
-  name: Count(String)
-  nameWithType: PlainText.Count(String)
-  fullName: AutoCheck.Core.Connectors.PlainText.Count(System.String)
+  name: Count(String, String)
+  nameWithType: Regex.Count(String, String)
+  fullName: AutoCheck.Core.Connectors.Regex.Count(System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/PlainText.cs
+      path: core/connectors/Regex.cs
       branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
-    path: ../core/connectors/PlainText.cs
-    startLine: 143
+    path: ../core/connectors/Regex.cs
+    startLine: 64
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nGets how many matches can be found within the document content using a regular expression.\n"
+  summary: "\nGets how many matches can be found within the given text using a regular expression.\n"
   example: []
   syntax:
-    content: public int Count(string regex)
+    content: public int Count(string content, string regex)
     parameters:
+    - id: content
+      type: System.String
+      description: The content where the regex will be applied to.
     - id: regex
       type: System.String
       description: The regular expression which will be used to search the content.
     return:
       type: System.Int32
       description: The number of matches.
-    content.vb: Public Function Count(regex As String) As Integer
-  overload: AutoCheck.Core.Connectors.PlainText.Count*
+    content.vb: Public Function Count(content As String, regex As String) As Integer
+  overload: AutoCheck.Core.Connectors.Regex.Count*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -497,21 +374,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.PlainText.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.Connectors.Regex.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<PlainText>()
-  nameWithType: ObjectExtensions.DeepClone<PlainText>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.PlainText>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of PlainText)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.PlainText)()
-  name.vb: DeepClone(Of PlainText)()
+  name: DeepClone<Regex>()
+  nameWithType: ObjectExtensions.DeepClone<Regex>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Regex>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Regex)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Regex)()
+  name.vb: DeepClone(Of Regex)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<PlainText>
-    nameWithType: ObjectExtensions.DeepClone<PlainText>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.PlainText>
+    name: DeepClone<Regex>
+    nameWithType: ObjectExtensions.DeepClone<Regex>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Regex>
   - name: (
     nameWithType: (
     fullName: (
@@ -520,9 +397,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of PlainText)
-    nameWithType: ObjectExtensions.DeepClone(Of PlainText)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.PlainText)
+    name: DeepClone(Of Regex)
+    nameWithType: ObjectExtensions.DeepClone(Of Regex)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Regex)
   - name: (
     nameWithType: (
     fullName: (
@@ -570,43 +447,11 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.Connectors.PlainText.plainTextDoc*
-  commentId: Overload:AutoCheck.Core.Connectors.PlainText.plainTextDoc
-  name: plainTextDoc
-  nameWithType: PlainText.plainTextDoc
-  fullName: AutoCheck.Core.Connectors.PlainText.plainTextDoc
-- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
-  commentId: T:AutoCheck.Core.Connectors.PlainText.PlainTextDocument
-  parent: AutoCheck.Core.Connectors
-  name: PlainText.PlainTextDocument
-  nameWithType: PlainText.PlainTextDocument
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
-- uid: AutoCheck.Core.Connectors.PlainText.#ctor*
-  commentId: Overload:AutoCheck.Core.Connectors.PlainText.#ctor
-  name: PlainText
-  nameWithType: PlainText.PlainText
-  fullName: AutoCheck.Core.Connectors.PlainText.PlainText
-- uid: System.String
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
-- uid: AutoCheck.Core.Utils.OS
-  commentId: T:AutoCheck.Core.Utils.OS
-  parent: AutoCheck.Core
-  name: Utils.OS
-  nameWithType: Utils.OS
-  fullName: AutoCheck.Core.Utils.OS
-- uid: System.Int32
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: AutoCheck.Core
-  commentId: N:AutoCheck.Core
-  name: AutoCheck.Core
-  nameWithType: AutoCheck.Core
-  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Connectors.Regex.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Regex.#ctor
+  name: Regex
+  nameWithType: Regex.Regex
+  fullName: AutoCheck.Core.Connectors.Regex.Regex
 - uid: AutoCheck.Core.Connectors.Base.Dispose
   commentId: M:AutoCheck.Core.Connectors.Base.Dispose
   parent: AutoCheck.Core.Connectors.Base
@@ -635,16 +480,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.PlainText.Dispose*
-  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Dispose
+- uid: AutoCheck.Core.Connectors.Regex.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Regex.Dispose
   name: Dispose
-  nameWithType: PlainText.Dispose
-  fullName: AutoCheck.Core.Connectors.PlainText.Dispose
-- uid: AutoCheck.Core.Connectors.PlainText.Find*
-  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Find
+  nameWithType: Regex.Dispose
+  fullName: AutoCheck.Core.Connectors.Regex.Dispose
+- uid: AutoCheck.Core.Connectors.Regex.Find*
+  commentId: Overload:AutoCheck.Core.Connectors.Regex.Find
   name: Find
-  nameWithType: PlainText.Find
-  fullName: AutoCheck.Core.Connectors.PlainText.Find
+  nameWithType: Regex.Find
+  fullName: AutoCheck.Core.Connectors.Regex.Find
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: System.String[]
   isExternal: true
   name: String[]
@@ -671,8 +521,13 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: AutoCheck.Core.Connectors.PlainText.Count*
-  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Count
+- uid: AutoCheck.Core.Connectors.Regex.Count*
+  commentId: Overload:AutoCheck.Core.Connectors.Regex.Count
   name: Count
-  nameWithType: PlainText.Count
-  fullName: AutoCheck.Core.Connectors.PlainText.Count
+  nameWithType: Regex.Count
+  fullName: AutoCheck.Core.Connectors.Regex.Count
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

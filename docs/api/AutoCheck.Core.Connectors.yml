@@ -17,6 +17,7 @@ items:
   - AutoCheck.Core.Connectors.PlainText
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument
   - AutoCheck.Core.Connectors.Postgres
+  - AutoCheck.Core.Connectors.Regex
   - AutoCheck.Core.Connectors.Rss
   - AutoCheck.Core.Connectors.Shell
   - AutoCheck.Core.Connectors.Xml
@@ -103,6 +104,11 @@ references:
   name: Postgres
   nameWithType: Postgres
   fullName: AutoCheck.Core.Connectors.Postgres
+- uid: AutoCheck.Core.Connectors.Regex
+  commentId: T:AutoCheck.Core.Connectors.Regex
+  name: Regex
+  nameWithType: Regex
+  fullName: AutoCheck.Core.Connectors.Regex
 - uid: AutoCheck.Core.Connectors.Rss
   commentId: T:AutoCheck.Core.Connectors.Rss
   parent: AutoCheck.Core.Connectors

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Base
     path: ../core/connectors/Base.cs
@@ -42,6 +42,7 @@ items:
   - AutoCheck.Core.Connectors.Math
   - AutoCheck.Core.Connectors.PlainText
   - AutoCheck.Core.Connectors.Postgres
+  - AutoCheck.Core.Connectors.Regex
   - AutoCheck.Core.Connectors.Shell
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Zip
@@ -69,7 +70,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Base.cs
@@ -103,7 +104,7 @@ items:
   source:
     remote:
       path: core/connectors/Base.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ProcessRemoteFile
     path: ../core/connectors/Base.cs
