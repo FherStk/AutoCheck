@@ -21,7 +21,7 @@ inherits: "some_template.yaml"
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
-        - path: "some_folder"
+        - path: "some_folder"    
 
     - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
@@ -35,8 +35,17 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "FILENAME"
+            
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             arguments: 

@@ -17,42 +17,60 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 vars:     
-  student_name: "Fer"
-  student_var: "{$STUDENT_NAME}"
-  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
+    student_name: "Fer"
+    student_var: "{$STUDENT_NAME}"
+    student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
 
-  test_folder: "TEST_FOLDER"
-  folder_regex: "{#(?<=_)(.*)$TEST_FOLDER}" 
-  current_regex: "{$STUDENT_NAME} {#(?<=_)(.*)$TEST_FOLDER} {$folder_regex}"
+    test_folder: "TEST_FOLDER"    
+    moodle_folder: "STUDENT NAME SURNAME_MOODLE_DATA"
 
-  moodle_folder: "STUDENT NAME SURNAME_MOODLE_DATA"
-  moodle_regex: "{#^[^_]+(?=_)$MOODLE_FOLDER}" 
+body:
+    - connector:  
+        type: "TextStream"
 
-body:     
-  - run:
-      command: "echo {$STUDENT_NAME}"
-      expected: "Fer"
+    - run:
+        connector: "TextStream"
+        command: "Substring"
+        arguments: 
+            content: "{$TEST_FOLDER}"
+            regex: "(?<=_)(.*)"
+        store: "folder_regex"  
 
-  - run:
-      command: "echo {$STUDENT_VAR}"
-      expected: "Fer"
+    - run:
+        connector: "TextStream"
+        command: "Substring"
+        arguments: 
+            content: "{$MOODLE_FOLDER}"
+            regex: "^[^_]+(?=_)"
+        store: "moodle_regex"    
 
-  - run:
-      command: "echo {$STUDENT_REPLACE}"
-      expected: "This is a test with value: Fer_Fer!"
+    - vars:
+        current_regex: "{$STUDENT_NAME} {$FOLDER_REGEX}"
 
-  - run:
-      command: "echo {$TEST_FOLDER}"
-      expected: "TEST_FOLDER"
+    - run:
+        command: "echo {$STUDENT_NAME}"
+        expected: "Fer"
 
-  - run:
-      command: "echo {$FOLDER_REGEX}"
-      expected: "FOLDER"
+    - run:
+        command: "echo {$STUDENT_VAR}"
+        expected: "Fer"
 
-  - run:
-      command: "echo {$CURRENT_REGEX}"
-      expected: "Fer FOLDER FOLDER"
+    - run:
+        command: "echo {$STUDENT_REPLACE}"
+        expected: "This is a test with value: Fer_Fer!"
 
-  - run:
-      command: "echo {$MOODLE_REGEX}"
-      expected: "STUDENT NAME SURNAME"
+    - run:
+        command: "echo {$TEST_FOLDER}"
+        expected: "TEST_FOLDER"
+
+    - run:
+        command: "echo {$FOLDER_REGEX}"
+        expected: "FOLDER"
+
+    - run:
+        command: "echo {$CURRENT_REGEX}"
+        expected: "Fer FOLDER"
+
+    - run:
+        command: "echo {$MOODLE_REGEX}"
+        expected: "STUDENT NAME SURNAME"

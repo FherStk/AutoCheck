@@ -35,8 +35,17 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             onexception: "SUCCESS"
@@ -58,8 +67,14 @@ batch:
               accountFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_account.txt"
               secretFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_secret.json"               
 
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$TXT_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Uploading files from ~{#([^\\\\]*)$$TXT_FILE}... "
+            caption: "   Uploading files from ~{$FILENAME}... "
             connector: "GDrive"
             command: "CopyFromFile"
             arguments: 

@@ -18,9 +18,6 @@
 
 inherits: "real_multi_copy_base.yaml"  
 
-vars:
-    student: "{#^[^_]+(?= )$CURRENT_FOLDER_NAME}"
-
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
     - local:                             
@@ -88,8 +85,17 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             arguments: 

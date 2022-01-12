@@ -35,8 +35,17 @@ batch:
             type: "Postgres"                    
             arguments: "--host {$CURRENT_HOST} --database {$CURRENT_FOLDER_NAME} --username {$REMOTE_USER} --password {$REMOTE_PASSWORD}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$SQL_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Restoring the database using the file ~{#([^\\\\]*)$$SQL_FILE}... "
+            caption: "   Restoring the database using the file ~{$FILENAME}... "
             connector: "Postgres"
             command: "CreateDataBase"
             arguments: "--dumpPath {$SQL_FILE} --replace True"

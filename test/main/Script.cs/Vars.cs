@@ -72,29 +72,11 @@ namespace AutoCheck.Test
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko2.yaml")));           
         }
- 
-        [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_REGEX_NOTAPPLIED()
-        {  
-            Assert.Throws<RegexInvalidException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko3.yaml")));
-        }
-
-        [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_REGEX_NOVARNAME()
-        {  
-            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko4.yaml")));
-        }
-
-        [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_REGEX_NOTEXISTS()
-        {  
-            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko5.yaml")));
-        }
 
         [Test, Category("Vars"), Category("Local")]
         public void ParseVars_SCOPE_NOTEXISTS()
         {  
-            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko6.yaml")));
+            Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko3.yaml")));
         }
     }
 }

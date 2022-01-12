@@ -18,10 +18,15 @@
 
 inherits: "../../templates/permissions.yaml"  
 
-vars:
-    student: "{#^[^ ]+(?= )$CURRENT_FOLDER_NAME}"
-
 batch: 
+    - run:
+        connector: "TextStream"
+        command: "Substring"
+        arguments: 
+            content: "{$CURRENT_FOLDER_NAME}"
+            regex: "^[^ ]+(?= )"
+        store: "student"  
+
     - concurrent: !!int 1 #cannot run in parallel due permissions over users
     - caption: "Running on batch mode for ~{$STUDENT}:"       
     - local:                             
@@ -37,8 +42,14 @@ batch:
         file: "*.log"
         threshold: !!float 0.65    
 
+    - run:
+        connector: "TextStream"
+        command: "DirectoryName"
+        arguments: "--path {$CURRENT_FOLDER_PATH}"
+        store: "dirname"
+
     - setup:
-        - echo: "Extracting files at ~{#([^\\\\]*)$$CURRENT_FOLDER_PATH}:"
+        - echo: "Extracting files at ~{$DIRNAME}:"
 
         - run:            
             command:  "GetFile"
@@ -49,8 +60,14 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "filename"
+
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             onexception: "SUCCESS"
@@ -133,7 +150,13 @@ batch:
             arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
 
         - run:
-            caption: "   Restoring database ~{$DATABASE}~ using the file ~{#([^\\\\]*)$$SQL_FILE}... "          
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$SQL_FILE}"
+            store: "filename"
+
+        - run:
+            caption: "   Restoring database ~{$DATABASE}~ using the file ~{$FILENAME}... "          
             connector: "Postgres"
             command:  "CreateDataBase"
             arguments: 

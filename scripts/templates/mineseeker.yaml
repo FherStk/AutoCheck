@@ -24,7 +24,10 @@ version: "1.0.0.0"
 
 body:
       - vars:
-            java: NULL                 
+            filepath: NULL   
+
+      - connector:  
+            type: "TextStream"
         
       - question: 
             description: "Checking main java file"        
@@ -34,19 +37,25 @@ body:
                         caption:  "Looking for ~.java... "
                         command:  "GetFile"
                         arguments: "--path {$CURRENT_FOLDER_PATH} --file *.java"
-                        store: "$JAVA"
+                        store: "$FILEPATH"
                         expected: "%.java" 
                         onerror: "ABORT"   
 
+                  - run:
+                        connector: "TextStream"
+                        command: "FileName"
+                        arguments: "--path {$FILEPATH}"
+                        store: "FILENAME"
+
                   - connector:  
-                        caption:  "Loading the file ~{#([^\\\\]*)$$JAVA}... "
+                        caption:  "Loading the file ~{$FILENAME}... "
                         type: "PlainText"        
-                        arguments: "--filePath {$JAVA}"
+                        arguments: "--filePath {$FILEPATH}"
                         onexception: "ABORT"                         
                               
                   - run:
-                        caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "
-                        command:  "javac {$JAVA}"            
+                        caption:  "Compiling the file ~{$FILENAME}... "
+                        command:  "javac {$FILEPATH}"            
                         expected: "" 
                         onexception: "ABORT"
 
@@ -55,7 +64,7 @@ body:
             content:                            
             - run:
                   caption:  "Checking the main menu... "            
-                  command:  "echo 3 | java {$JAVA}"            
+                  command:  "echo 3 | java {$FILEPATH}"            
                   expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
       - question:                     
@@ -63,22 +72,22 @@ body:
             content:      
                   - run:
                         caption:  "Checking the input data giving no data... "            
-                        command:  "echo 1 | java {$JAVA}"
+                        command:  "echo 1 | java {$FILEPATH}"
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows... "            
-                        command:  "echo 1 5 | java {$JAVA}"
+                        command:  "echo 1 5 | java {$FILEPATH}"
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows and columns... "            
-                        command:  "echo 1 5 4 | java {$JAVA}"
+                        command:  "echo 1 5 4 | java {$FILEPATH}"
                         expected: "Exception%"
 
                   - run:
                         caption:  "Checking the input data giving rows, columns and mines... "            
-                        command:  "echo 1 5 4 1 3 | java {$JAVA}"
+                        command:  "echo 1 5 4 1 3 | java {$FILEPATH}"
                         expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
       - question:                     
             description: "Data verification"
@@ -86,12 +95,12 @@ body:
             content:      
                   - run:
                         caption:  "Checking that more mines that cells is not allowed... "            
-                        command:  "echo 1 1 1 2 3 | java {$JAVA}"
+                        command:  "echo 1 1 1 2 3 | java {$FILEPATH}"
                         expected: "%NO ES PODEN POSAR MÉS MINES QUE CASELLES%" 
 
       - connector:  
             type: "PlainText"        
-            arguments: "--filePath {$JAVA}"
+            arguments: "--filePath {$FILEPATH}"
 
       - question:                     
             description: "Board internal creation"
@@ -150,17 +159,14 @@ body:
             content:                            
                   - run:
                         caption:  "Checking the return to the main menu... "            
-                        command:  "echo 1 5 4 1 3 | java {$JAVA}"            
-                        expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
-
-      - connector:  
-            type: "TextStream"  
+                        command:  "echo 1 5 4 1 3 | java {$FILEPATH}"            
+                        expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%"       
             
       - question:                     
             description: "Displaying board's empty cells"
             content:                            
                   - run:                    
-                        command:  "echo 1 1 1 0 2 3 | java {$JAVA}"            
+                        command:  "echo 1 1 1 0 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 1x1 board with no mines... "            
@@ -170,7 +176,7 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 3 0 2 3 | java {$JAVA}"            
+                        command:  "echo 1 5 3 0 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x3 board with no mines... "            
@@ -180,7 +186,7 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 3 5 0 2 3 | java {$JAVA}"            
+                        command:  "echo 1 3 5 0 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 3x5 board with no mines... "            
@@ -190,7 +196,7 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 5 0 2 3 | java {$JAVA}"            
+                        command:  "echo 1 5 5 0 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x5 board with no mines... "            
@@ -203,7 +209,7 @@ body:
             description: "Displaying board's mine cells"
             content:                            
                   - run:                    
-                        command:  "echo 1 1 1 1 2 3 | java {$JAVA}"            
+                        command:  "echo 1 1 1 1 2 3 | java {$FILEPATH}"            
                   
                   - run:
                         caption:  "Checking the display for a 1x1 board full of mines... "            
@@ -213,7 +219,7 @@ body:
                         expected: "1"                   
 
                   - run:                    
-                        command:  "echo 1 5 3 15 2 3 | java {$JAVA}"            
+                        command:  "echo 1 5 3 15 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x3 board full of mines... "            
@@ -223,7 +229,7 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 3 5 15 2 3 | java {$JAVA}"            
+                        command:  "echo 1 3 5 15 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 3x5 board full of mines... "            
@@ -233,7 +239,7 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 5 25 2 3 | java {$JAVA}"            
+                        command:  "echo 1 5 5 25 2 3 | java {$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x5 board full of mines... "            
@@ -247,7 +253,7 @@ body:
             content:  
                   - run:
                         caption:  "Checking the empty message... "   
-                        command:  "echo 2 3 | java {$JAVA}"            
+                        command:  "echo 2 3 | java {$FILEPATH}"            
                         expected: "%NO S’HA CREAT CAP TAULELL%" 
 
       - question:                     
@@ -256,5 +262,5 @@ body:
             content:  
                   - run:
                         caption:  "Checking the empty message... "   
-                        command:  "echo 2 3 | java {$JAVA}"            
+                        command:  "echo 2 3 | java {$FILEPATH}"            
                         expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 

@@ -45,8 +45,17 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             arguments: 

@@ -2017,7 +2017,7 @@ namespace AutoCheck.Core{
                 data = GetMethod(connector.GetType(), command, arguments);                
             }
             catch(ArgumentInvalidException){       
-                //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+                //If Shell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
                 shellExecuted = connector.GetType().Equals(typeof(Connectors.Shell)) || connector.GetType().IsSubclassOf(typeof(Connectors.Shell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
