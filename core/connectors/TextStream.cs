@@ -76,5 +76,34 @@ namespace AutoCheck.Core.Connectors{
         public int Count(string content, string regex){
             return Find(content, regex).Length;
         }
+
+        /// <summary>
+        /// Returns the directory path (removes the file name)
+        /// </summary>
+        /// <param name="path">A path to a file</param>        
+        /// <returns>A path to a directory</returns>
+        public string DirectoryPath(string path){
+            if(Path.HasExtension(path)) return Path.GetDirectoryName(path);
+            else return path;
+        }
+
+        /// <summary>
+        /// Returns the directory name (removes the path and also the filename)
+        /// </summary>
+        /// <param name="path">A path to a file or folder.</param>        
+        /// <returns>A directory name.</returns>
+        public string DirectoryName(string path){
+            if(Path.HasExtension(path)) path = Path.GetDirectoryName(path);
+            return Path.GetFileName(path);
+        }
+
+        /// <summary>
+        /// Returns the file name (removes the path)
+        /// </summary>
+        /// <param name="path">A path to a file.</param>        
+        /// <returns>A file name.</returns>
+        public string FileName(string path){
+            return Path.GetFileName(path);            
+        }
     }
 }
