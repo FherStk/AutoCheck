@@ -19,166 +19,230 @@
 name: "DAM - M03 (UF1): Mineseeker"
 version: "1.0.0.0"
 
+#TODO: sacar las preguntas de dentro de la primera y hacer un ABORT si no compila.
+#     arreglar fallo en codigo fuente al poner minas en casillas ocupadas
+
 body:
-  - vars:
-      java: NULL                 
+      - vars:
+            java: NULL                 
         
-  - question: 
-      description: "Checking main java file"                          
-      content:                            
-        - run:
-            caption:  "Looking for ~.java... "
-            command:  "GetFile"
-            arguments: "--path {$CURRENT_FOLDER_PATH} --file *.java"
-            store: "$JAVA"
-            expected: "%.java" 
-            onerror: "SKIP"   
-
-        - connector:  
-            caption:  "Loading the file ~{#([^\\\\]*)$$JAVA}... "
-            type: "PlainText"        
-            arguments: "--filePath {$JAVA}"
-            onexception: "SKIP"  
-
-        - connector:  
-            type: "Regex"        
-                    
-        - run:
-            caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "
-            command:  "javac {$JAVA}"            
-            expected: "" 
-            onexception: "SKIP"
-
-        - question:                     
-            description: "Main menu"
+      - question: 
+            description: "Checking main java file"        
+            score: 0.5                  
             content:                            
-              - run:
-                    caption:  "Checking the main menu... "            
-                    command:  "echo 3 | java {$JAVA}"            
-                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                  - run:
+                        caption:  "Looking for ~.java... "
+                        command:  "GetFile"
+                        arguments: "--path {$CURRENT_FOLDER_PATH} --file *.java"
+                        store: "$JAVA"
+                        expected: "%.java" 
+                        onerror: "SKIP"   
 
-        - question:                     
-            description: "Input data"
-            content:      
-              - run:
-                    caption:  "Checking the input data giving no data... "            
-                    command:  "echo 1 | java {$JAVA}"
-                    expected: "Exception%" 
+                  - connector:  
+                        caption:  "Loading the file ~{#([^\\\\]*)$$JAVA}... "
+                        type: "PlainText"        
+                        arguments: "--filePath {$JAVA}"
+                        onexception: "SKIP"  
 
-              - run:
-                    caption:  "Checking the input data giving rows... "            
-                    command:  "echo 1 5 | java {$JAVA}"
-                    expected: "Exception%" 
+                  - connector:  
+                        type: "Regex"        
+                              
+                  - run:
+                        caption:  "Compiling the file ~{#([^\\\\]*)$$JAVA}... "
+                        command:  "javac {$JAVA}"            
+                        expected: "" 
+                        onexception: "SKIP"
+                        
+                  - question:                     
+                        description: "Main menu"
+                        content:                            
+                        - run:
+                              caption:  "Checking the main menu... "            
+                              command:  "echo 3 | java {$JAVA}"            
+                              expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
-              - run:
-                    caption:  "Checking the input data giving rows and columns... "            
-                    command:  "echo 1 5 4 | java {$JAVA}"
-                    expected: "Exception%"
+                  - question:                     
+                        description: "Input data"
+                        content:      
+                              - run:
+                                    caption:  "Checking the input data giving no data... "            
+                                    command:  "echo 1 | java {$JAVA}"
+                                    expected: "Exception%" 
 
-              - run:
-                    caption:  "Checking the input data giving rows, columns and mines... "            
-                    command:  "echo 1 5 4 1 3 | java {$JAVA}"
-                    expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
+                              - run:
+                                    caption:  "Checking the input data giving rows... "            
+                                    command:  "echo 1 5 | java {$JAVA}"
+                                    expected: "Exception%" 
 
-        - question:                     
-            description: "Board internal creation"
-            content:                         
-              - run:
-                    caption:  "Checking the internal board creation... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "\w*\[\]\[\]"
-                    expected: ">0"    
+                              - run:
+                                    caption:  "Checking the input data giving rows and columns... "            
+                                    command:  "echo 1 5 4 | java {$JAVA}"
+                                    expected: "Exception%"
 
-              - run:
-                    caption:  "Checking the internal board sizing... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "=\s*new\s*\w*\[\d\]\[\d\]\s*;"
-                    expected: ">0"               
+                              - run:
+                                    caption:  "Checking the input data giving rows, columns and mines... "            
+                                    command:  "echo 1 5 4 1 3 | java {$JAVA}"
+                                    expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
 
-        - question:                     
-            description: "Board internal filling"
-            content:              
-              - run:
-                    caption:  "Checking the internal board filling... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "(?:for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)*\[\w*\]\[\w*\]\s*=" 
-                    expected: ">0"  
+                  - question:                     
+                        description: "Board internal creation"
+                        content:                         
+                              - run:
+                                    caption:  "Checking the internal board creation... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "\w*\[\]\[\]"
+                                    expected: ">0"    
 
-              - run:
-                    caption:  "Checking the empty cell filling... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'\s'\s*;"
-                    expected: ">0"  
+                              - run:
+                                    caption:  "Checking the internal board sizing... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "=\s*new\s*\w*\[\d\]\[\d\]\s*;"
+                                    expected: ">0"               
 
-        - question:                     
-            description: "Mines internal filling"
-            content:                            
-              - run:
-                    caption:  "Checking that random location is being used... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\)\s*{(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))"
-                    expected: ">0"   
+                  - question:                     
+                        description: "Board internal filling"
+                        content:              
+                              - run:
+                                    caption:  "Checking the internal board filling... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "(?:for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)*\[\w*\]\[\w*\]\s*=" 
+                                    expected: ">0"  
 
-              - run:
-                    caption:  "Checking the mine cell filling... "          
-                    connector: "PlainText"
-                    command:  "Count"
-                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'O'\s*;"
-                    expected: ">0"  
+                              - run:
+                                    caption:  "Checking the empty cell filling... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'\s'\s*;"
+                                    expected: ">0"  
 
-        - question:                     
-            description: "Return to the menu after filling the board"
-            content:                            
-              - run:
-                    caption:  "Checking the return to the main menu... "            
-                    command:  "echo 1 5 4 1 3 | java {$JAVA}"            
-                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                  - question:                     
+                        description: "Mines internal filling"
+                        content:                            
+                              - run:
+                                    caption:  "Checking that random location is being used... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\)\s*{(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))"
+                                    expected: ">0"   
 
-        - question:                     
-            description: "Displaying board's empty cells"
-            content:                            
-              - run:
-                    caption:  "Checking the empty cells display... "            
-                    command:  "echo 1 5 4 1 2 3 | java {$JAVA}"            
-                    expected: "%[ ]%" 
+                              - run:
+                                    caption:  "Checking the mine cell filling... "          
+                                    connector: "PlainText"
+                                    command:  "Count"
+                                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'O'\s*;"
+                                    expected: ">0"  
 
-        - question:                     
-            description: "Displaying board's mine cells"
-            content:   
-              - run:
-                    caption:  "Checking the mine cells display... "            
-                    command:  "echo 1 5 4 1 2 3 | java {$JAVA}"            
-                    expected: "%[O]%" 
+                  - question:                     
+                        description: "Return to the menu after filling the board"
+                        content:                            
+                              - run:
+                                    caption:  "Checking the return to the main menu... "            
+                                    command:  "echo 1 5 4 1 3 | java {$JAVA}"            
+                                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
-        - question:                     
-            description: "Displaying board's total cells (rows and columns)"
-            content:  
-              - run:
-                    caption:  "Checking the displayed amount of cells... "   
-                    connector: "Regex"         
-                    command:  "Count"            
-                    arguments: --content {$RESULT} --regex "((?:\[(?:\s|O)\]\s){3}\[(?:\s|O)\]\s*(?:\n|\\n)){5}"
-                    expected: "1" 
+                  - question:                     
+                        description: "Displaying board's empty cells"
+                        content:                            
+                              - run:                    
+                                    command:  "echo 1 1 1 0 2 3 | java {$JAVA}"            
 
-        - question:                     
-            description: "Displaying empty board message"
-            content:  
-              - run:
-                    caption:  "Checking the empty message... "   
-                    command:  "echo 2 3 | java {$JAVA}"            
-                    expected: "%NO S’HA CREAT CAP TAULELL%" 
+                              - run:
+                                    caption:  "Checking the display for a 1x1 board with no mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "(?:\[\s\]\s*(?:\n|\\n)){1}"
+                                    expected: "1" 
 
-        - question:                     
-            description: "Return to the menu after displaying the board"
-            content:  
-              - run:
-                    caption:  "Checking the empty message... "   
-                    command:  "echo 2 3 | java {$JAVA}"            
-                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                              - run:                    
+                                    command:  "echo 1 5 3 0 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 5x3 board with no mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[\s\]\s){2}\[\s\]\s*(?:\n|\\n)){5}"
+                                    expected: "1" 
+
+                              - run:                    
+                                    command:  "echo 1 3 5 0 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 3x5 board with no mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s\]\s*(?:\n|\\n)){3}"
+                                    expected: "1" 
+
+                              - run:                    
+                                    command:  "echo 1 5 5 0 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 5x5 board with no mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s]\s*(?:\n|\\n)){5}"
+                                    expected: "1" 
+
+                  - question:                     
+                        description: "Displaying board's mine cells"
+                        content:                            
+                              - run:                    
+                                    command:  "echo 1 1 1 1 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 1x1 board full of mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "(?:\[O\]\s*(?:\n|\\n)){1}"
+                                    expected: "1" 
+
+                              - run:                    
+                                    command:  "echo 1 5 3 15 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 5x3 board full of mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[O\]\s){2}\[O\]\s*(?:\n|\\n)){5}"
+                                    expected: "1" 
+
+                              - run:                    
+                                    command:  "echo 1 3 5 15 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 3x5 board full of mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){3}"
+                                    expected: "1" 
+
+                              - run:                    
+                                    command:  "echo 1 5 5 25 2 3 | java {$JAVA}"            
+
+                              - run:
+                                    caption:  "Checking the display for a 5x5 board full of mines... "            
+                                    connector: "Regex"         
+                                    command:  "Count"            
+                                    arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){5}"
+                                    expected: "1" 
+
+                  - question:                     
+                        description: "Displaying empty board message"
+                        content:  
+                              - run:
+                                    caption:  "Checking the empty message... "   
+                                    command:  "echo 2 3 | java {$JAVA}"            
+                                    expected: "%NO S’HA CREAT CAP TAULELL%" 
+
+                  - question:                     
+                        description: "Return to the menu after displaying the board"
+                        content:  
+                              - run:
+                                    caption:  "Checking the empty message... "   
+                                    command:  "echo 2 3 | java {$JAVA}"            
+                                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
 
 
