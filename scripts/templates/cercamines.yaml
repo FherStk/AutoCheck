@@ -122,5 +122,7 @@ body:
                     arguments: --content {$RESULT} --regex "(\[(?:\s|O)\]\s*){1}$"
                     expected: "4" 
 
+  #\[(?:\s|O)\]\s*[\\n]   #cantidad de matches mide las filas
 
+ #(\[(?:\s|O)\]\s*){1}$       #cantidad de matches mide las columnas
        
