@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-name: "DAM - M03 (UF1): Cercamines"
+name: "DAM - M03 (UF1): Mineseeker"
 version: "1.0.0.0"
 
 body:
@@ -111,18 +111,42 @@ body:
             description: "Displaying board's empty cells"
             content:                            
               - run:
-                    caption:  "Checking the empty cells disply... "            
+                    caption:  "Checking the empty cells display... "            
                     command:  "echo 1 5 4 1 2 3 | java {$JAVA}"            
                     expected: "%[ ]%" 
 
+        - question:                     
+            description: "Displaying board's mine cells"
+            content:   
               - run:
-                    caption:  "Checking the displayed amount of columns... "   
+                    caption:  "Checking the mine cells display... "            
+                    command:  "echo 1 5 4 1 2 3 | java {$JAVA}"            
+                    expected: "%[O]%" 
+
+        - question:                     
+            description: "Displaying board's total cells (rows and columns)"
+            content:  
+              - run:
+                    caption:  "Checking the displayed amount of cells... "   
                     connector: "Regex"         
                     command:  "Count"            
-                    arguments: --content {$RESULT} --regex "(\[(?:\s|O)\]\s*){1}$"
-                    expected: "4" 
+                    arguments: --content {$RESULT} --regex "((?:\[(?:\s|O)\]\s){3}\[(?:\s|O)\]\s*(?:\n|\\n)){5}"
+                    expected: "1" 
 
-  #\[(?:\s|O)\]\s*[\\n]   #cantidad de matches mide las filas
+        - question:                     
+            description: "Displaying empty board message"
+            content:  
+              - run:
+                    caption:  "Checking the empty message... "   
+                    command:  "echo 2 3 | java {$JAVA}"            
+                    expected: "%NO S’HA CREAT CAP TAULELL%" 
 
- #(\[(?:\s|O)\]\s*){1}$       #cantidad de matches mide las columnas
-       
+        - question:                     
+            description: "Return to the menu after displaying the board"
+            content:  
+              - run:
+                    caption:  "Checking the empty message... "   
+                    command:  "echo 2 3 | java {$JAVA}"            
+                    expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+
+
