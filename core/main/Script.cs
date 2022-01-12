@@ -2050,37 +2050,15 @@ namespace AutoCheck.Core{
                 var original = match.Value;
                 if(original.TrimStart('{').Contains('{')) original = original.Substring(original.LastIndexOf('{'));
 
-                var replace = original.TrimStart('{').TrimEnd('}');       
-                if(!replace.StartsWith("#") && !replace.StartsWith("$")) replace = original;
-                else{   
-                    //Check if the regex is valid and/or also the referred var exists.
-                    var regex = string.Empty;
-                    if(replace.StartsWith("#")){
-                        var error = $"The regex {replace} must start with '#' and end with a '$' followed by variable name.";
-                        
-                        if(!replace.Contains("$")) throw new RegexInvalidException(error);
-                        regex = replace.Substring(1, replace.LastIndexOf("$")-1);
-                        replace = replace.Substring(replace.LastIndexOf("$"));
-                        if(string.IsNullOrEmpty(replace)) throw new RegexInvalidException(error);
-                    }
-
+                if(original.StartsWith("{$")){
+                    var replace = original.TrimStart('{').TrimEnd('}');
                     replace = replace.TrimStart('$');
+
                     if(replace.Equals("NOW")) replace = Now;
-                    else{                                                 
-                        replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
-                        if(!string.IsNullOrEmpty(regex)){
-                            try{
-                                if(Utils.CurrentOS != Utils.OS.WIN) regex = regex.Replace("\\\\", "/"); //TODO: this is a workaround to get the last folder of a path on WIN and UNIX... think something less dirty...
-                                replace = Regex.Match(replace, regex).Value;
-                            }
-                            catch (Exception ex){
-                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.", ex);
-                            }
-                        }
-                    }
+                    else replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
+
+                    value = value.Replace(original, replace);
                 }
-                
-                value = value.Replace(original, replace);
             }
             
             return value;
