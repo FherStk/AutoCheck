@@ -59,45 +59,77 @@ body:
 
         - question:                     
             description: "Input data"
-            content:                            
+            content:      
               - run:
-                    caption:  "Checking the input data... "            
+                    caption:  "Checking the input data giving no data... "            
+                    command:  "echo 1 | java {$JAVA}"
+                    expected: "Exception%" 
+
+              - run:
+                    caption:  "Checking the input data giving rows... "            
+                    command:  "echo 1 5 | java {$JAVA}"
+                    expected: "Exception%" 
+
+              - run:
+                    caption:  "Checking the input data giving rows and columns... "            
+                    command:  "echo 1 5 4 | java {$JAVA}"
+                    expected: "Exception%"
+
+              - run:
+                    caption:  "Checking the input data giving rows, columns and mines... "            
                     command:  "echo 1 5 4 1 3 | java {$JAVA}"
-                    timeout:  1000            
                     expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
 
         - question:                     
             description: "Board internal creation"
             content:                         
-              - echo: "WARNING: the board internal creation must be confirmed manually."   
               - run:
                     caption:  "Checking the internal board creation... "          
                     connector: "PlainText"
                     command:  "Count"
-                    arguments: --regex "(\w*\[\]\[\])"     
-                    expected: ">0"                 
+                    arguments: --regex "\w*\[\]\[\]"
+                    expected: ">0"    
+
+              - run:
+                    caption:  "Checking the internal board sizing... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "=\s*new\s*\w*\[\d\]\[\d\]\s*;"
+                    expected: ">0"               
 
         - question:                     
             description: "Board internal filling"
             content:              
-              - echo: "WARNING: the board internal filling must be confirmed manually."              
               - run:
                     caption:  "Checking the internal board filling... "          
                     connector: "PlainText"
                     command:  "Count"
-                    arguments: --regex "(for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}\s*\w*\[\w\]\[\w\]\s*=" 
-                    expected: ">0"              
+                    arguments: --regex "(?:for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)*\[\w*\]\[\w*\]\s*=" 
+                    expected: ">0"  
+
+              - run:
+                    caption:  "Checking the empty cell filling... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'\s'\s*;"
+                    expected: ">0"  
 
         - question:                     
             description: "Mines internal filling"
             content:                            
-              - echo: "WARNING: the mines internal random positioning must be checked manually."
               - run:
-                    caption:  "Checking the internal mines filling within the board... "          
+                    caption:  "Checking that random location is being used... "          
                     connector: "PlainText"
                     command:  "Count"
-                    arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\){\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)"
-                    expected: ">0"              
+                    arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\)\s*{(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))"
+                    expected: ">0"   
+
+              - run:
+                    caption:  "Checking the mine cell filling... "          
+                    connector: "PlainText"
+                    command:  "Count"
+                    arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'O'\s*;"
+                    expected: ">0"  
 
         - question:                     
             description: "Return to the menu after filling the board"
