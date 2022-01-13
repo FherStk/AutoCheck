@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionModeType
     path: ../core/main/Script.cs
@@ -50,7 +50,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: SINGLE
     path: ../core/main/Script.cs
@@ -82,7 +82,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: BATCH
     path: ../core/main/Script.cs

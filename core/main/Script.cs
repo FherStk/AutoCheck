@@ -1,5 +1,5 @@
 /*
-    Copyright © 2021 Fernando Porrino Serrano
+    Copyright © 2022 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -1377,7 +1377,7 @@ namespace AutoCheck.Core{
         }  
 
         private void ParseRun(YamlNode node, string current="run", string parent="body", string[] children = null, string[] mandatory = null){
-            children ??= new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store"};
+            children ??= new string[]{"connector", "command", "arguments", "expected", "caption", "success", "error", "onexception", "onerror", "store", "timeout"};
             mandatory ??= new string[]{"command"};
 
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) return;
@@ -1387,10 +1387,11 @@ namespace AutoCheck.Core{
             ValidateChildren(run, current, children, mandatory);                                                     
                        
             //Data is loaded outside the try statement to rise exception on YAML errors
-            var name = ParseChild(run, "connector", "LOCALSHELL");     
+            var name = ParseChild(run, "connector", "SHELL");     
             var caption = ParseChild(run, "caption", string.Empty);         
             var expected = ParseChild(run, "expected", (object)null);                          
             var command = ParseChild(run, "command", string.Empty);
+            var timeout = ParseChild(run, "timeout", 0);
             var store = ParseChild(run, "store", string.Empty);            
             var error = false;            
 
@@ -1403,7 +1404,7 @@ namespace AutoCheck.Core{
             try{                         
                 var connector = GetConnector(name); //Could throw an exception if the connector has not been instantiated correctly
                 var arguments = (run.Children.ContainsKey("arguments") ? ParseArguments(run.Children["arguments"]) : null); //Could throw an exception if an argument is a connector
-                data = InvokeCommand(connector, command, arguments);             
+                data = InvokeCommand(connector, command, arguments, timeout);
             }
             catch(ArgumentInvalidException){
                 //Exception when trying to run the command (command not executed) with invalid arguments, so YAML script is no correct
@@ -2002,7 +2003,7 @@ namespace AutoCheck.Core{
             throw new ArgumentInvalidException($"Unable to find any {(constructor ? "constructor" : $"method called '{method}'")} for the Connector '{type.Name}' that matches with the given set of arguments.");
         }
                
-        private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments = null){
+        private (object result, bool shellExecuted) InvokeCommand(object connector, string command, Dictionary<string, object> arguments, int timeout){
             //Loading command data                        
             if(string.IsNullOrEmpty(command)) throw new ArgumentNullException("command", new Exception("A 'command' argument must be specified within 'run'."));  
             
@@ -2016,10 +2017,11 @@ namespace AutoCheck.Core{
                 data = GetMethod(connector.GetType(), command, arguments);                
             }
             catch(ArgumentInvalidException){       
-                //If LocalShell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
+                //If Shell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
                 shellExecuted = connector.GetType().Equals(typeof(Connectors.Shell)) || connector.GetType().IsSubclassOf(typeof(Connectors.Shell));  
                 if(shellExecuted){                                     
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
+                    if(!arguments.ContainsKey("timeout")) arguments.Add("timeout", timeout);
                     arguments.Add("command", command);
                     command = "RunCommand";
                 }
@@ -2048,36 +2050,15 @@ namespace AutoCheck.Core{
                 var original = match.Value;
                 if(original.TrimStart('{').Contains('{')) original = original.Substring(original.LastIndexOf('{'));
 
-                var replace = original.TrimStart('{').TrimEnd('}');                 
-                if(replace.StartsWith("#") || replace.StartsWith("$")){                        
-                    //Check if the regex is valid and/or also the referred var exists.
-                    var regex = string.Empty;
-                    if(replace.StartsWith("#")){
-                        var error = $"The regex {replace} must start with '#' and end with a '$' followed by variable name.";
-                        
-                        if(!replace.Contains("$")) throw new RegexInvalidException(error);
-                        regex = replace.Substring(1, replace.LastIndexOf("$")-1);
-                        replace = replace.Substring(replace.LastIndexOf("$"));
-                        if(string.IsNullOrEmpty(replace)) throw new RegexInvalidException(error);
-                    }
-
+                if(original.StartsWith("{$")){
+                    var replace = original.TrimStart('{').TrimEnd('}');
                     replace = replace.TrimStart('$');
+
                     if(replace.Equals("NOW")) replace = Now;
-                    else{                                                 
-                        replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
-                        if(!string.IsNullOrEmpty(regex)){
-                            try{
-                                if(Utils.CurrentOS != Utils.OS.WIN) regex = regex.Replace("\\\\", "/"); //TODO: this is a workaround to get the last folder of a path on WIN and UNIX... think something less dirty...
-                                replace = Regex.Match(replace, regex).Value;
-                            }
-                            catch (Exception ex){
-                                throw new RegexInvalidException($"Invalid regular expression defined inside the variable '{name}'.", ex);
-                            }
-                        }
-                    }
+                    else replace = string.Format(CultureInfo.InvariantCulture, "{0}", GetVar(replace.ToLower()));
+
+                    value = value.Replace(original, replace);
                 }
-                
-                value = value.Replace(original, replace);
             }
             
             return value;

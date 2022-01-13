@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Operation
     path: ../core/copy/DiffMatchPatch.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DELETE
     path: ../core/copy/DiffMatchPatch.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: INSERT
     path: ../core/copy/DiffMatchPatch.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: EQUAL
     path: ../core/copy/DiffMatchPatch.cs

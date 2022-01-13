@@ -166,7 +166,7 @@ body:
       expected: "TEST_FOLDER"
 
   - run:
-      command: "echo {$FOLDER_REGEX}"
+      command: "echo {$FOLDER_NAME}"
       expected: "FOLDER"
 ```
 
@@ -183,7 +183,7 @@ name | text | no | The script name will be displayed at the output. | `Current f
 caption | text | no | Message to display at script startup. | `Running script {$SCRIPT_NAME} (v{$SCRIPT_VERSION}):`
 max-score | decimal | no | Maximum script score (overall score). | `10`
 [output](#output) | mapping | no | Setups the output behaviour. | 
-[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`. | 
 [body](#body) | sequence | no | Script body. |
 
 ### <a name="log"></a> log
@@ -197,7 +197,7 @@ folder | text | no | Path to the folder which will contain the log data. | `{$AP
 name | text | no | The name that will be used to store each file, so vars should be used in order to create single files per batch execution (only on batch mode). | `{$SCRIPT_NAME}_{$NOW}`
 
 ### <a name="vars"></a> vars
-Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`, allowing regex and string formatters.
+Custom global vars can be defined wihtin `vars` node and refered later as `$VARNAME`.
 
 #### Predefined vars:
 ##### Application data:
@@ -266,18 +266,6 @@ vars:
     var4: !!int 1986    
 ```
 
-#### Regular expressions over vars example:
-Regular expressions (regex) can be used to extract text from an original var, just add the regex expression before calling the var surrounding it between a hashtag `#` and a dollar `$` like in the following examples:
-```
-vars:    
-    var1: "VALUE1"
-    var2: "PRE_POST"
-    var3: "This is the result of applying a regular expression to var1: {#regex$VAR1}"
-    var4: "This will display the word after the last underscore: {#(?<=_)(.*)$VAR2}"
-    var5: "This will display the filename for a given path: {#([^\\\\]*)$$CURRENT_FOLDER_PATH}" #two $$ symbols are needed for this example
-    var5: "This will display the student name for a downloaded assignment Moodle path: {#^[^_]+(?=_)$MOODLE_FOLDER_PATH}"
-```
-
 #### Scopes:
 Because `vars` can be used at different script levels, those vars will be created within its own scope being accessible from lower scopes but being destroyed once the scope is left:
 ```
@@ -324,7 +312,8 @@ caption | text | no | Message to display before running, when running with no ca
 connector | text | no | Previously defined connector name, which will be used to run the command. If no connector has been defined within this `run`, the nearest within the scope will be looked for (and envelopping scopes recursively) and, if no connector is found, a `LOCALSHELL` one will be used. | `"LOCALSHELL"`
 command | text | yes | The command to run, the result will be stored as `$RESULT`; can be a shell command if no connector has been specified. | 
 [arguments](#arguments) | text | no | Same as `connector` ones (also typed arguments list are allowed). | 
-expected | text | no | Expected value from the run command, which can be: <ul><li>Variables</li><li>Typed data: <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>Regular expression: <ul><li>`{#regex$VARNAME}`</li></ul><li>SQL-like opperators: <ul><li>`>=75.1`</li><li>`%substring%`</li><li>`%endwith`</li><li>`LIKE %{#regex$CURRENT_FOLDER_NAME}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
+timeout | number | no | In milliseconds. The execution will be aborted after this time. | 0 (no timeout)
+expected | text | no | Expected value from the run command, which can be: <ul><li>Variables (exact match)</li><li>Typed data (exact match): <ul><li>`True`</li><li>`75.7`</li><li>`"Example"`</li></ul></li><li>SQL-like opperators over previous data: <ul><li>`>=75.1`</li><li>`starts_with%`</li><li>`%substring%`</li><li>`%ends_with`</li><li>`LIKE %{$CURRENT_FOLDER_NAME}%`</li></ul></li><li>Arrays opperators: <ul><li>`LENGTH =x`</li><li>`CONTAINS >=x`</li><li>`UNORDEREDEQUALS [x,y,z]`</li><li>`ORDEREDEQUALS [x,y,z]`</li></ul></li></ul> When not defined, all results will compute as a success; when working on silent mode (with no caption), an exception will be thrown on mismatch (onexception wont applicate). **Warning: no AND/OR combinations still supported.** | 
 success | text | no | If a caption has been defined, this message witll be shown if the executed command result matches with the expected one. | `"OK"`
 error | text | no | If a caption has been defined, this message witll be shown if the executed command result mismatches with the expected one; it will be followed by a list of errors found. | `"ERROR"`
 onexception | text | no | Determines the behaviour when a command execution ends with an exception; allowed values are: <ul><li>*SUCCESS*: continues as no error.</li><li>*ERROR*: continues as an error.</li><li>*ABORT*: stops the entire script execution.</li><li>*SKIP*: stops the current question execution but continues with the next one.</li></ul>When within a question, only works when a caption has been defined, because working on silent mode never computes for a question score nor produces any output. | `"ERROR"`
@@ -483,7 +472,7 @@ Enables the copy detection logic, not supported for `host` targets (see avaliabl
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 type | text | yes |The type of copy detector to use (see avaliable copy detectors through API documentation). | 
-file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed; regex can be used also. The first file found using the search pattern will be loaded into the copy detector engine.| `"*"`
+file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed. The first file found using the search pattern will be loaded into the copy detector engine.| `"*"`
 caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {$CURRENT_FOLDER_NAME}..."`
 threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
 
@@ -494,7 +483,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 folder | text | yes (if no `path` has been defined) | The script will be executed once for each local folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
 path | text | yes (if no `folder` has been defined) | Only for batch mode exectution: the script will be executed once for each local folder contained within the defined path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
-[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters.| 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`.| 
 
 #### <a name="remote"></a>remote
 Remote batch target, so each script body will be executed once per remote target.
@@ -508,4 +497,4 @@ password | text | no | The password used to connect with the remote host. | (Bla
 port   | number | no | The remote SSH port used to connect with. | 22
 path | text | no | The script will be executed once for each folder contained within the defined remote path; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` | 
 folder | text | no | The script will be executed once for each remote folder defined; the current folder can be requested through the script with `$CURRENT_FOLDER_PATH` |
-[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`, allowing regex and string formatters. | 
+[vars](#vars) | mapping | no | Custom global vars can be defined here and refered later as `$VARNAME`. | 

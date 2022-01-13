@@ -53,6 +53,8 @@
     name: Rss
   - uid: AutoCheck.Core.Connectors.Shell
     name: Shell
+  - uid: AutoCheck.Core.Connectors.TextStream
+    name: TextStream
   - uid: AutoCheck.Core.Connectors.Xml
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType

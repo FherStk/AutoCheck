@@ -1,4 +1,4 @@
-# Copyright © 2021 Fernando Porrino Serrano
+# Copyright © 2022 Fernando Porrino Serrano
 # Third party software licenses can be found at /docs/credits/credits.md
 
 # This file is part of AutoCheck.
@@ -16,12 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
-vars:     
-  student_name: "Fer"
-  student_var: "{$STUDENT_NAME}"
-  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
-
-  test_folder: "TEST_FOLDER"
-  folder_regex: "{#(?<=_)(.*)$}" 
-
-body:     
+inherits: "../../templates/mineseeker.yaml"  
+single:
+  local:
+    folder:  "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_1"
