@@ -1752,7 +1752,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: LoadYamlFile
     path: ../core/main/Script.cs
-    startLine: 2231
+    startLine: 2209
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

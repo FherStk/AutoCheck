@@ -957,10 +957,10 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Script.html",
-          "hash": "Pb4i4g2bG+dGsScwdN149IAf4u4hNmYWP41IQb3Z4Rw="
+          "hash": "83ivmOq8qnrkRQvG0WK5KkLTdJ3MzyLwf50E4ghiwrw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -996,7 +996,7 @@
           "hash": "Eo0ziztzVzjvTYTTJJnrK+AqHseEFhBlfjJ5/XRITkw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1327,7 +1327,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 94,
-          "skipped_file_count": 94
+          "skipped_file_count": 93
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
