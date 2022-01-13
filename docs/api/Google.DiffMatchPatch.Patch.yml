@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Patch
     path: ../core/copy/DiffMatchPatch.cs
@@ -59,7 +59,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: diffs
     path: ../core/copy/DiffMatchPatch.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: start1
     path: ../core/copy/DiffMatchPatch.cs
@@ -121,7 +121,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: start2
     path: ../core/copy/DiffMatchPatch.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: length1
     path: ../core/copy/DiffMatchPatch.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: length2
     path: ../core/copy/DiffMatchPatch.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/copy/DiffMatchPatch.cs

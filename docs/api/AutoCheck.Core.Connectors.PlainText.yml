@@ -22,11 +22,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
-    startLine: 29
+    startLine: 27
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -64,11 +64,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
-    startLine: 79
+    startLine: 77
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -102,11 +102,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 87
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -138,11 +138,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 100
+    startLine: 98
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -181,11 +181,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 114
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -222,11 +222,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
-    startLine: 127
+    startLine: 125
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -257,11 +257,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
-    startLine: 135
+    startLine: 133
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -296,11 +296,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.14.0
+      branch: v2.14.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs
-    startLine: 149
+    startLine: 143
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

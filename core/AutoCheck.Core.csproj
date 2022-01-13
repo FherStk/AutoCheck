@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<BuildDocFx>false</BuildDocFx>
-		<!-- Set this value to 'true' in order to build the documentation. -->
+		<BuildDocFx>false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
-		<Copyright>Copyright © 2021</Copyright>
-		<VersionPrefix>2.14.0</VersionPrefix>
+		<Copyright>Copyright © 2022</Copyright>
+		<VersionPrefix>2.15.0</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>

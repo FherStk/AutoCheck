@@ -1,5 +1,5 @@
 /*
-    Copyright © 2021 Fernando Porrino Serrano
+    Copyright © 2022 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -20,8 +20,6 @@
 
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace AutoCheck.Core.Connectors{       
     /// <summary>
@@ -134,12 +132,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="regex">The regular expression which will be used to search the content.</param>
         /// <returns>A set of matches.</returns>
         public string[] Find(string regex){
-            var found = new List<string>();
-            foreach(Match match in Regex.Matches(plainTextDoc.Content, regex)){
-                found.Add(match.Value);
-            }            
-
-            return found.ToArray();
+            var conn = new TextStream();            
+            return conn.Find(plainTextDoc.Content, regex);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-# Copyright © 2021 Fernando Porrino Serrano
+# Copyright © 2022 Fernando Porrino Serrano
 # Third party software licenses can be found at /docs/credits/credits.md
 
 # This file is part of AutoCheck.
@@ -17,11 +17,12 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 vars:     
-  student_name: "Fer"
-  student_var: "{$STUDENT_NAME}"
-  student_replace: "This is a test with value: {$STUDENT_NAME}_{$STUDENT_VAR}!"
+  student_name: "Fer"  
 
-  test_folder: "TEST_FOLDER"
-  folder_regex: "{#(?<=_)(.*)}" 
+body:
+  - run:
+      command: "echo {$STUDENT_NAME}"
+      expected: "Fer"
 
-body:     
+  - vars:     
+      $fake: "Not Fer"  

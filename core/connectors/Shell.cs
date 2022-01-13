@@ -1,5 +1,5 @@
 /*
-    Copyright © 2021 Fernando Porrino Serrano
+    Copyright © 2022 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -21,6 +21,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
 using ToolBox.Bridge;
@@ -161,19 +163,48 @@ namespace AutoCheck.Core.Connectors{
         /// Runs a shell command.
         /// </summary>
         /// <param name="command">The command to run.</param>
+        /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path = ""){
-            if(IsLocal){
-                Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
-                return (r.code, (r.code > 0 ? r.stderr : r.stdout));
-            }
-            else{        
-                this.RemoteShell.Connect();
-                SshCommand s = this.RemoteShell.RunCommand(command);
-                this.RemoteShell.Disconnect();
+        public (int code, string response) RunCommand(string command, int timeout=0){    
+            return RunCommand(command, "", timeout);
+        }
 
-                //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
-                return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
+        /// <summary>
+        /// Runs a shell command.
+        /// </summary>
+        /// <param name="command">The command to run.</param>
+        /// <param name="path">The path where the command must run.</param>
+        /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
+        /// <returns>The return code and the complete response.</returns>        
+        public (int code, string response) RunCommand(string command, string path, int timeout=0){    
+            //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
+            using (var tokenSource = new CancellationTokenSource()){
+                var cancelToken = tokenSource.Token;
+
+                var task = Task.Run(() => {
+                    if(IsLocal){
+                        Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
+                        return (r.code, (r.code > 0 ? r.stderr : r.stdout));
+                    }
+                    else{        
+                        this.RemoteShell.Connect();
+                        SshCommand s = this.RemoteShell.RunCommand(command);
+                        this.RemoteShell.Disconnect();
+
+                        //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
+                        return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
+                    }
+                }, cancelToken);
+                
+                if(timeout == 0) task.Wait();
+                else task.Wait(timeout);
+
+                if(task.Status == TaskStatus.Running){
+                    //timeout 
+                    tokenSource.Cancel();    
+                    throw new TimeoutException();                
+                }
+                else return task.Result;
             }
         }                     
 

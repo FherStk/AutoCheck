@@ -1,4 +1,4 @@
-# Copyright © 2021 Fernando Porrino Serrano
+# Copyright © 2022 Fernando Porrino Serrano
 # Third party software licenses can be found at /docs/credits/credits.md
 
 # This file is part of AutoCheck.
@@ -40,8 +40,17 @@ batch:
             type: "Zip"                    
             arguments: "--filePath {$ZIP_FILE}"
         
+        - connector:  
+            type: "TextStream"
+
+        - run:
+            connector: "TextStream"
+            command: "FileName"
+            arguments: "--path {$ZIP_FILE}"
+            store: "FILENAME"
+
         - run:   
-            caption: "   Extracting the file ~{#([^\\\\]*)$$ZIP_FILE}... "
+            caption: "   Extracting the file ~{$FILENAME}... "
             connector: "Zip"
             command: "Extract"
             arguments: 

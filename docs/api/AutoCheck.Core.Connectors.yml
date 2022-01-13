@@ -19,6 +19,7 @@ items:
   - AutoCheck.Core.Connectors.Postgres
   - AutoCheck.Core.Connectors.Rss
   - AutoCheck.Core.Connectors.Shell
+  - AutoCheck.Core.Connectors.TextStream
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Xml.XmlNodeType
   - AutoCheck.Core.Connectors.Zip
@@ -114,6 +115,11 @@ references:
   name: Shell
   nameWithType: Shell
   fullName: AutoCheck.Core.Connectors.Shell
+- uid: AutoCheck.Core.Connectors.TextStream
+  commentId: T:AutoCheck.Core.Connectors.TextStream
+  name: TextStream
+  nameWithType: TextStream
+  fullName: AutoCheck.Core.Connectors.TextStream
 - uid: AutoCheck.Core.Connectors.Xml
   commentId: T:AutoCheck.Core.Connectors.Xml
   parent: AutoCheck.Core.Connectors
