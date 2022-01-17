@@ -30,6 +30,7 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class SourceCode: Base{
         private Dictionary<string, (string folder, string file)> Files {get; set;}
+        private Dictionary<string, (string leftFolder, string leftFile, string rightFolder, string rightFile, float match)> Matches {get; set;}
         
 
         /// <summary>
@@ -47,7 +48,8 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
         /// </summary>     
         public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){    
-            Files = new Dictionary<string, (string, string)>();             
+            Files = new Dictionary<string, (string, string)>();   
+            Matches = new Dictionary<string, (string leftFolder, string leftFile, string rightFolder, string rightFile, float match)>();          
         } 
 
         /// <summary>
@@ -77,19 +79,19 @@ namespace AutoCheck.Core.CopyDetectors{
             
             try{
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {output}", Utils.UtilsFolder);
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);
                 if(result.code != 0) throw new InvalidOperationException(result.response);
 
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ');                 
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ', false);                 
 
                 for(int i=0; i<csv.CsvDoc.Count; i++){
-                    var line = csv.CsvDoc.GetLine(i);
+                    var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
 
-                    //var item = Files.
-
-                    //line[1] left first folder (within will be the file)
-                    //line[2] right folder (within will be the file)
-                    //line[3] match
+                    var left = Files[line[1]];
+                    var right = Files[line[2]];
+                    var match = float.Parse(line[3], System.Globalization.CultureInfo.InvariantCulture)/100f;
+                    
+                    Matches.Add(line[1], (left.folder, left.file, right.folder, right.file, match));                  
                 }              
             }
             finally{
@@ -98,14 +100,12 @@ namespace AutoCheck.Core.CopyDetectors{
         } 
 
         private string GetMinimalPath(List<(string folder, string file)> paths){
-            var left = paths.FirstOrDefault();
-            var leftPath = Path.Combine(left.folder, left.file);
+            var left = paths.FirstOrDefault().folder;
             foreach(var right in paths.Skip(1)){
-                var rightPath = Path.Combine(right.folder, right.file);
-                leftPath = GetMinimalPath(leftPath, rightPath);
+                left = GetMinimalPath(left, right.folder);
             }
 
-            return leftPath;
+            return left;
         }
 
         private string GetMinimalPath(string left, string right){
@@ -140,8 +140,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Checks if a potential copy has been detected.
         /// The Compare() method should be called firts.
         /// </summary>
-        /// <param name="source">The source item asked for.</param>
-        /// <param name="threshold">The threshold value, a higher one will be considered as copy.</param>
+        /// <param name="path">The path to a compared file.</param>
         /// <returns>True of copy has been detected.</returns>
         public override bool CopyDetected(string path){
             // if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");

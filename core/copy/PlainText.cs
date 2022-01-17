@@ -164,8 +164,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Checks if a potential copy has been detected.
         /// The Compare() method should be called firts.
         /// </summary>
-        /// <param name="source">The source item asked for.</param>
-        /// <param name="threshold">The threshold value, a higher one will be considered as copy.</param>
+        /// <param name="path">The path to a compared file.</param>
         /// <returns>True of copy has been detected.</returns>
         public override bool CopyDetected(string path){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
