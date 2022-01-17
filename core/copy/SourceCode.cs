@@ -29,7 +29,7 @@ namespace AutoCheck.Core.CopyDetectors{
     /// Copy detector for plain text files.
     /// </summary>
     public class SourceCode: Base{
-        private List<string> Folders {get; set;}
+        private Dictionary<string, (string folder, string file)> Files {get; set;}
         
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
         /// </summary>     
         public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){    
-            Folders = new List<string>();             
+            Files = new Dictionary<string, (string, string)>();             
         } 
 
         /// <summary>
@@ -56,7 +56,13 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <param name="folder">Path where the files will be looked for.</param>                       
         /// <param name="file">File that will be loaded into the copy detector.</param>
         public override void Load(string folder, string file){    
-            Folders.Add(folder);          
+            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");    
+
+            var key = Path.GetFileName(folder);                    
+            if(Files.ContainsKey(key)) throw new ArgumentInvalidException("Cannot process folders with the same name");
+            
+            Files.Add(key, (folder, file));    
         }
 
         /// <summary>
@@ -64,24 +70,25 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         public override void Compare(){  
             //JPlag uses one single path
-            var path = GetMinimalPath(Folders);                        
+            var path = GetMinimalPath(Files.Values.ToList());                        
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, DateTime.Now.ToString("yyyyMMddhhhhMMssffff"));
-            if(!Directory.Exists(output)) Directory.CreateDirectory(output);
-
-            var lang = Path.GetExtension(FilePattern).TrimStart('.');
-
+            if(!Directory.Exists(output)) Directory.CreateDirectory(output);      
+            
             try{
-                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} -p {FilePattern} {path}", Utils.UtilsFolder);
+                var lang = Path.GetExtension(FilePattern).TrimStart('.');
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {output}", Utils.UtilsFolder);
                 if(result.code != 0) throw new InvalidOperationException(result.response);
 
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' '); 
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ');                 
 
                 for(int i=0; i<csv.CsvDoc.Count; i++){
                     var line = csv.CsvDoc.GetLine(i);
 
-                    //line[1] left folder
-                    //line[2] right folder
+                    //var item = Files.
+
+                    //line[1] left first folder (within will be the file)
+                    //line[2] right folder (within will be the file)
                     //line[3] match
                 }              
             }
@@ -90,13 +97,15 @@ namespace AutoCheck.Core.CopyDetectors{
             }
         } 
 
-        private string GetMinimalPath(List<string> paths){
+        private string GetMinimalPath(List<(string folder, string file)> paths){
             var left = paths.FirstOrDefault();
+            var leftPath = Path.Combine(left.folder, left.file);
             foreach(var right in paths.Skip(1)){
-                left = GetMinimalPath(left, right);
+                var rightPath = Path.Combine(right.folder, right.file);
+                leftPath = GetMinimalPath(leftPath, rightPath);
             }
 
-            return left;
+            return leftPath;
         }
 
         private string GetMinimalPath(string left, string right){
