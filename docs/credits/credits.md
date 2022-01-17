@@ -33,6 +33,10 @@ Further details about the license can be found at [https://github.com/googleapis
 Under the MIT license by [zzzprojects](https://github.com/zzzprojects)\
 Further details about the license can be found at [https://github.com/khalidabuhakmeh/ConsoleTables/blob/master/LICENSE](https://github.com/zzzprojects/html-agility-pack/blob/master/LICENSE).    
 
+## [JPlag](https://github.com/jplag/jplag)
+Under the GPL-3.0 license by [jplag](https://github.com/jplag/jplag)\
+Further details about the license can be found at [https://github.com/jplag/JPlag/blob/master/LICENSE](https://github.com/jplag/JPlag/blob/master/LICENSE).
+
 ## [jQuery](https://jquery.com/)
 Under the MIT license by [jquery](https://github.com/jquery)\
 Further details about the license can be found at [https://github.com/jquery/jquery/blob/main/LICENSE.txt](https://github.com/jquery/jquery/blob/main/LICENSE.txt).
