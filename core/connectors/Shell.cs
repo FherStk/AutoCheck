@@ -180,21 +180,29 @@ namespace AutoCheck.Core.Connectors{
             //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
             using (var tokenSource = new CancellationTokenSource()){
                 var cancelToken = tokenSource.Token;
+                var exitCode = 0;
+                var stdOut = string.Empty;
+                var stdErr = string.Empty;
 
                 var task = Task.Run(() => {
                     if(IsLocal){
                         Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
-                        //return (r.code, (r.code > 0 ? r.stderr : r.stdout));
-                        return (r.code, (string.IsNullOrEmpty(r.stderr) ? r.stdout : r.stderr));
+                        exitCode = r.code;
+                        stdOut = r.stdout;
+                        stdErr = r.stderr;
                     }
                     else{        
                         this.RemoteShell.Connect();
                         SshCommand s = this.RemoteShell.RunCommand(command);
                         this.RemoteShell.Disconnect();
 
-                        //return (s.ExitStatus, (s.ExitStatus > 0 ? s.Error : s.Result)); //find command returns 1 when permission denied
-                        return (s.ExitStatus, (string.IsNullOrEmpty(s.Error) ? s.Result : s.Error));
+                        exitCode = s.ExitStatus;
+                        stdOut = s.Result;
+                        stdErr = s.Error;
                     }
+
+                    return (exitCode, (string.IsNullOrEmpty(stdErr.Trim(Environment.NewLine.ToArray())) ? stdOut : stdErr));
+
                 }, cancelToken);
                 
                 if(timeout == 0) task.Wait();

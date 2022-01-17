@@ -47,11 +47,13 @@ namespace AutoCheck.Test.Checkers
         [Test]
         public void Load_KO()
         {     
-            var dest =  Path.Combine(SamplesScriptFolder, "temp", "test1"); 
-            if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);
+            var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test1"); 
+            var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test2"); 
+            if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
+            if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
-            var file1 = GetSampleFile(dest, "sample1.java");
-            var file2 = GetSampleFile(dest, "sample2.java");
+            var file1 = GetSampleFile(dest1, "sample1.java");
+            var file2 = GetSampleFile(dest2, "sample2.java");
             File.Copy(GetSampleFile("sample1.java"), file1);
             File.Copy(GetSampleFile("sample2.java"), file2);
             
@@ -59,7 +61,7 @@ namespace AutoCheck.Test.Checkers
             {                         
                 Assert.Throws<ArgumentNullException>(() => cd.Load(string.Empty));
                 Assert.Throws<DirectoryNotFoundException>(() => cd.Load(_FAKE));
-                Assert.Throws<ArgumentInvalidException>(() => cd.Load(dest));
+                Assert.Throws<ArgumentInvalidException>(() => cd.Load(dest1));
             }
 
             using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0, "*.java"))
@@ -69,7 +71,7 @@ namespace AutoCheck.Test.Checkers
             }
         } 
 
-         [Test]
+        [Test]
         public void Load_OK()
         {                
             var dest1 =  Path.Combine(SamplesScriptFolder, "temp", "test2", "folder1"); 
@@ -205,7 +207,7 @@ namespace AutoCheck.Test.Checkers
                 Assert.AreEqual(Path.GetFileName(file1), res.File);               
                 Assert.AreEqual(Path.GetFileName(file2), res.matches[0].File);
                 
-                Assert.AreEqual(0.828000009f, res.matches[0].Match);
+                Assert.AreEqual(0.81099999f, res.matches[0].Match);
             }
         }                    
     }

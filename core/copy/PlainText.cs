@@ -112,7 +112,7 @@ namespace AutoCheck.Core.CopyDetectors{
         public override void Load(string folder, string file){   
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");            
-            if(Index.ContainsKey(folder)) throw new ArgumentInvalidException("Only one file per folder is allowed.");   //Because files from different folders (students) are compared, and the folder will be de unique key to distinguish between sources.
+            if(Index.ContainsKey(folder)) throw new ArgumentInvalidException("Two compared files cannot share the same folder because this folder must be used as an unique key.");   //Because files from different folders (students) are compared, and the folder will be de unique key to distinguish between sources.
 
             Index.Add(folder, Files.Count);
             Files.Add(new File(folder, file));                        
