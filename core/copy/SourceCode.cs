@@ -97,7 +97,51 @@ namespace AutoCheck.Core.CopyDetectors{
             finally{
                 Directory.Delete(output, true);
             }
-        } 
+        }         
+
+        /// <summary>
+        /// Checks if a potential copy has been detected.
+        /// The Compare() method should be called firts.
+        /// </summary>
+        /// <param name="path">The path to a compared file.</param>
+        /// <returns>True of copy has been detected.</returns>
+        public override bool CopyDetected(string path){
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(!Files.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
+
+            int i = Files[path];   
+            for(int j=0; j < Files.Count(); j++){
+                if(i != j){
+                    if(Matches[i,j] >= Threshold) return true;     
+                }                        
+            }            
+           
+            return false;
+        }
+
+        
+
+        /// <summary>
+        /// Disposes the current copy detector instance and releases its internal objects.
+        /// </summary>
+        public override void Dispose(){            
+        }   
+
+        /// <summary>
+        /// Returns a printable details list, containing information about the comparissons (student, source and % of match).
+        /// </summary>
+        /// <param name="path">Path where the files has been loaded.</param>
+        /// <returns>Left file followed by all the right files compared with its matching score.</returns>
+        public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path){
+            // int i = Index[path];   
+            var matches = new List<(string, string, float)>();            
+            // for(int j=0; j < Files.Count(); j++){                
+            //     if(i != j) matches.Add((Files[j].Folder, Files[j].Path, Matches[i,j]));                     
+            // }            
+           
+            // return (Files[i].Folder, Files[i].Path, matches.ToArray());
+            return ("", "", matches.ToArray());
+        }  
 
         private string GetMinimalPath(List<(string folder, string file)> paths){
             var left = paths.FirstOrDefault().folder;
@@ -135,49 +179,5 @@ namespace AutoCheck.Core.CopyDetectors{
             return minPath;
 
         }
-
-        /// <summary>
-        /// Checks if a potential copy has been detected.
-        /// The Compare() method should be called firts.
-        /// </summary>
-        /// <param name="path">The path to a compared file.</param>
-        /// <returns>True of copy has been detected.</returns>
-        public override bool CopyDetected(string path){
-            // if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
-            // if(!Index.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
-
-            // int i = Index[path];   
-            // for(int j=0; j < Files.Count(); j++){
-            //     if(i != j){
-            //         if(Matches[i,j] >= Threshold) return true;     
-            //     }                        
-            // }            
-           
-            return false;
-        }
-
-        
-
-        /// <summary>
-        /// Disposes the current copy detector instance and releases its internal objects.
-        /// </summary>
-        public override void Dispose(){            
-        }   
-
-        /// <summary>
-        /// Returns a printable details list, containing information about the comparissons (student, source and % of match).
-        /// </summary>
-        /// <param name="path">Path where the files has been loaded.</param>
-        /// <returns>Left file followed by all the right files compared with its matching score.</returns>
-        public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path){
-            // int i = Index[path];   
-            var matches = new List<(string, string, float)>();            
-            // for(int j=0; j < Files.Count(); j++){                
-            //     if(i != j) matches.Add((Files[j].Folder, Files[j].Path, Matches[i,j]));                     
-            // }            
-           
-            // return (Files[i].Folder, Files[i].Path, matches.ToArray());
-            return ("", "", matches.ToArray());
-        }  
     }
 }
