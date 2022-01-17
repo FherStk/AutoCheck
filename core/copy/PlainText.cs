@@ -19,7 +19,6 @@
 */
 
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
@@ -109,7 +108,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Loads the given file into the local collection, in order to compare it when Compare() is called.
         /// </summary>
         /// <param name="folder">Path where the files will be looked for.</param>                       
-        /// /// <param name="file">File that will be loaded into the copy detector.</param>
+        /// <param name="file">File that will be loaded into the copy detector.</param>
         public override void Load(string folder, string file){   
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");            
