@@ -122,9 +122,9 @@ namespace AutoCheck.Test.Checkers
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
             var file1 = GetSampleFile(dest1, "sample1.java");
-            var file2 = GetSampleFile(dest2, "sample1.java");
+            var file2 = GetSampleFile(dest2, "sample2.java");
             File.Copy(GetSampleFile("sample1.java"), file1);
-            File.Copy(GetSampleFile("sample2.java"), file2);
+            File.Copy(GetSampleFile("sample1.java"), file2);
 
             using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(1, "sample1.java"))
             {                                        
@@ -149,12 +149,12 @@ namespace AutoCheck.Test.Checkers
             var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test5", "folder2"); 
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
-            var file1 = GetSampleFile(dest1, "sample1.txt");
-            var file2 = GetSampleFile(dest2, "sample2.txt");
-            File.Copy(GetSampleFile("lorem1.txt"), file1);
-            File.Copy(GetSampleFile("lorem2.txt"), file2);            
+            var file1 = GetSampleFile(dest1, "sample1.java");
+            var file2 = GetSampleFile(dest2, "sample2.java");
+            File.Copy(GetSampleFile("sample1.java"), file1);
+            File.Copy(GetSampleFile("sample2.java"), file2);
 
-            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.6f, "*.txt"))
+            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.9f, "*.java"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  
@@ -165,7 +165,7 @@ namespace AutoCheck.Test.Checkers
                 Assert.IsFalse(cd.CopyDetected(dest2));                
             }
 
-            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.5f, "*.txt"))
+            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.8f, "*.java"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  
@@ -186,12 +186,12 @@ namespace AutoCheck.Test.Checkers
             var dest2 =  Path.Combine(SamplesScriptFolder, "temp", "test6", "folder2"); 
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
-            var file1 = GetSampleFile(dest1, "sample1.txt");
-            var file2 = GetSampleFile(dest2, "sample2.txt");
-            File.Copy(GetSampleFile("lorem1.txt"), file1);
-            File.Copy(GetSampleFile("lorem2.txt"), file2);            
+            var file1 = GetSampleFile(dest1, "sample1.java");
+            var file2 = GetSampleFile(dest2, "sample2.java");
+            File.Copy(GetSampleFile("sample1.java"), file1);
+            File.Copy(GetSampleFile("sample2.java"), file2);
 
-            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.6f, "*.txt"))
+            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(0.6f, "*.java"))
             {                                                       
                 Assert.DoesNotThrow(() => cd.Load(file1));                
                 Assert.DoesNotThrow(() => cd.Load(file2));  
@@ -205,7 +205,7 @@ namespace AutoCheck.Test.Checkers
                 Assert.AreEqual(Path.GetFileName(file1), res.File);               
                 Assert.AreEqual(Path.GetFileName(file2), res.matches[0].File);
                 
-                Assert.AreEqual(0.582976282f, res.matches[0].Match);
+                Assert.AreEqual(0.828000009f, res.matches[0].Match);
             }
         }                    
     }

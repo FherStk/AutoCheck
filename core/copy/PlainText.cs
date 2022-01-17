@@ -29,7 +29,7 @@ namespace AutoCheck.Core.CopyDetectors{
     /// Copy detector for plain text files.
     /// </summary>
     public class PlainText: Base{
-        private class File{
+        protected class File{
             public string Folder {get; set;}
             public string Path {get; set;}
             public int WordCount {get; set;}
@@ -50,10 +50,10 @@ namespace AutoCheck.Core.CopyDetectors{
             } 
         }        
         
-        private Dictionary<string, int> Index {get; set;}        
-        private List<File> Files {get; set;}
-        private float[,] Matches {get; set;}                
-        private List<Diff>[,] Diffs {get; set;}
+        protected Dictionary<string, int> Index {get; set;}        
+        protected List<File> Files {get; set;}
+        protected float[,] Matches {get; set;}                
+        protected List<Diff>[,] Diffs {get; set;}
         
         /// <summary>
         /// The weight that sentence matching (different documents with the same sentences within) will have when computing the global matching percentage.

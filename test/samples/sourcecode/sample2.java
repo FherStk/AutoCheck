@@ -1,16 +1,25 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class E5 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+public class E1 {
+  public static void main(String[] args) {
 
-        System.out.println("Escriu 2 noms");
+    Scanner sc = new Scanner(System.in);
 
-        String a = sc.nextLine();
-        String b = sc.nextLine();
+    int hora = sc.nextInt();
+    int minutos = sc.nextInt();
+    int porcentaje = sc.nextInt();
 
-        if(a.charAt(0) == b.charAt(0)) {
-        }
+    if (minutos == 0){
+      System.out.println("OPEN");
+    } else if (porcentaje < 50 && minutos <= 44) {
+        System.out.println("OPEN");
+    } else {
+        System.out.println("CLOSE");
     }
+
+    for(int i=0; i<10; i++){
+        System.out.println("This does nothing.");
+    }
+  }
 }

@@ -28,51 +28,20 @@ namespace AutoCheck.Core.CopyDetectors{
     /// <summary>
     /// Copy detector for plain text files.
     /// </summary>
-    public class SourceCode: Base{
-        private Dictionary<string, (string folder, string file)> Files {get; set;}
-        private Dictionary<string, (string leftFolder, string leftFile, string rightFolder, string rightFile, float match)> Matches {get; set;}
-        
-
-        /// <summary>
-        /// The amount of items loaded into the copy detector.
-        /// </summary>
-        /// <value></value>
-        public override int Count {
-            get {
-                return 0;
-            }
-        }  
-
+    public class SourceCode: PlainText{   
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
         /// </summary>     
-        public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){    
-            Files = new Dictionary<string, (string, string)>();   
-            Matches = new Dictionary<string, (string leftFolder, string leftFile, string rightFolder, string rightFile, float match)>();          
+        public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){               
         } 
-
-        /// <summary>
-        /// Loads the given file into the local collection, in order to compare it when Compare() is called.
-        /// </summary>
-        /// <param name="folder">Path where the files will be looked for.</param>                       
-        /// <param name="file">File that will be loaded into the copy detector.</param>
-        public override void Load(string folder, string file){    
-            if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
-            if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");    
-
-            var key = Path.GetFileName(folder);                    
-            if(Files.ContainsKey(key)) throw new ArgumentInvalidException("Cannot process folders with the same name");
-            
-            Files.Add(key, (folder, file));    
-        }
-
+       
         /// <summary>
         /// Compares all the files between each other
         /// </summary>
         public override void Compare(){  
             //JPlag uses one single path
-            var path = GetMinimalPath(Files.Values.ToList());                        
+            var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, DateTime.Now.ToString("yyyyMMddhhhhMMssffff"));
             if(!Directory.Exists(output)) Directory.CreateDirectory(output);      
@@ -83,15 +52,27 @@ namespace AutoCheck.Core.CopyDetectors{
                 if(result.code != 0) throw new InvalidOperationException(result.response);
 
                 var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ', false);                 
+                var folders = new Dictionary<string, int>();
 
+                //temp directory to match the JPlag directory name with the original index (directory path)
+                foreach(var key in Index.Keys){
+                    folders.Add(Path.GetFileName(key), Index[key]);
+                }
+
+                Matches = new float[Files.Count(), Files.Count()];               
                 for(int i=0; i<csv.CsvDoc.Count; i++){
                     var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
 
-                    var left = Files[line[1]];
-                    var right = Files[line[2]];
+                    var left = Files[folders[line[1]]];
+                    var right = Files[folders[line[2]]];                    
                     var match = float.Parse(line[3], System.Globalization.CultureInfo.InvariantCulture)/100f;
-                    
-                    Matches.Add(line[1], (left.folder, left.file, right.folder, right.file, match));                  
+
+                    Matches[folders[line[1]], folders[line[2]]] = match;
+                    Matches[folders[line[2]], folders[line[1]]] = match;
+                }
+
+                for(int i=0; i<Matches.GetLength(0); i++){
+                    Matches[i, i] = 1;
                 }              
             }
             finally{
@@ -107,9 +88,9 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <returns>True of copy has been detected.</returns>
         public override bool CopyDetected(string path){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
-            if(!Files.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
+            if(!Index.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
 
-            int i = Files[path];   
+            int i = Index[path];   
             for(int j=0; j < Files.Count(); j++){
                 if(i != j){
                     if(Matches[i,j] >= Threshold) return true;     
@@ -118,35 +99,11 @@ namespace AutoCheck.Core.CopyDetectors{
            
             return false;
         }
-
         
-
-        /// <summary>
-        /// Disposes the current copy detector instance and releases its internal objects.
-        /// </summary>
-        public override void Dispose(){            
-        }   
-
-        /// <summary>
-        /// Returns a printable details list, containing information about the comparissons (student, source and % of match).
-        /// </summary>
-        /// <param name="path">Path where the files has been loaded.</param>
-        /// <returns>Left file followed by all the right files compared with its matching score.</returns>
-        public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path){
-            // int i = Index[path];   
-            var matches = new List<(string, string, float)>();            
-            // for(int j=0; j < Files.Count(); j++){                
-            //     if(i != j) matches.Add((Files[j].Folder, Files[j].Path, Matches[i,j]));                     
-            // }            
-           
-            // return (Files[i].Folder, Files[i].Path, matches.ToArray());
-            return ("", "", matches.ToArray());
-        }  
-
-        private string GetMinimalPath(List<(string folder, string file)> paths){
-            var left = paths.FirstOrDefault().folder;
+        private string GetMinimalPath(List<File> paths){
+            var left = paths.FirstOrDefault().Folder;
             foreach(var right in paths.Skip(1)){
-                left = GetMinimalPath(left, right.folder);
+                left = GetMinimalPath(left, right.Folder);
             }
 
             return left;
