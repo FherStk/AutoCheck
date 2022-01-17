@@ -184,7 +184,8 @@ namespace AutoCheck.Core.Connectors{
                 var task = Task.Run(() => {
                     if(IsLocal){
                         Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
-                        return (r.code, (r.code > 0 ? r.stderr : r.stdout));
+                        //return (r.code, (r.code > 0 ? r.stderr : r.stdout));
+                        return (r.code, (string.IsNullOrEmpty(r.stderr) ? r.stdout : r.stderr));
                     }
                     else{        
                         this.RemoteShell.Connect();
