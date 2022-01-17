@@ -75,7 +75,15 @@ namespace AutoCheck.Core.CopyDetectors{
                 var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} -p {FilePattern} {path}", Utils.UtilsFolder);
                 if(result.code != 0) throw new InvalidOperationException(result.response);
 
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';');                
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' '); 
+
+                for(int i=0; i<csv.CsvDoc.Count; i++){
+                    var line = csv.CsvDoc.GetLine(i);
+
+                    //line[1] left folder
+                    //line[2] right folder
+                    //line[3] match
+                }              
             }
             finally{
                 Directory.Delete(output, true);

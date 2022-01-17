@@ -100,7 +100,7 @@ namespace AutoCheck.Test.Checkers
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);
             
             var file1 = GetSampleFile(dest1, "sample1.java");
-            var file2 = GetSampleFile(dest2, "sample2.java");
+            var file2 = GetSampleFile(dest2, "sample1.java");
             File.Copy(GetSampleFile("sample1.java"), file1);
             File.Copy(GetSampleFile("sample1.java"), file2);    
 
