@@ -10,7 +10,7 @@ public class E5 {
         String a = sc.nextLine();
         String b = sc.nextLine();
 
-        if = (a.charAt(0) == b.charAt(0)) {
-        
-
-
+        if(a.charAt(0) == b.charAt(0)) {
+        }
+    }
+}

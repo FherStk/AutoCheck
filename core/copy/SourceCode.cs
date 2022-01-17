@@ -29,7 +29,7 @@ namespace AutoCheck.Core.CopyDetectors{
     /// Copy detector for plain text files.
     /// </summary>
     public class SourceCode: Base{
-        private List<string> Files {get; set;}
+        private List<string> Folders {get; set;}
         
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
         /// </summary>     
         public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){    
-            Files = new List<string>();             
+            Folders = new List<string>();             
         } 
 
         /// <summary>
@@ -56,24 +56,68 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <param name="folder">Path where the files will be looked for.</param>                       
         /// <param name="file">File that will be loaded into the copy detector.</param>
         public override void Load(string folder, string file){    
-            Files.Add(file);          
+            Folders.Add(folder);          
         }
 
         /// <summary>
         /// Compares all the files between each other
         /// </summary>
         public override void Compare(){  
+            //JPlag uses one single path
+            var path = GetMinimalPath(Folders);                        
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, DateTime.Now.ToString("yyyyMMddhhhhMMssffff"));
             if(!Directory.Exists(output)) Directory.CreateDirectory(output);
 
-            //TODO: load all files. The JPlag tool uses a set of paths and filenames. Maybe can be done without copying.
+            var lang = Path.GetExtension(FilePattern).TrimStart('.');
 
-            //var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r \"{output}\" -p \"{Path.GetExtension(FilePattern).TrimStart('.')}\" \"{RootPath}\"", Utils.UtilsFolder);
+            try{
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} -p {FilePattern} {path}", Utils.UtilsFolder);
+                if(result.code != 0) throw new InvalidOperationException(result.response);
 
-            //TODO: read the file "mayches_avg.csv"            
-            Directory.Delete(output, true);
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';');                
+            }
+            finally{
+                Directory.Delete(output, true);
+            }
         } 
+
+        private string GetMinimalPath(List<string> paths){
+            var left = paths.FirstOrDefault();
+            foreach(var right in paths.Skip(1)){
+                left = GetMinimalPath(left, right);
+            }
+
+            return left;
+        }
+
+        private string GetMinimalPath(string left, string right){
+            var absolute = left.StartsWith("/");
+            var leftPath = new List<string>();            
+            while(left.Length > 1){
+                leftPath.Add(Path.GetFileName(left));
+                left = Path.GetDirectoryName(left);
+            }
+
+            var rightPath = new List<string>();
+            while(right.Length > 1){
+                rightPath.Add(Path.GetFileName(right));
+                right = Path.GetDirectoryName(right);
+            }
+
+            leftPath.Reverse();
+            rightPath.Reverse();
+
+            var minPath = string.Empty;
+            for(var i=0; i<leftPath.Count; i++){
+                if(leftPath[i].Equals(rightPath[i])) minPath = Path.Combine(minPath, leftPath[i]);
+                else break;
+            }
+
+            if(absolute && !minPath.StartsWith("/")) minPath = "/" + minPath;
+            return minPath;
+
+        }
 
         /// <summary>
         /// Checks if a potential copy has been detected.
