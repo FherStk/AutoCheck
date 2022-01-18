@@ -19,7 +19,6 @@
 */
 
 using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
@@ -30,7 +29,7 @@ namespace AutoCheck.Core.CopyDetectors{
     /// Copy detector for plain text files.
     /// </summary>
     public class PlainText: Base{
-        private class File{
+        protected class File{
             public string Folder {get; set;}
             public string Path {get; set;}
             public int WordCount {get; set;}
@@ -51,10 +50,10 @@ namespace AutoCheck.Core.CopyDetectors{
             } 
         }        
         
-        private Dictionary<string, int> Index {get; set;}        
-        private List<File> Files {get; set;}
-        private float[,] Matches {get; set;}                
-        private List<Diff>[,] Diffs {get; set;}
+        protected Dictionary<string, int> Index {get; set;}        
+        protected List<File> Files {get; set;}
+        protected float[,] Matches {get; set;}                
+        protected List<Diff>[,] Diffs {get; set;}
         
         /// <summary>
         /// The weight that sentence matching (different documents with the same sentences within) will have when computing the global matching percentage.
@@ -109,11 +108,11 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Loads the given file into the local collection, in order to compare it when Compare() is called.
         /// </summary>
         /// <param name="folder">Path where the files will be looked for.</param>                       
-        /// /// <param name="file">File that will be loaded into the copy detector.</param>
+        /// <param name="file">File that will be loaded into the copy detector.</param>
         public override void Load(string folder, string file){   
             if(string.IsNullOrEmpty(folder)) throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");            
-            if(Index.ContainsKey(folder)) throw new ArgumentInvalidException("Only one file per folder is allowed.");   //Because files from different folders (students) are compared, and the folder will be de unique key to distinguish between sources.
+            if(Index.ContainsKey(folder)) throw new ArgumentInvalidException("Two compared files cannot share the same folder because this folder must be used as an unique key.");   //Because files from different folders (students) are compared, and the folder will be de unique key to distinguish between sources.
 
             Index.Add(folder, Files.Count);
             Files.Add(new File(folder, file));                        
@@ -165,8 +164,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Checks if a potential copy has been detected.
         /// The Compare() method should be called firts.
         /// </summary>
-        /// <param name="source">The source item asked for.</param>
-        /// <param name="threshold">The threshold value, a higher one will be considered as copy.</param>
+        /// <param name="path">The path to a compared file.</param>
         /// <returns>True of copy has been detected.</returns>
         public override bool CopyDetected(string path){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");

@@ -71,7 +71,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         /// <param name="path">Path to a file or folder; if the path points to a folder, the first file found using the FilePattern property will be loaded.</param>                       
         public virtual void Load(string path){   
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");            
 
             if(!string.IsNullOrEmpty(Path.GetExtension(path))) Load(Path.GetDirectoryName(path), Path.GetFileName(path));
             else{            
