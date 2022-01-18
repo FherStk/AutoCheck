@@ -68,6 +68,16 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// Returns the current app utils folder
+        /// </summary>
+        /// <returns>A folder's path.</returns>
+        public static string UtilsFolder{
+            get{
+                return Path.Combine(Path.GetDirectoryName(AppFolder), "core", "utils");
+            }
+        }
+
+        /// <summary>
         /// Returns the current app scripts folder
         /// </summary>
         /// <returns>A folder's path.</returns>

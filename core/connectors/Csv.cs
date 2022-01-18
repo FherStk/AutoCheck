@@ -67,7 +67,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="file">CSV file path.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public CsvDocument(string file, char fieldDelimiter=',', char textDelimiter='"'){
+        /// <param name="headers">True if the first row are headers.</param>
+        public CsvDocument(string file, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
             this.FielDelimiter = fieldDelimiter;
             this.TextDelimiter = textDelimiter;
 
@@ -77,8 +78,17 @@ namespace AutoCheck.Core.Connectors{
                 string[] lines = File.ReadAllLines(file);
                 if(lines.Length == 0) return;
 
-                this.Content = SplitFields(lines[0]).ToDictionary(x => x, x=> new List<string>());
-                foreach(string line in lines.Skip(1).Where(x => !string.IsNullOrEmpty(x))){
+                var skip = 1;
+                var firstRow = SplitFields(lines[0]);
+                if(!headers){
+                    skip = 0;
+                    for(int i=0; i<firstRow.Count(); i++){
+                        firstRow[i] = $"header_{i+1}";
+                    }
+                }
+
+                this.Content = firstRow.ToDictionary(x => x, x=> new List<string>());
+                foreach(string line in lines.Skip(skip).Where(x => !string.IsNullOrEmpty(x))){
                     string[] items = SplitFields(line);
 
                     for(int i = 0; i < items.Length; i++){
@@ -164,8 +174,9 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="filePath">CSV file path.</param>
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
-        public Csv(string filePath, char fieldDelimiter=',', char textDelimiter='"'){
-           Parse(filePath, fieldDelimiter, textDelimiter);
+        /// <param name="headers">True if the first row are headers.</param>
+        public Csv(string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
+           Parse(filePath, fieldDelimiter, textDelimiter, headers);
         }
 
         /// <summary>
@@ -175,11 +186,14 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="host">Host address where the command will be run.</param>
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
-        /// <param name="port">The remote machine's port where SSH is listening to.</param>
+        /// <param name="port">The remote machine's port where SSH is listening to.</param>        
         /// <param name="filePath">CSV file path.</param>
-        public Csv(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, char fieldDelimiter=',', char textDelimiter='"'){  
+        /// <param name="fieldDelimiter">Field delimiter char.</param>
+        /// <param name="textDelimiter">Text delimiter char.</param>
+        /// <param name="headers">True if the first row are headers.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, int port, string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){  
             ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
-                Parse(filePath, fieldDelimiter, textDelimiter);
+                Parse(filePath, fieldDelimiter, textDelimiter, headers);
             }));      
         }
 
@@ -191,14 +205,17 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="username">The remote machine's username which one will be used to login.</param>
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="filePath">CSV file path.</param>
-        public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"'): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter){
+        /// <param name="fieldDelimiter">Field delimiter char.</param>
+        /// <param name="textDelimiter">Text delimiter char.</param>
+        /// <param name="headers">True if the first row are headers.</param>
+        public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter, headers){
         }
 
-        private void Parse(string filePath, char fieldDelimiter=',', char textDelimiter='"'){
+        private void Parse(string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!File.Exists(filePath)) throw new FileNotFoundException();
 
-            this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter);
+            this.CsvDoc = new CsvDocument(filePath, fieldDelimiter, textDelimiter, headers);
             this.CsvDoc.Validate();
         }
         
