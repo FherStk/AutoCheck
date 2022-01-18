@@ -6,7 +6,12 @@ function reload(){
             reload();
         }, 1000);
     });
-}  
+} 
+
+function showMore(node){
+    $(node).hide();
+    $(node).next().show();
+}
 
 $(function(){  
     $.post("/home/CheckForUpdate", function(data){  
@@ -70,21 +75,30 @@ $(function(){
             $("#log > img").hide();
 
             //TODO: this must be append in async mode   
-            $.each(data, function() {      
-                //Multiple log files     
+            $.each(data, function(i) {      
+                //Multiple log files  
+                var logSelector = "#log > div";                                   
+                $(logSelector).append(
+                    '<div class="collapsable">\
+                        <div onclick="showMore(this);" class="header' + (i==0 ? ' hidden' : '') + '">Display more...</div>\
+                        <div class="content' + (i>0 ? ' hidden' : '') + '"></div>\
+                    </div>'
+                );
 
-                $.each(this, function() {                        
+                $.each(this, function() {                
+                    var lastLogSelector = logSelector + " > .collapsable:last-child > .content";
+
                     //TODO: this should come in two lines
                     if(this.Text != null && this.Text.startsWith("ERROR:")){
-                        $("#log > div").append('<label class="'  + this.Style + '">ERROR:</label><br>');
+                        $(lastLogSelector).append('<label class="'  + this.Style + '">ERROR:</label><br>');
                         this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
                     }
                     
-                    $("#log > div").append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
-                    if(this.BreakLine || this.Style == null) $("#log > div").append('<br>');
+                    $(lastLogSelector).append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
+                    if(this.BreakLine || this.Style == null) $(lastLogSelector).append('<br>');
                 });
 
-                $("#log > div").append('<br>');
+                $(logSelector).append('<br>');
             });
         });
 

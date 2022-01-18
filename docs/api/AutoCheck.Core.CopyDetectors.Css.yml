@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Css
     path: ../core/copy/Css.cs
@@ -36,6 +36,10 @@ items:
   - AutoCheck.Core.CopyDetectors.Base
   - AutoCheck.Core.CopyDetectors.PlainText
   inheritedMembers:
+  - AutoCheck.Core.CopyDetectors.PlainText.Index
+  - AutoCheck.Core.CopyDetectors.PlainText.Files
+  - AutoCheck.Core.CopyDetectors.PlainText.Matches
+  - AutoCheck.Core.CopyDetectors.PlainText.Diffs
   - AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
@@ -72,7 +76,7 @@ items:
   source:
     remote:
       path: core/copy/Css.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Css.cs
@@ -119,6 +123,30 @@ references:
   name: PlainText
   nameWithType: PlainText
   fullName: AutoCheck.Core.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Index
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Index
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  name: Index
+  nameWithType: PlainText.Index
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Index
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Files
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Files
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  name: Files
+  nameWithType: PlainText.Files
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Files
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Matches
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  name: Matches
+  nameWithType: PlainText.Matches
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Matches
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  name: Diffs
+  nameWithType: PlainText.Diffs
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Diffs
 - uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   commentId: P:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   parent: AutoCheck.Core.CopyDetectors.PlainText

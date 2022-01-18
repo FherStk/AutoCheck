@@ -8,6 +8,8 @@ items:
   - AutoCheck.Core.CopyDetectors.Css
   - AutoCheck.Core.CopyDetectors.Html
   - AutoCheck.Core.CopyDetectors.PlainText
+  - AutoCheck.Core.CopyDetectors.PlainText.File
+  - AutoCheck.Core.CopyDetectors.SourceCode
   - AutoCheck.Core.CopyDetectors.SqlLog
   - AutoCheck.Core.CopyDetectors.Xml
   langs:
@@ -42,6 +44,16 @@ references:
   name: PlainText
   nameWithType: PlainText
   fullName: AutoCheck.Core.CopyDetectors.PlainText
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText.File
+  name: PlainText.File
+  nameWithType: PlainText.File
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File
+- uid: AutoCheck.Core.CopyDetectors.SourceCode
+  commentId: T:AutoCheck.Core.CopyDetectors.SourceCode
+  name: SourceCode
+  nameWithType: SourceCode
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode
 - uid: AutoCheck.Core.CopyDetectors.SqlLog
   commentId: T:AutoCheck.Core.CopyDetectors.SqlLog
   name: SqlLog

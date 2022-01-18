@@ -9,10 +9,14 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.Compare
   - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.Count
+  - AutoCheck.Core.CopyDetectors.PlainText.Diffs
   - AutoCheck.Core.CopyDetectors.PlainText.Dispose
+  - AutoCheck.Core.CopyDetectors.PlainText.Files
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.Index
   - AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.Matches
   - AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   - AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight
   langs:
@@ -25,11 +29,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -46,6 +50,7 @@ items:
   derivedClasses:
   - AutoCheck.Core.CopyDetectors.Css
   - AutoCheck.Core.CopyDetectors.Html
+  - AutoCheck.Core.CopyDetectors.SourceCode
   - AutoCheck.Core.CopyDetectors.SqlLog
   - AutoCheck.Core.CopyDetectors.Xml
   inheritedMembers:
@@ -62,6 +67,146 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Index
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Index
+  id: Index
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Index
+  nameWithType: PlainText.Index
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Index
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Index
+    path: ../core/copy/PlainText.cs
+    startLine: 52
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: protected Dictionary<string, int> Index { get; set; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.Int32}
+    content.vb: Protected Property Index As Dictionary(Of String, Integer)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Index*
+  modifiers.csharp:
+  - protected
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Files
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Files
+  id: Files
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Files
+  nameWithType: PlainText.Files
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Files
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Files
+    path: ../core/copy/PlainText.cs
+    startLine: 53
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: protected List<PlainText.File> Files { get; set; }
+    parameters: []
+    return:
+      type: List{AutoCheck.Core.CopyDetectors.PlainText.File}
+    content.vb: Protected Property Files As List(Of PlainText.File)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Files*
+  modifiers.csharp:
+  - protected
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Matches
+  id: Matches
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Matches
+  nameWithType: PlainText.Matches
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Matches
+    path: ../core/copy/PlainText.cs
+    startLine: 54
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: protected float[, ] Matches { get; set; }
+    parameters: []
+    return:
+      type: System.Single[,]
+    content.vb: Protected Property Matches As Single(,)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Matches*
+  modifiers.csharp:
+  - protected
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  id: Diffs
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Diffs
+  nameWithType: PlainText.Diffs
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Diffs
+    path: ../core/copy/PlainText.cs
+    startLine: 55
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: protected List<Diff>[, ] Diffs { get; set; }
+    parameters: []
+    return:
+      type: List{Google.DiffMatchPatch.Diff}[,]
+    content.vb: Protected Property Diffs As List(Of Diff)(,)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.Diffs*
+  modifiers.csharp:
+  - protected
+  - get
+  - set
+  modifiers.vb:
+  - Protected
 - uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   commentId: P:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   id: SentenceMatchWeight
@@ -76,11 +221,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: SentenceMatchWeight
     path: ../core/copy/PlainText.cs
-    startLine: 62
+    startLine: 61
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -114,11 +259,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -152,11 +297,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 74
+    startLine: 73
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -190,11 +335,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
-    startLine: 80
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -231,11 +376,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
-    startLine: 89
+    startLine: 88
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -268,11 +413,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
-    startLine: 102
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -303,11 +448,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
-    startLine: 112
+    startLine: 111
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -345,11 +490,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
-    startLine: 124
+    startLine: 123
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -380,11 +525,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
-    startLine: 170
+    startLine: 168
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -395,6 +540,7 @@ items:
     parameters:
     - id: path
       type: System.String
+      description: The path to a compared file.
     return:
       type: System.Boolean
       description: True of copy has been detected.
@@ -421,11 +567,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs
-    startLine: 189
+    startLine: 187
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -809,6 +955,286 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Index*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Index
+  name: Index
+  nameWithType: PlainText.Index
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Index
+- uid: Dictionary{System.String,System.Int32}
+  commentId: '!:Dictionary{System.String,System.Int32}'
+  definition: Dictionary`2
+  name: Dictionary<String, Int32>
+  nameWithType: Dictionary<String, Int32>
+  fullName: Dictionary<System.String, System.Int32>
+  nameWithType.vb: Dictionary(Of String, Int32)
+  fullName.vb: Dictionary(Of System.String, System.Int32)
+  name.vb: Dictionary(Of String, Int32)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Files*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Files
+  name: Files
+  nameWithType: PlainText.Files
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Files
+- uid: List{AutoCheck.Core.CopyDetectors.PlainText.File}
+  commentId: '!:List{AutoCheck.Core.CopyDetectors.PlainText.File}'
+  definition: List`1
+  name: List<PlainText.File>
+  nameWithType: List<PlainText.File>
+  fullName: List<AutoCheck.Core.CopyDetectors.PlainText.File>
+  nameWithType.vb: List(Of PlainText.File)
+  fullName.vb: List(Of AutoCheck.Core.CopyDetectors.PlainText.File)
+  name.vb: List(Of PlainText.File)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.File
+    name: PlainText.File
+    nameWithType: PlainText.File
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.File
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.File
+    name: PlainText.File
+    nameWithType: PlainText.File
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.File
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Matches*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Matches
+  name: Matches
+  nameWithType: PlainText.Matches
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Matches
+- uid: System.Single[,]
+  isExternal: true
+  name: Single[,]
+  nameWithType: Single[,]
+  fullName: System.Single[,]
+  nameWithType.vb: Single(,)
+  fullName.vb: System.Single(,)
+  name.vb: Single(,)
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Diffs*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  name: Diffs
+  nameWithType: PlainText.Diffs
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+- uid: List{Google.DiffMatchPatch.Diff}[,]
+  isExternal: true
+  name: List<Diff>[,]
+  nameWithType: List<Diff>[,]
+  fullName: List<Google.DiffMatchPatch.Diff>[,]
+  nameWithType.vb: List(Of Diff)(,)
+  fullName.vb: List(Of Google.DiffMatchPatch.Diff)(,)
+  name.vb: List(Of Diff)(,)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Google.DiffMatchPatch.Diff
+    name: Diff
+    nameWithType: Diff
+    fullName: Google.DiffMatchPatch.Diff
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
 - uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight*
   commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   name: SentenceMatchWeight

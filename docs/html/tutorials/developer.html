@@ -139,10 +139,10 @@
 <h3 id="connectors">Connectors</h3>
 <p>A connector is a bridge between the application and a data source (database, file, whatever) so, a new connector can be created for communication with a new type of file or service if needed. All the connectors must inherit from <code>AutoCheck.Core.Connectors.Base</code> class and provide access to the connected source (connection string, parsed document, etc.) and any helper or auxiliary method needed for CRUD operations.</p>
 <p>Some complex connectors could offer a set of overloaded methods to allow more flexibility with opperations, but custom typed arguments must be avoided in order to allow interaction between a yaml script file and the connector; please, just use primitives, arrays and dictionaries as argument types for your connector methods.</p>
-<h3 id="copy-detectors">Copy detectors</h3>
+<h3 id="copy-detectors">Copy Detectors</h3>
 <p>The main goal of a copy detector is to check if an student's file looks like a potential a copy of another's one. All the copy detectors must inherit from <code>AutoCheck.Core.CopyDetectors.Base</code> class and provide an implementation for their abstract methods (it will depend on every file type or content).</p>
 <h3 id="scripts">Scripts</h3>
-<p>A script is a YAML file containing a set of calls to connectors in order to perform CRUD operations and validate its results. The class <code>AutoCheck.Core.Script</code> acts like a parser or interpeter for those YAML files and represents the pure AutoCheck's corem, for this reason, this class has no intended to be extended or manipulated in any way but, if you need to change some behaviour, feel free to extend it using inheritance and making <code>protected</code> the item you need to manipulate <em>under your own risk</em>.</p>
+<p>A script is a YAML file containing a set of calls to connectors in order to perform CRUD operations and validate its results. The class <code>AutoCheck.Core.Script</code> acts like a parser or interpeter for those YAML files and represents the pure AutoCheck's core, for this reason, this class has no intended to be extended or manipulated in any way but, if you need to change some behaviour, feel free to extend it using inheritance and making <code>protected</code> the item you need to manipulate <em>under your own risk</em>.</p>
 </article>
           </div>
           

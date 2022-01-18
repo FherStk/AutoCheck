@@ -1,0 +1,502 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText.File
+  id: PlainText.File
+  parent: AutoCheck.Core.CopyDetectors
+  children:
+  - AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  - AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  - AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  - AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  - AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  - AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  langs:
+  - csharp
+  - vb
+  name: PlainText.File
+  nameWithType: PlainText.File
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File
+  type: Class
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: File
+    path: ../core/copy/PlainText.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: 'protected class File : object'
+    content.vb: >-
+      Protected Class File
+          Inherits Object
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - AutoCheck.Core.CopyDetectors.PlainText.File.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - protected
+  - class
+  modifiers.vb:
+  - Protected
+  - Class
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  id: Folder
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: Folder
+  nameWithType: PlainText.File.Folder
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Folder
+    path: ../core/copy/PlainText.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public string Folder { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Folder As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  id: Path
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: PlainText.File.Path
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Path
+    path: ../core/copy/PlainText.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public string Path { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Path As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  id: WordCount
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: WordCount
+  nameWithType: PlainText.File.WordCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: WordCount
+    path: ../core/copy/PlainText.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public int WordCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property WordCount As Integer
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  id: LineCount
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: LineCount
+  nameWithType: PlainText.File.LineCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LineCount
+    path: ../core/copy/PlainText.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public int LineCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property LineCount As Integer
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  id: Content
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: Content
+  nameWithType: PlainText.File.Content
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Content
+    path: ../core/copy/PlainText.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public List<string> Content { get; set; }
+    parameters: []
+    return:
+      type: List{System.String}
+    content.vb: Public Property Content As List(Of String)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.Content*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: File(String, String)
+  nameWithType: PlainText.File.File(String, String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.File(System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/copy/PlainText.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public File(string folder, string file)
+    parameters:
+    - id: folder
+      type: System.String
+    - id: file
+      type: System.String
+    content.vb: Public Sub New(folder As String, file As String)
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  id: ToString
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: PlainText.File.ToString()
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.ToString()
+  type: Method
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ToString
+    path: ../core/copy/PlainText.cs
+    startLine: 47
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<PlainText.File>()
+  nameWithType: ObjectExtensions.DeepClone<PlainText.File>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.PlainText.File>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of PlainText.File)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.PlainText.File)()
+  name.vb: DeepClone(Of PlainText.File)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<PlainText.File>
+    nameWithType: ObjectExtensions.DeepClone<PlainText.File>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.PlainText.File>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of PlainText.File)
+    nameWithType: ObjectExtensions.DeepClone(Of PlainText.File)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.PlainText.File)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  name: Folder
+  nameWithType: PlainText.File.Folder
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  name: Path
+  nameWithType: PlainText.File.Path
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  name: WordCount
+  nameWithType: PlainText.File.WordCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  name: LineCount
+  nameWithType: PlainText.File.LineCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Content*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  name: Content
+  nameWithType: PlainText.File.Content
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+- uid: List{System.String}
+  commentId: '!:List{System.String}'
+  definition: List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.#ctor*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.#ctor
+  name: File
+  nameWithType: PlainText.File.File
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.File
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.ToString*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  name: ToString
+  nameWithType: PlainText.File.ToString
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.ToString

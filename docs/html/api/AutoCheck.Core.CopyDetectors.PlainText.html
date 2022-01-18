@@ -201,6 +201,12 @@
                             <a href="AutoCheck.CopyDetectors.PlainText.html" title="PlainText" class="">PlainText</a>
                           </li>
                           <li class="">
+                            <a href="AutoCheck.Core.CopyDetectors.PlainText.File.html" title="PlainText.File" class="">PlainText.File</a>
+                          </li>
+                          <li class="">
+                            <a href="AutoCheck.Core.CopyDetectors.SourceCode.html" title="SourceCode" class="">SourceCode</a>
+                          </li>
+                          <li class="">
                             <a href="AutoCheck.CopyDetectors.SqlLog.html" title="SqlLog" class="">SqlLog</a>
                           </li>
                           <li class="">
@@ -313,6 +319,7 @@
     <div class="level2"><span class="xref">PlainText</span></div>
       <div class="level3"><a class="xref" href="AutoCheck.CopyDetectors.Css.html">Css</a></div>
       <div class="level3"><a class="xref" href="AutoCheck.CopyDetectors.Html.html">Html</a></div>
+      <div class="level3"><a class="xref" href="AutoCheck.Core.CopyDetectors.SourceCode.html">SourceCode</a></div>
       <div class="level3"><a class="xref" href="AutoCheck.CopyDetectors.SqlLog.html">SqlLog</a></div>
       <div class="level3"><a class="xref" href="AutoCheck.Core.CopyDetectors.Xml.html">Xml</a></div>
   </div>
@@ -347,7 +354,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText__ctor_System_Single_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.%23ctor(System.Single%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L90">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L89">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText__ctor_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.#ctor*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText__ctor_System_Single_System_String_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.String)">PlainText(Single, String)</h4>
@@ -387,7 +394,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Count.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L81">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L80">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_Count_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Count*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Count" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Count">Count</h4>
@@ -417,10 +424,100 @@
   <div><a class="xref" href="AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Count">Base.Count</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Diffs.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Diffs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L56">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_CopyDetectors_PlainText_Diffs_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Diffs*"></a>
+  <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Diffs" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Diffs">Diffs</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;Diff&gt;[, ] Diffs { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Google.DiffMatchPatch.Diff.html">Diff</a>&gt;[,]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Files.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Files%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L54">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_CopyDetectors_PlainText_Files_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Files*"></a>
+  <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Files" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Files">Files</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;PlainText.File&gt; Files { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="AutoCheck.Core.CopyDetectors.PlainText.File.html">PlainText.File</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Index.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Index%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L53">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_CopyDetectors_PlainText_Index_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Index*"></a>
+  <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Index" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Index">Index</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;string, int&gt; Index { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_LineCountWeight.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L75">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L74">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_LineCountWeight_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_LineCountWeight" data-uid="AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight">LineCountWeight</h4>
@@ -448,10 +545,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Matches.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Matches%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L55">View Source</a>
+  </span>
+  <a id="AutoCheck_Core_CopyDetectors_PlainText_Matches_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Matches*"></a>
+  <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Matches" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Matches">Matches</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float[, ] Matches { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span>[,]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L63">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L62">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight" data-uid="AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight">SentenceMatchWeight</h4>
@@ -482,7 +609,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_WordCountWeight.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L69">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L68">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_WordCountWeight_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_WordCountWeight" data-uid="AutoCheck.Core.CopyDetectors.PlainText.WordCountWeight">WordCountWeight</h4>
@@ -515,7 +642,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Compare.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Compare%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L125">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L124">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_Compare_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Compare*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Compare" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Compare">Compare()</h4>
@@ -533,7 +660,7 @@
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_CopyDetected_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L171">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L169">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_CopyDetected_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.CopyDetected*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_CopyDetected_System_String_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)">CopyDetected(String)</h4>
@@ -558,7 +685,8 @@ The Compare() method should be called firts.</p>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td></td>
+        <td><p>The path to a compared file.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -585,7 +713,7 @@ The Compare() method should be called firts.</p>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Dispose.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L103">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L102">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_Dispose_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Dispose*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Dispose" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Dispose">Dispose()</h4>
@@ -603,7 +731,7 @@ The Compare() method should be called firts.</p>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_GetDetails_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L190">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L188">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_GetDetails_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.GetDetails*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_GetDetails_System_String_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)">GetDetails(String)</h4>
@@ -655,7 +783,7 @@ The Compare() method should be called firts.</p>
     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText_Load_System_String_System_String_.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText.Load(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L113">View Source</a>
+    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L112">View Source</a>
   </span>
   <a id="AutoCheck_Core_CopyDetectors_PlainText_Load_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Load*"></a>
   <h4 id="AutoCheck_Core_CopyDetectors_PlainText_Load_System_String_System_String_" data-uid="AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)">Load(String, String)</h4>
@@ -707,7 +835,7 @@ The Compare() method should be called firts.</p>
                     <a href="https://github.com/FherStk/AutoCheck/new/master/apiSpec/new?filename=AutoCheck_Core_CopyDetectors_PlainText.md&amp;value=---%0Auid%3A%20AutoCheck.Core.CopyDetectors.PlainText%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/FherStk/AutoCheck/blob/v2.14.1/core/copy/PlainText.cs/#L32" class="contribution-link">View Source</a>
+                    <a href="https://github.com/FherStk/AutoCheck/blob/master/core/copy/PlainText.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
