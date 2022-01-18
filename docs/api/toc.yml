@@ -72,6 +72,10 @@
     name: Html
   - uid: AutoCheck.Core.CopyDetectors.PlainText
     name: PlainText
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.File
+    name: PlainText.File
+  - uid: AutoCheck.Core.CopyDetectors.SourceCode
+    name: SourceCode
   - uid: AutoCheck.Core.CopyDetectors.SqlLog
     name: SqlLog
   - uid: AutoCheck.Core.CopyDetectors.Xml

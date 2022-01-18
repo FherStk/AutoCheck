@@ -292,24 +292,24 @@ references:
   commentId: T:AutoCheck.Core.Connectors.Csv
   fullName: AutoCheck.Core.Connectors.Csv
   nameWithType: Csv
-- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
-  name: Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
-  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Char_System_Char_
-  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char)
-  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Char, System.Char)
-  nameWithType: Csv.Csv(Utils.OS, String, String, String, Int32, String, Char, Char)
-- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
-  name: Csv(Utils.OS, String, String, String, String, Char, Char)
-  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_Char_System_Char_
-  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char)
-  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Char, System.Char)
-  nameWithType: Csv.Csv(Utils.OS, String, String, String, String, Char, Char)
-- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
-  name: Csv(String, Char, Char)
-  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_Char_System_Char_
-  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char)
-  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Char)
-  nameWithType: Csv.Csv(String, Char, Char)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char,System.Boolean)
+  name: Csv(Utils.OS, String, String, String, Int32, String, Char, Char, Boolean)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_System_Char_System_Char_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,System.Char,System.Char,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String, System.Char, System.Char, System.Boolean)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, Int32, String, Char, Char, Boolean)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char,System.Boolean)
+  name: Csv(Utils.OS, String, String, String, String, Char, Char, Boolean)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_System_Char_System_Char_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Char, System.Char, System.Boolean)
+  nameWithType: Csv.Csv(Utils.OS, String, String, String, String, Char, Char, Boolean)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char,System.Boolean)
+  name: Csv(String, Char, Char, Boolean)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_Char_System_Char_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Char, System.Boolean)
+  nameWithType: Csv.Csv(String, Char, Char, Boolean)
 - uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
   name: Csv(String, String, Char, Char)
   href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_String_System_Char_System_Char_
@@ -361,6 +361,12 @@ references:
   commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
   fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char)
   nameWithType: CsvDocument.CsvDocument(String, Char, Char)
+- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
+  name: CsvDocument(String, Char, Char, Boolean)
+  href: api/AutoCheck.Core.Connectors.CsvDocument.html#AutoCheck_Core_Connectors_CsvDocument__ctor_System_String_System_Char_System_Char_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char, System.Boolean)
+  nameWithType: CsvDocument.CsvDocument(String, Char, Char, Boolean)
 - uid: AutoCheck.Core.Connectors.CsvDocument.#ctor*
   name: CsvDocument
   href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Core_Connectors_CsvDocument__ctor_
@@ -4151,6 +4157,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.Count
   nameWithType: PlainText.Count
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  name: Diffs
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Diffs
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  nameWithType: PlainText.Diffs
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Diffs*
+  name: Diffs
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Diffs_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Diffs
+  nameWithType: PlainText.Diffs
 - uid: AutoCheck.Core.CopyDetectors.PlainText.Dispose
   name: Dispose()
   href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Dispose
@@ -4177,6 +4196,116 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.Extension
   nameWithType: PlainText.Extension
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File
+  name: PlainText.File
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html
+  commentId: T:AutoCheck.Core.CopyDetectors.PlainText.File
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File
+  nameWithType: PlainText.File
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
+  name: File(String, String)
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File__ctor_System_String_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.File(System.String, System.String)
+  nameWithType: PlainText.File.File(String, String)
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.#ctor*
+  name: File
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File__ctor_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.File
+  nameWithType: PlainText.File.File
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  name: Content
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Content
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  nameWithType: PlainText.File.Content
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Content*
+  name: Content
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Content_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Content
+  nameWithType: PlainText.File.Content
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  name: Folder
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Folder
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  nameWithType: PlainText.File.Folder
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
+  name: Folder
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Folder_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  nameWithType: PlainText.File.Folder
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  name: LineCount
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_LineCount
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  nameWithType: PlainText.File.LineCount
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount*
+  name: LineCount
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_LineCount_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
+  nameWithType: PlainText.File.LineCount
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  name: Path
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Path
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  nameWithType: PlainText.File.Path
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
+  name: Path
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Path_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  nameWithType: PlainText.File.Path
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  name: ToString()
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_ToString
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.ToString()
+  nameWithType: PlainText.File.ToString()
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.ToString*
+  name: ToString
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_ToString_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.ToString
+  nameWithType: PlainText.File.ToString
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  name: WordCount
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_WordCount
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  nameWithType: PlainText.File.WordCount
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount*
+  name: WordCount
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_WordCount_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
+  nameWithType: PlainText.File.WordCount
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Files
+  name: Files
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Files
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Files
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Files
+  nameWithType: PlainText.Files
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Files*
+  name: Files
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Files_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Files
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Files
+  nameWithType: PlainText.Files
 - uid: AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   name: GetDetails(String)
   href: api/AutoCheck.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_GetDetails_System_String_
@@ -4190,6 +4319,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.GetDetails
   nameWithType: PlainText.GetDetails
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Index
+  name: Index
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Index
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Index
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Index
+  nameWithType: PlainText.Index
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Index*
+  name: Index
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Index_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Index
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Index
+  nameWithType: PlainText.Index
 - uid: AutoCheck.Core.CopyDetectors.PlainText.LineCountWeight
   name: LineCountWeight
   href: api/AutoCheck.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_LineCountWeight
@@ -4222,6 +4364,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.Load
   nameWithType: PlainText.Load
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  name: Matches
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Matches
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.Matches
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  nameWithType: PlainText.Matches
+- uid: AutoCheck.Core.CopyDetectors.PlainText.Matches*
+  name: Matches
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_Matches_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.Matches
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.Matches
+  nameWithType: PlainText.Matches
 - uid: AutoCheck.Core.CopyDetectors.PlainText.SentenceMatchWeight
   name: SentenceMatchWeight
   href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText_SentenceMatchWeight
@@ -4261,6 +4416,51 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.WordsAmountWeight
   nameWithType: PlainText.WordsAmountWeight
+- uid: AutoCheck.Core.CopyDetectors.SourceCode
+  name: SourceCode
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html
+  commentId: T:AutoCheck.Core.CopyDetectors.SourceCode
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode
+  nameWithType: SourceCode
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
+  name: SourceCode(Single, String)
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode__ctor_System_Single_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode(System.Single, System.String)
+  nameWithType: SourceCode.SourceCode(Single, String)
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor*
+  name: SourceCode
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode__ctor_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode
+  nameWithType: SourceCode.SourceCode
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.Compare
+  name: Compare()
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.Compare
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare()
+  nameWithType: SourceCode.Compare()
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.Compare*
+  name: Compare
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_Compare_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.Compare
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare
+  nameWithType: SourceCode.Compare
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
+  name: CopyDetected(String)
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
+  nameWithType: SourceCode.CopyDetected(String)
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
+  name: CopyDetected
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
+  nameWithType: SourceCode.CopyDetected
 - uid: AutoCheck.Core.CopyDetectors.SqlLog
   name: SqlLog
   href: api/AutoCheck.CopyDetectors.SqlLog.html
@@ -6065,6 +6265,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Utils.ToCamelCase
   nameWithType: Utils.ToCamelCase
+- uid: AutoCheck.Core.Utils.UtilsFolder
+  name: UtilsFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_UtilsFolder
+  commentId: P:AutoCheck.Core.Utils.UtilsFolder
+  fullName: AutoCheck.Core.Utils.UtilsFolder
+  nameWithType: Utils.UtilsFolder
+- uid: AutoCheck.Core.Utils.UtilsFolder*
+  name: UtilsFolder
+  href: api/AutoCheck.Core.Utils.html#AutoCheck_Core_Utils_UtilsFolder_
+  commentId: Overload:AutoCheck.Core.Utils.UtilsFolder
+  isSpec: "True"
+  fullName: AutoCheck.Core.Utils.UtilsFolder
+  nameWithType: Utils.UtilsFolder
 - uid: Google.DiffMatchPatch
   name: Google.DiffMatchPatch
   href: api/Google.DiffMatchPatch.html

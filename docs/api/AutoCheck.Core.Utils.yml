@@ -19,6 +19,7 @@ items:
   - AutoCheck.Core.Utils.ScriptsFolder
   - AutoCheck.Core.Utils.TempFolder
   - AutoCheck.Core.Utils.ToCamelCase(System.String)
+  - AutoCheck.Core.Utils.UtilsFolder
   langs:
   - csharp
   - vb
@@ -29,7 +30,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: Utils
     path: ../core/main/Utils.cs
@@ -65,7 +66,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolder
     path: ../core/main/Utils.cs
@@ -105,7 +106,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolder
     path: ../core/main/Utils.cs
@@ -145,7 +146,7 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFolder
     path: ../core/main/Utils.cs
@@ -171,6 +172,46 @@ items:
   - Public
   - Shared
   - ReadOnly
+- uid: AutoCheck.Core.Utils.UtilsFolder
+  commentId: P:AutoCheck.Core.Utils.UtilsFolder
+  id: UtilsFolder
+  parent: AutoCheck.Core.Utils
+  langs:
+  - csharp
+  - vb
+  name: UtilsFolder
+  nameWithType: Utils.UtilsFolder
+  fullName: AutoCheck.Core.Utils.UtilsFolder
+  type: Property
+  source:
+    remote:
+      path: core/main/Utils.cs
+      branch: master
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: UtilsFolder
+    path: ../core/main/Utils.cs
+    startLine: 73
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nReturns the current app utils folder\n"
+  example: []
+  syntax:
+    content: public static string UtilsFolder { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: A folder&apos;s path.
+    content.vb: Public Shared ReadOnly Property UtilsFolder As String
+  overload: AutoCheck.Core.Utils.UtilsFolder*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
 - uid: AutoCheck.Core.Utils.ScriptsFolder
   commentId: P:AutoCheck.Core.Utils.ScriptsFolder
   id: ScriptsFolder
@@ -185,11 +226,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptsFolder
     path: ../core/main/Utils.cs
-    startLine: 73
+    startLine: 83
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -225,11 +266,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: TempFolder
     path: ../core/main/Utils.cs
-    startLine: 83
+    startLine: 93
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -265,11 +306,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Utils.cs
-    startLine: 93
+    startLine: 103
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -306,11 +347,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToCamelCase
     path: ../core/main/Utils.cs
-    startLine: 105
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -351,11 +392,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoveDiacritics
     path: ../core/main/Utils.cs
-    startLine: 116
+    startLine: 126
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -395,11 +436,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetProductVersion
     path: ../core/main/Utils.cs
-    startLine: 141
+    startLine: 151
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -436,11 +477,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 151
+    startLine: 161
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -487,11 +528,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: RunWithRetry
     path: ../core/main/Utils.cs
-    startLine: 164
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -540,11 +581,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToCurrentOS
     path: ../core/main/Utils.cs
-    startLine: 184
+    startLine: 194
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -580,11 +621,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: PathToRemoteOS
     path: ../core/main/Utils.cs
-    startLine: 195
+    startLine: 205
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -622,11 +663,11 @@ items:
   source:
     remote:
       path: core/main/Utils.cs
-      branch: v2.14.1
+      branch: master
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConfigFile
     path: ../core/main/Utils.cs
-    startLine: 206
+    startLine: 216
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -680,6 +721,11 @@ references:
   name: ConfigFolder
   nameWithType: Utils.ConfigFolder
   fullName: AutoCheck.Core.Utils.ConfigFolder
+- uid: AutoCheck.Core.Utils.UtilsFolder*
+  commentId: Overload:AutoCheck.Core.Utils.UtilsFolder
+  name: UtilsFolder
+  nameWithType: Utils.UtilsFolder
+  fullName: AutoCheck.Core.Utils.UtilsFolder
 - uid: AutoCheck.Core.Utils.ScriptsFolder*
   commentId: Overload:AutoCheck.Core.Utils.ScriptsFolder
   name: ScriptsFolder

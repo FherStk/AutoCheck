@@ -49,8 +49,8 @@ A connector is a bridge between the application and a data source (database, fil
 
 Some complex connectors could offer a set of overloaded methods to allow more flexibility with opperations, but custom typed arguments must be avoided in order to allow interaction between a yaml script file and the connector; please, just use primitives, arrays and dictionaries as argument types for your connector methods. 
 
-### Copy detectors
+### Copy Detectors
 The main goal of a copy detector is to check if an student's file looks like a potential a copy of another's one. All the copy detectors must inherit from `AutoCheck.Core.CopyDetectors.Base` class and provide an implementation for their abstract methods (it will depend on every file type or content).
 
 ### Scripts
-A script is a YAML file containing a set of calls to connectors in order to perform CRUD operations and validate its results. The class `AutoCheck.Core.Script` acts like a parser or interpeter for those YAML files and represents the pure AutoCheck's corem, for this reason, this class has no intended to be extended or manipulated in any way but, if you need to change some behaviour, feel free to extend it using inheritance and making `protected` the item you need to manipulate *under your own risk*. 
+A script is a YAML file containing a set of calls to connectors in order to perform CRUD operations and validate its results. The class `AutoCheck.Core.Script` acts like a parser or interpeter for those YAML files and represents the pure AutoCheck's core, for this reason, this class has no intended to be extended or manipulated in any way but, if you need to change some behaviour, feel free to extend it using inheritance and making `protected` the item you need to manipulate *under your own risk*. 
