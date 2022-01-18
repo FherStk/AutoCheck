@@ -64,3 +64,29 @@ xmp{
 #updating > img {
   width: 200px;
 }
+
+.collapsable > .header {
+  display: inherit;
+  cursor: pointer;
+  color: #545454;
+  background-color: #e5e5e5;
+  padding: 10px;
+  border: solid 1px darkgray;
+}
+
+.collapsable > .header:hover {
+  color: black;
+  background-color: white;
+}
+
+.collapsable > .header.hidden {
+  display: none;
+}
+
+.collapsable > .content {
+  display: inherit;
+}
+
+.collapsable > .content.hidden {
+  display: none;
+}
