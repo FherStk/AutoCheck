@@ -4,10 +4,10 @@ Despite that you'll find a complete tutorial below this lines, a video tutorial 
 
 ## How to use the application
 ### Pre-requisites
-This application has been developed over the **.NET 6.0**, so its runtime enviroment must be installed in order to run the app. Also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app:
+This application has been developed over the **.NET 6.0**, so its runtime enviroment must be installed in order to run the app; also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app. Notice than Java's JDK is also required because some components could relay on its use, like the `SourceCode` Copy Detector or some Java oriented scripts:
 * [Git](https://git-scm.com/downloads)
 * [.NET 6.0 SDK x64](https://dotnet.microsoft.com/download)
-* [Java Runtime Enviroment (JRE)](https://www.java.com/es/download/)
+* [Java Developement Kit (JDK)](http://jdk.java.net/17/)
 
 ### Installation
 Follow this instructions in order to install the application for the first time:

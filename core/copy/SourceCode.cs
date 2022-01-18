@@ -47,12 +47,11 @@ namespace AutoCheck.Core.CopyDetectors{
             if(!Directory.Exists(output)) Directory.CreateDirectory(output);      
             
             try{
+                //Setting up execution
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);
-                if(result.code != 0) throw new InvalidOperationException(
-                    string.IsNullOrEmpty(result.response) ? "Ensure that the java files are correct and can compile." : result.response                    
-                );
-
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);                
+                
+                //Parsing result (JPlag creates a CSV file with the output data)
                 var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ', false);                 
                 var folders = new Dictionary<string, int>();
 
@@ -61,6 +60,7 @@ namespace AutoCheck.Core.CopyDetectors{
                     folders.Add(Path.GetFileName(key).Replace(" ", ""), Index[key]);
                 }
 
+                //collecting matches
                 Matches = new float[Files.Count(), Files.Count()];               
                 for(int i=0; i<csv.CsvDoc.Count; i++){
                     var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
@@ -79,6 +79,7 @@ namespace AutoCheck.Core.CopyDetectors{
                     }
                 }
 
+                //1-1 matches
                 for(int i=0; i<Matches.GetLength(0); i++){
                     Matches[i, i] = 1;
                 }              
