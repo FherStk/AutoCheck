@@ -18,9 +18,7 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.IO;
 using System.Xml;
-using System.Net;
 using System.Net.Http;
 using AutoCheck.Core.Exceptions;
 
@@ -92,8 +90,14 @@ namespace AutoCheck.Core.Connectors{
                 //TODO: add the error list to the description
                 //Loop through all the "m:error" nodes
                 //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
-                throw new DocumentInvalidException(); 
-            }          
+                foreach(XmlNode error in document.GetElementsByTagName("error")){
+                    //TODO: add the error list to the description
+                    //Loop through all the "m:error" nodes
+                    //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"                    
+                    var message = $"Line {error.SelectSingleNode("line").InnerText}. {error.SelectSingleNode("text").InnerText.Trim()}";
+                    throw new DocumentInvalidException(message.Replace("\\$", System.Environment.NewLine));         
+                }
+            }         
         }
     }
 }
