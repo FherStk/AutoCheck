@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M03 (UF1): Mineseeker"
-version: "1.0.0.0"
+version: "1.0.0.1"
 
 #TODO: sacar las preguntas de dentro de la primera y hacer un ABORT si no compila.
 #     arreglar fallo en codigo fuente al poner minas en casillas ocupadas
@@ -116,7 +116,7 @@ body:
                         caption:  "Checking the internal board sizing... "          
                         connector: "PlainText"
                         command:  "Count"
-                        arguments: --regex "=\s*new\s*\w*\[\d\]\[\d\]\s*;"
+                        arguments: --regex "=\s*new\s*\w*\[\w*\]\[\w*\]\s*;"
                         expected: ">0"               
 
       - question:                     
@@ -126,14 +126,15 @@ body:
                         caption:  "Checking the internal board filling... "          
                         connector: "PlainText"
                         command:  "Count"
-                        arguments: --regex "(?:for\s*\(int\s+\w=\d;\s*\w<\w;\s+\w\+\+\)\{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)*\[\w*\]\[\w*\]\s*=" 
+                        arguments: --regex "(?:for\s*\(int\s*\w*\s*=\s*\d;\s*\w\s*<\s*\w*;\s*\w*\+\+\)\s*{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)\s*\w*\[\w*\]\[\w*\]\s*=" 
                         expected: ">0"  
 
                   - run:
                         caption:  "Checking the empty cell filling... "          
                         connector: "PlainText"
                         command:  "Count"
-                        arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'\s'\s*;"
+                        arguments: 
+                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[\s\]"|'\s'|"\s"|0)\s*;
                         expected: ">0"  
 
       - question:                     
@@ -150,7 +151,8 @@ body:
                         caption:  "Checking the mine cell filling... "          
                         connector: "PlainText"
                         command:  "Count"
-                        arguments: --regex "\w*\s*\[\w*\]\[\w*\]\s*=\s*'O'\s*;"
+                        arguments: 
+                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]"|'O'|"O"|1)\s*;
                         expected: ">0"  
 
       - question:                     
