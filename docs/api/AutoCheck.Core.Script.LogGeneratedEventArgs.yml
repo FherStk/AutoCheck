@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogGeneratedEventArgs
     path: ../core/main/Script.cs
-    startLine: 583
+    startLine: 628
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -55,11 +55,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Type
     path: ../core/main/Script.cs
-    startLine: 585
+    startLine: 630
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -90,11 +90,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionMode
     path: ../core/main/Script.cs
-    startLine: 586
+    startLine: 631
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -125,11 +125,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Log
     path: ../core/main/Script.cs
-    startLine: 587
+    startLine: 632
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
