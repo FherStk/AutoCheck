@@ -67,11 +67,12 @@ batch:
               accountFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_account.txt"
               secretFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_secret.json"               
 
+        #This will work for any kind of txt file and folder
         - run:
             connector: "TextStream"
             command: "FileName"
             arguments: "--path {$TXT_FILE}"
-            store: "FILENAME"
+            store: "FILENAME"        
 
         - run:   
             caption: "   Uploading files from ~{$FILENAME}... "
@@ -80,3 +81,21 @@ batch:
             arguments: 
                 localFile: "{$TXT_FILE}"
                 remoteFilePath: "/AutoCheck/Upload/"
+
+        #This will work only for Moodle kind assignements
+        # - run:
+        #     connector: "TextStream"
+        #     command: "Substring"
+        #     arguments: 
+        #         content: "{$CURRENT_FOLDER_NAME}"
+        #         regex: ".+?(?=_)"
+        #     store: "FOLDERNAME"
+
+        # - run:   
+        #     caption: "   Uploading files from ~{$FOLDERNAME}... "
+        #     connector: "GDrive"
+        #     command: "CopyFromFile"
+        #     arguments: 
+        #         localFile: "{$TXT_FILE}"
+        #         remoteFilePath: "/AutoCheck/Upload/"
+        #         remoteFileName: "{$FOLDERNAME}"
