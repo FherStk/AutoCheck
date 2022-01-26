@@ -79,4 +79,4 @@ batch:
             command: "CopyFromFile"
             arguments: 
                 localFile: "{$TXT_FILE}"
-                remoteFilePath: "/AutoCheck/scripts/M10/"
+                remoteFilePath: "/AutoCheck/Upload/"
