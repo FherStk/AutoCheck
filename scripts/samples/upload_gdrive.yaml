@@ -19,6 +19,7 @@
 inherits: "some_template.yaml"
 
 batch: 
+    - concurrent: 1 #cannot run in parallel or multiple folders with the same name will be created within the gdrive account
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
         - path: "some_folder"
