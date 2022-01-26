@@ -19,6 +19,7 @@
 inherits: "some_template.yaml"
 
 batch: 
+    - concurrent: 1 #cannot run in parallel or multiple folders with the same name will be created within the gdrive account
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"
     - local:                             
         - path: "some_folder"
@@ -67,11 +68,12 @@ batch:
               accountFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_account.txt"
               secretFilePath: "{$APP_FOLDER_PATH}/../core/config/gdrive_secret.json"               
 
+        #This will work for any kind of txt file and folder
         - run:
             connector: "TextStream"
             command: "FileName"
             arguments: "--path {$TXT_FILE}"
-            store: "FILENAME"
+            store: "FILENAME"        
 
         - run:   
             caption: "   Uploading files from ~{$FILENAME}... "
@@ -79,4 +81,22 @@ batch:
             command: "CopyFromFile"
             arguments: 
                 localFile: "{$TXT_FILE}"
-                remoteFilePath: "/AutoCheck/scripts/M10/"
+                remoteFilePath: "/AutoCheck/Upload/"
+
+        #This will work only for Moodle kind assignements
+        # - run:
+        #     connector: "TextStream"
+        #     command: "Substring"
+        #     arguments: 
+        #         content: "{$CURRENT_FOLDER_NAME}"
+        #         regex: ".+?(?=_)"
+        #     store: "FOLDERNAME"
+
+        # - run:   
+        #     caption: "   Uploading files from ~{$FOLDERNAME}... "
+        #     connector: "GDrive"
+        #     command: "CopyFromFile"
+        #     arguments: 
+        #         localFile: "{$TXT_FILE}"
+        #         remoteFilePath: "/AutoCheck/Upload/"
+        #         remoteFileName: "{$FOLDERNAME}"
