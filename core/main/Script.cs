@@ -1106,7 +1106,7 @@ namespace AutoCheck.Core{
                         queuedScripts[i].Start();
                     }
                     
-                    last += end;
+                    last = end;
                     Task.WaitAll(started.ToArray());                                       
                 }
 
