@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: File
     path: ../core/copy/PlainText.cs
@@ -59,7 +59,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Folder
     path: ../core/copy/PlainText.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Path
     path: ../core/copy/PlainText.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCount
     path: ../core/copy/PlainText.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCount
     path: ../core/copy/PlainText.cs
@@ -199,7 +199,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/copy/PlainText.cs
@@ -234,7 +234,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/copy/PlainText.cs

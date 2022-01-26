@@ -140,7 +140,7 @@ namespace AutoCheck.Core{
         }
         
         /// <summary>
-        /// The root app execution folder path.
+        /// The root app's execution folder path.
         /// </summary>
         protected string AppFolderPath {
             get{
@@ -161,7 +161,7 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The root app execution folder name.
+        /// The root app's execution folder name.
         /// </summary>
         protected string AppFolderName {
             get{
@@ -170,21 +170,58 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
-        /// The current script execution folder path defined within the YAML file, otherwise the YAML file's folder.
+        /// The current app's configuration folder path.
+        /// </summary>
+        protected string AppConfigPath {
+            get{
+                return GetVar("app_config_path", AutoComputeVarValues).ToString();
+            }
+
+            private set{                
+                try{
+                    //Read only
+                    GetVar("app_config_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_config_path", value); 
+                    UpdateVar("app_config_name", Path.GetFileName(value) ?? string.Empty);    
+                } 
+            }
+        }
+
+        /// <summary>
+        /// The root app's configuration folder name.
+        /// </summary>
+        protected string AppConfigName {
+            get{
+                return GetVar("app_config_name", AutoComputeVarValues).ToString();
+            }           
+        }
+
+        /// <summary>
+        /// The current app's execution folder path.
         /// </summary>
         protected string ExecutionFolderPath {
             get{
                 return GetVar("execution_folder_path", AutoComputeVarValues).ToString();
             }
 
-            private set{
-                UpdateVar("execution_folder_path", value);  
-                UpdateVar("execution_folder_name", Path.GetFileName(value) ?? string.Empty);             
+            private set{                
+                try{
+                    //Read only
+                    GetVar("execution_folder_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("execution_folder_path", value); 
+                    UpdateVar("execution_folder_name", Path.GetFileName(value) ?? string.Empty);    
+                } 
             }
         }
 
         /// <summary>
-        /// The current script execution folder name defined within the YAML file, otherwise the YAML file's folder.
+        /// The current app's execution folder name.
         /// </summary>
         protected string ExecutionFolderName {
             get{
@@ -199,15 +236,22 @@ namespace AutoCheck.Core{
             get{
                 return GetVar("script_folder_path", AutoComputeVarValues).ToString();
             }
+            
+            private set{                
+                try{
+                    //Read only
+                    GetVar("script_folder_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    //Current folder values                            
+                    UpdateVar("script_folder_path", value);
+                    UpdateVar("script_folder_name", Path.GetFileName(value) ?? string.Empty); 
 
-            private set{    
-                //Current folder values                            
-                UpdateVar("script_folder_path", value);
-                UpdateVar("script_folder_name", Path.GetFileName(value) ?? string.Empty); 
-
-                //Setting up the folder path resets the file path
-                UpdateVar("script_file_path", string.Empty);     
-                UpdateVar("script_file_name", string.Empty);    
+                    //Setting up the folder path resets the file path
+                    UpdateVar("script_file_path", string.Empty);     
+                    UpdateVar("script_file_name", string.Empty); 
+                } 
             }
         }
 
@@ -229,6 +273,7 @@ namespace AutoCheck.Core{
             }
 
             private set{
+                //read-only (ScriptFolderPath will check it)
                 //Setting up the file path forces the folder path
                 ScriptFolderPath = Path.GetDirectoryName(value) ?? string.Empty;                         
 
@@ -246,7 +291,7 @@ namespace AutoCheck.Core{
                 return GetVar("script_file_name", AutoComputeVarValues).ToString();
             }
         }     
-        
+                
         /// <summary>
         /// The current folder path where the script is targeting right now (local or remote); can change during the execution for batch-typed.
         /// </summary>
@@ -612,9 +657,8 @@ namespace AutoCheck.Core{
 
             //Setup default folders, each property will set also the related 'name' property                              
             AppFolderPath = Utils.AppFolder;            
-            ExecutionFolderPath = Utils.ExecutionFolder;
-            ScriptFolderPath = string.Empty;
-            ScriptFilePath = string.Empty;
+            AppConfigPath = Utils.ConfigFolder;
+            ExecutionFolderPath = Utils.ExecutionFolder;            
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
 
@@ -1062,7 +1106,7 @@ namespace AutoCheck.Core{
                         queuedScripts[i].Start();
                     }
                     
-                    last += end;
+                    last = end;
                     Task.WaitAll(started.ToArray());                                       
                 }
 
@@ -1922,7 +1966,7 @@ namespace AutoCheck.Core{
         private void ForEachLocalTarget(Local[] local, Action<string> action){
             var originalFolder = CurrentFolderPath;
 
-            foreach(var l in local){
+            foreach(var l in local){                
                 //local target vars should be loaded
                 Vars.Push(l.Vars);
                 foreach(var folder in l.Folders){

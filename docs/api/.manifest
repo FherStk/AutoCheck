@@ -431,6 +431,8 @@
   "AutoCheck.Core.Script.#ctor(YamlStream)": "AutoCheck.Core.Script.yml",
   "AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})": "AutoCheck.Core.Script.yml",
   "AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})": "AutoCheck.Core.Script.yml",
+  "AutoCheck.Core.Script.AppConfigName": "AutoCheck.Core.Script.yml",
+  "AutoCheck.Core.Script.AppConfigPath": "AutoCheck.Core.Script.yml",
   "AutoCheck.Core.Script.AppFolderName": "AutoCheck.Core.Script.yml",
   "AutoCheck.Core.Script.AppFolderPath": "AutoCheck.Core.Script.yml",
   "AutoCheck.Core.Script.BatchCaption": "AutoCheck.Core.Script.yml",

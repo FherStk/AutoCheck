@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Rss
     path: ../core/connectors/Rss.cs
-    startLine: 30
+    startLine: 28
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -74,11 +74,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
-    startLine: 35
+    startLine: 33
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -110,11 +110,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
-    startLine: 47
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -153,11 +153,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
-    startLine: 58
+    startLine: 56
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -194,11 +194,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Rss.cs
-    startLine: 65
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -229,11 +229,11 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: master
+      branch: v2.17.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateRssAgainstW3C
     path: ../core/connectors/Rss.cs
-    startLine: 73
+    startLine: 71
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors

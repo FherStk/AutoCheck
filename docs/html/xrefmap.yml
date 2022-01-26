@@ -5494,6 +5494,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.Script
   nameWithType: Script.Script
+- uid: AutoCheck.Core.Script.AppConfigName
+  name: AppConfigName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppConfigName
+  commentId: P:AutoCheck.Core.Script.AppConfigName
+  fullName: AutoCheck.Core.Script.AppConfigName
+  nameWithType: Script.AppConfigName
+- uid: AutoCheck.Core.Script.AppConfigName*
+  name: AppConfigName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppConfigName_
+  commentId: Overload:AutoCheck.Core.Script.AppConfigName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppConfigName
+  nameWithType: Script.AppConfigName
+- uid: AutoCheck.Core.Script.AppConfigPath
+  name: AppConfigPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppConfigPath
+  commentId: P:AutoCheck.Core.Script.AppConfigPath
+  fullName: AutoCheck.Core.Script.AppConfigPath
+  nameWithType: Script.AppConfigPath
+- uid: AutoCheck.Core.Script.AppConfigPath*
+  name: AppConfigPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppConfigPath_
+  commentId: Overload:AutoCheck.Core.Script.AppConfigPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppConfigPath
+  nameWithType: Script.AppConfigPath
 - uid: AutoCheck.Core.Script.AppFolderName
   name: AppFolderName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppFolderName

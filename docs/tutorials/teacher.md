@@ -203,8 +203,10 @@ Custom global vars can be defined wihtin `vars` node and refered later as `$VARN
 ##### Application data:
 Name | Type | Description
 ------------ | -------------| -------------
-APP_FOLDER_NAME | text | The root app execution folder (just the folder name). 
-APP_FOLDER_PATH | text | The root app execution folder (the entire path). 
+APP_FOLDER_NAME | text | The root app's execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The root app's execution folder (the entire path). 
+APP_CONFIG_NAME | text | The current app's configuration folder (just the folder name). 
+APP_CONFIG_PATH | text | The current app's configuration folder (the entire path). 
 
 ##### Script data:
 Name | Type | Description
@@ -230,8 +232,8 @@ LOG_FILE_PATH | text | The current log file (the entire path).
 ##### Execution data:
 Name | Type | Description
 ------------ | -------------| -------------
-EXECUTION_FOLDER_NAME | text | The current script's execution folder (just the folder name). 
-EXECUTION_FOLDER_PATH | text | The current script's execution folder (the entire path).
+EXECUTION_FOLDER_NAME | text | The current app's execution folder name.
+EXECUTION_FOLDER_PATH | text | The current app's execution folder path.
 RESULT | text | The result of the last `command` execution.
 
 ##### Question and score data:
