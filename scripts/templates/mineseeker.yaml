@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M03 (UF1): Mineseeker"
-version: "1.0.0.4"
+version: "1.0.0.5"
 
 #TODO: sacar las preguntas de dentro de la primera y hacer un ABORT si no compila.
 #     arreglar fallo en codigo fuente al poner minas en casillas ocupadas
@@ -134,7 +134,7 @@ body:
                         connector: "PlainText"
                         command:  "Count"
                         arguments: 
-                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[\s\]"|'\s'|"\s"|0)\s*
+                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[\s\]\s?"|'\s'|"\s"|0)\s*
                         expected: ">0"  
 
       - question:                     
@@ -152,7 +152,7 @@ body:
                         connector: "PlainText"
                         command:  "Count"
                         arguments: 
-                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]"|'O'|"O"|1)\s*
+                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]\s?"|'O'|"O"|1)\s*
                         expected: ">0"  
 
       - question:                     
