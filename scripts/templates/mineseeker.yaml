@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M03 (UF1): Mineseeker"
-version: "1.0.0.3"
+version: "1.0.0.4"
 
 #TODO: sacar las preguntas de dentro de la primera y hacer un ABORT si no compila.
 #     arreglar fallo en codigo fuente al poner minas en casillas ocupadas
@@ -265,4 +265,4 @@ body:
                   - run:
                         caption:  "Checking the empty message... "   
                         command:  "echo 2 3 | java {$FILEPATH}"            
-                        expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                        expected: "%NO S’HA CREAT CAP TAULELL\nEscull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
