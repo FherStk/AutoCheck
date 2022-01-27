@@ -72,6 +72,46 @@ public class HomeController : Controller
             }));
 
             return this.YAML;
+        } 
+
+        public Dictionary<string, object> GetTargetData(){
+            var data = new Dictionary<string, object>();            
+            var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
+            
+            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":      
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //folder; path
+                                        data.Add(name, string.Empty);
+                                    }));                     
+                                    break;
+
+                                case "remote":   
+                                   ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; vars
+                                        if(name != "vars") data.Add(name, string.Empty);
+                                        else{
+                                            var vars = new Dictionary<string, object>();
+                                            data.Add(name, vars);
+
+                                            ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                vars.Add(name, string.Empty);
+                                            }));      
+                                        }
+                                    }));                     
+                                    break;
+                            }
+                        }));
+                        break;
+                }
+            }));
+
+            return data;
         }     
     }    
 
@@ -98,7 +138,13 @@ public class HomeController : Controller
         return Json(items);
     }
 
-    public IActionResult Run(string script, string mode, string target)
+    public IActionResult GetTargetData(string script)
+    {
+        var ws = new WebScript(script);                    
+        return Json(ws.GetTargetData());
+    }
+
+    public IActionResult Run(string script, string target)
     {
         //Still not available for remote scripts        
         //TODO: file / path within a script will be ignored and will be injected from web into the script (multi file/path)

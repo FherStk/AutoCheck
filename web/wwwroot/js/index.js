@@ -58,6 +58,53 @@ $(function(){
             $("#info-single").hide();
             $("#info-batch").show();
         }
+
+        debugger;
+
+        $.post("/home/GetTargetData", {script: $("#script").val()}, function(data){                  
+            $("#target").empty();
+            
+            Object.keys(data).forEach(function(key) {
+                if(key == "os") $("#target").append('<label for"' + key + '">' + key + ': </label><select id="' + key + '" name="' + key + '"><option value="GNU">GNU/Linux</option><option value="MAC">Mac OS</option><option value="WIN">Windows</option></select>');
+                else if(key == "vars"){
+                    $("#target").append("<div id='vars'></div>");
+                    
+                    Object.keys(data.vars).forEach(function(key) {
+                        $("#vars").append('<label for"' + key + '">' + key + ': </label><input type="text" id="' + key + '" name="' + key + '" placeholder="Some data" />');
+                        $("#vars").append('<br>');
+                    });
+                }
+                else{
+                    var placeholder;
+                    switch(key){
+                        case "folder":
+                        case "path":
+                            placeholder="/home/user/Documents/folder";
+                            break;
+    
+                        case "host":
+                            placeholder="hostname or IP address";
+                            break;
+    
+                        case "user":
+                            placeholder="username";
+                            break;
+    
+                        case "password":
+                            placeholder="password";
+                            break;                               
+                    }
+
+                    $("#target").append('<label for"' + key + '">' + key + ': </label><input type="text" id="' + key + '" name="' + key + '" placeholder="' + placeholder + '" />');
+                }
+
+                $("#target").append('<br>');
+            });            
+            
+            // $("#step-2").hide();
+            // if(data.length == 0) $("#script").hide();
+            // else $("#script").show();
+        });
     });  
 
     $("#target").keyup(function() {
@@ -71,7 +118,7 @@ $(function(){
         $("#log > div").empty();
         $("#log > img").show();
 
-        $.post("/home/Run", { script: $("#script").val(), mode: $("#mode").val(), target: $("#target").val()}, function(data){                        
+        $.post("/home/Run", { script: $("#script").val(), target: $("#target").val()}, function(data){                        
             $("#log > img").hide();
 
             //TODO: this must be append in async mode   
