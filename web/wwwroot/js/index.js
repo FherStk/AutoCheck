@@ -59,8 +59,7 @@ $(function(){
             $("#info-batch").show();
         }
 
-        debugger;
-
+        //Displaying target data
         $.post("/home/GetTargetData", {script: $("#script").val()}, function(data){                  
             $("#target").empty();
             
