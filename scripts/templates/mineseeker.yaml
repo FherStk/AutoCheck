@@ -162,7 +162,7 @@ body:
                         caption:  "Checking that random location is being used... "          
                         connector: "PlainText"
                         command:  "Count"
-                        arguments: --regex "(?:while\s*\(.*\)|for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\))\s*{(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)\s*;(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)\s*;"
+                        arguments: --regex "(?:while\s*\(.*\)|for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\))\s*{(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;"
                         expected: ">0"
 
       - question:                     
@@ -266,17 +266,12 @@ body:
                   - run:
                         caption:  "Checking the empty message... "   
                         command:  "echo 2 3 | java {$FILEPATH}"            
-                        expected: "%NO S’HA CREAT CAP TAULELL%" 
+                        expected: "%HA CREAT CAP TAULELL%" #' (written) and ’ (copied from the statement) must be accepted "%NO S’HA CREAT CAP TAULELL%" 
 
       - question:                     
             description: "Return to the menu after displaying the board"
             score: 0.5
             content:  
-                  - run:
-                        caption:  "Checking the empty message... "   
-                        command:  "echo 2 3 | java {$FILEPATH}"            
-                        expected: "%NO S’HA CREAT CAP TAULELL%" 
-
                   - run:
                         caption:  "Checking the menu display... "   
                         command:  "echo 2 3 | java {$FILEPATH}"            
