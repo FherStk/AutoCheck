@@ -37,6 +37,7 @@ namespace AutoCheck.Test
         [TestCase(5)]
         [TestCase(7)]
         [TestCase(8)]
+        [TestCase(9)]
         public void Real_Mineseeker_SCRIPT_SINGLE_PERFECT(int test) 
         {             
             var s = new AutoCheck.Core.Script(GetSampleFile($"real_mineseeker_single_{test}.yaml"));
