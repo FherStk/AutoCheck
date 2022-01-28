@@ -142,43 +142,28 @@ body:
                         connector: "PlainText"
                         command:  "Count"
                         arguments: --regex "=\s*new\s*\w*\[\w*\]\[\w*\]\s*;"
-                        expected: ">0"               
-
+                        expected: ">0"                    
       - question:                     
-            description: "Board internal filling"
-            content:              
-                  - run:
-                        caption:  "Checking the internal board filling... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: --regex "(?:for\s*\(int\s*\w*\s*=\s*\d;\s*\w\s*<\s*\w*;\s*(?:\w*\+\+|\+\+\w*)\)\s*{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)\s*\w*\[\w*\]\[\w*\]\s*=" 
-                        expected: ">0"  
-
-                  - run:
-                        caption:  "Checking the empty cell filling... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: 
-                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[\s\]\s?"|'\s'|"\s"|0)\s*
-                        expected: ">0"  
-
-      - question:                     
-            description: "Mines internal filling"
+            description: "Board mines filling"
             content:                            
-                  - run:
-                        caption:  "Checking that random location is being used... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\)\s*{(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))"
-                        expected: ">0"   
-
                   - run:
                         caption:  "Checking the mine cell filling... "          
                         connector: "PlainText"
                         command:  "Count"
                         arguments: 
                               regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]\s?"|'O'|"O"|1)\s*
-                        expected: ">0"  
+                        expected: ">0" 
+
+      - question:                     
+            description: "Random mines positioning"
+            content:   
+                  - run:
+                         
+                        caption:  "Checking that random location is being used... "          
+                        connector: "PlainText"
+                        command:  "Count"
+                        arguments: --regex "(?:while\s*\(.*\)|for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\))\s*{(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)\s*;(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\)\s*;"
+                        expected: ">0"
 
       - question:                     
             description: "Return to the menu after filling the board"
@@ -209,7 +194,7 @@ body:
                         caption:  "Checking the display for a 5x3 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){2}\[\s\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){2}\[\s\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
                   - run:                    
@@ -219,7 +204,7 @@ body:
                         caption:  "Checking the display for a 3x5 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s\]\s*(?:\n|\\n)){3}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){4}\[\s\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
 
                   - run:                    
@@ -229,7 +214,7 @@ body:
                         caption:  "Checking the display for a 5x5 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){4}\[\s]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
       - question:                     
@@ -252,7 +237,7 @@ body:
                         caption:  "Checking the display for a 5x3 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){2}\[O\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){2}\[O\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
                   - run:                    
@@ -262,7 +247,7 @@ body:
                         caption:  "Checking the display for a 3x5 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){3}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){4}\[O\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
 
                   - run:                    
@@ -272,7 +257,7 @@ body:
                         caption:  "Checking the display for a 5x5 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){4}\[O\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
       - question:                     
