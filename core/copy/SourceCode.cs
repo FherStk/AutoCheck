@@ -52,7 +52,7 @@ namespace AutoCheck.Core.CopyDetectors{
                 var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates a CSV file with the output data)
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ', false);                 
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', null, false);                 
                 var folders = new Dictionary<string, int>();
 
                 //temp directory to match the JPlag directory name with the original index (directory path)
