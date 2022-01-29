@@ -49,7 +49,7 @@ namespace AutoCheck.Core.CopyDetectors{
             try{
                 //Setting up execution
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);                
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r \"{output}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates a CSV file with the output data)
                 var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', null, false);                 
