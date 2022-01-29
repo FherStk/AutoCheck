@@ -43,7 +43,7 @@ namespace AutoCheck.Core.CopyDetectors{
             //JPlag uses one single path
             var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
-            var output = Path.Combine(Utils.TempFolder, DateTime.Now.ToString("yyyyMMddhhhhMMssffff"));
+            var output = Path.Combine(Utils.TempFolder, $@"{Guid.NewGuid()}");
             if(!Directory.Exists(output)) Directory.CreateDirectory(output);      
             
             try{
