@@ -43,21 +43,21 @@ namespace AutoCheck.Core.CopyDetectors{
             //JPlag uses one single path
             var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
-            var output = Path.Combine(Utils.TempFolder, DateTime.Now.ToString("yyyyMMddhhhhMMssffff"));
+            var output = Path.Combine(Utils.TempFolder, $@"{Guid.NewGuid()}");
             if(!Directory.Exists(output)) Directory.CreateDirectory(output);      
             
             try{
                 //Setting up execution
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r {output} -l {lang} {path}", Utils.UtilsFolder);                
+                var result = shell.RunCommand($"java -jar jplag-3.0.0-jar-with-dependencies.jar -r \"{output}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates a CSV file with the output data)
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', ' ', false);                 
+                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', null, false);                 
                 var folders = new Dictionary<string, int>();
 
                 //temp directory to match the JPlag directory name with the original index (directory path)
                 foreach(var key in Index.Keys){
-                    folders.Add(Path.GetFileName(key).Replace(" ", ""), Index[key]);
+                    folders.Add(Path.GetFileName(key).Trim(), Index[key]);
                 }
 
                 //collecting matches
@@ -110,9 +110,9 @@ namespace AutoCheck.Core.CopyDetectors{
         }
         
         private string GetMinimalPath(List<File> paths){
-            var left = paths.FirstOrDefault().Folder;
+            var left = paths.FirstOrDefault().FolderPath;
             foreach(var right in paths.Skip(1)){
-                left = GetMinimalPath(left, right.Folder);
+                left = GetMinimalPath(left, right.FolderPath);
             }
 
             return left;

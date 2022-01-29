@@ -32,7 +32,7 @@ namespace AutoCheck.Core.Connectors{
         //TODO: use some library...
         private char FielDelimiter {get; set;}
 
-        private char TextDelimiter {get; set;}
+        private char? TextDelimiter {get; set;}
 
         /// <summary>
         /// All the content, grouped by columns.
@@ -68,7 +68,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         /// <param name="headers">True if the first row are headers.</param>
-        public CsvDocument(string file, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
+        public CsvDocument(string file, char fieldDelimiter=',', char? textDelimiter='"', bool headers = true){
             this.FielDelimiter = fieldDelimiter;
             this.TextDelimiter = textDelimiter;
 
@@ -94,10 +94,12 @@ namespace AutoCheck.Core.Connectors{
                     for(int i = 0; i < items.Length; i++){
                         string item = items[i];                       
 
-                        if(item.StartsWith(this.TextDelimiter) && item.EndsWith(this.TextDelimiter)){
-                            //Removing string delimiters
-                            item = item.Trim(TextDelimiter);                            
-                        }                        
+                        if(this.TextDelimiter.HasValue){
+                            if(item.StartsWith(this.TextDelimiter.Value) && item.EndsWith(this.TextDelimiter.Value)){
+                                //Removing string delimiters
+                                item = item.Trim(TextDelimiter.Value);                            
+                            }                        
+                        }
 
                         this.Content[this.Content.Keys.ElementAt(i)].Add(item);
                     }
@@ -175,7 +177,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="fieldDelimiter">Field delimiter char.</param>
         /// <param name="textDelimiter">Text delimiter char.</param>
         /// <param name="headers">True if the first row are headers.</param>
-        public Csv(string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
+        public Csv(string filePath, char fieldDelimiter=',', char? textDelimiter='"', bool headers = true){
            Parse(filePath, fieldDelimiter, textDelimiter, headers);
         }
 
@@ -211,7 +213,7 @@ namespace AutoCheck.Core.Connectors{
         public Csv(Utils.OS remoteOS, string host, string username, string password, string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true): this(remoteOS, host, username, password, 22, filePath, fieldDelimiter, textDelimiter, headers){
         }
 
-        private void Parse(string filePath, char fieldDelimiter=',', char textDelimiter='"', bool headers = true){
+        private void Parse(string filePath, char fieldDelimiter=',', char? textDelimiter='"', bool headers = true){
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!File.Exists(filePath)) throw new FileNotFoundException();
 

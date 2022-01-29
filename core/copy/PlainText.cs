@@ -30,8 +30,10 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class PlainText: Base{
         protected class File{
-            public string Folder {get; set;}
-            public string Path {get; set;}
+            public string FolderPath {get; set;}
+            public string FolderName {get; set;}
+            public string FilePath {get; set;}
+            public string FileName {get; set;}
             public int WordCount {get; set;}
             public int LineCount {get; set;}
             public List<string> Content {get; set;}
@@ -41,8 +43,10 @@ namespace AutoCheck.Core.CopyDetectors{
                                 
                 WordCount = Content.SelectMany(x => x.Split(" ")).Count();
                 LineCount = Content.Count();
-                Folder = folder;                  
-                Path = file;
+                FolderPath = folder;                                  
+                FolderName = System.IO.Path.GetFileName(folder);
+                FilePath = file;
+                FileName = System.IO.Path.GetFileName(file);
             }
 
             public override string ToString(){
@@ -189,10 +193,10 @@ namespace AutoCheck.Core.CopyDetectors{
             int i = Index[path];   
             var matches = new List<(string, string, float)>();            
             for(int j=0; j < Files.Count(); j++){                
-                if(i != j) matches.Add((Files[j].Folder, Files[j].Path, Matches[i,j]));                     
+                if(i != j) matches.Add((Files[j].FolderPath, Files[j].FilePath, Matches[i,j]));                     
             }            
            
-            return (Files[i].Folder, Files[i].Path, matches.ToArray());
+            return (Files[i].FolderPath, Files[i].FilePath, matches.ToArray());
         }       
     }
 }
