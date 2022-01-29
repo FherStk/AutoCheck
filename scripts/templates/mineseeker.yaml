@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "DAM - M03 (UF1): Mineseeker"
-version: "1.0.0.3"
+version: "1.0.1.2"
 
 #TODO: sacar las preguntas de dentro de la primera y hacer un ABORT si no compila.
 #     arreglar fallo en codigo fuente al poner minas en casillas ocupadas
@@ -55,7 +55,7 @@ body:
                               
                   - run:
                         caption:  "Compiling the file ~{$FILENAME}... "
-                        command:  "javac {$FILEPATH}"            
+                        command:  javac "{$FILEPATH}"            
                         expected: "" 
                         onexception: "ABORT"
 
@@ -63,44 +63,69 @@ body:
             description: "Main menu"
             content:                            
             - run:
-                  caption:  "Checking the main menu... "            
-                  command:  "echo 3 | java {$FILEPATH}"            
-                  expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                  caption:  "Checking the caption... "            
+                  command:  echo 3 | java "{$FILEPATH}"            
+                  expected: "%Escull una opció:%" 
+
+            - run:
+                  caption:  "Checking the first option... "            
+                  command:  echo 3 | java "{$FILEPATH}"            
+                  expected: "%1. Emplenar el taulell%" 
+
+            - run:
+                  caption:  "Checking the second option... "            
+                  command:  echo 3 | java "{$FILEPATH}"            
+                  expected: "%2. Mostrar el taulell%" 
+
+            - run:
+                  caption:  "Checking the third option... "            
+                  command:  echo 3 | java "{$FILEPATH}"            
+                  expected: "%3. Sortir%" 
 
       - question:                     
             description: "Input data"
             content:      
                   - run:
                         caption:  "Checking the input data giving no data... "            
-                        command:  "echo 1 | java {$FILEPATH}"
+                        command:  echo 1 | java "{$FILEPATH}"
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows... "            
-                        command:  "echo 1 5 | java {$FILEPATH}"
+                        command:  echo 1 5 | java "{$FILEPATH}"
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows and columns... "            
-                        command:  "echo 1 5 4 | java {$FILEPATH}"
+                        command:  echo 1 5 4 | java "{$FILEPATH}"
                         expected: "Exception%"
 
                   - run:
-                        caption:  "Checking the input data giving rows, columns and mines... "            
-                        command:  "echo 1 5 4 1 3 | java {$FILEPATH}"
-                        expected: "%De quantes files vols el taulell?\nDe quantes columnes vols el taulell?\nQuantes mines vols al taulell?%" 
+                        caption:  "Checking the input question for the rows... "
+                        command:  echo 1 5 4 1 3 | java "{$FILEPATH}"
+                        expected: "%De quantes files vols el taulell?%" 
+
+                  - run:
+                        caption:  "Checking the input question for the columns... "
+                        command:  echo 1 5 4 1 3 | java "{$FILEPATH}"
+                        expected: "%De quantes columnes vols el taulell?%" 
+
+                  - run:
+                        caption:  "Checking the input question for the mines... "
+                        command:  echo 1 5 4 1 3 | java "{$FILEPATH}"
+                        expected: "%Quantes mines vols al taulell?%" 
       - question:                     
             description: "Data verification"
             score: 0.5
             content:      
                   - run:
                         caption:  "Checking that more mines that cells is not allowed... "            
-                        command:  "echo 1 1 1 2 3 | java {$FILEPATH}"
+                        command:  echo 1 1 1 2 3 | java "{$FILEPATH}"
                         expected: "%NO ES PODEN POSAR MÉS MINES QUE CASELLES%" 
 
       - connector:  
             type: "PlainText"        
-            arguments: "--filePath {$FILEPATH}"
+            arguments: --filePath "{$FILEPATH}"
 
       - question:                     
             description: "Board internal creation"
@@ -117,43 +142,28 @@ body:
                         connector: "PlainText"
                         command:  "Count"
                         arguments: --regex "=\s*new\s*\w*\[\w*\]\[\w*\]\s*;"
-                        expected: ">0"               
-
+                        expected: ">0"                    
       - question:                     
-            description: "Board internal filling"
-            content:              
-                  - run:
-                        caption:  "Checking the internal board filling... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: --regex "(?:for\s*\(int\s*\w*\s*=\s*\d;\s*\w\s*<\s*\w*;\s*(?:\w*\+\+|\+\+\w*)\)\s*{(?:\n|\\n|\\r\\n)*\s*){2}(?:.|\n)\s*\w*\[\w*\]\[\w*\]\s*=" 
-                        expected: ">0"  
-
-                  - run:
-                        caption:  "Checking the empty cell filling... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: 
-                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[\s\]"|'\s'|"\s"|0)\s*
-                        expected: ">0"  
-
-      - question:                     
-            description: "Mines internal filling"
+            description: "Board mines filling"
             content:                            
-                  - run:
-                        caption:  "Checking that random location is being used... "          
-                        connector: "PlainText"
-                        command:  "Count"
-                        arguments: --regex "for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\)\s*{(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))(?:.|\n)*(?:\s*\w*\s*\w*\s*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\))"
-                        expected: ">0"   
-
                   - run:
                         caption:  "Checking the mine cell filling... "          
                         connector: "PlainText"
                         command:  "Count"
                         arguments: 
-                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]"|'O'|"O"|1)\s*
-                        expected: ">0"  
+                              regex: \w*\s*\[\w*\]\[\w*\]\s*=\s*(?:"\[O\]\s?"|'O'|"O"|1)\s*
+                        expected: ">0" 
+
+      - question:                     
+            description: "Random mines positioning"
+            content:   
+                  - run:
+                         
+                        caption:  "Checking that random location is being used... "          
+                        connector: "PlainText"
+                        command:  "Count"
+                        arguments: --regex "(?:while\s*\(.*\)|for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\))\s*{(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;"
+                        expected: ">0"
 
       - question:                     
             description: "Return to the menu after filling the board"
@@ -161,14 +171,14 @@ body:
             content:                            
                   - run:
                         caption:  "Checking the return to the main menu... "            
-                        command:  "echo 1 5 4 1 3 | java {$FILEPATH}"            
-                        expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%"       
+                        command:  echo 1 5 4 1 3 | java "{$FILEPATH}"            
+                        expected: "%Escull una opció:%"
             
       - question:                     
             description: "Displaying board's empty cells"
             content:                            
                   - run:                    
-                        command:  "echo 1 1 1 0 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 1 1 0 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 1x1 board with no mines... "            
@@ -178,40 +188,40 @@ body:
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 3 0 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 5 3 0 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x3 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){2}\[\s\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){2}\[\s\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 3 5 0 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 3 5 0 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 3x5 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s\]\s*(?:\n|\\n)){3}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){4}\[\s\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 5 0 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 5 5 0 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x5 board with no mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s){4}\[\s]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[\s\]\s?){4}\[\s]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
       - question:                     
             description: "Displaying board's mine cells"
             content:                            
                   - run:                    
-                        command:  "echo 1 1 1 1 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 1 1 1 2 3 | java "{$FILEPATH}"            
                   
                   - run:
                         caption:  "Checking the display for a 1x1 board full of mines... "            
@@ -221,33 +231,33 @@ body:
                         expected: "1"                   
 
                   - run:                    
-                        command:  "echo 1 5 3 15 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 5 3 15 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 5x3 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){2}\[O\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){2}\[O\]\s*(?:\n|\\n)){5}"
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 3 5 15 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 3 5 15 2 3 | java "{$FILEPATH}"            
 
                   - run:
                         caption:  "Checking the display for a 3x5 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){3}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){4}\[O\]\s*(?:\n|\\n)){3}"
                         expected: "1" 
 
                   - run:                    
-                        command:  "echo 1 5 5 25 2 3 | java {$FILEPATH}"            
+                        command:  echo 1 10 10 100 2 3 | java "{$FILEPATH}"            
 
                   - run:
-                        caption:  "Checking the display for a 5x5 board full of mines... "            
+                        caption:  "Checking the display for a 10x10 board full of mines... "            
                         connector: "TextStream"         
                         command:  "Count"            
-                        arguments: --content {$RESULT} --regex "((?:\[O\]\s){4}\[O\]\s*(?:\n|\\n)){5}"
+                        arguments: --content {$RESULT} --regex "((?:\[O\]\s?){9}\[O\]\s*(?:\n|\\n)){10}"
                         expected: "1" 
 
       - question:                     
@@ -255,14 +265,14 @@ body:
             content:  
                   - run:
                         caption:  "Checking the empty message... "   
-                        command:  "echo 2 3 | java {$FILEPATH}"            
-                        expected: "%NO S’HA CREAT CAP TAULELL%" 
+                        command:  echo 2 3 | java "{$FILEPATH}"            
+                        expected: "%HA CREAT CAP TAULELL%" #' (written) and ’ (copied from the statement) must be accepted "%NO S’HA CREAT CAP TAULELL%" 
 
       - question:                     
             description: "Return to the menu after displaying the board"
             score: 0.5
             content:  
                   - run:
-                        caption:  "Checking the empty message... "   
-                        command:  "echo 2 3 | java {$FILEPATH}"            
-                        expected: "%Escull una opció:\n   1. Emplenar el taulell\n   2. Mostrar el taulell\n   3. Sortir%" 
+                        caption:  "Checking the menu display... "   
+                        command:  echo 2 3 | java "{$FILEPATH}"            
+                        expected: "%Escull una opció:%" 
