@@ -57,7 +57,7 @@ namespace AutoCheck.Core.CopyDetectors{
 
                 //temp directory to match the JPlag directory name with the original index (directory path)
                 foreach(var key in Index.Keys){
-                    folders.Add(Path.GetFileName(key).Replace(" ", ""), Index[key]);
+                    folders.Add(Path.GetFileName(key).Trim(), Index[key]);
                 }
 
                 //collecting matches
@@ -110,9 +110,9 @@ namespace AutoCheck.Core.CopyDetectors{
         }
         
         private string GetMinimalPath(List<File> paths){
-            var left = paths.FirstOrDefault().Folder;
+            var left = paths.FirstOrDefault().FolderPath;
             foreach(var right in paths.Skip(1)){
-                left = GetMinimalPath(left, right.Folder);
+                left = GetMinimalPath(left, right.FolderPath);
             }
 
             return left;
