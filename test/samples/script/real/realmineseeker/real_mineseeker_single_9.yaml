@@ -22,4 +22,4 @@ caption: "Running script '{$SCRIPT_NAME}' (v{$SCRIPT_VERSION}):"
 single:
   caption: "Running on single mode for '{$CURRENT_FOLDER_NAME}':"
   local:
-    folder: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_9"
+    folder: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student Name 9"
