@@ -5,7 +5,7 @@ items:
   id: CsvDocument
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
+  - AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
   - AutoCheck.Core.Connectors.CsvDocument.Content
   - AutoCheck.Core.Connectors.CsvDocument.Count
   - AutoCheck.Core.Connectors.CsvDocument.GetLine(System.Int32)
@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CsvDocument
     path: ../core/connectors/Csv.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/connectors/Csv.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Headers
     path: ../core/connectors/Csv.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/Csv.cs
@@ -160,21 +160,21 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  id: '#ctor(System.String,System.Char,System.Char,System.Boolean)'
+- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  id: '#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)'
   parent: AutoCheck.Core.Connectors.CsvDocument
   langs:
   - csharp
   - vb
-  name: CsvDocument(String, Char, Char, Boolean)
-  nameWithType: CsvDocument.CsvDocument(String, Char, Char, Boolean)
-  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char, System.Boolean)
+  name: CsvDocument(String, Char, Nullable<Char>, Boolean)
+  nameWithType: CsvDocument.CsvDocument(String, Char, Nullable<Char>, Boolean)
+  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Nullable<System.Char>, System.Boolean)
   type: Constructor
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Csv.cs
@@ -185,7 +185,7 @@ items:
   summary: "\nCreates a new CSV Document instance, parsing an existing CSV file.\n"
   example: []
   syntax:
-    content: public CsvDocument(string file, char fieldDelimiter = ',', char textDelimiter = '"', bool headers = true)
+    content: public CsvDocument(string file, char fieldDelimiter = ',', char? textDelimiter, bool headers = true)
     parameters:
     - id: file
       type: System.String
@@ -194,17 +194,20 @@ items:
       type: System.Char
       description: Field delimiter char.
     - id: textDelimiter
-      type: System.Char
+      type: System.Nullable{System.Char}
       description: Text delimiter char.
     - id: headers
       type: System.Boolean
       description: True if the first row are headers.
-    content.vb: Public Sub New(file As String, fieldDelimiter As Char = ","c, textDelimiter As Char = """"c, headers As Boolean = True)
+    content.vb: Public Sub New(file As String, fieldDelimiter As Char = ","c, textDelimiter As Char?, headers As Boolean = True)
   overload: AutoCheck.Core.Connectors.CsvDocument.#ctor*
+  nameWithType.vb: CsvDocument.CsvDocument(String, Char, Nullable(Of Char), Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
+  fullName.vb: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Nullable(Of System.Char), System.Boolean)
+  name.vb: CsvDocument(String, Char, Nullable(Of Char), Boolean)
 - uid: AutoCheck.Core.Connectors.CsvDocument.Validate
   commentId: M:AutoCheck.Core.Connectors.CsvDocument.Validate
   id: Validate
@@ -219,11 +222,11 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Validate
     path: ../core/connectors/Csv.cs
-    startLine: 110
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -251,11 +254,11 @@ items:
   source:
     remote:
       path: core/connectors/Csv.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/Csv.cs
-    startLine: 122
+    startLine: 124
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -553,11 +556,92 @@ references:
   name: Char
   nameWithType: Char
   fullName: System.Char
+- uid: System.Nullable{System.Char}
+  commentId: '!:System.Nullable{System.Char}'
+  definition: System.Nullable`1
+  name: Nullable<Char>
+  nameWithType: Nullable<Char>
+  fullName: System.Nullable<System.Char>
+  nameWithType.vb: Nullable(Of Char)
+  fullName.vb: System.Nullable(Of System.Char)
+  name.vb: Nullable(Of Char)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Boolean
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: System.Nullable`1
+  isExternal: true
+  name: Nullable<>
+  nameWithType: Nullable<>
+  fullName: System.Nullable<>
+  nameWithType.vb: Nullable(Of )
+  fullName.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: AutoCheck.Core.Connectors.CsvDocument.Validate*
   commentId: Overload:AutoCheck.Core.Connectors.CsvDocument.Validate
   name: Validate

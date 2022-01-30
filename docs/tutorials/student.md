@@ -24,7 +24,7 @@ Follow this instructions in order to install the application for the first time:
 
 ### Web Application Interface
 #### Preparation
-Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **store the scripts** you create into the `AutoCheck/scripts/custom` folder.
+Please, notice that **AutoCheck will revert all changes when updates** which includes the removal of new files, so it's important to **store your own custom scripts** into the `AutoCheck/scripts/custom` folder.
 
 #### Run
 Follow this instructions in order to run the application:

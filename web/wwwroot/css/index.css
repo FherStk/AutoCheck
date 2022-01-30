@@ -90,3 +90,21 @@ xmp{
 .collapsable > .content.hidden {
   display: none;
 }
+
+#target{
+  margin-top: 20px;
+  display: inline-block;
+}
+
+#target select,
+#target input{
+  width: 100%;
+}
+
+#target td:first-child{
+  text-align: right;
+}
+
+#target td{
+  padding: 5px;
+}

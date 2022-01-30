@@ -304,12 +304,15 @@ references:
   commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String,System.Char,System.Char,System.Boolean)
   fullName: AutoCheck.Core.Connectors.Csv.Csv(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String, System.Char, System.Char, System.Boolean)
   nameWithType: Csv.Csv(Utils.OS, String, String, String, String, Char, Char, Boolean)
-- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  name: Csv(String, Char, Char, Boolean)
-  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_Char_System_Char_System_Boolean_
-  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Char, System.Boolean)
-  nameWithType: Csv.Csv(String, Char, Char, Boolean)
+- uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  name: Csv(String, Char, Nullable<Char>, Boolean)
+  href: api/AutoCheck.Core.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_Char_System_Nullable_System_Char__System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  name.vb: Csv(String, Char, Nullable(Of Char), Boolean)
+  fullName: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Nullable<System.Char>, System.Boolean)
+  fullName.vb: AutoCheck.Core.Connectors.Csv.Csv(System.String, System.Char, System.Nullable(Of System.Char), System.Boolean)
+  nameWithType: Csv.Csv(String, Char, Nullable<Char>, Boolean)
+  nameWithType.vb: Csv.Csv(String, Char, Nullable(Of Char), Boolean)
 - uid: AutoCheck.Core.Connectors.Csv.#ctor(System.String,System.String,System.Char,System.Char)
   name: Csv(String, String, Char, Char)
   href: api/AutoCheck.Connectors.Csv.html#AutoCheck_Core_Connectors_Csv__ctor_System_String_System_String_System_Char_System_Char_
@@ -361,12 +364,15 @@ references:
   commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char)
   fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char)
   nameWithType: CsvDocument.CsvDocument(String, Char, Char)
-- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  name: CsvDocument(String, Char, Char, Boolean)
-  href: api/AutoCheck.Core.Connectors.CsvDocument.html#AutoCheck_Core_Connectors_CsvDocument__ctor_System_String_System_Char_System_Char_System_Boolean_
-  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Char,System.Boolean)
-  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Char, System.Boolean)
-  nameWithType: CsvDocument.CsvDocument(String, Char, Char, Boolean)
+- uid: AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  name: CsvDocument(String, Char, Nullable<Char>, Boolean)
+  href: api/AutoCheck.Core.Connectors.CsvDocument.html#AutoCheck_Core_Connectors_CsvDocument__ctor_System_String_System_Char_System_Nullable_System_Char__System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.CsvDocument.#ctor(System.String,System.Char,System.Nullable{System.Char},System.Boolean)
+  name.vb: CsvDocument(String, Char, Nullable(Of Char), Boolean)
+  fullName: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Nullable<System.Char>, System.Boolean)
+  fullName.vb: AutoCheck.Core.Connectors.CsvDocument.CsvDocument(System.String, System.Char, System.Nullable(Of System.Char), System.Boolean)
+  nameWithType: CsvDocument.CsvDocument(String, Char, Nullable<Char>, Boolean)
+  nameWithType.vb: CsvDocument.CsvDocument(String, Char, Nullable(Of Char), Boolean)
 - uid: AutoCheck.Core.Connectors.CsvDocument.#ctor*
   name: CsvDocument
   href: api/AutoCheck.Connectors.CsvDocument.html#AutoCheck_Core_Connectors_CsvDocument__ctor_
@@ -4228,19 +4234,58 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Content
   nameWithType: PlainText.File.Content
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  name: Folder
-  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Folder
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  nameWithType: PlainText.File.Folder
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
-  name: Folder
-  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Folder_
-  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  name: FileName
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FileName
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  nameWithType: PlainText.File.FileName
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FileName*
+  name: FileName
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FileName_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FileName
   isSpec: "True"
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  nameWithType: PlainText.File.Folder
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  nameWithType: PlainText.File.FileName
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  name: FilePath
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FilePath
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  nameWithType: PlainText.File.FilePath
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath*
+  name: FilePath
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FilePath_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  nameWithType: PlainText.File.FilePath
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  name: FolderName
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FolderName
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  nameWithType: PlainText.File.FolderName
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName*
+  name: FolderName
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FolderName_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  nameWithType: PlainText.File.FolderName
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  name: FolderPath
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FolderPath
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  nameWithType: PlainText.File.FolderPath
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath*
+  name: FolderPath
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_FolderPath_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  nameWithType: PlainText.File.FolderPath
 - uid: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
   name: LineCount
   href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_LineCount
@@ -4254,19 +4299,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
   nameWithType: PlainText.File.LineCount
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  name: Path
-  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Path
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  nameWithType: PlainText.File.Path
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
-  name: Path
-  href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_Path_
-  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  isSpec: "True"
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  nameWithType: PlainText.File.Path
 - uid: AutoCheck.Core.CopyDetectors.PlainText.File.ToString
   name: ToString()
   href: api/AutoCheck.Core.CopyDetectors.PlainText.File.html#AutoCheck_Core_CopyDetectors_PlainText_File_ToString

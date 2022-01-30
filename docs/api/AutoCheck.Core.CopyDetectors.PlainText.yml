@@ -29,7 +29,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
@@ -81,11 +81,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Index
     path: ../core/copy/PlainText.cs
-    startLine: 52
+    startLine: 56
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -116,11 +116,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Files
     path: ../core/copy/PlainText.cs
-    startLine: 53
+    startLine: 57
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -151,11 +151,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Matches
     path: ../core/copy/PlainText.cs
-    startLine: 54
+    startLine: 58
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -186,11 +186,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Diffs
     path: ../core/copy/PlainText.cs
-    startLine: 55
+    startLine: 59
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -221,11 +221,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SentenceMatchWeight
     path: ../core/copy/PlainText.cs
-    startLine: 61
+    startLine: 65
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -259,11 +259,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 67
+    startLine: 71
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -297,11 +297,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
-    startLine: 73
+    startLine: 77
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -335,11 +335,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
-    startLine: 79
+    startLine: 83
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -376,11 +376,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
-    startLine: 88
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -413,11 +413,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
-    startLine: 101
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -448,11 +448,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
-    startLine: 111
+    startLine: 115
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -490,11 +490,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
-    startLine: 123
+    startLine: 127
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -525,11 +525,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
-    startLine: 168
+    startLine: 172
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -567,11 +567,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs
-    startLine: 187
+    startLine: 191
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
