@@ -42,7 +42,55 @@ public class HomeController : Controller
             this.YAML = this.LoadYamlFile(path);  
         }
 
-        public YamlStream InjectTarget(string target){                      
+        public YamlStream InjectTarget(Dictionary<string, string> target, Dictionary<string, string> vars){                      
+            var root = (YamlMappingNode)YAML.Documents[0].RootNode;                                    
+
+            ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":      
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //folder; path
+                                        var scalar = (YamlScalarNode)node;
+                                        scalar.Value = target[name];                                        
+                                    }));                     
+                                    break;
+
+                                case "remote":   
+                                   ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; vars                                        
+                                        switch(name){
+                                            case "os":
+                                                var os = Enum.Parse(typeof(AutoCheck.Core.Utils.OS), target[name]);
+                                                ((YamlScalarNode)node).Value = os.ToString();
+                                                break;
+                                            
+                                            case "vars":
+                                                ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                    ((YamlScalarNode)node).Value = vars[name];
+                                                })); 
+                                                break;
+                                            
+                                            default:
+                                                ((YamlScalarNode)node).Value = target[name];
+                                                break;
+                                        }                                        
+                                    }));                     
+                                    break;
+                            }
+                        }));
+                        break;
+                }
+            }));
+
+            return this.YAML;
+        } 
+
+        public Dictionary<string, object> GetTargetData(){
+            var data = new Dictionary<string, object>();            
             var root = (YamlMappingNode)YAML.Documents[0].RootNode;                        
             
             ForEachChild(root, new Action<string, YamlNode>((name, node) => { 
@@ -53,25 +101,32 @@ public class HomeController : Controller
                             switch(name){                        
                                 case "local":      
                                     ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
-                                        switch(name){                        
-                                            case "folder":                       
-                                            case "path":                            
-                                                var scalar = (YamlScalarNode)node;
-                                                scalar.Value = target;       
-                                            break;             
-                                        }
+                                        //folder; path
+                                        data.Add(name, string.Empty);
                                     }));                     
                                     break;
 
                                 case "remote":   
-                                    throw new NotImplementedException();                     
+                                   ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; vars
+                                        if(name != "vars") data.Add(name, string.Empty);
+                                        else{
+                                            var vars = new Dictionary<string, object>();
+                                            data.Add(name, vars);
+
+                                            ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                vars.Add(name, string.Empty);
+                                            }));      
+                                        }
+                                    }));                     
+                                    break;
                             }
                         }));
                         break;
                 }
             }));
 
-            return this.YAML;
+            return data;
         }     
     }    
 
@@ -98,15 +153,18 @@ public class HomeController : Controller
         return Json(items);
     }
 
-    public IActionResult Run(string script, string mode, string target)
+    public IActionResult GetTargetData(string script)
     {
-        //Still not available for remote scripts        
-        //TODO: file / path within a script will be ignored and will be injected from web into the script (multi file/path)
-        //TODO: enable remote
+        var ws = new WebScript(script);                    
+        return Json(ws.GetTargetData());
+    }
 
+    public IActionResult Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
+    {        
+        //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script
             
         var ws = new WebScript(script);
-        var yaml = ws.InjectTarget(target);
+        var yaml = ws.InjectTarget(target, vars);
         AutoCheck.Core.Script? result = null;
         Output output;
 

@@ -7,8 +7,6 @@ Feel free to use, copy, fork or modify this code; but please refer a mention to 
 ## How does it works?
 AutoCheck can run any terminal command (local or remote) and also a set of predefined methods included in its own connectors; additionally a set of commands can be enveloped within a question, where any of those can be scored to compute a global assignment.
 
-**WARNING: still in an early development stage.**
-
 ### [Documentation](https://fherstk.github.io/AutoCheck/html/):
 All the project documentation (including examples, user guides and thecnical information) can be found [here](https://fherstk.github.io/AutoCheck/html/).
 

@@ -7,9 +7,11 @@ items:
   children:
   - AutoCheck.Core.CopyDetectors.PlainText.File.#ctor(System.String,System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.File.Content
-  - AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  - AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  - AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  - AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  - AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
   - AutoCheck.Core.CopyDetectors.PlainText.File.LineCount
-  - AutoCheck.Core.CopyDetectors.PlainText.File.Path
   - AutoCheck.Core.CopyDetectors.PlainText.File.ToString
   - AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
   langs:
@@ -22,7 +24,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: File
     path: ../core/copy/PlainText.cs
@@ -45,70 +47,140 @@ items:
   modifiers.vb:
   - Protected
   - Class
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  id: Folder
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  id: FolderPath
   parent: AutoCheck.Core.CopyDetectors.PlainText.File
   langs:
   - csharp
   - vb
-  name: Folder
-  nameWithType: PlainText.File.Folder
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+  name: FolderPath
+  nameWithType: PlainText.File.FolderPath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
   type: Property
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Folder
+    id: FolderPath
     path: ../core/copy/PlainText.cs
     startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
   syntax:
-    content: public string Folder { get; set; }
+    content: public string FolderPath { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property Folder As String
-  overload: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
+    content.vb: Public Property FolderPath As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath*
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  id: Path
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  id: FolderName
   parent: AutoCheck.Core.CopyDetectors.PlainText.File
   langs:
   - csharp
   - vb
-  name: Path
-  nameWithType: PlainText.File.Path
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+  name: FolderName
+  nameWithType: PlainText.File.FolderName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
   type: Property
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Path
+    id: FolderName
     path: ../core/copy/PlainText.cs
     startLine: 33
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
   syntax:
-    content: public string Path { get; set; }
+    content: public string FolderName { get; set; }
     parameters: []
     return:
       type: System.String
-    content.vb: Public Property Path As String
-  overload: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
+    content.vb: Public Property FolderName As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  id: FilePath
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: FilePath
+  nameWithType: PlainText.File.FilePath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: v2.18.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FilePath
+    path: ../core/copy/PlainText.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public string FilePath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FilePath As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  commentId: P:AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  id: FileName
+  parent: AutoCheck.Core.CopyDetectors.PlainText.File
+  langs:
+  - csharp
+  - vb
+  name: FileName
+  nameWithType: PlainText.File.FileName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  type: Property
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: v2.18.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FileName
+    path: ../core/copy/PlainText.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: public string FileName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property FileName As String
+  overload: AutoCheck.Core.CopyDetectors.PlainText.File.FileName*
   modifiers.csharp:
   - public
   - get
@@ -129,11 +201,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCount
     path: ../core/copy/PlainText.cs
-    startLine: 34
+    startLine: 36
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -164,11 +236,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCount
     path: ../core/copy/PlainText.cs
-    startLine: 35
+    startLine: 37
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -199,11 +271,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/copy/PlainText.cs
-    startLine: 36
+    startLine: 38
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -234,11 +306,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
-    startLine: 38
+    startLine: 40
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -269,11 +341,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.17.0
+      branch: v2.18.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/copy/PlainText.cs
-    startLine: 47
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -374,21 +446,31 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Folder*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Folder
-  name: Folder
-  nameWithType: PlainText.File.Folder
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Folder
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
+  name: FolderPath
+  nameWithType: PlainText.File.FolderPath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderPath
 - uid: System.String
   isExternal: true
   name: String
   nameWithType: String
   fullName: System.String
-- uid: AutoCheck.Core.CopyDetectors.PlainText.File.Path*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.Path
-  name: Path
-  nameWithType: PlainText.File.Path
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.Path
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+  name: FolderName
+  nameWithType: PlainText.File.FolderName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FolderName
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+  name: FilePath
+  nameWithType: PlainText.File.FilePath
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FilePath
+- uid: AutoCheck.Core.CopyDetectors.PlainText.File.FileName*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.FileName
+  name: FileName
+  nameWithType: PlainText.File.FileName
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.File.FileName
 - uid: AutoCheck.Core.CopyDetectors.PlainText.File.WordCount*
   commentId: Overload:AutoCheck.Core.CopyDetectors.PlainText.File.WordCount
   name: WordCount
