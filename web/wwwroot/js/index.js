@@ -13,19 +13,34 @@ function showMore(node){
     $(node).next().show();
 }
 
-function run(){
-    $("#mode, #script, #target, #run").prop( "disabled", true );  
+function addTarget(key, placeholder, isVar){
+    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
+}
+
+function run(){    
     $("#step-3").show();  
     $("#log > div").empty();
     $("#log > img").show();
 
-    $.post("/home/Run", { script: $("#script").val(), target: $("#target").val()}, function(data){                        
-        $("#log > img").hide();
+    //Get the data target data to send
+    var target = {};
+    $("#mode, #script, #run").prop( "disabled", true );  
+    $("#target").find("input[type=text],select").not('.var').each(function(){        
+        $(this).prop( "disabled", true );  
+        target[$(this).attr('name')] = $(this).val();        
+    });
 
+    var vars = {};
+    $("#target").find("input[type=text][class='var']").each(function(){
+        $(this).prop( "disabled", true );  
+        vars[$(this).attr('name')] = $(this).val();
+    });
+
+    var logSelector = "#log > div";
+    $.post("/home/Run", { script: $("#script").val(), target: target, vars: vars}, function(data){                                
         //TODO: this must be append in async mode   
         $.each(data, function(i) {      
-            //Multiple log files  
-            var logSelector = "#log > div";                                   
+            //Multiple log files                                                 
             $(logSelector).append(
                 '<div class="collapsable">\
                     <div onclick="showMore(this);" class="header' + (i==0 ? ' hidden' : '') + '">Display more...</div>\
@@ -48,9 +63,16 @@ function run(){
 
             $(logSelector).append('<br>');
         });
-    });
+    }).fail(function(data) {
+        $(logSelector).append('<label class="error">' + data.statusText + ' (' + data.status + '): ' + data.responseText + '</label>');                        
+    }).always(function() {
+        $("#log > img").hide();
 
-    $("#run").prop( "disabled", false ); 
+        $("#mode, #script, #run").prop( "disabled", false );  
+        $("#target").find("input[type=text],select").each(function(){        
+            $(this).prop( "disabled", false );  
+        });
+    });
 }
 
 $(function(){  
@@ -106,10 +128,10 @@ $(function(){
             
             var rows = 0;
             Object.keys(data).forEach(function(key) {
-                if(key == "os") $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><select id="' + key + '" name="' + key + '"><option value="GNU">GNU/Linux</option><option value="MAC">Mac OS</option><option value="WIN">Windows</option></select></td><td></td></tr>'); //$("#target").append('<label for"' + key + '">' + key + ': </label><select id="' + key + '" name="' + key + '"><option value="GNU">GNU/Linux</option><option value="MAC">Mac OS</option><option value="WIN">Windows</option></select>');
+                if(key == "os") $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><select id="' + key + '" name="' + key + '"><option value="GNU">GNU/Linux</option><option value="MAC">Mac OS</option><option value="WIN">Windows</option></select></td><td></td></tr>'); 
                 else if(key == "vars"){                    
                     Object.keys(data.vars).forEach(function(key) {
-                        $("#vars").append('<td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" class="var" placeholder="Some data" /></td><td></td></tr>');
+                        addTarget(key, "Some data", true);
                     });
                 }
                 else{
@@ -131,9 +153,8 @@ $(function(){
                         case "password":
                             placeholder="password";
                             break;                               
-                    }
-
-                    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" placeholder="' + placeholder + '" /></td><td></td></tr>');
+                    }                    
+                    addTarget(key, placeholder, false);
                 };
 
                 rows++;
@@ -153,7 +174,7 @@ $(function(){
 
     $("#target").keyup(function() {
         var disabled = false;
-        $(this).find("input,select").each(function(){
+        $(this).find("input[type=text],select").each(function(){
             if($(this).val() == ""){
                 disabled = true;
                 return false;
