@@ -41,11 +41,9 @@
     <label id="info-batch">AutoCheck will be executed in batch mode, once per folder within the given one.</label>
     <br>
     
-    @* <table id="target">
-        <!-- <tr><td>Label</td><td>Input</td><td>Run with rowspan</td></tr> -->
-    </table> *@
-    <div id="target"></div>
-    <input id="run" type="button" value="Run" disabled="true" />
+    <table id="target">
+        @* <tr><td>Label</td><td>Input</td><td rowspan='x'><input id="run" onclick="run()" type="button" value="Run" disabled="true" /></td></tr> *@
+    </table>
 </div>
 
 <div id="step-3" class="text-center">
