@@ -2163,7 +2163,7 @@ namespace AutoCheck.Core{
             if(expected.StartsWith("LENGTH")){
                 expected = expected.Substring(6).Trim();
                 return MatchesExpected(current.Length.ToString(), expected);                
-            }
+            }          
             else if(expected.StartsWith("CONTAINS")){
                 expected = expected.Substring(8).Trim();
 
@@ -2218,6 +2218,18 @@ namespace AutoCheck.Core{
             else if(expected.StartsWith("<>") || expected.StartsWith("!=")){ 
                 comparer = Operator.NOTEQUALS;
                 expected = expected.Substring(2);
+            }
+            else if(expected.StartsWith("REGEX")){
+                expected = expected.Substring(5).Trim();
+
+                var amount = expected.Substring(expected.IndexOf(" ")).Trim();
+                var regex = expected.Substring(expected.IndexOf(amount) + amount.Length).Trim();
+                
+                //TODO: test this
+                var conn = new Connectors.TextStream();
+                var count = conn.Count(current, regex);
+                
+                return MatchesExpected(count.ToString(), amount);
             }
             
             expected = expected.Trim();
