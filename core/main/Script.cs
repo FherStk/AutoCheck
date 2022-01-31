@@ -1671,7 +1671,7 @@ namespace AutoCheck.Core{
                     input = input.Substring(input.IndexOf(' ')+1);
                     
                     var value = string.Empty;
-                    char separator = (input.StartsWith('"') ? '"' : (input.StartsWith('\'') ? '\'' : ' '));
+                    char separator = GetTextDelimiter(input);
                     if(input.Contains(separator)){
                         input = input.TrimStart(separator);                        
                         value = input.Substring(0, input.IndexOf(separator));
@@ -1823,6 +1823,10 @@ namespace AutoCheck.Core{
         }
 #endregion
 #region Helpers
+        private char GetTextDelimiter(string text){
+            return (text.StartsWith('"') ? '"' : (text.StartsWith('\'') ? '\'' : ' '));
+        }
+
         private void ExecuteBody(YamlMappingNode node, bool abort = false){
             //This data must be cleared for each script body execution (batch mode)  
             Success = 0;
@@ -2221,11 +2225,11 @@ namespace AutoCheck.Core{
             }
             else if(expected.StartsWith("REGEX")){
                 expected = expected.Substring(5).Trim();
+            
+                var amount = expected.Substring(0, expected.IndexOf(" ")).Trim();
+                var regex = expected.Substring(expected.IndexOf(" ")+1).Trim();                
+                regex = regex.Trim(GetTextDelimiter(regex));
 
-                var amount = expected.Substring(expected.IndexOf(" ")).Trim();
-                var regex = expected.Substring(expected.IndexOf(amount) + amount.Length).Trim();
-                
-                //TODO: test this
                 var conn = new Connectors.TextStream();
                 var count = conn.Count(current, regex);
                 

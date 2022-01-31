@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
@@ -104,7 +104,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
@@ -175,7 +175,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
@@ -296,7 +296,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
@@ -335,7 +335,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
@@ -367,7 +367,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
@@ -399,7 +399,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
@@ -431,7 +431,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseLog
     path: ../core/main/Output.cs
@@ -502,7 +502,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLog
     path: ../core/main/Output.cs
@@ -536,7 +536,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
@@ -571,7 +571,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToJson
     path: ../core/main/Output.cs
@@ -606,7 +606,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.18.0
+      branch: v2.19.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SendToTerminal
     path: ../core/main/Output.cs
