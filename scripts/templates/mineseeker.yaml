@@ -162,7 +162,7 @@ body:
                         caption:  "Checking that random location is being used... "          
                         connector: PlainText
                         command:  Count
-                        arguments: --regex "(?:while\s*\(.*\)|for\s*\((?:\w*|\s*|=|;|<|>|\+|\-|\\|\*)*\))\s*{(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;(?:.|\n)*=\s*ThreadLocalRandom\.current\(\)\.nextInt\(\d,\s*\w*\s*\)\s*;"
+                        arguments: --regex "ThreadLocalRandom\.current\(\)\.nextInt\((?:\s*\w*\s*)*,.*\)|Math\.random\(\)|Random\s*(\w*)\s*=\s*new Random\(\)\s*;(?:.|\n)*\1.nextInt\("
                         expected: ">0"
 
       - question:                     
@@ -259,6 +259,14 @@ body:
                         command:  Count
                         arguments: --content {$RESULT} --regex "((?:\[O\]\s?){9}\[O\]\s*(?:\n|\\n)){10}"
                         expected: 1
+
+                  - run:                    
+                        command:  echo 1 10 10 25 2 3 | java "{$FILEPATH}"
+
+                  - run:
+                        caption:  "Checking that mines are changing its position... "
+                        command:  echo 1 10 10 25 2 3 | java "{$FILEPATH}"                            
+                        expected: "!={$RESULT}"
 
       - question:                     
             description: "Displaying empty board message"
