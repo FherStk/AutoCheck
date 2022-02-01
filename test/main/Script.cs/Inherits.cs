@@ -52,7 +52,7 @@ namespace AutoCheck.Test
             var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test2"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("inherits_run_ok1.yaml"));            
             
