@@ -1,39 +1,40 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Connectors.Zip
-  commentId: T:AutoCheck.Core.Connectors.Zip
-  id: Zip
+- uid: AutoCheck.Core.Connectors.Compressed
+  commentId: T:AutoCheck.Core.Connectors.Compressed
+  id: Compressed
   parent: AutoCheck.Core.Connectors
   children:
-  - AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  - AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  - AutoCheck.Core.Connectors.Zip.#ctor(System.String)
-  - AutoCheck.Core.Connectors.Zip.Dispose
-  - AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
-  - AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
-  - AutoCheck.Core.Connectors.Zip.ZipFile
+  - AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  - AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  - AutoCheck.Core.Connectors.Compressed.#ctor(System.String)
+  - AutoCheck.Core.Connectors.Compressed.Dispose
+  - AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean,System.String,System.String)
+  - AutoCheck.Core.Connectors.Compressed.Extract(System.String,System.String)
+  - AutoCheck.Core.Connectors.Compressed.FileContent
+  - AutoCheck.Core.Connectors.Compressed.FileType
   langs:
   - csharp
   - vb
-  name: Zip
-  nameWithType: Zip
-  fullName: AutoCheck.Core.Connectors.Zip
+  name: Compressed
+  nameWithType: Compressed
+  fullName: AutoCheck.Core.Connectors.Compressed
   type: Class
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: Zip
-    path: ../core/connectors/Zip.cs
-    startLine: 28
+    id: Compressed
+    path: ../core/connectors/Compressed.cs
+    startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: 'public class Zip : Base'
+    content: 'public class Compressed : Base'
     content.vb: >-
-      Public Class Zip
+      Public Class Compressed
           Inherits Base
   inheritance:
   - System.Object
@@ -41,108 +42,143 @@ items:
   inheritedMembers:
   - AutoCheck.Core.Connectors.Base.ProcessRemoteFile(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String,Action{System.String})
   extensionMethods:
-  - AutoCheck.Core.Connectors.Zip.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.Connectors.Compressed.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Connectors.Zip.ZipFile
-  commentId: P:AutoCheck.Core.Connectors.Zip.ZipFile
-  id: ZipFile
-  parent: AutoCheck.Core.Connectors.Zip
+- uid: AutoCheck.Core.Connectors.Compressed.FileContent
+  commentId: P:AutoCheck.Core.Connectors.Compressed.FileContent
+  id: FileContent
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
-  name: ZipFile
-  nameWithType: Zip.ZipFile
-  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+  name: FileContent
+  nameWithType: Compressed.FileContent
+  fullName: AutoCheck.Core.Connectors.Compressed.FileContent
   type: Property
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ZipFile
-    path: ../core/connectors/Zip.cs
-    startLine: 29
+    id: FileContent
+    path: ../core/connectors/Compressed.cs
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: public MemoryStream ZipFile { get; }
+    content: public MemoryStream FileContent { get; }
     parameters: []
     return:
       type: MemoryStream
-    content.vb: Public ReadOnly Property ZipFile As MemoryStream
-  overload: AutoCheck.Core.Connectors.Zip.ZipFile*
+    content.vb: Public ReadOnly Property FileContent As MemoryStream
+  overload: AutoCheck.Core.Connectors.Compressed.FileContent*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(System.String)
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(System.String)
-  id: '#ctor(System.String)'
-  parent: AutoCheck.Core.Connectors.Zip
+- uid: AutoCheck.Core.Connectors.Compressed.FileType
+  commentId: P:AutoCheck.Core.Connectors.Compressed.FileType
+  id: FileType
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
-  name: Zip(String)
-  nameWithType: Zip.Zip(String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(System.String)
+  name: FileType
+  nameWithType: Compressed.FileType
+  fullName: AutoCheck.Core.Connectors.Compressed.FileType
+  type: Property
+  source:
+    remote:
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: FileType
+    path: ../core/connectors/Compressed.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public ArchiveType FileType { get; }
+    parameters: []
+    return:
+      type: ArchiveType
+    content.vb: Public ReadOnly Property FileType As ArchiveType
+  overload: AutoCheck.Core.Connectors.Compressed.FileType*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(System.String)
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: AutoCheck.Core.Connectors.Compressed
+  langs:
+  - csharp
+  - vb
+  name: Compressed(String)
+  nameWithType: Compressed.Compressed(String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(System.String)
   type: Constructor
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/connectors/Zip.cs
-    startLine: 36
+    path: ../core/connectors/Compressed.cs
+    startLine: 39
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   summary: "\nCreates a new connector instance.\n"
   example: []
   syntax:
-    content: public Zip(string filePath)
+    content: public Compressed(string filePath)
     parameters:
     - id: filePath
       type: System.String
-      description: ZIP file path.
+      description: A compressed file path.
     content.vb: Public Sub New(filePath As String)
-  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  overload: AutoCheck.Core.Connectors.Compressed.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
   id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)'
-  parent: AutoCheck.Core.Connectors.Zip
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
-  name: Zip(Utils.OS, String, String, String, String)
-  nameWithType: Zip.Zip(Utils.OS, String, String, String, String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  name: Compressed(Utils.OS, String, String, String, String)
+  nameWithType: Compressed.Compressed(Utils.OS, String, String, String, String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
   type: Constructor
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/connectors/Zip.cs
-    startLine: 49
+    path: ../core/connectors/Compressed.cs
+    startLine: 52
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: public Zip(Utils.OS remoteOS, string host, string username, string password, string filePath)
+    content: public Compressed(Utils.OS remoteOS, string host, string username, string password, string filePath)
     parameters:
     - id: remoteOS
       type: AutoCheck.Core.Utils.OS
@@ -155,35 +191,35 @@ items:
     - id: filePath
       type: System.String
     content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, filePath As String)
-  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  overload: AutoCheck.Core.Connectors.Compressed.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
   id: '#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)'
-  parent: AutoCheck.Core.Connectors.Zip
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
-  name: Zip(Utils.OS, String, String, String, Int32, String)
-  nameWithType: Zip.Zip(Utils.OS, String, String, String, Int32, String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  name: Compressed(Utils.OS, String, String, String, Int32, String)
+  nameWithType: Compressed.Compressed(Utils.OS, String, String, String, Int32, String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
   type: Constructor
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/connectors/Zip.cs
-    startLine: 62
+    path: ../core/connectors/Compressed.cs
+    startLine: 65
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
   syntax:
-    content: public Zip(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
+    content: public Compressed(Utils.OS remoteOS, string host, string username, string password, int port, string filePath)
     parameters:
     - id: remoteOS
       type: AutoCheck.Core.Utils.OS
@@ -198,30 +234,30 @@ items:
     - id: filePath
       type: System.String
     content.vb: Public Sub New(remoteOS As Utils.OS, host As String, username As String, password As String, port As Integer, filePath As String)
-  overload: AutoCheck.Core.Connectors.Zip.#ctor*
+  overload: AutoCheck.Core.Connectors.Compressed.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Zip.Dispose
-  commentId: M:AutoCheck.Core.Connectors.Zip.Dispose
+- uid: AutoCheck.Core.Connectors.Compressed.Dispose
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Dispose
   id: Dispose
-  parent: AutoCheck.Core.Connectors.Zip
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
   name: Dispose()
-  nameWithType: Zip.Dispose()
-  fullName: AutoCheck.Core.Connectors.Zip.Dispose()
+  nameWithType: Compressed.Dispose()
+  fullName: AutoCheck.Core.Connectors.Compressed.Dispose()
   type: Method
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
-    path: ../core/connectors/Zip.cs
-    startLine: 86
+    path: ../core/connectors/Compressed.cs
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -231,36 +267,36 @@ items:
     content: public override void Dispose()
     content.vb: Public Overrides Sub Dispose
   overridden: AutoCheck.Core.Connectors.Base.Dispose
-  overload: AutoCheck.Core.Connectors.Zip.Dispose*
+  overload: AutoCheck.Core.Connectors.Compressed.Dispose*
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Compressed.Extract(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Extract(System.String,System.String)
   id: Extract(System.String,System.String)
-  parent: AutoCheck.Core.Connectors.Zip
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
   name: Extract(String, String)
-  nameWithType: Zip.Extract(String, String)
-  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.String, System.String)
+  nameWithType: Compressed.Extract(String, String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract(System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
-    path: ../core/connectors/Zip.cs
-    startLine: 95
+    path: ../core/connectors/Compressed.cs
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nExtracts the ZIP file.\n"
+  summary: "\nExtracts the compressed file.\n"
   example: []
   syntax:
     content: public void Extract(string output, string password = null)
@@ -270,51 +306,51 @@ items:
       description: Destination folder for the extracted files.
     - id: password
       type: System.String
-      description: ZIP file&apos;s password.
+      description: Compressed file&apos;s password.
     content.vb: Public Sub Extract(output As String, password As String = Nothing)
-  overload: AutoCheck.Core.Connectors.Zip.Extract*
+  overload: AutoCheck.Core.Connectors.Compressed.Extract*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean,System.String,System.String)
   id: Extract(System.Boolean,System.String,System.String)
-  parent: AutoCheck.Core.Connectors.Zip
+  parent: AutoCheck.Core.Connectors.Compressed
   langs:
   - csharp
   - vb
   name: Extract(Boolean, String, String)
-  nameWithType: Zip.Extract(Boolean, String, String)
-  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean, System.String, System.String)
+  nameWithType: Compressed.Extract(Boolean, String, String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean, System.String, System.String)
   type: Method
   source:
     remote:
-      path: core/connectors/Zip.cs
-      branch: v2.19.0
+      path: core/connectors/Compressed.cs
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
-    path: ../core/connectors/Zip.cs
-    startLine: 105
+    path: ../core/connectors/Compressed.cs
+    startLine: 111
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nExtracts the ZIP file.\n"
+  summary: "\nExtracts the compressed file.\n"
   example: []
   syntax:
     content: public void Extract(bool recursive = false, string output = null, string password = null)
     parameters:
     - id: recursive
       type: System.Boolean
-      description: ZIP files within the extracted one, will be also extracted.
+      description: Compressed files within the extracted one, will be also extracted.
     - id: output
       type: System.String
       description: Destination folder for the extracted files.
     - id: password
       type: System.String
-      description: ZIP file&apos;s password.
+      description: Compressed file&apos;s password.
     content.vb: Public Sub Extract(recursive As Boolean = False, output As String = Nothing, password As String = Nothing)
-  overload: AutoCheck.Core.Connectors.Zip.Extract*
+  overload: AutoCheck.Core.Connectors.Compressed.Extract*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -495,21 +531,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Zip.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.Connectors.Compressed.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<Zip>()
-  nameWithType: ObjectExtensions.DeepClone<Zip>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Zip>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of Zip)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Zip)()
-  name.vb: DeepClone(Of Zip)()
+  name: DeepClone<Compressed>()
+  nameWithType: ObjectExtensions.DeepClone<Compressed>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Compressed>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Compressed)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Compressed)()
+  name.vb: DeepClone(Of Compressed)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<Zip>
-    nameWithType: ObjectExtensions.DeepClone<Zip>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Zip>
+    name: DeepClone<Compressed>
+    nameWithType: ObjectExtensions.DeepClone<Compressed>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Connectors.Compressed>
   - name: (
     nameWithType: (
     fullName: (
@@ -518,9 +554,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of Zip)
-    nameWithType: ObjectExtensions.DeepClone(Of Zip)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Zip)
+    name: DeepClone(Of Compressed)
+    nameWithType: ObjectExtensions.DeepClone(Of Compressed)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Connectors.Compressed)
   - name: (
     nameWithType: (
     fullName: (
@@ -568,22 +604,33 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.Connectors.Zip.ZipFile*
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.ZipFile
-  name: ZipFile
-  nameWithType: Zip.ZipFile
-  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
+- uid: AutoCheck.Core.Connectors.Compressed.FileContent*
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.FileContent
+  name: FileContent
+  nameWithType: Compressed.FileContent
+  fullName: AutoCheck.Core.Connectors.Compressed.FileContent
 - uid: MemoryStream
   commentId: '!:MemoryStream'
   isExternal: true
   name: MemoryStream
   nameWithType: MemoryStream
   fullName: MemoryStream
-- uid: AutoCheck.Core.Connectors.Zip.#ctor*
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.#ctor
-  name: Zip
-  nameWithType: Zip.Zip
-  fullName: AutoCheck.Core.Connectors.Zip.Zip
+- uid: AutoCheck.Core.Connectors.Compressed.FileType*
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.FileType
+  name: FileType
+  nameWithType: Compressed.FileType
+  fullName: AutoCheck.Core.Connectors.Compressed.FileType
+- uid: ArchiveType
+  commentId: '!:ArchiveType'
+  isExternal: true
+  name: ArchiveType
+  nameWithType: ArchiveType
+  fullName: ArchiveType
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor*
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.#ctor
+  name: Compressed
+  nameWithType: Compressed.Compressed
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed
 - uid: System.String
   isExternal: true
   name: String
@@ -633,16 +680,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.Connectors.Zip.Dispose*
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.Dispose
+- uid: AutoCheck.Core.Connectors.Compressed.Dispose*
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.Dispose
   name: Dispose
-  nameWithType: Zip.Dispose
-  fullName: AutoCheck.Core.Connectors.Zip.Dispose
-- uid: AutoCheck.Core.Connectors.Zip.Extract*
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.Extract
+  nameWithType: Compressed.Dispose
+  fullName: AutoCheck.Core.Connectors.Compressed.Dispose
+- uid: AutoCheck.Core.Connectors.Compressed.Extract*
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.Extract
   name: Extract
-  nameWithType: Zip.Extract
-  fullName: AutoCheck.Core.Connectors.Zip.Extract
+  nameWithType: Compressed.Extract
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract
 - uid: System.Boolean
   isExternal: true
   name: Boolean

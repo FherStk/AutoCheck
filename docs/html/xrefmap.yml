@@ -105,6 +105,95 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Base.ProcessRemoteFile
   nameWithType: Base.ProcessRemoteFile
+- uid: AutoCheck.Core.Connectors.Compressed
+  name: Compressed
+  href: api/AutoCheck.Core.Connectors.Compressed.html
+  commentId: T:AutoCheck.Core.Connectors.Compressed
+  fullName: AutoCheck.Core.Connectors.Compressed
+  nameWithType: Compressed
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  name: Compressed(Utils.OS, String, String, String, Int32, String)
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
+  nameWithType: Compressed.Compressed(Utils.OS, String, String, String, Int32, String)
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  name: Compressed(Utils.OS, String, String, String, String)
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
+  nameWithType: Compressed.Compressed(Utils.OS, String, String, String, String)
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor(System.String)
+  name: Compressed(String)
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Compressed.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed(System.String)
+  nameWithType: Compressed.Compressed(String)
+- uid: AutoCheck.Core.Connectors.Compressed.#ctor*
+  name: Compressed
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Compressed.Compressed
+  nameWithType: Compressed.Compressed
+- uid: AutoCheck.Core.Connectors.Compressed.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Dispose
+  fullName: AutoCheck.Core.Connectors.Compressed.Dispose()
+  nameWithType: Compressed.Dispose()
+- uid: AutoCheck.Core.Connectors.Compressed.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Compressed.Dispose
+  nameWithType: Compressed.Dispose
+- uid: AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean,System.String,System.String)
+  name: Extract(Boolean, String, String)
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_Extract_System_Boolean_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract(System.Boolean, System.String, System.String)
+  nameWithType: Compressed.Extract(Boolean, String, String)
+- uid: AutoCheck.Core.Connectors.Compressed.Extract(System.String,System.String)
+  name: Extract(String, String)
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_Extract_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Compressed.Extract(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract(System.String, System.String)
+  nameWithType: Compressed.Extract(String, String)
+- uid: AutoCheck.Core.Connectors.Compressed.Extract*
+  name: Extract
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_Extract_
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.Extract
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Compressed.Extract
+  nameWithType: Compressed.Extract
+- uid: AutoCheck.Core.Connectors.Compressed.FileContent
+  name: FileContent
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_FileContent
+  commentId: P:AutoCheck.Core.Connectors.Compressed.FileContent
+  fullName: AutoCheck.Core.Connectors.Compressed.FileContent
+  nameWithType: Compressed.FileContent
+- uid: AutoCheck.Core.Connectors.Compressed.FileContent*
+  name: FileContent
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_FileContent_
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.FileContent
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Compressed.FileContent
+  nameWithType: Compressed.FileContent
+- uid: AutoCheck.Core.Connectors.Compressed.FileType
+  name: FileType
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_FileType
+  commentId: P:AutoCheck.Core.Connectors.Compressed.FileType
+  fullName: AutoCheck.Core.Connectors.Compressed.FileType
+  nameWithType: Compressed.FileType
+- uid: AutoCheck.Core.Connectors.Compressed.FileType*
+  name: FileType
+  href: api/AutoCheck.Core.Connectors.Compressed.html#AutoCheck_Core_Connectors_Compressed_FileType_
+  commentId: Overload:AutoCheck.Core.Connectors.Compressed.FileType
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Compressed.FileType
+  nameWithType: Compressed.FileType
 - uid: AutoCheck.Core.Connectors.Css
   name: Css
   href: api/AutoCheck.Connectors.Css.html
@@ -507,6 +596,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.GDrive.CopyFile
   nameWithType: GDrive.CopyFile
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  name: CopyFolderContent(Apis.Drive.v3.Data.File, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFolderContent_Google_Apis_Drive_v3_Data_File_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File, System.String, System.Boolean)
+  nameWithType: GDrive.CopyFolderContent(Apis.Drive.v3.Data.File, String, Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String,System.String,System.Boolean)
+  name: CopyFolderContent(String, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFolderContent_System_String_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String, System.String, System.Boolean)
+  nameWithType: GDrive.CopyFolderContent(String, String, Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri,System.String,System.Boolean)
+  name: CopyFolderContent(Uri, String, Boolean)
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFolderContent_Uri_System_String_System_Boolean_
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri,System.String,System.Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri, System.String, System.Boolean)
+  nameWithType: GDrive.CopyFolderContent(Uri, String, Boolean)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent*
+  name: CopyFolderContent
+  href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFolderContent_
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFolderContent
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent
+  nameWithType: GDrive.CopyFolderContent
 - uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
   name: CopyFromFile(String, String, String)
   href: api/AutoCheck.Core.Connectors.GDrive.html#AutoCheck_Core_Connectors_GDrive_CopyFromFile_System_String_System_String_System_String_
@@ -3749,82 +3863,6 @@ references:
   commentId: F:AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
   fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType.STRING
   nameWithType: Xml.XmlNodeType.STRING
-- uid: AutoCheck.Core.Connectors.Zip
-  name: Zip
-  href: api/AutoCheck.Core.Connectors.Zip.html
-  commentId: T:AutoCheck.Core.Connectors.Zip
-  fullName: AutoCheck.Core.Connectors.Zip
-  nameWithType: Zip
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  name: Zip(Utils.OS, String, String, String, Int32, String)
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_Int32_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.Int32, System.String)
-  nameWithType: Zip.Zip(Utils.OS, String, String, String, Int32, String)
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  name: Zip(Utils.OS, String, String, String, String)
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_AutoCheck_Core_Utils_OS_System_String_System_String_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(AutoCheck.Core.Utils.OS, System.String, System.String, System.String, System.String)
-  nameWithType: Zip.Zip(Utils.OS, String, String, String, String)
-- uid: AutoCheck.Core.Connectors.Zip.#ctor(System.String)
-  name: Zip(String)
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Zip.#ctor(System.String)
-  fullName: AutoCheck.Core.Connectors.Zip.Zip(System.String)
-  nameWithType: Zip.Zip(String)
-- uid: AutoCheck.Core.Connectors.Zip.#ctor*
-  name: Zip
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip__ctor_
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.#ctor
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Zip.Zip
-  nameWithType: Zip.Zip
-- uid: AutoCheck.Core.Connectors.Zip.Dispose
-  name: Dispose()
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Dispose
-  commentId: M:AutoCheck.Core.Connectors.Zip.Dispose
-  fullName: AutoCheck.Core.Connectors.Zip.Dispose()
-  nameWithType: Zip.Dispose()
-- uid: AutoCheck.Core.Connectors.Zip.Dispose*
-  name: Dispose
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Dispose_
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.Dispose
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Zip.Dispose
-  nameWithType: Zip.Dispose
-- uid: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
-  name: Extract(Boolean, String, String)
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_System_Boolean_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.Boolean,System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.Boolean, System.String, System.String)
-  nameWithType: Zip.Extract(Boolean, String, String)
-- uid: AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
-  name: Extract(String, String)
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_System_String_System_String_
-  commentId: M:AutoCheck.Core.Connectors.Zip.Extract(System.String,System.String)
-  fullName: AutoCheck.Core.Connectors.Zip.Extract(System.String, System.String)
-  nameWithType: Zip.Extract(String, String)
-- uid: AutoCheck.Core.Connectors.Zip.Extract*
-  name: Extract
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_Extract_
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.Extract
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Zip.Extract
-  nameWithType: Zip.Extract
-- uid: AutoCheck.Core.Connectors.Zip.ZipFile
-  name: ZipFile
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_ZipFile
-  commentId: P:AutoCheck.Core.Connectors.Zip.ZipFile
-  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
-  nameWithType: Zip.ZipFile
-- uid: AutoCheck.Core.Connectors.Zip.ZipFile*
-  name: ZipFile
-  href: api/AutoCheck.Core.Connectors.Zip.html#AutoCheck_Core_Connectors_Zip_ZipFile_
-  commentId: Overload:AutoCheck.Core.Connectors.Zip.ZipFile
-  isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Zip.ZipFile
-  nameWithType: Zip.ZipFile
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   href: api/AutoCheck.CopyDetectors.html
@@ -5578,6 +5616,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.AppFolderPath
   nameWithType: Script.AppFolderPath
+- uid: AutoCheck.Core.Script.AppUtilsName
+  name: AppUtilsName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppUtilsName
+  commentId: P:AutoCheck.Core.Script.AppUtilsName
+  fullName: AutoCheck.Core.Script.AppUtilsName
+  nameWithType: Script.AppUtilsName
+- uid: AutoCheck.Core.Script.AppUtilsName*
+  name: AppUtilsName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppUtilsName_
+  commentId: Overload:AutoCheck.Core.Script.AppUtilsName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppUtilsName
+  nameWithType: Script.AppUtilsName
+- uid: AutoCheck.Core.Script.AppUtilsPath
+  name: AppUtilsPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppUtilsPath
+  commentId: P:AutoCheck.Core.Script.AppUtilsPath
+  fullName: AutoCheck.Core.Script.AppUtilsPath
+  nameWithType: Script.AppUtilsPath
+- uid: AutoCheck.Core.Script.AppUtilsPath*
+  name: AppUtilsPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppUtilsPath_
+  commentId: Overload:AutoCheck.Core.Script.AppUtilsPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppUtilsPath
+  nameWithType: Script.AppUtilsPath
 - uid: AutoCheck.Core.Script.BatchCaption
   name: BatchCaption
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_BatchCaption
@@ -5604,6 +5668,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.Concurrent
   nameWithType: Script.Concurrent
+- uid: AutoCheck.Core.Script.CurrentDirSeparator
+  name: CurrentDirSeparator
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentDirSeparator
+  commentId: P:AutoCheck.Core.Script.CurrentDirSeparator
+  fullName: AutoCheck.Core.Script.CurrentDirSeparator
+  nameWithType: Script.CurrentDirSeparator
+- uid: AutoCheck.Core.Script.CurrentDirSeparator*
+  name: CurrentDirSeparator
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentDirSeparator_
+  commentId: Overload:AutoCheck.Core.Script.CurrentDirSeparator
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.CurrentDirSeparator
+  nameWithType: Script.CurrentDirSeparator
 - uid: AutoCheck.Core.Script.CurrentFileName
   name: CurrentFileName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_CurrentFileName

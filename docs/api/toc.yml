@@ -27,6 +27,8 @@
     name: Atom
   - uid: AutoCheck.Core.Connectors.Base
     name: Base
+  - uid: AutoCheck.Core.Connectors.Compressed
+    name: Compressed
   - uid: AutoCheck.Core.Connectors.Css
     name: Css
   - uid: AutoCheck.Core.Connectors.Csv
@@ -59,8 +61,6 @@
     name: Xml
   - uid: AutoCheck.Core.Connectors.Xml.XmlNodeType
     name: Xml.XmlNodeType
-  - uid: AutoCheck.Core.Connectors.Zip
-    name: Zip
 - uid: AutoCheck.Core.CopyDetectors
   name: AutoCheck.Core.CopyDetectors
   items:
