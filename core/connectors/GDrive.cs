@@ -499,12 +499,10 @@ namespace AutoCheck.Core.Connectors{
             var file = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                 return copy.Execute(); 
             });
-
-            //TODO: download and reupload if copy fails
         }
 
         /// <summary>
-        /// Uses a local text file in order to extract any link within it, then uses those links to copy any external found Google Drive file into the main account.
+        /// Uses a local text file in order to extract any link within it, then uses those links to copy any external Google Drive file found into the main account.
         /// </summary>
         /// <param name="localFile">The local text file.</param>
         /// <param name="remoteFilePath">Remote file path</param>
@@ -541,8 +539,7 @@ namespace AutoCheck.Core.Connectors{
                         File.Delete(local);
                     }
                     catch{
-                        //next link
-                        continue;
+                        //continue with the next link;
                     }
                 }                                                   
             }           
@@ -639,8 +636,13 @@ namespace AutoCheck.Core.Connectors{
             var files = new List<string>();
             var content = File.ReadAllText(localFile);
                         
-            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){                
-                files.Add(Download(new Uri(match.Value), savePath));                                                                
+            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){
+                try{
+                    files.Add(Download(new Uri(match.Value), savePath));                                                                
+                }                
+                catch{
+                    //continue with the next link;
+                }
             }           
 
             return files.ToArray();
