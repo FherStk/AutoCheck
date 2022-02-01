@@ -11,6 +11,9 @@ items:
   - AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CopyFile(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CopyFile(Uri,System.String,System.String)
+  - AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String,System.String,System.Boolean)
+  - AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri,System.String,System.Boolean)
   - AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.GDrive.CountFiles(System.String,System.Boolean)
   - AutoCheck.Core.Connectors.GDrive.CountFolders(System.String,System.Boolean)
@@ -48,7 +51,7 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GDrive
     path: ../core/connectors/GDrive.cs
@@ -90,11 +93,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Drive
     path: ../core/connectors/GDrive.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -125,11 +128,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -164,11 +167,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 76
+    startLine: 77
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -207,11 +210,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/GDrive.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -252,11 +255,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/GDrive.cs
-    startLine: 96
+    startLine: 97
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -273,6 +276,174 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri,System.String,System.Boolean)
+  id: CopyFolderContent(Uri,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: CopyFolderContent(Uri, String, Boolean)
+  nameWithType: GDrive.CopyFolderContent(Uri, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Uri, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyFolderContent
+    path: ../core/connectors/GDrive.cs
+    startLine: 109
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCopies an external Google Drive folder&apos;s content (files only) into the main account.\n"
+  example: []
+  syntax:
+    content: public void CopyFolderContent(Uri uri, string remoteFilePath, bool recursive = false)
+    parameters:
+    - id: uri
+      type: Uri
+      description: The Google Drive API folder&apos;s URI to copy.
+    - id: remoteFilePath
+      type: System.String
+      description: Remote file path
+    - id: recursive
+      type: System.Boolean
+      description: Recursive copy through folders.
+    content.vb: Public Sub CopyFolderContent(uri As Uri, remoteFilePath As String, recursive As Boolean = False)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFolderContent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String,System.String,System.Boolean)
+  id: CopyFolderContent(System.String,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: CopyFolderContent(String, String, Boolean)
+  nameWithType: GDrive.CopyFolderContent(String, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(System.String, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyFolderContent
+    path: ../core/connectors/GDrive.cs
+    startLine: 120
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCopies an external Google Drive folder&apos;s content into the main account.\n"
+  example: []
+  syntax:
+    content: public void CopyFolderContent(string fileID, string remoteFilePath, bool recursive = false)
+    parameters:
+    - id: fileID
+      type: System.String
+      description: The Google Drive API folders&apos;s ID to copy.
+    - id: remoteFilePath
+      type: System.String
+      description: Remote file path
+    - id: recursive
+      type: System.Boolean
+      description: Recursive copy through folders.
+    content.vb: Public Sub CopyFolderContent(fileID As String, remoteFilePath As String, recursive As Boolean = False)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFolderContent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  id: CopyFolderContent(Google.Apis.Drive.v3.Data.File,System.String,System.Boolean)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: CopyFolderContent(Apis.Drive.v3.Data.File, String, Boolean)
+  nameWithType: GDrive.CopyFolderContent(Apis.Drive.v3.Data.File, String, Boolean)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent(Google.Apis.Drive.v3.Data.File, System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyFolderContent
+    path: ../core/connectors/GDrive.cs
+    startLine: 131
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCopies an external Google Drive folder&apos;s content (files only) into the main account.\n"
+  example: []
+  syntax:
+    content: public void CopyFolderContent(Apis.Drive.v3.Data.File file, string remoteFilePath, bool recursive = false)
+    parameters:
+    - id: file
+      type: Google.Apis.Drive.v3.Data.File
+      description: The Google Drive API folder to copy.
+    - id: remoteFilePath
+      type: System.String
+      description: Remote file path
+    - id: recursive
+      type: System.Boolean
+      description: Recursive copy through folders.
+    content.vb: Public Sub CopyFolderContent(file As Apis.Drive.v3.Data.File, remoteFilePath As String, recursive As Boolean = False)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFolderContent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
+  id: CopyFromFile(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: CopyFromFile(String, String, String)
+  nameWithType: GDrive.CopyFromFile(String, String, String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CopyFromFile
+    path: ../core/connectors/GDrive.cs
+    startLine: 155
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nUses a local text file in order to extract any link within it, then uses those links to copy any external Google Drive file found into the main account.\n"
+  example: []
+  syntax:
+    content: public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null)
+    parameters:
+    - id: localFile
+      type: System.String
+      description: The local text file.
+    - id: remoteFilePath
+      type: System.String
+      description: Remote file path
+    - id: remoteFileName
+      type: System.String
+      description: Remote file name (extenssion and/or name will be infered from source if not provided).
+    content.vb: Public Sub CopyFromFile(localFile As String, remoteFilePath As String, remoteFileName As String = Nothing)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String)
   commentId: M:AutoCheck.Core.Connectors.GDrive.CreateFolder(System.String)
   id: CreateFolder(System.String)
@@ -287,11 +458,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 106
+    startLine: 200
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -325,11 +496,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 117
+    startLine: 211
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -366,11 +537,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 163
+    startLine: 257
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -404,11 +575,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 176
+    startLine: 270
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -449,11 +620,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/GDrive.cs
-    startLine: 187
+    startLine: 281
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -491,11 +662,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 208
+    startLine: 301
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -527,11 +698,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 219
+    startLine: 312
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -566,11 +737,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 232
+    startLine: 325
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -604,11 +775,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 245
+    startLine: 338
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -649,11 +820,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 255
+    startLine: 348
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -691,11 +862,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFolder
     path: ../core/connectors/GDrive.cs
-    startLine: 266
+    startLine: 359
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -736,11 +907,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
-    startLine: 315
+    startLine: 408
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -774,11 +945,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/GDrive.cs
-    startLine: 326
+    startLine: 419
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -819,11 +990,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/GDrive.cs
-    startLine: 337
+    startLine: 430
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -861,11 +1032,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CreateFile
     path: ../core/connectors/GDrive.cs
-    startLine: 361
+    startLine: 453
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -903,11 +1074,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
-    startLine: 425
+    startLine: 517
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -939,11 +1110,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DeleteFile
     path: ../core/connectors/GDrive.cs
-    startLine: 434
+    startLine: 526
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -978,22 +1149,22 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 449
+    startLine: 541
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nCopy an external Google Drive file into the main account.\n"
+  summary: "\nCopies an external Google Drive file into the main account.\n"
   example: []
   syntax:
     content: public void CopyFile(Uri uri, string remoteFilePath, string remoteFileName = null)
     parameters:
     - id: uri
       type: Uri
-      description: The Google Drive API file URI to copy.
+      description: The Google Drive API file&apos;s URI to copy.
     - id: remoteFilePath
       type: System.String
       description: Remote file path
@@ -1001,48 +1172,6 @@ items:
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
     content.vb: Public Sub CopyFile(uri As Uri, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  id: CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
-  parent: AutoCheck.Core.Connectors.GDrive
-  langs:
-  - csharp
-  - vb
-  name: CopyFile(Apis.Drive.v3.Data.File, String, String)
-  nameWithType: GDrive.CopyFile(Apis.Drive.v3.Data.File, String, String)
-  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File, System.String, System.String)
-  type: Method
-  source:
-    remote:
-      path: core/connectors/GDrive.cs
-      branch: v2.19.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CopyFile
-    path: ../core/connectors/GDrive.cs
-    startLine: 460
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  summary: "\nCopy an external Google Drive file into the main account.\n"
-  example: []
-  syntax:
-    content: public void CopyFile(Apis.Drive.v3.Data.File file, string remoteFilePath, string remoteFileName = null)
-    parameters:
-    - id: file
-      type: Google.Apis.Drive.v3.Data.File
-      description: The Google Drive API file to copy.
-    - id: remoteFilePath
-      type: System.String
-      description: Remote file path
-    - id: remoteFileName
-      type: System.String
-      description: Remote file name (extenssion and/or name will be infered from source if not provided).
-    content.vb: Public Sub CopyFile(file As Apis.Drive.v3.Data.File, remoteFilePath As String, remoteFileName As String = Nothing)
   overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
   modifiers.csharp:
   - public
@@ -1062,15 +1191,15 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 470
+    startLine: 552
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nCopy an external Google Drive file into the main account.\n"
+  summary: "\nCopies an external Google Drive file into the main account.\n"
   example: []
   syntax:
     content: public void CopyFile(string fileID, string remoteFilePath, string remoteFileName = null)
@@ -1090,44 +1219,44 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
-  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String,System.String,System.String)
-  id: CopyFromFile(System.String,System.String,System.String)
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
+  id: CopyFile(Google.Apis.Drive.v3.Data.File,System.String,System.String)
   parent: AutoCheck.Core.Connectors.GDrive
   langs:
   - csharp
   - vb
-  name: CopyFromFile(String, String, String)
-  nameWithType: GDrive.CopyFromFile(String, String, String)
-  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile(System.String, System.String, System.String)
+  name: CopyFile(Apis.Drive.v3.Data.File, String, String)
+  nameWithType: GDrive.CopyFile(Apis.Drive.v3.Data.File, String, String)
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFile(Google.Apis.Drive.v3.Data.File, System.String, System.String)
   type: Method
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: CopyFromFile
+    id: CopyFile
     path: ../core/connectors/GDrive.cs
-    startLine: 511
+    startLine: 563
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
-  summary: "\nUses a local text file in order to extract any link within it, then uses those links to copy any external found Google Drive file into the main account.\n"
+  summary: "\nCopies an external Google Drive file into the main account.\n"
   example: []
   syntax:
-    content: public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null)
+    content: public void CopyFile(Apis.Drive.v3.Data.File file, string remoteFilePath, string remoteFileName = null)
     parameters:
-    - id: localFile
-      type: System.String
-      description: The local text file.
+    - id: file
+      type: Google.Apis.Drive.v3.Data.File
+      description: The Google Drive API file to copy.
     - id: remoteFilePath
       type: System.String
       description: Remote file path
     - id: remoteFileName
       type: System.String
       description: Remote file name (extenssion and/or name will be infered from source if not provided).
-    content.vb: Public Sub CopyFromFile(localFile As String, remoteFilePath As String, remoteFileName As String = Nothing)
-  overload: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+    content.vb: Public Sub CopyFile(file As Apis.Drive.v3.Data.File, remoteFilePath As String, remoteFileName As String = Nothing)
+  overload: AutoCheck.Core.Connectors.GDrive.CopyFile*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1146,11 +1275,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UploadFile
     path: ../core/connectors/GDrive.cs
-    startLine: 553
+    startLine: 604
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1189,11 +1318,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
-    startLine: 564
+    startLine: 615
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1207,43 +1336,6 @@ items:
     return:
       type: System.String
     content.vb: Public Function Download(uri As Uri, savePath As String) As String
-  overload: AutoCheck.Core.Connectors.GDrive.Download*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
-- uid: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
-  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
-  id: Download(Google.Apis.Drive.v3.Data.File,System.String)
-  parent: AutoCheck.Core.Connectors.GDrive
-  langs:
-  - csharp
-  - vb
-  name: Download(Apis.Drive.v3.Data.File, String)
-  nameWithType: GDrive.Download(Apis.Drive.v3.Data.File, String)
-  fullName: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File, System.String)
-  type: Method
-  source:
-    remote:
-      path: core/connectors/GDrive.cs
-      branch: v2.19.0
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: Download
-    path: ../core/connectors/GDrive.cs
-    startLine: 579
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.Connectors
-  syntax:
-    content: public string Download(Apis.Drive.v3.Data.File file, string savePath)
-    parameters:
-    - id: file
-      type: Google.Apis.Drive.v3.Data.File
-    - id: savePath
-      type: System.String
-    return:
-      type: System.String
-    content.vb: Public Function Download(file As Apis.Drive.v3.Data.File, savePath As String) As String
   overload: AutoCheck.Core.Connectors.GDrive.Download*
   modifiers.csharp:
   - public
@@ -1263,11 +1355,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Download
     path: ../core/connectors/GDrive.cs
-    startLine: 591
+    startLine: 630
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1281,6 +1373,43 @@ items:
     return:
       type: System.String
     content.vb: Public Function Download(fileID As String, savePath As String) As String
+  overload: AutoCheck.Core.Connectors.GDrive.Download*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  commentId: M:AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File,System.String)
+  id: Download(Google.Apis.Drive.v3.Data.File,System.String)
+  parent: AutoCheck.Core.Connectors.GDrive
+  langs:
+  - csharp
+  - vb
+  name: Download(Apis.Drive.v3.Data.File, String)
+  nameWithType: GDrive.Download(Apis.Drive.v3.Data.File, String)
+  fullName: AutoCheck.Core.Connectors.GDrive.Download(Google.Apis.Drive.v3.Data.File, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/GDrive.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Download
+    path: ../core/connectors/GDrive.cs
+    startLine: 643
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  syntax:
+    content: public string Download(Apis.Drive.v3.Data.File file, string savePath)
+    parameters:
+    - id: file
+      type: Google.Apis.Drive.v3.Data.File
+    - id: savePath
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Download(file As Apis.Drive.v3.Data.File, savePath As String) As String
   overload: AutoCheck.Core.Connectors.GDrive.Download*
   modifiers.csharp:
   - public
@@ -1300,11 +1429,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFromFile
     path: ../core/connectors/GDrive.cs
-    startLine: 628
+    startLine: 679
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1337,11 +1466,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs
-    startLine: 646
+    startLine: 702
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1375,11 +1504,11 @@ items:
   source:
     remote:
       path: core/connectors/GDrive.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/GDrive.cs
-    startLine: 657
+    startLine: 713
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1725,26 +1854,41 @@ references:
   name: Dispose
   nameWithType: GDrive.Dispose
   fullName: AutoCheck.Core.Connectors.GDrive.Dispose
-- uid: AutoCheck.Core.Connectors.GDrive.CreateFolder*
-  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CreateFolder
-  name: CreateFolder
-  nameWithType: GDrive.CreateFolder
-  fullName: AutoCheck.Core.Connectors.GDrive.CreateFolder
-- uid: Google.Apis.Drive.v3.Data.File
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFolderContent*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFolderContent
+  name: CopyFolderContent
+  nameWithType: GDrive.CopyFolderContent
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFolderContent
+- uid: Uri
   isExternal: true
-  name: Apis.Drive.v3.Data.File
-  nameWithType: Apis.Drive.v3.Data.File
-  fullName: Google.Apis.Drive.v3.Data.File
-- uid: AutoCheck.Core.Connectors.GDrive.GetFolder*
-  commentId: Overload:AutoCheck.Core.Connectors.GDrive.GetFolder
-  name: GetFolder
-  nameWithType: GDrive.GetFolder
-  fullName: AutoCheck.Core.Connectors.GDrive.GetFolder
+  name: Uri
+  nameWithType: Uri
+  fullName: Uri
 - uid: System.Boolean
   isExternal: true
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Google.Apis.Drive.v3.Data.File
+  isExternal: true
+  name: Apis.Drive.v3.Data.File
+  nameWithType: Apis.Drive.v3.Data.File
+  fullName: Google.Apis.Drive.v3.Data.File
+- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFromFile
+  name: CopyFromFile
+  nameWithType: GDrive.CopyFromFile
+  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile
+- uid: AutoCheck.Core.Connectors.GDrive.CreateFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CreateFolder
+  name: CreateFolder
+  nameWithType: GDrive.CreateFolder
+  fullName: AutoCheck.Core.Connectors.GDrive.CreateFolder
+- uid: AutoCheck.Core.Connectors.GDrive.GetFolder*
+  commentId: Overload:AutoCheck.Core.Connectors.GDrive.GetFolder
+  name: GetFolder
+  nameWithType: GDrive.GetFolder
+  fullName: AutoCheck.Core.Connectors.GDrive.GetFolder
 - uid: AutoCheck.Core.Connectors.GDrive.CountFolders*
   commentId: Overload:AutoCheck.Core.Connectors.GDrive.CountFolders
   name: CountFolders
@@ -1790,16 +1934,6 @@ references:
   name: CopyFile
   nameWithType: GDrive.CopyFile
   fullName: AutoCheck.Core.Connectors.GDrive.CopyFile
-- uid: Uri
-  isExternal: true
-  name: Uri
-  nameWithType: Uri
-  fullName: Uri
-- uid: AutoCheck.Core.Connectors.GDrive.CopyFromFile*
-  commentId: Overload:AutoCheck.Core.Connectors.GDrive.CopyFromFile
-  name: CopyFromFile
-  nameWithType: GDrive.CopyFromFile
-  fullName: AutoCheck.Core.Connectors.GDrive.CopyFromFile
 - uid: AutoCheck.Core.Connectors.GDrive.UploadFile*
   commentId: Overload:AutoCheck.Core.Connectors.GDrive.UploadFile
   name: UploadFile

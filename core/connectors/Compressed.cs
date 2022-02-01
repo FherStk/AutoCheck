@@ -22,19 +22,22 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Core;
+using SharpCompress.Readers;
+using SharpCompress.Common;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Zip;
 
 namespace AutoCheck.Core.Connectors{    
-    public class Zip: Base{     
-        public MemoryStream ZipFile {get; private set;}   
+    public class Compressed: Base{     
+        public MemoryStream FileContent {get; private set;}   
+        public ArchiveType FileType {get; private set;} 
         private string FilePath {get; set;}   
 
         /// <summary>
         /// Creates a new connector instance.
         /// </summary>
-        /// <param name="filePath">ZIP file path.</param>
-        public Zip(string filePath){            
+        /// <param name="filePath">A compressed file path.</param>
+        public Compressed(string filePath){            
             Parse(filePath);    
         }
 
@@ -47,7 +50,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="password">The remote machine's password which one will be used to login.</param>
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
-        public Zip(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){              
+        public Compressed(Utils.OS remoteOS, string host, string username, string password, string filePath): this(remoteOS, host, username, password, 22, filePath){              
         }
 
         /// <summary>
@@ -60,7 +63,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="port">The remote machine's port where SSH is listening to.</param>
         /// <param name="filePath">XML file path.</param>
         /// <param name="validation">Validation type.</param>
-        public Zip(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
+        public Compressed(Utils.OS remoteOS, string host, string username, string password, int port, string filePath){  
             ProcessRemoteFile(remoteOS, host, username, password, port, filePath, new Action<string>((filePath) => {
                 Parse(filePath); 
             }));            
@@ -70,62 +73,69 @@ namespace AutoCheck.Core.Connectors{
             if(string.IsNullOrEmpty(filePath)) throw new ArgumentNullException("filePath");
             if(!File.Exists(filePath)) throw new FileNotFoundException();
 
-            //Encoding must be manually setup in order to avoid errors during decompression
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            ZipStrings.CodePage = System.Globalization.CultureInfo.CurrentCulture.TextInfo.OEMCodePage;
-
             FilePath = filePath;
-            ZipFile = new MemoryStream();
-            using(var fs = File.OpenRead(filePath)){
-                fs.CopyTo(ZipFile);
-            }            
+            FileContent = new MemoryStream();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            
+            using (var stream = File.OpenRead(filePath)){
+                using (var reader = ReaderFactory.Open(stream))
+                {     
+                    FileType = reader.ArchiveType;                               
+                    stream.Seek(0, SeekOrigin.Begin);   
+                    stream.CopyTo(FileContent);      
+                }      
+            }                     
         }
 
         /// <summary>
         /// Disposes the object releasing its unmanaged properties.
         /// </summary>
         public override void Dispose(){
-            ZipFile.Dispose();
+            FileContent.Dispose();
         } 
 
         /// <summary>
-        /// Extracts the ZIP file.
+        /// Extracts the compressed file.
         /// </summary>
         /// <param name="output">Destination folder for the extracted files.</param>
-        /// <param name="password">ZIP file's password.</param>
+        /// <param name="password">Compressed file's password.</param>
         public void Extract(string output, string password = null) {
             Extract(false, output, password);
         }
         
         /// <summary>
-        /// Extracts the ZIP file.
+        /// Extracts the compressed file.
         /// </summary>
-        /// <param name="recursive">ZIP files within the extracted one, will be also extracted.</param>
+        /// <param name="recursive">Compressed files within the extracted one, will be also extracted.</param>
         /// <param name="output">Destination folder for the extracted files.</param>
-        /// <param name="password">ZIP file's password.</param>
+        /// <param name="password">Compressed file's password.</param>
         public void Extract(bool recursive=false, string output = null, string password = null) {           
             output ??= Path.GetDirectoryName(FilePath);
             if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
+            
+            var extract = new Action<IReader>((reader) => {
+                reader.WriteAllToDirectory(output, new ExtractionOptions(){
+                    ExtractFullPath = true,
+                    Overwrite = true
+                });
+            });
 
-            //Source: https://github.com/icsharpcode/SharpZipLib/wiki/Unpack-a-Zip-with-full-control-over-the-operation   
-            using(var zf = new ZipFile(ZipFile)){
-                if (!String.IsNullOrEmpty(password)) zf.Password = password;
-
-                foreach (ZipEntry zipEntry in zf) {
-                    if (!zipEntry.IsFile) continue;
-                    
-                    var entryFileName = zipEntry.Name;
-                    var fullZipToPath = Path.Combine(output, entryFileName);
-                    var directoryName = Path.GetDirectoryName(fullZipToPath);
-
-                    if (directoryName.Length > 0) Directory.CreateDirectory(directoryName);
-                    
-                    var buffer = new byte[4096];
-                    using(var zipStream = zf.GetInputStream(zipEntry))
-                    using (Stream fsOutput = File.Create(fullZipToPath)) {
-                        StreamUtils.Copy(zipStream, fsOutput , buffer);
+            switch(FileType){
+                case ArchiveType.Zip:
+                    var zip = ZipArchive.Open(FileContent);
+                    using (var reader = zip.ExtractAllEntries())
+                    {                
+                       extract.Invoke(reader);
                     }
-                }
+                    break;
+                
+                case ArchiveType.Rar:
+                    var rar = RarArchive.Open(FileContent);
+                    using (var reader = rar.ExtractAllEntries())
+                    {                
+                        extract.Invoke(reader);
+                    }
+                    break;                
             }
 
             if(recursive){                
@@ -134,12 +144,17 @@ namespace AutoCheck.Core.Connectors{
                 var extracted = new HashSet<string>();                
 
                 do{        
-                    done = true;                                                               
-                    foreach(string file in Directory.GetFiles(output, "*.zip", SearchOption.AllDirectories)){  
+                    done = true;
+
+                    var files = new List<string>();
+                    files.AddRange(Directory.GetFiles(output, "*.zip", SearchOption.AllDirectories));
+                    files.AddRange(Directory.GetFiles(output, "*.rar", SearchOption.AllDirectories));
+
+                    foreach(string file in files){  
                         if(!extracted.Contains(file)){
                             extracted.Add(file);
                             
-                            var connector = new Zip(file);
+                            var connector = new Compressed(file);
                             connector.Extract(false);
 
                             done = false;

@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainTextDocument
     path: ../core/connectors/PlainText.cs
@@ -58,7 +58,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/connectors/PlainText.cs
@@ -95,7 +95,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Lines
     path: ../core/connectors/PlainText.cs
@@ -132,7 +132,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -168,7 +168,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/PlainText.cs

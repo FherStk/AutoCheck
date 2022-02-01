@@ -203,10 +203,12 @@ Custom global vars can be defined wihtin `vars` node and refered later as `$VARN
 ##### Application data:
 Name | Type | Description
 ------------ | -------------| -------------
-APP_FOLDER_NAME | text | The root app's execution folder (just the folder name). 
-APP_FOLDER_PATH | text | The root app's execution folder (the entire path). 
-APP_CONFIG_NAME | text | The current app's configuration folder (just the folder name). 
-APP_CONFIG_PATH | text | The current app's configuration folder (the entire path). 
+APP_FOLDER_NAME | text | The current app's execution folder (just the folder name). 
+APP_FOLDER_PATH | text | The current app's execution folder (the entire path). 
+APP_CONFIG_NAME | text | The core app's configuration folder (just the folder name). 
+APP_CONFIG_PATH | text | The core app's configuration folder (the entire path). 
+APP_UTILS_NAME | text | The core app's utils folder (just the folder name). 
+APP_UTILS_PATH | text | The core app's utils folder (the entire path). 
 
 ##### Script data:
 Name | Type | Description
@@ -257,6 +259,7 @@ CURRENT_HOST | text | The host name or IP address for the current execution.
 CURRENT_PORT | number | The port for the current execution.
 CURRENT_USER | text | The username for the current execution.
 CURRENT_PASSWORD | text | The password for the current execution.
+CURRENT_DIR_SEPARATOR| [/; \] | The current OS directory separator char.
 
 #### Custom example vars:
 Vars can be combined within each other by injection, just call the var with `$` and surround it between brackets `{}` when definint a text var like in the following examples:

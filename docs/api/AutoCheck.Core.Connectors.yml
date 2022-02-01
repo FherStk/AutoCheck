@@ -6,6 +6,7 @@ items:
   children:
   - AutoCheck.Core.Connectors.Atom
   - AutoCheck.Core.Connectors.Base
+  - AutoCheck.Core.Connectors.Compressed
   - AutoCheck.Core.Connectors.Css
   - AutoCheck.Core.Connectors.Csv
   - AutoCheck.Core.Connectors.CsvDocument
@@ -22,7 +23,6 @@ items:
   - AutoCheck.Core.Connectors.TextStream
   - AutoCheck.Core.Connectors.Xml
   - AutoCheck.Core.Connectors.Xml.XmlNodeType
-  - AutoCheck.Core.Connectors.Zip
   langs:
   - csharp
   - vb
@@ -50,6 +50,11 @@ references:
   name: Base
   nameWithType: Base
   fullName: AutoCheck.Core.Connectors.Base
+- uid: AutoCheck.Core.Connectors.Compressed
+  commentId: T:AutoCheck.Core.Connectors.Compressed
+  name: Compressed
+  nameWithType: Compressed
+  fullName: AutoCheck.Core.Connectors.Compressed
 - uid: AutoCheck.Core.Connectors.Css
   commentId: T:AutoCheck.Core.Connectors.Css
   name: Css
@@ -132,11 +137,6 @@ references:
   name: Xml.XmlNodeType
   nameWithType: Xml.XmlNodeType
   fullName: AutoCheck.Core.Connectors.Xml.XmlNodeType
-- uid: AutoCheck.Core.Connectors.Zip
-  commentId: T:AutoCheck.Core.Connectors.Zip
-  name: Zip
-  nameWithType: Zip
-  fullName: AutoCheck.Core.Connectors.Zip
 - uid: AutoCheck.Core.Connectors
   commentId: N:AutoCheck.Core.Connectors
   name: AutoCheck.Core.Connectors

@@ -16,8 +16,11 @@ items:
   - AutoCheck.Core.Script.AppConfigPath
   - AutoCheck.Core.Script.AppFolderName
   - AutoCheck.Core.Script.AppFolderPath
+  - AutoCheck.Core.Script.AppUtilsName
+  - AutoCheck.Core.Script.AppUtilsPath
   - AutoCheck.Core.Script.BatchCaption
   - AutoCheck.Core.Script.Concurrent
+  - AutoCheck.Core.Script.CurrentDirSeparator
   - AutoCheck.Core.Script.CurrentFileName
   - AutoCheck.Core.Script.CurrentFilePath
   - AutoCheck.Core.Script.CurrentFolderName
@@ -62,7 +65,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
@@ -99,7 +102,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
@@ -136,7 +139,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptVersion
     path: ../core/main/Script.cs
@@ -173,7 +176,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
@@ -210,7 +213,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleCaption
     path: ../core/main/Script.cs
@@ -247,7 +250,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
@@ -284,7 +287,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderPath
     path: ../core/main/Script.cs
@@ -321,7 +324,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderName
     path: ../core/main/Script.cs
@@ -358,7 +361,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppConfigPath
     path: ../core/main/Script.cs
@@ -395,7 +398,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppConfigName
     path: ../core/main/Script.cs
@@ -418,6 +421,80 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
+- uid: AutoCheck.Core.Script.AppUtilsPath
+  commentId: P:AutoCheck.Core.Script.AppUtilsPath
+  id: AppUtilsPath
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: AppUtilsPath
+  nameWithType: Script.AppUtilsPath
+  fullName: AutoCheck.Core.Script.AppUtilsPath
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AppUtilsPath
+    path: ../core/main/Script.cs
+    startLine: 204
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe current app&apos;s utils folder path.\n"
+  example: []
+  syntax:
+    content: protected string AppUtilsPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property AppUtilsPath As String
+  overload: AutoCheck.Core.Script.AppUtilsPath*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.AppUtilsName
+  commentId: P:AutoCheck.Core.Script.AppUtilsName
+  id: AppUtilsName
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: AppUtilsName
+  nameWithType: Script.AppUtilsName
+  fullName: AutoCheck.Core.Script.AppUtilsName
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AppUtilsName
+    path: ../core/main/Script.cs
+    startLine: 225
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe root app&apos;s utils folder name.\n"
+  example: []
+  syntax:
+    content: protected string AppUtilsName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly Property AppUtilsName As String
+  overload: AutoCheck.Core.Script.AppUtilsName*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
 - uid: AutoCheck.Core.Script.ExecutionFolderPath
   commentId: P:AutoCheck.Core.Script.ExecutionFolderPath
   id: ExecutionFolderPath
@@ -432,11 +509,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderPath
     path: ../core/main/Script.cs
-    startLine: 204
+    startLine: 234
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -469,11 +546,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderName
     path: ../core/main/Script.cs
-    startLine: 225
+    startLine: 255
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -506,11 +583,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderPath
     path: ../core/main/Script.cs
-    startLine: 234
+    startLine: 264
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -543,11 +620,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderName
     path: ../core/main/Script.cs
-    startLine: 260
+    startLine: 290
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -580,11 +657,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFilePath
     path: ../core/main/Script.cs
-    startLine: 269
+    startLine: 299
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -617,11 +694,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFileName
     path: ../core/main/Script.cs
-    startLine: 288
+    startLine: 318
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -654,11 +731,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderPath
     path: ../core/main/Script.cs
-    startLine: 297
+    startLine: 327
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -691,11 +768,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderName
     path: ../core/main/Script.cs
-    startLine: 316
+    startLine: 346
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -728,11 +805,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFilePath
     path: ../core/main/Script.cs
-    startLine: 325
+    startLine: 355
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -765,11 +842,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFileName
     path: ../core/main/Script.cs
-    startLine: 343
+    startLine: 373
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -802,11 +879,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderPath
     path: ../core/main/Script.cs
-    startLine: 352
+    startLine: 382
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -839,11 +916,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderName
     path: ../core/main/Script.cs
-    startLine: 372
+    startLine: 402
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -876,11 +953,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFilePath
     path: ../core/main/Script.cs
-    startLine: 382
+    startLine: 412
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -913,11 +990,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFileName
     path: ../core/main/Script.cs
-    startLine: 401
+    startLine: 431
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -950,11 +1027,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentTarget
     path: ../core/main/Script.cs
-    startLine: 411
+    startLine: 441
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -987,11 +1064,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Script.cs
-    startLine: 424
+    startLine: 454
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1024,11 +1101,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
-    startLine: 437
+    startLine: 468
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1061,11 +1138,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentUser
     path: ../core/main/Script.cs
-    startLine: 450
+    startLine: 481
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1098,11 +1175,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPassword
     path: ../core/main/Script.cs
-    startLine: 463
+    startLine: 494
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1135,11 +1212,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPort
     path: ../core/main/Script.cs
-    startLine: 476
+    startLine: 507
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1152,6 +1229,43 @@ items:
       type: System.Int32
     content.vb: Protected ReadOnly Property CurrentPort As Integer
   overload: AutoCheck.Core.Script.CurrentPort*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: AutoCheck.Core.Script.CurrentDirSeparator
+  commentId: P:AutoCheck.Core.Script.CurrentDirSeparator
+  id: CurrentDirSeparator
+  parent: AutoCheck.Core.Script
+  langs:
+  - csharp
+  - vb
+  name: CurrentDirSeparator
+  nameWithType: Script.CurrentDirSeparator
+  fullName: AutoCheck.Core.Script.CurrentDirSeparator
+  type: Property
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.20.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: CurrentDirSeparator
+    path: ../core/main/Script.cs
+    startLine: 520
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nThe host name or IP address for the current execution.\n"
+  example: []
+  syntax:
+    content: protected char CurrentDirSeparator { get; }
+    parameters: []
+    return:
+      type: System.Char
+    content.vb: Protected ReadOnly Property CurrentDirSeparator As Char
+  overload: AutoCheck.Core.Script.CurrentDirSeparator*
   modifiers.csharp:
   - protected
   - get
@@ -1172,11 +1286,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
-    startLine: 489
+    startLine: 529
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1209,11 +1323,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
-    startLine: 503
+    startLine: 543
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1247,11 +1361,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
-    startLine: 524
+    startLine: 564
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1284,11 +1398,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
-    startLine: 533
+    startLine: 573
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1321,11 +1435,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
-    startLine: 546
+    startLine: 586
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1358,11 +1472,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
-    startLine: 559
+    startLine: 599
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1395,11 +1509,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Concurrent
     path: ../core/main/Script.cs
-    startLine: 572
+    startLine: 612
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1432,11 +1546,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
-    startLine: 586
+    startLine: 626
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1469,11 +1583,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFiles
     path: ../core/main/Script.cs
-    startLine: 591
+    startLine: 631
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1506,11 +1620,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 636
+    startLine: 676
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1536,11 +1650,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 679
+    startLine: 720
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1569,11 +1683,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 686
+    startLine: 727
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1607,11 +1721,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 692
+    startLine: 733
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1640,11 +1754,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 699
+    startLine: 740
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1678,11 +1792,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 710
+    startLine: 751
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1729,11 +1843,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
-    startLine: 732
+    startLine: 773
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1780,11 +1894,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ForEachChild
     path: ../core/main/Script.cs
-    startLine: 1799
+    startLine: 1840
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1824,11 +1938,11 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.19.0
+      branch: v2.20.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LoadYamlFile
     path: ../core/main/Script.cs
-    startLine: 2269
+    startLine: 2310
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -1980,6 +2094,16 @@ references:
   name: AppConfigName
   nameWithType: Script.AppConfigName
   fullName: AutoCheck.Core.Script.AppConfigName
+- uid: AutoCheck.Core.Script.AppUtilsPath*
+  commentId: Overload:AutoCheck.Core.Script.AppUtilsPath
+  name: AppUtilsPath
+  nameWithType: Script.AppUtilsPath
+  fullName: AutoCheck.Core.Script.AppUtilsPath
+- uid: AutoCheck.Core.Script.AppUtilsName*
+  commentId: Overload:AutoCheck.Core.Script.AppUtilsName
+  name: AppUtilsName
+  nameWithType: Script.AppUtilsName
+  fullName: AutoCheck.Core.Script.AppUtilsName
 - uid: AutoCheck.Core.Script.ExecutionFolderPath*
   commentId: Overload:AutoCheck.Core.Script.ExecutionFolderPath
   name: ExecutionFolderPath
@@ -2091,6 +2215,16 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: AutoCheck.Core.Script.CurrentDirSeparator*
+  commentId: Overload:AutoCheck.Core.Script.CurrentDirSeparator
+  name: CurrentDirSeparator
+  nameWithType: Script.CurrentDirSeparator
+  fullName: AutoCheck.Core.Script.CurrentDirSeparator
+- uid: System.Char
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
 - uid: AutoCheck.Core.Script.CurrentQuestion*
   commentId: Overload:AutoCheck.Core.Script.CurrentQuestion
   name: CurrentQuestion

@@ -53,6 +53,10 @@ Further details about the license can be found at [https://github.com/needim/not
 Under the PostgreSQL license by [The Npgsql Development Team](https://www.npgsql.org/index.html)\
 Further details about the license can be found at [https://github.com/npgsql/npgsql/blob/master/LICENSE.txt](https://github.com/npgsql/npgsql/blob/master/LICENSE.txt).
 
+## [Open JDK](http://jdk.java.net/)
+Under the GPL v2 license by [OpenJDK](http://openjdk.java.net/)\
+Further details about the license can be found at [http://openjdk.java.net/legal/gplv2+ce.html](http://openjdk.java.net/legal/gplv2+ce.html).
+
 ## [SharpZipLib](https://github.com/icsharpcode/SharpZipLib)
 Under the MIT license by [Mike Krüger](https://github.com/icsharpcode)\
 Further details about the license can be found at [https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt](https://github.com/icsharpcode/SharpZipLib/blob/master/LICENSE.txt).

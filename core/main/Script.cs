@@ -200,6 +200,36 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current app's utils folder path.
+        /// </summary>
+        protected string AppUtilsPath {
+            get{
+                return GetVar("app_utils_path", AutoComputeVarValues).ToString();
+            }
+
+            private set{                
+                try{
+                    //Read only
+                    GetVar("app_utils_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_utils_path", value); 
+                    UpdateVar("app_utils_name", Path.GetFileName(value) ?? string.Empty);    
+                } 
+            }
+        }
+
+        /// <summary>
+        /// The root app's utils folder name.
+        /// </summary>
+        protected string AppUtilsName {
+            get{
+                return GetVar("app_utils_name", AutoComputeVarValues).ToString();
+            }           
+        }
+
+        /// <summary>
         /// The current app's execution folder path.
         /// </summary>
         protected string ExecutionFolderPath {
@@ -428,7 +458,8 @@ namespace AutoCheck.Core{
             }
 
             private set{
-                UpdateVar("current_os", value);               
+                UpdateVar("current_os", value);
+                UpdateVar("current_dir_separator", (value == OS.WIN ? '\\' : '/'));               
             }
         }
 
@@ -482,7 +513,16 @@ namespace AutoCheck.Core{
             private set{
                 UpdateVar("current_port", value);               
             }
-        }         
+        }   
+
+        /// <summary>
+        /// The host name or IP address for the current execution.
+        /// </summary>
+        protected char CurrentDirSeparator {
+            get{
+                return (char)GetVar("current_dir_separator", AutoComputeVarValues);
+            }
+        }      
 
         /// <summary>
         /// The current question (and subquestion) number (1, 2, 2.1, etc.)
@@ -658,6 +698,7 @@ namespace AutoCheck.Core{
             //Setup default folders, each property will set also the related 'name' property                              
             AppFolderPath = Utils.AppFolder;            
             AppConfigPath = Utils.ConfigFolder;
+            AppUtilsPath = Utils.UtilsFolder;
             ExecutionFolderPath = Utils.ExecutionFolder;            
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
@@ -1223,7 +1264,7 @@ namespace AutoCheck.Core{
             ForEachChild(node, new Action<string, YamlScalarNode>((name, node) => { 
                 switch(name){
                     case "os":                            
-                        os = ParseNode(node, CurrentOS);
+                        os = ParseNode(node, CurrentOS);                        
                         break;
 
                     case "host":                            
@@ -1943,7 +1984,7 @@ namespace AutoCheck.Core{
             CurrentHost = "localhost";
             CurrentPort = 22;
             CurrentUser = string.Empty;
-            CurrentPassword = string.Empty;
+            CurrentPassword = string.Empty;            
         }
 
         private string ParseChildWithRequiredCaption(YamlMappingNode node, string child, string @default){
