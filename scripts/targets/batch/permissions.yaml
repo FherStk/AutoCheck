@@ -57,7 +57,7 @@ batch:
             store: "ZIP_FILE"                
             
         - connector:  
-            type: "Zip"                    
+            type: "Compressed"                    
             arguments: "--filePath {$ZIP_FILE}"
         
         - run:
@@ -68,7 +68,7 @@ batch:
 
         - run:   
             caption: "   Extracting the file ~{$FILENAME}... "
-            connector: "Zip"
+            connector: "Compressed"
             command: "Extract"
             onexception: "SUCCESS"
             arguments: 

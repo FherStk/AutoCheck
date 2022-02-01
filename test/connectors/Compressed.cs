@@ -26,34 +26,34 @@ using OS = AutoCheck.Core.Utils.OS;
 namespace AutoCheck.Test.Connectors
 {
     [Parallelizable(ParallelScope.All)]    
-    public class Zip : Test
+    public class Compressed : Test
     {    
         [Test]
         [TestCase("")]
         public void Constructor_Local_Throws_ArgumentNullException(string file)
         {      
-             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Zip(file));
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Compressed(file));
         }
 
         [Test]
         [TestCase("someFile.ext")]
         public void Constructor_Local_Throws_FileNotFoundException(string file)
         {      
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Zip(GetSampleFile(file)));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Compressed(GetSampleFile(file)));
         }       
    
         [Test]
         [TestCase("", OS.GNU, "localhost", "autocheck", "autocheck")]
         public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
         {     
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, file));
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Compressed(remoteOS, host, username, password, file));
         }
 
         [Test]
         [TestCase(_FAKE, OS.GNU, "localhost", "autocheck", "autocheck")]
         public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
         {     
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, file));
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Compressed(remoteOS, host, username, password, file));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace AutoCheck.Test.Connectors
         public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
         {           
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Zip(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));            
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Compressed(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));            
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("withpass.zip", "1234", "withpass.txt", "withpass")]
         public void Extract_Local_NoRecursive_DoesNotThrow(string file, string password, string expectedFile, string expectedContent)
         {                        
-            var local = new AutoCheck.Core.Connectors.Zip(GetSampleFile(file));
+            var local = new AutoCheck.Core.Connectors.Compressed(GetSampleFile(file));
             Assert.IsFalse(Directory.Exists(TempScriptFolder));                     
             
             Directory.CreateDirectory(TempScriptFolder);            
@@ -83,7 +83,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("recursive.zip", 1, 4)]        
         public void Extract_Local_Recursive_DoesNotThrow(string file, int expectedFolders, int expectedFiles)
         {                        
-            var local = new AutoCheck.Core.Connectors.Zip(GetSampleFile(file));         
+            var local = new AutoCheck.Core.Connectors.Compressed(GetSampleFile(file));         
             Assert.IsFalse(Directory.Exists(TempScriptFolder));      
 
             Directory.CreateDirectory(TempScriptFolder);     

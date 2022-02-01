@@ -166,7 +166,7 @@ namespace AutoCheck.Core.Connectors{
                 if(item.MimeType == _MIME_FOLDER) CopyFolderContent(uri, Path.Combine(remoteFilePath, remoteFileName));
                 else CopyFile(uri, remoteFilePath, remoteFileName);
             }
-            catch (Exception ex){
+            catch{
                 //retry with download and reupload      
                 string local = string.Empty;
 
@@ -793,6 +793,7 @@ namespace AutoCheck.Core.Connectors{
                 else id = parts[3];                
             } 
 
+            if(string.IsNullOrEmpty(id)) throw new ArgumentInvalidException("The given URL must provide a Google Drive's file or folder ID.");
             return GetFileFromID(id);
         }                    
         
@@ -833,7 +834,7 @@ namespace AutoCheck.Core.Connectors{
         
         private Google.Apis.Drive.v3.Data.File GetParent(Google.Apis.Drive.v3.Data.File folder, string parentName, bool recursive){
             if(folder == null || folder.Parents == null) return null;
-            
+
             foreach(var parentID in folder.Parents){                
                 var parent = GetFileFromID(parentID, "name, parents");            
                 if(parent.Name.Equals(parentName)) return parent;
