@@ -521,23 +521,29 @@ namespace AutoCheck.Core.Connectors{
                     CopyFile(uri, remoteFilePath, remoteFileName);
                 }
                 catch{
-                    //download and reupload      
+                    //retry with download and reupload      
                     string local = string.Empty;
 
-                    if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);
-                    else{
-                        using (var client = new HttpClient())
-                        {                                    
-                            local = Utils.TempFolder;
-                            if(!Directory.Exists(local)) Directory.CreateDirectory(local);
+                    try{
+                        if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);
+                        else{
+                            using (var client = new HttpClient())
+                            {                                    
+                                local = Utils.TempFolder;
+                                if(!Directory.Exists(local)) Directory.CreateDirectory(local);
 
-                            local = Path.Combine(local, uri.Segments.Last());
-                            client.DownloadFileTaskAsync(uri, local).Wait();
+                                local = Path.Combine(local, uri.Segments.Last());
+                                client.DownloadFileTaskAsync(uri, local).Wait();
+                            }
                         }
+                        
+                        CreateFile(local, remoteFilePath, remoteFileName);
+                        File.Delete(local);
                     }
-                    
-                    CreateFile(local, remoteFilePath, remoteFileName);
-                    File.Delete(local);
+                    catch{
+                        //next link
+                        continue;
+                    }
                 }                                                   
             }           
         }
