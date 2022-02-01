@@ -43,6 +43,7 @@ namespace AutoCheck.Core.Connectors{
     public class GDrive: Base{      
 #region Properties
         private const string _LINK_REGEX = "(http|ftp|https)://([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?"; //Regex source: https://stackoverflow.com/a/6041965
+        private const string _MIME_FOLDER = "application/vnd.google-apps.folder";
         public DriveService Drive {get; private set;}
         private Shell Remote { get; set; }
 #endregion
@@ -99,6 +100,99 @@ namespace AutoCheck.Core.Connectors{
             this.Drive.Dispose();            
         }   
 #endregion
+#region Files and folders
+    /// <summary>
+    /// Copies an external Google Drive folder's content (files only) into the main account.
+    /// </summary>
+    /// <param name="uri">The Google Drive API folder's URI to copy.</param>
+    /// <param name="remoteFilePath">Remote file path</param>
+    /// <param name="recursive">Recursive copy through folders.</param>
+    public void CopyFolderContent(Uri uri, string remoteFilePath, bool recursive = false){
+        if(uri == null) throw new ArgumentNullException("uri");   
+        CopyFolderContent(GetFileFromUri(uri), remoteFilePath);    
+    }    
+
+    /// <summary>
+    /// Copies an external Google Drive folder's content into the main account.
+    /// </summary>
+    /// <param name="fileID">The Google Drive API folders's ID to copy.</param>
+    /// <param name="remoteFilePath">Remote file path</param>
+    /// <param name="recursive">Recursive copy through folders.</param>
+    public void CopyFolderContent(string fileID, string remoteFilePath, bool recursive = false){ 
+        if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");   
+        CopyFolderContent(GetFileFromID(fileID), remoteFilePath);            
+    }
+
+    /// <summary>
+    /// Copies an external Google Drive folder's content (files only) into the main account.
+    /// </summary>
+    /// <param name="file">The Google Drive API folder to copy.</param>
+    /// <param name="remoteFilePath">Remote file path</param>
+    /// <param name="recursive">Recursive copy through folders.</param>
+    public void CopyFolderContent(Google.Apis.Drive.v3.Data.File file, string remoteFilePath, bool recursive = false){
+        if(file == null) throw new ArgumentNullException("file");
+        if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");
+
+        //TODO: implement recursive
+        if(recursive) throw new NotImplementedException("Comming soon, sorry...");                
+        if(file.MimeType != _MIME_FOLDER) throw new Exceptions.ArgumentInvalidException("The provided URI points to a file and this method only works with folders, use the CopyFile method instead.");           
+
+        foreach(var item in GetList($"'{file.Id}' in parents", false)){
+            if(item.MimeType == _MIME_FOLDER && recursive){
+                //TODO: implement
+            }
+            else if(item.MimeType != _MIME_FOLDER){
+                CopyFile(item, remoteFilePath);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Uses a local text file in order to extract any link within it, then uses those links to copy any external Google Drive file found into the main account.
+    /// </summary>
+    /// <param name="localFile">The local text file.</param>
+    /// <param name="remoteFilePath">Remote file path</param>
+    /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
+    public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null){
+        if(string.IsNullOrEmpty(localFile)) throw new ArgumentNullException("localFile");   
+        if(!File.Exists(localFile)) throw new ArgumentInvalidException($"Unable to find the file '{localFile}'");
+
+        var content = File.ReadAllText(localFile);
+        foreach(Match match in Regex.Matches(content, _LINK_REGEX)){
+            var uri = new Uri(match.Value);
+
+            try{
+                var item = GetFileFromUri(uri); //Google's File can be also a folder
+                if(item.MimeType == _MIME_FOLDER) CopyFolderContent(uri, Path.Combine(remoteFilePath, remoteFileName));
+                else CopyFile(uri, remoteFilePath, remoteFileName);
+            }
+            catch (Exception ex){
+                //retry with download and reupload      
+                string local = string.Empty;
+
+                try{
+                    if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);   //assuming its a file
+                    else{
+                        using (var client = new HttpClient())
+                        {                                    
+                            local = Utils.TempFolder;
+                            if(!Directory.Exists(local)) Directory.CreateDirectory(local);
+
+                            local = Path.Combine(local, uri.Segments.Last());
+                            client.DownloadFileTaskAsync(uri, local).Wait();
+                        }
+                    }
+                    
+                    CreateFile(local, remoteFilePath, remoteFileName);
+                    File.Delete(local);
+                }
+                catch{
+                    //continue with the next link;
+                }
+            }                                                   
+        }           
+    }
+#endregion
 #region Folders
         /// <summary>
         /// Creates the specified folder
@@ -145,7 +239,7 @@ namespace AutoCheck.Core.Connectors{
 
                 var file = new Google.Apis.Drive.v3.Data.File(){
                     Name = name,
-                    MimeType = "application/vnd.google-apps.folder"
+                    MimeType = _MIME_FOLDER
                 };  
 
                 if(root != null) file.Parents = new string[]{root.Id};                                                             
@@ -189,14 +283,13 @@ namespace AutoCheck.Core.Connectors{
             var folder = GetFolder(Path.GetDirectoryName(path), Path.GetFileName(path), false);
             if(folder == null) return 0;
             else{                
-                var list = GetList(string.Format("'{0}' in parents", folder.Id), true);
+                var list = GetList($"'{folder.Id}' in parents", true);
                 var count = list.Count;
                 
                 if(recursive){
                     foreach(var f in list)
                         count += CountFolders(Path.Join(path, f.Name), recursive);
                 }            
-
                 
                 return count;
             }            
@@ -306,7 +399,7 @@ namespace AutoCheck.Core.Connectors{
                     Directory.Delete(localFolderPath, true);
                 }));   
             }                    
-        }
+        }        
 #endregion
 #region Files          
         /// <summary>
@@ -339,15 +432,14 @@ namespace AutoCheck.Core.Connectors{
             var folder = GetFolder(Path.GetDirectoryName(path), Path.GetFileName(path), false);
             if(folder == null) return 0;
             else{                
-                var list = GetList(string.Format("'{0}' in parents", folder.Id), false);
+                var list = GetList($"'{folder.Id}' in parents", false);
                 var count = list.Count;
                 
                 if(recursive){
-                    list = GetList(string.Format("'{0}' in parents", folder.Id), true);                    
+                    list = GetList($"'{folder.Id}' in parents", true);                    
                     foreach(var f in list)
                         count += CountFiles(Path.Join(path, f.Name), recursive);
                 }            
-
                 
                 return count;
             }            
@@ -442,44 +534,42 @@ namespace AutoCheck.Core.Connectors{
         }
 
         /// <summary>
-        /// Copy an external Google Drive file into the main account.
+        /// Copies an external Google Drive file into the main account.
         /// </summary>
-        /// <param name="uri">The Google Drive API file URI to copy.</param>
+        /// <param name="uri">The Google Drive API file's URI to copy.</param>
         /// <param name="remoteFilePath">Remote file path</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
         public void CopyFile(Uri uri, string remoteFilePath, string remoteFileName = null){
-            var id = GetFileIdFromUri(uri);
-            CopyFile(id, remoteFilePath, remoteFileName);    
+            if(uri == null) throw new ArgumentNullException("uri");   
+            CopyFile(GetFileFromUri(uri), remoteFilePath, remoteFileName);    
         }
 
         /// <summary>
-        /// Copy an external Google Drive file into the main account.
-        /// </summary>
-        /// <param name="file">The Google Drive API file to copy.</param>
-        /// <param name="remoteFilePath">Remote file path</param>
-        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        public void CopyFile(Google.Apis.Drive.v3.Data.File file, string remoteFilePath, string remoteFileName = null){
-            CopyFile(file.Id, remoteFilePath, remoteFileName);
-        }
-
-        /// <summary>
-        /// Copy an external Google Drive file into the main account.
+        /// Copies an external Google Drive file into the main account.
         /// </summary>
         /// <param name="fileID">The Google Drive API file's ID to copy.</param>
         /// <param name="remoteFilePath">Remote file path</param>
         /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
         public void CopyFile(string fileID, string remoteFilePath, string remoteFileName = null){
             if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");   
-            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");
+            CopyFile(GetFileFromID(fileID), remoteFilePath, remoteFileName);
+        }
 
-            
-            if(string.IsNullOrEmpty(remoteFileName) || string.IsNullOrEmpty(Path.GetExtension(remoteFileName))){
-                var original = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
-                    return this.Drive.Files.Get(fileID).Execute(); 
-                });
+        /// <summary>
+        /// Copies an external Google Drive file into the main account.
+        /// </summary>
+        /// <param name="file">The Google Drive API file to copy.</param>
+        /// <param name="remoteFilePath">Remote file path</param>
+        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
+        public void CopyFile(Google.Apis.Drive.v3.Data.File file, string remoteFilePath, string remoteFileName = null){   
+            if(file == null) throw new ArgumentNullException("file");    
+            if(string.IsNullOrEmpty(remoteFilePath)) throw new ArgumentNullException("remoteFilePath");    
 
-                if(string.IsNullOrEmpty(remoteFileName)) remoteFileName = original.Name;
-                else if(string.IsNullOrEmpty(Path.GetExtension(remoteFileName))) remoteFileName += Path.GetExtension(original.Name);
+            if(string.IsNullOrEmpty(remoteFileName) || string.IsNullOrEmpty(Path.GetExtension(remoteFileName))){                
+                if(file.MimeType == _MIME_FOLDER) throw new Exceptions.ArgumentInvalidException("The provided URI points to a folder and this method only works with files, use the CopyContent method instead.");           
+                
+                if(string.IsNullOrEmpty(remoteFileName)) remoteFileName = file.Name;
+                else if(string.IsNullOrEmpty(Path.GetExtension(remoteFileName))) remoteFileName += Path.GetExtension(file.Name);
             }
 
             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
@@ -495,56 +585,14 @@ namespace AutoCheck.Core.Connectors{
                 fileMetadata.Parents = new string[]{folder.Id};  
             }
 
-            var copy = this.Drive.Files.Copy(fileMetadata, fileID);
-            var file = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
+            var copy = this.Drive.Files.Copy(fileMetadata, file.Id);
+            Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
                 return copy.Execute(); 
             });
         }
 
-        /// <summary>
-        /// Uses a local text file in order to extract any link within it, then uses those links to copy any external Google Drive file found into the main account.
-        /// </summary>
-        /// <param name="localFile">The local text file.</param>
-        /// <param name="remoteFilePath">Remote file path</param>
-        /// <param name="remoteFileName">Remote file name (extenssion and/or name will be infered from source if not provided).</param>
-        public void CopyFromFile(string localFile, string remoteFilePath, string remoteFileName = null){
-            if(string.IsNullOrEmpty(localFile)) throw new ArgumentNullException("localFile");   
-            if(!File.Exists(localFile)) throw new ArgumentInvalidException($"Unable to find the file '{localFile}'");
-
-            var content = File.ReadAllText(localFile);
-            foreach(Match match in Regex.Matches(content, _LINK_REGEX)){
-                var uri = new Uri(match.Value);
-                
-                try{
-                    CopyFile(uri, remoteFilePath, remoteFileName);
-                }
-                catch{
-                    //retry with download and reupload      
-                    string local = string.Empty;
-
-                    try{
-                        if(match.Value.Contains("drive.google.com")) local = Download(uri, Utils.TempFolder);
-                        else{
-                            using (var client = new HttpClient())
-                            {                                    
-                                local = Utils.TempFolder;
-                                if(!Directory.Exists(local)) Directory.CreateDirectory(local);
-
-                                local = Path.Combine(local, uri.Segments.Last());
-                                client.DownloadFileTaskAsync(uri, local).Wait();
-                            }
-                        }
-                        
-                        CreateFile(local, remoteFilePath, remoteFileName);
-                        File.Delete(local);
-                    }
-                    catch{
-                        //continue with the next link;
-                    }
-                }                                                   
-            }           
-        }
-
+        
+        
         //TODO: not needed right now, but could be useful -> moveFile / moveFolder / emptyTrash        
         
         /// <summary>
@@ -569,20 +617,8 @@ namespace AutoCheck.Core.Connectors{
             //Documentation: https://developers.google.com/drive/api/v3/search-files
             //               https://developers.google.com/drive/api/v3/reference/files
                                     
-            var id = GetFileIdFromUri(uri);                                
-            return Download(id, savePath);            
-        }
-
-        /// <summary>
-        /// Downloads a file from an external Google Drive account.
-        /// </summary>
-        /// <param name="file">The Google Drive API file to download.</param>
-        /// <param name="savePath">Local path where store the file</param>
-        /// <returns>The downloaded file path<returns>
-        /// <remarks>The file must be shared with the downloader's account.</remarks>
-        public string Download(Google.Apis.Drive.v3.Data.File file, string savePath)
-        { 
-            return Download(file.Id, savePath);
+            if(uri == null) throw new ArgumentNullException("uri");                                        
+            return Download(GetFileFromUri(uri), savePath);            
         }
 
         /// <summary>
@@ -595,15 +631,27 @@ namespace AutoCheck.Core.Connectors{
         public string Download(string fileID, string savePath)
         {    
             if(string.IsNullOrEmpty(fileID)) throw new ArgumentNullException("fileID");    
-            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");    
-            if(!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);
+            return Download(GetFileFromID(fileID), savePath);
+        }
 
-            var request = this.Drive.Files.Get(fileID);
-            var filePath = Path.Combine(savePath, Utils.RunWithRetry<string, Google.GoogleApiException>(() => {
-                return request.Execute().Name; 
-            }));
-
+        /// <summary>
+        /// Downloads a file from an external Google Drive account.
+        /// </summary>
+        /// <param name="file">The Google Drive API file to download.</param>
+        /// <param name="savePath">Local path where store the file</param>
+        /// <returns>The downloaded file path<returns>
+        /// <remarks>The file must be shared with the downloader's account.</remarks>
+        public string Download(Google.Apis.Drive.v3.Data.File file, string savePath)
+        { 
+            if(file == null) throw new ArgumentNullException("file");    
+            if(string.IsNullOrEmpty(savePath)) throw new ArgumentNullException("savePath");                
+            if(file.MimeType == _MIME_FOLDER) throw new Exceptions.ArgumentInvalidException("The provided URI points to a folder and this method only works with files.");           
+            
+            if(!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);                    
+            
             var stream = new MemoryStream();           
+            var filePath = Path.Combine(savePath, file.Name);    
+            var request = this.Drive.Files.Get(file.Id);                
             request.MediaDownloader.ProgressChanged += (IDownloadProgress progress) =>
             {
                 switch (progress.Status){
@@ -718,9 +766,18 @@ namespace AutoCheck.Core.Connectors{
             {
                 throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
             }
-        }                            
+        }     
 
-        private string GetFileIdFromUri(Uri uri){
+        private Google.Apis.Drive.v3.Data.File GetFileFromID(string fileID, string requestFields = null){
+            var request = this.Drive.Files.Get(fileID);
+            if(!string.IsNullOrEmpty(requestFields)) request.Fields = requestFields;
+            
+            return Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
+                return request.Execute();
+            });
+        }
+
+        private Google.Apis.Drive.v3.Data.File GetFileFromUri(Uri uri){
             if(uri == null) throw new ArgumentNullException("uri");
             if(!uri.Authority.Contains("drive.google.com")) throw new ArgumentInvalidException("The provided URL must point to drive.google.com");
             
@@ -730,16 +787,18 @@ namespace AutoCheck.Core.Connectors{
             if(query.GetValues("id") != null) id = query.GetValues("id").FirstOrDefault();
             else{
                 var parts = uri.AbsolutePath.Split("/");                
-                if(parts.Length < 4 || string.IsNullOrEmpty(parts[3]))  throw new ArgumentInvalidException("The provided URL must point to a shared file in drive.google.com");            
+                if(parts.Length < 4)  throw new ArgumentInvalidException("The provided URL must point to a shared file or folder from drive.google.com");            
+
+                if(parts.Length >5 && parts[1] == "drive" && parts[4] == "folders") id = parts[5];                  
                 else id = parts[3];                
             } 
 
-            return id;   
-        }          
+            return GetFileFromID(id);
+        }                    
         
         private IList<Google.Apis.Drive.v3.Data.File> GetList(string query, bool isFolder){
             var list = this.Drive.Files.List();
-            list.Q = string.Format("trashed=false and mimeType {0} 'application/vnd.google-apps.folder' and {1}", (isFolder ? "=" : "!=") ,query);
+            list.Q = $"trashed=false and mimeType {(isFolder ? "=" : "!=")} '{_MIME_FOLDER}' and {query}";
             return Utils.RunWithRetry<IList<Google.Apis.Drive.v3.Data.File>, Google.GoogleApiException>(() => {
                 return list.Execute().Files; 
             });
@@ -753,12 +812,7 @@ namespace AutoCheck.Core.Connectors{
             var original = path;            
             foreach(var folder in GetList(string.Format("name='{0}'", item), isFolder)){
                 Google.Apis.Drive.v3.Data.File current = folder;
-                var get = this.Drive.Files.Get(current.Id);
-                get.Fields = "name, parents";
-                
-                current = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
-                    return get.Execute();
-                });
+                current = GetFileFromID(current.Id, "name, parents");
                 
                 path = original;
                 while(path.Length > 0 && !path.Equals(Path.DirectorySeparatorChar.ToString())){
@@ -778,14 +832,10 @@ namespace AutoCheck.Core.Connectors{
         }
         
         private Google.Apis.Drive.v3.Data.File GetParent(Google.Apis.Drive.v3.Data.File folder, string parentName, bool recursive){
-            foreach(var parentID in folder.Parents){
-                var get = this.Drive.Files.Get(parentID);                
-                get.Fields = "name, parents";
-
-                var parent = Utils.RunWithRetry<Google.Apis.Drive.v3.Data.File, Google.GoogleApiException>(() => {
-                    return get.Execute();
-                });
+            if(folder == null || folder.Parents == null) return null;
             
+            foreach(var parentID in folder.Parents){                
+                var parent = GetFileFromID(parentID, "name, parents");            
                 if(parent.Name.Equals(parentName)) return parent;
                 else if(recursive) return(GetParent(parent, parentName, recursive));
             }
