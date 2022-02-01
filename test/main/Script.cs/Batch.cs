@@ -38,7 +38,7 @@ namespace AutoCheck.Test
             var dest =  Path.Combine(Path.GetDirectoryName(TempScriptFolder), "test1"); //the script will use this folder, so no random path can be used
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
             Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
             
             var s = new AutoCheck.Core.Script(GetSampleFile("batch_run_ok1.yaml"));                        
@@ -57,8 +57,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -79,8 +79,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -101,8 +101,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -124,8 +124,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));
@@ -146,8 +146,8 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest1)) Directory.CreateDirectory(dest1);
             if(!Directory.Exists(dest2)) Directory.CreateDirectory(dest2);                                 
 
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
-            File.Copy(GetSampleFile("zip", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest1, "nopass.zip"));
+            File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest2, "nopass.zip"));
 
             Assert.IsTrue(File.Exists(GetSampleFile(dest1, "nopass.zip")));
             Assert.IsTrue(File.Exists(GetSampleFile(dest2, "nopass.zip")));

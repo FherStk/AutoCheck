@@ -378,22 +378,32 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <tr>
 <td>APP_FOLDER_NAME</td>
 <td>text</td>
-<td>The root app's execution folder (just the folder name).</td>
+<td>The current app's execution folder (just the folder name).</td>
 </tr>
 <tr>
 <td>APP_FOLDER_PATH</td>
 <td>text</td>
-<td>The root app's execution folder (the entire path).</td>
+<td>The current app's execution folder (the entire path).</td>
 </tr>
 <tr>
 <td>APP_CONFIG_NAME</td>
 <td>text</td>
-<td>The current app's configuration folder (just the folder name).</td>
+<td>The core app's configuration folder (just the folder name).</td>
 </tr>
 <tr>
 <td>APP_CONFIG_PATH</td>
 <td>text</td>
-<td>The current app's configuration folder (the entire path).</td>
+<td>The core app's configuration folder (the entire path).</td>
+</tr>
+<tr>
+<td>APP_UTILS_NAME</td>
+<td>text</td>
+<td>The core app's utils folder (just the folder name).</td>
+</tr>
+<tr>
+<td>APP_UTILS_PATH</td>
+<td>text</td>
+<td>The core app's utils folder (the entire path).</td>
 </tr>
 </tbody>
 </table>
@@ -604,6 +614,11 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>CURRENT_PASSWORD</td>
 <td>text</td>
 <td>The password for the current execution.</td>
+</tr>
+<tr>
+<td>CURRENT_DIR_SEPARATOR</td>
+<td>[/; ]</td>
+<td>The current OS directory separator char.</td>
 </tr>
 </tbody>
 </table>
