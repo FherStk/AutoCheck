@@ -33,43 +33,7 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).
     /// </summary>
-    public class Shell : Base{   
-        public class LocalShell{
-            public string RunCommand(string command, int timeout=0){
-                var arguments = command.Substring(command.IndexOf(" ")).Trim();
-                var psi = new ProcessStartInfo(command, arguments) {
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    WindowStyle = ProcessWindowStyle.Hidden
-                };
-                
-                var proc=Process.Start(psi);
-                if (proc == null) throw new Exception("Unable to execute the given local command.");
-
-                //https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processstartinfo?view=net-6.0
-                //TODO: continue this
-                //  exitCode = r.code;
-                //         stdOut = r.stdout;
-                //         stdErr = r.stderr;
-
-
-                //Start reading
-                using (var sr = proc.StandardOutput)
-                {
-                while (!sr.EndOfStream)
-                {
-                    Console.WriteLine(sr.ReadLine());
-                }
-
-                if (!proc.HasExited)
-                {
-                    proc.Kill();
-                }
-
-                
-            }
-        }   
-        
+    public class Shell : Base{                    
         /// <summary>
         /// The remote host OS.
         /// </summary>
@@ -212,7 +176,11 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">The path where the command must run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path, int timeout=0){    
+        public (int code, string response) RunCommand(string command, string path, int timeout=0){              
+            var result = (IsLocal ? RunLocalCommand(command, timeout) : RunRemoteCommand(command, timeout));            
+            return (result.exitCode, (string.IsNullOrEmpty(result.stdErr.Trim(Environment.NewLine.ToArray())) ? result.stdOut : result.stdErr));
+
+            /*
             //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
             using (var tokenSource = new CancellationTokenSource()){
                 var cancelToken = tokenSource.Token;
@@ -220,6 +188,7 @@ namespace AutoCheck.Core.Connectors{
                 var stdOut = string.Empty;
                 var stdErr = string.Empty;
 
+                
                 var task = Task.Run(() => {
                     if(IsLocal){
                         Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
@@ -255,9 +224,87 @@ namespace AutoCheck.Core.Connectors{
                     //                                                                    https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processwindowstyle?view=net-6.0#System_Diagnostics_ProcessWindowStyle_Hidden/
                     tokenSource.Cancel();    
                     throw new TimeoutException();                
-                }
+                }                
             }
-        }                     
+            */
+        } 
+        
+        private (int exitCode, string stdOut, string stdErr) RunRemoteCommand(string command, int timeout=0){
+            this.RemoteShell.Connect();
+            if(timeout > 0) this.RemoteShell.ConnectionInfo.Timeout = TimeSpan.FromMilliseconds(timeout);
+            var rr = this.RemoteShell.RunCommand(command);
+            this.RemoteShell.Disconnect();
+            
+            return (rr.ExitStatus, rr.Result, rr.Error);
+        }
+
+        private (int exitCode, string stdOut, string stdErr) RunLocalCommand(string command, int timeout=0){
+            //splitting command and argument list
+            var arguments = string.Empty;
+            var idx = command.IndexOf(" ");
+
+            //TODO: I need a way to send the command as will be sent to the terminal. Maybe "bash" as command and the rest as arguments?
+            //      If "bash" is used, in windows it should use "cmd" but on mac?
+            
+            // if(idx >= 0){
+            //     arguments = command.Substring(idx).Trim().Replace('\'', '"');
+            //     command = command.Substring(0, idx);
+            // } 
+
+            var psi = new ProcessStartInfo(command, arguments) {
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                WindowStyle = ProcessWindowStyle.Hidden,    
+                UseShellExecute = false            
+            };            
+                            
+            //setting up return data
+            string stdOut = string.Empty;
+            string stdErr = string.Empty;
+            int exitCode = 0;
+            
+            Process proc = null;
+            try{                
+                //running in parallel in order to kill after timeout
+                var task = Task.Run(() => {
+                    //Source: https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processstartinfo?view=net-6.0
+                    try{
+                        proc = Process.Start(psi); //throws exception for unexisting commands
+                        if (proc == null) throw new Exception("Unable to execute the given local command.");
+                    
+                        //Start reading        
+                        proc.WaitForExit();                
+                        exitCode = proc.ExitCode;
+                        
+                        using (var sr = proc.StandardOutput)            
+                            if (!sr.EndOfStream) stdOut = sr.ReadToEnd();
+
+                        using (var sr = proc.StandardError)
+                            if (!sr.EndOfStream) stdErr = sr.ReadToEnd();                
+                    }
+                    catch(Exception ex){
+                        exitCode = 127;
+                        stdErr = ex.Message;
+                    }
+                    
+                });
+                        
+                var completed = true;
+                if(timeout == 0) task.Wait();
+                else completed = task.Wait(timeout);
+
+                if(completed) return (exitCode, stdOut, stdErr);
+                else throw new TimeoutException();
+            }
+            finally{
+                //process must end always
+                if (proc != null && !proc.HasExited) proc.Kill();
+            }
+        }
+                    
+
+               
+            
 
         /// <summary>
         /// Returns the first folder's path found, using the given folder name or search pattern.
