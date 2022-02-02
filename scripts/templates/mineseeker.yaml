@@ -34,6 +34,7 @@ body:
                         caption:  "Looking for ~.java... "                        
                         store: "$FILEPATH"
                         expected: "%.java" 
+                        onexception: ABORT
                         onerror: "ABORT"
                         command:  "GetFile"
                         arguments: 
@@ -57,6 +58,7 @@ body:
                         command:  "javac '{$FILEPATH}'"
                         expected: "" 
                         onexception: ABORT
+                        onerror: "ABORT"
 
       - question:                     
             description: "Main menu"
