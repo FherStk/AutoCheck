@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Style
     path: ../core/main/Output.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: INFO
     path: ../core/main/Output.cs
@@ -92,7 +92,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: PROMPT
     path: ../core/main/Output.cs
@@ -124,7 +124,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: HEADER
     path: ../core/main/Output.cs
@@ -156,7 +156,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CRITICAL
     path: ../core/main/Output.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DETAILS
     path: ../core/main/Output.cs
@@ -220,7 +220,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: QUESTION
     path: ../core/main/Output.cs
@@ -252,7 +252,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: SCORE
     path: ../core/main/Output.cs
@@ -284,7 +284,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: SUCCESS
     path: ../core/main/Output.cs
@@ -316,7 +316,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ERROR
     path: ../core/main/Output.cs
@@ -348,7 +348,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: DEFAULT
     path: ../core/main/Output.cs
@@ -380,7 +380,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ECHO
     path: ../core/main/Output.cs
@@ -412,7 +412,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: WARNING
     path: ../core/main/Output.cs
