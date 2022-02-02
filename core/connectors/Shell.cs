@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
 using ToolBox.Bridge;
@@ -32,7 +33,42 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).
     /// </summary>
-    public class Shell : Base{      
+    public class Shell : Base{   
+        public class LocalShell{
+            public string RunCommand(string command, int timeout=0){
+                var arguments = command.Substring(command.IndexOf(" ")).Trim();
+                var psi = new ProcessStartInfo(command, arguments) {
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
+                
+                var proc=Process.Start(psi);
+                if (proc == null) throw new Exception("Unable to execute the given local command.");
+
+                //https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processstartinfo?view=net-6.0
+                //TODO: continue this
+                //  exitCode = r.code;
+                //         stdOut = r.stdout;
+                //         stdErr = r.stderr;
+
+
+                //Start reading
+                using (var sr = proc.StandardOutput)
+                {
+                while (!sr.EndOfStream)
+                {
+                    Console.WriteLine(sr.ReadLine());
+                }
+
+                if (!proc.HasExited)
+                {
+                    proc.Kill();
+                }
+
+                
+            }
+        }   
         
         /// <summary>
         /// The remote host OS.
