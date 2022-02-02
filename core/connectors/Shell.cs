@@ -165,7 +165,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="command">The command to run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, int timeout=-1){    
+        public (int code, string response) RunCommand(string command, int timeout=0){    
             return RunCommand(command, "", timeout);
         }
 
@@ -176,7 +176,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">The path where the command must run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path, int timeout=-1){    
+        public (int code, string response) RunCommand(string command, string path, int timeout=0){    
             //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
             using (var tokenSource = new CancellationTokenSource()){
                 var cancelToken = tokenSource.Token;
@@ -206,8 +206,13 @@ namespace AutoCheck.Core.Connectors{
 
                 }, cancelToken);
                 
-                task.Wait(timeout);
-                if(task.Status == TaskStatus.Running){
+                var completed = true;
+                if(timeout == 0) task.Wait();
+                else task.Wait(timeout, cancelToken);
+
+
+                if(completed) return task.Result;
+                else{
                     //TODO: this cancels anything so background processes will continue working...
                     //      I need a timeout for Term (has not) and RunCommand (pending to check) in order to cancel de task
                     //      If can't, maybe native process execution should be performed: https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.process.start?view=net-6.0
@@ -215,7 +220,6 @@ namespace AutoCheck.Core.Connectors{
                     tokenSource.Cancel();    
                     throw new TimeoutException();                
                 }
-                else return task.Result;
             }
         }                     
 
