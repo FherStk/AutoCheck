@@ -165,8 +165,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="command">The command to run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, int timeout=0){    
-            return RunCommand(command, "", timeout);
+        public (int code, string response) Run(string command, int timeout=0){    
+            return Run(command, "", timeout);
         }
 
         /// <summary>
@@ -176,8 +176,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">The path where the command must run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path, int timeout=0){              
-            var result = (IsLocal ? RunLocalCommand(command, path, timeout) : RunRemoteCommand(command, path, timeout));            
+        public (int code, string response) Run(string command, string path, int timeout=0){              
+            var result = (IsLocal ? RunLocal(command, path, timeout) : RunRemote(command, path, timeout));            
             return (result.exitCode, (string.IsNullOrEmpty(result.stdErr.Trim(Environment.NewLine.ToArray())) ? result.stdOut : result.stdErr));
 
             /*
@@ -229,7 +229,7 @@ namespace AutoCheck.Core.Connectors{
             */
         } 
         
-        private (int exitCode, string stdOut, string stdErr) RunRemoteCommand(string command, string path, int timeout=0){
+        private (int exitCode, string stdOut, string stdErr) RunRemote(string command, string path, int timeout=0){
             if(!string.IsNullOrEmpty(path)) throw new NotImplementedException("Sorry");
             
             this.RemoteShell.Connect();
@@ -240,7 +240,7 @@ namespace AutoCheck.Core.Connectors{
             return (rr.ExitStatus, rr.Result, rr.Error);
         }
 
-        private (int exitCode, string stdOut, string stdErr) RunLocalCommand(string command, string path, int timeout=0){
+        private (int exitCode, string stdOut, string stdErr) RunLocal(string command, string path, int timeout=0){
             //splitting command and argument list
             var arguments = command;
             
@@ -565,13 +565,13 @@ namespace AutoCheck.Core.Connectors{
             {
                 case Utils.OS.WIN:
                     //TODO: must be tested!
-                    var win = RunCommand($"dir \"{path}\" /AD /b /s");
+                    var win = Run($"dir \"{path}\" /AD /b /s");
                     items = win.response.Split("\r\n");                                       
                     break;
 
                 case Utils.OS.MAC:
                 case Utils.OS.GNU:
-                    var gnu = RunCommand($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
+                    var gnu = Run($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
                     items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;
             }

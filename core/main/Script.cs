@@ -2112,7 +2112,7 @@ namespace AutoCheck.Core{
                     if(!arguments.ContainsKey("path")) arguments.Add("path", string.Empty); 
                     if(!arguments.ContainsKey("timeout")) arguments.Add("timeout", timeout);
                     arguments.Add("command", command);
-                    command = "RunCommand";
+                    command = "Run";
                 }
                 
                 //Retry the execution
