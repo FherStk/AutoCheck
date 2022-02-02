@@ -280,15 +280,15 @@ namespace AutoCheck.Core.Connectors{
                         proc = Process.Start(psi); //throws exception for unexisting commands
                         if (proc == null) throw new Exception("Unable to execute the given local command.");
                     
-                        //Start reading        
-                        proc.WaitForExit();                
-                        exitCode = proc.ExitCode;
-                        
                         using (var sr = proc.StandardOutput)            
                             if (!sr.EndOfStream) stdOut = sr.ReadToEnd();
 
                         using (var sr = proc.StandardError)
                             if (!sr.EndOfStream) stdErr = sr.ReadToEnd();                
+
+                        //Must wait after everything has been read, otherwise could deadlock with large outputs
+                        proc.WaitForExit();               
+                        exitCode = proc.ExitCode;
                     }
                     catch(Exception ex){
                         exitCode = 127;

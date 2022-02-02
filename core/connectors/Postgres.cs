@@ -283,7 +283,7 @@ namespace AutoCheck.Core.Connectors{
 
                     case Utils.OS.MAC:
                     case Utils.OS.GNU:
-                        var gnu = ls.RunCommand($"{cmdPassword} {cmdRestore.Replace("\"", "'")}");
+                        var gnu = ls.RunCommand($"{cmdPassword} {cmdRestore}");
                         if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                         break;
                 } 
