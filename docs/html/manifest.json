@@ -4,9 +4,6 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.Css.yml",
       "output": {
@@ -49,6 +46,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.GDrive.yml",
       "output": {
@@ -178,15 +178,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Connectors.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Connectors.html",
-          "hash": "IJC55nfqmxUAH51I9Trq26GsKp1V8+1J9FofHVNmtSM="
+          "hash": "QOSSP/32fSJ4NNFERxmryPXNOGORseGWfWvfKMAasfw="
         }
       },
       "is_incremental": false,
@@ -316,6 +313,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.Css.yml",
       "output": {
@@ -358,9 +358,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.GDrive.yml",
       "output": {
@@ -480,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.Shell.html",
-          "hash": "iRIwJllG6+wWLLOqgd7DawXrua4HcFUXXH00zfPXSp8="
+          "hash": "0Lw6+pmpm9hCN6o5ldDqFCNj/uluaKtuJW0GRGEsujA="
         }
       },
       "is_incremental": false,
@@ -523,12 +520,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "ManagedReference",
       "source_relative_path": "api/AutoCheck.Core.Connectors.yml",
       "output": {
         ".html": {
           "relative_path": "api/AutoCheck.Core.Connectors.html",
-          "hash": "RjFwKTlpmrLNodvismVnFOFzqa7Mq8anXMh1hPx4gZ4="
+          "hash": "FiM04bcbswzP4fbioCMzepzFoheIlOO2qlRqzH81IxY="
         }
       },
       "is_incremental": false,
@@ -1346,7 +1346,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/teacher.html",
-          "hash": "Q30A3IDxInMfoKEEmMX4WjKeRYDGuOl/bFUj2L1wv7I="
+          "hash": "8N5mE6glgVdK6BItaHRSpynWx91JTSiiVPGOZIw3z1w="
         }
       },
       "is_incremental": false,

@@ -32,8 +32,8 @@ items:
   - AutoCheck.Core.Connectors.Shell.Password
   - AutoCheck.Core.Connectors.Shell.Port
   - AutoCheck.Core.Connectors.Shell.RemoteOS
-  - AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.Int32)
-  - AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String,System.Int32)
+  - AutoCheck.Core.Connectors.Shell.Run(System.String,System.Int32)
+  - AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
   - AutoCheck.Core.Connectors.Shell.TestConnection
   - AutoCheck.Core.Connectors.Shell.Username
   langs:
@@ -50,7 +50,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/Shell.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -521,23 +521,23 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.Int32)
-  commentId: M:AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.Int32)
-  id: RunCommand(System.String,System.Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Run(System.String,System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.Shell.Run(System.String,System.Int32)
+  id: Run(System.String,System.Int32)
   parent: AutoCheck.Core.Connectors.Shell
   langs:
   - csharp
   - vb
-  name: RunCommand(String, Int32)
-  nameWithType: Shell.RunCommand(String, Int32)
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand(System.String, System.Int32)
+  name: Run(String, Int32)
+  nameWithType: Shell.Run(String, Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Run(System.String, System.Int32)
   type: Method
   source:
     remote:
       path: core/connectors/Shell.cs
       branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
-    id: RunCommand
+    id: Run
     path: ../core/connectors/Shell.cs
     startLine: 167
   assemblies:
@@ -546,7 +546,7 @@ items:
   summary: "\nRuns a shell command.\n"
   example: []
   syntax:
-    content: public (int code, string response) RunCommand(string command, int timeout = 0)
+    content: public (int code, string response) Run(string command, int timeout = 0)
     parameters:
     - id: command
       type: System.String
@@ -557,29 +557,29 @@ items:
     return:
       type: System.ValueTuple{System.Int32,System.String}
       description: The return code and the complete response.
-    content.vb: Public Function RunCommand(command As String, timeout As Integer = 0) As(code As Integer, response As String)(Of Integer , String)
-  overload: AutoCheck.Core.Connectors.Shell.RunCommand*
+    content.vb: Public Function Run(command As String, timeout As Integer = 0) As(code As Integer, response As String)(Of Integer , String)
+  overload: AutoCheck.Core.Connectors.Shell.Run*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String,System.Int32)
-  commentId: M:AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String,System.Int32)
-  id: RunCommand(System.String,System.String,System.Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
+  id: Run(System.String,System.String,System.Int32)
   parent: AutoCheck.Core.Connectors.Shell
   langs:
   - csharp
   - vb
-  name: RunCommand(String, String, Int32)
-  nameWithType: Shell.RunCommand(String, String, Int32)
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand(System.String, System.String, System.Int32)
+  name: Run(String, String, Int32)
+  nameWithType: Shell.Run(String, String, Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Run(System.String, System.String, System.Int32)
   type: Method
   source:
     remote:
       path: core/connectors/Shell.cs
       branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
-    id: RunCommand
+    id: Run
     path: ../core/connectors/Shell.cs
     startLine: 178
   assemblies:
@@ -588,7 +588,7 @@ items:
   summary: "\nRuns a shell command.\n"
   example: []
   syntax:
-    content: public (int code, string response) RunCommand(string command, string path, int timeout = 0)
+    content: public (int code, string response) Run(string command, string path, int timeout = 0)
     parameters:
     - id: command
       type: System.String
@@ -602,8 +602,8 @@ items:
     return:
       type: System.ValueTuple{System.Int32,System.String}
       description: The return code and the complete response.
-    content.vb: Public Function RunCommand(command As String, path As String, timeout As Integer = 0) As(code As Integer, response As String)(Of Integer , String)
-  overload: AutoCheck.Core.Connectors.Shell.RunCommand*
+    content.vb: Public Function Run(command As String, path As String, timeout As Integer = 0) As(code As Integer, response As String)(Of Integer , String)
+  overload: AutoCheck.Core.Connectors.Shell.Run*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -626,7 +626,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/Shell.cs
-    startLine: 226
+    startLine: 323
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -673,7 +673,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/Shell.cs
-    startLine: 239
+    startLine: 336
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -720,7 +720,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
-    startLine: 251
+    startLine: 348
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -764,7 +764,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
-    startLine: 262
+    startLine: 359
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -809,7 +809,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 279
+    startLine: 376
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -853,7 +853,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 290
+    startLine: 387
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -898,7 +898,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 308
+    startLine: 405
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -943,7 +943,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 318
+    startLine: 415
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -987,7 +987,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 329
+    startLine: 426
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1032,7 +1032,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 339
+    startLine: 436
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1076,7 +1076,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 347
+    startLine: 444
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1114,7 +1114,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 363
+    startLine: 460
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1159,7 +1159,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 372
+    startLine: 469
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1197,7 +1197,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 388
+    startLine: 485
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1242,7 +1242,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFile
     path: ../core/connectors/Shell.cs
-    startLine: 399
+    startLine: 496
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1284,7 +1284,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 423
+    startLine: 520
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1326,7 +1326,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 434
+    startLine: 531
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1706,11 +1706,11 @@ references:
   name: TestConnection
   nameWithType: Shell.TestConnection
   fullName: AutoCheck.Core.Connectors.Shell.TestConnection
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand*
-  commentId: Overload:AutoCheck.Core.Connectors.Shell.RunCommand
-  name: RunCommand
-  nameWithType: Shell.RunCommand
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand
+- uid: AutoCheck.Core.Connectors.Shell.Run*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Run
+  name: Run
+  nameWithType: Shell.Run
+  fullName: AutoCheck.Core.Connectors.Shell.Run
 - uid: System.ValueTuple{System.Int32,System.String}
   commentId: '!:System.ValueTuple{System.Int32,System.String}'
   definition: System.ValueTuple`2
