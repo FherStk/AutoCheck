@@ -177,7 +177,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
         public (int code, string response) RunCommand(string command, string path, int timeout=0){              
-            var result = (IsLocal ? RunLocalCommand(command, timeout) : RunRemoteCommand(command, timeout));            
+            var result = (IsLocal ? RunLocalCommand(command, path, timeout) : RunRemoteCommand(command, path, timeout));            
             return (result.exitCode, (string.IsNullOrEmpty(result.stdErr.Trim(Environment.NewLine.ToArray())) ? result.stdOut : result.stdErr));
 
             /*
@@ -229,7 +229,9 @@ namespace AutoCheck.Core.Connectors{
             */
         } 
         
-        private (int exitCode, string stdOut, string stdErr) RunRemoteCommand(string command, int timeout=0){
+        private (int exitCode, string stdOut, string stdErr) RunRemoteCommand(string command, string path, int timeout=0){
+            if(!string.IsNullOrEmpty(path)) throw new NotImplementedException("Sorry");
+            
             this.RemoteShell.Connect();
             if(timeout > 0) this.RemoteShell.ConnectionInfo.Timeout = TimeSpan.FromMilliseconds(timeout);
             var rr = this.RemoteShell.RunCommand(command);
@@ -238,7 +240,7 @@ namespace AutoCheck.Core.Connectors{
             return (rr.ExitStatus, rr.Result, rr.Error);
         }
 
-        private (int exitCode, string stdOut, string stdErr) RunLocalCommand(string command, int timeout=0){
+        private (int exitCode, string stdOut, string stdErr) RunLocalCommand(string command, string path, int timeout=0){
             //splitting command and argument list
             var arguments = command;
             
@@ -261,7 +263,8 @@ namespace AutoCheck.Core.Connectors{
                 RedirectStandardError = true,
                 WindowStyle = ProcessWindowStyle.Hidden,    
                 UseShellExecute = false            
-            };            
+            };      
+            if(!string.IsNullOrEmpty(path)) psi.WorkingDirectory = path;      
                             
             //setting up return data
             string stdOut = string.Empty;
