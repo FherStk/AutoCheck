@@ -193,6 +193,7 @@ namespace AutoCheck.Core.Connectors{
                     }
                     else{        
                         this.RemoteShell.Connect();
+                        if(timeout > 0) this.RemoteShell.ConnectionInfo.Timeout = TimeSpan.FromMilliseconds(timeout);
                         SshCommand s = this.RemoteShell.RunCommand(command);
                         this.RemoteShell.Disconnect();
 
@@ -207,7 +208,10 @@ namespace AutoCheck.Core.Connectors{
                 
                 task.Wait(timeout);
                 if(task.Status == TaskStatus.Running){
-                    //timeout 
+                    //TODO: this cancels anything so background processes will continue working...
+                    //      I need a timeout for Term (has not) and RunCommand (pending to check) in order to cancel de task
+                    //      If can't, maybe native process execution should be performed: https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.process.start?view=net-6.0
+                    //                                                                    https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processwindowstyle?view=net-6.0#System_Diagnostics_ProcessWindowStyle_Hidden/
                     tokenSource.Cancel();    
                     throw new TimeoutException();                
                 }
