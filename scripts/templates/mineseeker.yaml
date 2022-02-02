@@ -54,7 +54,7 @@ body:
                               
                   - run:
                         caption:  "Compiling the file ~{$FILENAME}... "
-                        command:  javac "{$FILEPATH}"
+                        command:  "javac '{$FILEPATH}'"
                         expected: "" 
                         onexception: ABORT
 
@@ -63,7 +63,7 @@ body:
             content:                            
             - run:
                   caption:  "Checking the caption... "            
-                  command:  echo 3 | java "{$FILEPATH}" 
+                  command:  "echo 3 | java '{$FILEPATH}'" 
                   timeout: 30000           
                   expected: "%Escull una opció:%" 
 

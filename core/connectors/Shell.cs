@@ -240,16 +240,21 @@ namespace AutoCheck.Core.Connectors{
 
         private (int exitCode, string stdOut, string stdErr) RunLocalCommand(string command, int timeout=0){
             //splitting command and argument list
-            var arguments = string.Empty;
-            var idx = command.IndexOf(" ");
-
-            //TODO: I need a way to send the command as will be sent to the terminal. Maybe "bash" as command and the rest as arguments?
-            //      If "bash" is used, in windows it should use "cmd" but on mac?
+            var arguments = command;
             
-            // if(idx >= 0){
-            //     arguments = command.Substring(idx).Trim().Replace('\'', '"');
-            //     command = command.Substring(0, idx);
-            // } 
+            switch(Utils.CurrentOS){
+                case Utils.OS.GNU:
+                case Utils.OS.MAC:
+                    command = "bash";
+                    arguments = $"-c \"{arguments}\"";
+                    break;
+
+                case Utils.OS.WIN:
+                    command = "cmd.exe";
+                    arguments = $"/C \"{arguments}\"";
+                    break;
+
+            }
 
             var psi = new ProcessStartInfo(command, arguments) {
                 RedirectStandardOutput = true,

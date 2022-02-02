@@ -30,16 +30,16 @@ namespace AutoCheck.Test
 
         [Test, Category("Mineseeker"), Category("Real"), Category("Local")]    
         [TestCase(1, "Student_Name_")]
-        // [TestCase(2, "Student_Name_")]
-        // [TestCase(3, "Student_Name_")]
-        // [TestCase(4, "Student_Name_")]
-        // [TestCase(5, "Student_Name_")]
-        // [TestCase(7, "Student_Name_")]
-        // [TestCase(8, "Student_Name_")]
-        // [TestCase(9, "Student Name ")]
-        // [TestCase(10, "Student_Name_")]
-        // [TestCase(11, "Student_Name_")]
-        // [TestCase(12, "Student_Name_")]
+        [TestCase(2, "Student_Name_")]
+        [TestCase(3, "Student_Name_")]
+        [TestCase(4, "Student_Name_")]
+        [TestCase(5, "Student_Name_")]
+        [TestCase(7, "Student_Name_")]
+        [TestCase(8, "Student_Name_")]
+        [TestCase(9, "Student Name ")]
+        [TestCase(10, "Student_Name_")]
+        [TestCase(11, "Student_Name_")]
+        [TestCase(12, "Student_Name_")]
         public void Real_Mineseeker_SCRIPT_SINGLE_PERFECT(int test, string folder) 
         {             
             var s = new AutoCheck.Core.Script(GetSampleFile($"real_mineseeker_single_{test}.yaml"));
