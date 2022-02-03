@@ -187,7 +187,7 @@ max-score | decimal | no | Maximum script score (overall score). | `10`
 [body](#body) | sequence | no | Script body. |
 
 ### <a name="log"></a> log
-Setups the log output file-mode behaviour.
+Setups the log output file-mode behaviour. Please, **notice** than the logs will be generated at the end of all the script executions in order to attach the `teardown` data.
 
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
