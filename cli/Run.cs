@@ -147,7 +147,7 @@ namespace AutoCheck.Cli
             output.Indent();
 
             output.Write("Retrieving the list of changes... ");
-            var result = shell.RunCommand("git remote update");
+            var result = shell.Run("git remote update");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -156,7 +156,7 @@ namespace AutoCheck.Cli
             } 
 
             output.Write("Looking for new versions... ");            
-            result = shell.RunCommand((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
+            result = shell.Run((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
             if(result.code == 0) output.WriteResponse(new List<string>());
             else{
                 output.WriteResponse(result.response);
@@ -184,7 +184,7 @@ namespace AutoCheck.Cli
             output.Indent();
 
             output.Write("Updating local database... ");
-            result = shell.RunCommand("git fetch --all");
+            result = shell.Run("git fetch --all");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -193,7 +193,7 @@ namespace AutoCheck.Cli
             } 
 
             output.Write("Removing local changes... ");
-            result = shell.RunCommand("git reset --hard origin/master");
+            result = shell.Run("git reset --hard origin/master");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {
@@ -202,7 +202,7 @@ namespace AutoCheck.Cli
             } 
 
             output.Write("Downloading updates... ");
-            result = shell.RunCommand("git pull");
+            result = shell.Run("git pull");
             if(result.code == 0) output.WriteResponse(new List<string>());
             else
             {

@@ -189,10 +189,10 @@ public class HomeController : Controller
     public IActionResult CheckForUpdate()
     {
         var shell = new Shell();
-        var result = shell.RunCommand("git remote update");
+        var result = shell.Run("git remote update");
         if(result.code != 0) throw new Exception(result.response);            
 
-        result = shell.RunCommand((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
+        result = shell.Run((Core.Utils.CurrentOS == Utils.OS.WIN ? "set LC_ALL=C.UTF-8 & git status -uno" : "LC_ALL=C git status -uno"));
         if(result.code != 0) throw new Exception(result.response);            
         
         return Json(!result.response.Contains("Your branch is up to date with 'origin/master'"));
@@ -201,13 +201,13 @@ public class HomeController : Controller
     public IActionResult PerformUpdate()
     {
         var shell = new Shell();
-        var result = shell.RunCommand("git fetch --all");
+        var result = shell.Run("git fetch --all");
         if(result.code != 0) throw new Exception(result.response);            
 
-        result = shell.RunCommand("git reset --hard origin/master");
+        result = shell.Run("git reset --hard origin/master");
         if(result.code != 0) throw new Exception(result.response);     
 
-        result = shell.RunCommand("git pull");
+        result = shell.Run("git pull");
         if(result.code != 0) throw new Exception(result.response);   
         
         var runScript = Path.Combine(Utils.AppFolder, (Core.Utils.CurrentOS == Utils.OS.WIN ? "run.bat" : "run.sh"));

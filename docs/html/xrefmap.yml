@@ -3538,25 +3538,25 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.RemoteOS
   nameWithType: Shell.RemoteOS
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.Int32)
-  name: RunCommand(String, Int32)
-  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_RunCommand_System_String_System_Int32_
-  commentId: M:AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.Int32)
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand(System.String, System.Int32)
-  nameWithType: Shell.RunCommand(String, Int32)
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String,System.Int32)
-  name: RunCommand(String, String, Int32)
-  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_RunCommand_System_String_System_String_System_Int32_
-  commentId: M:AutoCheck.Core.Connectors.Shell.RunCommand(System.String,System.String,System.Int32)
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand(System.String, System.String, System.Int32)
-  nameWithType: Shell.RunCommand(String, String, Int32)
-- uid: AutoCheck.Core.Connectors.Shell.RunCommand*
-  name: RunCommand
-  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_RunCommand_
-  commentId: Overload:AutoCheck.Core.Connectors.Shell.RunCommand
+- uid: AutoCheck.Core.Connectors.Shell.Run(System.String,System.Int32)
+  name: Run(String, Int32)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Run_System_String_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.Shell.Run(System.String,System.Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Run(System.String, System.Int32)
+  nameWithType: Shell.Run(String, Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
+  name: Run(String, String, Int32)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Run_System_String_System_String_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Run(System.String, System.String, System.Int32)
+  nameWithType: Shell.Run(String, String, Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Run*
+  name: Run
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Run_
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Run
   isSpec: "True"
-  fullName: AutoCheck.Core.Connectors.Shell.RunCommand
-  nameWithType: Shell.RunCommand
+  fullName: AutoCheck.Core.Connectors.Shell.Run
+  nameWithType: Shell.Run
 - uid: AutoCheck.Core.Connectors.Shell.TestConnection
   name: TestConnection()
   href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_TestConnection

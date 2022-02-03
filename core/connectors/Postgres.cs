@@ -246,13 +246,13 @@ namespace AutoCheck.Core.Connectors{
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case Utils.OS.WIN:
-                        var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdCreate}", this.BinPath);
+                        var win = ls.Run($"SET \"{cmdPassword}\" && {cmdCreate}", this.BinPath);
                         if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));                                                
                         break;
 
                     case Utils.OS.MAC:
                     case Utils.OS.GNU:
-                        var gnu = ls.RunCommand($"{cmdPassword} {cmdCreate}");
+                        var gnu = ls.Run($"{cmdPassword} {cmdCreate}");
                         if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                         break;
                 } 
@@ -276,14 +276,14 @@ namespace AutoCheck.Core.Connectors{
                 {
                     //Once path is ok on windows and unix the almost same code will be used.
                     case Utils.OS.WIN:
-                        var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdRestore}", this.BinPath);
+                        var win = ls.Run($"SET \"{cmdPassword}\" && {cmdRestore}", this.BinPath);
                         if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));
                         
                         break;
 
                     case Utils.OS.MAC:
                     case Utils.OS.GNU:
-                        var gnu = ls.RunCommand($"{cmdPassword} {cmdRestore.Replace("\"", "'")}");
+                        var gnu = ls.Run($"{cmdPassword} {cmdRestore}");
                         if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                         break;
                 } 
@@ -309,13 +309,13 @@ namespace AutoCheck.Core.Connectors{
                     {
                         //Once path is ok on windows and unix the almost same code will be used.
                         case Utils.OS.WIN:                  
-                            var win = ls.RunCommand($"SET \"{cmdPassword}\" && {cmdDrop}", this.BinPath);
+                            var win = ls.Run($"SET \"{cmdPassword}\" && {cmdDrop}", this.BinPath);
                             if(win.code > 0) throw new Exception(win.response.Replace("\n", ""));                    
                             break;
 
                         case Utils.OS.MAC:
                         case Utils.OS.GNU:
-                            var gnu = ls.RunCommand($"{cmdPassword} {cmdDrop}");
+                            var gnu = ls.Run($"{cmdPassword} {cmdDrop}");
                             if(gnu.code > 0) throw new Exception(gnu.response.Replace("\n", ""));
                             break;
                     }   

@@ -34,6 +34,7 @@ body:
                         caption:  "Looking for ~.java... "                        
                         store: "$FILEPATH"
                         expected: "%.java" 
+                        onexception: ABORT
                         onerror: "ABORT"
                         command:  "GetFile"
                         arguments: 
@@ -57,6 +58,7 @@ body:
                         command:  "javac '{$FILEPATH}'"
                         expected: "" 
                         onexception: ABORT
+                        onerror: "ABORT"
 
       - question:                     
             description: "Main menu"
@@ -64,25 +66,25 @@ body:
             - run:
                   caption:  "Checking the caption... "            
                   command:  "echo 3 | java '{$FILEPATH}'" 
-                  timeout: 5000           
+                  timeout: 30000           
                   expected: "%Escull una opció:%" 
 
             - run:
                   caption:  "Checking the first option... "            
                   command:  "echo 3 | java '{$FILEPATH}'"    
-                  timeout: 5000        
+                  timeout: 30000        
                   expected: "%1. Emplenar el taulell%" 
 
             - run:
                   caption:  "Checking the second option... "            
                   command:  "echo 3 | java '{$FILEPATH}'"    
-                  timeout: 5000        
+                  timeout: 30000        
                   expected: "%2. Mostrar el taulell%" 
 
             - run:
                   caption:  "Checking the third option... "            
                   command:  "echo 3 | java '{$FILEPATH}'"     
-                  timeout: 5000       
+                  timeout: 30000       
                   expected: "%3. Sortir%" 
 
       - question:                     
@@ -91,37 +93,37 @@ body:
                   - run:
                         caption:  "Checking the input data giving no data... "            
                         command:  "echo 1 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows... "            
                         command:  "echo 1 5 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "Exception%" 
 
                   - run:
                         caption:  "Checking the input data giving rows and columns... "            
                         command:  "echo 1 5 4 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "Exception%"
 
                   - run:
                         caption:  "Checking the input question for the rows... "
                         command:  "echo 1 5 4 1 3 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "%De quantes files vols el taulell?%" 
 
                   - run:
                         caption:  "Checking the input question for the columns... "
                         command:  "echo 1 5 4 1 3 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "%De quantes columnes vols el taulell?%" 
 
                   - run:
                         caption:  "Checking the input question for the mines... "
                         command:  "echo 1 5 4 1 3 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "%Quantes mines vols al taulell?%" 
       - question:                     
             description: "Data verification"
@@ -130,7 +132,7 @@ body:
                   - run:
                         caption:  "Checking that more mines that cells is not allowed... "            
                         command:  "echo 1 1 1 2 3 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
                         expected: "%NO ES PODEN POSAR MÉS MINES QUE CASELLES%" 
 
       - connector:  
@@ -182,7 +184,7 @@ body:
                   - run:
                         caption:  "Checking the return to the main menu... "            
                         command:  "echo 1 5 4 1 3 | java '{$FILEPATH}'"       
-                        timeout: 5000     
+                        timeout: 30000     
                         expected: REGEX >0 "Quantes mines vols al taulell\?\s*(?:\n|\r\n)*Escull una opció:"
             
       - question:                     
@@ -190,7 +192,7 @@ body:
             content:                            
                   - run:                    
                         command:  "echo 1 1 1 0 2 3 | java '{$FILEPATH}'"    
-                        timeout: 5000        
+                        timeout: 30000        
 
                   - run:
                         caption:  "Checking the display for a 1x1 board with no mines... "            
@@ -203,7 +205,7 @@ body:
                         
                   - run:                    
                         command:  "echo 1 5 3 0 2 3 | java '{$FILEPATH}'"   
-                        timeout: 5000         
+                        timeout: 30000         
 
                   - run:
                         caption:  "Checking the display for a 5x3 board with no mines... "            
@@ -267,7 +269,7 @@ body:
 
                   - run:                    
                         command:  "echo 1 3 5 15 2 3 | java '{$FILEPATH}'"  
-                        timeout: 5000          
+                        timeout: 30000          
 
                   - run:
                         caption:  "Checking the display for a 3x5 board full of mines... "            
@@ -292,12 +294,12 @@ body:
 
                   - run:                    
                         command:  "echo 1 10 10 25 2 3 | java '{$FILEPATH}'"
-                        timeout: 5000
+                        timeout: 30000
 
                   - run:
                         caption:  "Checking that mines are changing its position... "
                         command:  "echo 1 10 10 25 2 3 | java '{$FILEPATH}'"     
-                        timeout: 5000                       
+                        timeout: 30000                       
                         expected: "!={$RESULT}"
 
       - question:                     
@@ -306,7 +308,7 @@ body:
                   - run:
                         caption:  "Checking the empty message... "   
                         command:  "echo 2 3 | java '{$FILEPATH}'"   
-                        timeout: 5000         
+                        timeout: 30000         
                         expected: REGEX >0 "NO S(?:'|’)HA CREAT CAP TAULELL"
 
       - question:                     
@@ -316,5 +318,5 @@ body:
                   - run:
                         caption:  "Checking the menu display... "   
                         command:  "echo 2 3 | java '{$FILEPATH}'"
-                        timeout: 5000            
+                        timeout: 30000            
                         expected: REGEX >0 "NO S(?:'|’)HA CREAT CAP TAULELL\s*(?:\n|\r\n)*Escull una opció:"
