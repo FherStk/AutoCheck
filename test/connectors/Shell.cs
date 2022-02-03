@@ -309,7 +309,7 @@ namespace AutoCheck.Test.Connectors
             
             //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception
 
-            var lres = LocalConnector.RunCommand(command);            
+            var lres = LocalConnector.Run(command);            
             Assert.IsNotNull(lres.response);
 
             return lres.code;
@@ -320,7 +320,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("fake", ExpectedResult = 127)]
         public int RunCommand_Remote_DoesNotThrow(string command)
         {            
-            var lres = RemoteConnector.RunCommand(command);            
+            var lres = RemoteConnector.Run(command);            
             Assert.IsNotNull(lres.response);
             
             return lres.code;

@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Script
     path: ../core/main/Script.cs
@@ -102,7 +102,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptName
     path: ../core/main/Script.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptVersion
     path: ../core/main/Script.cs
@@ -176,7 +176,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptCaption
     path: ../core/main/Script.cs
@@ -213,7 +213,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleCaption
     path: ../core/main/Script.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: BatchCaption
     path: ../core/main/Script.cs
@@ -287,7 +287,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderPath
     path: ../core/main/Script.cs
@@ -324,7 +324,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppFolderName
     path: ../core/main/Script.cs
@@ -361,7 +361,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppConfigPath
     path: ../core/main/Script.cs
@@ -398,7 +398,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppConfigName
     path: ../core/main/Script.cs
@@ -435,7 +435,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppUtilsPath
     path: ../core/main/Script.cs
@@ -472,7 +472,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: AppUtilsName
     path: ../core/main/Script.cs
@@ -509,7 +509,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderPath
     path: ../core/main/Script.cs
@@ -546,7 +546,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionFolderName
     path: ../core/main/Script.cs
@@ -583,7 +583,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderPath
     path: ../core/main/Script.cs
@@ -620,7 +620,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFolderName
     path: ../core/main/Script.cs
@@ -657,7 +657,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFilePath
     path: ../core/main/Script.cs
@@ -694,7 +694,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ScriptFileName
     path: ../core/main/Script.cs
@@ -731,7 +731,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderPath
     path: ../core/main/Script.cs
@@ -768,7 +768,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFolderName
     path: ../core/main/Script.cs
@@ -805,7 +805,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFilePath
     path: ../core/main/Script.cs
@@ -842,7 +842,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentFileName
     path: ../core/main/Script.cs
@@ -879,7 +879,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderPath
     path: ../core/main/Script.cs
@@ -916,7 +916,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFolderName
     path: ../core/main/Script.cs
@@ -953,7 +953,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFilePath
     path: ../core/main/Script.cs
@@ -990,7 +990,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFileName
     path: ../core/main/Script.cs
@@ -1027,7 +1027,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentTarget
     path: ../core/main/Script.cs
@@ -1064,7 +1064,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentOS
     path: ../core/main/Script.cs
@@ -1101,7 +1101,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentHost
     path: ../core/main/Script.cs
@@ -1138,7 +1138,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentUser
     path: ../core/main/Script.cs
@@ -1175,7 +1175,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPassword
     path: ../core/main/Script.cs
@@ -1212,7 +1212,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentPort
     path: ../core/main/Script.cs
@@ -1249,7 +1249,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentDirSeparator
     path: ../core/main/Script.cs
@@ -1286,7 +1286,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentQuestion
     path: ../core/main/Script.cs
@@ -1323,7 +1323,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Result
     path: ../core/main/Script.cs
@@ -1361,7 +1361,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Now
     path: ../core/main/Script.cs
@@ -1398,7 +1398,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentScore
     path: ../core/main/Script.cs
@@ -1435,7 +1435,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: MaxScore
     path: ../core/main/Script.cs
@@ -1472,7 +1472,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: TotalScore
     path: ../core/main/Script.cs
@@ -1509,7 +1509,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Concurrent
     path: ../core/main/Script.cs
@@ -1546,7 +1546,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Script.cs
@@ -1583,7 +1583,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogFiles
     path: ../core/main/Script.cs
@@ -1620,7 +1620,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1650,7 +1650,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1683,7 +1683,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1721,7 +1721,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1754,7 +1754,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1792,7 +1792,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1843,7 +1843,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Script.cs
@@ -1894,7 +1894,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: ForEachChild
     path: ../core/main/Script.cs
@@ -1938,7 +1938,7 @@ items:
   source:
     remote:
       path: core/main/Script.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: LoadYamlFile
     path: ../core/main/Script.cs

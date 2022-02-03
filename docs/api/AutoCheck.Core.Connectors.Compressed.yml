@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compressed
     path: ../core/connectors/Compressed.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: FileContent
     path: ../core/connectors/Compressed.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: FileType
     path: ../core/connectors/Compressed.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Compressed.cs
@@ -169,7 +169,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Compressed.cs
@@ -210,7 +210,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Compressed.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Compressed.cs
@@ -288,7 +288,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
     path: ../core/connectors/Compressed.cs
@@ -327,7 +327,7 @@ items:
   source:
     remote:
       path: core/connectors/Compressed.cs
-      branch: v2.20.0
+      branch: v2.20.1
       repo: https://github.com/FherStk/AutoCheck.git
     id: Extract
     path: ../core/connectors/Compressed.cs

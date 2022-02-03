@@ -23,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using AutoCheck.Core.Exceptions;
 using Renci.SshNet;
 using ToolBox.Bridge;
@@ -32,8 +33,7 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with a local (bash) or remote computer (like ssh, scp, etc.).
     /// </summary>
-    public class Shell : Base{      
-        
+    public class Shell : Base{                    
         /// <summary>
         /// The remote host OS.
         /// </summary>
@@ -165,8 +165,8 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="command">The command to run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, int timeout=0){    
-            return RunCommand(command, "", timeout);
+        public (int code, string response) Run(string command, int timeout=0){    
+            return Run(command, "", timeout);
         }
 
         /// <summary>
@@ -176,7 +176,11 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">The path where the command must run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) RunCommand(string command, string path, int timeout=0){    
+        public (int code, string response) Run(string command, string path, int timeout=0){              
+            var result = (IsLocal ? RunLocal(command, path, timeout) : RunRemote(command, path, timeout));            
+            return (result.exitCode, (string.IsNullOrEmpty(result.stdErr.Trim(Environment.NewLine.ToArray())) ? result.stdOut : result.stdErr));
+
+            /*
             //source: https://docs.microsoft.com/es-es/dotnet/standard/parallel-programming/how-to-cancel-a-task-and-its-children 
             using (var tokenSource = new CancellationTokenSource()){
                 var cancelToken = tokenSource.Token;
@@ -184,6 +188,7 @@ namespace AutoCheck.Core.Connectors{
                 var stdOut = string.Empty;
                 var stdErr = string.Empty;
 
+                
                 var task = Task.Run(() => {
                     if(IsLocal){
                         Response r = LocalShell.Term(command, ToolBox.Bridge.Output.Hidden, path);
@@ -193,6 +198,7 @@ namespace AutoCheck.Core.Connectors{
                     }
                     else{        
                         this.RemoteShell.Connect();
+                        if(timeout > 0) this.RemoteShell.ConnectionInfo.Timeout = TimeSpan.FromMilliseconds(timeout);
                         SshCommand s = this.RemoteShell.RunCommand(command);
                         this.RemoteShell.Disconnect();
 
@@ -205,17 +211,108 @@ namespace AutoCheck.Core.Connectors{
 
                 }, cancelToken);
                 
+                var completed = true;
                 if(timeout == 0) task.Wait();
-                else task.Wait(timeout);
+                else task.Wait(timeout, cancelToken);
 
-                if(task.Status == TaskStatus.Running){
-                    //timeout 
+
+                if(completed) return task.Result;
+                else{
+                    //TODO: this cancels anything so background processes will continue working...
+                    //      I need a timeout for Term (has not) and RunCommand (pending to check) in order to cancel de task
+                    //      If can't, maybe native process execution should be performed: https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.process.start?view=net-6.0
+                    //                                                                    https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processwindowstyle?view=net-6.0#System_Diagnostics_ProcessWindowStyle_Hidden/
                     tokenSource.Cancel();    
                     throw new TimeoutException();                
-                }
-                else return task.Result;
+                }                
             }
-        }                     
+            */
+        } 
+        
+        private (int exitCode, string stdOut, string stdErr) RunRemote(string command, string path, int timeout=0){
+            if(!string.IsNullOrEmpty(path)) throw new NotImplementedException("Sorry");
+            
+            this.RemoteShell.Connect();
+            if(timeout > 0) this.RemoteShell.ConnectionInfo.Timeout = TimeSpan.FromMilliseconds(timeout);
+            var rr = this.RemoteShell.RunCommand(command);
+            this.RemoteShell.Disconnect();
+            
+            return (rr.ExitStatus, rr.Result, rr.Error);
+        }
+
+        private (int exitCode, string stdOut, string stdErr) RunLocal(string command, string path, int timeout=0){
+            //splitting command and argument list
+            var arguments = command;
+            
+            switch(Utils.CurrentOS){
+                case Utils.OS.GNU:
+                case Utils.OS.MAC:
+                    command = "bash";
+                    arguments = $"-c \"{arguments}\"";
+                    break;
+
+                case Utils.OS.WIN:
+                    command = "cmd.exe";
+                    arguments = $"/C \"{arguments}\"";
+                    break;
+
+            }
+
+            var psi = new ProcessStartInfo(command, arguments) {
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                WindowStyle = ProcessWindowStyle.Hidden,    
+                UseShellExecute = false            
+            };      
+            if(!string.IsNullOrEmpty(path)) psi.WorkingDirectory = path;      
+                            
+            //setting up return data
+            string stdOut = string.Empty;
+            string stdErr = string.Empty;
+            int exitCode = 0;
+            
+            Process proc = null;
+            try{                
+                //running in parallel in order to kill after timeout
+                var task = Task.Run(() => {
+                    //Source: https://docs.microsoft.com/es-es/dotnet/api/system.diagnostics.processstartinfo?view=net-6.0
+                    try{
+                        proc = Process.Start(psi); //throws exception for unexisting commands
+                        if (proc == null) throw new Exception("Unable to execute the given local command.");
+                    
+                        using (var sr = proc.StandardOutput)            
+                            if (!sr.EndOfStream) stdOut = sr.ReadToEnd();
+
+                        using (var sr = proc.StandardError)
+                            if (!sr.EndOfStream) stdErr = sr.ReadToEnd();                
+
+                        //Must wait after everything has been read, otherwise could deadlock with large outputs
+                        proc.WaitForExit();               
+                        exitCode = proc.ExitCode;
+                    }
+                    catch(Exception ex){
+                        exitCode = 127;
+                        stdErr = ex.Message;
+                    }
+                    
+                });
+                        
+                var completed = true;
+                if(timeout == 0) task.Wait();
+                else completed = task.Wait(timeout);
+
+                if(completed) return (exitCode, stdOut, stdErr);
+                else throw new TimeoutException();
+            }
+            finally{
+                //process must end always
+                if (proc != null && !proc.HasExited) proc.Kill();
+            }
+        }
+                    
+
+               
+            
 
         /// <summary>
         /// Returns the first folder's path found, using the given folder name or search pattern.
@@ -468,13 +565,13 @@ namespace AutoCheck.Core.Connectors{
             {
                 case Utils.OS.WIN:
                     //TODO: must be tested!
-                    var win = RunCommand($"dir \"{path}\" /AD /b /s");
+                    var win = Run($"dir \"{path}\" /AD /b /s");
                     items = win.response.Split("\r\n");                                       
                     break;
 
                 case Utils.OS.MAC:
                 case Utils.OS.GNU:
-                    var gnu = RunCommand($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
+                    var gnu = Run($"find '{path}' -mindepth 1 {(recursive ? "" : "-maxdepth 1")} -name '{item}' -type {(folder ? 'd' : 'f')} 2>&-");
                     items = gnu.response.Split("\n").Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     break;
             }

@@ -42,7 +42,7 @@ namespace AutoCheck.Test.Connectors
             //are read-only; this will boost the test performance because loading the Odoo database is a long time opperation.
             Conn = new AutoCheck.Core.Connectors.Odoo(1, "localhost", $"autocheck_{TestContext.CurrentContext.Test.ID}", "postgres", "postgres");                        
             base.OneTimeSetUp();                                            //needs "Conn" on "CleanUp"
-            Conn.CreateDataBase(base.GetSampleFile("dump.sql"));       //must be done after OneTimeSetup()
+            Conn.CreateDataBase(base.GetSampleFile("dump.sql"));            //must be done after OneTimeSetup()
         }      
 
         protected override void CleanUp(){
