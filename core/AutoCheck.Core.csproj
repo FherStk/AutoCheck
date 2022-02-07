@@ -7,7 +7,7 @@
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
 		<Copyright>Copyright © 2022</Copyright>
-		<VersionPrefix>2.20.2</VersionPrefix>
+		<VersionPrefix>2.21.0</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
