@@ -1812,9 +1812,8 @@ namespace AutoCheck.Core{
             object  value = ComputeTypeValue(node.Tag.ToString(), node.Value);
 
             if(value.GetType().Equals(typeof(string))){                
-                //Always check if the computed value requested is correct, otherwise throws an exception
-                var computed = ComputeVarValue(value.ToString());
-                if(compute) value = computed;
+                //Cannot check if the variable exists because could be created and computed later
+                if(compute) value = ComputeVarValue(value.ToString());
             } 
 
             return value;
@@ -2105,7 +2104,7 @@ namespace AutoCheck.Core{
                 if(arguments == null) arguments = new Dictionary<string, object>();
                 data = GetMethod(connector.GetType(), command, arguments);                
             }
-            catch(ArgumentInvalidException){       
+            catch(ArgumentInvalidException ex){       
                 //If Shell (implicit or explicit) is being used, shell commands can be used directly as "command" attributes.
                 shellExecuted = connector.GetType().Equals(typeof(Connectors.Shell)) || connector.GetType().IsSubclassOf(typeof(Connectors.Shell));  
                 if(shellExecuted){                                     
@@ -2115,8 +2114,14 @@ namespace AutoCheck.Core{
                     command = "Run";
                 }
                 
-                //Retry the execution
-                data = GetMethod(connector.GetType(), command, arguments);                
+                try{
+                    //Retry the execution
+                    data = GetMethod(connector.GetType(), command, arguments);                                    
+                }                
+                catch{
+                    //If the retry fails using the shell connector, throw the original exception
+                    throw ex;
+                }
             }
 
             var result = data.method.Invoke(connector, data.args);

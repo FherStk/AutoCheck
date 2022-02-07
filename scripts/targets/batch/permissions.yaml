@@ -18,17 +18,8 @@
 
 inherits: "../../templates/permissions.yaml"  
 
-init:
-    - run:
-        connector: "TextStream"
-        command: "Substring"
-        arguments: 
-            content: "{$CURRENT_FOLDER_NAME}"
-            regex: "^[^ ]+(?= )"
-        store: "student"  
-
 batch:     
-    - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
     - concurrent: 1 #cannot run in parallel due permissions over users
     
     - local:                             
@@ -37,21 +28,15 @@ batch:
             current_host: "localhost"
             current_user: "postgres"
             current_password: "postgres"
-            database: "empresa-permissions-{$STUDENT}"
+            database: "empresa-permissions-{$CURRENT_FOLDER_NAME}"
 
     - copy_detector:            
         type: "SqlLog"
         file: "*.log"
         threshold: !!float 0.65    
 
-    - run:
-        connector: "TextStream"
-        command: "DirectoryName"
-        arguments: "--path {$CURRENT_FOLDER_PATH}"
-        store: "dirname"
-
-    - setup:
-        - echo: "Extracting files at ~{$DIRNAME}:"
+    - setup:      
+        - echo: "Extracting files at ~{$CURRENT_FOLDER_NAME}:"
 
         - run:            
             command:  "GetFile"
