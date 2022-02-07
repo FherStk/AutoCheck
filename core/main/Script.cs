@@ -1347,6 +1347,10 @@ namespace AutoCheck.Core{
             //Scope in
             Vars.Push(new Dictionary<string, object>());
             Connectors.Push(new Dictionary<string, object>());
+
+            //Default connectors (doesn't need arguments on instantiation)
+            var scope = Connectors.Peek();            
+            scope.Add("textstream", new Connectors.TextStream());
             
             ValidateChildren(node, current, children, mandatory);
             ForEachChild(node, new Action<string, YamlNode>((name, node) => {
