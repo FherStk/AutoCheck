@@ -411,7 +411,7 @@ Single mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before the single execution. | `Running on single mode:`
-[setup](#setup) | mapping | no | The defined content will be executed once after the caption and before the copy_detector and any target's body. |
+[setup](#setup) | mapping | no | The defined content will be executed once before the caption (also before the body execution). |
 [teardown](#teardown) | mapping | no | The  defined content will be executed once after the copy_detector and all target's body. |
 [local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
 [remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
@@ -443,7 +443,7 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
-[setup](#setup) | sequence | no | The defined content will be executed once after the caption and before the copy_detector and any target's body. |
+[setup](#setup) | sequence | no | The defined content will be executed once before the caption (also before the copy_detector and any target's body execution). |
 [teardown](#teardown) | sequence | no | The defined content will be executed once after the copy_detector and all target's body. |
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target before each body. |
 [post](#post) | sequence | no | The defined content will be executed once per batch target after each body. |
