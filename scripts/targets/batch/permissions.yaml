@@ -18,7 +18,7 @@
 
 inherits: "../../templates/permissions.yaml"  
 
-batch: 
+init:
     - run:
         connector: "TextStream"
         command: "Substring"
@@ -27,8 +27,10 @@ batch:
             regex: "^[^ ]+(?= )"
         store: "student"  
 
-    - concurrent: !!int 1 #cannot run in parallel due permissions over users
+batch:     
     - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - concurrent: 1 #cannot run in parallel due permissions over users
+    
     - local:                             
         - path: "{$APP_FOLDER_PATH}/../test/samples/private/permissions"
         - vars:
