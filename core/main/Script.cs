@@ -981,7 +981,8 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                            
                         case "init":                        
-                            ParseInit(node, name, current);                         
+                            ParseInit(node, name, current); 
+                            Output.BreakLine();                         
                             break;
                     }
                 }));
@@ -1156,8 +1157,7 @@ namespace AutoCheck.Core{
                                 break;
                         }                    
                     })); 
-                }); 
-                Output.UnIndent();                 
+                });                                  
 
                 //Parsing end, must run once at the end
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
@@ -1167,7 +1167,8 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
-
+                Output.UnIndent();
+                
                 if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.END));
 
                 //Storing log for the end after the last target execution (common data for all executions)
