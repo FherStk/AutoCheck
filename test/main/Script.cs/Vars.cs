@@ -74,13 +74,13 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_NOTEXISTS_SIMPLE()
+        public void ParseVars_NOTEXISTS_REQUEST()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko2.yaml")));           
         }
 
         [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_SCOPE_NOTEXISTS_REQUEST()
+        public void ParseVars_NOTEXISTS_SIMPLE()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko3.yaml")));
         }

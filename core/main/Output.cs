@@ -261,7 +261,6 @@ namespace AutoCheck.Core{
             foreach(var script in ScriptLog){                
                 var log = new Log();
                 log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
-                log.Content.Add(new Space());
 
                 if(InitLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(InitLog.Content)).ToList();
@@ -270,10 +269,10 @@ namespace AutoCheck.Core{
 
                 foreach(var sl in SetupLog){
                     if(sl.Content.Count > 0){
-                        log.Content = log.Content.Concat(Trim(sl.Content)).ToList();
-                        log.Content.Add(new Space());
+                        log.Content = log.Content.Concat(Trim(sl.Content)).ToList();                        
                     }
                 }
+                if(SetupLog.Count > 0) log.Content.Add(new Space());
 
                 if(CopyDetectorLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(CopyDetectorLog.Content)).ToList();
@@ -288,9 +287,9 @@ namespace AutoCheck.Core{
                 foreach(var tl in TeardownLog){
                     if(tl.Content.Count > 0){
                         log.Content = log.Content.Concat(Trim(tl.Content)).ToList();
-                        log.Content.Add(new Space());
                     }
                 }
+                if(TeardownLog.Count > 0) log.Content.Add(new Space());
 
                 if(EndLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(EndLog.Content)).ToList();
