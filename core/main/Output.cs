@@ -241,13 +241,14 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current log will be closed, so a new empty one will be ready to start logging again.
         /// </summary>
+         /// <param name="resetIndent">True if the indent must be reset.</param>    
         /// <returns>The closed log</returns>
-        public Log CloseLog(){
+        public Log CloseLog(bool resetIndent = true){
             try{
                 return CurrentLog;
             }
             finally{
-                ResetLog();
+                ResetLog(resetIndent);
             }
         }
                         
@@ -270,9 +271,9 @@ namespace AutoCheck.Core{
                 foreach(var sl in SetupLog){
                     if(sl.Content.Count > 0){
                         log.Content = log.Content.Concat(Trim(sl.Content)).ToList();                        
+                        log.Content.Add(new Space());
                     }
                 }
-                if(SetupLog.Count > 0) log.Content.Add(new Space());
 
                 if(CopyDetectorLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(CopyDetectorLog.Content)).ToList();
@@ -287,9 +288,9 @@ namespace AutoCheck.Core{
                 foreach(var tl in TeardownLog){
                     if(tl.Content.Count > 0){
                         log.Content = log.Content.Concat(Trim(tl.Content)).ToList();
+                        log.Content.Add(new Space());
                     }
                 }
-                if(TeardownLog.Count > 0) log.Content.Add(new Space());
 
                 if(EndLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(EndLog.Content)).ToList();
@@ -338,7 +339,7 @@ namespace AutoCheck.Core{
         } 
 #endregion  
 #region Private             
-        internal Log CloseLog(Type type){ 
+        internal Log CloseLog(Type type, bool resetIndent = true){ 
             switch(type){
                 case Type.HEADER:
                     HeaderLog = CurrentLog;
@@ -369,7 +370,7 @@ namespace AutoCheck.Core{
                     break;
             }
 
-            return CloseLog();            
+            return CloseLog(resetIndent);            
         }        
 
         private void SendToTerminal(Content c){
@@ -383,8 +384,8 @@ namespace AutoCheck.Core{
             Console.ResetColor();               
         }
         
-        private void ResetLog(){ 
-            CurrentIndent = "";
+        private void ResetLog(bool resetIndent = true){ 
+            if(resetIndent) CurrentIndent = "";
             IsNewLine = true;  
             CurrentLog = new Log(); 
         }           

@@ -1096,7 +1096,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine(); 
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP);
+                                Output.CloseLog(Output.Type.SETUP, false);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1118,7 +1118,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine(); 
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP);
+                                Output.CloseLog(Output.Type.SETUP, false);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1223,7 +1223,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine();
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN);
+                                Output.CloseLog(Output.Type.TEARDOWN, false);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1245,7 +1245,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine();
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN);
+                                Output.CloseLog(Output.Type.TEARDOWN, false);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){

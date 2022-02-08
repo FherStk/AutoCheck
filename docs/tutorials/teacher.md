@@ -444,7 +444,7 @@ Name | Type | Mandatory | Description | Default
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
 [init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption| |
-[setup](#setup) | sequence | no | The defined content will be executed once per target, before the caption (also before the copy_detector and pre). | |
+[setup](#setup) | sequence | no | The defined content will be executed once per target, before the caption (and also before the copy_detectors begins). | |
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target just before each body. |
 [post](#post) | sequence | no | The defined content will be executed once per batch target just after each body. |
 [teardown](#teardown) | sequence | no | The defined content will be executed once per target, after the execution of all post. |
