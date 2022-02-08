@@ -31,9 +31,11 @@ namespace AutoCheck.Core.Events
             INIT,            
             SETUP,
             COPY_DETECTOR,
+            BEFORE_ANY_PRE,
             PRE,
             BODY,
-            POST,            
+            POST,      
+            AFTER_ALL_POST,   
             TEARDOWN,
             END
         }

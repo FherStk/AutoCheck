@@ -143,7 +143,7 @@ namespace AutoCheck.Core{
         /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
         /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
         public Output(bool redirectToTerminal = false){  
-            ID = new Guid();   
+            ID = Guid.NewGuid();
             HeaderLog = new Log();                               
             SetupLog = new Log(); 
             TeardownLog = new Log(); 

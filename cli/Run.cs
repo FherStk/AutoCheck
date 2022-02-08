@@ -37,7 +37,8 @@ namespace AutoCheck.Cli
         private static bool _NO_PAUSE = false;
         private static bool _displaying = false;  
         private static Guid? _lastID = null;
-
+        private static bool _concurrent = false;
+        private static ConcurrentDictionary<Guid, ScriptExecutionEventArgs> _status = new ConcurrentDictionary<Guid, ScriptExecutionEventArgs>();
         private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
 
         static void Main(string[] args)
@@ -256,31 +257,43 @@ namespace AutoCheck.Cli
             if(!_displaying) DisplayLogs(e.ID);
         }
 
-        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){                    
-            if(e.ID == _lastID && e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
-                _lastID = null;
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){     
+            _status.AddOrUpdate(e.ID, e, (k, v) => e);                        
+            if(!_concurrent && e.Event == ScriptExecutionEventArgs.ExecutionEventType.BEFORE_ANY_PRE) _concurrent = true;
+            else if (_concurrent && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_ALL_POST) _concurrent = false;
 
-                Console.WriteLine();
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-                Console.WriteLine();
-                Console.WriteLine();
-            }
+           
+
+            // if(e.ID == _lastID && e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+            //     _lastID = null;
+
+            //     Console.WriteLine();
+            //     Console.WriteLine("Press any key to continue...");
+            //     Console.ReadKey();
+            //     Console.WriteLine();
+            //     Console.WriteLine();
+            // }
         }
 
-        private static void DisplayLogs(Guid id){
-            //Diferent logs cannot be mixed due concurrent executions, so the same ID will be displayed till ends
-            if(_lastID == null || _lastID == id){
-                _lastID = id;            
-                
+        private static void DisplayLogs(Guid id){                        
+            _displaying = true;
+
+            //We will have the log for the given ID and maybe also the status
+            var log = _logs.ContainsKey(id) ? _logs[id] : null;
+            var status = _status.ContainsKey(id) ? _status[id] : null;
+
+            //We can mix the output of different concurrent executions            
+            if(!_concurrent || (_concurrent && (_lastID == null || _lastID == id))){      
+                if(_concurrent && _lastID == null) _lastID = id;
+
                 (Core.Output Output, LogGeneratedEventArgs Data) item;
                 while(_logs[id].TryDequeue(out item)){
                     item.Output.SendToTerminal(item.Data.Log);
                 }
-                            
-                _displaying = false;
             }
-        }
+
+            _displaying = false;
+        }                                              
 
         private static void Info(string message, Output output){
             output.WriteLine(message, Output.Style.ERROR);
