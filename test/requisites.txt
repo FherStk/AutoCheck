@@ -9,8 +9,20 @@ For all:
         ssh must be enabled in order to test remote connections to localhost
 
 For linux:
-    user: autocheck
-    password: autocheck
+    sudo adduser autocheck        
+        password: autocheck
+
+    hide the user from the login screen
+        sudo nano /var/lib/AccountsService/users/autocheck
+
+    add two lines
+        [User]
+        SystemAccount=true
+
+    sudo systemctl restart accounts-daemon.service
+    sudo su - autocheck
+    mkdir repos
+    cd repos
         
     Within /home/autocheck/repos must be the AutoCheck repo:
-    $ git clone https://github.com/FherStk/AutoCheck.git
+        git clone https://github.com/FherStk/AutoCheck.git
