@@ -35,14 +35,13 @@ namespace AutoCheck.Cli
     class Run
     { 
         private static bool _NO_PAUSE = false;
+        private static ScriptExecutionEventArgs.ExecutionModeType _MODE;
         private static bool _displaying = false;  
         private static int _step = 0;
         private static Guid? _currentID = null;        
         private static Guid? _mainID = null;    //main thread ID (not concurrent)        
         private static ConcurrentQueue<Guid?> _nextID = new ConcurrentQueue<Guid?>();
-        private static ConcurrentQueue<Guid> _finishedID = new ConcurrentQueue<Guid>();
-        private static ConcurrentDictionary<Guid, ScriptExecutionEventArgs> _status = new ConcurrentDictionary<Guid, ScriptExecutionEventArgs>();        
-        private static ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)> _postConcurrentLogs = new ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>();
+        private static ConcurrentQueue<Guid?> _finishedID = new ConcurrentQueue<Guid?>();
         private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
 
         static void Main(string[] args)
@@ -258,11 +257,10 @@ namespace AutoCheck.Cli
                 return v;
             });
 
-            if(_currentID == e.ID) DisplayLogs(_currentID.Value);
+            if(_currentID == e.ID && !_displaying) DisplayLogs(_currentID.Value);
         }
 
-        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){     
-            _status.AddOrUpdate(e.ID, e, (k, v) => e);             
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){               
             if(_mainID == null) _mainID = e.ID; //the main thread ID 
             if(_currentID == null) _currentID = e.ID; //the first log info to display
 
@@ -281,8 +279,10 @@ namespace AutoCheck.Cli
 
                     case ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST:
                         //this script execution has finished, must be displayed till the end before continuing
+                        _MODE = e.Mode;
+
                         if(e.ID != _mainID.Value && !_finishedID.Contains(e.ID)) _finishedID.Enqueue(e.ID);
-                        if(!_displaying) DisplayLogs(_currentID.Value);
+                        if(!_displaying) DisplayLogs(_currentID.Value);                                                    
                         break;
 
                     case ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE:     //just for batch
@@ -354,23 +354,26 @@ namespace AutoCheck.Cli
             _displaying = true;
 
             //We will have the log for the given ID and maybe also the status
-            var log = _logs.ContainsKey(id) ? _logs[id] : null;
-            //var status = _status.ContainsKey(id) ? _status[id] : null;
+            var log = _logs.ContainsKey(id) ? _logs[id] : null;            
 
             //We can mix the output of different concurrent executions            
-            if(_step == 0 || (_step == 1 && (_currentID == null || _currentID == id))){      
-                if(_step == 1 && _currentID == null) _currentID = id;
-
-                (Core.Output Output, LogGeneratedEventArgs Data) item;
-                while(_logs[id].TryDequeue(out item)){
-                    item.Output.SendToTerminal(item.Data.Log);
-                }
+            (Core.Output Output, LogGeneratedEventArgs Data) item;
+            while(log.TryDequeue(out item)){
+                item.Output.SendToTerminal(item.Data.Log);                
             }
 
             //Logs from another thread can be waiting    
-            if(_finishedID.Contains(id) && _logs[id].Count == 0 && _nextID.Count > 0){
+            if(_finishedID.Contains(id) && log.Count == 0 && _nextID.Count > 0){                
                 //The current one has finished and a next one is waiting
                 while(!_nextID.TryDequeue(out _currentID)){}
+                if(_logs[_currentID.Value].Count > 0 && _MODE == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){        
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                } 
+
                 DisplayLogs(_currentID.Value);
             }
 
