@@ -265,7 +265,7 @@ namespace AutoCheck.Core{
 
                 if(InitLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(InitLog.Content)).ToList();
-                    log.Content.Add(new Space());
+                    log.Content.Add(new Space());   //double space to spearate from setup
                     log.Content.Add(new Space());
                 }                
 

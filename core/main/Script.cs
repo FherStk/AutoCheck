@@ -1037,7 +1037,7 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                            
                         case "init":                        
-                            ParseInit(node, name, current);                            
+                            ParseInit(node, name, current);                         
                             break;
                     }
                 }));
