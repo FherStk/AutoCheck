@@ -269,7 +269,7 @@ namespace AutoCheck.Core.Connectors{
             if(!File.Exists(dumpPath)) throw new FileNotFoundException("filePath");
             
             string cmdPassword = $"PGPASSWORD={this.Password}";
-            string cmdRestore = $"psql -h {this.Host} -U {this.User} {this.Database} < \"{dumpPath}\"";
+            string cmdRestore = $"psql -h {this.Host} -U {this.User} {this.Database} < '{dumpPath}'";
             
             using(var ls = new Shell()){
                 switch (Utils.CurrentOS)
