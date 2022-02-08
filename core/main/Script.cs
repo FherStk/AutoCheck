@@ -1048,8 +1048,6 @@ namespace AutoCheck.Core{
                             case "setup":                            
                                 ParseSetup(node, name, current);
                                 Output.BreakLine(); 
-
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));
                                 break;
                         }                    
                     })); 
@@ -1061,13 +1059,14 @@ namespace AutoCheck.Core{
                         switch(name){                       
                             case "setup":                            
                                 ParseSetup(node, name, current);
-                                Output.BreakLine(); 
-
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));                                                          
+                                Output.BreakLine();                             
                                 break;
                         }                    
                     })); 
-                });                                                        
+                });                               
+
+                //Setup ends
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));                         
 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -1157,8 +1156,6 @@ namespace AutoCheck.Core{
                             case "teardown":                            
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
-
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));         
                                 break;
                         }                    
                     })); 
@@ -1171,12 +1168,13 @@ namespace AutoCheck.Core{
                             case "teardown":                            
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
-
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));                                                          
                                 break;
                         }                    
                     })); 
-                });                  
+                });        
+
+                //Teardown ends
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));                   
 
                 //Parsing end, must run once at the end
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 

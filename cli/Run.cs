@@ -36,9 +36,11 @@ namespace AutoCheck.Cli
     { 
         private static bool _NO_PAUSE = false;
         private static bool _displaying = false;  
-        private static Guid? _lastID = null;
-        private static Guid? _mainID = null;    //main thread ID (not concurrent)
         private static int _step = 0;
+        private static Guid? _currentID = null;        
+        private static Guid? _mainID = null;    //main thread ID (not concurrent)        
+        private static ConcurrentQueue<Guid?> _nextID = new ConcurrentQueue<Guid?>();
+        private static ConcurrentQueue<Guid> _finishedID = new ConcurrentQueue<Guid>();
         private static ConcurrentDictionary<Guid, ScriptExecutionEventArgs> _status = new ConcurrentDictionary<Guid, ScriptExecutionEventArgs>();        
         private static ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)> _postConcurrentLogs = new ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>();
         private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
@@ -256,20 +258,80 @@ namespace AutoCheck.Cli
                 return v;
             });
 
-            //TODO: semaphores or something that really blocks
-            if(!_displaying) DisplayLogs(e.ID);
+            if(_currentID == e.ID) DisplayLogs(_currentID.Value);
         }
 
         private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){     
-            _status.AddOrUpdate(e.ID, e, (k, v) => e); 
-            if(_mainID == null) _mainID = e.ID; //the main thread ID                     
+            _status.AddOrUpdate(e.ID, e, (k, v) => e);             
+            if(_mainID == null) _mainID = e.ID; //the main thread ID 
+            if(_currentID == null) _currentID = e.ID; //the first log info to display
 
-            if(_step == 0 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR) _step = 1;   //starts the concurrent script execution
-            else if (_step == 1 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT) _step = 2;
+            //received AFTER_COPY_DETECTOR for any ID: the concurrent execution will begin
+            if(_step == 0 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR){
+                //Once here, the first concurrent execution can be displayed, so the main thread will wait till the end of every target
+                _step = 1;
+                _currentID = null;     
+            } 
+            else if(_step == 1){                
+                switch(e.Event){
+                    //received AFTER_SCRIPT for any ID: the concurrent exectution has finished
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT:
+                        _step = 2;
+                        break;
 
-            //TODO: 
-            //received AFTER_POST for the current displayed ID: the next batch execution can be displayed, select a new pending ID when ends the current display
-            //received AFTER_SCRIPT for any ID: once all the scripts has been displayed, _concurrent can be setup to false again and display the rest of the data
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST:
+                        //this script execution has finished, must be displayed till the end before continuing
+                        if(e.ID != _mainID.Value && !_finishedID.Contains(e.ID)) _finishedID.Enqueue(e.ID);
+                        if(!_displaying) DisplayLogs(_currentID.Value);
+                        break;
+
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE:     //just for batch
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY:    //for batch and single 
+                        //the script is beeing executed     
+                        if(_currentID == null) _currentID = e.ID;
+                        else if(!_nextID.Contains(e.ID)) _nextID.Enqueue(e.ID);
+                        break;
+                    
+                }
+            }
+
+
+              
+            
+                
+                
+
+
+                
+
+
+
+
+
+
+                //received AFTER_POST for the current displayed ID: the next batch execution can be displayed, select a new pending ID when ends the current display
+                
+                
+                // if(e.ID != _currentID && !_nextID.Contains(e.ID)) _nextID.Enqueue(e.ID);
+                // else{
+                //     foreach(var key in _logs.Keys){
+                //         if(_logs[key].Count > 0 && !_nextID.Contains(key)){                    
+                //             _nextID.Enqueue(key);
+                //             break;
+                //         }
+                //     }
+                // }
+
+                // if(!_displaying && _nextID.Count > 0){
+                //     Guid? next = null;
+                //     while(!_nextID.TryDequeue(out next)){}
+                //     DisplayLogs(next.Value);
+                // }
+            
+            
+            
+            
+            
             
             //TODO: split the stored logs into diferent parts:
             //      pre-concurrent
@@ -284,7 +346,8 @@ namespace AutoCheck.Cli
             //     Console.ReadKey();
             //     Console.WriteLine();
             //     Console.WriteLine();
-            // }
+            // 
+            
         }
 
         private static void DisplayLogs(Guid id){                        
@@ -292,16 +355,23 @@ namespace AutoCheck.Cli
 
             //We will have the log for the given ID and maybe also the status
             var log = _logs.ContainsKey(id) ? _logs[id] : null;
-            var status = _status.ContainsKey(id) ? _status[id] : null;
+            //var status = _status.ContainsKey(id) ? _status[id] : null;
 
             //We can mix the output of different concurrent executions            
-            if(_step == 0 || (_step == 1 && (_lastID == null || _lastID == id))){      
-                if(_step == 1 && _lastID == null) _lastID = id;
+            if(_step == 0 || (_step == 1 && (_currentID == null || _currentID == id))){      
+                if(_step == 1 && _currentID == null) _currentID = id;
 
                 (Core.Output Output, LogGeneratedEventArgs Data) item;
                 while(_logs[id].TryDequeue(out item)){
                     item.Output.SendToTerminal(item.Data.Log);
                 }
+            }
+
+            //Logs from another thread can be waiting    
+            if(_finishedID.Contains(id) && _logs[id].Count == 0 && _nextID.Count > 0){
+                //The current one has finished and a next one is waiting
+                while(!_nextID.TryDequeue(out _currentID)){}
+                DisplayLogs(_currentID.Value);
             }
 
             _displaying = false;
