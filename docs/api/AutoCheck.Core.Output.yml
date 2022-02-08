@@ -5,12 +5,14 @@ items:
   id: Output
   parent: AutoCheck.Core
   children:
+  - AutoCheck.Core.Output.#ctor
   - AutoCheck.Core.Output.#ctor(System.Boolean)
   - AutoCheck.Core.Output.BreakLine(System.Int32)
   - AutoCheck.Core.Output.CloseLog
   - AutoCheck.Core.Output.CurrentIndent
   - AutoCheck.Core.Output.GetLog
   - AutoCheck.Core.Output.Indent
+  - AutoCheck.Core.Output.OnLogGenerated
   - AutoCheck.Core.Output.ResetIndent
   - AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
   - AutoCheck.Core.Output.SingleIndent
@@ -31,7 +33,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -57,6 +59,39 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Core.Output.OnLogGenerated
+  commentId: E:AutoCheck.Core.Output.OnLogGenerated
+  id: OnLogGenerated
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: OnLogGenerated
+  nameWithType: Output.OnLogGenerated
+  fullName: AutoCheck.Core.Output.OnLogGenerated
+  type: Event
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: OnLogGenerated
+    path: ../core/main/Output.cs
+    startLine: 36
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: public static event EventHandler<LogGeneratedEventArgs> OnLogGenerated
+    return:
+      type: EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}
+    content.vb: Public Shared Event OnLogGenerated As EventHandler(Of LogGeneratedEventArgs)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: AutoCheck.Core.Output.SingleIndent
   commentId: F:AutoCheck.Core.Output.SingleIndent
   id: SingleIndent
@@ -71,11 +106,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
-    startLine: 115
+    startLine: 120
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -104,11 +139,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
-    startLine: 117
+    startLine: 122
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -125,6 +160,38 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+- uid: AutoCheck.Core.Output.#ctor
+  commentId: M:AutoCheck.Core.Output.#ctor
+  id: '#ctor'
+  parent: AutoCheck.Core.Output
+  langs:
+  - csharp
+  - vb
+  name: Output()
+  nameWithType: Output.Output()
+  fullName: AutoCheck.Core.Output.Output()
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Output.cs
+    startLine: 136
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  summary: "\nCreates the new Output instance\n"
+  example: []
+  syntax:
+    content: public Output()
+    content.vb: Public Sub New
+  overload: AutoCheck.Core.Output.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Output.#ctor(System.Boolean)
   commentId: M:AutoCheck.Core.Output.#ctor(System.Boolean)
   id: '#ctor(System.Boolean)'
@@ -139,11 +206,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
-    startLine: 132
+    startLine: 144
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -175,11 +242,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
-    startLine: 158
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -214,11 +281,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
-    startLine: 168
+    startLine: 181
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -253,11 +320,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 177
+    startLine: 190
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -296,11 +363,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
-    startLine: 193
+    startLine: 206
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -335,11 +402,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
-    startLine: 200
+    startLine: 213
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -367,11 +434,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
-    startLine: 207
+    startLine: 220
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -399,11 +466,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
-    startLine: 214
+    startLine: 227
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -431,11 +498,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
-    startLine: 223
+    startLine: 236
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -467,11 +534,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseLog
     path: ../core/main/Output.cs
-    startLine: 233
+    startLine: 246
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -502,11 +569,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLog
     path: ../core/main/Output.cs
-    startLine: 245
+    startLine: 258
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -536,11 +603,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 285
+    startLine: 298
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -571,11 +638,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToJson
     path: ../core/main/Output.cs
-    startLine: 293
+    startLine: 306
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -606,11 +673,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SendToTerminal
     path: ../core/main/Output.cs
-    startLine: 301
+    startLine: 314
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -713,6 +780,85 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
+- uid: EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}
+  commentId: '!:EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}'
+  definition: EventHandler`1
+  name: EventHandler<LogGeneratedEventArgs>
+  nameWithType: EventHandler<LogGeneratedEventArgs>
+  fullName: EventHandler<AutoCheck.Core.Events.LogGeneratedEventArgs>
+  nameWithType.vb: EventHandler(Of LogGeneratedEventArgs)
+  fullName.vb: EventHandler(Of AutoCheck.Core.Events.LogGeneratedEventArgs)
+  name.vb: EventHandler(Of LogGeneratedEventArgs)
+  spec.csharp:
+  - uid: EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+    name: LogGeneratedEventArgs
+    nameWithType: LogGeneratedEventArgs
+    fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+    name: LogGeneratedEventArgs
+    nameWithType: LogGeneratedEventArgs
+    fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: EventHandler`1
+  isExternal: true
+  name: EventHandler<>
+  nameWithType: EventHandler<>
+  fullName: EventHandler<>
+  nameWithType.vb: EventHandler(Of )
+  fullName.vb: EventHandler(Of )
+  name.vb: EventHandler(Of )
+  spec.csharp:
+  - uid: EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.String
   isExternal: true
   name: String

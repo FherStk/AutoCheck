@@ -1945,6 +1945,15 @@ references:
   commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String)
   fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String)
   nameWithType: PlainText.PlainTextDocument.PlainTextDocument(String)
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String[])
+  name: PlainTextDocument(String[])
+  href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument__ctor_System_String___
+  commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String[])
+  name.vb: PlainTextDocument(String())
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String[])
+  fullName.vb: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String())
+  nameWithType: PlainText.PlainTextDocument.PlainTextDocument(String[])
+  nameWithType.vb: PlainText.PlainTextDocument.PlainTextDocument(String())
 - uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor*
   name: PlainTextDocument
   href: api/AutoCheck.Core.Connectors.PlainText.PlainTextDocument.html#AutoCheck_Core_Connectors_PlainText_PlainTextDocument__ctor_
@@ -1991,6 +2000,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
   nameWithType: PlainText.PlainTextDocument.Lines
+- uid: AutoCheck.Core.Connectors.PlainText.Replace(System.String,System.String)
+  name: Replace(String, String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Replace_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Replace(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Replace(System.String, System.String)
+  nameWithType: PlainText.Replace(String, String)
+- uid: AutoCheck.Core.Connectors.PlainText.Replace*
+  name: Replace
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Replace_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Replace
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.Replace
+  nameWithType: PlainText.Replace
+- uid: AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  name: Store(String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Store_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  nameWithType: PlainText.Store(String)
+- uid: AutoCheck.Core.Connectors.PlainText.Store(System.String,System.String)
+  name: Store(String, String)
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Store_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Store(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Store(System.String, System.String)
+  nameWithType: PlainText.Store(String, String)
+- uid: AutoCheck.Core.Connectors.PlainText.Store*
+  name: Store
+  href: api/AutoCheck.Core.Connectors.PlainText.html#AutoCheck_Core_Connectors_PlainText_Store_
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Store
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.PlainText.Store
+  nameWithType: PlainText.Store
 - uid: AutoCheck.Core.Connectors.Postgres
   name: Postgres
   href: api/AutoCheck.Connectors.Postgres.html
@@ -3680,6 +3721,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.TextStream.Find
   nameWithType: TextStream.Find
+- uid: AutoCheck.Core.Connectors.TextStream.Replace(System.String,System.String,System.String)
+  name: Replace(String, String, String)
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Replace_System_String_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Replace(System.String,System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Replace(System.String, System.String, System.String)
+  nameWithType: TextStream.Replace(String, String, String)
+- uid: AutoCheck.Core.Connectors.TextStream.Replace*
+  name: Replace
+  href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Replace_
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Replace
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.TextStream.Replace
+  nameWithType: TextStream.Replace
 - uid: AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
   name: Substring(String, String)
   href: api/AutoCheck.Core.Connectors.TextStream.html#AutoCheck_Core_Connectors_TextStream_Substring_System_String_System_String_
@@ -4575,6 +4629,199 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.Xml.Xml
   nameWithType: Xml.Xml
+- uid: AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  href: api/AutoCheck.Core.Events.html
+  commentId: N:AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+  name: LogGeneratedEventArgs
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html
+  commentId: T:AutoCheck.Core.Events.LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  nameWithType: LogGeneratedEventArgs
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log)
+  name: LogGeneratedEventArgs(Guid, Output.Log)
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs__ctor_Guid_AutoCheck_Core_Output_Log_
+  commentId: M:AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log)
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.LogGeneratedEventArgs(Guid, AutoCheck.Core.Output.Log)
+  nameWithType: LogGeneratedEventArgs.LogGeneratedEventArgs(Guid, Output.Log)
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor*
+  name: LogGeneratedEventArgs
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs__ctor_
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.LogGeneratedEventArgs
+  nameWithType: LogGeneratedEventArgs.LogGeneratedEventArgs
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  name: ID
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs_ID
+  commentId: P:AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  nameWithType: LogGeneratedEventArgs.ID
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.ID*
+  name: ID
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs_ID_
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  nameWithType: LogGeneratedEventArgs.ID
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  name: Log
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs_Log
+  commentId: P:AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  nameWithType: LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.Log*
+  name: Log
+  href: api/AutoCheck.Core.Events.LogGeneratedEventArgs.html#AutoCheck_Core_Events_LogGeneratedEventArgs_Log_
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  nameWithType: LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs
+  name: ScriptExecutionEventArgs
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs
+  nameWithType: ScriptExecutionEventArgs
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.#ctor(Guid,AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType,AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType)
+  name: ScriptExecutionEventArgs(Guid, ScriptExecutionEventArgs.ExecutionModeType, ScriptExecutionEventArgs.ExecutionEventType)
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs__ctor_Guid_AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionModeType_AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_
+  commentId: M:AutoCheck.Core.Events.ScriptExecutionEventArgs.#ctor(Guid,AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType,AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType)
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ScriptExecutionEventArgs(Guid, AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType, AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType)
+  nameWithType: ScriptExecutionEventArgs.ScriptExecutionEventArgs(Guid, ScriptExecutionEventArgs.ExecutionModeType, ScriptExecutionEventArgs.ExecutionEventType)
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.#ctor*
+  name: ScriptExecutionEventArgs
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs__ctor_
+  commentId: Overload:AutoCheck.Core.Events.ScriptExecutionEventArgs.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ScriptExecutionEventArgs
+  nameWithType: ScriptExecutionEventArgs.ScriptExecutionEventArgs
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.Event
+  name: Event
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_Event
+  commentId: P:AutoCheck.Core.Events.ScriptExecutionEventArgs.Event
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.Event
+  nameWithType: ScriptExecutionEventArgs.Event
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.Event*
+  name: Event
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_Event_
+  commentId: Overload:AutoCheck.Core.Events.ScriptExecutionEventArgs.Event
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.Event
+  nameWithType: ScriptExecutionEventArgs.Event
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  name: ScriptExecutionEventArgs.ExecutionEventType
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY
+  name: AFTER_BODY
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_BODY
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR
+  name: AFTER_COPY_DETECTOR
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_COPY_DETECTOR
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_END
+  name: AFTER_END
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_END
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_END
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_END
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_END
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER
+  name: AFTER_HEADER
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_HEADER
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_INIT
+  name: AFTER_INIT
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_INIT
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_INIT
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_INIT
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_INIT
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST
+  name: AFTER_POST
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_POST
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE
+  name: AFTER_PRE
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_PRE
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT
+  name: AFTER_SCRIPT
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_SCRIPT
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP
+  name: AFTER_SETUP
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_SETUP
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN
+  name: AFTER_TEARDOWN
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionEventType_AFTER_TEARDOWN
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  name: ScriptExecutionEventArgs.ExecutionModeType
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.html
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  nameWithType: ScriptExecutionEventArgs.ExecutionModeType
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.BATCH
+  name: BATCH
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionModeType_BATCH
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.BATCH
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.BATCH
+  nameWithType: ScriptExecutionEventArgs.ExecutionModeType.BATCH
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.SINGLE
+  name: SINGLE
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ExecutionModeType_SINGLE
+  commentId: F:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.SINGLE
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType.SINGLE
+  nameWithType: ScriptExecutionEventArgs.ExecutionModeType.SINGLE
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ID
+  name: ID
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ID
+  commentId: P:AutoCheck.Core.Events.ScriptExecutionEventArgs.ID
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ID
+  nameWithType: ScriptExecutionEventArgs.ID
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ID*
+  name: ID
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_ID_
+  commentId: Overload:AutoCheck.Core.Events.ScriptExecutionEventArgs.ID
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ID
+  nameWithType: ScriptExecutionEventArgs.ID
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode
+  name: Mode
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_Mode
+  commentId: P:AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode
+  nameWithType: ScriptExecutionEventArgs.Mode
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode*
+  name: Mode
+  href: api/AutoCheck.Core.Events.ScriptExecutionEventArgs.html#AutoCheck_Core_Events_ScriptExecutionEventArgs_Mode_
+  commentId: Overload:AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode
+  isSpec: "True"
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.Mode
+  nameWithType: ScriptExecutionEventArgs.Mode
 - uid: AutoCheck.Core.Exceptions
   name: AutoCheck.Core.Exceptions
   href: api/AutoCheck.Core.Exceptions.html
@@ -5147,6 +5394,12 @@ references:
   commentId: T:AutoCheck.Core.Output
   fullName: AutoCheck.Core.Output
   nameWithType: Output
+- uid: AutoCheck.Core.Output.#ctor
+  name: Output()
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output__ctor
+  commentId: M:AutoCheck.Core.Output.#ctor
+  fullName: AutoCheck.Core.Output.Output()
+  nameWithType: Output.Output()
 - uid: AutoCheck.Core.Output.#ctor(System.Boolean)
   name: Output(Boolean)
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output__ctor_System_Boolean_
@@ -5270,6 +5523,12 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Output.Log.ToText
   nameWithType: Output.Log.ToText
+- uid: AutoCheck.Core.Output.OnLogGenerated
+  name: OnLogGenerated
+  href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_OnLogGenerated
+  commentId: E:AutoCheck.Core.Output.OnLogGenerated
+  fullName: AutoCheck.Core.Output.OnLogGenerated
+  nameWithType: Output.OnLogGenerated
 - uid: AutoCheck.Core.Output.ResetIndent
   name: ResetIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_ResetIndent
@@ -5412,30 +5671,30 @@ references:
   commentId: T:AutoCheck.Core.Output.Type
   fullName: AutoCheck.Core.Output.Type
   nameWithType: Output.Type
-- uid: AutoCheck.Core.Output.Type.HEADER
-  name: HEADER
-  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_HEADER
-  commentId: F:AutoCheck.Core.Output.Type.HEADER
-  fullName: AutoCheck.Core.Output.Type.HEADER
-  nameWithType: Output.Type.HEADER
-- uid: AutoCheck.Core.Output.Type.SCRIPT
-  name: SCRIPT
-  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_SCRIPT
-  commentId: F:AutoCheck.Core.Output.Type.SCRIPT
-  fullName: AutoCheck.Core.Output.Type.SCRIPT
-  nameWithType: Output.Type.SCRIPT
-- uid: AutoCheck.Core.Output.Type.SETUP
-  name: SETUP
-  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_SETUP
-  commentId: F:AutoCheck.Core.Output.Type.SETUP
-  fullName: AutoCheck.Core.Output.Type.SETUP
-  nameWithType: Output.Type.SETUP
-- uid: AutoCheck.Core.Output.Type.TEARDOWN
-  name: TEARDOWN
-  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_TEARDOWN
-  commentId: F:AutoCheck.Core.Output.Type.TEARDOWN
-  fullName: AutoCheck.Core.Output.Type.TEARDOWN
-  nameWithType: Output.Type.TEARDOWN
+- uid: AutoCheck.Core.Output.Type.AFTER_TARGET
+  name: AFTER_TARGET
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_AFTER_TARGET
+  commentId: F:AutoCheck.Core.Output.Type.AFTER_TARGET
+  fullName: AutoCheck.Core.Output.Type.AFTER_TARGET
+  nameWithType: Output.Type.AFTER_TARGET
+- uid: AutoCheck.Core.Output.Type.BEFORE_TARGET
+  name: BEFORE_TARGET
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_BEFORE_TARGET
+  commentId: F:AutoCheck.Core.Output.Type.BEFORE_TARGET
+  fullName: AutoCheck.Core.Output.Type.BEFORE_TARGET
+  nameWithType: Output.Type.BEFORE_TARGET
+- uid: AutoCheck.Core.Output.Type.END
+  name: END
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_END
+  commentId: F:AutoCheck.Core.Output.Type.END
+  fullName: AutoCheck.Core.Output.Type.END
+  nameWithType: Output.Type.END
+- uid: AutoCheck.Core.Output.Type.START
+  name: START
+  href: api/AutoCheck.Core.Output.Type.html#AutoCheck_Core_Output_Type_START
+  commentId: F:AutoCheck.Core.Output.Type.START
+  fullName: AutoCheck.Core.Output.Type.START
+  nameWithType: Output.Type.START
 - uid: AutoCheck.Core.Output.UnIndent
   name: UnIndent()
   href: api/AutoCheck.Core.Output.html#AutoCheck_Core_Output_UnIndent
@@ -5509,54 +5768,51 @@ references:
   commentId: M:AutoCheck.Core.Script.#ctor
   fullName: AutoCheck.Core.Script.Script()
   nameWithType: Script.Script()
-- uid: AutoCheck.Core.Script.#ctor(System.String)
-  name: Script(String)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String)
-  fullName: AutoCheck.Core.Script.Script(System.String)
-  nameWithType: Script.Script(String)
-- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name: Script(String, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
-  nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>)
-  nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs))
-- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name: Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name.vb: Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
-  nameWithType: Script.Script(String, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  nameWithType.vb: Script.Script(String, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
-- uid: AutoCheck.Core.Script.#ctor(YamlStream)
-  name: Script(YamlStream)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_
-  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream)
-  fullName: AutoCheck.Core.Script.Script(YamlStream)
-  nameWithType: Script.Script(YamlStream)
-- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
-  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>)
-  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs))
-- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name: Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Script_LogGeneratedEventArgs__
-  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Script.LogGeneratedEventArgs})
-  name.vb: Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
-  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Script.LogGeneratedEventArgs>)
-  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Script.LogGeneratedEventArgs))
-  nameWithType: Script.Script(YamlStream, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>, EventHandler<Script.LogGeneratedEventArgs>)
-  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs), EventHandler(Of Script.LogGeneratedEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name: Script(EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_EventHandler_AutoCheck_Core_Events_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Events_ScriptExecutionEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name.vb: Script(EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+  fullName: AutoCheck.Core.Script.Script(EventHandler<AutoCheck.Core.Events.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Events.ScriptExecutionEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(EventHandler(Of AutoCheck.Core.Events.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Events.ScriptExecutionEventArgs))
+  nameWithType: Script.Script(EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  nameWithType.vb: Script.Script(EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name: Script(String, EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Events_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Events_ScriptExecutionEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name.vb: Script(String, EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Events.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Events.ScriptExecutionEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Events.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Events.ScriptExecutionEventArgs))
+  nameWithType: Script.Script(String, EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  nameWithType.vb: Script.Script(String, EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name: Script(String, EventHandler<ScriptExecutionEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_System_String_EventHandler_AutoCheck_Core_Events_ScriptExecutionEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(System.String,EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name.vb: Script(String, EventHandler(Of ScriptExecutionEventArgs))
+  fullName: AutoCheck.Core.Script.Script(System.String, EventHandler<AutoCheck.Core.Events.ScriptExecutionEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(System.String, EventHandler(Of AutoCheck.Core.Events.ScriptExecutionEventArgs))
+  nameWithType: Script.Script(String, EventHandler<ScriptExecutionEventArgs>)
+  nameWithType.vb: Script.Script(String, EventHandler(Of ScriptExecutionEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name: Script(YamlStream, EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Events_LogGeneratedEventArgs__EventHandler_AutoCheck_Core_Events_ScriptExecutionEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs},EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name.vb: Script(YamlStream, EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Events.LogGeneratedEventArgs>, EventHandler<AutoCheck.Core.Events.ScriptExecutionEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Events.LogGeneratedEventArgs), EventHandler(Of AutoCheck.Core.Events.ScriptExecutionEventArgs))
+  nameWithType: Script.Script(YamlStream, EventHandler<LogGeneratedEventArgs>, EventHandler<ScriptExecutionEventArgs>)
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of LogGeneratedEventArgs), EventHandler(Of ScriptExecutionEventArgs))
+- uid: AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name: Script(YamlStream, EventHandler<ScriptExecutionEventArgs>)
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_YamlStream_EventHandler_AutoCheck_Core_Events_ScriptExecutionEventArgs__
+  commentId: M:AutoCheck.Core.Script.#ctor(YamlStream,EventHandler{AutoCheck.Core.Events.ScriptExecutionEventArgs})
+  name.vb: Script(YamlStream, EventHandler(Of ScriptExecutionEventArgs))
+  fullName: AutoCheck.Core.Script.Script(YamlStream, EventHandler<AutoCheck.Core.Events.ScriptExecutionEventArgs>)
+  fullName.vb: AutoCheck.Core.Script.Script(YamlStream, EventHandler(Of AutoCheck.Core.Events.ScriptExecutionEventArgs))
+  nameWithType: Script.Script(YamlStream, EventHandler<ScriptExecutionEventArgs>)
+  nameWithType.vb: Script.Script(YamlStream, EventHandler(Of ScriptExecutionEventArgs))
 - uid: AutoCheck.Core.Script.#ctor*
   name: Script
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script__ctor_
@@ -5863,24 +6119,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.ExecutionFolderPath
   nameWithType: Script.ExecutionFolderPath
-- uid: AutoCheck.Core.Script.ExecutionModeType
-  name: Script.ExecutionModeType
-  href: api/AutoCheck.Core.Script.ExecutionModeType.html
-  commentId: T:AutoCheck.Core.Script.ExecutionModeType
-  fullName: AutoCheck.Core.Script.ExecutionModeType
-  nameWithType: Script.ExecutionModeType
-- uid: AutoCheck.Core.Script.ExecutionModeType.BATCH
-  name: BATCH
-  href: api/AutoCheck.Core.Script.ExecutionModeType.html#AutoCheck_Core_Script_ExecutionModeType_BATCH
-  commentId: F:AutoCheck.Core.Script.ExecutionModeType.BATCH
-  fullName: AutoCheck.Core.Script.ExecutionModeType.BATCH
-  nameWithType: Script.ExecutionModeType.BATCH
-- uid: AutoCheck.Core.Script.ExecutionModeType.SINGLE
-  name: SINGLE
-  href: api/AutoCheck.Core.Script.ExecutionModeType.html#AutoCheck_Core_Script_ExecutionModeType_SINGLE
-  commentId: F:AutoCheck.Core.Script.ExecutionModeType.SINGLE
-  fullName: AutoCheck.Core.Script.ExecutionModeType.SINGLE
-  nameWithType: Script.ExecutionModeType.SINGLE
 - uid: AutoCheck.Core.Script.ForEachChild*
   name: ForEachChild
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_ForEachChild_
@@ -5975,51 +6213,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.LogFolderPath
   nameWithType: Script.LogFolderPath
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs
-  name: Script.LogGeneratedEventArgs
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html
-  commentId: T:AutoCheck.Core.Script.LogGeneratedEventArgs
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs
-  nameWithType: Script.LogGeneratedEventArgs
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
-  name: ExecutionMode
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_ExecutionMode
-  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
-  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode*
-  name: ExecutionMode
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_ExecutionMode_
-  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.ExecutionMode
-  nameWithType: Script.LogGeneratedEventArgs.ExecutionMode
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
-  name: Log
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Log
-  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
-  nameWithType: Script.LogGeneratedEventArgs.Log
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Log*
-  name: Log
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Log_
-  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Log
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Log
-  nameWithType: Script.LogGeneratedEventArgs.Log
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
-  name: Type
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Type
-  commentId: P:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
-  nameWithType: Script.LogGeneratedEventArgs.Type
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs.Type*
-  name: Type
-  href: api/AutoCheck.Core.Script.LogGeneratedEventArgs.html#AutoCheck_Core_Script_LogGeneratedEventArgs_Type_
-  commentId: Overload:AutoCheck.Core.Script.LogGeneratedEventArgs.Type
-  isSpec: "True"
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs.Type
-  nameWithType: Script.LogGeneratedEventArgs.Type
 - uid: AutoCheck.Core.Script.MaxScore
   name: MaxScore
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_MaxScore

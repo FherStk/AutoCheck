@@ -1020,14 +1020,14 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#setup">setup</a></td>
 <td>mapping</td>
 <td>no</td>
-<td>The defined content will be executed once before the copy_detector and any target's body.</td>
+<td>The defined content will be executed once before the caption and the body execution.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#teardown">teardown</a></td>
 <td>mapping</td>
 <td>no</td>
-<td>The  defined content will be executed once after the copy_detector and all target's body.</td>
+<td>The  defined content will be executed once after all target's body.</td>
 <td></td>
 </tr>
 <tr>
@@ -1113,31 +1113,45 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>0</code></td>
 </tr>
 <tr>
-<td><a href="#setup">setup</a></td>
+<td><a href="#init">init</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once before the copy_detector and any target's body.</td>
+<td>The defined content will be executed once at the begining, before the caption</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="#teardown">teardown</a></td>
+<td><a href="#setup">setup</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The  defined content will be executed once after the copy_detector and all target's body.</td>
+<td>The defined content will be executed once per target, before the caption (and also before the copy_detectors begins).</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#pre">pre</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once per batch target before each body.</td>
+<td>The defined content will be executed once per batch target just before each body.</td>
 <td></td>
 </tr>
 <tr>
 <td><a href="#post">post</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once per batch target after each body.</td>
+<td>The defined content will be executed once per batch target just after each body.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#teardown">teardown</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The defined content will be executed once per target, after the execution of all post.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="#end">end</a></td>
+<td>sequence</td>
+<td>no</td>
+<td>The defined content will be executed once at the end of the script</td>
 <td></td>
 </tr>
 <tr>
@@ -1158,13 +1172,89 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#remote">remote</a></td>
 <td>sequence</td>
 <td>yes (if no <code>local</code> has been defined)</td>
-<td>Remote batch target, so each script body will be executed once per remote target.</td>
+<td>Remote batch target, so each script body will be executed once per remote target</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+<h3 id="setup"> body</h3>
+<p>The defined content will be executed before the caption (once per target on batch mode).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Runs a command.</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="teardown"> body</h3>
+<p>The defined content will be executed at the end (once per target on batch mode).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Runs a command.</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
+</tr>
+</tbody>
+</table>
 <h4 id="pre"> pre</h4>
-<p>The defined content will be executed once per batch target before any target's body.</p>
+<p>The defined content will be executed once at the end of the script (once all targets ended).</p>
 <table>
 <thead>
 <tr>
@@ -1202,7 +1292,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tbody>
 </table>
 <h4 id="post"> post</h4>
-<p>The  defined content will be executed once per batch target after all target's body.</p>
+<p>The defined content will be executed once per batch target just after each body.</p>
 <table>
 <thead>
 <tr>
