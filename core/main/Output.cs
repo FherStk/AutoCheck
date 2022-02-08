@@ -266,6 +266,7 @@ namespace AutoCheck.Core{
                 if(InitLog.Content.Count > 0){
                     log.Content = log.Content.Concat(Trim(InitLog.Content)).ToList();
                     log.Content.Add(new Space());
+                    log.Content.Add(new Space());
                 }                
 
                 foreach(var sl in SetupLog){
@@ -339,7 +340,7 @@ namespace AutoCheck.Core{
         } 
 #endregion  
 #region Private             
-        internal Log CloseLog(Type type, bool resetIndent = true){ 
+        internal Log CloseLog(Type type){ 
             switch(type){
                 case Type.HEADER:
                     HeaderLog = CurrentLog;
@@ -370,7 +371,7 @@ namespace AutoCheck.Core{
                     break;
             }
 
-            return CloseLog(resetIndent);            
+            return CloseLog(false);            
         }        
 
         private void SendToTerminal(Content c){

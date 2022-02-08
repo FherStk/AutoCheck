@@ -1033,6 +1033,7 @@ namespace AutoCheck.Core{
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) ExecuteBody(Root);
             else{   
                 //Parsing init, must run once at the beggining
+                Output.Indent();      
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
                     switch(name){                            
                         case "init":                        
@@ -1085,8 +1086,7 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Parsing setup content, it must run for each target before the body and the copy detector execution
-                Output.Indent();      
+                //Parsing setup content, it must run for each target before the body and the copy detector execution                
                 ForEachLocalTarget(local.ToArray(), (folder) => {                    
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
                         if(Abort) return;
@@ -1096,7 +1096,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine(); 
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP, false);
+                                Output.CloseLog(Output.Type.SETUP);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1118,7 +1118,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine(); 
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP, false);
+                                Output.CloseLog(Output.Type.SETUP);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1223,7 +1223,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine();
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN, false);
+                                Output.CloseLog(Output.Type.TEARDOWN);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
@@ -1245,7 +1245,7 @@ namespace AutoCheck.Core{
                                 Output.BreakLine();
 
                                 //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN, false);
+                                Output.CloseLog(Output.Type.TEARDOWN);
 
                                 //Setup completed
                                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
