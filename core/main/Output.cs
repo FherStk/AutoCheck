@@ -34,7 +34,7 @@ namespace AutoCheck.Core{
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
 #region Events
-    private static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;
+    public static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;
 #endregion
 #region Classes
         internal class Space: Content {}
@@ -108,6 +108,8 @@ namespace AutoCheck.Core{
         }
 #endregion       
 #region Attributes
+        internal Guid ID {get; set;}
+
         internal Log HeaderLog {get; set;}
 
         internal Log SetupLog {get; set;}
@@ -132,14 +134,7 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates the new Output instance
         /// </summary>
-        public Output(): this(false, null){
-        }
-
-        /// <summary>
-        /// Creates the new Output instance
-        /// </summary>
-        /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
-        public Output(EventHandler<LogGeneratedEventArgs> onLogGenerated): this(false, onLogGenerated){
+        public Output(): this(false){
         }
 
         /// <summary>
@@ -147,14 +142,14 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
         /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
-        public Output(bool redirectToTerminal = false, EventHandler<LogGeneratedEventArgs> onLogGenerated = null){     
+        public Output(bool redirectToTerminal = false){  
+            ID = new Guid();   
             HeaderLog = new Log();                               
             SetupLog = new Log(); 
             TeardownLog = new Log(); 
             ScriptLog = new List<Log>();
             CurrentLog = new Log();
             RedirectToTerminal = redirectToTerminal;
-            OnLogGenerated = onLogGenerated;
 
             ResetLog();        
 
@@ -452,7 +447,7 @@ namespace AutoCheck.Core{
                 if(RedirectToTerminal) SendToTerminal(c);
             }
 
-            if(OnLogGenerated != null) OnLogGenerated.Invoke(this, new LogGeneratedEventArgs(log));
+            if(OnLogGenerated != null) OnLogGenerated.Invoke(this, new LogGeneratedEventArgs(ID, log));
         }        
 
         private StyleRule GetCssRule(string style){

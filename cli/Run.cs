@@ -35,8 +35,10 @@ namespace AutoCheck.Cli
     class Run
     { 
         private static bool _NO_PAUSE = false;
-        private static bool _displaying = false;
-        private static ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Core.Output, LogGeneratedEventArgs Data)>();        
+        private static bool _displaying = false;  
+        private static Guid? _lastID = null;
+
+        private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
 
         static void Main(string[] args)
         {
@@ -241,13 +243,23 @@ namespace AutoCheck.Cli
             }      
         }
 
-        private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){            
-            _logs.Enqueue(((Core.Output)sender, e));
-            if(!_displaying) DisplayLogs();
+        private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){               
+            _logs.AddOrUpdate(e.ID, (v) => {
+                var queue = new ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>();
+                queue.Enqueue(((Core.Output)sender, e));
+                return queue;
+            }, (k, v) => {
+                v.Enqueue(((Core.Output)sender, e));
+                return v;
+            });
+
+            if(!_displaying) DisplayLogs(e.ID);
         }
 
-        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){        
-            if(e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){                    
+            if(e.ID == _lastID && e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+                _lastID = null;
+
                 Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
@@ -256,27 +268,18 @@ namespace AutoCheck.Cli
             }
         }
 
-        private static void DisplayLogs(){
-            _displaying = true;
-            (Core.Output Output, LogGeneratedEventArgs Data) item;
-
-            // while(_logs.TryDequeue(out item)){
-            //     item.Script.Output.SendToTerminal(item.Data.Log);
-
-            //     if(item.Data.Type == Output.Type.AFTER_TARGET && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
-            //         Console.WriteLine();
-            //         Console.WriteLine("Press any key to continue...");
-            //         Console.ReadKey();
-            //         Console.WriteLine();
-            //         Console.WriteLine();
-            //     }
-            // }
-
-            while(_logs.TryDequeue(out item)){
-                item.Output.SendToTerminal(item.Data.Log);
+        private static void DisplayLogs(Guid id){
+            //Diferent logs cannot be mixed due concurrent executions, so the same ID will be displayed till ends
+            if(_lastID == null || _lastID == id){
+                _lastID = id;            
+                
+                (Core.Output Output, LogGeneratedEventArgs Data) item;
+                while(_logs[id].TryDequeue(out item)){
+                    item.Output.SendToTerminal(item.Data.Log);
+                }
+                            
+                _displaying = false;
             }
-                        
-            _displaying = false;
         }
 
         private static void Info(string message, Output output){

@@ -4,14 +4,17 @@ using AutoCheck.Core;
 namespace AutoCheck.Core.Events
 {
     public class LogGeneratedEventArgs : EventArgs
-    {               
+    {   
+        public Guid ID { get; set; }            
         public Output.Log Log { get; set; }
 
         /// <summary>
         /// Creates a new log event instance.
         /// </summary>
-        /// <param name="log"></param>
-        public LogGeneratedEventArgs(Output.Log log){
+        /// <param name="id">The current instance ID (for multi-threading purposes).</param>
+        /// <param name="log">The log content.</param>
+        public LogGeneratedEventArgs(Guid id, Output.Log log){
+            ID = id;
             Log = log;
         }
     }
@@ -35,15 +38,18 @@ namespace AutoCheck.Core.Events
             END
         }
         
+        public Guid ID { get; set; }            
         public ExecutionModeType Mode { get; set; }
         public ExecutionEventType Event { get; set; }
 
         /// <summary>
         /// Creates a new execution event instance.
         /// </summary>
+        /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="executionMode">The current execution mode.</param>
         /// <param name="eventType">The event type.</param>
-        public ScriptExecutionEventArgs(ExecutionModeType executionMode, ExecutionEventType eventType){
+        public ScriptExecutionEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
+            ID = id;
             Mode = executionMode;
             Event = eventType;
         }
