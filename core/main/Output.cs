@@ -178,6 +178,10 @@ namespace AutoCheck.Core{
         /// <param name="text">The text to display</param>
         /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
         public void WriteLine(string text, Style style = Style.DEFAULT){
+            //TODO: this should fire the event log in order to update it.
+            //      move the log events here, will be fired on each update and the last entry will be sent.
+            //      internal log data will be resotred to previous state: PRE+SCRIPT+POST
+            //      the other events within Script can be removed (in a near future, progress events will be added)
             WriteColor(text, style, true);
         } 
         
