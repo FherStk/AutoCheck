@@ -36,7 +36,7 @@ namespace AutoCheck.Cli
     { 
         private static bool _NO_PAUSE = false;
         private static bool _displaying = false;
-        private static ConcurrentQueue<(Script Script, LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Script Script, LogGeneratedEventArgs Data)>();        
+        private static ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Core.Output, LogGeneratedEventArgs Data)>();        
 
         static void Main(string[] args)
         {
@@ -225,7 +225,7 @@ namespace AutoCheck.Cli
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated);
+                    new Script(script, OnLogGenerated, OnScriptExecution);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -242,12 +242,12 @@ namespace AutoCheck.Cli
         }
 
         private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){            
-            _logs.Enqueue(((Script)sender, e));            
-            if(!_displaying) DisplayLogs();       
+            _logs.Enqueue(((Core.Output)sender, e));
+            if(!_displaying) DisplayLogs();
         }
 
-        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){            
-           if(e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){        
+            if(e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
                 Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
@@ -258,7 +258,7 @@ namespace AutoCheck.Cli
 
         private static void DisplayLogs(){
             _displaying = true;
-            (Script Script, LogGeneratedEventArgs Data) item;
+            (Core.Output Output, LogGeneratedEventArgs Data) item;
 
             // while(_logs.TryDequeue(out item)){
             //     item.Script.Output.SendToTerminal(item.Data.Log);
@@ -273,7 +273,7 @@ namespace AutoCheck.Cli
             // }
 
             while(_logs.TryDequeue(out item)){
-                item.Script.Output.SendToTerminal(item.Data.Log);
+                item.Output.SendToTerminal(item.Data.Log);
             }
                         
             _displaying = false;

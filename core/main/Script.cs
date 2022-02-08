@@ -661,9 +661,13 @@ namespace AutoCheck.Core{
         private static event EventHandler<ScriptExecutionEventArgs> OnScriptExecution;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
 #endregion
 #region Constructor
-        protected Script(){
+        protected Script(EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution){
+             //Events
+            OnLogGenerated = onLogGenerated;
+            OnScriptExecution = onScriptExecution;         
+
             //Just to be used by the other constructors            
-            Output = new Output();       
+            Output = new Output(onLogGenerated);       
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
@@ -722,7 +726,7 @@ namespace AutoCheck.Core{
         /// <param name="yaml">An already parsed YAML script.</param>
         /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(){    
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(onLogGenerated, onScriptExecution){    
             //NOTE: some properties are beeing setup within the private constructor
             
             //Setup the remaining vars            
@@ -733,7 +737,7 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)yaml.Documents[0].RootNode;
             
             //Setup the script
-            SetupScript(onLogGenerated, onScriptExecution);
+            SetupScript();
         }
 
         /// <summary>
@@ -742,7 +746,7 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(){    
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(onLogGenerated, onScriptExecution){    
             //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
@@ -753,14 +757,10 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
 
             //Setup the script
-            SetupScript(onLogGenerated, onScriptExecution);
+            SetupScript();
         }
 
-        private void SetupScript(EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution){    
-            //Events
-            OnLogGenerated = onLogGenerated;
-            OnScriptExecution = onScriptExecution;            
-                       
+        private void SetupScript(){                
             //Setup log data before starting
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -1168,7 +1168,7 @@ namespace AutoCheck.Core{
                     }
                 }));
                 Output.UnIndent();
-                
+
                 if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.END));
 
                 //Storing log for the end after the last target execution (common data for all executions)
