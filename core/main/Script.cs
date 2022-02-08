@@ -661,10 +661,13 @@ namespace AutoCheck.Core{
 #endregion
 #region Events
         //Notice: must be static because will be shared along parrallel tasks
-        private static event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;
-        private static event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;
-        private static event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;
-        private static event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;
+        private static event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;         //fired once when the main script caption has been sent to the log
+        private static event EventHandler<LogGeneratedEventArgs> OnInitCompleted;           //fired once when the init has been finished (runs once before any script)
+        private static event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;          //fired once per target execution, just before the target caption
+        private static event EventHandler<LogGeneratedEventArgs> OnCopyDetectorCompleted;   //fired once after the copy detector completes
+        private static event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;         //fired once per target execution, just after a post completes
+        private static event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;       //fired once per target execution, just after a teardown completes
+        private static event EventHandler<LogGeneratedEventArgs> OnEndCompleted;            //fired once at the end of all executions
 
         public class LogGeneratedEventArgs : EventArgs
         {
@@ -718,38 +721,41 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path): this(path, null, null, null, null){ 
+        public Script(string path): this(path, null, null, null, null, null, null, null){ 
         }
 
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
         }
 
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
-        public Script(YamlStream yaml): this(yaml, null, null, null, null){ 
+        public Script(YamlStream yaml): this(yaml, null, null, null, null, null, null, null){ 
         }
 
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
-        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (after the main caption and before any init execution).</param>
+        /// <param name="onInitCompleted">This event will be raised once, before any target setup execution.</param>
+        /// <param name="onSetupCompleted">This event will be raised once per target, when the setup has been completed (before the copy detector).</param>
+        /// <param name="onCopyDetectorCompleted">This event will be raised once the copy detector execution has been completed (before the first target caption).</param>
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
-        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
-        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
+        /// <param name="onTeardwonCompleted">This event will be raised once per target when completed (after all scripts execution).</param>
+        /// <param name="onEndCompleted">This event will be raised once at the end of all exeuctions.</param>
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted): this(){    
             //NOTE: some properties are beeing setup within the private constructor
             
             //Setup the remaining vars            
@@ -760,18 +766,21 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)yaml.Documents[0].RootNode;
             
             //Setup the script
-            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);  
+            SetupScript(onHeaderCompleted, onInitCompleted, onSetupCompleted, onCopyDetectorCompleted, onScriptCompleted, onTeardwonCompleted, onEndCompleted);
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (before the setup execution).</param>
-        /// <param name="onSetupCompleted">This event will be raised once the setup has been completed (before any script execution).</param>
+        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (after the main caption and before any init execution).</param>
+        /// <param name="onInitCompleted">This event will be raised once, before any target setup execution.</param>
+        /// <param name="onSetupCompleted">This event will be raised once per target, when the setup has been completed (before the copy detector).</param>
+        /// <param name="onCopyDetectorCompleted">This event will be raised once the copy detector execution has been completed (before the first target caption).</param>
         /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
-        /// <param name="onTeardwonCompleted">This event will be raised once the teardown has been completed (after all scripts execution).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted): this(){    
+        /// <param name="onTeardwonCompleted">This event will be raised once per target when completed (after all scripts execution).</param>
+        /// <param name="onEndCompleted">This event will be raised once at the end of all exeuctions.</param>
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted): this(){    
             //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
@@ -782,10 +791,10 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
 
             //Setup the script
-            SetupScript(onHeaderCompleted, onSetupCompleted, onScriptCompleted, onTeardwonCompleted);          
+            SetupScript(onHeaderCompleted, onInitCompleted, onSetupCompleted, onCopyDetectorCompleted, onScriptCompleted, onTeardwonCompleted, onEndCompleted);
         }
 
-        private void SetupScript(EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted){    
+        private void SetupScript(EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted){    
             //Events
             OnHeaderCompleted = onHeaderCompleted;
             OnSetupCompleted = onSetupCompleted;
@@ -906,15 +915,23 @@ namespace AutoCheck.Core{
         }
 
         private void ParsePre(YamlNode node, string current="pre", string parent="batch", string[] children = null, string[] mandatory = null){
-            children ??= new string[]{"vars", "connector", "run", "echo"};
-
-            //The same as ParseBody but with no questions                        
-            ParseBody(node, current, parent, children, mandatory);
+           //The same as ParseSetup
+            ParseSetup(node, current, parent, children, mandatory);
         }
 
         private void ParsePost(YamlNode node, string current="post", string parent="batch", string[] children = null, string[] mandatory = null){
             //The same as ParsePre
-            ParsePre(node, current, parent, children, mandatory);
+            ParseSetup(node, current, parent, children, mandatory);
+        }
+
+        private void ParseInit(YamlNode node, string current="init", string parent="batch", string[] children = null, string[] mandatory = null){
+            //The same as ParsePre
+            ParseSetup(node, current, parent, children, mandatory);
+        }
+
+        private void ParseEnd(YamlNode node, string current="init", string parent="batch", string[] children = null, string[] mandatory = null){
+            //The same as ParsePre
+            ParseSetup(node, current, parent, children, mandatory);
         }
         
         //TODO: can be single and batch simplified where one uses onther?
@@ -1012,9 +1029,18 @@ namespace AutoCheck.Core{
         }
 
         private void ParseBatch(YamlNode node, string current="batch", string parent="root", string[] children = null, string[] mandatory = null){   
-            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote", "concurrent"};     
+            children ??= new string[]{"caption", "setup", "teardown", "pre", "post", "copy_detector", "local", "remote", "concurrent", "init", "end"};     
             if(node == null || !node.GetType().Equals(typeof(YamlSequenceNode))) ExecuteBody(Root);
-            else{    
+            else{   
+                //Parsing init, must run once at the beggining
+                ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
+                    switch(name){                            
+                        case "init":                        
+                            ParseInit(node, name, current);                            
+                            break;
+                    }
+                }));
+
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
                 var originalIP = CurrentHost;                                                                                         
@@ -1156,7 +1182,7 @@ namespace AutoCheck.Core{
                 LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
                 Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
 
-                //Parsing teardown content, it must run for each target after all the bodies and the copy detector execution
+                //Parsing teardown content, it must run for each target after all the bodies and post 
                 Output.Indent();
                 ForEachLocalTarget(local.ToArray(), (folder) => {
                     ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {    
@@ -1192,6 +1218,15 @@ namespace AutoCheck.Core{
                     Type = Output.Type.TEARDOWN,
                     Log = Output.TeardownLog
                 });
+
+                //Parsing end, must run once at the end
+                ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
+                    switch(name){                            
+                        case "end":                        
+                            ParseEnd(node, name, current);                            
+                            break;
+                    }
+                }));
             }            
         }
 
