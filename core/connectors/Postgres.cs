@@ -641,7 +641,7 @@ namespace AutoCheck.Core.Connectors{
             ExecuteNonQuery($"DROP OWNED BY {item}");
 
             foreach(var member in GetMembership(item))
-                ExecuteNonQuery($"REVOKE {member} FROM {item}");           
+                ExecuteNonQuery($"REVOKE \"{member}\" FROM {item}");           
         }
 
         private string CleanSqlQuery(string sql){
