@@ -27,6 +27,7 @@ using System.Reflection;
 using System.Linq;
 
 using AutoCheck.Core;
+using AutoCheck.Core.Events;
 using AutoCheck.Core.Connectors;
 
 namespace AutoCheck.Cli
@@ -35,7 +36,7 @@ namespace AutoCheck.Cli
     { 
         private static bool _NO_PAUSE = false;
         private static bool _displaying = false;
-        private static ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>();        
+        private static ConcurrentQueue<(Script Script, LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Script Script, LogGeneratedEventArgs Data)>();        
 
         static void Main(string[] args)
         {
@@ -240,27 +241,41 @@ namespace AutoCheck.Cli
             }      
         }
 
-        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){            
+        private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){            
             _logs.Enqueue(((Script)sender, e));            
             if(!_displaying) DisplayLogs();       
         }
 
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){            
+           if(e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+
         private static void DisplayLogs(){
             _displaying = true;
-            (Script Script, Script.LogGeneratedEventArgs Data) item;
+            (Script Script, LogGeneratedEventArgs Data) item;
+
+            // while(_logs.TryDequeue(out item)){
+            //     item.Script.Output.SendToTerminal(item.Data.Log);
+
+            //     if(item.Data.Type == Output.Type.AFTER_TARGET && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+            //         Console.WriteLine();
+            //         Console.WriteLine("Press any key to continue...");
+            //         Console.ReadKey();
+            //         Console.WriteLine();
+            //         Console.WriteLine();
+            //     }
+            // }
 
             while(_logs.TryDequeue(out item)){
                 item.Script.Output.SendToTerminal(item.Data.Log);
-
-                if(item.Data.Type == Output.Type.SCRIPT && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
-                    Console.WriteLine();
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
             }
-            
+                        
             _displaying = false;
         }
 

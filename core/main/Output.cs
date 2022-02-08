@@ -22,8 +22,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using AutoCheck.Core.Events;
 using AutoCheck.Core.Exceptions;
 using ExCSS;
 
@@ -33,6 +33,9 @@ namespace AutoCheck.Core{
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
+#region Events
+    private static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;
+#endregion
 #region Classes
         internal class Space: Content {}
 
@@ -98,28 +101,20 @@ namespace AutoCheck.Core{
         }
 
         public enum Type{
-            HEADER,
-            SETUP,
-            SCRIPT,
-            TEARDOWN,
-            INIT,
-            END,
-            COPY_DETECTOR
+            START,
+            BEFORE_TARGET,
+            AFTER_TARGET,
+            END
         }
 #endregion       
 #region Attributes
         internal Log HeaderLog {get; set;}
-        
-        internal Log InitLog {get; set;}
 
-        internal List<Log> SetupLog {get; set;}
-
-        internal Log CopyDetectorLog {get; set;}
+        internal Log SetupLog {get; set;}
 
         internal List<Log> ScriptLog {get; set;}
 
-        internal List<Log> TeardownLog {get; set;} 
-        internal Log EndLog {get; set;}         
+        internal Log TeardownLog {get; set;}          
 
         public const string SingleIndent = "   ";
         
@@ -137,17 +132,29 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates the new Output instance
         /// </summary>
+        public Output(): this(false, null){
+        }
+
+        /// <summary>
+        /// Creates the new Output instance
+        /// </summary>
+        /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
+        public Output(EventHandler<LogGeneratedEventArgs> onLogGenerated): this(false, onLogGenerated){
+        }
+
+        /// <summary>
+        /// Creates the new Output instance
+        /// </summary>
         /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
-        public Output(bool redirectToTerminal = false){          
+        /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
+        public Output(bool redirectToTerminal = false, EventHandler<LogGeneratedEventArgs> onLogGenerated = null){     
             HeaderLog = new Log();                               
-            InitLog = new Log();       
-            CopyDetectorLog = new Log();                                                       
-            SetupLog = new List<Log>();
-            TeardownLog = new List<Log>();
+            SetupLog = new Log(); 
+            TeardownLog = new Log(); 
             ScriptLog = new List<Log>();
-            EndLog = new Log();                               
             CurrentLog = new Log();
             RedirectToTerminal = redirectToTerminal;
+            OnLogGenerated = onLogGenerated;
 
             ResetLog();        
 
@@ -178,10 +185,6 @@ namespace AutoCheck.Core{
         /// <param name="text">The text to display</param>
         /// <param name="style">Which stuyle will be applied in order to print using colors.</param>
         public void WriteLine(string text, Style style = Style.DEFAULT){
-            //TODO: this should fire the event log in order to update it.
-            //      move the log events here, will be fired on each update and the last entry will be sent.
-            //      internal log data will be resotred to previous state: PRE+SCRIPT+POST
-            //      the other events within Script can be removed (in a near future, progress events will be added)
             WriteColor(text, style, true);
         } 
         
@@ -245,14 +248,13 @@ namespace AutoCheck.Core{
         /// <summary>
         /// The current log will be closed, so a new empty one will be ready to start logging again.
         /// </summary>
-         /// <param name="resetIndent">True if the indent must be reset.</param>    
         /// <returns>The closed log</returns>
-        public Log CloseLog(bool resetIndent = true){
+        public Log CloseLog(){
             try{
                 return CurrentLog;
             }
             finally{
-                ResetLog(resetIndent);
+                ResetLog();
             }
         }
                         
@@ -267,21 +269,8 @@ namespace AutoCheck.Core{
                 var log = new Log();
                 log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
 
-                if(InitLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(InitLog.Content)).ToList();
-                    log.Content.Add(new Space());   //double space to spearate from setup
-                    log.Content.Add(new Space());
-                }                
-
-                foreach(var sl in SetupLog){
-                    if(sl.Content.Count > 0){
-                        log.Content = log.Content.Concat(Trim(sl.Content)).ToList();                        
-                        log.Content.Add(new Space());
-                    }
-                }
-
-                if(CopyDetectorLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(CopyDetectorLog.Content)).ToList();
+                if(SetupLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
                     log.Content.Add(new Space());
                 }
 
@@ -290,16 +279,8 @@ namespace AutoCheck.Core{
                     log.Content.Add(new Space());
                 }               
 
-                foreach(var tl in TeardownLog){
-                    if(tl.Content.Count > 0){
-                        log.Content = log.Content.Concat(Trim(tl.Content)).ToList();
-                        log.Content.Add(new Space());
-                    }
-                }
-
-                if(EndLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(EndLog.Content)).ToList();
-                    log.Content.Add(new Space());
+                if(TeardownLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
                 }
 
                 logs.Add(log);
@@ -346,36 +327,24 @@ namespace AutoCheck.Core{
 #region Private             
         internal Log CloseLog(Type type){ 
             switch(type){
-                case Type.HEADER:
+                case Type.START:
                     HeaderLog = CurrentLog;
                     break;
 
-                case Type.INIT:
-                    InitLog = CurrentLog;
-                    break;
-
-                case Type.SETUP:
-                    SetupLog.Add(CurrentLog);       
-                    break;
-
-                case Type.COPY_DETECTOR:
-                    CopyDetectorLog = CurrentLog;
-                    break;               
-
-                case Type.SCRIPT:
-                    ScriptLog.Add(CurrentLog);                    
-                    break;
-
-                case Type.TEARDOWN:
-                    TeardownLog.Add(CurrentLog);        
+                case Type.BEFORE_TARGET:
+                    SetupLog = CurrentLog;
                     break;
 
                 case Type.END:
-                    EndLog = CurrentLog;
+                    TeardownLog = CurrentLog;
+                    break;
+
+                case Type.AFTER_TARGET:
+                    ScriptLog.Add(CurrentLog);                    
                     break;
             }
 
-            return CloseLog(false);            
+            return CloseLog();            
         }        
 
         private void SendToTerminal(Content c){
@@ -389,8 +358,8 @@ namespace AutoCheck.Core{
             Console.ResetColor();               
         }
         
-        private void ResetLog(bool resetIndent = true){ 
-            if(resetIndent) CurrentIndent = "";
+        private void ResetLog(){ 
+            CurrentIndent = "";
             IsNewLine = true;  
             CurrentLog = new Log(); 
         }           
@@ -476,10 +445,14 @@ namespace AutoCheck.Core{
 
             IsNewLine = newLine;
 
+            var log = new Log();
             foreach(var c in content){
-                CurrentLog.Content.Add(c);
+                log.Content.Add(c);         //this is just the new data
+                CurrentLog.Content.Add(c);  //this is the historical data              
                 if(RedirectToTerminal) SendToTerminal(c);
             }
+
+            if(OnLogGenerated != null) OnLogGenerated.Invoke(this, new LogGeneratedEventArgs(log));
         }        
 
         private StyleRule GetCssRule(string style){

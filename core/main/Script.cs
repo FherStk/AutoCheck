@@ -29,6 +29,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using AutoCheck.Core.Exceptions;
+using AutoCheck.Core.Events;
 using CopyDetector = AutoCheck.Core.CopyDetectors.Base;
 using Operator = AutoCheck.Core.Connectors.Operator;
 using OS = AutoCheck.Core.Utils.OS;
@@ -66,12 +67,7 @@ namespace AutoCheck.Core{
     private enum LogFormatType {
         TEXT,
         JSON
-    }
-
-    public enum ExecutionModeType{
-        SINGLE,
-        BATCH
-    }
+    }    
 #endregion
 #region Vars
         /// <summary>
@@ -661,20 +657,8 @@ namespace AutoCheck.Core{
 #endregion
 #region Events
         //Notice: must be static because will be shared along parrallel tasks
-        private static event EventHandler<LogGeneratedEventArgs> OnHeaderCompleted;         //fired once when the main script caption has been sent to the log
-        private static event EventHandler<LogGeneratedEventArgs> OnInitCompleted;           //fired once when the init has been finished (runs once before any script)
-        private static event EventHandler<LogGeneratedEventArgs> OnSetupCompleted;          //fired once per target execution, just before the target caption
-        private static event EventHandler<LogGeneratedEventArgs> OnCopyDetectorCompleted;   //fired once after the copy detector completes
-        private static event EventHandler<LogGeneratedEventArgs> OnScriptCompleted;         //fired once per target execution, just after a post completes
-        private static event EventHandler<LogGeneratedEventArgs> OnTeardwonCompleted;       //fired once per target execution, just after a teardown completes
-        private static event EventHandler<LogGeneratedEventArgs> OnEndCompleted;            //fired once at the end of all executions
-
-        public class LogGeneratedEventArgs : EventArgs
-        {
-            public Output.Type Type { get; set; }
-            public ExecutionModeType ExecutionMode { get; set; }
-            public Output.Log Log { get; set; }
-        }
+        private static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;                //fired each time a new log entry is ready.
+        private static event EventHandler<ScriptExecutionEventArgs> OnScriptExecution;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
 #endregion
 #region Constructor
         protected Script(){
@@ -717,45 +701,28 @@ namespace AutoCheck.Core{
             SingleCaption = "Running on single mode:";
             BatchCaption = "Running on batch mode:";
         }
-
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="path">Path to the script file (yaml).</param>
-        public Script(string path): this(path, null, null, null, null, null, null, null){ 
-        }
-
+       
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(path, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        public Script(string path, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(path, null, onScriptExecution){ 
         }
-
+       
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
-        public Script(YamlStream yaml): this(yaml, null, null, null, null, null, null, null){ 
-        }
-
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated): this(yaml, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated, onLogGenerated){ 
+        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        public Script(YamlStream yaml, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(yaml, null, onScriptExecution){ 
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (after the main caption and before any init execution).</param>
-        /// <param name="onInitCompleted">This event will be raised once, before any target setup execution.</param>
-        /// <param name="onSetupCompleted">This event will be raised once per target, when the setup has been completed (before the copy detector).</param>
-        /// <param name="onCopyDetectorCompleted">This event will be raised once the copy detector execution has been completed (before the first target caption).</param>
-        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
-        /// <param name="onTeardwonCompleted">This event will be raised once per target when completed (after all scripts execution).</param>
-        /// <param name="onEndCompleted">This event will be raised once at the end of all exeuctions.</param>
-        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted): this(){    
+        /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
+        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        public Script(YamlStream yaml, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(){    
             //NOTE: some properties are beeing setup within the private constructor
             
             //Setup the remaining vars            
@@ -766,21 +733,16 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)yaml.Documents[0].RootNode;
             
             //Setup the script
-            SetupScript(onHeaderCompleted, onInitCompleted, onSetupCompleted, onCopyDetectorCompleted, onScriptCompleted, onTeardwonCompleted, onEndCompleted);
+            SetupScript(onLogGenerated, onScriptExecution);
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onHeaderCompleted">This event will be raised once the script has been loaded (after the main caption and before any init execution).</param>
-        /// <param name="onInitCompleted">This event will be raised once, before any target setup execution.</param>
-        /// <param name="onSetupCompleted">This event will be raised once per target, when the setup has been completed (before the copy detector).</param>
-        /// <param name="onCopyDetectorCompleted">This event will be raised once the copy detector execution has been completed (before the first target caption).</param>
-        /// <param name="onScriptCompleted">This event will be raised once the script has been completed (after the post execution).</param>
-        /// <param name="onTeardwonCompleted">This event will be raised once per target when completed (after all scripts execution).</param>
-        /// <param name="onEndCompleted">This event will be raised once at the end of all exeuctions.</param>
-        public Script(string path, EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted): this(){    
+        /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
+        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        public Script(string path, EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution=null): this(){    
             //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
@@ -791,15 +753,13 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
 
             //Setup the script
-            SetupScript(onHeaderCompleted, onInitCompleted, onSetupCompleted, onCopyDetectorCompleted, onScriptCompleted, onTeardwonCompleted, onEndCompleted);
+            SetupScript(onLogGenerated, onScriptExecution);
         }
 
-        private void SetupScript(EventHandler<LogGeneratedEventArgs> onHeaderCompleted, EventHandler<LogGeneratedEventArgs> onInitCompleted, EventHandler<LogGeneratedEventArgs> onSetupCompleted, EventHandler<LogGeneratedEventArgs> onCopyDetectorCompleted, EventHandler<LogGeneratedEventArgs> onScriptCompleted, EventHandler<LogGeneratedEventArgs> onTeardwonCompleted, EventHandler<LogGeneratedEventArgs> onEndCompleted){    
+        private void SetupScript(EventHandler<LogGeneratedEventArgs> onLogGenerated, EventHandler<ScriptExecutionEventArgs> onScriptExecution){    
             //Events
-            OnHeaderCompleted = onHeaderCompleted;
-            OnSetupCompleted = onSetupCompleted;
-            OnScriptCompleted = onScriptCompleted;
-            OnTeardwonCompleted = onTeardwonCompleted;                        
+            OnLogGenerated = onLogGenerated;
+            OnScriptExecution = onScriptExecution;            
                        
             //Setup log data before starting
             SetupLog(
@@ -826,14 +786,10 @@ namespace AutoCheck.Core{
             Output.WriteLine(ScriptCaption, Output.Style.HEADER);
             
             //Storing log for the header (must be done here in order to generate correct spaces between log parts)
-            Output.CloseLog(Output.Type.HEADER);
+            Output.CloseLog(Output.Type.START);
             
             //Script loaded
-            if(OnHeaderCompleted != null) OnHeaderCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                ExecutionMode = ExecutionModeType.SINGLE,
-                Type = Output.Type.SCRIPT,
-                Log = Output.ScriptLog.LastOrDefault()
-            });
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.HEADER));
 
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
@@ -849,14 +805,10 @@ namespace AutoCheck.Core{
                 Output.UnIndent();
                 
                 //Storing script execution log
-                Output.CloseLog(Output.Type.SCRIPT);  
+                Output.CloseLog(Output.Type.AFTER_TARGET);  
 
                 //Script completed
-                if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.SINGLE | ExecutionModeType.BATCH,
-                    Type = Output.Type.HEADER,
-                    Log = Output.HeaderLog
-                });
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.HEADER));               
             }
 
             //Log files export (once all the teardown has been executed)
@@ -978,15 +930,11 @@ namespace AutoCheck.Core{
                     }                    
                 }));                 
 
-                //Storing log for the setup data
-                Output.CloseLog(Output.Type.SETUP);
+                //Storing log prior to the body execution
+                Output.CloseLog(Output.Type.BEFORE_TARGET);
 
-                //Setup completed
-                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){                    
-                    ExecutionMode = ExecutionModeType.SINGLE,
-                    Type = Output.Type.SETUP,
-                    Log = Output.SetupLog.LastOrDefault()
-                });
+                //Setup completed (just one execution for single mode)
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.SETUP));               
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -1016,15 +964,11 @@ namespace AutoCheck.Core{
                     }                    
                 })); 
 
-                //Storing log for the teardown data
-                Output.CloseLog(Output.Type.TEARDOWN);
+                //Storing log for the end of the execution
+                Output.CloseLog(Output.Type.END);
 
-                //Teardown completed
-                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.SINGLE,
-                    Type = Output.Type.TEARDOWN,
-                    Log = Output.TeardownLog.LastOrDefault()
-                });
+                //Teardown completed (just once for single mode)
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));                
             }
         }
 
@@ -1041,17 +985,10 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
-
-                //Storing log for the init data
-                Output.CloseLog(Output.Type.INIT);
-
-                //Teardown completed
-                if(OnInitCompleted != null) OnInitCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.BATCH,
-                    Type = Output.Type.INIT,
-                    Log = Output.InitLog
-                });
-
+                
+                //Init completed (just once for batch)
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.INIT));
+                
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
                 var originalIP = CurrentHost;                                                                                         
@@ -1095,15 +1032,7 @@ namespace AutoCheck.Core{
                                 ParseSetup(node, name, current);
                                 Output.BreakLine(); 
 
-                                //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP);
-
-                                //Setup completed
-                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                                    ExecutionMode = ExecutionModeType.BATCH,
-                                    Type = Output.Type.SETUP,
-                                    Log = Output.SetupLog.LastOrDefault()
-                                });                                                              
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.SETUP));
                                 break;
                         }                    
                     })); 
@@ -1117,20 +1046,12 @@ namespace AutoCheck.Core{
                                 ParseSetup(node, name, current);
                                 Output.BreakLine(); 
 
-                                //Storing log for the setup data
-                                Output.CloseLog(Output.Type.SETUP);
-
-                                //Setup completed
-                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                                    ExecutionMode = ExecutionModeType.BATCH,
-                                    Type = Output.Type.SETUP,
-                                    Log = Output.SetupLog.LastOrDefault()
-                                });                                                              
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.SETUP));                                                          
                                 break;
                         }                    
                     })); 
-                });                             
-                
+                });                                                        
+
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
                                     
@@ -1145,15 +1066,10 @@ namespace AutoCheck.Core{
                 })); 
                 Output.UnIndent();                                   
 
-                //Storing log for the setup data
-                Output.CloseLog(Output.Type.COPY_DETECTOR);
+                //Storing log for the data prior to the first target execution (common data for all executions)
+                Output.CloseLog(Output.Type.BEFORE_TARGET);
 
-                //Setup completed
-                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.BATCH,
-                    Type = Output.Type.COPY_DETECTOR,
-                    Log = Output.CopyDetectorLog
-                });                                  
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.COPY_DETECTOR));
 
                 //Multithreading queue
                 var queuedScripts = new List<Task<Script>>();
@@ -1222,15 +1138,7 @@ namespace AutoCheck.Core{
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
 
-                                //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN);
-
-                                //Setup completed
-                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                                    ExecutionMode = ExecutionModeType.BATCH,
-                                    Type = Output.Type.TEARDOWN,
-                                    Log = Output.TeardownLog.LastOrDefault()
-                                });                                                              
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));         
                                 break;
                         }                    
                     })); 
@@ -1244,15 +1152,7 @@ namespace AutoCheck.Core{
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
 
-                                //Storing log for the setup data
-                                Output.CloseLog(Output.Type.TEARDOWN);
-
-                                //Setup completed
-                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                                    ExecutionMode = ExecutionModeType.BATCH,
-                                    Type = Output.Type.TEARDOWN,
-                                    Log = Output.TeardownLog.LastOrDefault()
-                                });                                                              
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));                                                          
                                 break;
                         }                    
                     })); 
@@ -1268,16 +1168,11 @@ namespace AutoCheck.Core{
                     }
                 }));
 
-                //Storing log for the teardown data
-                Output.CloseLog(Output.Type.END);      
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.END));
 
-                //Teardown completed
-                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.BATCH,
-                    Type = Output.Type.END,
-                    Log = Output.EndLog
-                });
-            }            
+                //Storing log for the end after the last target execution (common data for all executions)
+                Output.CloseLog(Output.Type.END);      
+            }
         }
 
         private Local ParseLocal(YamlNode node, string current="local", string parent="single", string[] children = null, string[] mandatory = null){  
@@ -1983,15 +1878,11 @@ namespace AutoCheck.Core{
             ExecuteBody(node);
             Output.UnIndent();
 
-            //Storing log for the script data
-            Output.CloseLog(Output.Type.SCRIPT);
+            //Storing log for the current target execution
+            Output.CloseLog(Output.Type.AFTER_TARGET);
 
-            //Script completed
-            if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                ExecutionMode = ExecutionModeType.SINGLE,
-                Type = Output.Type.SCRIPT,
-                Log = Output.ScriptLog.LastOrDefault()
-            });
+            //Script body completed
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.BODY));            
         }
 
         private void ExecuteBodyForBatch(YamlSequenceNode node, string current, List<CopyDetector> cpydet, string folder){
@@ -2057,14 +1948,10 @@ namespace AutoCheck.Core{
             Output.UnIndent();                                                                   
 
             //Storing log for the script data
-            Output.CloseLog(Output.Type.SCRIPT);
+            Output.CloseLog(Output.Type.AFTER_TARGET);
 
-            //Script completed
-            if(OnScriptCompleted != null) OnScriptCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                ExecutionMode = ExecutionModeType.BATCH,
-                Type = Output.Type.SCRIPT,
-                Log = Output.ScriptLog.LastOrDefault()
-            });
+            //Script body completed
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.BODY));            
         }
 
         private void SetupDefaultHostVars(){
