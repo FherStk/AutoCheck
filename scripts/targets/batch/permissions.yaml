@@ -132,7 +132,7 @@ batch:
         - echo: "Setting up SQL dump:"
 
         - run:
-            caption: "Getting student name... "
+            caption: "   Getting student name... "
             connector: "TextStream"
             command: "Substring"
             arguments: 
@@ -141,7 +141,7 @@ batch:
             store: "$STUDENT" 
 
         - run:
-            caption: "Getting database name... "
+            caption: "   Getting database name... "
             connector: "TextStream"
             command: "Replace"
             arguments: 
@@ -151,7 +151,7 @@ batch:
             store: "$STUDENT"  
 
         - run:            
-            caption: "Looking for the SQL dump... "
+            caption: "   Looking for the SQL dump... "
             command:  "GetFile"
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
             store: "SQL_FILE"   
@@ -161,7 +161,7 @@ batch:
             arguments: "--filePath {$SQL_FILE}"       
 
         - run:  
-            caption: "Replacing the database name... "  
+            caption: "   Replacing the database name... "  
             connector: "PlainText"      
             command:  "Replace"
             arguments: 
@@ -169,7 +169,7 @@ batch:
                 regex: DATABASE empresa
 
         - run:    
-            caption: "Replacing the database connection... "  
+            caption: "   Replacing the database connection... "  
             connector: "PlainText"      
             command:  "Replace"
             arguments: 
@@ -177,7 +177,7 @@ batch:
                 regex: \\connect empresa
        
         - run:   
-            caption: "Storing changes... "   
+            caption: "   Storing changes... "   
             connector: "PlainText"      
             command:  "Store"
             arguments: "--filePath {$SQL_FILE}"                

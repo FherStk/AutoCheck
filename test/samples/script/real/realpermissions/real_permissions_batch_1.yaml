@@ -39,23 +39,6 @@ batch:
         threshold: !!float 0.65    
 
     - setup:                
-        - run:
-            connector: "TextStream"
-            command: "Substring"
-            arguments: 
-                content: "{$CURRENT_FOLDER_NAME}"
-                regex: "^[^_]+(?=_)"
-            store: "$STUDENT" 
-
-        - run:
-            connector: "TextStream"
-            command: "Replace"
-            arguments: 
-                content: "{$STUDENT}"
-                replacement: "-"
-                regex: \s
-            store: "$STUDENT"
-
         - echo: "Extracting files at ~{$CURRENT_FOLDER_NAME}:"
 
         - run:            
@@ -81,8 +64,9 @@ batch:
             arguments: 
                 recursive: !!bool True
 
+    - pre:
         - echo: ""
-        - echo: "Restoring BBDD permissions:"        
+        - echo: "Restoring BBDD permissions:"                     
 
         - connector:            
             type: "Postgres"        
@@ -147,16 +131,37 @@ batch:
         - echo: ""
         - echo: "Setting up SQL dump:"
 
+        - run:
+            caption: "   Getting student name... "
+            connector: "TextStream"
+            command: "Substring"
+            arguments: 
+                content: "{$CURRENT_FOLDER_NAME}"
+                regex: "^[^_]+(?=_)"
+            store: "$STUDENT" 
+
+        - run:
+            caption: "   Getting database name... "
+            connector: "TextStream"
+            command: "Replace"
+            arguments: 
+                content: "{$STUDENT}"
+                replacement: "-"
+                regex: \s
+            store: "$STUDENT"  
+
         - run:            
+            caption: "   Looking for the SQL dump... "
             command:  "GetFile"
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
             store: "SQL_FILE"   
 
         - connector:
             type: "PlainText"
-            arguments: "--file {$SQL_FILE}"       
+            arguments: "--filePath {$SQL_FILE}"       
 
-         - run:    
+        - run:  
+            caption: "   Replacing the database name... "  
             connector: "PlainText"      
             command:  "Replace"
             arguments: 
@@ -164,19 +169,21 @@ batch:
                 regex: DATABASE empresa
 
         - run:    
+            caption: "   Replacing the database connection... "  
             connector: "PlainText"      
             command:  "Replace"
             arguments: 
-                replacement: \\connect {$DATABASE}
+                replacement: "\\connect {$DATABASE}"
                 regex: \\connect empresa
        
-        - run:    
+        - run:   
+            caption: "   Storing changes... "   
             connector: "PlainText"      
             command:  "Store"
             arguments: "--filePath {$SQL_FILE}"                
 
         - echo: ""
-        - echo: "Importing SQL dump:"
+        - echo: "Importing SQL dump:"        
 
         - connector:            
             type: "Postgres"        
