@@ -101,17 +101,25 @@ namespace AutoCheck.Core{
             HEADER,
             SETUP,
             SCRIPT,
-            TEARDOWN
+            TEARDOWN,
+            INIT,
+            END,
+            COPY_DETECTOR
         }
 #endregion       
 #region Attributes
         internal Log HeaderLog {get; set;}
+        
+        internal Log InitLog {get; set;}
 
-        internal Log SetupLog {get; set;}
+        internal List<Log> SetupLog {get; set;}
+
+        internal Log CopyDetectorLog {get; set;}
 
         internal List<Log> ScriptLog {get; set;}
 
-        internal Log TeardownLog {get; set;}          
+        internal List<Log> TeardownLog {get; set;} 
+        internal Log EndLog {get; set;}         
 
         public const string SingleIndent = "   ";
         
@@ -132,9 +140,12 @@ namespace AutoCheck.Core{
         /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
         public Output(bool redirectToTerminal = false){          
             HeaderLog = new Log();                               
-            SetupLog = new Log(); 
-            TeardownLog = new Log(); 
+            InitLog = new Log();       
+            CopyDetectorLog = new Log();                                                       
+            SetupLog = new List<Log>();
+            TeardownLog = new List<Log>();
             ScriptLog = new List<Log>();
+            EndLog = new Log();                               
             CurrentLog = new Log();
             RedirectToTerminal = redirectToTerminal;
 
@@ -250,9 +261,22 @@ namespace AutoCheck.Core{
             foreach(var script in ScriptLog){                
                 var log = new Log();
                 log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
+                log.Content.Add(new Space());
 
-                if(SetupLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
+                if(InitLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(InitLog.Content)).ToList();
+                    log.Content.Add(new Space());
+                }                
+
+                foreach(var sl in SetupLog){
+                    if(sl.Content.Count > 0){
+                        log.Content = log.Content.Concat(Trim(sl.Content)).ToList();
+                        log.Content.Add(new Space());
+                    }
+                }
+
+                if(CopyDetectorLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(CopyDetectorLog.Content)).ToList();
                     log.Content.Add(new Space());
                 }
 
@@ -261,8 +285,16 @@ namespace AutoCheck.Core{
                     log.Content.Add(new Space());
                 }               
 
-                if(TeardownLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
+                foreach(var tl in TeardownLog){
+                    if(tl.Content.Count > 0){
+                        log.Content = log.Content.Concat(Trim(tl.Content)).ToList();
+                        log.Content.Add(new Space());
+                    }
+                }
+
+                if(EndLog.Content.Count > 0){
+                    log.Content = log.Content.Concat(Trim(EndLog.Content)).ToList();
+                    log.Content.Add(new Space());
                 }
 
                 logs.Add(log);
@@ -313,16 +345,28 @@ namespace AutoCheck.Core{
                     HeaderLog = CurrentLog;
                     break;
 
-                case Type.SETUP:
-                    SetupLog = CurrentLog;
+                case Type.INIT:
+                    InitLog = CurrentLog;
                     break;
 
-                case Type.TEARDOWN:
-                    TeardownLog = CurrentLog;
+                case Type.SETUP:
+                    SetupLog.Add(CurrentLog);       
                     break;
+
+                case Type.COPY_DETECTOR:
+                    CopyDetectorLog = CurrentLog;
+                    break;               
 
                 case Type.SCRIPT:
                     ScriptLog.Add(CurrentLog);                    
+                    break;
+
+                case Type.TEARDOWN:
+                    TeardownLog.Add(CurrentLog);        
+                    break;
+
+                case Type.END:
+                    EndLog = CurrentLog;
                     break;
             }
 

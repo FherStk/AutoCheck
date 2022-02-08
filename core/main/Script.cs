@@ -985,7 +985,7 @@ namespace AutoCheck.Core{
                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){                    
                     ExecutionMode = ExecutionModeType.SINGLE,
                     Type = Output.Type.SETUP,
-                    Log = Output.SetupLog
+                    Log = Output.SetupLog.LastOrDefault()
                 });
                 
                 //Execution abort could be requested from any "setup"
@@ -1023,7 +1023,7 @@ namespace AutoCheck.Core{
                 if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
                     ExecutionMode = ExecutionModeType.SINGLE,
                     Type = Output.Type.TEARDOWN,
-                    Log = Output.TeardownLog
+                    Log = Output.TeardownLog.LastOrDefault()
                 });
             }
         }
@@ -1040,6 +1040,16 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
+
+                //Storing log for the init data
+                Output.CloseLog(Output.Type.INIT);
+
+                //Teardown completed
+                if(OnInitCompleted != null) OnInitCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.BATCH,
+                    Type = Output.Type.INIT,
+                    Log = Output.InitLog
+                });
 
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
@@ -1083,19 +1093,39 @@ namespace AutoCheck.Core{
                         switch(name){                       
                             case "setup":                            
                                 ParseSetup(node, name, current);
-                                Output.BreakLine();                                
+                                Output.BreakLine(); 
+
+                                //Storing log for the setup data
+                                Output.CloseLog(Output.Type.SETUP);
+
+                                //Setup completed
+                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                                    ExecutionMode = ExecutionModeType.BATCH,
+                                    Type = Output.Type.SETUP,
+                                    Log = Output.SetupLog.LastOrDefault()
+                                });                                                              
                                 break;
                         }                    
                     })); 
                 }); 
 
                 ForEachRemoteTarget(remote.ToArray(), (os, host, username, password, port, folder) => {
-                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {
-                        if(Abort) return;   
+                    ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
+                        if(Abort) return;
                         switch(name){                       
                             case "setup":                            
                                 ParseSetup(node, name, current);
-                                Output.BreakLine();
+                                Output.BreakLine(); 
+
+                                //Storing log for the setup data
+                                Output.CloseLog(Output.Type.SETUP);
+
+                                //Setup completed
+                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                                    ExecutionMode = ExecutionModeType.BATCH,
+                                    Type = Output.Type.SETUP,
+                                    Log = Output.SetupLog.LastOrDefault()
+                                });                                                              
                                 break;
                         }                    
                     })); 
@@ -1116,13 +1146,13 @@ namespace AutoCheck.Core{
                 Output.UnIndent();                                   
 
                 //Storing log for the setup data
-                Output.CloseLog(Output.Type.SETUP);
+                Output.CloseLog(Output.Type.COPY_DETECTOR);
 
                 //Setup completed
                 if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
                     ExecutionMode = ExecutionModeType.BATCH,
-                    Type = Output.Type.SETUP,
-                    Log = Output.SetupLog
+                    Type = Output.Type.COPY_DETECTOR,
+                    Log = Output.CopyDetectorLog
                 });                                  
 
                 //Multithreading queue
@@ -1191,6 +1221,16 @@ namespace AutoCheck.Core{
                             case "teardown":                            
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
+
+                                //Storing log for the setup data
+                                Output.CloseLog(Output.Type.TEARDOWN);
+
+                                //Setup completed
+                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                                    ExecutionMode = ExecutionModeType.BATCH,
+                                    Type = Output.Type.TEARDOWN,
+                                    Log = Output.TeardownLog.LastOrDefault()
+                                });                                                              
                                 break;
                         }                    
                     })); 
@@ -1203,21 +1243,21 @@ namespace AutoCheck.Core{
                             case "teardown":                            
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
+
+                                //Storing log for the setup data
+                                Output.CloseLog(Output.Type.TEARDOWN);
+
+                                //Setup completed
+                                if(OnSetupCompleted != null) OnSetupCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                                    ExecutionMode = ExecutionModeType.BATCH,
+                                    Type = Output.Type.TEARDOWN,
+                                    Log = Output.TeardownLog.LastOrDefault()
+                                });                                                              
                                 break;
                         }                    
                     })); 
                 }); 
-                Output.UnIndent(); 
-
-                //Storing log for the teardown data
-                Output.CloseLog(Output.Type.TEARDOWN);      
-
-                //Teardown completed
-                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
-                    ExecutionMode = ExecutionModeType.BATCH,
-                    Type = Output.Type.TEARDOWN,
-                    Log = Output.TeardownLog
-                });
+                Output.UnIndent();                 
 
                 //Parsing end, must run once at the end
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
@@ -1227,6 +1267,16 @@ namespace AutoCheck.Core{
                             break;
                     }
                 }));
+
+                //Storing log for the teardown data
+                Output.CloseLog(Output.Type.END);      
+
+                //Teardown completed
+                if(OnTeardwonCompleted != null) OnTeardwonCompleted.Invoke(this, new LogGeneratedEventArgs(){
+                    ExecutionMode = ExecutionModeType.BATCH,
+                    Type = Output.Type.END,
+                    Log = Output.EndLog
+                });
             }            
         }
 
