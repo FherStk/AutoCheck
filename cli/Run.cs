@@ -37,8 +37,10 @@ namespace AutoCheck.Cli
         private static bool _NO_PAUSE = false;
         private static bool _displaying = false;  
         private static Guid? _lastID = null;
-        private static bool _concurrent = false;
-        private static ConcurrentDictionary<Guid, ScriptExecutionEventArgs> _status = new ConcurrentDictionary<Guid, ScriptExecutionEventArgs>();
+        private static Guid? _mainID = null;    //main thread ID (not concurrent)
+        private static int _step = 0;
+        private static ConcurrentDictionary<Guid, ScriptExecutionEventArgs> _status = new ConcurrentDictionary<Guid, ScriptExecutionEventArgs>();        
+        private static ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)> _postConcurrentLogs = new ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>();
         private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
 
         static void Main(string[] args)
@@ -254,15 +256,25 @@ namespace AutoCheck.Cli
                 return v;
             });
 
+            //TODO: semaphores or something that really blocks
             if(!_displaying) DisplayLogs(e.ID);
         }
 
         private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){     
-            _status.AddOrUpdate(e.ID, e, (k, v) => e);                        
-            if(!_concurrent && e.Event == ScriptExecutionEventArgs.ExecutionEventType.BEFORE_ANY_PRE) _concurrent = true;
-            else if (_concurrent && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_ALL_POST) _concurrent = false;
+            _status.AddOrUpdate(e.ID, e, (k, v) => e); 
+            if(_mainID == null) _mainID = e.ID; //the main thread ID                     
 
-           
+            if(_step == 0 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR) _step = 1;   //starts the concurrent script execution
+            else if (_step == 1 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT) _step = 2;
+
+            //TODO: 
+            //received AFTER_POST for the current displayed ID: the next batch execution can be displayed, select a new pending ID when ends the current display
+            //received AFTER_SCRIPT for any ID: once all the scripts has been displayed, _concurrent can be setup to false again and display the rest of the data
+            
+            //TODO: split the stored logs into diferent parts:
+            //      pre-concurrent
+            //      concurrent (grouped by ID)
+            //      post concurrent
 
             // if(e.ID == _lastID && e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
             //     _lastID = null;
@@ -283,8 +295,8 @@ namespace AutoCheck.Cli
             var status = _status.ContainsKey(id) ? _status[id] : null;
 
             //We can mix the output of different concurrent executions            
-            if(!_concurrent || (_concurrent && (_lastID == null || _lastID == id))){      
-                if(_concurrent && _lastID == null) _lastID = id;
+            if(_step == 0 || (_step == 1 && (_lastID == null || _lastID == id))){      
+                if(_step == 1 && _lastID == null) _lastID = id;
 
                 (Core.Output Output, LogGeneratedEventArgs Data) item;
                 while(_logs[id].TryDequeue(out item)){

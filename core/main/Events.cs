@@ -27,17 +27,16 @@ namespace AutoCheck.Core.Events
         }
 
         public enum ExecutionEventType{
-            HEADER,
-            INIT,            
-            SETUP,
-            COPY_DETECTOR,
-            BEFORE_ANY_PRE,
-            PRE,
-            BODY,
-            POST,      
-            AFTER_ALL_POST,   
-            TEARDOWN,
-            END
+            AFTER_HEADER,
+            AFTER_INIT,            
+            AFTER_SETUP,
+            AFTER_COPY_DETECTOR,
+            AFTER_PRE,
+            AFTER_BODY,
+            AFTER_POST,      
+            AFTER_SCRIPT,      
+            AFTER_TEARDOWN,
+            AFTER_END
         }
         
         public Guid ID { get; set; }            

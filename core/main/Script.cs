@@ -805,7 +805,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.START);
             
             //Script loaded
-            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.HEADER));
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER));
 
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
@@ -824,7 +824,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.AFTER_TARGET);  
 
                 //Script completed
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.HEADER));               
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_HEADER));               
             }
 
             //Log files export (once all the teardown has been executed)
@@ -950,7 +950,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.BEFORE_TARGET);
 
                 //Setup completed (just one execution for single mode)
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.SETUP));               
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));               
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -984,7 +984,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.END);
 
                 //Teardown completed (just once for single mode)
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));                
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));                
             }
         }
 
@@ -1004,7 +1004,7 @@ namespace AutoCheck.Core{
                 }));
                 
                 //Init completed (just once for batch)
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.INIT));
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_INIT));
                 
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
@@ -1049,7 +1049,7 @@ namespace AutoCheck.Core{
                                 ParseSetup(node, name, current);
                                 Output.BreakLine(); 
 
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.SETUP));
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));
                                 break;
                         }                    
                     })); 
@@ -1063,7 +1063,7 @@ namespace AutoCheck.Core{
                                 ParseSetup(node, name, current);
                                 Output.BreakLine(); 
 
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.SETUP));                                                          
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SETUP));                                                          
                                 break;
                         }                    
                     })); 
@@ -1086,8 +1086,7 @@ namespace AutoCheck.Core{
                 //Storing log for the data prior to the first target execution (common data for all executions)
                 Output.CloseLog(Output.Type.BEFORE_TARGET);
 
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.COPY_DETECTOR));
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.BEFORE_ANY_PRE));
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR));
 
                 //Multithreading queue
                 var queuedScripts = new List<Task<Script>>();
@@ -1146,6 +1145,8 @@ namespace AutoCheck.Core{
                 Task.WaitAll(finishedScripts.ToArray());
                 LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
                 Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
+                
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT));
 
                 //Parsing teardown content, it must run for each target after all the bodies and post 
                 Output.Indent();
@@ -1157,7 +1158,7 @@ namespace AutoCheck.Core{
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
 
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));         
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));         
                                 break;
                         }                    
                     })); 
@@ -1171,13 +1172,11 @@ namespace AutoCheck.Core{
                                 ParseTeardown(node, name, current);
                                 Output.BreakLine();
 
-                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN));                                                          
+                                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_TEARDOWN));                                                          
                                 break;
                         }                    
                     })); 
-                });  
-
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_ALL_POST));                                
+                });                  
 
                 //Parsing end, must run once at the end
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
@@ -1189,7 +1188,7 @@ namespace AutoCheck.Core{
                 }));
                 Output.UnIndent();
 
-                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.END));
+                if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_END));
 
                 //Storing log for the end after the last target execution (common data for all executions)
                 Output.CloseLog(Output.Type.END);      
@@ -1903,7 +1902,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.AFTER_TARGET);
 
             //Script body completed
-            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.BODY));            
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.SINGLE, ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY));            
         }
 
         private void ExecuteBodyForBatch(YamlSequenceNode node, string current, List<CopyDetector> cpydet, string folder){
@@ -1923,7 +1922,7 @@ namespace AutoCheck.Core{
             }));                                        
             
             //Script body completed
-            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.PRE));            
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE));            
 
             //The script body will be executed only if no copies has been detected, otherwise the execution is aborted and the copy detector matches are displayed (all of them, in order to help adjusting the threshold if needed)
             var match = false;
@@ -1960,7 +1959,7 @@ namespace AutoCheck.Core{
             }
 
             //Script body completed
-            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.BODY));            
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY));            
 
             //Post content
             ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
@@ -1978,7 +1977,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.AFTER_TARGET);
 
             //Script body completed
-            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.POST));            
+            if(OnScriptExecution != null) OnScriptExecution.Invoke(this, new ScriptExecutionEventArgs(ID, ScriptExecutionEventArgs.ExecutionModeType.BATCH, ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST));            
         }
 
         private void SetupDefaultHostVars(){
