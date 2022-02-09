@@ -23,8 +23,10 @@
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1"/>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1"/>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1"/>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0"/>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0"/>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1"/>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1"/>
-		<PackageReference Include="YamlDotNet" Version="11.2.1" />
+		<PackageReference Include="YamlDotNet" Version="11.2.1"/>		
 	</ItemGroup>
 </Project>

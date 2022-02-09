@@ -5,6 +5,8 @@ using AutoCheck.Core.Connectors;
 using AutoCheck.Web.Models;
 using YamlDotNet.RepresentationModel;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.SignalR;
+
 
 namespace AutoCheck.Web.Controllers;
 
