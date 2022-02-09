@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoCheck.Web.Data;
 using AutoCheck.Web.Hubs;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR().AddJsonProtocol(options =>{
+    options.PayloadSerializerOptions.Converters
+        .Add(new JsonStringEnumConverter());
+});
 
 
 var app = builder.Build();
@@ -45,6 +49,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-app.MapHub<ChatHub>("/chatHub");
+app.MapHub<HomeHub>("/homeHub");
 
 app.Run();

@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
 }
 
-@section Scripts { 
+@section Scripts {     
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/index.js"></script>
+    @* <script src="~/js/chat.js"></script> *@
 }
 
 <div id="update-card">
@@ -60,7 +62,7 @@
     <img alt="Updating" src="~/img/loading.gif" />
 </div>
 
- <div class="container">
+ @* <div class="container">
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-2">User</div>
@@ -86,6 +88,4 @@
         <div class="col-6">
             <ul id="messagesList"></ul>
         </div>
-    </div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+    </div> *@

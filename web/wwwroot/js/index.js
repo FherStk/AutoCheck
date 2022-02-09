@@ -1,3 +1,23 @@
+"use strict";
+var connection = new signalR.HubConnectionBuilder().withUrl("/homeHub").build();
+
+connection.on("ReceiveScripts", function (scripts) {
+    $("#script").empty();
+    $("#script").append('<option value="none" selected>- Select -</option>');
+
+    $.each(scripts, function() {                        
+        $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
+    });
+                
+    $("#script").show();
+});
+
+connection.start().then(function () {
+    //something    
+}).catch(function (err) {
+    return console.error(err.toString());
+});
+
 function reload(){
     $.post("/home/Index", function(data) {
         window.location.reload(true);
@@ -98,16 +118,19 @@ $(function(){
         
         if($("#mode").val() == 'none') $("#script").hide();
         else{
-            $.post("/home/GetScripts", { mode: this.value}, function(data){                     
-                $("#script").empty();
-                $("#script").append('<option value="none" selected>- Select -</option>');
-
-                $.each(data, function() {                        
-                    $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
-                });
-                            
-                $("#script").show();
+            connection.invoke("GetScripts", this.value).catch(function (err) {
+                return console.error(err.toString());
             });
+            // $.post("/home/GetScripts", { mode: this.value}, function(data){                     
+            //     $("#script").empty();
+            //     $("#script").append('<option value="none" selected>- Select -</option>');
+
+            //     $.each(data, function() {                        
+            //         $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
+            //     });
+                            
+            //     $("#script").show();
+            // });
         }
     });
 
