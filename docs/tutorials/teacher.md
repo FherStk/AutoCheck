@@ -411,8 +411,8 @@ Single mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before the single execution. | `Running on single mode:`
-[setup](#setup) | mapping | no | The defined content will be executed once before the copy_detector and any target's body. |
-[teardown](#teardown) | mapping | no | The  defined content will be executed once after the copy_detector and all target's body. |
+[init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption| |
+[end](#end) | sequence | no | The defined content will be executed once at the end of the script | |
 [local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
 [remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
@@ -443,16 +443,38 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
-[setup](#setup) | sequence | no | The defined content will be executed once before the copy_detector and any target's body. |
-[teardown](#teardown) | sequence | no | The  defined content will be executed once after the copy_detector and all target's body. |
-[pre](#pre) | sequence | no | The defined content will be executed once per batch target before each body. |
-[post](#post) | sequence | no | The defined content will be executed once per batch target after each body. |
+[init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption| |
+[setup](#setup) | sequence | no | The defined content will be executed once per target, before the caption (and also before the copy_detectors begins). | |
+[pre](#pre) | sequence | no | The defined content will be executed once per batch target just before each body. |
+[post](#post) | sequence | no | The defined content will be executed once per batch target just after each body. |
+[teardown](#teardown) | sequence | no | The defined content will be executed once per target, after the execution of all post. |
+[end](#end) | sequence | no | The defined content will be executed once at the end of the script | |
 [copy_detector](#copy_detector) | mapping | no | Enables the copy detection logic, which will be executed before any body and after all pre executions. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
-[remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target. | 
+[remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target | 
+
+### <a name="setup"></a> body
+The defined content will be executed before the caption (once per target on batch mode).
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command.
+echo | text | no | Displays a message.
+
+### <a name="teardown"></a> body
+The defined content will be executed at the end (once per target on batch mode).
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command.
+echo | text | no | Displays a message.
 
 #### <a name="pre"></a> pre
-The defined content will be executed once per batch target before any target's body.
+The defined content will be executed once at the end of the script (once all targets ended).
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
@@ -462,7 +484,7 @@ Name | Type | Mandatory | Description
 echo | text | no | Displays a message.
 
 #### <a name="post"></a> post
-The  defined content will be executed once per batch target after all target's body.
+The defined content will be executed once per batch target just after each body.
 
 Name | Type | Mandatory | Description 
 ------------ | -------------

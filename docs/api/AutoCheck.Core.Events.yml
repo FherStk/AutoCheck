@@ -1,0 +1,47 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  id: AutoCheck.Core.Events
+  children:
+  - AutoCheck.Core.Events.LogGeneratedEventArgs
+  - AutoCheck.Core.Events.ScriptExecutionEventArgs
+  - AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  - AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  langs:
+  - csharp
+  - vb
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+  type: Namespace
+  assemblies:
+  - AutoCheck.Core
+references:
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+  commentId: T:AutoCheck.Core.Events.LogGeneratedEventArgs
+  name: LogGeneratedEventArgs
+  nameWithType: LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs
+  name: ScriptExecutionEventArgs
+  nameWithType: ScriptExecutionEventArgs
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+  parent: AutoCheck.Core.Events
+  name: ScriptExecutionEventArgs.ExecutionModeType
+  nameWithType: ScriptExecutionEventArgs.ExecutionModeType
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+- uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  commentId: T:AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+  parent: AutoCheck.Core.Events
+  name: ScriptExecutionEventArgs.ExecutionEventType
+  nameWithType: ScriptExecutionEventArgs.ExecutionEventType
+  fullName: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events

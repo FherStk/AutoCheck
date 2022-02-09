@@ -21,7 +21,9 @@ inherits: "{$APP_FOLDER_PATH}/../scripts/templates/mineseeker.yaml"
 batch: 
   - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
   - local:                             
-      - path: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker"
+      - folder: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_4"
+      - folder: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_5"
+      - folder: "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_7"
 
   - copy_detector:            
       type: "SourceCode"            

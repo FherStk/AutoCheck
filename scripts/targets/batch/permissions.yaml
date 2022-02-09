@@ -18,17 +18,13 @@
 
 inherits: "../../templates/permissions.yaml"  
 
-batch: 
-    - run:
-        connector: "TextStream"
-        command: "Substring"
-        arguments: 
-            content: "{$CURRENT_FOLDER_NAME}"
-            regex: "^[^ ]+(?= )"
-        store: "student"  
+vars:
+    student: ""
 
-    - concurrent: !!int 1 #cannot run in parallel due permissions over users
-    - caption: "Running on batch mode for ~{$STUDENT}:"       
+batch: 
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
+    - concurrent: 1 #cannot run in parallel due permissions over users
+    
     - local:                             
         - path: "{$APP_FOLDER_PATH}/../test/samples/private/permissions"
         - vars:
@@ -42,14 +38,8 @@ batch:
         file: "*.log"
         threshold: !!float 0.65    
 
-    - run:
-        connector: "TextStream"
-        command: "DirectoryName"
-        arguments: "--path {$CURRENT_FOLDER_PATH}"
-        store: "dirname"
-
-    - setup:
-        - echo: "Extracting files at ~{$DIRNAME}:"
+    - setup:                
+        - echo: "Extracting files at ~{$CURRENT_FOLDER_NAME}:"
 
         - run:            
             command:  "GetFile"
@@ -74,8 +64,9 @@ batch:
             arguments: 
                 recursive: !!bool True
 
+    - pre:
         - echo: ""
-        - echo: "Restoring BBDD permissions:"        
+        - echo: "Restoring BBDD permissions:"                     
 
         - connector:            
             type: "Postgres"        
@@ -135,16 +126,65 @@ batch:
             connector: "Postgres"
             command:  "CreateRole"
             arguments: "--role dbadmin"
-            onexception: "SUCCESS"
+            onexception: "SUCCESS"        
 
         - echo: ""
-        - echo: "Importing SQL dump:"
+        - echo: "Setting up SQL dump:"
+
+        - run:
+            caption: "   Getting student name... "
+            connector: "TextStream"
+            command: "Substring"
+            arguments: 
+                content: "{$CURRENT_FOLDER_NAME}"
+                regex: "^[^_]+(?=_)"
+            store: "$STUDENT" 
+
+        - run:
+            caption: "   Getting database name... "
+            connector: "TextStream"
+            command: "Replace"
+            arguments: 
+                content: "{$STUDENT}"
+                replacement: "-"
+                regex: \s
+            store: "$STUDENT"  
 
         - run:            
+            caption: "   Looking for the SQL dump... "
             command:  "GetFile"
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
-            store: "SQL_FILE"                
-        
+            store: "SQL_FILE"   
+
+        - connector:
+            type: "PlainText"
+            arguments: "--filePath {$SQL_FILE}"       
+
+        - run:  
+            caption: "   Replacing the database name... "  
+            connector: "PlainText"      
+            command:  "Replace"
+            arguments: 
+                replacement: "DATABASE {$DATABASE}"
+                regex: DATABASE empresa
+
+        - run:    
+            caption: "   Replacing the database connection... "  
+            connector: "PlainText"      
+            command:  "Replace"
+            arguments: 
+                replacement: "\\connect {$DATABASE}"
+                regex: \\connect empresa
+       
+        - run:   
+            caption: "   Storing changes... "   
+            connector: "PlainText"      
+            command:  "Store"
+            arguments: "--filePath {$SQL_FILE}"                
+
+        - echo: ""
+        - echo: "Importing SQL dump:"        
+
         - connector:            
             type: "Postgres"        
             arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"

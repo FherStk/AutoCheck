@@ -12,6 +12,9 @@ items:
   - AutoCheck.Core.Connectors.PlainText.Dispose
   - AutoCheck.Core.Connectors.PlainText.Find(System.String)
   - AutoCheck.Core.Connectors.PlainText.plainTextDoc
+  - AutoCheck.Core.Connectors.PlainText.Replace(System.String,System.String)
+  - AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  - AutoCheck.Core.Connectors.PlainText.Store(System.String,System.String)
   langs:
   - csharp
   - vb
@@ -22,7 +25,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/connectors/PlainText.cs
@@ -64,11 +67,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: plainTextDoc
     path: ../core/connectors/PlainText.cs
-    startLine: 77
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -102,11 +105,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 85
+    startLine: 93
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -138,11 +141,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 98
+    startLine: 106
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -181,11 +184,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
-    startLine: 112
+    startLine: 120
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -222,11 +225,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/PlainText.cs
-    startLine: 125
+    startLine: 133
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -257,11 +260,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/PlainText.cs
-    startLine: 133
+    startLine: 141
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -296,11 +299,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/PlainText.cs
-    startLine: 143
+    startLine: 151
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -317,6 +320,120 @@ items:
       description: The number of matches.
     content.vb: Public Function Count(regex As String) As Integer
   overload: AutoCheck.Core.Connectors.PlainText.Count*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.PlainText.Replace(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Replace(System.String,System.String)
+  id: Replace(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Replace(String, String)
+  nameWithType: PlainText.Replace(String, String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Replace(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Replace
+    path: ../core/connectors/PlainText.cs
+    startLine: 160
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReplaces every match within the given content with the given replacement.\n"
+  example: []
+  syntax:
+    content: public void Replace(string replacement, string regex)
+    parameters:
+    - id: replacement
+      type: System.String
+      description: Every match will be replaced with this.
+    - id: regex
+      type: System.String
+      description: The regular expression which will be used to search the content.
+    content.vb: Public Sub Replace(replacement As String, regex As String)
+  overload: AutoCheck.Core.Connectors.PlainText.Replace*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.PlainText.Store(System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Store(System.String,System.String)
+  id: Store(System.String,System.String)
+  parent: AutoCheck.Core.Connectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Store(String, String)
+  nameWithType: PlainText.Store(String, String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Store(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Store
+    path: ../core/connectors/PlainText.cs
+    startLine: 175
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nStores the current content into a local file.\n"
+  example: []
+  syntax:
+    content: public void Store(string folderPath, string fileName)
+    parameters:
+    - id: folderPath
+      type: System.String
+      description: The folder where the file will be stored, it will be created if not exists.
+    - id: fileName
+      type: System.String
+      description: The file name, it will be replaced if exists.
+    content.vb: Public Sub Store(folderPath As String, fileName As String)
+  overload: AutoCheck.Core.Connectors.PlainText.Store*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  commentId: M:AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  id: Store(System.String)
+  parent: AutoCheck.Core.Connectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: Store(String)
+  nameWithType: PlainText.Store(String)
+  fullName: AutoCheck.Core.Connectors.PlainText.Store(System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Store
+    path: ../core/connectors/PlainText.cs
+    startLine: 184
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nStores the current content into a local file.\n"
+  example: []
+  syntax:
+    content: public void Store(string filePath)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: The path where the file will be stored, file and folder will be created if not exists.
+    content.vb: Public Sub Store(filePath As String)
+  overload: AutoCheck.Core.Connectors.PlainText.Store*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -676,3 +793,13 @@ references:
   name: Count
   nameWithType: PlainText.Count
   fullName: AutoCheck.Core.Connectors.PlainText.Count
+- uid: AutoCheck.Core.Connectors.PlainText.Replace*
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Replace
+  name: Replace
+  nameWithType: PlainText.Replace
+  fullName: AutoCheck.Core.Connectors.PlainText.Replace
+- uid: AutoCheck.Core.Connectors.PlainText.Store*
+  commentId: Overload:AutoCheck.Core.Connectors.PlainText.Store
+  name: Store
+  nameWithType: PlainText.Store
+  fullName: AutoCheck.Core.Connectors.PlainText.Store

@@ -21,3 +21,4 @@ vars:
   student_var: "{$FAKE}"
 
 body:     
+  - echo: "{$FAKE}"

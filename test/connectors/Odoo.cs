@@ -18,13 +18,15 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+//TODO: try to optimize. Now: 15-20 seconds to complete. Target: 5-10 seconds.
+
 using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
 
 namespace AutoCheck.Test.Connectors
 {    
-    [Parallelizable(ParallelScope.All)]   //TODO: conflict between instances, each test must use its own connector instance!
+    [Parallelizable(ParallelScope.All)]
     public class Odoo : Test
     {   
         private AutoCheck.Core.Connectors.Odoo Conn = null; //Just to share connector data                  
