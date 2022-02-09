@@ -12,10 +12,6 @@
     name: Output.Type
   - uid: AutoCheck.Core.Script
     name: Script
-  - uid: AutoCheck.Core.Script.ExecutionModeType
-    name: Script.ExecutionModeType
-  - uid: AutoCheck.Core.Script.LogGeneratedEventArgs
-    name: Script.LogGeneratedEventArgs
   - uid: AutoCheck.Core.Utils
     name: Utils
   - uid: AutoCheck.Core.Utils.OS
@@ -80,6 +76,17 @@
     name: SqlLog
   - uid: AutoCheck.Core.CopyDetectors.Xml
     name: Xml
+- uid: AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  items:
+  - uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+    name: LogGeneratedEventArgs
+  - uid: AutoCheck.Core.Events.ScriptExecutionEventArgs
+    name: ScriptExecutionEventArgs
+  - uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionEventType
+    name: ScriptExecutionEventArgs.ExecutionEventType
+  - uid: AutoCheck.Core.Events.ScriptExecutionEventArgs.ExecutionModeType
+    name: ScriptExecutionEventArgs.ExecutionModeType
 - uid: AutoCheck.Core.Exceptions
   name: AutoCheck.Core.Exceptions
   items:

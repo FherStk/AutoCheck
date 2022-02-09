@@ -1,0 +1,268 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs
+  commentId: T:AutoCheck.Core.Events.LogGeneratedEventArgs
+  id: LogGeneratedEventArgs
+  parent: AutoCheck.Core.Events
+  children:
+  - AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log)
+  - AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  - AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  langs:
+  - csharp
+  - vb
+  name: LogGeneratedEventArgs
+  nameWithType: LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  type: Class
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogGeneratedEventArgs
+    path: ../core/main/Events.cs
+    startLine: 5
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: 'public class LogGeneratedEventArgs : EventArgs'
+    content.vb: >-
+      Public Class LogGeneratedEventArgs
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - AutoCheck.Core.Events.LogGeneratedEventArgs.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  commentId: P:AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  id: ID
+  parent: AutoCheck.Core.Events.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: LogGeneratedEventArgs.ID
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ID
+    path: ../core/main/Events.cs
+    startLine: 7
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: Guid
+    content.vb: Public Property ID As Guid
+  overload: AutoCheck.Core.Events.LogGeneratedEventArgs.ID*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  commentId: P:AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  id: Log
+  parent: AutoCheck.Core.Events.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Log
+  nameWithType: LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Log
+    path: ../core/main/Events.cs
+    startLine: 8
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Output.Log Log { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output.Log
+    content.vb: Public Property Log As Output.Log
+  overload: AutoCheck.Core.Events.LogGeneratedEventArgs.Log*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log)
+  commentId: M:AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log)
+  id: '#ctor(Guid,AutoCheck.Core.Output.Log)'
+  parent: AutoCheck.Core.Events.LogGeneratedEventArgs
+  langs:
+  - csharp
+  - vb
+  name: LogGeneratedEventArgs(Guid, Output.Log)
+  nameWithType: LogGeneratedEventArgs.LogGeneratedEventArgs(Guid, Output.Log)
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.LogGeneratedEventArgs(Guid, AutoCheck.Core.Output.Log)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Events.cs
+    startLine: 15
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  summary: "\nCreates a new log event instance.\n"
+  example: []
+  syntax:
+    content: public LogGeneratedEventArgs(Guid id, Output.Log log)
+    parameters:
+    - id: id
+      type: Guid
+      description: The current instance ID (for multi-threading purposes).
+    - id: log
+      type: AutoCheck.Core.Output.Log
+      description: The log content.
+    content.vb: Public Sub New(id As Guid, log As Output.Log)
+  overload: AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<LogGeneratedEventArgs>()
+  nameWithType: ObjectExtensions.DeepClone<LogGeneratedEventArgs>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.LogGeneratedEventArgs>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of LogGeneratedEventArgs)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.LogGeneratedEventArgs)()
+  name.vb: DeepClone(Of LogGeneratedEventArgs)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<LogGeneratedEventArgs>
+    nameWithType: ObjectExtensions.DeepClone<LogGeneratedEventArgs>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.LogGeneratedEventArgs>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of LogGeneratedEventArgs)
+    nameWithType: ObjectExtensions.DeepClone(Of LogGeneratedEventArgs)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.LogGeneratedEventArgs)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.ID*
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+  name: ID
+  nameWithType: LogGeneratedEventArgs.ID
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.ID
+- uid: Guid
+  isExternal: true
+  name: Guid
+  nameWithType: Guid
+  fullName: Guid
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.Log*
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+  name: Log
+  nameWithType: LogGeneratedEventArgs.Log
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.Log
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
+  parent: AutoCheck.Core
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor*
+  commentId: Overload:AutoCheck.Core.Events.LogGeneratedEventArgs.#ctor
+  name: LogGeneratedEventArgs
+  nameWithType: LogGeneratedEventArgs.LogGeneratedEventArgs
+  fullName: AutoCheck.Core.Events.LogGeneratedEventArgs.LogGeneratedEventArgs

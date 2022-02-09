@@ -20,7 +20,6 @@
 
 using System;
 using System.IO;
-using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core;
 using AutoCheck.Core.Exceptions;

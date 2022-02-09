@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Rss
     path: ../core/connectors/Rss.cs
@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -153,7 +153,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Rss.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Rss.cs
@@ -229,7 +229,7 @@ items:
   source:
     remote:
       path: core/connectors/Rss.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateRssAgainstW3C
     path: ../core/connectors/Rss.cs

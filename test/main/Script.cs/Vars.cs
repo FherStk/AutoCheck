@@ -60,6 +60,12 @@ namespace AutoCheck.Test
         {                         
             Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars_ok4.yaml")));              
         }
+
+         [Test, Category("Vars"), Category("Local")]
+       public void ParseVars_SCOPE_NOTEXISTS_NOREQUEST()
+        {                         
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Script(GetSampleFile("vars_ok6.yaml")));              
+        }
                
         [Test, Category("Vars"), Category("Local")]
         public void ParseVars_INVALID_DUPLICATED()
@@ -68,13 +74,13 @@ namespace AutoCheck.Test
         }
 
         [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_NOTEXISTS_SIMPLE()
+        public void ParseVars_NOTEXISTS_REQUEST()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko2.yaml")));           
         }
 
         [Test, Category("Vars"), Category("Local")]
-        public void ParseVars_SCOPE_NOTEXISTS()
+        public void ParseVars_NOTEXISTS_SIMPLE()
         {  
             Assert.Throws<VariableNotFoundException>(() => new AutoCheck.Core.Script(GetSampleFile("vars_ko3.yaml")));
         }

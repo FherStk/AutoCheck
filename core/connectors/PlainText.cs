@@ -30,7 +30,7 @@ namespace AutoCheck.Core.Connectors{
         /// Contains a PlainText document content.
         /// </summary>
         public class PlainTextDocument{            
-            private string[] LineContent {get; set;}            
+            private string[] LineContent {get; set;}
 
             /// <summary>
             /// Document's content
@@ -59,6 +59,14 @@ namespace AutoCheck.Core.Connectors{
 
                 if(string.IsNullOrEmpty(file)) throw new ArgumentNullException("file");
                 else LineContent = File.ReadAllLines(file);                               
+            }
+
+            /// <summary>
+            /// Creates a new PlaintText Document instance, parsing the given lines.
+            /// </summary>
+            /// <param name="lines">The file content.</param>
+            public PlainTextDocument(string[] lines){ 
+                LineContent = lines;
             }
 
             /// <summary>
@@ -143,6 +151,41 @@ namespace AutoCheck.Core.Connectors{
         /// <returns>The number of matches.</returns>
         public int Count(string regex){
             return Find(regex).Length;
+        }
+
+        /// <summary>
+        /// Replaces every match within the given content with the given replacement.
+        /// </summary>
+        /// <param name="replacement">Every match will be replaced with this.</param>
+        /// <param name="regex">The regular expression which will be used to search the content.</param>
+        public void Replace(string replacement, string regex){            
+            var conn = new TextStream();            
+
+            var newContent = new string[plainTextDoc.Lines];
+            for(int i=0; i<plainTextDoc.Lines; i++)
+                newContent[i] = conn.Replace(plainTextDoc.GetLine(i), replacement, regex);
+
+            plainTextDoc = new PlainTextDocument(newContent);
+        }
+
+        /// <summary>
+        /// Stores the current content into a local file.
+        /// </summary>
+        /// <param name="folderPath">The folder where the file will be stored, it will be created if not exists.</param>
+        /// <param name="fileName">The file name, it will be replaced if exists.</param>
+        public void Store(string folderPath, string fileName){
+            if(!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+            File.WriteAllText(Path.Combine(folderPath, fileName), plainTextDoc.Content);            
+        }
+
+        /// <summary>
+        /// Stores the current content into a local file.
+        /// </summary>
+        /// <param name="filePath">The path where the file will be stored, file and folder will be created if not exists.</param>
+        public void Store(string filePath){
+            var folder = Path.GetDirectoryName(filePath);
+            var file = Path.GetFileName(filePath);
+            Store(folder, file);
         }
     }
 }

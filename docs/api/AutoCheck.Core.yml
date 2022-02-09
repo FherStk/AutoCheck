@@ -9,8 +9,6 @@ items:
   - AutoCheck.Core.Output.Style
   - AutoCheck.Core.Output.Type
   - AutoCheck.Core.Script
-  - AutoCheck.Core.Script.ExecutionModeType
-  - AutoCheck.Core.Script.LogGeneratedEventArgs
   - AutoCheck.Core.Utils
   - AutoCheck.Core.Utils.OS
   langs:
@@ -52,17 +50,6 @@ references:
   name: Script
   nameWithType: Script
   fullName: AutoCheck.Core.Script
-- uid: AutoCheck.Core.Script.ExecutionModeType
-  commentId: T:AutoCheck.Core.Script.ExecutionModeType
-  parent: AutoCheck.Core
-  name: Script.ExecutionModeType
-  nameWithType: Script.ExecutionModeType
-  fullName: AutoCheck.Core.Script.ExecutionModeType
-- uid: AutoCheck.Core.Script.LogGeneratedEventArgs
-  commentId: T:AutoCheck.Core.Script.LogGeneratedEventArgs
-  name: Script.LogGeneratedEventArgs
-  nameWithType: Script.LogGeneratedEventArgs
-  fullName: AutoCheck.Core.Script.LogGeneratedEventArgs
 - uid: AutoCheck.Core.Utils
   commentId: T:AutoCheck.Core.Utils
   name: Utils

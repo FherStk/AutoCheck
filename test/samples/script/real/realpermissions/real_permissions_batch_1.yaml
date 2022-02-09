@@ -19,25 +19,27 @@
 inherits: "{$APP_FOLDER_PATH}/../scripts/templates/permissions.yaml"  
 
 vars:
-    student: "{$CURRENT_FOLDER_NAME}"
+    student: ""
 
 batch: 
-    - caption: "Running on batch mode for ~{$STUDENT}:"       
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
+    - concurrent: 1 #cannot run in parallel due permissions over users
+    
     - local:                             
-        - path: "{$APP_FOLDER_PATH}/../test/samples/private/permissions"            
+        - path: "{$APP_FOLDER_PATH}/../test/samples/private/permissions"
         - vars:
             current_host: "localhost"
             current_user: "postgres"
             current_password: "postgres"
-            database: "empresa-{$STUDENT}"
+            database: "empresa-permissions-{$STUDENT}"
 
     - copy_detector:            
         type: "SqlLog"
         file: "*.log"
         threshold: !!float 0.65    
 
-    - setup:
-        - echo: "Extracting files at: ~{$STUDENT}"
+    - setup:                
+        - echo: "Extracting files at ~{$CURRENT_FOLDER_NAME}:"
 
         - run:            
             command:  "GetFile"
@@ -48,14 +50,11 @@ batch:
             type: "Compressed"                    
             arguments: "--filePath {$ZIP_FILE}"
         
-        - connector:  
-            type: "TextStream"
-
         - run:
             connector: "TextStream"
             command: "FileName"
             arguments: "--path {$ZIP_FILE}"
-            store: "FILENAME"
+            store: "filename"
 
         - run:   
             caption: "   Extracting the file ~{$FILENAME}... "
@@ -66,7 +65,8 @@ batch:
                 recursive: !!bool True
 
     - pre:
-        - echo: "Restoring BBDD permissions."        
+        - echo: ""
+        - echo: "Restoring BBDD permissions:"                     
 
         - connector:            
             type: "Postgres"        
@@ -126,34 +126,79 @@ batch:
             connector: "Postgres"
             command:  "CreateRole"
             arguments: "--role dbadmin"
-            onexception: "SUCCESS"
+            onexception: "SUCCESS"        
 
         - echo: ""
-        - echo: "Importing SQL dump."
+        - echo: "Setting up SQL dump:"
+
+        - run:
+            caption: "   Getting student name... "
+            connector: "TextStream"
+            command: "Substring"
+            arguments: 
+                content: "{$CURRENT_FOLDER_NAME}"
+                regex: "^[^_]+(?=_)"
+            store: "$STUDENT" 
+
+        - run:
+            caption: "   Getting database name... "
+            connector: "TextStream"
+            command: "Replace"
+            arguments: 
+                content: "{$STUDENT}"
+                replacement: "-"
+                regex: \s
+            store: "$STUDENT"  
 
         - run:            
+            caption: "   Looking for the SQL dump... "
             command:  "GetFile"
             arguments: "--path {$CURRENT_FOLDER_PATH} --file *.sql"
-            store: "SQL_FILE"                
-        
+            store: "SQL_FILE"   
+
+        - connector:
+            type: "PlainText"
+            arguments: "--filePath {$SQL_FILE}"       
+
+        - run:  
+            caption: "   Replacing the database name... "  
+            connector: "PlainText"      
+            command:  "Replace"
+            arguments: 
+                replacement: "DATABASE {$DATABASE}"
+                regex: DATABASE empresa
+
+        - run:    
+            caption: "   Replacing the database connection... "  
+            connector: "PlainText"      
+            command:  "Replace"
+            arguments: 
+                replacement: "\\connect {$DATABASE}"
+                regex: \\connect empresa
+       
+        - run:   
+            caption: "   Storing changes... "   
+            connector: "PlainText"      
+            command:  "Store"
+            arguments: "--filePath {$SQL_FILE}"                
+
+        - echo: ""
+        - echo: "Importing SQL dump:"        
+
         - connector:            
             type: "Postgres"        
             arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
-
-        - connector:  
-            type: "TextStream"
 
         - run:
             connector: "TextStream"
             command: "FileName"
             arguments: "--path {$SQL_FILE}"
-            store: "FILENAME"
+            store: "filename"
 
         - run:
-            caption: "   Restoring database using the file: ~{$FILENAME}... "          
+            caption: "   Restoring database ~{$DATABASE}~ using the file ~{$FILENAME}... "          
             connector: "Postgres"
             command:  "CreateDataBase"
-            onexception: "ABORT"
             arguments: 
                 dumpPath: "{$SQL_FILE}"
                 replace: True            

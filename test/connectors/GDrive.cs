@@ -18,6 +18,8 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+//TODO: try to optimize. Now: >1:30 minutes to complete. Target: 5-10 seconds would be great... but less than a minute will do the trick
+
 using System;
 using System.IO;
 using System.Threading;

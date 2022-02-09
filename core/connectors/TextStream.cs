@@ -68,6 +68,22 @@ namespace AutoCheck.Core.Connectors{
         }
 
         /// <summary>
+        /// Replaces every match within the given content with the given replacement.
+        /// </summary>
+        /// <param name="content">The content where the regex will be applied to.</param>
+        /// <param name="replacement">Every match will be replaced with this.</param>
+        /// <param name="regex">The regular expression which will be used to search the content.</param>
+        /// <returns>The replaced string.</returns>
+        public string Replace(string content, string replacement, string regex){            
+            foreach(var found in Find(content, regex)){
+                content = content.Replace(found, replacement);
+                break; //only one execution needed
+            }
+
+            return content;
+        }
+
+        /// <summary>
         /// Gets how many matches can be found within the given text using a regular expression.
         /// </summary>
         /// <param name="content">The content where the regex will be applied to.</param>

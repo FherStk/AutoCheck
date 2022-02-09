@@ -29,7 +29,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
@@ -81,7 +81,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Index
     path: ../core/copy/PlainText.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Files
     path: ../core/copy/PlainText.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Matches
     path: ../core/copy/PlainText.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Diffs
     path: ../core/copy/PlainText.cs
@@ -221,7 +221,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SentenceMatchWeight
     path: ../core/copy/PlainText.cs
@@ -259,7 +259,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
@@ -297,7 +297,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
@@ -335,7 +335,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
@@ -376,7 +376,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
@@ -413,7 +413,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
@@ -448,7 +448,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
@@ -490,7 +490,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
@@ -525,7 +525,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
@@ -567,7 +567,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs

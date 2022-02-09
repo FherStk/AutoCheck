@@ -5,10 +5,10 @@ items:
   id: Output.Type
   parent: AutoCheck.Core
   children:
-  - AutoCheck.Core.Output.Type.HEADER
-  - AutoCheck.Core.Output.Type.SCRIPT
-  - AutoCheck.Core.Output.Type.SETUP
-  - AutoCheck.Core.Output.Type.TEARDOWN
+  - AutoCheck.Core.Output.Type.AFTER_TARGET
+  - AutoCheck.Core.Output.Type.BEFORE_TARGET
+  - AutoCheck.Core.Output.Type.END
+  - AutoCheck.Core.Output.Type.START
   langs:
   - csharp
   - vb
@@ -19,11 +19,11 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Type
     path: ../core/main/Output.cs
-    startLine: 99
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -38,126 +38,126 @@ items:
   modifiers.vb:
   - Public
   - Enum
-- uid: AutoCheck.Core.Output.Type.HEADER
-  commentId: F:AutoCheck.Core.Output.Type.HEADER
-  id: HEADER
+- uid: AutoCheck.Core.Output.Type.START
+  commentId: F:AutoCheck.Core.Output.Type.START
+  id: START
   parent: AutoCheck.Core.Output.Type
   langs:
   - csharp
   - vb
-  name: HEADER
-  nameWithType: Output.Type.HEADER
-  fullName: AutoCheck.Core.Output.Type.HEADER
+  name: START
+  nameWithType: Output.Type.START
+  fullName: AutoCheck.Core.Output.Type.START
   type: Field
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: HEADER
-    path: ../core/main/Output.cs
-    startLine: 100
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  syntax:
-    content: HEADER = 0
-    return:
-      type: AutoCheck.Core.Output.Type
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
-- uid: AutoCheck.Core.Output.Type.SETUP
-  commentId: F:AutoCheck.Core.Output.Type.SETUP
-  id: SETUP
-  parent: AutoCheck.Core.Output.Type
-  langs:
-  - csharp
-  - vb
-  name: SETUP
-  nameWithType: Output.Type.SETUP
-  fullName: AutoCheck.Core.Output.Type.SETUP
-  type: Field
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.20.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: SETUP
-    path: ../core/main/Output.cs
-    startLine: 101
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  syntax:
-    content: SETUP = 1
-    return:
-      type: AutoCheck.Core.Output.Type
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
-- uid: AutoCheck.Core.Output.Type.SCRIPT
-  commentId: F:AutoCheck.Core.Output.Type.SCRIPT
-  id: SCRIPT
-  parent: AutoCheck.Core.Output.Type
-  langs:
-  - csharp
-  - vb
-  name: SCRIPT
-  nameWithType: Output.Type.SCRIPT
-  fullName: AutoCheck.Core.Output.Type.SCRIPT
-  type: Field
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.20.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: SCRIPT
-    path: ../core/main/Output.cs
-    startLine: 102
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core
-  syntax:
-    content: SCRIPT = 2
-    return:
-      type: AutoCheck.Core.Output.Type
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
-- uid: AutoCheck.Core.Output.Type.TEARDOWN
-  commentId: F:AutoCheck.Core.Output.Type.TEARDOWN
-  id: TEARDOWN
-  parent: AutoCheck.Core.Output.Type
-  langs:
-  - csharp
-  - vb
-  name: TEARDOWN
-  nameWithType: Output.Type.TEARDOWN
-  fullName: AutoCheck.Core.Output.Type.TEARDOWN
-  type: Field
-  source:
-    remote:
-      path: core/main/Output.cs
-      branch: v2.20.1
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: TEARDOWN
+    id: START
     path: ../core/main/Output.cs
     startLine: 103
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: TEARDOWN = 3
+    content: START = 0
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.BEFORE_TARGET
+  commentId: F:AutoCheck.Core.Output.Type.BEFORE_TARGET
+  id: BEFORE_TARGET
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: BEFORE_TARGET
+  nameWithType: Output.Type.BEFORE_TARGET
+  fullName: AutoCheck.Core.Output.Type.BEFORE_TARGET
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BEFORE_TARGET
+    path: ../core/main/Output.cs
+    startLine: 104
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: BEFORE_TARGET = 1
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.AFTER_TARGET
+  commentId: F:AutoCheck.Core.Output.Type.AFTER_TARGET
+  id: AFTER_TARGET
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: AFTER_TARGET
+  nameWithType: Output.Type.AFTER_TARGET
+  fullName: AutoCheck.Core.Output.Type.AFTER_TARGET
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_TARGET
+    path: ../core/main/Output.cs
+    startLine: 105
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: AFTER_TARGET = 2
+    return:
+      type: AutoCheck.Core.Output.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Output.Type.END
+  commentId: F:AutoCheck.Core.Output.Type.END
+  id: END
+  parent: AutoCheck.Core.Output.Type
+  langs:
+  - csharp
+  - vb
+  name: END
+  nameWithType: Output.Type.END
+  fullName: AutoCheck.Core.Output.Type.END
+  type: Field
+  source:
+    remote:
+      path: core/main/Output.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: END
+    path: ../core/main/Output.cs
+    startLine: 106
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: END = 3
     return:
       type: AutoCheck.Core.Output.Type
   modifiers.csharp:

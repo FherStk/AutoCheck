@@ -21,6 +21,9 @@ batch:
     - local:                             
         - path: "{$APP_FOLDER_PATH}/temp/script/setup/test1"   
 
+    - init:
+        - echo: "Echo for init execution over ~{$CURRENT_FOLDER_NAME}"
+
     - setup:
         - echo: "Echo for setup execution over ~{$CURRENT_FOLDER_NAME}"
 
@@ -32,6 +35,9 @@ batch:
 
     - teardown:
         - echo: "Echo for teardown execution over ~{$CURRENT_FOLDER_NAME}"
+
+    - end:
+        - echo: "Echo for end execution over ~{$CURRENT_FOLDER_NAME}"
 
 body:
   - echo: "Echo for body execution over ~{$CURRENT_FOLDER_NAME}"

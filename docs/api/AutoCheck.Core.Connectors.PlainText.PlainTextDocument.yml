@@ -6,6 +6,7 @@ items:
   parent: AutoCheck.Core.Connectors
   children:
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String)
+  - AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String[])
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Content
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
   - AutoCheck.Core.Connectors.PlainText.PlainTextDocument.Lines
@@ -19,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainTextDocument
     path: ../core/connectors/PlainText.cs
@@ -58,7 +59,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Content
     path: ../core/connectors/PlainText.cs
@@ -95,7 +96,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Lines
     path: ../core/connectors/PlainText.cs
@@ -132,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/PlainText.cs
@@ -154,6 +155,45 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String[])
+  commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor(System.String[])
+  id: '#ctor(System.String[])'
+  parent: AutoCheck.Core.Connectors.PlainText.PlainTextDocument
+  langs:
+  - csharp
+  - vb
+  name: PlainTextDocument(String[])
+  nameWithType: PlainText.PlainTextDocument.PlainTextDocument(String[])
+  fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: core/connectors/PlainText.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/connectors/PlainText.cs
+    startLine: 67
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nCreates a new PlaintText Document instance, parsing the given lines.\n"
+  example: []
+  syntax:
+    content: public PlainTextDocument(string[] lines)
+    parameters:
+    - id: lines
+      type: System.String[]
+      description: The file content.
+    content.vb: Public Sub New(lines As String())
+  overload: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.#ctor*
+  nameWithType.vb: PlainText.PlainTextDocument.PlainTextDocument(String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument(System.String())
+  name.vb: PlainTextDocument(String())
 - uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
   commentId: M:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine(System.Int32)
   id: GetLine(System.Int32)
@@ -168,11 +208,11 @@ items:
   source:
     remote:
       path: core/connectors/PlainText.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLine
     path: ../core/connectors/PlainText.cs
-    startLine: 68
+    startLine: 76
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -303,6 +343,32 @@ references:
   name: PlainTextDocument
   nameWithType: PlainText.PlainTextDocument.PlainTextDocument
   fullName: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.PlainTextDocument
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine*
   commentId: Overload:AutoCheck.Core.Connectors.PlainText.PlainTextDocument.GetLine
   name: GetLine

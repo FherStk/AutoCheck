@@ -12,6 +12,7 @@ items:
   - AutoCheck.Core.Connectors.TextStream.Dispose
   - AutoCheck.Core.Connectors.TextStream.FileName(System.String)
   - AutoCheck.Core.Connectors.TextStream.Find(System.String,System.String)
+  - AutoCheck.Core.Connectors.TextStream.Replace(System.String,System.String,System.String)
   - AutoCheck.Core.Connectors.TextStream.Substring(System.String,System.String)
   langs:
   - csharp
@@ -23,7 +24,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TextStream
     path: ../core/connectors/TextStream.cs
@@ -65,7 +66,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/TextStream.cs
@@ -97,7 +98,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/TextStream.cs
@@ -132,7 +133,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/TextStream.cs
@@ -174,7 +175,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Substring
     path: ../core/connectors/TextStream.cs
@@ -202,6 +203,51 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: AutoCheck.Core.Connectors.TextStream.Replace(System.String,System.String,System.String)
+  commentId: M:AutoCheck.Core.Connectors.TextStream.Replace(System.String,System.String,System.String)
+  id: Replace(System.String,System.String,System.String)
+  parent: AutoCheck.Core.Connectors.TextStream
+  langs:
+  - csharp
+  - vb
+  name: Replace(String, String, String)
+  nameWithType: TextStream.Replace(String, String, String)
+  fullName: AutoCheck.Core.Connectors.TextStream.Replace(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/TextStream.cs
+      branch: v2.21.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Replace
+    path: ../core/connectors/TextStream.cs
+    startLine: 76
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nReplaces every match within the given content with the given replacement.\n"
+  example: []
+  syntax:
+    content: public string Replace(string content, string replacement, string regex)
+    parameters:
+    - id: content
+      type: System.String
+      description: The content where the regex will be applied to.
+    - id: replacement
+      type: System.String
+      description: Every match will be replaced with this.
+    - id: regex
+      type: System.String
+      description: The regular expression which will be used to search the content.
+    return:
+      type: System.String
+      description: The replaced string.
+    content.vb: Public Function Replace(content As String, replacement As String, regex As String) As String
+  overload: AutoCheck.Core.Connectors.TextStream.Replace*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
   commentId: M:AutoCheck.Core.Connectors.TextStream.Count(System.String,System.String)
   id: Count(System.String,System.String)
@@ -216,11 +262,11 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/TextStream.cs
-    startLine: 75
+    startLine: 91
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -258,11 +304,11 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DirectoryPath
     path: ../core/connectors/TextStream.cs
-    startLine: 84
+    startLine: 100
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -297,11 +343,11 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DirectoryName
     path: ../core/connectors/TextStream.cs
-    startLine: 94
+    startLine: 110
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -336,11 +382,11 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.20.1
+      branch: v2.21.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FileName
     path: ../core/connectors/TextStream.cs
-    startLine: 104
+    startLine: 120
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -689,6 +735,11 @@ references:
   name: Substring
   nameWithType: TextStream.Substring
   fullName: AutoCheck.Core.Connectors.TextStream.Substring
+- uid: AutoCheck.Core.Connectors.TextStream.Replace*
+  commentId: Overload:AutoCheck.Core.Connectors.TextStream.Replace
+  name: Replace
+  nameWithType: TextStream.Replace
+  fullName: AutoCheck.Core.Connectors.TextStream.Replace
 - uid: AutoCheck.Core.Connectors.TextStream.Count*
   commentId: Overload:AutoCheck.Core.Connectors.TextStream.Count
   name: Count

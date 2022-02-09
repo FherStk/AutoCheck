@@ -22,8 +22,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using AutoCheck.Core.Events;
 using AutoCheck.Core.Exceptions;
 using ExCSS;
 
@@ -33,6 +33,9 @@ namespace AutoCheck.Core{
     /// </summary>
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
+#region Events
+    public static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;
+#endregion
 #region Classes
         internal class Space: Content {}
 
@@ -98,13 +101,15 @@ namespace AutoCheck.Core{
         }
 
         public enum Type{
-            HEADER,
-            SETUP,
-            SCRIPT,
-            TEARDOWN
+            START,
+            BEFORE_TARGET,
+            AFTER_TARGET,
+            END
         }
 #endregion       
 #region Attributes
+        internal Guid ID {get; set;}
+
         internal Log HeaderLog {get; set;}
 
         internal Log SetupLog {get; set;}
@@ -129,8 +134,16 @@ namespace AutoCheck.Core{
         /// <summary>
         /// Creates the new Output instance
         /// </summary>
+        public Output(): this(false){
+        }
+
+        /// <summary>
+        /// Creates the new Output instance
+        /// </summary>
         /// <param name="redirectToTerminal">When enabled, every log entry will be send to the terminal</param>
-        public Output(bool redirectToTerminal = false){          
+        /// <param name="onLogGenerated">This event will be raised each time a new log entry has been generated.</param>
+        public Output(bool redirectToTerminal = false){  
+            ID = Guid.NewGuid();
             HeaderLog = new Log();                               
             SetupLog = new Log(); 
             TeardownLog = new Log(); 
@@ -309,19 +322,19 @@ namespace AutoCheck.Core{
 #region Private             
         internal Log CloseLog(Type type){ 
             switch(type){
-                case Type.HEADER:
+                case Type.START:
                     HeaderLog = CurrentLog;
                     break;
 
-                case Type.SETUP:
+                case Type.BEFORE_TARGET:
                     SetupLog = CurrentLog;
                     break;
 
-                case Type.TEARDOWN:
+                case Type.END:
                     TeardownLog = CurrentLog;
                     break;
 
-                case Type.SCRIPT:
+                case Type.AFTER_TARGET:
                     ScriptLog.Add(CurrentLog);                    
                     break;
             }
@@ -427,10 +440,14 @@ namespace AutoCheck.Core{
 
             IsNewLine = newLine;
 
+            var log = new Log();
             foreach(var c in content){
-                CurrentLog.Content.Add(c);
+                log.Content.Add(c);         //this is just the new data
+                CurrentLog.Content.Add(c);  //this is the historical data              
                 if(RedirectToTerminal) SendToTerminal(c);
             }
+
+            if(OnLogGenerated != null) OnLogGenerated.Invoke(this, new LogGeneratedEventArgs(ID, log));
         }        
 
         private StyleRule GetCssRule(string style){

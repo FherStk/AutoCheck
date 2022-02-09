@@ -27,6 +27,7 @@ using System.Reflection;
 using System.Linq;
 
 using AutoCheck.Core;
+using AutoCheck.Core.Events;
 using AutoCheck.Core.Connectors;
 
 namespace AutoCheck.Cli
@@ -34,8 +35,14 @@ namespace AutoCheck.Cli
     class Run
     { 
         private static bool _NO_PAUSE = false;
-        private static bool _displaying = false;
-        private static ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>  _logs = new ConcurrentQueue<(Script Script, Script.LogGeneratedEventArgs Data)>();        
+        private static ScriptExecutionEventArgs.ExecutionModeType _MODE;
+        private static bool _displaying = false;  
+        private static int _step = 0;
+        private static Guid? _currentID = null;        
+        private static Guid? _mainID = null;    //main thread ID (not concurrent)        
+        private static ConcurrentQueue<Guid?> _nextID = new ConcurrentQueue<Guid?>();
+        private static ConcurrentQueue<Guid?> _finishedID = new ConcurrentQueue<Guid?>();
+        private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogGeneratedEventArgs Data)>> _logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>>();
 
         static void Main(string[] args)
         {
@@ -224,7 +231,7 @@ namespace AutoCheck.Cli
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated);
+                    new Script(script, OnLogGenerated, OnScriptExecution);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -240,29 +247,138 @@ namespace AutoCheck.Cli
             }      
         }
 
-        private static void OnLogGenerated(object sender, Script.LogGeneratedEventArgs e){            
-            _logs.Enqueue(((Script)sender, e));            
-            if(!_displaying) DisplayLogs();       
+        private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){               
+            _logs.AddOrUpdate(e.ID, (v) => {
+                var queue = new ConcurrentQueue<(Output Output, LogGeneratedEventArgs Data)>();
+                queue.Enqueue(((Core.Output)sender, e));
+                return queue;
+            }, (k, v) => {
+                v.Enqueue(((Core.Output)sender, e));
+                return v;
+            });
+
+            if(_currentID == e.ID && !_displaying) DisplayLogs(_currentID.Value);
         }
 
-        private static void DisplayLogs(){
+        private static void OnScriptExecution(object sender, ScriptExecutionEventArgs e){               
+            if(_mainID == null) _mainID = e.ID; //the main thread ID 
+            if(_currentID == null) _currentID = e.ID; //the first log info to display
+
+            //received AFTER_COPY_DETECTOR for any ID: the concurrent execution will begin
+            if(_step == 0 && e.Event == ScriptExecutionEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR){
+                //Once here, the first concurrent execution can be displayed, so the main thread will wait till the end of every target
+                _step = 1;
+                _currentID = null;     
+            } 
+            else if(_step == 1){                
+                switch(e.Event){
+                    //received AFTER_SCRIPT for any ID: the concurrent exectution has finished
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_SCRIPT:
+                        _step = 2;
+                        break;
+
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_POST:
+                        //this script execution has finished, must be displayed till the end before continuing
+                        _MODE = e.Mode;
+
+                        if(e.ID != _mainID.Value && !_finishedID.Contains(e.ID)) _finishedID.Enqueue(e.ID);
+                        if(!_displaying) DisplayLogs(_currentID.Value);                                                    
+                        break;
+
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_PRE:     //just for batch
+                    case ScriptExecutionEventArgs.ExecutionEventType.AFTER_BODY:    //for batch and single 
+                        //the script is beeing executed     
+                        if(_currentID == null) _currentID = e.ID;
+                        else if(!_nextID.Contains(e.ID)) _nextID.Enqueue(e.ID);
+                        break;
+                    
+                }
+            }
+
+
+              
+            
+                
+                
+
+
+                
+
+
+
+
+
+
+                //received AFTER_POST for the current displayed ID: the next batch execution can be displayed, select a new pending ID when ends the current display
+                
+                
+                // if(e.ID != _currentID && !_nextID.Contains(e.ID)) _nextID.Enqueue(e.ID);
+                // else{
+                //     foreach(var key in _logs.Keys){
+                //         if(_logs[key].Count > 0 && !_nextID.Contains(key)){                    
+                //             _nextID.Enqueue(key);
+                //             break;
+                //         }
+                //     }
+                // }
+
+                // if(!_displaying && _nextID.Count > 0){
+                //     Guid? next = null;
+                //     while(!_nextID.TryDequeue(out next)){}
+                //     DisplayLogs(next.Value);
+                // }
+            
+            
+            
+            
+            
+            
+            //TODO: split the stored logs into diferent parts:
+            //      pre-concurrent
+            //      concurrent (grouped by ID)
+            //      post concurrent
+
+            // if(e.ID == _lastID && e.Event == ScriptExecutionEventArgs.ExecutionEventType.TEARDOWN && e.Mode == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){
+            //     _lastID = null;
+
+            //     Console.WriteLine();
+            //     Console.WriteLine("Press any key to continue...");
+            //     Console.ReadKey();
+            //     Console.WriteLine();
+            //     Console.WriteLine();
+            // 
+            
+        }
+
+        private static void DisplayLogs(Guid id){                        
             _displaying = true;
-            (Script Script, Script.LogGeneratedEventArgs Data) item;
 
-            while(_logs.TryDequeue(out item)){
-                item.Script.Output.SendToTerminal(item.Data.Log);
+            //We will have the log for the given ID and maybe also the status
+            var log = _logs.ContainsKey(id) ? _logs[id] : null;            
 
-                if(item.Data.Type == Output.Type.SCRIPT && item.Data.ExecutionMode == Core.Script.ExecutionModeType.BATCH && !_NO_PAUSE){
+            //We can mix the output of different concurrent executions            
+            (Core.Output Output, LogGeneratedEventArgs Data) item;
+            while(log.TryDequeue(out item)){
+                item.Output.SendToTerminal(item.Data.Log);                
+            }
+
+            //Logs from another thread can be waiting    
+            if(_finishedID.Contains(id) && log.Count == 0 && _nextID.Count > 0){                
+                //The current one has finished and a next one is waiting
+                while(!_nextID.TryDequeue(out _currentID)){}
+                if(_logs[_currentID.Value].Count > 0 && _MODE == ScriptExecutionEventArgs.ExecutionModeType.BATCH && !_NO_PAUSE){        
                     Console.WriteLine();
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                     Console.WriteLine();
                     Console.WriteLine();
-                }
+                } 
+
+                DisplayLogs(_currentID.Value);
             }
-            
+
             _displaying = false;
-        }
+        }                                              
 
         private static void Info(string message, Output output){
             output.WriteLine(message, Output.Style.ERROR);

@@ -18,6 +18,8 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+//TODO: try to optimize. Now: 15-20 seconds to complete. Target: 5-10 seconds.
+
 using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
@@ -203,7 +205,7 @@ namespace AutoCheck.Test.Connectors
         [Test]        
         public void ExecuteNonQuery_WRITE_DoesNotThrow()
         {   
-            //Should be executed in order
+            //Should be executed in this specific order
             Assert.DoesNotThrow(() => Connector.ExecuteScalar<object>("INSERT INTO test.regions (id_region, name_region) VALUES ((SELECT MAX(id_region)+1 FROM test.regions), 'TEST')"));
             Assert.DoesNotThrow(() => Connector.ExecuteScalar<object>("UPDATE test.regions SET name_region='TESTv2' WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
             Assert.DoesNotThrow(() => Connector.ExecuteScalar<object>("DELETE FROM test.regions WHERE id_region = (SELECT MAX(id_region) FROM test.regions)"));
