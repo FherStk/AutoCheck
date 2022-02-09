@@ -904,7 +904,7 @@ namespace AutoCheck.Core{
         
         //TODO: can be single and batch simplified where one uses onther?
         private void ParseSingle(YamlNode node, string current="single", string parent="root", string[] children = null, string[] mandatory = null){              
-            children ??= new string[]{"caption", "setup", "teardown", "local", "remote"};
+            children ??= new string[]{"caption", "init", "end", "local", "remote"};
             if(node == null || !node.GetType().Equals(typeof(YamlMappingNode))) ExecuteBody(Root);
             else{                                    
                 //Parsing caption (scalar)
@@ -939,8 +939,8 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {  
                     if(Abort) return;                                              
                     switch(name){                       
-                        case "setup":                            
-                            ParseSetup(node, name, current);
+                        case "init":                            
+                            ParseInit(node, name, current);
                             Output.BreakLine();                 
                             break;
                     }                    
@@ -973,8 +973,8 @@ namespace AutoCheck.Core{
                 ForEachChild(node, new Action<string, YamlMappingNode>((name, node) => {  
                     if(Abort) return;                      
                     switch(name){                       
-                        case "teardown":                            
-                            ParseTeardown(node, name, current);
+                        case "end":                            
+                            ParseEnd(node, name, current);
                             Output.BreakLine();  
                             break;
                     }                    

@@ -411,8 +411,8 @@ Single mode definition.
 Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before the single execution. | `Running on single mode:`
-[setup](#setup) | mapping | no | The defined content will be executed once before the caption and the body execution. |
-[teardown](#teardown) | mapping | no | The  defined content will be executed once after all target's body. |
+[init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption| |
+[end](#end) | sequence | no | The defined content will be executed once at the end of the script | |
 [local](#local) | mapping | yes (if no `remote` has been defined) | Local single target, so the script body will be executed over the local target. | 
 [remote](#remote) | mapping | yes (if no `local` has been defined) | Remote single target, so the script body will be executed over the remote target. | 
 
