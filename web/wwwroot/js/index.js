@@ -51,6 +51,11 @@ connection.on("ReceiveLog", function (log, endOfScript, endOfExecution) {
     if(endOfExecution){
         //end of all the executions, log completed
         $("#log > img").hide();
+
+        $("#mode, #script, #run").prop( "disabled", false );  
+        $("#target").find("input[type=text],select").each(function(){        
+            $(this).prop( "disabled", false );  
+        });
     }
 });
 
@@ -195,7 +200,7 @@ function run(){
 
     //Get the data target data to send
     var target = {};
-    //$("#mode, #script, #run").prop( "disabled", true );  
+    $("#mode, #script, #run").prop( "disabled", true );  
     $("#target").find("input[type=text],select").not('.var').each(function(){        
         $(this).prop( "disabled", true );  
         target[$(this).attr('name')] = $(this).val();        
@@ -212,46 +217,4 @@ function run(){
     connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
         return console.error(err.toString());
     });
-
-    // $.post("/home/Run", { script: $("#script").val(), target: target, vars: vars}, function(data){                                
-    //     //TODO: this must be append in async mode   
-    //     $.each(data, function(i) {      
-    //         //Multiple log files                                                 
-    //         $(logSelector).append(
-    //             '<div class="collapsable">\
-    //                 <div class="header' + (i==0 ? ' hidden' : '') + '">Display more...</div>\
-    //                 <div class="content' + (i>0 ? ' hidden' : '') + '"></div>\
-    //             </div>'
-    //         );
-
-    //         $(logSelector).on("click", "div.collapsable > div.header" , function() {
-    //             $(node).hide();
-    //             $(node).next().show();
-    //         });
-
-    //         $.each(this, function() {                
-    //             var lastLogSelector = logSelector + " > .collapsable:last-child > .content";
-
-    //             //TODO: this should come in two lines
-    //             if(this.Text != null && this.Text.startsWith("ERROR:")){
-    //                 $(lastLogSelector).append('<label class="'  + this.Style + '">ERROR:</label><br>');
-    //                 this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
-    //             }
-                
-    //             $(lastLogSelector).append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
-    //             if(this.BreakLine || this.Style == null) $(lastLogSelector).append('<br>');
-    //         });
-
-    //         $(logSelector).append('<br>');
-    //     });
-    // }).fail(function(data) {
-    //     $(logSelector).append('<label class="error">' + data.statusText + ' (' + data.status + '): ' + data.responseText + '</label>');                        
-    // }).always(function() {
-    //     $("#log > img").hide();
-
-    //     $("#mode, #script, #run").prop( "disabled", false );  
-    //     $("#target").find("input[type=text],select").each(function(){        
-    //         $(this).prop( "disabled", false );  
-    //     });
-    // });
 }

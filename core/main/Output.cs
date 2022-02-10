@@ -34,7 +34,7 @@ namespace AutoCheck.Core{
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
 #region Events
-    public static event EventHandler<LogUpdateEventArgs> OnLogUpdate;
+    public event EventHandler<LogUpdateEventArgs> OnLogUpdate;
 #endregion
 #region Classes
         internal class Space: Content {}

@@ -734,6 +734,21 @@ namespace AutoCheck.Core{
             ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
             SingleCaption = "Running on single mode:";
             BatchCaption = "Running on batch mode:";
+
+            //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            LogStep = 0;
+            LogBeingSent = false;
+            MainLogInstanceID = null; 
+            CurrentLogInstanceID = null;
+            NextLogID = new ConcurrentQueue<Guid?>();
+            FinishedLogID = new ConcurrentQueue<Guid?>();
+            Logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+
+            //Restoring internal events (static events in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            OnLogUpdate = null;
+            OnStatusUpdate = null;
+            OnLogUpdateProxy = null;
+            OnScriptStatusProxy = null;
         }
 
         protected Script(EventHandler<LogUpdateEventArgs> onLogGenerated, EventHandler<ScriptStatusEventArgs> onScriptExecution):this(){
@@ -801,15 +816,6 @@ namespace AutoCheck.Core{
         }
 
         private void SetupScript(){                
-            //Setup internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
-            LogStep = 0;
-            LogBeingSent = false;
-            MainLogInstanceID = null; 
-            CurrentLogInstanceID = null;
-            NextLogID = new ConcurrentQueue<Guid?>();
-            FinishedLogID = new ConcurrentQueue<Guid?>();
-            Logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
-
             //Setup YAML log data
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
