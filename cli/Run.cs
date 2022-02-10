@@ -223,7 +223,7 @@ namespace AutoCheck.Cli
             else if(!File.Exists(script)) output.WriteLine("ERROR: Unable to find any 'script' file using the provided path.", Output.Style.ERROR);
             else{
                 try{
-                    new Script(script, OnLogGenerated);
+                    new Script(script, OnLogUpdateEventHandler);
                 }
                 catch(Exception ex){
                     output.BreakLine();
@@ -239,7 +239,7 @@ namespace AutoCheck.Cli
             }      
         }
         
-        private static void OnLogGenerated(object sender, LogGeneratedEventArgs e){             
+        private static void OnLogUpdateEventHandler(object sender, LogUpdateEventArgs e){             
             Output output = (Output)sender;
 
             if(e.Log != null) output.SendToTerminal(e.Log);
