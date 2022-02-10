@@ -1,13 +1,14 @@
-using Microsoft.AspNetCore.SignalR;
-using AutoCheck.Core.Events;
-using AutoCheck.Web.Models;
 using AutoCheck.Core;
+using AutoCheck.Core.Events;
+
+using AutoCheck.Web.Models;
+
+using Microsoft.AspNetCore.SignalR;
 
 namespace AutoCheck.Web.Hubs
 {
     public class HomeHub : Hub
     {
-        private IClientProxy? Caller;    
         public void Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
         {        
             //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script                
@@ -15,7 +16,6 @@ namespace AutoCheck.Web.Hubs
             var yaml = ws.InjectTarget(target, vars);
 
             try{
-                Caller = Clients.Caller;
                 var result = new AutoCheck.Core.Script(yaml, OnLogUpdateEventHandler);    
                 Clients.Caller.SendAsync("ReceiveLog", null, false, true);    
             }

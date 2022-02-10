@@ -1,9 +1,13 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using AutoCheck.Core;
+﻿using AutoCheck.Core;
 using AutoCheck.Core.Connectors;
+
 using AutoCheck.Web.Models;
+
+using Microsoft.AspNetCore.Mvc;
+
+using System.Diagnostics;
 using System.Text.Json.Serialization;
+
 
 namespace AutoCheck.Web.Controllers{
     public class HomeController : Controller

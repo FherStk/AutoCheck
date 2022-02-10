@@ -1,8 +1,58 @@
 "use strict";
-var connection = new signalR.HubConnectionBuilder().withUrl("/homeHub").build();
+var first = true;
+var newBatch = true;
+var logContent = $("#log > #content");
+var connection = new signalR.HubConnectionBuilder().withUrl("/homeHub").withAutomaticReconnect().build();
 
 //setting up server-to-client messages
-connection.on("ReceiveLog", function (log, endOfScript) {
+connection.on("ReceiveLog", function (log, endOfScript, endOfExecution) {        
+    if(log != null){        
+        log = JSON.parse(log);
+
+        if(newBatch){
+            newBatch = false;
+            
+            //creating new batch container
+            logContent.append(
+                '<div class="collapsable">\
+                    <div class="header' + (first ? ' hidden' : '') + '">Display more...</div>\
+                    <div class="content' + (first ? '' : ' hidden') + '"></div>\
+                </div>'
+            );            
+            first = false;
+            
+            //adding events
+            logContent.on("click", "div.collapsable > div.header" , function() {
+                $(node).hide();
+                $(node).next().show();
+            });
+        }
+
+        //adding content to the last batch log content
+        var lastLog = logContent.find("div.collapsable:last-child > div.content");
+        $.each(log, function(i) {                   
+            if(this.Text != null && this.Text.startsWith("ERROR:")){
+                lastLog.append('<label class="'  + this.Style + '">ERROR:</label><br>');
+                this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
+            }
+            
+            lastLog.append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
+            if(this.BreakLine || this.Style == null) lastLog.append('<br>');
+        });
+
+
+    }
+
+    if(endOfScript){
+        //current batch can be closed
+        newBatch = true;
+    }
+
+    if(endOfExecution){
+        //end of all the executions, log completed
+    }
+
+    /*
     $.each(log, function(i) {      
         //Multiple log files                                                 
         $(logSelector).append(
@@ -32,6 +82,7 @@ connection.on("ReceiveLog", function (log, endOfScript) {
 
         $(logSelector).append('<br>');
     });
+    */
 });
 
 //starting connection
@@ -186,8 +237,7 @@ function run(){
         $(this).prop( "disabled", true );  
         vars[$(this).attr('name')] = $(this).val();
     });
-
-    var logSelector = "#log > div";
+    
     connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
         return console.error(err.toString());
     });
