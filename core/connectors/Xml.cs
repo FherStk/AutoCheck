@@ -218,41 +218,42 @@ namespace AutoCheck.Core.Connectors{
                 XmlResolver = new XmlUrlResolver()
             };                        
             settings.ValidationEventHandler += (sender, args) => messages.AppendLine(args.Message);
+
+            try{         
+                using(var reader = XmlReader.Create(filePath, settings)){                                              
+                    while (reader.Read()){
+                        switch (reader.NodeType)
+                        {                        
+                            case System.Xml.XmlNodeType.Comment:
+                                if(reader.HasValue) coms.Add(reader.Value);
+                                break;
+                        }                
+                    }
+                    
+                    if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
+                    if(validation == ValidationType.Schema && reader.Settings.Schemas.Count == 0) throw new DocumentInvalidException("No XSD has been found within the document.");     
+                                    
+                    XmlDoc = new XmlDocument();
+                    XmlDoc.Load(filePath);      
+                    Comments = coms.ToArray();
+                    Raw = File.ReadAllText(filePath);
+                    
+                    //NOTE: When using a default namespace, some XPath queries fails within SelectNodes/CountNodes methods, so default namespace will be removed from the parsed document                
+                    var noDefaultNamespace = Raw;
+                    var start = noDefaultNamespace.IndexOf("xmlns=");
+                    if(start >= 0){
+                        var left = noDefaultNamespace.Substring(0, start);
+                        var right = noDefaultNamespace.Substring(start + 7);
+
+                        right = right.Substring(right.IndexOf('"')+1);
+
+                        if(left.EndsWith(" ") && right.StartsWith(">")) left = left.TrimEnd();
+                        noDefaultNamespace = left + right;
                         
-            var reader = XmlReader.Create(filePath, settings);                         
-            try{                                
-                while (reader.Read()){
-                    switch (reader.NodeType)
-                    {                        
-                        case System.Xml.XmlNodeType.Comment:
-                            if(reader.HasValue) coms.Add(reader.Value);
-                            break;
+                        XmlDocNoDefaultNamespace = new XmlDocument();
+                        XmlDocNoDefaultNamespace.LoadXml(noDefaultNamespace);                
                     }                
                 }
-                
-                if (messages.Length > 0) throw new DocumentInvalidException($"Unable to parse the XML file: {messages.ToString()}");    
-                if(validation == ValidationType.Schema && reader.Settings.Schemas.Count == 0) throw new DocumentInvalidException("No XSD has been found within the document.");     
-                                
-                XmlDoc = new XmlDocument();
-                XmlDoc.Load(filePath);      
-                Comments = coms.ToArray();
-                Raw = File.ReadAllText(filePath);
-                
-                //NOTE: When using a default namespace, some XPath queries fails within SelectNodes/CountNodes methods, so default namespace will be removed from the parsed document                
-                var noDefaultNamespace = Raw;
-                var start = noDefaultNamespace.IndexOf("xmlns=");
-                if(start >= 0){
-                    var left = noDefaultNamespace.Substring(0, start);
-                    var right = noDefaultNamespace.Substring(start + 7);
-
-                    right = right.Substring(right.IndexOf('"')+1);
-
-                    if(left.EndsWith(" ") && right.StartsWith(">")) left = left.TrimEnd();
-                    noDefaultNamespace = left + right;
-                    
-                    XmlDocNoDefaultNamespace = new XmlDocument();
-                    XmlDocNoDefaultNamespace.LoadXml(noDefaultNamespace);                
-                }                
             }
             catch(XmlException ex){
                 throw new DocumentInvalidException("Unable to parse the XML file.", ex);     

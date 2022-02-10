@@ -16,6 +16,11 @@ input{
   height: 40px;  
 }
 
+select:disabled,
+input:disabled{
+  color: gray;
+}
+
 #mode,
 #script,
 #run{

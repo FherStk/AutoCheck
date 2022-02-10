@@ -26,7 +26,12 @@ batch:
     - copy_detector:            
         type: "XML"            
         file: "document.rss"
-        threshold: !!float 0.85   
+        threshold: 0.85
+
+    - copy_detector:            
+        type: "XML"            
+        file: "document.atom"
+        threshold: !!float 0.85  
 
     - setup:
         - echo: "Extracting files at: ~{$CURRENT_FOLDER_NAME}"
