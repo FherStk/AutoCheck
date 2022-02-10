@@ -1,5 +1,6 @@
 "use strict";
 
+var disconnect = false;
 var newBatch = true;
 var firstBatch = true;
 var logContent = $("#log > #content");
@@ -49,16 +50,7 @@ connection.on("ReceiveLog", function (log, endOfScript, endOfExecution) {
     }
 
     if(endOfExecution){
-        //end of all the executions, log completed
-        $("#log > img").hide();
-
-        $("#mode, #script, #run").prop( "disabled", false );  
-        $("#target").find("input[type=text],select").each(function(){        
-            $(this).prop( "disabled", false );  
-        });
-
-        connection.stop().then(function() {             
-        });
+        end();
     }
 });
 
@@ -194,16 +186,17 @@ function run(){
         vars[$(this).attr('name')] = $(this).val();
     });
         
+    disconnect = false;
     newBatch = true;
     firstBatch = true;   
     
     //starting connection
     connection.start().then(function () {
         connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
-            return console.error(err.toString());
+            if(!disconnect) error(err);
         });
     }).catch(function (err) {
-        return console.error(err.toString());
+        error(err);
     });
 }
 
@@ -221,3 +214,21 @@ function reload(){
         }, 1000);
     });
 } 
+
+function error(message){
+    logContent.append('<label class="error">' + message + '</label><br>');  
+    end();      
+}
+
+function end(){
+    //end of all the executions, log completed
+    $("#log > img").hide();
+
+    $("#mode, #script, #run").prop( "disabled", false );  
+    $("#target").find("input[type=text],select").each(function(){        
+        $(this).prop( "disabled", false );  
+    });
+
+    disconnect = true;
+    connection.stop();
+}
