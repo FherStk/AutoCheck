@@ -63,34 +63,7 @@ namespace AutoCheck.Web.Controllers{
             var ws = new WebScript(script);                    
             return Json(ws.GetTargetData());
         }
-
-        // public IActionResult Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
-        // {        
-        //     //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script
-                
-        //     var ws = new WebScript(script);
-        //     var yaml = ws.InjectTarget(target, vars);
-        //     AutoCheck.Core.Script? result = null;
-        //     Output output;
-
-        //     try{
-        //         //TODO: write log in async mode
-        //         result = new AutoCheck.Core.Script(yaml);        
-        //         output = result.Output;
-        //     }
-        //     catch(Exception ex){                 
-        //         output = new Output();            
-        //         output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-                
-        //         while(ex.InnerException != null){
-        //             ex = ex.InnerException;
-        //             output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
-        //         }
-        //     }               
-
-        //     return Content(output.ToJson(), "application/json");
-        // }
-
+        
         public IActionResult CheckForUpdate()
         {
             var shell = new Shell();

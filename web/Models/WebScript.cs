@@ -19,14 +19,7 @@ namespace AutoCheck.Web.Models{
                     case "batch":                        
                         ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
                             switch(name){                        
-                                case "local":      
-                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
-                                        //folder; path
-                                        var scalar = (YamlScalarNode)node;
-                                        scalar.Value = target[name];                                        
-                                    }));                     
-                                    break;
-
+                                case "local":                                         
                                 case "remote":   
                                     ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
                                         //os; host; user; password; vars                                        
@@ -43,6 +36,7 @@ namespace AutoCheck.Web.Models{
                                                 break;
                                             
                                             default:
+                                                //folder; path
                                                 ((YamlScalarNode)node).Value = target[name];
                                                 break;
                                         }                                        
@@ -67,23 +61,17 @@ namespace AutoCheck.Web.Models{
                     case "batch":                        
                         ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
                             switch(name){                        
-                                case "local":      
-                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
-                                        //folder; path
-                                        data.Add(name, string.Empty);
-                                    }));                     
-                                    break;
-
+                                case "local":                                         
                                 case "remote":   
                                     ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
-                                        //os; host; user; password; vars
-                                        if(name != "vars") data.Add(name, string.Empty);
+                                        //os; host; user; password; folder; path
+                                        if(name != "vars") data.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
                                         else{
                                             var vars = new Dictionary<string, object>();
                                             data.Add(name, vars);
 
                                             ForEachChild(node, new Action<string, YamlNode>((name, node) => {
-                                                vars.Add(name, string.Empty);
+                                                vars.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
                                             }));      
                                         }
                                     }));                     

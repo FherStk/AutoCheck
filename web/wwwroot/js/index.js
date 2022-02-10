@@ -104,10 +104,11 @@ $(function(){
             
             var rows = 0;
             Object.keys(data).forEach(function(key) {
-                if(key == "os") $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><select id="' + key + '" name="' + key + '"><option value="GNU">GNU/Linux</option><option value="MAC">Mac OS</option><option value="WIN">Windows</option></select></td><td></td></tr>'); 
+                if(key == "os") $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><select id="' + key + '" name="' + key + '"><option value="GNU"' + (data[key] == "GNU" ? " selected" : "") + '>GNU/Linux</option><option value="MAC"' + (data[key] == "MAC" ? " selected" : "") + '>Mac OS</option><option value="WIN"' + (data[key] == "WIN" ? " selected" : "") + '>Windows</option></select></td><td></td></tr>'); 
                 else if(key == "vars"){                    
                     Object.keys(data.vars).forEach(function(key) {
-                        addTarget(key, "Some data", true);
+                        addTarget(key, data.vars[key], "Some data", true);
+                        rows++;
                     });
                 }
                 else{
@@ -130,11 +131,10 @@ $(function(){
                             placeholder="password";
                             break;                               
                     }
-
-                    addTarget(key, placeholder, false);
+                    
+                    addTarget(key, data[key], placeholder, false);
+                    rows++;
                 };
-
-                rows++;
             });            
                         
             $("#target > tr:not(:first)").each(function() {                        
@@ -145,20 +145,13 @@ $(function(){
             runHolder.attr("rowspan", rows);
             runHolder.append('<input id="run" onclick="run()" type="button" value="Run" disabled="true" />');
             
+            enable();
             $("#step-2").show();
         });
     });  
 
     $("#target").keyup(function() {
-        var disabled = false;
-        $(this).find("input[type=text],select").each(function(){
-            if($(this).val() == ""){
-                disabled = true;
-                return false;
-            }             
-        });
-
-        $("#run").prop("disabled", disabled); 
+        enable();
     }); 
     
     $.post("/home/CheckForUpdate", function(data){  
@@ -201,8 +194,20 @@ function run(){
 }
 
 //aux methods
-function addTarget(key, placeholder, isVar){
-    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
+function enable(){
+    var disabled = false;
+    $(document).find("input[type=text],select").each(function(){
+        if($(this).val() == ""){
+            disabled = true;
+            return false;
+        }             
+    });
+
+    $("#run").prop("disabled", disabled); 
+}
+
+function addTarget(key, value, placeholder, isVar){
+    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' value="' + value + '" placeholder="' + placeholder + '" /></td><td></td></tr>');
 }
 
 function reload(){
