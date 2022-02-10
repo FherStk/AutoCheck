@@ -2,24 +2,26 @@ using System;
 using AutoCheck.Core;
 
 namespace AutoCheck.Core.Events
-{
-    public class LogGeneratedEventArgs : EventArgs
+{       
+    public class LogUpdateEventArgs : EventArgs
     {   
         public Guid ID { get; set; }            
         public Output.Log Log { get; set; }
+        public bool EndOfScript { get; set; }
 
         /// <summary>
         /// Creates a new log event instance.
         /// </summary>
         /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="log">The log content.</param>
-        public LogGeneratedEventArgs(Guid id, Output.Log log){
+        public LogUpdateEventArgs(Guid id, Output.Log log, bool endOfScript=false){
             ID = id;
             Log = log;
+            EndOfScript = endOfScript;
         }
     }
 
-    public class ScriptExecutionEventArgs : EventArgs
+    public class ScriptStatusEventArgs : EventArgs
     {
          public enum ExecutionModeType{
             SINGLE,
@@ -49,7 +51,7 @@ namespace AutoCheck.Core.Events
         /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="executionMode">The current execution mode.</param>
         /// <param name="eventType">The event type.</param>
-        public ScriptExecutionEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
+        public ScriptStatusEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
             ID = id;
             Mode = executionMode;
             Event = eventType;

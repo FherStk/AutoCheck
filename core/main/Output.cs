@@ -34,7 +34,7 @@ namespace AutoCheck.Core{
     /// <remarks>Should be a singletone but cannot be due testing...</remarks>
     public class Output{
 #region Events
-    public static event EventHandler<LogGeneratedEventArgs> OnLogGenerated;
+    public event EventHandler<LogUpdateEventArgs> OnLogUpdate;
 #endregion
 #region Classes
         internal class Space: Content {}
@@ -447,7 +447,7 @@ namespace AutoCheck.Core{
                 if(RedirectToTerminal) SendToTerminal(c);
             }
 
-            if(OnLogGenerated != null) OnLogGenerated.Invoke(this, new LogGeneratedEventArgs(ID, log));
+            if(OnLogUpdate != null) OnLogUpdate.Invoke(this, new LogUpdateEventArgs(ID, log));
         }        
 
         private StyleRule GetCssRule(string style){
