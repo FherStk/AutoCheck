@@ -1134,7 +1134,8 @@ namespace AutoCheck.Core{
 
                 var setupQueue = new Action<string>((folder) => {
                     var s = this.DeepClone();
-                    s.ID = Guid.NewGuid();
+                    s.ID = Guid.NewGuid();  //new ID needed
+                    s.Output.OnLogUpdate += OnLogUpdateProxyEventHandler;   //must report to the current instance
 
                     var t = new Task<Script>(() => {                        
                         s.ExecuteBodyForBatch((YamlSequenceNode)node, current, cpydet, folder);
@@ -2634,7 +2635,7 @@ namespace AutoCheck.Core{
                         LogMode = e.Mode;
 
                         if(e.ID != MainLogInstanceID.Value && !FinishedLogID.Contains(e.ID)) FinishedLogID.Enqueue(e.ID);
-                        if(!LogBeingSent) DisplayLogs(sender, CurrentLogInstanceID.Value);                                                    
+                        if(!LogBeingSent) SendLogToClient(sender, CurrentLogInstanceID.Value);                                                    
                         break;
 
                     case ScriptStatusEventArgs.ExecutionEventType.AFTER_PRE:     //just for batch
@@ -2661,14 +2662,15 @@ namespace AutoCheck.Core{
                 return v;
             });
 
-            if(CurrentLogInstanceID == e.ID && !LogBeingSent) DisplayLogs(sender, CurrentLogInstanceID.Value);            
+            if(CurrentLogInstanceID == e.ID && !LogBeingSent) SendLogToClient(sender, CurrentLogInstanceID.Value);            
         }
 
-        private static void DisplayLogs(object sender, Guid logInstanceID){                        
+        private static void SendLogToClient(object sender, Guid logInstanceID){                        
             LogBeingSent = true;
 
             //We will have the log for the given ID and maybe also the status
-            var log = Logs.ContainsKey(logInstanceID) ? Logs[logInstanceID] : null;            
+            var log = Logs.ContainsKey(logInstanceID) ? Logs[logInstanceID] : null;    
+            if(log == null) return;        
 
             //We can mix the output of different concurrent executions            
             (Core.Output Output, LogUpdateEventArgs Data) item;
@@ -2687,7 +2689,7 @@ namespace AutoCheck.Core{
                 if(OnLogUpdate != null && Logs[CurrentLogInstanceID.Value].Count > 0 && LogMode == ScriptStatusEventArgs.ExecutionModeType.BATCH) 
                     OnLogUpdate.Invoke(item.Output, new LogUpdateEventArgs(prev.Value, null, true));
                 
-                DisplayLogs(sender, CurrentLogInstanceID.Value);
+                SendLogToClient(sender, CurrentLogInstanceID.Value);
             }
 
             LogBeingSent = false;

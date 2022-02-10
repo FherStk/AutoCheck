@@ -56,14 +56,10 @@ connection.on("ReceiveLog", function (log, endOfScript, endOfExecution) {
         $("#target").find("input[type=text],select").each(function(){        
             $(this).prop( "disabled", false );  
         });
-    }
-});
 
-//starting connection
-connection.start().then(function () {
-    //something    
-}).catch(function (err) {
-    return console.error(err.toString());
+        connection.stop().then(function() {             
+        });
+    }
 });
 
 //setting up client-to-server requests (but run, which needs SignalR in order to receive async log update)
@@ -178,21 +174,7 @@ $(function(){
     });
 });
 
-//aux methods
-function addTarget(key, placeholder, isVar){
-    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
-}
-
-function reload(){
-    $.post("/home/Index", function(data) {
-        window.location.reload(true);
-    }).fail(function(){ 
-        setTimeout(function(){
-            reload();
-        }, 1000);
-    });
-} 
-
+//script exection
 function run(){    
     $("#step-3").show();  
     $("#log > div").empty();
@@ -213,8 +195,29 @@ function run(){
     });
         
     newBatch = true;
-    firstBatch = true;    
-    connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
+    firstBatch = true;   
+    
+    //starting connection
+    connection.start().then(function () {
+        connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }).catch(function (err) {
         return console.error(err.toString());
     });
 }
+
+//aux methods
+function addTarget(key, placeholder, isVar){
+    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
+}
+
+function reload(){
+    $.post("/home/Index", function(data) {
+        window.location.reload(true);
+    }).fail(function(){ 
+        setTimeout(function(){
+            reload();
+        }, 1000);
+    });
+} 
