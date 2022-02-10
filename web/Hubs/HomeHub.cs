@@ -33,9 +33,6 @@ namespace AutoCheck.Web.Hubs
         }
 
         private void OnLogUpdateEventHandler(object? sender, LogUpdateEventArgs e){             
-            if(sender == null) return;
-            Output output = (Output)sender;
-
             Clients.Caller.SendAsync("ReceiveLog", (e.Log == null ? null : e.Log.ToJson()), e.EndOfScript, false);
         }           
     }

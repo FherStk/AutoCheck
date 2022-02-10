@@ -669,21 +669,21 @@ namespace AutoCheck.Core{
         }  
     #endregion
     #region Log concurrent arrangement
-        private static int LogStep = 0;
+        private static int LogStep;
 
-        private static bool LogBeingSent = false;         
+        private static bool LogBeingSent;
 
-        private static Guid? MainLogInstanceID = null; 
+        private static Guid? MainLogInstanceID;
 
-        private static Guid? CurrentLogInstanceID = null;
+        private static Guid? CurrentLogInstanceID;        
 
+        private static ConcurrentQueue<Guid?> NextLogID;
+
+        private static ConcurrentQueue<Guid?> FinishedLogID;
+        
         private static ScriptStatusEventArgs.ExecutionModeType LogMode;
 
-        private static ConcurrentQueue<Guid?> NextLogID = new ConcurrentQueue<Guid?>();
-
-        private static ConcurrentQueue<Guid?> FinishedLogID = new ConcurrentQueue<Guid?>();
-
-        private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+        private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
         
 #endregion
 #endregion
@@ -801,7 +801,16 @@ namespace AutoCheck.Core{
         }
 
         private void SetupScript(){                
-            //Setup log data before starting
+            //Setup internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            LogStep = 0;
+            LogBeingSent = false;
+            MainLogInstanceID = null; 
+            CurrentLogInstanceID = null;
+            NextLogID = new ConcurrentQueue<Guid?>();
+            FinishedLogID = new ConcurrentQueue<Guid?>();
+            Logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+
+            //Setup YAML log data
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
                 LogFormatType.TEXT,
