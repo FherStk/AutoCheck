@@ -1,53 +1,36 @@
 using Microsoft.AspNetCore.SignalR;
-using System.Text.Json.Serialization;
+using AutoCheck.Web.Models;
+using AutoCheck.Core;
 
 namespace AutoCheck.Web.Hubs
 {
     public class HomeHub : Hub
-    {
-        private enum ScriptSource{
-            Custom,
-            Default
-        }
+    {    
+        public async Task Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
+        {        
+            //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script                
+            var ws = new WebScript(script);
+            var yaml = ws.InjectTarget(target, vars);
+            AutoCheck.Core.Script? result = null;
+            Output output;
 
-        public enum ScriptMode{
-            Single,
-            Batch
+            try{
+                result = new AutoCheck.Core.Script(yaml);        
+                output = result.Output;
+            }
+            catch(Exception ex){                 
+                output = new Output();            
+                output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+                
+                while(ex.InnerException != null){
+                    ex = ex.InnerException;
+                    output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
+                }
+            }               
+
+            //return Content(output.ToJson(), "application/json");
+            //await Clients.Caller.SendAsync("ReceiveMessage", user, message);
         }
         
-        private class ScriptInfo{        
-            [JsonConverter(typeof(JsonStringEnumConverter))]
-            public ScriptSource Source {get; set;}
-            public string Name {get; set;}
-            public string Path {get; set;}
-
-            public ScriptInfo(ScriptSource source, string name, string path){
-                Source = source;
-                Name = name;
-                Path = path;
-            }
-        }
-        
-        public async Task SendMessage(string user, string message)
-        {            
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
-        }
-
-        public async Task GetScripts(ScriptMode mode)
-        {
-            var items = GetScripts(ScriptSource.Default, mode);
-            items.AddRange(GetScripts(ScriptSource.Custom, mode)); 
-
-            await Clients.Caller.SendAsync("ReceiveScripts", items);       
-        }
-
-        private List<ScriptInfo> GetScripts(ScriptSource source, ScriptMode mode){
-            var items = new List<ScriptInfo>();
-            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, (source == ScriptSource.Default ? "targets" : "custom"), mode.ToString().ToLower()), "*.yaml").OrderBy(x => x)){
-                items.Add(new ScriptInfo(source, Path.GetFileName(item), item));            
-            }
-
-            return items;
-        }
     }
 }

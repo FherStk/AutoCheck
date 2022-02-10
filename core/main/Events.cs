@@ -7,15 +7,17 @@ namespace AutoCheck.Core.Events
     {   
         public Guid ID { get; set; }            
         public Output.Log Log { get; set; }
+        public bool EndOfScript { get; set; }
 
         /// <summary>
         /// Creates a new log event instance.
         /// </summary>
         /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="log">The log content.</param>
-        public LogGeneratedEventArgs(Guid id, Output.Log log){
+        public LogGeneratedEventArgs(Guid id, Output.Log log, bool endOfScript=false){
             ID = id;
             Log = log;
+            EndOfScript = endOfScript;
         }
     }
 

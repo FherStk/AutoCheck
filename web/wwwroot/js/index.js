@@ -1,16 +1,16 @@
 "use strict";
 var connection = new signalR.HubConnectionBuilder().withUrl("/homeHub").build();
 
-connection.on("ReceiveScripts", function (scripts) {
-    $("#script").empty();
-    $("#script").append('<option value="none" selected>- Select -</option>');
+// connection.on("ReceiveScripts", function (scripts) {
+//     $("#script").empty();
+//     $("#script").append('<option value="none" selected>- Select -</option>');
 
-    $.each(scripts, function() {                        
-        $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
-    });
+//     $.each(scripts, function() {                        
+//         $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
+//     });
                 
-    $("#script").show();
-});
+//     $("#script").show();
+// });
 
 connection.start().then(function () {
     //something    
@@ -18,24 +18,6 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-function reload(){
-    $.post("/home/Index", function(data) {
-        window.location.reload(true);
-    }).fail(function(){ 
-        setTimeout(function(){
-            reload();
-        }, 1000);
-    });
-} 
-
-function showMore(node){
-    $(node).hide();
-    $(node).next().show();
-}
-
-function addTarget(key, placeholder, isVar){
-    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
-}
 
 function run(){    
     $("#step-3").show();  
@@ -57,49 +39,55 @@ function run(){
     });
 
     var logSelector = "#log > div";
-    $.post("/home/Run", { script: $("#script").val(), target: target, vars: vars}, function(data){                                
-        //TODO: this must be append in async mode   
-        $.each(data, function(i) {      
-            //Multiple log files                                                 
-            $(logSelector).append(
-                '<div class="collapsable">\
-                    <div onclick="showMore(this);" class="header' + (i==0 ? ' hidden' : '') + '">Display more...</div>\
-                    <div class="content' + (i>0 ? ' hidden' : '') + '"></div>\
-                </div>'
-            );
-
-            $.each(this, function() {                
-                var lastLogSelector = logSelector + " > .collapsable:last-child > .content";
-
-                //TODO: this should come in two lines
-                if(this.Text != null && this.Text.startsWith("ERROR:")){
-                    $(lastLogSelector).append('<label class="'  + this.Style + '">ERROR:</label><br>');
-                    this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
-                }
-                
-                $(lastLogSelector).append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
-                if(this.BreakLine || this.Style == null) $(lastLogSelector).append('<br>');
-            });
-
-            $(logSelector).append('<br>');
-        });
-    }).fail(function(data) {
-        $(logSelector).append('<label class="error">' + data.statusText + ' (' + data.status + '): ' + data.responseText + '</label>');                        
-    }).always(function() {
-        $("#log > img").hide();
-
-        $("#mode, #script, #run").prop( "disabled", false );  
-        $("#target").find("input[type=text],select").each(function(){        
-            $(this).prop( "disabled", false );  
-        });
+    connection.invoke("Run", $("#script").val(), target, vars).catch(function (err) {
+        return console.error(err.toString());
     });
+
+    // $.post("/home/Run", { script: $("#script").val(), target: target, vars: vars}, function(data){                                
+    //     //TODO: this must be append in async mode   
+    //     $.each(data, function(i) {      
+    //         //Multiple log files                                                 
+    //         $(logSelector).append(
+    //             '<div class="collapsable">\
+    //                 <div class="header' + (i==0 ? ' hidden' : '') + '">Display more...</div>\
+    //                 <div class="content' + (i>0 ? ' hidden' : '') + '"></div>\
+    //             </div>'
+    //         );
+
+    //         $(logSelector).on("click", "div.collapsable > div.header" , function() {
+    //             $(node).hide();
+    //             $(node).next().show();
+    //         });
+
+    //         $.each(this, function() {                
+    //             var lastLogSelector = logSelector + " > .collapsable:last-child > .content";
+
+    //             //TODO: this should come in two lines
+    //             if(this.Text != null && this.Text.startsWith("ERROR:")){
+    //                 $(lastLogSelector).append('<label class="'  + this.Style + '">ERROR:</label><br>');
+    //                 this.Text = this.Text.replace("ERROR:", "").replace(/^\n|\n$/g, '');
+    //             }
+                
+    //             $(lastLogSelector).append('<label class="'  + this.Style + '"><xmp>' + (this.Indent == null ? "" : this.Indent) +  (this.Text == null ? "" : this.Text) + '</xmp></label>');                        
+    //             if(this.BreakLine || this.Style == null) $(lastLogSelector).append('<br>');
+    //         });
+
+    //         $(logSelector).append('<br>');
+    //     });
+    // }).fail(function(data) {
+    //     $(logSelector).append('<label class="error">' + data.statusText + ' (' + data.status + '): ' + data.responseText + '</label>');                        
+    // }).always(function() {
+    //     $("#log > img").hide();
+
+    //     $("#mode, #script, #run").prop( "disabled", false );  
+    //     $("#target").find("input[type=text],select").each(function(){        
+    //         $(this).prop( "disabled", false );  
+    //     });
+    // });
 }
 
+//setting up client-to-server requests (but run, which needs SignalR in order to receive async log update)
 $(function(){  
-    $.post("/home/CheckForUpdate", function(data){  
-        if(data) $("#update-card").show();
-    });
-
     $("#update-no").click(function(){
         $("#update-card").hide();
     });
@@ -118,19 +106,16 @@ $(function(){
         
         if($("#mode").val() == 'none') $("#script").hide();
         else{
-            connection.invoke("GetScripts", this.value).catch(function (err) {
-                return console.error(err.toString());
-            });
-            // $.post("/home/GetScripts", { mode: this.value}, function(data){                     
-            //     $("#script").empty();
-            //     $("#script").append('<option value="none" selected>- Select -</option>');
+            $.post("/home/GetScripts", { mode: this.value}, function(data){                     
+                $("#script").empty();
+                $("#script").append('<option value="none" selected>- Select -</option>');
 
-            //     $.each(data, function() {                        
-            //         $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
-            //     });
+                $.each(data, function() {                        
+                    $("#script").append('<option value="'  + this.path + '">[' + this.source.toLowerCase() + '] ' + this.name + '</option>');
+                });
                             
-            //     $("#script").show();
-            // });
+                $("#script").show();
+            });
         }
     });
 
@@ -176,7 +161,8 @@ $(function(){
                         case "password":
                             placeholder="password";
                             break;                               
-                    }                    
+                    }
+
                     addTarget(key, placeholder, false);
                 };
 
@@ -205,5 +191,24 @@ $(function(){
         });
 
         $("#run").prop("disabled", disabled); 
-    });  
+    }); 
+    
+    $.post("/home/CheckForUpdate", function(data){  
+        if(data) $("#update-card").show();
+    });
 });
+
+//aux methods
+function addTarget(key, placeholder, isVar){
+    $("#target").append('<tr><td><label for"' + key + '">' + key + ': </label></td><td><input type="text" id="' + key + '" name="' + key + '" ' + (isVar ? 'class="var"' : '') + ' placeholder="' + placeholder + '" /></td><td></td></tr>');
+}
+
+function reload(){
+    $.post("/home/Index", function(data) {
+        window.location.reload(true);
+    }).fail(function(){ 
+        setTimeout(function(){
+            reload();
+        }, 1000);
+    });
+} 
