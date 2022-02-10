@@ -1,36 +1,42 @@
 using Microsoft.AspNetCore.SignalR;
+using AutoCheck.Core.Events;
 using AutoCheck.Web.Models;
 using AutoCheck.Core;
 
 namespace AutoCheck.Web.Hubs
 {
     public class HomeHub : Hub
-    {    
-        public async Task Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
+    {
+        private IClientProxy? Caller;    
+        public void Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
         {        
             //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script                
             var ws = new WebScript(script);
             var yaml = ws.InjectTarget(target, vars);
-            AutoCheck.Core.Script? result = null;
-            Output output;
 
             try{
-                result = new AutoCheck.Core.Script(yaml);        
-                output = result.Output;
+                Caller = Clients.Caller;
+                var result = new AutoCheck.Core.Script(yaml, OnLogUpdateEventHandler);    
+                Clients.Caller.SendAsync("ReceiveLog", null, false, true);    
             }
             catch(Exception ex){                 
-                output = new Output();            
+                var output = new Output();            
                 output.WriteLine($"ERROR: {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
                 
                 while(ex.InnerException != null){
                     ex = ex.InnerException;
                     output.WriteLine($"{AutoCheck.Core.Output.SingleIndent}---> {ex.Message}", AutoCheck.Core.Output.Style.ERROR);   
                 }
-            }               
 
-            //return Content(output.ToJson(), "application/json");
-            //await Clients.Caller.SendAsync("ReceiveMessage", user, message);
+                Clients.Caller.SendAsync("ReceiveLog", output.ToJson(), false, true);
+            }             
         }
-        
+
+        private void OnLogUpdateEventHandler(object? sender, LogUpdateEventArgs e){             
+            if(sender == null) return;
+            Output output = (Output)sender;
+
+            Clients.Caller.SendAsync("ReceiveLog", (e.Log == null ? null : e.Log.ToJson()), e.EndOfScript, false);
+        }           
     }
 }
