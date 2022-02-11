@@ -683,7 +683,7 @@ namespace AutoCheck.Core{
         
         private StatusUpdateEventArgs.ExecutionModeType LogMode;
 
-        private ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
+        private ConcurrentDictionary<Guid?, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
         
 #endregion
 #endregion
@@ -740,7 +740,7 @@ namespace AutoCheck.Core{
             CurrentLogInstanceID = null;
             NextLogID = new ConcurrentQueue<Guid?>();
             FinishedLogID = new ConcurrentQueue<Guid?>();
-            Logs = new ConcurrentDictionary<Guid, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+            Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
 
             //Restoring internal events (static events in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
             OnLogUpdate = null;
