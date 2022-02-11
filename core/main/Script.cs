@@ -1132,8 +1132,9 @@ namespace AutoCheck.Core{
                 var setupQueue = new Action<string>((folder) => {
                     var s = this.DeepClone();
                     s.ID = Guid.NewGuid();  //new ID needed
-                    s.Output.OnLogUpdate += OnLogUpdateProxyEventHandler;   //must report to the current instance
-                    s.OnStatusUpdate += OnScriptStatusProxyEventHandler;
+                    s.Output.OnLogUpdate += OnLogUpdateProxyEventHandler;       //must report to the current instance                    
+                    s.OnStatusUpdateProxy += OnScriptStatusProxyEventHandler;   //must report to the current instance                    
+                    s.OnStatusUpdate = null;                                    //must no report, will be redirected from this instance through the local OnStatusUpdateProxy
 
                     var t = new Task<Script>(() => {                        
                         s.ExecuteBodyForBatch((YamlSequenceNode)node, current, cpydet, folder);
@@ -1141,9 +1142,11 @@ namespace AutoCheck.Core{
                     });
                     
                     var executionTimestamp = DateTime.Now.ToFileTimeUtc().ToString();   //need to order the log output for unit testing
-                    finishedScripts.Add(t.ContinueWith((t) => {                        
-                        logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
-                        logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
+                    finishedScripts.Add(t.ContinueWith((t) => {      
+                        logContent.TryAdd(executionTimestamp, t.Result.Output.ScriptLog);
+                        logFiles.TryAdd(executionTimestamp, t.Result.LogFiles.SingleOrDefault());
+                        //logContent.AddOrUpdate(executionTimestamp, t.Result.Output.ScriptLog, (key, oldValue) => oldValue);
+                        //logFiles.AddOrUpdate(executionTimestamp, t.Result.LogFiles.SingleOrDefault(), (key, oldValue) => oldValue);
                     }));
 
                     queuedScripts.Add(t);

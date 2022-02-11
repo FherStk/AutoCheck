@@ -82,9 +82,39 @@ public static partial class ObjectExtensions
             }
 
         }
+        else if(typeToReflect.Name.Contains("ConcurrentDictionary")) {                  
+        //Concurrent Dictionaries produces infinite recursion, must be treated separately
+            var dictType = obj.GetType();
+            var clonedFieldValue = Activator.CreateInstance(dictType);
+
+            //Getting dictionary keys
+            var property = (PropertyInfo)dictType.GetMember("Keys")[0];
+            var originalKeys = property.GetValue(obj);                
+            var method = originalKeys.GetType().GetMethod("GetEnumerator");
+            var enumerator = method.Invoke(originalKeys, null);
+
+            //Iterating trough the keys
+            var next = enumerator.GetType().GetMethod("MoveNext");
+            var current = enumerator.GetType().GetProperty("Current");
+            var getValue = obj.GetType().GetProperty("Item");                
+            var addValue = obj.GetType().GetMethod("TryAdd");                
+
+            while((bool)next.Invoke(enumerator, null)){
+                var key = current.GetValue(enumerator);                    
+                var originalValue = getValue.GetValue(obj, new[] { key });
+                var clonedValue = DeepClone_Internal(originalValue, visited);
+
+                //adding the cloned item
+                addValue.Invoke(clonedFieldValue, new []{key, clonedValue});
+            }
+        }
+
         visited.Add(obj, cloneObject);
-        CopyFields(obj, visited, cloneObject, typeToReflect);
-        RecursiveCopyBaseTypePrivateFields(obj, visited, cloneObject, typeToReflect);
+        if(!typeToReflect.Name.Contains("ConcurrentDictionary")){
+            CopyFields(obj, visited, cloneObject, typeToReflect);   
+            RecursiveCopyBaseTypePrivateFields(obj, visited, cloneObject, typeToReflect);
+        }
+        
         return cloneObject;
     }
 
@@ -103,33 +133,14 @@ public static partial class ObjectExtensions
         {
             if (filter != null && filter(fieldInfo) == false) continue;
             if (IsPrimitive(fieldInfo.FieldType)) continue;
-
-            //Concurrent Dictionaries produces infinite recursion
-            if(originalObject.GetType().Name.Contains("ConcurrentDictionary")){  
-                var args = originalObject.GetType().GetGenericArguments();
-                var generic = typeof(ConcurrentDictionary<,>).MakeGenericType(args);
-                var clonedDict = Activator.CreateInstance(generic);
-
-                var property = (PropertyInfo)generic.GetMember("Keys")[0];
-                var keys = property.GetValue(originalObject);
-
-                //TODO: need the reflected array of keys (cannot be object) in order to loop through
-
-                // foreach(var key in keys){
-                //     // var originalValue = originalDict[key];
-                //     // var copiedValue = DeepClone_Internal(originalValue, visited);
-                //     var fake = 0;
-                // }
-            }
-            else{
-                var originalFieldValue = fieldInfo.GetValue(originalObject);
-                var clonedFieldValue = DeepClone_Internal(originalFieldValue, visited);
-                fieldInfo.SetValue(cloneObject, clonedFieldValue);
-            }
+            
+            var originalFieldValue = fieldInfo.GetValue(originalObject);                        
+            var clonedFieldValue = DeepClone_Internal(originalFieldValue, visited);                   
+            fieldInfo.SetValue(cloneObject, clonedFieldValue);
         }
     }
 
-    public static void ForEach(this Array array, Action<Array, int[]> action)
+    private static void ForEach(this Array array, Action<Array, int[]> action)
     {
         if (array.LongLength == 0) return;
         ArrayTraverse walker = new ArrayTraverse(array);
@@ -137,6 +148,7 @@ public static partial class ObjectExtensions
         while (walker.Step());
     }
 }
+
 
 internal class ReferenceEqualityComparer : EqualityComparer<Object>
 {
