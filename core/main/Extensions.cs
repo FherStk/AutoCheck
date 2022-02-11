@@ -115,7 +115,6 @@ public static partial class ObjectExtensions
         do action(array, walker.Position);
         while (walker.Step());
     }
-
 }
 
 internal class ReferenceEqualityComparer : EqualityComparer<Object>
