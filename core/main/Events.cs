@@ -21,7 +21,7 @@ namespace AutoCheck.Core.Events
         }
     }
 
-    public class ScriptStatusEventArgs : EventArgs
+    public class StatusUpdateEventArgs : EventArgs
     {
          public enum ExecutionModeType{
             SINGLE,
@@ -51,7 +51,7 @@ namespace AutoCheck.Core.Events
         /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="executionMode">The current execution mode.</param>
         /// <param name="eventType">The event type.</param>
-        public ScriptStatusEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
+        public StatusUpdateEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
             ID = id;
             Mode = executionMode;
             Event = eventType;
