@@ -669,30 +669,29 @@ namespace AutoCheck.Core{
         }  
     #endregion
     #region Log concurrent arrangement
-        private static int LogStep;
+        private int LogStep;
 
-        private static bool LogBeingSent;
+        private bool LogBeingSent;
 
-        private static Guid? MainLogInstanceID;
+        private Guid? MainLogInstanceID;
 
-        private static Guid? CurrentLogInstanceID;        
+        private Guid? CurrentLogInstanceID;        
 
-        private static ConcurrentQueue<Guid?> NextLogID;
+        private ConcurrentQueue<Guid?> NextLogID;
 
-        private static ConcurrentQueue<Guid?> FinishedLogID;
+        private ConcurrentQueue<Guid?> FinishedLogID;
         
-        private static ScriptStatusEventArgs.ExecutionModeType LogMode;
+        private ScriptStatusEventArgs.ExecutionModeType LogMode;
 
-        private static ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
+        private ConcurrentDictionary<Guid, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
         
 #endregion
 #endregion
 #region Events
-        //Notice: must be static because will be shared along parrallel tasks
-        private static event EventHandler<LogUpdateEventArgs> OnLogUpdate;                //fired each time a new log entry is ready.        
-        private static event EventHandler<ScriptStatusEventArgs> OnStatusUpdate;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
-        private static event EventHandler<LogUpdateEventArgs> OnLogUpdateProxy;           //for concurrent log generation purposes
-        private static event EventHandler<ScriptStatusEventArgs> OnScriptStatusProxy;     //for concurrent log generation purposes
+        private event EventHandler<LogUpdateEventArgs> OnLogUpdate;                //fired each time a new log entry is ready.        
+        private event EventHandler<ScriptStatusEventArgs> OnStatusUpdate;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
+        private event EventHandler<LogUpdateEventArgs> OnLogUpdateProxy;           //for concurrent log generation purposes
+        private event EventHandler<ScriptStatusEventArgs> OnScriptStatusProxy;     //for concurrent log generation purposes
 #endregion
 #region Constructor
         protected Script(){
@@ -751,10 +750,10 @@ namespace AutoCheck.Core{
             OnScriptStatusProxy = null;
         }
 
-        protected Script(EventHandler<LogUpdateEventArgs> onLogGenerated, EventHandler<ScriptStatusEventArgs> onScriptExecution):this(){
+        protected Script(EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<ScriptStatusEventArgs> onStatusUpdate):this(){
             //Events
-            OnLogUpdate = onLogGenerated;
-            OnStatusUpdate = onScriptExecution;    
+            OnLogUpdate = onLogUpdate;
+            OnStatusUpdate = onStatusUpdate;    
 
             Output.OnLogUpdate += OnLogUpdateProxyEventHandler;
             OnScriptStatusProxy += OnScriptStatusProxyEventHandler;
@@ -765,23 +764,23 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<ScriptStatusEventArgs> onScriptExecution=null): this(path, null, onScriptExecution){ 
+        public Script(string path, EventHandler<ScriptStatusEventArgs> onStatusUpdate=null): this(path, null, onStatusUpdate){ 
         }
        
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
         /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<ScriptStatusEventArgs> onScriptExecution=null): this(yaml, null, onScriptExecution){ 
+        public Script(YamlStream yaml, EventHandler<ScriptStatusEventArgs> onStatusUpdate=null): this(yaml, null, onStatusUpdate){ 
         }
 
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
-        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<LogUpdateEventArgs> onLogGenerated, EventHandler<ScriptStatusEventArgs> onScriptExecution=null): this(onLogGenerated, onScriptExecution){    
+        /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
+        /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        public Script(YamlStream yaml, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<ScriptStatusEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
             //NOTE: some properties are beeing setup within the private constructor
             
             //Setup the remaining vars            
@@ -799,9 +798,9 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onLogGenerated">This event will be fired each time a new log entry has been generated.</param>
-        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(string path, EventHandler<LogUpdateEventArgs> onLogGenerated, EventHandler<ScriptStatusEventArgs> onScriptExecution=null): this(onLogGenerated, onScriptExecution){    
+        /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
+        /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<ScriptStatusEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
             //NOTE: some properties are beeing setup within the private constructor            
 
             //Setup the remaining vars            
@@ -2613,7 +2612,7 @@ namespace AutoCheck.Core{
         //Log generation could be complex when running on batch mode with concurrency enabled.
         //In order to provide real time log and avoid mixing log of different running instances, the log generated event will be 
         //captured and processed after returning it to the caller
-        private static void OnScriptStatusProxyEventHandler(object sender, ScriptStatusEventArgs e){               
+        private void OnScriptStatusProxyEventHandler(object sender, ScriptStatusEventArgs e){               
             if(MainLogInstanceID == null) MainLogInstanceID = e.ID; //the main thread ID 
             if(CurrentLogInstanceID == null) CurrentLogInstanceID = e.ID; //the first log info to display
 
@@ -2652,7 +2651,7 @@ namespace AutoCheck.Core{
             if(OnStatusUpdate != null) OnStatusUpdate.Invoke(sender, e);            
         }
 
-        private static void OnLogUpdateProxyEventHandler(object sender, LogUpdateEventArgs e){               
+        private void OnLogUpdateProxyEventHandler(object sender, LogUpdateEventArgs e){               
             Logs.AddOrUpdate(e.ID, (v) => {
                 var queue = new ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>();
                 queue.Enqueue(((Core.Output)sender, e));
@@ -2665,7 +2664,7 @@ namespace AutoCheck.Core{
             if(CurrentLogInstanceID == e.ID && !LogBeingSent) SendLogToClient(sender, CurrentLogInstanceID.Value);            
         }
 
-        private static void SendLogToClient(object sender, Guid logInstanceID){                        
+        private void SendLogToClient(object sender, Guid logInstanceID){                        
             LogBeingSent = true;
 
             //We will have the log for the given ID and maybe also the status
