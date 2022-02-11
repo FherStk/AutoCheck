@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 /// <summary>
 /// C# extension method for easy file downloading.
@@ -102,9 +103,29 @@ public static partial class ObjectExtensions
         {
             if (filter != null && filter(fieldInfo) == false) continue;
             if (IsPrimitive(fieldInfo.FieldType)) continue;
-            var originalFieldValue = fieldInfo.GetValue(originalObject);
-            var clonedFieldValue = DeepClone_Internal(originalFieldValue, visited);
-            fieldInfo.SetValue(cloneObject, clonedFieldValue);
+
+            //Concurrent Dictionaries produces infinite recursion
+            if(originalObject.GetType().Name.Contains("ConcurrentDictionary")){  
+                var args = originalObject.GetType().GetGenericArguments();
+                var generic = typeof(ConcurrentDictionary<,>).MakeGenericType(args);
+                var clonedDict = Activator.CreateInstance(generic);
+
+                var property = (PropertyInfo)generic.GetMember("Keys")[0];
+                var keys = property.GetValue(originalObject);
+
+                //TODO: need the reflected array of keys (cannot be object)
+
+                foreach(var key in keys){
+                    // var originalValue = originalDict[key];
+                    // var copiedValue = DeepClone_Internal(originalValue, visited);
+                    var fake = 0;
+                }
+            }
+            else{
+                var originalFieldValue = fieldInfo.GetValue(originalObject);
+                var clonedFieldValue = DeepClone_Internal(originalFieldValue, visited);
+                fieldInfo.SetValue(cloneObject, clonedFieldValue);
+            }
         }
     }
 
