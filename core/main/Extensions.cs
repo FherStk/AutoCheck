@@ -113,13 +113,13 @@ public static partial class ObjectExtensions
                 var property = (PropertyInfo)generic.GetMember("Keys")[0];
                 var keys = property.GetValue(originalObject);
 
-                //TODO: need the reflected array of keys (cannot be object)
+                //TODO: need the reflected array of keys (cannot be object) in order to loop through
 
-                foreach(var key in keys){
-                    // var originalValue = originalDict[key];
-                    // var copiedValue = DeepClone_Internal(originalValue, visited);
-                    var fake = 0;
-                }
+                // foreach(var key in keys){
+                //     // var originalValue = originalDict[key];
+                //     // var copiedValue = DeepClone_Internal(originalValue, visited);
+                //     var fake = 0;
+                // }
             }
             else{
                 var originalFieldValue = fieldInfo.GetValue(originalObject);
