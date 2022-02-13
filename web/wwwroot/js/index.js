@@ -211,9 +211,20 @@ function addTarget(key, value, placeholder, isVar){
 }
 
 function reload(){
-    $.post("/home/Index", function(data) {
-        window.location.reload(true);
+    
+    $.post("/home/CheckForUpdate", function(data) {
+        if(!data){
+            //update completed
+            window.location.reload(true);
+        } 
+        else{
+            //updated has not started
+            setTimeout(function(){
+                reload();
+            }, 1000);    
+        }
     }).fail(function(){ 
+        //updated in progress
         setTimeout(function(){
             reload();
         }, 1000);

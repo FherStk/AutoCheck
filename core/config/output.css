@@ -74,6 +74,10 @@
     color: orange;
 }
 
-.default{
+.default-primary{
     color: white;
+}
+
+.default-secondary{
+    color: yellow;
 }
