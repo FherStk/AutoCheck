@@ -853,10 +853,7 @@ namespace AutoCheck.Core{
             catch(Exception ex){
                 Output.WriteLine($"Unable to export the log files: {ex.Message}", Output.Style.CRITICAL);
                 throw;
-            }         
-            
-            //Scope out
-            Vars.Pop();            
+            }                            
         } 
 
         private void Setup(){            
