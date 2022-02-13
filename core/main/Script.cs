@@ -896,7 +896,7 @@ namespace AutoCheck.Core{
         /// </summary>
         /// <param name="target">Target data to override.</param>
         /// <param name="vars">Vars data to override.</param>
-        public void OverrideTarget(Dictionary<string, string> target, Dictionary<string, string> vars){                      
+        public void OverrideTarget(Dictionary<string, string> target, Dictionary<string, string> vars = null){                      
             ForEachChild(Root, new Action<string, YamlNode>((name, node) => { 
                 switch(name){                        
                     case "single":                           
@@ -914,9 +914,11 @@ namespace AutoCheck.Core{
                                                 break;
                                             
                                             case "vars":
-                                                ForEachChild(node, new Action<string, YamlNode>((name, node) => {
-                                                    ((YamlScalarNode)node).Value = vars[name];
-                                                })); 
+                                                if(vars != null){
+                                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                        ((YamlScalarNode)node).Value = vars[name];
+                                                    })); 
+                                                }
                                                 break;
                                             
                                             default:
