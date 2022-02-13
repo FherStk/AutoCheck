@@ -13,15 +13,10 @@ namespace AutoCheck.Web.Controllers{
     public class HomeController : Controller
     {        
         private enum ScriptSource{
-            Custom,
-            Default
+            CUSTOM,
+            DEFAULT
         }
-
-        public enum ScriptMode{
-            Single,
-            Batch
-        }
-
+       
         private class ScriptInfo{        
             [JsonConverter(typeof(JsonStringEnumConverter))]
             public ScriptSource Source {get; set;}
@@ -50,10 +45,10 @@ namespace AutoCheck.Web.Controllers{
             return View();
         }
 
-        public IActionResult GetScripts(ScriptMode mode)
+        public IActionResult GetScripts(Core.Script.ExecutionMode mode)
         {
-            var items = GetScripts(ScriptSource.Default, mode);
-            items.AddRange(GetScripts(ScriptSource.Custom, mode));        
+            var items = GetScripts(ScriptSource.DEFAULT, mode);
+            items.AddRange(GetScripts(ScriptSource.CUSTOM, mode));        
                         
             return Json(items);
         }
@@ -151,9 +146,9 @@ namespace AutoCheck.Web.Controllers{
             }
         }
         
-        private List<ScriptInfo> GetScripts(ScriptSource source, ScriptMode mode){
+        private List<ScriptInfo> GetScripts(ScriptSource source, Core.Script.ExecutionMode mode){
             var items = new List<ScriptInfo>();
-            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, (source == ScriptSource.Default ? "targets" : "custom"), mode.ToString().ToLower()), "*.yaml").OrderBy(x => x)){
+            foreach(var item in Directory.GetFiles(Path.Combine(AutoCheck.Core.Utils.ScriptsFolder, (source == ScriptSource.DEFAULT ? "targets" : "custom"), mode.ToString().ToLower()), "*.yaml").OrderBy(x => x)){
                 items.Add(new ScriptInfo(source, Path.GetFileName(item), item));            
             }
 

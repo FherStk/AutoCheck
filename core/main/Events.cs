@@ -21,13 +21,8 @@ namespace AutoCheck.Core.Events
     }
 
     public class StatusUpdateEventArgs : EventArgs
-    {
-         public enum ExecutionModeType{
-            SINGLE,
-            BATCH
-        }
-
-        public enum ExecutionEventType{
+    {        
+        public enum ExecutionEvent{
             AFTER_HEADER,
             AFTER_INIT,            
             AFTER_SETUP,
@@ -41,19 +36,19 @@ namespace AutoCheck.Core.Events
         }
         
         public Guid ID { get; set; }            
-        public ExecutionModeType Mode { get; set; }
-        public ExecutionEventType Event { get; set; }
+        public Core.Script.ExecutionMode Mode { get; set; }
+        public ExecutionEvent Event { get; set; }
 
         /// <summary>
         /// Creates a new execution event instance.
         /// </summary>
         /// <param name="id">The current instance ID (for multi-threading purposes).</param>
         /// <param name="executionMode">The current execution mode.</param>
-        /// <param name="eventType">The event type.</param>
-        public StatusUpdateEventArgs(Guid id, ExecutionModeType executionMode, ExecutionEventType eventType){
+        /// <param name="executionEvent">The event type.</param>
+        public StatusUpdateEventArgs(Guid id, Core.Script.ExecutionMode executionMode, ExecutionEvent executionEvent){
             ID = id;
             Mode = executionMode;
-            Event = eventType;
+            Event = executionEvent;
         }
     }
 }

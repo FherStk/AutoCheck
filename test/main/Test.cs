@@ -125,7 +125,7 @@ namespace AutoCheck.Test
         {            
             //Temp folders uses the current test context ID, so is not possible to access another ones as could be done when asking for a sample file between scripts.
             return Utils.PathToCurrentOS(Path.Combine(TempScriptFolder, file)); 
-        }      
+        }          
 
         /// <summary>
         /// Retrieves a sample file path for the current test.
