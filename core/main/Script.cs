@@ -694,9 +694,37 @@ namespace AutoCheck.Core{
 #endregion
 #region Constructor and Start    
         private Script(){
+            //Just to be used by the other constructors              
+            LogFiles = new List<string>();                                                           
+            Connectors = new Stack<Dictionary<string, object>>();          
+            Vars = new Stack<Dictionary<string, object>>();
+            Vars.Push(new Dictionary<string, object>());
+        
+            //Setup default folders, each property will set also the related 'name' property                              
+            AppFolderPath = Utils.AppFolder;
+            AppConfigPath = Utils.ConfigFolder;
+            AppUtilsPath = Utils.UtilsFolder;
+            ExecutionFolderPath = Utils.ExecutionFolder;
+            
+            //Setup the remaining vars            
+            ScriptVersion = "1.0.0.0";
+            ScriptName = string.Empty;
+            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
+            SingleCaption = "Running on single mode:";
+            BatchCaption = "Running on batch mode:";
+
+            //Setting up internal log objects
+            NextLogID = new ConcurrentQueue<Guid?>();
+            FinishedLogID = new ConcurrentQueue<Guid?>();
+            Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+
+            //Internal events
             OnLogUpdate = null;
             OnStatusUpdate = null;
-            OnStatusUpdateProxy = null;            
+            OnStatusUpdateProxy = null;     
+
+            //Setup extra data
+            Setup();                  
         }
         
        
@@ -704,10 +732,7 @@ namespace AutoCheck.Core{
             //Events
             OnLogUpdate = onLogUpdate;
             OnStatusUpdate = onStatusUpdate;    
-
-            Output.OnLogUpdate += OnLogUpdateProxyEventHandler;
             OnStatusUpdateProxy += OnScriptStatusProxyEventHandler;
-
         }
        
         /// Creates a new script instance using the given script file.
@@ -721,7 +746,7 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
         /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
-        public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate, autoStart){}
+        /// public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate, autoStart){}
 
         /// Creates a new script instance using the given script file.
         /// </summary>
@@ -828,18 +853,15 @@ namespace AutoCheck.Core{
             Vars.Pop();            
         } 
 
-        private void Setup(){
-            //Just to be used by the other constructors            
+        private void Setup(){            
             Output = new Output();       
-            LogFiles = new List<string>();                                                           
-            Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();
+            Output.OnLogUpdate += OnLogUpdateProxyEventHandler;
+            
+            //Clear needed for manually requested Start
+            LogFiles.Clear();
+            Connectors.Clear();            
 
-            //Scope in              
-            Vars.Push(new Dictionary<string, object>());
-
-            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
-            AutoComputeVarValues = false;
+            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)            
             Abort = false;
             Skip = false;
             Result = null;                                   
@@ -848,33 +870,24 @@ namespace AutoCheck.Core{
             CurrentScore = 0f;
             CurrentQuestion = "0";    
             Concurrent = 0;
+            AutoComputeVarValues = false;                                                  
 
-            //Setup default folders, each property will set also the related 'name' property                              
-            AppFolderPath = Utils.AppFolder;            
-            AppConfigPath = Utils.ConfigFolder;
-            AppUtilsPath = Utils.UtilsFolder;
-            ExecutionFolderPath = Utils.ExecutionFolder;            
+            //Setup current paths
             CurrentFolderPath = string.Empty;
             CurrentFilePath = string.Empty; 
 
             //Setup local/remote batch mode vars
             CurrentTarget = "none";
-            SetupDefaultHostVars();
-
-            //Setup the remaining vars            
-            ScriptVersion = "1.0.0.0";
-            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            SingleCaption = "Running on single mode:";
-            BatchCaption = "Running on batch mode:";
+            SetupDefaultHostVars();           
 
             //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
             LogStep = 0;
             LogBeingSent = false;
             MainLogInstanceID = null; 
             CurrentLogInstanceID = null;
-            NextLogID = new ConcurrentQueue<Guid?>();
-            FinishedLogID = new ConcurrentQueue<Guid?>();
-            Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+            NextLogID.Clear();
+            FinishedLogID.Clear();
+            Logs.Clear();
         }       
 #endregion
 #region Target injection
