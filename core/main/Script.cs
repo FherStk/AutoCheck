@@ -692,63 +692,15 @@ namespace AutoCheck.Core{
         private event EventHandler<StatusUpdateEventArgs> OnStatusUpdate;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
         private event EventHandler<StatusUpdateEventArgs> OnStatusUpdateProxy;     //for concurrent log generation purposes
 #endregion
-#region Constructor
-        protected Script(){
-            //Just to be used by the other constructors            
-            Output = new Output();       
-            LogFiles = new List<string>();                                                           
-            Connectors = new Stack<Dictionary<string, object>>();          
-            Vars = new Stack<Dictionary<string, object>>();
-
-            //Scope in              
-            Vars.Push(new Dictionary<string, object>());
-
-            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
-            AutoComputeVarValues = false;
-            Abort = false;
-            Skip = false;
-            Result = null;                                   
-            MaxScore = 10f;  
-            TotalScore = 0f;
-            CurrentScore = 0f;
-            CurrentQuestion = "0";    
-            Concurrent = 0;
-
-            //Setup default folders, each property will set also the related 'name' property                              
-            AppFolderPath = Utils.AppFolder;            
-            AppConfigPath = Utils.ConfigFolder;
-            AppUtilsPath = Utils.UtilsFolder;
-            ExecutionFolderPath = Utils.ExecutionFolder;            
-            CurrentFolderPath = string.Empty;
-            CurrentFilePath = string.Empty; 
-
-            //Setup local/remote batch mode vars
-            CurrentTarget = "none";
-            SetupDefaultHostVars();
-
-            //Setup the remaining vars            
-            ScriptVersion = "1.0.0.0";
-            ScriptName = string.Empty;
-            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
-            SingleCaption = "Running on single mode:";
-            BatchCaption = "Running on batch mode:";
-
-            //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
-            LogStep = 0;
-            LogBeingSent = false;
-            MainLogInstanceID = null; 
-            CurrentLogInstanceID = null;
-            NextLogID = new ConcurrentQueue<Guid?>();
-            FinishedLogID = new ConcurrentQueue<Guid?>();
-            Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
-
-            //Restoring internal events (static events in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+#region Constructor and Start    
+        private Script(){
             OnLogUpdate = null;
             OnStatusUpdate = null;
-            OnStatusUpdateProxy = null;
+            OnStatusUpdateProxy = null;            
         }
-
-        protected Script(EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate):this(){
+        
+       
+        protected Script(EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate): this(){
             //Events
             OnLogUpdate = onLogUpdate;
             OnStatusUpdate = onStatusUpdate;    
@@ -761,36 +713,30 @@ namespace AutoCheck.Core{
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
-        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(path, null, onStatusUpdate){ 
-        }
-       
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        public Script(string path, bool autoStart=true): this(path, null, null, autoStart){}
+
         /// Creates a new script instance using the given script file.
         /// </summary>
-        /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(yaml, null, onStatusUpdate){ 
-        }
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate, autoStart){}
 
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        /// public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate){}
+       
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
-        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
-            //NOTE: some properties are beeing setup within the private constructor
-            
-            //Setup the remaining vars            
-            ScriptFilePath = Utils.ScriptsFolder;
-            ScriptName = "YAML Stream Script";
-                        
-            //Load the YAML file
-            Root = (YamlMappingNode)yaml.Documents[0].RootNode;
-            
-            //Setup the script
-            SetupScript();
-        }
+        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, bool autoStart=true): this(path, onLogUpdate, null, autoStart){}
 
         /// <summary>
         /// Creates a new script instance using the given script file.
@@ -798,8 +744,8 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
-            //NOTE: some properties are beeing setup within the private constructor            
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart = true): this(onLogUpdate, onStatusUpdate){    
 
             //Setup the remaining vars            
             ScriptFilePath = Utils.PathToCurrentOS(path);
@@ -809,10 +755,16 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
 
             //Setup the script
-            SetupScript();
+            if(autoStart) Start();
         }
 
-        private void SetupScript(){                
+        
+        /// <summary>
+        /// Manually starts the script execution
+        /// </summary>
+        public void Start(){  
+            Setup();
+
             //Setup YAML log data
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -874,10 +826,136 @@ namespace AutoCheck.Core{
             
             //Scope out
             Vars.Pop();            
-        }
+        } 
 
-        
+        private void Setup(){
+            //Just to be used by the other constructors            
+            Output = new Output();       
+            LogFiles = new List<string>();                                                           
+            Connectors = new Stack<Dictionary<string, object>>();          
+            Vars = new Stack<Dictionary<string, object>>();
+
+            //Scope in              
+            Vars.Push(new Dictionary<string, object>());
+
+            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
+            AutoComputeVarValues = false;
+            Abort = false;
+            Skip = false;
+            Result = null;                                   
+            MaxScore = 10f;  
+            TotalScore = 0f;
+            CurrentScore = 0f;
+            CurrentQuestion = "0";    
+            Concurrent = 0;
+
+            //Setup default folders, each property will set also the related 'name' property                              
+            AppFolderPath = Utils.AppFolder;            
+            AppConfigPath = Utils.ConfigFolder;
+            AppUtilsPath = Utils.UtilsFolder;
+            ExecutionFolderPath = Utils.ExecutionFolder;            
+            CurrentFolderPath = string.Empty;
+            CurrentFilePath = string.Empty; 
+
+            //Setup local/remote batch mode vars
+            CurrentTarget = "none";
+            SetupDefaultHostVars();
+
+            //Setup the remaining vars            
+            ScriptVersion = "1.0.0.0";
+            ScriptCaption = "Running script ~{$SCRIPT_NAME} (v{$SCRIPT_VERSION}):~";
+            SingleCaption = "Running on single mode:";
+            BatchCaption = "Running on batch mode:";
+
+            //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            LogStep = 0;
+            LogBeingSent = false;
+            MainLogInstanceID = null; 
+            CurrentLogInstanceID = null;
+            NextLogID = new ConcurrentQueue<Guid?>();
+            FinishedLogID = new ConcurrentQueue<Guid?>();
+            Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
+        }       
 #endregion
+#region Target injection
+        /// <summary>
+        /// Overrides the current target data with the given one. 
+        /// </summary>
+        /// <param name="target">Target data to override.</param>
+        /// <param name="vars">Vars data to override.</param>
+        public void OverrideTarget(Dictionary<string, string> target, Dictionary<string, string> vars){                      
+            ForEachChild(Root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":                                         
+                                case "remote":   
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; vars                                        
+                                        switch(name){
+                                            case "os":
+                                                var os = Enum.Parse(typeof(AutoCheck.Core.Utils.OS), target[name]);
+                                                ((YamlScalarNode)node).Value = os.ToString();
+                                                break;
+                                            
+                                            case "vars":
+                                                ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                    ((YamlScalarNode)node).Value = vars[name];
+                                                })); 
+                                                break;
+                                            
+                                            default:
+                                                //folder; path
+                                                ((YamlScalarNode)node).Value = target[name];
+                                                break;
+                                        }                                        
+                                    }));                     
+                                    break;
+                            }
+                        }));
+                        break;
+                }
+            }));
+        } 
+
+        /// <summary>
+        /// Returns the current YAML
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, object> GetTargetData(){
+            var data = new Dictionary<string, object>();                                           
+            ForEachChild(Root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":                                         
+                                case "remote":   
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; folder; path
+                                        if(name != "vars") data.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
+                                        else{
+                                            var vars = new Dictionary<string, object>();
+                                            data.Add(name, vars);
+
+                                            ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                vars.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
+                                            }));      
+                                        }
+                                    }));                     
+                                break;
+                            }
+                        }));
+                    break;
+                }
+            }));
+
+            return data;
+        } 
+#endregion 
 #region Parsing
         private void ParseLog(YamlNode node, string current="log", string parent="root", string[] children = null, string[] mandatory = null){
             children ??= new string[]{"folder", "format", "name", "enabled"};

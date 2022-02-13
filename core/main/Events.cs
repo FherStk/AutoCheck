@@ -1,5 +1,4 @@
 using System;
-using AutoCheck.Core;
 
 namespace AutoCheck.Core.Events
 {       

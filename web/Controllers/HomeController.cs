@@ -60,8 +60,8 @@ namespace AutoCheck.Web.Controllers{
 
         public IActionResult GetTargetData(string script)
         {
-            var ws = new WebScript(script);                    
-            return Json(ws.GetTargetData());
+            var s = new Script(script, false);                    
+            return Json(s.GetTargetData());
         }
         
         public IActionResult CheckForUpdate()
