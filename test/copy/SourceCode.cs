@@ -35,14 +35,26 @@ namespace AutoCheck.Test.Checkers
         }
 
         [Test]
-        public void Constructor()
+        public void Constructor_Throws_ArgumentNullException()
         {             
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.CopyDetectors.SourceCode(0,string.Empty));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.CopyDetectors.SourceCode(1.01f, "*.java"));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.CopyDetectors.SourceCode(-0.01f, "*.java"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.CopyDetectors.SourceCode(0, "*.java"));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.CopyDetectors.SourceCode(1, "*"));            
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.CopyDetectors.SourceCode(0,string.Empty));            
         }   
+
+        [Test]
+        [TestCase(1.01f, "*.java")]
+        [TestCase(-0.01f, "*.java")]
+        public void Constructor_Throws_ArgumentOutOfRangeException(float threshold, string filepattern)
+        {             
+            Assert.Throws<ArgumentOutOfRangeException>(() => new AutoCheck.Core.CopyDetectors.SourceCode(threshold, filepattern));            
+        }   
+
+        [Test]
+        [TestCase(0f, "*.SourceCode")]
+        [TestCase(1f, "*")]
+        public void Constructor_DoesNotThrow(float threshold, string filepattern)
+        {             
+            Assert.DoesNotThrow(() => new AutoCheck.Core.CopyDetectors.SourceCode(threshold, filepattern));            
+        }
 
         [Test]
         public void Load_KO()
