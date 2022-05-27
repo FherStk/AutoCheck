@@ -63,7 +63,7 @@ batch:
             type: "Compressed"                    
             arguments: "--filePath {$ZIP_FILE}"
 
-         - run:
+        - run:
             connector: "TextStream"
             command: "FileName"
             arguments: "--path {$ZIP_FILE}"
