@@ -30,7 +30,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="SSH.NET" Version="2020.0.1"/>
+		<PackageReference Include="SSH.NET" Version="2020.0.2"/>
 		<PackageReference Include="Google.Apis.Drive.v3" Version="1.55.0.2502"/>
 		<PackageReference Include="Google.Apis.Storage.v1" Version="1.55.0.2482"/>
 		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
