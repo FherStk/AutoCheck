@@ -681,51 +681,37 @@ namespace AutoCheck.Core{
 
         private ConcurrentQueue<Guid?> FinishedLogID;
         
-        private StatusUpdateEventArgs.ExecutionModeType LogMode;
+        private Core.Script.ExecutionMode LogMode;
 
         private ConcurrentDictionary<Guid?, ConcurrentQueue<(Core.Output Output, LogUpdateEventArgs Data)>> Logs;
         
 #endregion
+#endregion
+#region Enums
+    public enum ExecutionMode{
+            SINGLE,
+            BATCH
+        }
 #endregion
 #region Events
         private event EventHandler<LogUpdateEventArgs> OnLogUpdate;                //fired each time a new log entry is ready.        
         private event EventHandler<StatusUpdateEventArgs> OnStatusUpdate;          //fired each time a script completes a step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1))
         private event EventHandler<StatusUpdateEventArgs> OnStatusUpdateProxy;     //for concurrent log generation purposes
 #endregion
-#region Constructor
-        protected Script(){
-            //Just to be used by the other constructors            
-            Output = new Output();       
+#region Constructor and Start    
+        private Script(){
+            //Just to be used by the other constructors              
             LogFiles = new List<string>();                                                           
             Connectors = new Stack<Dictionary<string, object>>();          
             Vars = new Stack<Dictionary<string, object>>();
-
-            //Scope in              
             Vars.Push(new Dictionary<string, object>());
-
-            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)
-            AutoComputeVarValues = false;
-            Abort = false;
-            Skip = false;
-            Result = null;                                   
-            MaxScore = 10f;  
-            TotalScore = 0f;
-            CurrentScore = 0f;
-            CurrentQuestion = "0";    
-            Concurrent = 0;
-
+        
             //Setup default folders, each property will set also the related 'name' property                              
-            AppFolderPath = Utils.AppFolder;            
+            AppFolderPath = Utils.AppFolder;
             AppConfigPath = Utils.ConfigFolder;
             AppUtilsPath = Utils.UtilsFolder;
-            ExecutionFolderPath = Utils.ExecutionFolder;            
-            CurrentFolderPath = string.Empty;
-            CurrentFilePath = string.Empty; 
-
-            //Setup local/remote batch mode vars
-            CurrentTarget = "none";
-            SetupDefaultHostVars();
-
+            ExecutionFolderPath = Utils.ExecutionFolder;
+            
             //Setup the remaining vars            
             ScriptVersion = "1.0.0.0";
             ScriptName = string.Empty;
@@ -733,64 +719,55 @@ namespace AutoCheck.Core{
             SingleCaption = "Running on single mode:";
             BatchCaption = "Running on batch mode:";
 
-            //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
-            LogStep = 0;
-            LogBeingSent = false;
-            MainLogInstanceID = null; 
-            CurrentLogInstanceID = null;
+            //Setting up internal log objects
             NextLogID = new ConcurrentQueue<Guid?>();
             FinishedLogID = new ConcurrentQueue<Guid?>();
             Logs = new ConcurrentDictionary<Guid?, ConcurrentQueue<(Output Output, LogUpdateEventArgs Data)>>();
 
-            //Restoring internal events (static events in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            //Internal events
             OnLogUpdate = null;
             OnStatusUpdate = null;
-            OnStatusUpdateProxy = null;
-        }
+            OnStatusUpdateProxy = null;     
 
-        protected Script(EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate):this(){
+            //Setup extra data
+            Setup();                  
+        }
+        
+       
+        protected Script(EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate): this(){
             //Events
             OnLogUpdate = onLogUpdate;
             OnStatusUpdate = onStatusUpdate;    
-
-            Output.OnLogUpdate += OnLogUpdateProxyEventHandler;
             OnStatusUpdateProxy += OnScriptStatusProxyEventHandler;
-
         }
        
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        public Script(string path, bool autoStart=true): this(path, null, null, autoStart){}
+
+        /// Creates a new script instance using the given script file.
+        /// </summary>
+        /// <param name="path">Path to the script file (yaml).</param>
+        /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        /// public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate, autoStart){}
+
         /// Creates a new script instance using the given script file.
         /// </summary>
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogGenerated">This event will be raised every time a log has been completely generated (after the header, after the setup, after each script execution and after the teardown).</param>
-        public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(path, null, onStatusUpdate){ 
-        }
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        /// public Script(string path, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart=true): this(path, null, onStatusUpdate){}
        
-        /// Creates a new script instance using the given script file.
-        /// </summary>
-        /// <param name="yaml">An already parsed YAML script.</param>
-        /// <param name="onScriptExecution">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(yaml, null, onStatusUpdate){ 
-        }
-
         /// <summary>
         /// Creates a new script instance using the given script file.
         /// </summary>
-        /// <param name="yaml">An already parsed YAML script.</param>
+        /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(YamlStream yaml, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
-            //NOTE: some properties are beeing setup within the private constructor
-            
-            //Setup the remaining vars            
-            ScriptFilePath = Utils.ScriptsFolder;
-            ScriptName = "YAML Stream Script";
-                        
-            //Load the YAML file
-            Root = (YamlMappingNode)yaml.Documents[0].RootNode;
-            
-            //Setup the script
-            SetupScript();
-        }
+        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, bool autoStart=true): this(path, onLogUpdate, null, autoStart){}
 
         /// <summary>
         /// Creates a new script instance using the given script file.
@@ -798,8 +775,8 @@ namespace AutoCheck.Core{
         /// <param name="path">Path to the script file (yaml).</param>
         /// <param name="onLogUpdate">This event will be fired each time a new log entry has been generated.</param>
         /// <param name="onStatusUpdate">This event will be fired fired each time a script completes an execution step (header(1) -> init(1) -> setup(*) -> copy_detector(1) -> pre(*) -> body(*) -> post(*) -> teardown(*) -> end(1)).</param>        
-        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate=null): this(onLogUpdate, onStatusUpdate){    
-            //NOTE: some properties are beeing setup within the private constructor            
+        /// <param name="autoStart">This script will start just after beeing loaded, otherwise the Start() method should be invoked.</param>        
+        public Script(string path, EventHandler<LogUpdateEventArgs> onLogUpdate, EventHandler<StatusUpdateEventArgs> onStatusUpdate, bool autoStart = true): this(onLogUpdate, onStatusUpdate){    
 
             //Setup the remaining vars            
             ScriptFilePath = Utils.PathToCurrentOS(path);
@@ -809,10 +786,16 @@ namespace AutoCheck.Core{
             Root = (YamlMappingNode)LoadYamlFile(path).Documents[0].RootNode;
 
             //Setup the script
-            SetupScript();
+            if(autoStart) Start();
         }
 
-        private void SetupScript(){                
+        
+        /// <summary>
+        /// Manually starts the script execution
+        /// </summary>
+        public void Start(){  
+            Setup();
+
             //Setup YAML log data
             SetupLog(
                 Path.Combine("{$APP_FOLDER_PATH}", "logs"), 
@@ -841,7 +824,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.START);
             
             //Script loaded
-            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.SINGLE, StatusUpdateEventArgs.ExecutionEventType.AFTER_HEADER));
+            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.SINGLE, StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER));
 
 
             //Vars are shared along, but pre, body and post must be run once for single-typed scripts or N times for batch-typed scripts    
@@ -860,7 +843,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.AFTER_TARGET);  
 
                 //Script completed
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_HEADER));               
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER));               
             }
 
             //Log files export (once all the teardown has been executed)
@@ -870,14 +853,127 @@ namespace AutoCheck.Core{
             catch(Exception ex){
                 Output.WriteLine($"Unable to export the log files: {ex.Message}", Output.Style.CRITICAL);
                 throw;
-            }         
-            
-            //Scope out
-            Vars.Pop();            
-        }
+            }                            
+        } 
 
-        
+        private void Setup(){            
+            Output = new Output();       
+            Output.OnLogUpdate += OnLogUpdateProxyEventHandler;
+            
+            //Clear needed for manually requested Start
+            LogFiles.Clear();
+            Connectors.Clear();            
+
+            //Setup default vars (must be ALL declared before the caption (or any other YAML var) could be used, because the user can customize it using any of this vars)            
+            Abort = false;
+            Skip = false;
+            Result = null;                                   
+            MaxScore = 10f;  
+            TotalScore = 0f;
+            CurrentScore = 0f;
+            CurrentQuestion = "0";    
+            Concurrent = 0;
+            AutoComputeVarValues = false;                                                  
+
+            //Setup current paths
+            CurrentFolderPath = string.Empty;
+            CurrentFilePath = string.Empty; 
+
+            //Setup local/remote batch mode vars
+            CurrentTarget = "none";
+            SetupDefaultHostVars();           
+
+            //Restoring internal log data (static vars in order to work properly with concurrent scripts, those vars will be shared along instances so wont be copied between them)
+            LogStep = 0;
+            LogBeingSent = false;
+            MainLogInstanceID = null; 
+            CurrentLogInstanceID = null;
+            NextLogID.Clear();
+            FinishedLogID.Clear();
+            Logs.Clear();
+        }       
 #endregion
+#region Target injection
+        /// <summary>
+        /// Overrides the current target data with the given one. 
+        /// </summary>
+        /// <param name="target">Target data to override.</param>
+        /// <param name="vars">Vars data to override.</param>
+        public void OverrideTarget(Dictionary<string, string> target, Dictionary<string, string> vars = null){                      
+            ForEachChild(Root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":                                         
+                                case "remote":   
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; vars                                        
+                                        switch(name){
+                                            case "os":
+                                                var os = Enum.Parse(typeof(AutoCheck.Core.Utils.OS), target[name]);
+                                                ((YamlScalarNode)node).Value = os.ToString();
+                                                break;
+                                            
+                                            case "vars":
+                                                if(vars != null){
+                                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                        ((YamlScalarNode)node).Value = vars[name];
+                                                    })); 
+                                                }
+                                                break;
+                                            
+                                            default:
+                                                //folder; path
+                                                ((YamlScalarNode)node).Value = target[name];
+                                                break;
+                                        }                                        
+                                    }));                     
+                                    break;
+                            }
+                        }));
+                        break;
+                }
+            }));
+        } 
+
+        /// <summary>
+        /// Returns the current YAML
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, object> GetTargetData(){
+            var data = new Dictionary<string, object>();                                           
+            ForEachChild(Root, new Action<string, YamlNode>((name, node) => { 
+                switch(name){                        
+                    case "single":                           
+                    case "batch":                        
+                        ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                            switch(name){                        
+                                case "local":                                         
+                                case "remote":   
+                                    ForEachChild(node, new Action<string, YamlNode>((name, node) => { 
+                                        //os; host; user; password; folder; path
+                                        if(name != "vars") data.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
+                                        else{
+                                            var vars = new Dictionary<string, object>();
+                                            data.Add(name, vars);
+
+                                            ForEachChild(node, new Action<string, YamlNode>((name, node) => {
+                                                vars.Add(name, ((YamlScalarNode)node).Value ?? string.Empty);
+                                            }));      
+                                        }
+                                    }));                     
+                                break;
+                            }
+                        }));
+                    break;
+                }
+            }));
+
+            return data;
+        } 
+#endregion 
 #region Parsing
         private void ParseLog(YamlNode node, string current="log", string parent="root", string[] children = null, string[] mandatory = null){
             children ??= new string[]{"folder", "format", "name", "enabled"};
@@ -986,7 +1082,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.BEFORE_TARGET);
 
                 //Setup completed (just one execution for single mode)
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.SINGLE, StatusUpdateEventArgs.ExecutionEventType.AFTER_SETUP));               
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.SINGLE, StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP));               
                 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -1020,7 +1116,7 @@ namespace AutoCheck.Core{
                 Output.CloseLog(Output.Type.END);
 
                 //Teardown completed (just once for single mode)
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.SINGLE, StatusUpdateEventArgs.ExecutionEventType.AFTER_TEARDOWN));                
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.SINGLE, StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN));                
             }
         }
 
@@ -1040,7 +1136,7 @@ namespace AutoCheck.Core{
                 }));
                 
                 //Init completed (just once for batch)
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_INIT));
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT));
                 
                 //Running in batch mode            
                 var originalFolder = CurrentFolderPath;
@@ -1102,7 +1198,7 @@ namespace AutoCheck.Core{
                 });                               
 
                 //Setup ends
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_SETUP));                         
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP));                         
 
                 //Execution abort could be requested from any "setup"
                 if(Abort) return;
@@ -1121,7 +1217,7 @@ namespace AutoCheck.Core{
                 //Storing log for the data prior to the first target execution (common data for all executions)
                 Output.CloseLog(Output.Type.BEFORE_TARGET);
 
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR));
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR));
 
                 //Multithreading queue
                 var queuedScripts = new List<Task<Script>>();
@@ -1186,7 +1282,7 @@ namespace AutoCheck.Core{
                 LogFiles.AddRange(logFiles.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
                 Output.ScriptLog.AddRange(logContent.OrderBy(x => x.Key).SelectMany(x => x.Value).ToArray());
                 
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_SCRIPT));
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT));
 
                 //Parsing teardown content, it must run for each target after all the bodies and post 
                 Output.Indent();
@@ -1215,7 +1311,7 @@ namespace AutoCheck.Core{
                 });        
 
                 //Teardown ends
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_TEARDOWN));                   
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN));                   
 
                 //Parsing end, must run once at the end
                 ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => { 
@@ -1227,7 +1323,7 @@ namespace AutoCheck.Core{
                 }));
                 Output.UnIndent();
 
-                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_END));
+                OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_END));
 
                 //Storing log for the end after the last target execution (common data for all executions)
                 Output.CloseLog(Output.Type.END);      
@@ -1941,7 +2037,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.AFTER_TARGET);
 
             //Script body completed
-            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.SINGLE, StatusUpdateEventArgs.ExecutionEventType.AFTER_BODY));            
+            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.SINGLE, StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY));            
         }
 
         private void ExecuteBodyForBatch(YamlSequenceNode node, string current, List<CopyDetector> cpydet, string folder){
@@ -1961,7 +2057,7 @@ namespace AutoCheck.Core{
             }));                                        
             
             //Script body completed
-            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_PRE));            
+            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE));            
 
             //The script body will be executed only if no copies has been detected, otherwise the execution is aborted and the copy detector matches are displayed (all of them, in order to help adjusting the threshold if needed)
             var match = false;
@@ -1998,7 +2094,7 @@ namespace AutoCheck.Core{
             }
 
             //Script body completed
-            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_BODY));            
+            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY));            
 
             //Post content
             ForEachChild(node, new Action<string, YamlSequenceNode>((name, node) => {                                             
@@ -2016,7 +2112,7 @@ namespace AutoCheck.Core{
             Output.CloseLog(Output.Type.AFTER_TARGET);
 
             //Script body completed
-            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, StatusUpdateEventArgs.ExecutionModeType.BATCH, StatusUpdateEventArgs.ExecutionEventType.AFTER_POST));            
+            OnStatusUpdateProxy.Invoke(this, new StatusUpdateEventArgs(ID, Core.Script.ExecutionMode.BATCH, StatusUpdateEventArgs.ExecutionEvent.AFTER_POST));            
         }
 
         private void SetupDefaultHostVars(){
@@ -2619,7 +2715,7 @@ namespace AutoCheck.Core{
             if(CurrentLogInstanceID == null) CurrentLogInstanceID = e.ID; //the first log info to display
 
             //received AFTER_COPY_DETECTOR for any ID: the concurrent execution will begin
-            if(LogStep == 0 && e.Event == StatusUpdateEventArgs.ExecutionEventType.AFTER_COPY_DETECTOR){
+            if(LogStep == 0 && e.Event == StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR){
                 //Once here, the first concurrent execution can be displayed, so the main thread will wait till the end of every target
                 LogStep = 1;
                 CurrentLogInstanceID = null;     
@@ -2627,11 +2723,11 @@ namespace AutoCheck.Core{
             else if(LogStep == 1){                
                 switch(e.Event){
                     //received AFTER_SCRIPT for any ID: the concurrent exectution has finished
-                    case StatusUpdateEventArgs.ExecutionEventType.AFTER_SCRIPT:
+                    case StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT:
                         LogStep = 2;
                         break;
 
-                    case StatusUpdateEventArgs.ExecutionEventType.AFTER_POST:
+                    case StatusUpdateEventArgs.ExecutionEvent.AFTER_POST:
                         //this script execution has finished, must be displayed till the end before continuing
                         LogMode = e.Mode;
 
@@ -2639,8 +2735,8 @@ namespace AutoCheck.Core{
                         if(!LogBeingSent) SendLogToClient(sender, CurrentLogInstanceID.Value);                                                    
                         break;
 
-                    case StatusUpdateEventArgs.ExecutionEventType.AFTER_PRE:     //just for batch
-                    case StatusUpdateEventArgs.ExecutionEventType.AFTER_BODY:    //for batch and single 
+                    case StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE:     //just for batch
+                    case StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY:    //for batch and single 
                         //the script is beeing executed     
                         if(CurrentLogInstanceID == null) CurrentLogInstanceID = e.ID;
                         else if(!NextLogID.Contains(e.ID)) NextLogID.Enqueue(e.ID);
@@ -2687,7 +2783,7 @@ namespace AutoCheck.Core{
                 while(!NextLogID.TryDequeue(out CurrentLogInstanceID)){} 
 
                 //This will send an empty end of script message, only for batch mode
-                if(OnLogUpdate != null && Logs[CurrentLogInstanceID.Value].Count > 0 && LogMode == StatusUpdateEventArgs.ExecutionModeType.BATCH) 
+                if(OnLogUpdate != null && Logs[CurrentLogInstanceID.Value].Count > 0 && LogMode == Core.Script.ExecutionMode.BATCH) 
                     OnLogUpdate.Invoke(item.Output, new LogUpdateEventArgs(prev.Value, null, true));
                 
                 SendLogToClient(sender, CurrentLogInstanceID.Value);

@@ -70,8 +70,8 @@ batch:
 
         - connector:            
             type: "Postgres"        
-            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
-               
+            arguments: "--host {$CURRENT_HOST} --database postgres --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"               
+
         - run:   
             caption: "   Dropping user it... "         
             connector: "Postgres"
@@ -84,7 +84,7 @@ batch:
             connector: "Postgres"
             command:  "CreateUser"
             arguments: "--user it"
-            onexception: "SUCCESS"           
+            onexception: "SUCCESS"      
 
         - echo: ""
         - echo: "Setting up SQL dump:"

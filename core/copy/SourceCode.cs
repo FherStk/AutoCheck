@@ -41,6 +41,8 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         public override void Compare(){  
             //JPlag uses one single path
+            if(Files.Count < 2) return;
+            
             var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, $@"{Guid.NewGuid()}");

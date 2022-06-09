@@ -30,49 +30,67 @@ namespace AutoCheck.Test.Connectors
     public class Rss : Test
     {       
         [Test]
-        public void Constructor()
-        {            
-            //Local
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(GetSampleFile("someFile.ext")));            
-
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "autocheck";
-            const string password = "autocheck";
-
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, _FAKE));
-
-            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToRemote(GetSampleFile("correct.rss"), username);
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Rss(OS.GNU, host, username, password, file));
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(file));
         }
 
         [Test]
-        public void ValidateRssAgainstW3C()
-        {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("correct.rss")))
-                Assert.DoesNotThrow(() => conn.ValidateRssAgainstW3C());
+        [TestCase("someFile.ext")]
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(GetSampleFile(file)));
+        }
 
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, file));
+        }
+
+        [Test]
+        [TestCase("correct.rss", OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {           
+            //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));            
+        }
+
+        [Test]
+        public void ValidateRssAgainstW3C_Throws()
+        {                        
             using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("incorrect.rss")))
                 Assert.Throws<DocumentInvalidException>(() => conn.ValidateRssAgainstW3C());                                
         } 
 
         [Test]
-        public void CountNodes()
+        public void ValidateRssAgainstW3C_DoesNotThrow()
         {                        
-            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("correct.rss"))){
-                Assert.AreEqual(1, conn.CountNodes("//rss"));
-                Assert.AreEqual(1, conn.CountNodes("//rss/channel/title"));
-                Assert.AreEqual(2, conn.CountNodes("//rss//title"));
-            }
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("correct.rss")))
+                Assert.DoesNotThrow(() => conn.ValidateRssAgainstW3C());
+        } 
 
-            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile("incorrect.rss"))){
-                Assert.AreEqual(1, conn.CountNodes("//rss"));
-                Assert.AreEqual(0, conn.CountNodes("//rss/channel/title"));
-                Assert.AreEqual(1, conn.CountNodes("//rss//title"));
+        [Test]
+        [TestCase("correct.rss", "//rss", ExpectedResult=1)]
+        [TestCase("correct.rss", "//rss/channel/title", ExpectedResult=1)]
+        [TestCase("correct.rss", "//rss//title", ExpectedResult=2)]
+        [TestCase("incorrect.rss", "//rss", ExpectedResult=1)]
+        [TestCase("incorrect.rss", "//rss/channel/title", ExpectedResult=0)]
+        [TestCase("incorrect.rss", "//rss//title", ExpectedResult=1)]
+        
+        public int CountNodes(string file, string query)
+        {                        
+            using(var conn = new AutoCheck.Core.Connectors.Rss(GetSampleFile(file))){
+                return conn.CountNodes(query);             
             }
         }      
     }

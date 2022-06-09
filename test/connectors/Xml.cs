@@ -29,66 +29,98 @@ namespace AutoCheck.Test.Connectors
     [Parallelizable(ParallelScope.All)]    
     public class Xml : Test
     {   
-        //TODO: tests must be parametrized
+        [Test]
+        [TestCase("")]
+        public void Constructor_Local_Throws_ArgumentNullException(string file)
+        {      
+             Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(file));
+        }
 
         [Test]
-        public void Constructor()
-        {  
-            //Local          
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(""));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("someFile.ext")));            
+        [TestCase("someFile.ext")]
+        public void Constructor_Local_Throws_FileNotFoundException(string file)
+        {      
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file)));
+        }
 
-            //Remote
-            const OS remoteOS = OS.GNU;
-            const string host = "localhost";
-            const string username = "autocheck";
-            const string password = "autocheck";
+        [Test]
+        [TestCase("", OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_Remote_Throws_ArgumentNullException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, file));
+        }
 
-            Assert.Throws<ArgumentNullException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, string.Empty));
-            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, _FAKE));
+        [Test]
+        [TestCase(_FAKE, OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_Remote_Throws_FileNotFoundException(string file, OS remoteOS, string host, string username, string password)
+        {     
+            Assert.Throws<FileNotFoundException>(() => new AutoCheck.Core.Connectors.Xml(remoteOS, host, username, password, file));
+        }
 
+        [Test]
+        [TestCase("sample1_simple_ok.xml", OS.GNU, "localhost", "autocheck", "autocheck")]
+        public void Constructor_DoesNotThrow(string file, OS remoteOS, string host, string username, string password)
+        {           
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
-            var file = LocalPathToRemote(GetSampleFile("sample1_simple_ok.xml"), username);
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(OS.GNU, host, username, password, file));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Rss(remoteOS, host, username, password, LocalPathToRemote(GetSampleFile(file), username)));            
         }
 
         [Test]
-        public void Validation_XML()
-        {   
-            //Trying to validate against unnexisting DTD/XSD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ok.xml")));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ok.xml"), System.Xml.ValidationType.DTD));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ok.xml"), System.Xml.ValidationType.Schema));
-            
-            //Testing XML syntax
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ko.xml")));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ko.xml"), System.Xml.ValidationType.DTD));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ko.xml"), System.Xml.ValidationType.Schema));
+        public void Validation_XML_DoesNotThrow()
+        {               
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample1_simple_ok.xml")));            
         }
 
         [Test]
-        public void Validation_DTD()
+        [TestCase("sample1_simple_ok.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample1_simple_ok.xml", System.Xml.ValidationType.Schema)]
+        [TestCase("sample1_simple_ko.xml", null)]
+        [TestCase("sample1_simple_ko.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample1_simple_ko.xml", System.Xml.ValidationType.Schema)]
+        public void Validation_XML_Throws(string file, System.Xml.ValidationType validation)
+        {               
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));            
+        }
+
+        [Test]
+        [TestCase("sample2_dtd_ok.xml", null)]
+        [TestCase("sample2_dtd_ok.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample2_dtd_ko1.xml", null)]
+        [TestCase("sample2_dtd_ko2.xml", null)]
+        public void Validation_DTD_DoesNotThrow(string file, System.Xml.ValidationType validation)
         {   
-            //Trying to validate against DTD/XSD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ok.xml")));
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ok.xml"), System.Xml.ValidationType.DTD));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ok.xml"), System.Xml.ValidationType.Schema));
-
-            //Trying to validate against DTD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ko1.xml")));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ko1.xml"), System.Xml.ValidationType.DTD));
-
-            //Testing DTD syntax
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ko2.xml")));
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample2_dtd_ko2.xml"), System.Xml.ValidationType.DTD));
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));            
         } 
 
+
         [Test]
-        public void Validation_XSD()
+        [TestCase("sample2_dtd_ok.xml", System.Xml.ValidationType.Schema)]
+        [TestCase("sample2_dtd_ko1.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample2_dtd_ko2.xml", System.Xml.ValidationType.DTD)]
+        public void Validation_DTD_Throws(string file, System.Xml.ValidationType validation)
+        {              
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));
+        } 
+
+
+        [Test]
+        [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.Schema)]
+        [TestCase("sample3_xsd_ko1.xml", null)]
+        [TestCase("sample3_xsd_ko2.xml", null)]
+        public void Validation_XSD_DoesNotThrow(string file, System.Xml.ValidationType validation)
+        {   
+            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));
+        }
+
+        [Test]
+        [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample3_xsd_ko1.xml", System.Xml.ValidationType.Schema)]
+        [TestCase("sample3_xsd_ko2.xml", System.Xml.ValidationType.Schema)]
+        public void Validation_XSD_Throws(string file, System.Xml.ValidationType validation)
         {   
             //Trying to validate against DTD/XSD
-            Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample3_xsd_ok.xml")));            
-            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample3_xsd_ok.xml"), System.Xml.ValidationType.DTD));
+            Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));
             Assert.DoesNotThrow(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample3_xsd_ok.xml"), System.Xml.ValidationType.Schema));
 
             //Trying to validate against XSD
@@ -108,56 +140,50 @@ namespace AutoCheck.Test.Connectors
         }       
 
         [Test]
-        public void CountNodes()
+        [TestCase("sample4_comments.xml", "//*", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=26)]
+        [TestCase("sample4_comments.xml", "//become", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=2)]
+        [TestCase("sample4_comments.xml", "/root/underline/harder/become", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=2)]
+        [TestCase("sample4_comments.xml", "//*/@*", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=6)]
+        [TestCase("sample4_comments.xml", "//*/@units", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=1)]
+        [TestCase("sample4_comments.xml", "//*", Core.Connectors.Xml.XmlNodeType.NUMERIC, ExpectedResult=10)]
+        [TestCase("sample4_comments.xml", "//*", Core.Connectors.Xml.XmlNodeType.BOOLEAN, ExpectedResult=2)]
+        [TestCase("sample4_comments.xml", "//*", Core.Connectors.Xml.XmlNodeType.STRING, ExpectedResult=10)]
+        [TestCase("sample4_comments.xml", "//*/@*", Core.Connectors.Xml.XmlNodeType.NUMERIC, ExpectedResult=2)]
+        [TestCase("sample4_comments.xml", "//*/@*", Core.Connectors.Xml.XmlNodeType.BOOLEAN, ExpectedResult=3)]
+        [TestCase("sample4_comments.xml", "//*/@*", Core.Connectors.Xml.XmlNodeType.STRING, ExpectedResult=1)]
+        public int CountNodes(string file, string query, Core.Connectors.Xml.XmlNodeType type)
         {   
             //Note: Uses SelectNodes internally
-            var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample4_comments.xml"));            
-            Assert.AreEqual(26, xml.CountNodes("//*")); 
-            Assert.AreEqual(2, xml.CountNodes("//become")); 
-            Assert.AreEqual(2, xml.CountNodes("/root/underline/harder/become")); 
-            Assert.AreEqual(6, xml.CountNodes("//*/@*")); 
-            Assert.AreEqual(1, xml.CountNodes("//*/@units")); 
-
-            //Node types
-            Assert.AreEqual(10, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.NUMERIC)); 
-            Assert.AreEqual(2, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.BOOLEAN)); 
-            Assert.AreEqual(10, xml.CountNodes("//*", Core.Connectors.Xml.XmlNodeType.STRING)); 
-
-            //Attribute types
-            Assert.AreEqual(2, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.NUMERIC)); 
-            Assert.AreEqual(3, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.BOOLEAN)); 
-            Assert.AreEqual(1, xml.CountNodes("//*/@*", Core.Connectors.Xml.XmlNodeType.STRING));     
+            var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile(file));
+            return xml.CountNodes(query, type);             
         }    
 
         [Test]
-        public void XPath2()
+        [TestCase("sample4_comments.xml", "//*[name() = following-sibling::*/name()]", ExpectedResult=1)]
+        [TestCase("sample6.xml", "./*/namespace::*[name()='']", ExpectedResult=1)]
+        [TestCase("sample6.xml", "./*/namespace::*[name()!='']", ExpectedResult=3)]
+        [TestCase("sample6.xml", ".//*[namespace-uri()=//*/namespace::*[name()='']]", ExpectedResult=1)]
+        [TestCase("sample6.xml", "//*[namespace-uri()=//*/namespace::*[name()!=''][1]]", ExpectedResult=26)]
+        [TestCase("sample6.xml", "//*[namespace-uri()=//*/namespace::*[name()!=''][2]]", ExpectedResult=26)]
+        public int XPath2(string file, string query)
         {   
             //Note: Uses XPath2 external library because .NET one is not compatible with XPath 2.0
-            var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample4_comments.xml"));                       
-            Assert.AreEqual(1, xml.CountNodes("//*[name() = following-sibling::*/name()]"));
-
-            //Namespaces lookup
-            xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample6.xml"));
-            Assert.AreEqual(1, xml.CountNodes("./*/namespace::*[name()='']"));
-            Assert.AreEqual(3, xml.CountNodes("/*/namespace::*[name()!='']"));            
-            Assert.AreEqual(1, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()='']]"));
-            Assert.AreEqual(26, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()!=''][1]]"));
-            Assert.AreEqual(26, xml.CountNodes("//*[namespace-uri()=//*/namespace::*[name()!=''][2]]"));
+            var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile(file));
+            return xml.CountNodes(query);
         }  
 
         [Test]
-        public void Equals()
+        [TestCase("sample5_dtd.xml", "sample5_dtd.xml", ExpectedResult=true)]
+        [TestCase("sample5_xsd.xml", "sample5_xsd.xml", ExpectedResult=true)]
+        [TestCase("sample5_dtd.xml", "sample5_xsd.xml", ExpectedResult=true)]
+        [TestCase("sample5_xsd.xml", "sample5_dtd.xml", ExpectedResult=true)]
+        [TestCase("sample5_dtd.xml", "sample5_none.xml", ExpectedResult=false)]
+        [TestCase("sample5_xsd.xml", "sample5_none.xml", ExpectedResult=false)]
+        public bool Equals(string leftPath, string rightPath)
         {               
-            var dtd = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample5_dtd.xml"));
-            var xsd = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample5_xsd.xml"));
-            Assert.IsTrue(dtd.Equals(dtd));
-            Assert.IsTrue(xsd.Equals(xsd));
-            Assert.IsTrue(dtd.Equals(xsd));
-            Assert.IsTrue(xsd.Equals(dtd));
-
-            var none = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample5_none.xml"));
-            Assert.IsFalse(dtd.Equals(none));
-            Assert.IsFalse(xsd.Equals(none));
+            var left = new AutoCheck.Core.Connectors.Xml(GetSampleFile(leftPath));
+            var right = new AutoCheck.Core.Connectors.Xml(GetSampleFile(rightPath));
+            return left.Equals(right);
         }
     }
 }
