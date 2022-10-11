@@ -6,9 +6,9 @@
 		<UserSecretsId>aspnet-AutoCheck.Web-EA0B1CED-FEB6-41C9-8621-4079FE198576</UserSecretsId>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
-		<Product>AutoCheck.Core</Product>
+		<Product>AutoCheck.Web</Product>
 		<Copyright>Copyright © 2022</Copyright>
-		<VersionPrefix>1.5.0</VersionPrefix>
+		<VersionPrefix>1.5.1</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
