@@ -97,14 +97,14 @@ namespace AutoCheck.Test.Connectors
         [TestCase("sample2_dtd_ok.xml", System.Xml.ValidationType.Schema)]
         [TestCase("sample2_dtd_ko1.xml", System.Xml.ValidationType.DTD)]
         [TestCase("sample2_dtd_ko2.xml", System.Xml.ValidationType.DTD)]
+        [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.DTD)]
         public void Validation_DTD_Throws(string file, System.Xml.ValidationType validation)
         {              
             Assert.Throws<DocumentInvalidException>(() => new AutoCheck.Core.Connectors.Xml(GetSampleFile(file), validation));
         } 
 
 
-        [Test]
-        [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.DTD)]
+        [Test]        
         [TestCase("sample3_xsd_ok.xml", System.Xml.ValidationType.Schema)]
         [TestCase("sample3_xsd_ko1.xml", null)]
         [TestCase("sample3_xsd_ko2.xml", null)]
