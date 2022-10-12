@@ -92,5 +92,6 @@
 
 	<Target Name="ObliterateAfterClean" AfterTargets="Build">
 		<RemoveDir Directories="bin\Debug\net6.0\temp"/>
-	</Target>
+		<Delete Files="..\versions.tmp" />
+	</Target>	
 </Project>
