@@ -66,9 +66,8 @@
 		<WriteLinesToFile File="..\versions.tmp" Lines="# Current versions:" Overwrite="true"/>
 		<WriteLinesToFile File="..\versions.tmp" Lines="$(VersionText)" Overwrite="false"/>				
 	</Target>
-
 	
-	<Target Name="GitHubReadme">
+	<Target Name="GitHubReadme" AfterTargets="Build">
 		<ItemGroup>
 			<ConcatFiles Include="..\docs\github\warning.md; ..\versions.tmp; ..\docs\index.md"/>
 		</ItemGroup>
