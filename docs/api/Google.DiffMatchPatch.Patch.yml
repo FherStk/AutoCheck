@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Patch
     path: ../core/copy/DiffMatchPatch.cs
@@ -34,6 +34,7 @@ items:
     content: 'public class Patch : object'
     content.vb: >-
       Public Class Patch
+
           Inherits Object
   inheritance:
   - System.Object
@@ -59,7 +60,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: diffs
     path: ../core/copy/DiffMatchPatch.cs
@@ -90,7 +91,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: start1
     path: ../core/copy/DiffMatchPatch.cs
@@ -121,7 +122,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: start2
     path: ../core/copy/DiffMatchPatch.cs
@@ -152,7 +153,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: length1
     path: ../core/copy/DiffMatchPatch.cs
@@ -183,7 +184,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: length2
     path: ../core/copy/DiffMatchPatch.cs
@@ -214,7 +215,7 @@ items:
   source:
     remote:
       path: core/copy/DiffMatchPatch.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/copy/DiffMatchPatch.cs

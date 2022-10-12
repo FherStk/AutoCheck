@@ -1,0 +1,319 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs
+  commentId: T:AutoCheck.Core.Events.StatusUpdateEventArgs
+  id: StatusUpdateEventArgs
+  parent: AutoCheck.Core.Events
+  children:
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Script.ExecutionMode,AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+  langs:
+  - csharp
+  - vb
+  name: StatusUpdateEventArgs
+  nameWithType: StatusUpdateEventArgs
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs
+  type: Class
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: StatusUpdateEventArgs
+    path: ../core/main/Events.cs
+    startLine: 22
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: 'public class StatusUpdateEventArgs : EventArgs'
+    content.vb: >-
+      Public Class StatusUpdateEventArgs
+
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+  commentId: P:AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+  id: ID
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: StatusUpdateEventArgs.ID
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ID
+    path: ../core/main/Events.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: Guid
+    content.vb: Public Property ID As Guid
+  overload: AutoCheck.Core.Events.StatusUpdateEventArgs.ID*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+  commentId: P:AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+  id: Mode
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Mode
+  nameWithType: StatusUpdateEventArgs.Mode
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Mode
+    path: ../core/main/Events.cs
+    startLine: 38
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Script.ExecutionMode Mode { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Script.ExecutionMode
+    content.vb: Public Property Mode As Script.ExecutionMode
+  overload: AutoCheck.Core.Events.StatusUpdateEventArgs.Mode*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+  commentId: P:AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+  id: Event
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Event
+  nameWithType: StatusUpdateEventArgs.Event
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Event
+    path: ../core/main/Events.cs
+    startLine: 39
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public StatusUpdateEventArgs.ExecutionEvent Event { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+    content.vb: Public Property Event As StatusUpdateEventArgs.ExecutionEvent
+  overload: AutoCheck.Core.Events.StatusUpdateEventArgs.Event*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Script.ExecutionMode,AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)
+  commentId: M:AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Script.ExecutionMode,AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)
+  id: '#ctor(Guid,AutoCheck.Core.Script.ExecutionMode,AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)'
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: StatusUpdateEventArgs(Guid, Script.ExecutionMode, StatusUpdateEventArgs.ExecutionEvent)
+  nameWithType: StatusUpdateEventArgs.StatusUpdateEventArgs(Guid, Script.ExecutionMode, StatusUpdateEventArgs.ExecutionEvent)
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.StatusUpdateEventArgs(Guid, AutoCheck.Core.Script.ExecutionMode, AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Events.cs
+    startLine: 47
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  summary: "\nCreates a new execution event instance.\n"
+  example: []
+  syntax:
+    content: public StatusUpdateEventArgs(Guid id, Script.ExecutionMode executionMode, StatusUpdateEventArgs.ExecutionEvent executionEvent)
+    parameters:
+    - id: id
+      type: Guid
+      description: The current instance ID (for multi-threading purposes).
+    - id: executionMode
+      type: AutoCheck.Core.Script.ExecutionMode
+      description: The current execution mode.
+    - id: executionEvent
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+      description: The event type.
+    content.vb: Public Sub New(id As Guid, executionMode As Script.ExecutionMode, executionEvent As StatusUpdateEventArgs.ExecutionEvent)
+  overload: AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<StatusUpdateEventArgs>()
+  nameWithType: ObjectExtensions.DeepClone<StatusUpdateEventArgs>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.StatusUpdateEventArgs>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of StatusUpdateEventArgs)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.StatusUpdateEventArgs)()
+  name.vb: DeepClone(Of StatusUpdateEventArgs)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<StatusUpdateEventArgs>
+    nameWithType: ObjectExtensions.DeepClone<StatusUpdateEventArgs>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.StatusUpdateEventArgs>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of StatusUpdateEventArgs)
+    nameWithType: ObjectExtensions.DeepClone(Of StatusUpdateEventArgs)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.StatusUpdateEventArgs)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ID*
+  commentId: Overload:AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+  name: ID
+  nameWithType: StatusUpdateEventArgs.ID
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ID
+- uid: Guid
+  isExternal: true
+  name: Guid
+  nameWithType: Guid
+  fullName: Guid
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.Mode*
+  commentId: Overload:AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+  name: Mode
+  nameWithType: StatusUpdateEventArgs.Mode
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.Mode
+- uid: AutoCheck.Core.Script.ExecutionMode
+  commentId: T:AutoCheck.Core.Script.ExecutionMode
+  parent: AutoCheck.Core
+  name: Script.ExecutionMode
+  nameWithType: Script.ExecutionMode
+  fullName: AutoCheck.Core.Script.ExecutionMode
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.Event*
+  commentId: Overload:AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+  name: Event
+  nameWithType: StatusUpdateEventArgs.Event
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.Event
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  commentId: T:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  parent: AutoCheck.Core.Events
+  name: StatusUpdateEventArgs.ExecutionEvent
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor*
+  commentId: Overload:AutoCheck.Core.Events.StatusUpdateEventArgs.#ctor
+  name: StatusUpdateEventArgs
+  nameWithType: StatusUpdateEventArgs.StatusUpdateEventArgs
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.StatusUpdateEventArgs

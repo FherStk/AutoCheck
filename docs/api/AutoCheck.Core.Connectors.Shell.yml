@@ -46,7 +46,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/Shell.cs
@@ -60,6 +60,7 @@ items:
     content: 'public class Shell : Base'
     content.vb: >-
       Public Class Shell
+
           Inherits Base
   inheritance:
   - System.Object
@@ -88,7 +89,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/Shell.cs
@@ -126,7 +127,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Shell.cs
@@ -164,7 +165,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/Shell.cs
@@ -202,7 +203,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Shell.cs
@@ -240,7 +241,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/Shell.cs
@@ -278,7 +279,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsLocal
     path: ../core/connectors/Shell.cs
@@ -316,7 +317,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsRemote
     path: ../core/connectors/Shell.cs
@@ -354,7 +355,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -386,7 +387,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -427,7 +428,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
@@ -468,7 +469,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Shell.cs
@@ -503,7 +504,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Shell.cs
@@ -535,7 +536,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/connectors/Shell.cs
@@ -577,7 +578,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/connectors/Shell.cs
@@ -622,7 +623,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/Shell.cs
@@ -669,7 +670,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/Shell.cs
@@ -716,7 +717,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
@@ -760,7 +761,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
@@ -805,7 +806,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
@@ -849,7 +850,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
@@ -894,7 +895,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
@@ -939,7 +940,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
@@ -983,7 +984,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
@@ -1028,7 +1029,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
@@ -1072,7 +1073,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
@@ -1110,7 +1111,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
@@ -1155,7 +1156,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
@@ -1193,7 +1194,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
@@ -1238,7 +1239,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFile
     path: ../core/connectors/Shell.cs
@@ -1280,7 +1281,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
@@ -1322,7 +1323,7 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs

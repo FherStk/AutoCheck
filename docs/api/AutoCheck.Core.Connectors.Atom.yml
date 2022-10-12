@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Atom
     path: ../core/connectors/Atom.cs
@@ -34,6 +34,7 @@ items:
     content: 'public class Atom : Rss'
     content.vb: >-
       Public Class Atom
+
           Inherits Rss
   inheritance:
   - System.Object
@@ -74,7 +75,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -110,7 +111,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -153,7 +154,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Atom.cs
@@ -194,7 +195,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Atom.cs
@@ -229,7 +230,7 @@ items:
   source:
     remote:
       path: core/connectors/Atom.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ValidateAtomAgainstW3C
     path: ../core/connectors/Atom.cs

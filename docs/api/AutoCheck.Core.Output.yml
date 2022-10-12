@@ -12,7 +12,7 @@ items:
   - AutoCheck.Core.Output.CurrentIndent
   - AutoCheck.Core.Output.GetLog
   - AutoCheck.Core.Output.Indent
-  - AutoCheck.Core.Output.OnLogGenerated
+  - AutoCheck.Core.Output.OnLogUpdate
   - AutoCheck.Core.Output.ResetIndent
   - AutoCheck.Core.Output.SendToTerminal(AutoCheck.Core.Output.Log)
   - AutoCheck.Core.Output.SingleIndent
@@ -33,7 +33,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Output
     path: ../core/main/Output.cs
@@ -48,6 +48,7 @@ items:
     content: 'public class Output : object'
     content.vb: >-
       Public Class Output
+
           Inherits Object
   inheritance:
   - System.Object
@@ -59,39 +60,37 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Output.OnLogGenerated
-  commentId: E:AutoCheck.Core.Output.OnLogGenerated
-  id: OnLogGenerated
+- uid: AutoCheck.Core.Output.OnLogUpdate
+  commentId: E:AutoCheck.Core.Output.OnLogUpdate
+  id: OnLogUpdate
   parent: AutoCheck.Core.Output
   langs:
   - csharp
   - vb
-  name: OnLogGenerated
-  nameWithType: Output.OnLogGenerated
-  fullName: AutoCheck.Core.Output.OnLogGenerated
+  name: OnLogUpdate
+  nameWithType: Output.OnLogUpdate
+  fullName: AutoCheck.Core.Output.OnLogUpdate
   type: Event
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
-    id: OnLogGenerated
+    id: OnLogUpdate
     path: ../core/main/Output.cs
     startLine: 36
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
   syntax:
-    content: public static event EventHandler<LogGeneratedEventArgs> OnLogGenerated
+    content: public event EventHandler<LogUpdateEventArgs> OnLogUpdate
     return:
-      type: EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}
-    content.vb: Public Shared Event OnLogGenerated As EventHandler(Of LogGeneratedEventArgs)
+      type: EventHandler{AutoCheck.Core.Events.LogUpdateEventArgs}
+    content.vb: Public Event OnLogUpdate As EventHandler(Of LogUpdateEventArgs)
   modifiers.csharp:
   - public
-  - static
   modifiers.vb:
   - Public
-  - Shared
 - uid: AutoCheck.Core.Output.SingleIndent
   commentId: F:AutoCheck.Core.Output.SingleIndent
   id: SingleIndent
@@ -106,7 +105,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SingleIndent
     path: ../core/main/Output.cs
@@ -139,7 +138,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CurrentIndent
     path: ../core/main/Output.cs
@@ -174,7 +173,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
@@ -206,7 +205,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Output.cs
@@ -242,7 +241,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Write
     path: ../core/main/Output.cs
@@ -281,7 +280,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteLine
     path: ../core/main/Output.cs
@@ -320,7 +319,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
@@ -363,7 +362,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: WriteResponse
     path: ../core/main/Output.cs
@@ -402,7 +401,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Indent
     path: ../core/main/Output.cs
@@ -434,7 +433,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: UnIndent
     path: ../core/main/Output.cs
@@ -466,7 +465,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResetIndent
     path: ../core/main/Output.cs
@@ -498,7 +497,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: BreakLine
     path: ../core/main/Output.cs
@@ -534,7 +533,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: CloseLog
     path: ../core/main/Output.cs
@@ -569,7 +568,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetLog
     path: ../core/main/Output.cs
@@ -603,7 +602,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
@@ -638,7 +637,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToJson
     path: ../core/main/Output.cs
@@ -673,7 +672,7 @@ items:
   source:
     remote:
       path: core/main/Output.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: SendToTerminal
     path: ../core/main/Output.cs
@@ -780,15 +779,15 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}
-  commentId: '!:EventHandler{AutoCheck.Core.Events.LogGeneratedEventArgs}'
+- uid: EventHandler{AutoCheck.Core.Events.LogUpdateEventArgs}
+  commentId: '!:EventHandler{AutoCheck.Core.Events.LogUpdateEventArgs}'
   definition: EventHandler`1
-  name: EventHandler<LogGeneratedEventArgs>
-  nameWithType: EventHandler<LogGeneratedEventArgs>
-  fullName: EventHandler<AutoCheck.Core.Events.LogGeneratedEventArgs>
-  nameWithType.vb: EventHandler(Of LogGeneratedEventArgs)
-  fullName.vb: EventHandler(Of AutoCheck.Core.Events.LogGeneratedEventArgs)
-  name.vb: EventHandler(Of LogGeneratedEventArgs)
+  name: EventHandler<LogUpdateEventArgs>
+  nameWithType: EventHandler<LogUpdateEventArgs>
+  fullName: EventHandler<AutoCheck.Core.Events.LogUpdateEventArgs>
+  nameWithType.vb: EventHandler(Of LogUpdateEventArgs)
+  fullName.vb: EventHandler(Of AutoCheck.Core.Events.LogUpdateEventArgs)
+  name.vb: EventHandler(Of LogUpdateEventArgs)
   spec.csharp:
   - uid: EventHandler`1
     name: EventHandler
@@ -798,10 +797,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: AutoCheck.Core.Events.LogGeneratedEventArgs
-    name: LogGeneratedEventArgs
-    nameWithType: LogGeneratedEventArgs
-    fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  - uid: AutoCheck.Core.Events.LogUpdateEventArgs
+    name: LogUpdateEventArgs
+    nameWithType: LogUpdateEventArgs
+    fullName: AutoCheck.Core.Events.LogUpdateEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -814,10 +813,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: AutoCheck.Core.Events.LogGeneratedEventArgs
-    name: LogGeneratedEventArgs
-    nameWithType: LogGeneratedEventArgs
-    fullName: AutoCheck.Core.Events.LogGeneratedEventArgs
+  - uid: AutoCheck.Core.Events.LogUpdateEventArgs
+    name: LogUpdateEventArgs
+    nameWithType: LogUpdateEventArgs
+    fullName: AutoCheck.Core.Events.LogUpdateEventArgs
   - name: )
     nameWithType: )
     fullName: )

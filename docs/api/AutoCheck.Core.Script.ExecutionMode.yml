@@ -1,0 +1,187 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Script.ExecutionMode
+  commentId: T:AutoCheck.Core.Script.ExecutionMode
+  id: Script.ExecutionMode
+  parent: AutoCheck.Core
+  children:
+  - AutoCheck.Core.Script.ExecutionMode.BATCH
+  - AutoCheck.Core.Script.ExecutionMode.SINGLE
+  langs:
+  - csharp
+  - vb
+  name: Script.ExecutionMode
+  nameWithType: Script.ExecutionMode
+  fullName: AutoCheck.Core.Script.ExecutionMode
+  type: Enum
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionMode
+    path: ../core/main/Script.cs
+    startLine: 690
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: 'public enum ExecutionMode : int'
+    content.vb: Public Enum ExecutionMode As Integer
+  extensionMethods:
+  - AutoCheck.Core.Script.ExecutionMode.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Script.ExecutionMode.SINGLE
+  commentId: F:AutoCheck.Core.Script.ExecutionMode.SINGLE
+  id: SINGLE
+  parent: AutoCheck.Core.Script.ExecutionMode
+  langs:
+  - csharp
+  - vb
+  name: SINGLE
+  nameWithType: Script.ExecutionMode.SINGLE
+  fullName: AutoCheck.Core.Script.ExecutionMode.SINGLE
+  type: Field
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: SINGLE
+    path: ../core/main/Script.cs
+    startLine: 691
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: SINGLE = 0
+    return:
+      type: AutoCheck.Core.Script.ExecutionMode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Script.ExecutionMode.BATCH
+  commentId: F:AutoCheck.Core.Script.ExecutionMode.BATCH
+  id: BATCH
+  parent: AutoCheck.Core.Script.ExecutionMode
+  langs:
+  - csharp
+  - vb
+  name: BATCH
+  nameWithType: Script.ExecutionMode.BATCH
+  fullName: AutoCheck.Core.Script.ExecutionMode.BATCH
+  type: Field
+  source:
+    remote:
+      path: core/main/Script.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: BATCH
+    path: ../core/main/Script.cs
+    startLine: 692
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core
+  syntax:
+    content: BATCH = 1
+    return:
+      type: AutoCheck.Core.Script.ExecutionMode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Script.ExecutionMode.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Script.ExecutionMode>()
+  nameWithType: ObjectExtensions.DeepClone<Script.ExecutionMode>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Script.ExecutionMode>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Script.ExecutionMode)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Script.ExecutionMode)()
+  name.vb: DeepClone(Of Script.ExecutionMode)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Script.ExecutionMode>
+    nameWithType: ObjectExtensions.DeepClone<Script.ExecutionMode>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Script.ExecutionMode>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Script.ExecutionMode)
+    nameWithType: ObjectExtensions.DeepClone(Of Script.ExecutionMode)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Script.ExecutionMode)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Script.ExecutionMode
+  commentId: T:AutoCheck.Core.Script.ExecutionMode
+  parent: AutoCheck.Core
+  name: Script.ExecutionMode
+  nameWithType: Script.ExecutionMode
+  fullName: AutoCheck.Core.Script.ExecutionMode

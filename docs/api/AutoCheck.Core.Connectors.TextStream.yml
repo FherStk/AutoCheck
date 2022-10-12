@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: TextStream
     path: ../core/connectors/TextStream.cs
@@ -38,6 +38,7 @@ items:
     content: 'public class TextStream : Base'
     content.vb: >-
       Public Class TextStream
+
           Inherits Base
   inheritance:
   - System.Object
@@ -66,7 +67,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/TextStream.cs
@@ -98,7 +99,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/TextStream.cs
@@ -133,7 +134,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Find
     path: ../core/connectors/TextStream.cs
@@ -175,7 +176,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Substring
     path: ../core/connectors/TextStream.cs
@@ -217,7 +218,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Replace
     path: ../core/connectors/TextStream.cs
@@ -262,7 +263,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/connectors/TextStream.cs
@@ -304,7 +305,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DirectoryPath
     path: ../core/connectors/TextStream.cs
@@ -343,7 +344,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: DirectoryName
     path: ../core/connectors/TextStream.cs
@@ -382,7 +383,7 @@ items:
   source:
     remote:
       path: core/connectors/TextStream.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: FileName
     path: ../core/connectors/TextStream.cs

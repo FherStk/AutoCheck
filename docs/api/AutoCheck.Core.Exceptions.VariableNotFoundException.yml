@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: VariableNotFoundException
     path: ../core/main/Exceptions.cs
@@ -29,6 +29,7 @@ items:
     content: 'public class VariableNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class VariableNotFoundException
+
           Inherits ItemNotFoundException
   inheritance:
   - System.Object
@@ -55,7 +56,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
@@ -85,7 +86,7 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.21.0
+      branch: v2.23.0
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs

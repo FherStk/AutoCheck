@@ -1,0 +1,317 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs
+  commentId: T:AutoCheck.Core.Events.LogUpdateEventArgs
+  id: LogUpdateEventArgs
+  parent: AutoCheck.Core.Events
+  children:
+  - AutoCheck.Core.Events.LogUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log,System.Boolean)
+  - AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+  - AutoCheck.Core.Events.LogUpdateEventArgs.ID
+  - AutoCheck.Core.Events.LogUpdateEventArgs.Log
+  langs:
+  - csharp
+  - vb
+  name: LogUpdateEventArgs
+  nameWithType: LogUpdateEventArgs
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs
+  type: Class
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: LogUpdateEventArgs
+    path: ../core/main/Events.cs
+    startLine: 4
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: 'public class LogUpdateEventArgs : EventArgs'
+    content.vb: >-
+      Public Class LogUpdateEventArgs
+
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  extensionMethods:
+  - AutoCheck.Core.Events.LogUpdateEventArgs.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.ID
+  commentId: P:AutoCheck.Core.Events.LogUpdateEventArgs.ID
+  id: ID
+  parent: AutoCheck.Core.Events.LogUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ID
+  nameWithType: LogUpdateEventArgs.ID
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.ID
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ID
+    path: ../core/main/Events.cs
+    startLine: 6
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Guid ID { get; set; }
+    parameters: []
+    return:
+      type: Guid
+    content.vb: Public Property ID As Guid
+  overload: AutoCheck.Core.Events.LogUpdateEventArgs.ID*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.Log
+  commentId: P:AutoCheck.Core.Events.LogUpdateEventArgs.Log
+  id: Log
+  parent: AutoCheck.Core.Events.LogUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Log
+  nameWithType: LogUpdateEventArgs.Log
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.Log
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Log
+    path: ../core/main/Events.cs
+    startLine: 7
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public Output.Log Log { get; set; }
+    parameters: []
+    return:
+      type: AutoCheck.Core.Output.Log
+    content.vb: Public Property Log As Output.Log
+  overload: AutoCheck.Core.Events.LogUpdateEventArgs.Log*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+  commentId: P:AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+  id: EndOfScript
+  parent: AutoCheck.Core.Events.LogUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: EndOfScript
+  nameWithType: LogUpdateEventArgs.EndOfScript
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+  type: Property
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: EndOfScript
+    path: ../core/main/Events.cs
+    startLine: 8
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: public bool EndOfScript { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property EndOfScript As Boolean
+  overload: AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log,System.Boolean)
+  commentId: M:AutoCheck.Core.Events.LogUpdateEventArgs.#ctor(Guid,AutoCheck.Core.Output.Log,System.Boolean)
+  id: '#ctor(Guid,AutoCheck.Core.Output.Log,System.Boolean)'
+  parent: AutoCheck.Core.Events.LogUpdateEventArgs
+  langs:
+  - csharp
+  - vb
+  name: LogUpdateEventArgs(Guid, Output.Log, Boolean)
+  nameWithType: LogUpdateEventArgs.LogUpdateEventArgs(Guid, Output.Log, Boolean)
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.LogUpdateEventArgs(Guid, AutoCheck.Core.Output.Log, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/main/Events.cs
+    startLine: 15
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  summary: "\nCreates a new log event instance.\n"
+  example: []
+  syntax:
+    content: public LogUpdateEventArgs(Guid id, Output.Log log, bool endOfScript = false)
+    parameters:
+    - id: id
+      type: Guid
+      description: The current instance ID (for multi-threading purposes).
+    - id: log
+      type: AutoCheck.Core.Output.Log
+      description: The log content.
+    - id: endOfScript
+      type: System.Boolean
+    content.vb: Public Sub New(id As Guid, log As Output.Log, endOfScript As Boolean = False)
+  overload: AutoCheck.Core.Events.LogUpdateEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<LogUpdateEventArgs>()
+  nameWithType: ObjectExtensions.DeepClone<LogUpdateEventArgs>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.LogUpdateEventArgs>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of LogUpdateEventArgs)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.LogUpdateEventArgs)()
+  name.vb: DeepClone(Of LogUpdateEventArgs)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<LogUpdateEventArgs>
+    nameWithType: ObjectExtensions.DeepClone<LogUpdateEventArgs>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.LogUpdateEventArgs>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of LogUpdateEventArgs)
+    nameWithType: ObjectExtensions.DeepClone(Of LogUpdateEventArgs)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.LogUpdateEventArgs)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.ID*
+  commentId: Overload:AutoCheck.Core.Events.LogUpdateEventArgs.ID
+  name: ID
+  nameWithType: LogUpdateEventArgs.ID
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.ID
+- uid: Guid
+  isExternal: true
+  name: Guid
+  nameWithType: Guid
+  fullName: Guid
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.Log*
+  commentId: Overload:AutoCheck.Core.Events.LogUpdateEventArgs.Log
+  name: Log
+  nameWithType: LogUpdateEventArgs.Log
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.Log
+- uid: AutoCheck.Core.Output.Log
+  commentId: T:AutoCheck.Core.Output.Log
+  parent: AutoCheck.Core
+  name: Output.Log
+  nameWithType: Output.Log
+  fullName: AutoCheck.Core.Output.Log
+- uid: AutoCheck.Core
+  commentId: N:AutoCheck.Core
+  name: AutoCheck.Core
+  nameWithType: AutoCheck.Core
+  fullName: AutoCheck.Core
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript*
+  commentId: Overload:AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+  name: EndOfScript
+  nameWithType: LogUpdateEventArgs.EndOfScript
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.EndOfScript
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: AutoCheck.Core.Events.LogUpdateEventArgs.#ctor*
+  commentId: Overload:AutoCheck.Core.Events.LogUpdateEventArgs.#ctor
+  name: LogUpdateEventArgs
+  nameWithType: LogUpdateEventArgs.LogUpdateEventArgs
+  fullName: AutoCheck.Core.Events.LogUpdateEventArgs.LogUpdateEventArgs
