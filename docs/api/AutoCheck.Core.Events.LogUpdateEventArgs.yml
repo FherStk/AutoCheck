@@ -31,7 +31,6 @@ items:
     content: 'public class LogUpdateEventArgs : EventArgs'
     content.vb: >-
       Public Class LogUpdateEventArgs
-
           Inherits EventArgs
   inheritance:
   - System.Object

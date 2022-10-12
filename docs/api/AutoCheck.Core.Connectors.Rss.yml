@@ -34,7 +34,6 @@ items:
     content: 'public class Rss : Xml'
     content.vb: >-
       Public Class Rss
-
           Inherits Xml
   inheritance:
   - System.Object

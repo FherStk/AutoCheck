@@ -29,7 +29,6 @@ items:
     content: 'public class VariableInvalidException : Exception'
     content.vb: >-
       Public Class VariableInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

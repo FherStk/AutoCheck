@@ -67,7 +67,6 @@ items:
     content: 'public class Postgres : Base'
     content.vb: >-
       Public Class Postgres
-
           Inherits Base
   inheritance:
   - System.Object

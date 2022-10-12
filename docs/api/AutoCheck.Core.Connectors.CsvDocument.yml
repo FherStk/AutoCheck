@@ -35,7 +35,6 @@ items:
     content: 'public class CsvDocument : object'
     content.vb: >-
       Public Class CsvDocument
-
           Inherits Object
   inheritance:
   - System.Object

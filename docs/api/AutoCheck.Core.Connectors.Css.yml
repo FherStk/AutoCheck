@@ -45,7 +45,6 @@ items:
     content: 'public class Css : Base'
     content.vb: >-
       Public Class Css
-
           Inherits Base
   inheritance:
   - System.Object

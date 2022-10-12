@@ -42,7 +42,6 @@ items:
     content: 'public class Xml : Base'
     content.vb: >-
       Public Class Xml
-
           Inherits Base
   inheritance:
   - System.Object

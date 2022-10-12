@@ -29,7 +29,6 @@ items:
     content: 'public class QueryInvalidException : Exception'
     content.vb: >-
       Public Class QueryInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

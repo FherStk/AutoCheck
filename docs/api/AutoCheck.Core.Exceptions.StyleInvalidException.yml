@@ -29,7 +29,6 @@ items:
     content: 'public class StyleInvalidException : Exception'
     content.vb: >-
       Public Class StyleInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

@@ -29,7 +29,6 @@ items:
     content: 'public class TableInconsistencyException : Exception'
     content.vb: >-
       Public Class TableInconsistencyException
-
           Inherits Exception
   inheritance:
   - System.Object

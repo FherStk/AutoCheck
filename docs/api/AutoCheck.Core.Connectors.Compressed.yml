@@ -35,7 +35,6 @@ items:
     content: 'public class Compressed : Base'
     content.vb: >-
       Public Class Compressed
-
           Inherits Base
   inheritance:
   - System.Object

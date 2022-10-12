@@ -34,7 +34,6 @@ items:
     content: 'public class Patch : object'
     content.vb: >-
       Public Class Patch
-
           Inherits Object
   inheritance:
   - System.Object

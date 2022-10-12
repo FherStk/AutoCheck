@@ -29,7 +29,6 @@ items:
     content: 'public class VariableNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class VariableNotFoundException
-
           Inherits ItemNotFoundException
   inheritance:
   - System.Object

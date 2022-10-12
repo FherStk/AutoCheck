@@ -30,7 +30,6 @@ items:
     content: 'public class Log : object'
     content.vb: >-
       Public Class Log
-
           Inherits Object
   inheritance:
   - System.Object

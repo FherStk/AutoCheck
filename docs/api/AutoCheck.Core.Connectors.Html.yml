@@ -52,7 +52,6 @@ items:
     content: 'public class Html : Base'
     content.vb: >-
       Public Class Html
-
           Inherits Base
   inheritance:
   - System.Object

@@ -34,7 +34,6 @@ items:
     content: 'public class Atom : Rss'
     content.vb: >-
       Public Class Atom
-
           Inherits Rss
   inheritance:
   - System.Object

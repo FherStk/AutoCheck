@@ -29,7 +29,6 @@ items:
     content: 'public class ScriptInvalidException : Exception'
     content.vb: >-
       Public Class ScriptInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

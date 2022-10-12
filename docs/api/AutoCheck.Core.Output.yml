@@ -48,7 +48,6 @@ items:
     content: 'public class Output : object'
     content.vb: >-
       Public Class Output
-
           Inherits Object
   inheritance:
   - System.Object

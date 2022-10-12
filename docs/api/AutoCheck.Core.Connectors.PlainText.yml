@@ -39,7 +39,6 @@ items:
     content: 'public class PlainText : Base'
     content.vb: >-
       Public Class PlainText
-
           Inherits Base
   inheritance:
   - System.Object

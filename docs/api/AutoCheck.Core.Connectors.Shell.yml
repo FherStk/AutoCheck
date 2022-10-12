@@ -60,7 +60,6 @@ items:
     content: 'public class Shell : Base'
     content.vb: >-
       Public Class Shell
-
           Inherits Base
   inheritance:
   - System.Object

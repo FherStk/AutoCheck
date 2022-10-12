@@ -29,7 +29,6 @@ items:
     content: 'public class ConnectorNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class ConnectorNotFoundException
-
           Inherits ItemNotFoundException
   inheritance:
   - System.Object

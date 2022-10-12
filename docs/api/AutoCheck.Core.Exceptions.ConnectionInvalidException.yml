@@ -29,7 +29,6 @@ items:
     content: 'public class ConnectionInvalidException : Exception'
     content.vb: >-
       Public Class ConnectionInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

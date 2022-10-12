@@ -29,7 +29,6 @@ items:
     content: 'public class PorpertyNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class PorpertyNotFoundException
-
           Inherits ItemNotFoundException
   inheritance:
   - System.Object

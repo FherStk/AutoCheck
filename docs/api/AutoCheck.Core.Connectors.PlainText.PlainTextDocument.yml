@@ -34,7 +34,6 @@ items:
     content: 'public class PlainTextDocument : object'
     content.vb: >-
       Public Class PlainTextDocument
-
           Inherits Object
   inheritance:
   - System.Object

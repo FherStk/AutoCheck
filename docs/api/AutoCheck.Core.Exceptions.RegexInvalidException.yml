@@ -29,7 +29,6 @@ items:
     content: 'public class RegexInvalidException : Exception'
     content.vb: >-
       Public Class RegexInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

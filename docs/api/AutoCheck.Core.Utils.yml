@@ -42,7 +42,6 @@ items:
     content: 'public static class Utils : object'
     content.vb: >-
       Public Module Utils
-
           Inherits Object
   inheritance:
   - System.Object
@@ -491,7 +490,6 @@ items:
   syntax:
     content: >-
       public static void RunWithRetry<T>(Action action, int max = 10, int wait = 250)
-
           where T : Exception
     parameters:
     - id: action
@@ -543,7 +541,6 @@ items:
   syntax:
     content: >-
       public static R RunWithRetry<R, T>(Func<R> function, int max = 10, int wait = 250)
-
           where R : class where T : Exception
     parameters:
     - id: function

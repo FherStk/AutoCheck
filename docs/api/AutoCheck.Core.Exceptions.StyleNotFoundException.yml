@@ -29,7 +29,6 @@ items:
     content: 'public class StyleNotFoundException : Exception'
     content.vb: >-
       Public Class StyleNotFoundException
-
           Inherits Exception
   inheritance:
   - System.Object

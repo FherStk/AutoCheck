@@ -31,7 +31,6 @@ items:
     content: 'public class Math : Base'
     content.vb: >-
       Public Class Math
-
           Inherits Base
   inheritance:
   - System.Object

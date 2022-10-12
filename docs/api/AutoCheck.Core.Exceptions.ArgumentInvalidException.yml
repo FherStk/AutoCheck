@@ -29,7 +29,6 @@ items:
     content: 'public class ArgumentInvalidException : Exception'
     content.vb: >-
       Public Class ArgumentInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

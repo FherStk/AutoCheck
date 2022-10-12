@@ -34,7 +34,6 @@ items:
     content: 'public class Csv : Base'
     content.vb: >-
       Public Class Csv
-
           Inherits Base
   inheritance:
   - System.Object

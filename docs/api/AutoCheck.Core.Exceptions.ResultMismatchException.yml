@@ -29,7 +29,6 @@ items:
     content: 'public class ResultMismatchException : Exception'
     content.vb: >-
       Public Class ResultMismatchException
-
           Inherits Exception
   inheritance:
   - System.Object

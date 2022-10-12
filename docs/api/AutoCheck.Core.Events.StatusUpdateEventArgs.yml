@@ -31,7 +31,6 @@ items:
     content: 'public class StatusUpdateEventArgs : EventArgs'
     content.vb: >-
       Public Class StatusUpdateEventArgs
-
           Inherits EventArgs
   inheritance:
   - System.Object

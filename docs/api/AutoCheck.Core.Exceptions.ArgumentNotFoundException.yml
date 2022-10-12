@@ -29,7 +29,6 @@ items:
     content: 'public class ArgumentNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class ArgumentNotFoundException
-
           Inherits ItemNotFoundException
   inheritance:
   - System.Object

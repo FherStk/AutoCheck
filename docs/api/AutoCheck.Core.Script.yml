@@ -77,7 +77,6 @@ items:
     content: 'public class Script : object'
     content.vb: >-
       Public Class Script
-
           Inherits Object
   inheritance:
   - System.Object
@@ -1902,7 +1901,6 @@ items:
   syntax:
     content: >-
       protected void ForEachChild<T>(YamlNode node, Action<string, T> action, bool parseEmpty = true)
-
           where T : YamlNode
     parameters:
     - id: node

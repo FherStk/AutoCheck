@@ -29,7 +29,6 @@ items:
     content: 'public class ScriptNotFoundException : ItemNotFoundException'
     content.vb: >-
       Public Class ScriptNotFoundException
-
           Inherits ItemNotFoundException
   inheritance:
   - System.Object

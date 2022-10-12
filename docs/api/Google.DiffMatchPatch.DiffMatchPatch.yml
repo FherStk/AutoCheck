@@ -69,7 +69,6 @@ items:
     content: 'public class DiffMatchPatch : object'
     content.vb: >-
       Public Class DiffMatchPatch
-
           Inherits Object
   inheritance:
   - System.Object

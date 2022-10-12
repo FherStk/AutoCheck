@@ -32,7 +32,6 @@ items:
     content: 'public class SourceCode : PlainText'
     content.vb: >-
       Public Class SourceCode
-
           Inherits PlainText
   inheritance:
   - System.Object

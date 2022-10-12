@@ -36,7 +36,6 @@ items:
     content: 'protected class File : object'
     content.vb: >-
       Protected Class File
-
           Inherits Object
   inheritance:
   - System.Object

@@ -29,7 +29,6 @@ items:
     content: 'public class DocumentInvalidException : Exception'
     content.vb: >-
       Public Class DocumentInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

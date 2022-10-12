@@ -29,7 +29,6 @@ items:
     content: 'public class ConnectorInvalidException : Exception'
     content.vb: >-
       Public Class ConnectorInvalidException
-
           Inherits Exception
   inheritance:
   - System.Object

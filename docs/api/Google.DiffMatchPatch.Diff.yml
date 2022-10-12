@@ -35,7 +35,6 @@ items:
     content: 'public class Diff : object'
     content.vb: >-
       Public Class Diff
-
           Inherits Object
   inheritance:
   - System.Object

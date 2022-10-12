@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<BuildDocFx>true</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
+		<BuildDocFx>false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
@@ -40,13 +40,37 @@
 		<PackageReference Include="YamlDotNet" Version="11.2.1"/>
 		<PackageReference Include="NCalc2" Version="2.1.0"/>
 		<PackageReference Include="SharpCompress" Version="0.30.1"/>
-		<PackageReference Include="System.Security.Permissions" Version="6.0.0" />
 	</ItemGroup>
-	
 
+	<Target Name="Versions" AfterTargets="Build">				
+		<XmlPeek XmlInputPath="..\test\AutoCheck.Test.csproj" Query="//VersionPrefix/text()">
+			<Output TaskParameter="Result" ItemName="TestVersion" />
+		</XmlPeek>	
+
+		<XmlPeek XmlInputPath="..\docs\AutoCheck.Docs.csproj" Query="//VersionPrefix/text()">
+			<Output TaskParameter="Result" ItemName="DocsVersion" />
+		</XmlPeek>
+
+		<XmlPeek XmlInputPath="..\cli\AutoCheck.Cli.csproj" Query="//VersionPrefix/text()">
+			<Output TaskParameter="Result" ItemName="CliVersion" />
+		</XmlPeek>
+
+		<XmlPeek XmlInputPath="..\web\AutoCheck.Web.csproj" Query="//VersionPrefix/text()">
+			<Output TaskParameter="Result" ItemName="WebVersion" />
+		</XmlPeek>
+
+		<PropertyGroup>
+			<VersionText>**AutoCheck.Test:** v@(TestVersion) | **AutoCheck.Docs:** v@(DocsVersion) | **AutoCheck.Cli:**  v@(CliVersion) | **AutoCheck.Web:**  v@(WebVersion)</VersionText>			
+		</PropertyGroup>
+
+		<WriteLinesToFile File="..\versions.tmp" Lines="# Current versions:" Overwrite="true"/>
+		<WriteLinesToFile File="..\versions.tmp" Lines="$(VersionText)" Overwrite="false"/>				
+	</Target>
+
+	
 	<Target Name="GitHubReadme">
 		<ItemGroup>
-			<ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md"/>
+			<ConcatFiles Include="..\docs\github\warning.md; ..\versions.tmp; ..\docs\index.md"/>
 		</ItemGroup>
 		<ItemGroup>
 			<FileContents Include="$([System.IO.File]::ReadAllText(%(ConcatFiles.Identity)))"/>

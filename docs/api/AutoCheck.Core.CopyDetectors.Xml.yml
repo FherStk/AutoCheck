@@ -30,7 +30,6 @@ items:
     content: 'public class Xml : PlainText'
     content.vb: >-
       Public Class Xml
-
           Inherits PlainText
   inheritance:
   - System.Object
