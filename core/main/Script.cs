@@ -1862,7 +1862,7 @@ namespace AutoCheck.Core{
                         input = string.Empty;
                     }                    
                     
-                    arguments.Add(name, ComputeVarValue(name, value));
+                    arguments.Add(name, ComputeArgument(name, (YamlScalarNode)node));
                 }
             }
             else{

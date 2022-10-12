@@ -47,6 +47,10 @@ body:
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
 
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 250"
+
 
     - vars:
             filename: "2.html"
