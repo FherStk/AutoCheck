@@ -49,7 +49,7 @@ body:
 
             - run:                
                 command:  "Wait"            
-                arguments: "--milliseconds 250"
+                arguments: "--milliseconds 1000"
 
 
     - vars:
@@ -79,6 +79,10 @@ body:
                     command:  "ValidateHtml5AgainstW3C"            
                     onexception: "SKIP"
 
+                - run:                
+                    command:  "Wait"            
+                    arguments: "--milliseconds 1000"
+
 
     - vars:
         filename: "3.html"
@@ -107,6 +111,10 @@ body:
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
 
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
+
     - vars:
         filename: "4.html"
         filepath: NULL
@@ -133,6 +141,10 @@ body:
                 connector: "Html"
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
+
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
 
     - vars:
         filename: "5.html"
@@ -161,6 +173,10 @@ body:
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
 
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
+
     - vars:
         filename: "6.html"
         filepath: NULL
@@ -187,6 +203,10 @@ body:
                 connector: "Html"
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
+
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
 
     - vars:
         filename: "7.html"
@@ -215,6 +235,10 @@ body:
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
 
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
+
     - vars:
         filename: "8.html"
         filepath: NULL
@@ -241,6 +265,10 @@ body:
                 connector: "Html"
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
+
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
 
     - vars:
         filename: "9.html"
@@ -269,6 +297,10 @@ body:
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
 
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
+
     - vars:
         filename: "10.html"
         filepath: NULL
@@ -295,6 +327,10 @@ body:
                 connector: "Html"
                 command:  "ValidateHtml5AgainstW3C"            
                 onexception: "SKIP"
+
+            - run:                
+                command:  "Wait"            
+                arguments: "--milliseconds 1000"
 
 
         #Aquí irían otras preguntas a verificar, se ponen aqui dentro para que no se hagan si el documento no valida.
