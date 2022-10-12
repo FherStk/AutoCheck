@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<BuildDocFx>false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
+		<BuildDocFx>true</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
@@ -13,9 +13,11 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<Deterministic>true</Deterministic>
 	</PropertyGroup>
+
 	<PropertyGroup>
 		<NoWarn>$(NoWarn);MSB3253</NoWarn>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="dein.ToolBox" Version="1.7.1"/>
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.38"/>
@@ -38,7 +40,10 @@
 		<PackageReference Include="YamlDotNet" Version="11.2.1"/>
 		<PackageReference Include="NCalc2" Version="2.1.0"/>
 		<PackageReference Include="SharpCompress" Version="0.30.1"/>
+		<PackageReference Include="System.Security.Permissions" Version="6.0.0" />
 	</ItemGroup>
+	
+
 	<Target Name="GitHubReadme">
 		<ItemGroup>
 			<ConcatFiles Include="..\docs\github\warning.md; ..\docs\index.md"/>
@@ -48,17 +53,20 @@
 		</ItemGroup>
 		<WriteLinesToFile File="..\README.md" Lines="@(FileContents)" Overwrite="true"/>
 	</Target>
+
 	<Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
 		<Message Importance="High" Text="Generating README.md for GitHub..."/>
 		<Message Importance="High" Text="Generating documentation..."/>
 		<CallTarget Targets="GitHubReadme"/>
 		<Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets"/>
 	</Target>
+
 	<Target Name="ObliterateAfterClean" AfterTargets="Clean">
 		<RemoveDir Directories="bin"/>
 		<RemoveDir Directories="..\docs\obj"/>
 		<RemoveDir Directories="$(BaseIntermediateOutputPath)"/>
 	</Target>
+
 	<Target Name="ObliterateAfterClean" AfterTargets="Build">
 		<RemoveDir Directories="bin\Debug\net6.0\temp"/>
 	</Target>
