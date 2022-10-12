@@ -1862,7 +1862,7 @@ namespace AutoCheck.Core{
                         input = string.Empty;
                     }                    
                     
-                    arguments.Add(name, ComputeArgument(name, (YamlScalarNode)node));
+                    arguments.Add(name, ComputeArgument(name, value));
                 }
             }
             else{
@@ -2265,10 +2265,18 @@ namespace AutoCheck.Core{
             return (result, shellExecuted);           
         }
 
-        private object ComputeArgument(string name, YamlScalarNode node){
-            var value = ComputeTypeValue(node.Tag.ToString(), node.Value);            
-            if(value.GetType().Equals(typeof(string))) value = ComputeVarValue(name, value.ToString());
-            return value;
+        private object ComputeArgument(string name, string value){
+            return ComputeArgument(name, string.Empty, value);
+        }
+
+        private object ComputeArgument(string name, YamlScalarNode node){            
+            return ComputeArgument(name, node.Tag.ToString(), node.Value);
+        }
+
+        private object ComputeArgument(string name, string tag, string value){
+            var computedValue = ComputeTypeValue(tag, value);            
+            if(computedValue.GetType().Equals(typeof(string))) computedValue = ComputeVarValue(name, computedValue.ToString());
+            return computedValue;
         }
         
         private string ComputeVarValue(string value){
