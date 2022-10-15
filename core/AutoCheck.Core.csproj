@@ -60,7 +60,7 @@
 		</XmlPeek>
 
 		<PropertyGroup>
-			<VersionText>**AutoCheck.Test:** v@(TestVersion) | **AutoCheck.Docs:** v@(DocsVersion) | **AutoCheck.Cli:**  v@(CliVersion) | **AutoCheck.Web:**  v@(WebVersion)</VersionText>			
+			<VersionText>**AutoCheck.Test:** v@(TestVersion) | **AutoCheck.Docs:** v@(DocsVersion) | **AutoCheck.Core:**  v$(VersionPrefix) | **AutoCheck.Cli:**  v@(CliVersion) | **AutoCheck.Web:**  v@(WebVersion)</VersionText>			
 		</PropertyGroup>
 
 		<WriteLinesToFile File="..\versions.tmp" Lines="# Current versions:" Overwrite="true"/>
