@@ -23,12 +23,12 @@ using System.Collections.Generic;
 
 using NUnit.Framework;
 
-namespace AutoCheck.Test
+namespace AutoCheck.Test.Real
 {    
     [Parallelizable(ParallelScope.All)]    
-    public class RealViews : Test
+    public class Views : Test
     { 
-        public RealViews(): base("script/real"){
+        public Views(): base("script/real"){
         }        
 
         [NonParallelizable] //cannot interfear with the batch one, shares users and roles

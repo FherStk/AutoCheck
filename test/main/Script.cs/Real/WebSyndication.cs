@@ -21,12 +21,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace AutoCheck.Test
+namespace AutoCheck.Test.Real
 {    
     [Parallelizable(ParallelScope.All)]    
-    public class RealWebSyndication : Test
+    public class WebSyndication : Test
     { 
-        public RealWebSyndication(): base("script/real"){
+        public WebSyndication(): base("script/real"){
         }        
 
         [Test, Category("FullScriptWebSyndication"), Category("Real"), Category("Local")]

@@ -19,4 +19,4 @@
 inherits: "../../templates/mineseeker.yaml"  
 single:
   local:
-    folder:  "{$APP_FOLDER_PATH}/../test/samples/private/mineseeker/Student_Name_1"
+    folder:  "<SOME_FOLDER>"

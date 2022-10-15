@@ -21,12 +21,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace AutoCheck.Test
+namespace AutoCheck.Test.Real
 {    
     [NonParallelizable]   //W3C Validation will report a 507 error when running in parallel 
-    public class RealHtml5 : Test
+    public class Html5 : Test
     { 
-        public RealHtml5(): base("script/real"){
+        public Html5(): base("script/real"){
         }        
 
         [NonParallelizable]

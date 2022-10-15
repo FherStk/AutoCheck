@@ -21,12 +21,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace AutoCheck.Test
+namespace AutoCheck.Test.Real
 {    
     [Parallelizable(ParallelScope.All)]    
-    public class RealCss3 : Test
+    public class Css3 : Test
     { 
-        public RealCss3(): base("script/real"){
+        public Css3(): base("script/real"){
         }        
 
         [Test, Category("FullScriptCss3"), Category("Real"), Category("Local")]        

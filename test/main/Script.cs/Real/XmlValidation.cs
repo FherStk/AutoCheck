@@ -21,12 +21,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace AutoCheck.Test
+namespace AutoCheck.Test.Real
 {    
     [Parallelizable(ParallelScope.All)]    
-    public class RealXmlValidation : Test
+    public class XmlValidation : Test
     { 
-        public RealXmlValidation(): base("script/real"){
+        public XmlValidation(): base("script/real"){
         }        
 
         [Test, Category("FullScriptXml"), Category("Real"), Category("Local")]    
