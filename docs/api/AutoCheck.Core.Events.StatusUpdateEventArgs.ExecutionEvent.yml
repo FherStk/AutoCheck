@@ -1,0 +1,451 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  commentId: T:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  id: StatusUpdateEventArgs.ExecutionEvent
+  parent: AutoCheck.Core.Events
+  children:
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_END
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_POST
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN
+  langs:
+  - csharp
+  - vb
+  name: StatusUpdateEventArgs.ExecutionEvent
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  type: Enum
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: ExecutionEvent
+    path: ../core/main/Events.cs
+    startLine: 24
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: 'public enum ExecutionEvent : int'
+    content.vb: Public Enum ExecutionEvent As Integer
+  extensionMethods:
+  - AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER
+  id: AFTER_HEADER
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_HEADER
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_HEADER
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_HEADER
+    path: ../core/main/Events.cs
+    startLine: 25
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_HEADER = 0
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT
+  id: AFTER_INIT
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_INIT
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_INIT
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_INIT
+    path: ../core/main/Events.cs
+    startLine: 26
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_INIT = 1
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP
+  id: AFTER_SETUP
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_SETUP
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SETUP
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_SETUP
+    path: ../core/main/Events.cs
+    startLine: 27
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_SETUP = 2
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR
+  id: AFTER_COPY_DETECTOR
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_COPY_DETECTOR
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_COPY_DETECTOR
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_COPY_DETECTOR
+    path: ../core/main/Events.cs
+    startLine: 28
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_COPY_DETECTOR = 3
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE
+  id: AFTER_PRE
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_PRE
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_PRE
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_PRE
+    path: ../core/main/Events.cs
+    startLine: 29
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_PRE = 4
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY
+  id: AFTER_BODY
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_BODY
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_BODY
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_BODY
+    path: ../core/main/Events.cs
+    startLine: 30
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_BODY = 5
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_POST
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_POST
+  id: AFTER_POST
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_POST
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_POST
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_POST
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_POST
+    path: ../core/main/Events.cs
+    startLine: 31
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_POST = 6
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT
+  id: AFTER_SCRIPT
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_SCRIPT
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_SCRIPT
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_SCRIPT
+    path: ../core/main/Events.cs
+    startLine: 32
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_SCRIPT = 7
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN
+  id: AFTER_TEARDOWN
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_TEARDOWN
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_TEARDOWN
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_TEARDOWN
+    path: ../core/main/Events.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_TEARDOWN = 8
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_END
+  commentId: F:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_END
+  id: AFTER_END
+  parent: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  langs:
+  - csharp
+  - vb
+  name: AFTER_END
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent.AFTER_END
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.AFTER_END
+  type: Field
+  source:
+    remote:
+      path: core/main/Events.cs
+      branch: v2.23.0
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AFTER_END
+    path: ../core/main/Events.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Events
+  syntax:
+    content: AFTER_END = 9
+    return:
+      type: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core.Events
+  commentId: N:AutoCheck.Core.Events
+  name: AutoCheck.Core.Events
+  nameWithType: AutoCheck.Core.Events
+  fullName: AutoCheck.Core.Events
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<StatusUpdateEventArgs.ExecutionEvent>()
+  nameWithType: ObjectExtensions.DeepClone<StatusUpdateEventArgs.ExecutionEvent>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of StatusUpdateEventArgs.ExecutionEvent)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)()
+  name.vb: DeepClone(Of StatusUpdateEventArgs.ExecutionEvent)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<StatusUpdateEventArgs.ExecutionEvent>
+    nameWithType: ObjectExtensions.DeepClone<StatusUpdateEventArgs.ExecutionEvent>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of StatusUpdateEventArgs.ExecutionEvent)
+    nameWithType: ObjectExtensions.DeepClone(Of StatusUpdateEventArgs.ExecutionEvent)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  commentId: T:AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent
+  parent: AutoCheck.Core.Events
+  name: StatusUpdateEventArgs.ExecutionEvent
+  nameWithType: StatusUpdateEventArgs.ExecutionEvent
+  fullName: AutoCheck.Core.Events.StatusUpdateEventArgs.ExecutionEvent

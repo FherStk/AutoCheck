@@ -21,7 +21,7 @@ inherits: "../../templates/css3.yaml"
 batch: 
     - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"       
     - local:                             
-        - path: "{$APP_FOLDER_PATH}/../test/samples/private/css3"
+        - path: "<SOME_PATH>"
 
     - copy_detector:            
         type: "HTML"            

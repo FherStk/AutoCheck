@@ -46,6 +46,10 @@ body:
             command:  "ValidateHtml5AgainstW3C"            
             onexception: "SKIP"
 
+        - run:
+            command:  "Wait"            
+            arguments: "--milliseconds 500"
+
         - question:                     
             description: "Validating headers"
             content:                            
@@ -132,6 +136,10 @@ body:
             connector: "Html"
             command:  "ValidateHtml5AgainstW3C"            
             onexception: "SKIP"
+
+        - run:
+            command:  "Wait"            
+            arguments: "--milliseconds 500"
             
         - question:                     
             description: "Validating text fields"

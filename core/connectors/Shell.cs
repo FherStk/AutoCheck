@@ -21,7 +21,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using AutoCheck.Core.Exceptions;
@@ -555,6 +554,14 @@ namespace AutoCheck.Core.Connectors{
             }         
 
             return localPath;      
+        }
+
+        /// <summary>
+        /// The current thread execution will sleep for the given time.
+        /// </summary>
+        /// <param name="milliseconds">The time to sleep.</param>
+        public void Wait (int milliseconds){
+            System.Threading.Thread.Sleep(milliseconds);
         }
        
         private (string Path, string[] Items) GetFileOrFolder(string path, string item, bool recursive, bool folder){

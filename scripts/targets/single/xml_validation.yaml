@@ -19,4 +19,4 @@
 inherits: "../../templates/xml_validation.yaml"  
 single:
   local:
-    folder:  "{$APP_FOLDER_PATH}/../test/samples/private/xml/Student Name 1"
+    folder:  "<SOME_FOLDER>"
