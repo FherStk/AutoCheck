@@ -12,11 +12,11 @@ namespace AutoCheck.Web.Hubs
         public void Run(string script, Dictionary<string, string> target, Dictionary<string, string> vars)
         {        
             //TODO: multi target mode (local and remote) so those can be added from the web and injected into the script                
-            var ws = new WebScript(script);
-            var yaml = ws.InjectTarget(target, vars);
+            var s = new Script(script, OnLogUpdateEventHandler, false);
+            s.OverrideTarget(target, vars);
 
             try{
-                var result = new AutoCheck.Core.Script(yaml, OnLogUpdateEventHandler);    
+                s.Start();
                 Clients.Caller.SendAsync("ReceiveLog", null, false, true);    
             }
             catch(Exception ex){                 

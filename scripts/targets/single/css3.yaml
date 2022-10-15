@@ -19,4 +19,4 @@
 inherits: "../../templates/css3.yaml"  
 single:
   local:
-    folder: "{$APP_FOLDER_PATH}/../test/samples/private/html5/Student Name 1"
+    folder: "<SOME_FOLDER>"

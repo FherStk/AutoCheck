@@ -9,6 +9,7 @@ items:
   - AutoCheck.Core.Output.Style
   - AutoCheck.Core.Output.Type
   - AutoCheck.Core.Script
+  - AutoCheck.Core.Script.ExecutionMode
   - AutoCheck.Core.Utils
   - AutoCheck.Core.Utils.OS
   langs:
@@ -50,6 +51,12 @@ references:
   name: Script
   nameWithType: Script
   fullName: AutoCheck.Core.Script
+- uid: AutoCheck.Core.Script.ExecutionMode
+  commentId: T:AutoCheck.Core.Script.ExecutionMode
+  parent: AutoCheck.Core
+  name: Script.ExecutionMode
+  nameWithType: Script.ExecutionMode
+  fullName: AutoCheck.Core.Script.ExecutionMode
 - uid: AutoCheck.Core.Utils
   commentId: T:AutoCheck.Core.Utils
   name: Utils

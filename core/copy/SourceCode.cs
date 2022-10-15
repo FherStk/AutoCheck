@@ -41,6 +41,8 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         public override void Compare(){  
             //JPlag uses one single path
+            if(Files.Count < 2) return;
+            
             var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, $@"{Guid.NewGuid()}");
@@ -49,7 +51,7 @@ namespace AutoCheck.Core.CopyDetectors{
             try{
                 //Setting up execution
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.Run($"java -jar jplag-3.0.0-jar-with-dependencies.jar -c parallel -n -1 -r \"{output}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
+                var result = shell.Run($"java -jar jplag-3.0.0-jar-with-dependencies.jar -c parallel -n -1 -t 4 -r \"{output}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates a CSV file with the output data)
                 var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', null, false);                 
