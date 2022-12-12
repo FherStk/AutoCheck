@@ -6,7 +6,7 @@
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
 		<Copyright>Copyright © 2022</Copyright>
-		<VersionPrefix>2.23.0</VersionPrefix>
+		<VersionPrefix>2.23.1</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
@@ -22,7 +22,7 @@
 		<PackageReference Include="dein.ToolBox" Version="1.7.1"/>
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.38"/>
 		<PackageReference Include="ExCSS" Version="4.1.1"/>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
 		<PackageReference Include="Npgsql" Version="6.0.0"/>
 		<PackageReference Include="System.Text.Json" Version="6.0.0"/>
 		<PackageReference Include="SharpZipLib" Version="1.3.3"/>
@@ -60,7 +60,7 @@
 		</XmlPeek>
 
 		<PropertyGroup>
-			<VersionText>**AutoCheck.Test:** v@(TestVersion) | **AutoCheck.Docs:** v@(DocsVersion) | **AutoCheck.Cli:**  v@(CliVersion) | **AutoCheck.Web:**  v@(WebVersion)</VersionText>			
+			<VersionText>**AutoCheck.Test:** v@(TestVersion) | **AutoCheck.Docs:** v@(DocsVersion) | **AutoCheck.Core:** v$(VersionPrefix) | **AutoCheck.Cli:** v@(CliVersion) | **AutoCheck.Web:** v@(WebVersion)</VersionText>			
 		</PropertyGroup>
 
 		<WriteLinesToFile File="..\versions.tmp" Lines="# Current versions:" Overwrite="true"/>
