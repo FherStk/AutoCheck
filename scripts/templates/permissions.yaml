@@ -17,7 +17,7 @@
 # along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 
 name: "ASIX - M02 (UF3): Permissions Assignment"
-version: "1.2.0.0"
+version: "1.3.0.0"
 
 #TODO: permission reset should be performed ONLY when running on batch mode and ONLY when importing an SQL dump... When using directly over an existing BBDD, it should be just READ ONLY.
 
@@ -34,6 +34,7 @@ body:
 
   - question: 
       description: "Foreign key (I)"
+      score: 0.5
       content:        
         - run:
             caption: "Checking foreign key 'empleats -> empleats'..."
@@ -44,6 +45,7 @@ body:
 
   - question: 
       description: "Foreign key (II)"
+      score: 0.5
       content:        
         - run:
             caption: "Checking foreign key 'empleats -> departaments'..."
@@ -54,6 +56,7 @@ body:
 
   - question: 
       description: "Privileges over 'empleats'"
+      score: 1
       content:        
         - run:
             caption: "Checking new entries..."
@@ -77,6 +80,7 @@ body:
 
   - question: 
       description: "Privileges over 'fabricacio'"
+      score: 1
       content:        
         - run:
             caption: "Checking foreign key 'fabricacio -> fabriques'..."
@@ -126,48 +130,57 @@ body:
 
   - question: 
       description: "Privileges for rrhhadmin and prodadmin"
-      content:        
-        - run:
-            caption: "Checking removed entries..."
-            connector: "Postgres"
-            command:  "ExecuteScalar"      
-            arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id=9"
-            expected: "0"
+      score: 2
+      content: 
+        - question: 
+            description: "Privileges for rrhhadmin"
+            score: 1
+            content:       
+                - run:
+                    caption: "Checking removed entries..."
+                    connector: "Postgres"
+                    command:  "ExecuteScalar"      
+                    arguments: --query "SELECT COUNT(id) FROM rrhh.empleats WHERE id=9"
+                    expected: "0"
 
-        - run:
-            caption: "Checking 'rrhhadmin' privileges for the table 'empleats'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema rrhh --table empleats --role rrhhadmin"
-            expected: "arwxt"
+                - run:
+                    caption: "Checking 'rrhhadmin' privileges for the table 'empleats'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema rrhh --table empleats --role rrhhadmin"
+                    expected: "arwxt"
 
-        - run:
-            caption: "Checking 'rrhhadmin' privileges for the table 'departaments'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema rrhh --table departaments --role rrhhadmin"
-            expected: "arwxt"
+                - run:
+                    caption: "Checking 'rrhhadmin' privileges for the table 'departaments'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema rrhh --table departaments --role rrhhadmin"
+                    expected: "arwxt"
 
-        - run:
-            caption: "Checking 'prodadmin' privileges for the table 'fabriques'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table fabriques --role prodadmin"
-            expected: "arwxt"
+        - question: 
+            description: "Privileges for prodadmin"
+            score: 1
+            content:  
+                - run:
+                    caption: "Checking 'prodadmin' privileges for the table 'fabriques'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table fabriques --role prodadmin"
+                    expected: "arwxt"
 
-        - run:
-            caption: "Checking 'prodadmin' privileges for the table 'productes'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table productes --role prodadmin"
-            expected: "arwxt"
+                - run:
+                    caption: "Checking 'prodadmin' privileges for the table 'productes'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table productes --role prodadmin"
+                    expected: "arwxt"
 
-        - run:
-            caption: "Checking 'prodadmin' privileges for the table 'fabricacio'..."
-            connector: "Postgres"
-            command:  "GetTablePrivileges"      
-            arguments: "--schema produccio --table fabricacio --role prodadmin"
-            expected: "arwxt"
+                - run:
+                    caption: "Checking 'prodadmin' privileges for the table 'fabricacio'..."
+                    connector: "Postgres"
+                    command:  "GetTablePrivileges"      
+                    arguments: "--schema produccio --table fabricacio --role prodadmin"
+                    expected: "arwxt"
 
   - question: 
       description: "Privileges for dbadmin"
