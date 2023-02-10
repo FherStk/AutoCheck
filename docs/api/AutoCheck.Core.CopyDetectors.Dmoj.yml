@@ -1,37 +1,36 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.CopyDetectors.SourceCode
-  commentId: T:AutoCheck.Core.CopyDetectors.SourceCode
-  id: SourceCode
+- uid: AutoCheck.Core.CopyDetectors.Dmoj
+  commentId: T:AutoCheck.Core.CopyDetectors.Dmoj
+  id: Dmoj
   parent: AutoCheck.Core.CopyDetectors
   children:
-  - AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
-  - AutoCheck.Core.CopyDetectors.SourceCode.Compare
-  - AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
+  - AutoCheck.Core.CopyDetectors.Dmoj.#ctor(System.String,System.Single,System.String)
+  - AutoCheck.Core.CopyDetectors.Dmoj.Compare
   langs:
   - csharp
   - vb
-  name: SourceCode
-  nameWithType: SourceCode
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode
+  name: Dmoj
+  nameWithType: Dmoj
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj
   type: Class
   source:
     remote:
-      path: core/copy/SourceCode.cs
+      path: core/copy/Dmoj.cs
       branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
-    id: SourceCode
-    path: ../core/copy/SourceCode.cs
+    id: Dmoj
+    path: ../core/copy/Dmoj.cs
     startLine: 30
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nCopy detector for plain text files.\n"
+  summary: "\nCopy detector for DMOJ contests.\n"
   example: []
   syntax:
-    content: 'public class SourceCode : PlainText'
+    content: 'public class Dmoj : PlainText'
     content.vb: >-
-      Public Class SourceCode
+      Public Class Dmoj
           Inherits PlainText
   inheritance:
   - System.Object
@@ -48,6 +47,7 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.Count
   - AutoCheck.Core.CopyDetectors.PlainText.Dispose
   - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Threshold
   - AutoCheck.Core.CopyDetectors.Base.FilePattern
@@ -55,121 +55,84 @@ items:
   - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.Int32,System.String)
   extensionMethods:
-  - AutoCheck.Core.CopyDetectors.SourceCode.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.CopyDetectors.Dmoj.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
-  id: '#ctor(System.Single,System.String)'
-  parent: AutoCheck.Core.CopyDetectors.SourceCode
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.#ctor(System.String,System.Single,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.Dmoj.#ctor(System.String,System.Single,System.String)
+  id: '#ctor(System.String,System.Single,System.String)'
+  parent: AutoCheck.Core.CopyDetectors.Dmoj
   langs:
   - csharp
   - vb
-  name: SourceCode(Single, String)
-  nameWithType: SourceCode.SourceCode(Single, String)
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode(System.Single, System.String)
+  name: Dmoj(String, Single, String)
+  nameWithType: Dmoj.Dmoj(String, Single, String)
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Dmoj(System.String, System.Single, System.String)
   type: Constructor
   source:
     remote:
-      path: core/copy/SourceCode.cs
+      path: core/copy/Dmoj.cs
       branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
-    path: ../core/copy/SourceCode.cs
-    startLine: 35
+    path: ../core/copy/Dmoj.cs
+    startLine: 37
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\nInternally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.\n"
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
   example: []
   syntax:
-    content: public SourceCode(float threshold, string filePattern = "*.java")
+    content: public Dmoj(string url, float threshold, string contestCode)
     parameters:
+    - id: url
+      type: System.String
+      description: URL to the DMOJ&apos;s instance.
     - id: threshold
       type: System.Single
-    - id: filePattern
+      description: Above this comparisson percentage, it will be assumed as a pontential copy.
+    - id: contestCode
       type: System.String
-    content.vb: Public Sub New(threshold As Single, filePattern As String = "*.java")
-  overload: AutoCheck.Core.CopyDetectors.SourceCode.#ctor*
+      description: DMOJ&apos;s contest code to check.
+    content.vb: Public Sub New(url As String, threshold As Single, contestCode As String)
+  overload: AutoCheck.Core.CopyDetectors.Dmoj.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.Compare
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.Compare
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.Dmoj.Compare
   id: Compare
-  parent: AutoCheck.Core.CopyDetectors.SourceCode
+  parent: AutoCheck.Core.CopyDetectors.Dmoj
   langs:
   - csharp
   - vb
   name: Compare()
-  nameWithType: SourceCode.Compare()
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare()
+  nameWithType: Dmoj.Compare()
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Compare()
   type: Method
   source:
     remote:
-      path: core/copy/SourceCode.cs
+      path: core/copy/Dmoj.cs
       branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
-    path: ../core/copy/SourceCode.cs
-    startLine: 41
+    path: ../core/copy/Dmoj.cs
+    startLine: 47
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nCompares all the files between each other\n"
+  summary: "\nCompares all the previously loaded files, between each other.\n"
   example: []
   syntax:
     content: public override void Compare()
     content.vb: Public Overrides Sub Compare
   overridden: AutoCheck.Core.CopyDetectors.PlainText.Compare
-  overload: AutoCheck.Core.CopyDetectors.SourceCode.Compare*
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  id: CopyDetected(System.String)
-  parent: AutoCheck.Core.CopyDetectors.SourceCode
-  langs:
-  - csharp
-  - vb
-  name: CopyDetected(String)
-  nameWithType: SourceCode.CopyDetected(String)
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  type: Method
-  source:
-    remote:
-      path: core/copy/SourceCode.cs
-      branch: dmoj
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CopyDetected
-    path: ../core/copy/SourceCode.cs
-    startLine: 99
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nChecks if a potential copy has been detected.\nThe Compare() method should be called firts.\n"
-  example: []
-  syntax:
-    content: public override bool CopyDetected(string path)
-    parameters:
-    - id: path
-      type: System.String
-      description: The path to a compared file.
-    return:
-      type: System.Boolean
-      description: True of copy has been detected.
-    content.vb: Public Overrides Function CopyDetected(path As String) As Boolean
-  overridden: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  overload: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
+  overload: AutoCheck.Core.CopyDetectors.Dmoj.Compare*
   modifiers.csharp:
   - public
   - override
@@ -323,6 +286,45 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  isExternal: true
+  name: CopyDetected(String)
+  nameWithType: PlainText.CopyDetected(String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.String
     name: String
     nameWithType: String
@@ -639,21 +641,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<SourceCode>()
-  nameWithType: ObjectExtensions.DeepClone<SourceCode>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.SourceCode>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of SourceCode)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.SourceCode)()
-  name.vb: DeepClone(Of SourceCode)()
+  name: DeepClone<Dmoj>()
+  nameWithType: ObjectExtensions.DeepClone<Dmoj>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Dmoj>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Dmoj)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Dmoj)()
+  name.vb: DeepClone(Of Dmoj)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<SourceCode>
-    nameWithType: ObjectExtensions.DeepClone<SourceCode>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.SourceCode>
+    name: DeepClone<Dmoj>
+    nameWithType: ObjectExtensions.DeepClone<Dmoj>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Dmoj>
   - name: (
     nameWithType: (
     fullName: (
@@ -662,9 +664,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of SourceCode)
-    nameWithType: ObjectExtensions.DeepClone(Of SourceCode)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.SourceCode)
+    name: DeepClone(Of Dmoj)
+    nameWithType: ObjectExtensions.DeepClone(Of Dmoj)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Dmoj)
   - name: (
     nameWithType: (
     fullName: (
@@ -712,21 +714,21 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.#ctor
-  name: SourceCode
-  nameWithType: SourceCode.SourceCode
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode
-- uid: System.Single
-  isExternal: true
-  name: Single
-  nameWithType: Single
-  fullName: System.Single
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.#ctor*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Dmoj.#ctor
+  name: Dmoj
+  nameWithType: Dmoj.Dmoj
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Dmoj
 - uid: System.String
   isExternal: true
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.Single
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
 - uid: AutoCheck.Core.CopyDetectors.PlainText.Compare
   commentId: M:AutoCheck.Core.CopyDetectors.PlainText.Compare
   parent: AutoCheck.Core.CopyDetectors.PlainText
@@ -755,57 +757,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.Compare*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.Compare
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.Compare*
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Dmoj.Compare
   name: Compare
-  nameWithType: SourceCode.Compare
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare
-- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  parent: AutoCheck.Core.CopyDetectors.PlainText
-  isExternal: true
-  name: CopyDetected(String)
-  nameWithType: PlainText.CopyDetected(String)
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  spec.csharp:
-  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-    name: CopyDetected
-    nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-    name: CopyDetected
-    nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  name: CopyDetected
-  nameWithType: SourceCode.CopyDetected
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-- uid: System.Boolean
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  nameWithType: Dmoj.Compare
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Compare

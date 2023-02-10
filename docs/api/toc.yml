@@ -66,6 +66,8 @@
     name: Base
   - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
+  - uid: AutoCheck.Core.CopyDetectors.Dmoj
+    name: Dmoj
   - uid: AutoCheck.Core.CopyDetectors.Html
     name: Html
   - uid: AutoCheck.Core.CopyDetectors.PlainText

@@ -3624,6 +3624,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.Username
   nameWithType: Shell.Username
+- uid: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  name: Wait(Int32)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Wait_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  nameWithType: Shell.Wait(Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Wait*
+  name: Wait
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Wait_
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Wait
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Shell.Wait
+  nameWithType: Shell.Wait
 - uid: AutoCheck.Core.Connectors.TextStream
   name: TextStream
   href: api/AutoCheck.Core.Connectors.TextStream.html
@@ -4089,6 +4102,38 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.Css.Css
   nameWithType: Css.Css
+- uid: AutoCheck.Core.CopyDetectors.Dmoj
+  name: Dmoj
+  href: api/AutoCheck.Core.CopyDetectors.Dmoj.html
+  commentId: T:AutoCheck.Core.CopyDetectors.Dmoj
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj
+  nameWithType: Dmoj
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.#ctor(System.String,System.Single,System.String)
+  name: Dmoj(String, Single, String)
+  href: api/AutoCheck.Core.CopyDetectors.Dmoj.html#AutoCheck_Core_CopyDetectors_Dmoj__ctor_System_String_System_Single_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Dmoj.#ctor(System.String,System.Single,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Dmoj(System.String, System.Single, System.String)
+  nameWithType: Dmoj.Dmoj(String, Single, String)
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.#ctor*
+  name: Dmoj
+  href: api/AutoCheck.Core.CopyDetectors.Dmoj.html#AutoCheck_Core_CopyDetectors_Dmoj__ctor_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Dmoj.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Dmoj
+  nameWithType: Dmoj.Dmoj
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.Compare
+  name: Compare()
+  href: api/AutoCheck.Core.CopyDetectors.Dmoj.html#AutoCheck_Core_CopyDetectors_Dmoj_Compare
+  commentId: M:AutoCheck.Core.CopyDetectors.Dmoj.Compare
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Compare()
+  nameWithType: Dmoj.Compare()
+- uid: AutoCheck.Core.CopyDetectors.Dmoj.Compare*
+  name: Compare
+  href: api/AutoCheck.Core.CopyDetectors.Dmoj.html#AutoCheck_Core_CopyDetectors_Dmoj_Compare_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Dmoj.Compare
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.Dmoj.Compare
+  nameWithType: Dmoj.Compare
 - uid: AutoCheck.Core.CopyDetectors.Html
   name: Html
   href: api/AutoCheck.CopyDetectors.Html.html
