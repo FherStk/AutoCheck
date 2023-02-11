@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ConnectorNotFoundException
     path: ../core/main/Exceptions.cs
-    startLine: 95
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -55,11 +55,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 101
+    startLine: 111
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -85,11 +85,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 102
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

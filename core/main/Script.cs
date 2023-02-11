@@ -1,5 +1,5 @@
 /*
-    Copyright © 2022 Fernando Porrino Serrano
+    Copyright © 2023 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -192,6 +192,36 @@ namespace AutoCheck.Core{
         protected string AppConfigName {
             get{
                 return GetVar("app_config_name", AutoComputeVarValues).ToString();
+            }           
+        }
+
+        /// <summary>
+        /// The current app's temporary folder path.
+        /// </summary>
+        protected string AppTempPath {
+            get{
+                return GetVar("app_temp_path", AutoComputeVarValues).ToString();
+            }
+
+            private set{                
+                try{
+                    //Read only
+                    GetVar("app_temp_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_temp_path", value); 
+                    UpdateVar("app_temp_name", Path.GetFileName(value) ?? string.Empty);    
+                } 
+            }
+        }
+
+        /// <summary>
+        /// The root app's temporary folder name.
+        /// </summary>
+        protected string AppTempName {
+            get{
+                return GetVar("app_temp_name", AutoComputeVarValues).ToString();
             }           
         }
 
@@ -710,6 +740,7 @@ namespace AutoCheck.Core{
             AppFolderPath = Utils.AppFolder;
             AppConfigPath = Utils.ConfigFolder;
             AppUtilsPath = Utils.UtilsFolder;
+            AppTempPath = Utils.TempFolder;
             ExecutionFolderPath = Utils.ExecutionFolder;
             
             //Setup the remaining vars            

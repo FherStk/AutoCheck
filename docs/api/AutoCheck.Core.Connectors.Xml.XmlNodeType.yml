@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: XmlNodeType
     path: ../core/connectors/Xml.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ALL
     path: ../core/connectors/Xml.cs
@@ -84,7 +84,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: STRING
     path: ../core/connectors/Xml.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: BOOLEAN
     path: ../core/connectors/Xml.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: core/connectors/Xml.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: NUMERIC
     path: ../core/connectors/Xml.cs

@@ -534,6 +534,64 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.CsvDocument.Validate
   nameWithType: CsvDocument.Validate
+- uid: AutoCheck.Core.Connectors.Dmoj
+  name: Dmoj
+  href: api/AutoCheck.Core.Connectors.Dmoj.html
+  commentId: T:AutoCheck.Core.Connectors.Dmoj
+  fullName: AutoCheck.Core.Connectors.Dmoj
+  nameWithType: Dmoj
+- uid: AutoCheck.Core.Connectors.Dmoj.#ctor(System.String)
+  name: Dmoj(String)
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj__ctor_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Dmoj.#ctor(System.String)
+  fullName: AutoCheck.Core.Connectors.Dmoj.Dmoj(System.String)
+  nameWithType: Dmoj.Dmoj(String)
+- uid: AutoCheck.Core.Connectors.Dmoj.#ctor*
+  name: Dmoj
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj__ctor_
+  commentId: Overload:AutoCheck.Core.Connectors.Dmoj.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Dmoj.Dmoj
+  nameWithType: Dmoj.Dmoj
+- uid: AutoCheck.Core.Connectors.Dmoj.Dispose
+  name: Dispose()
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_Dispose
+  commentId: M:AutoCheck.Core.Connectors.Dmoj.Dispose
+  fullName: AutoCheck.Core.Connectors.Dmoj.Dispose()
+  nameWithType: Dmoj.Dispose()
+- uid: AutoCheck.Core.Connectors.Dmoj.Dispose*
+  name: Dispose
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_Dispose_
+  commentId: Overload:AutoCheck.Core.Connectors.Dmoj.Dispose
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Dmoj.Dispose
+  nameWithType: Dmoj.Dispose
+- uid: AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions(System.String,System.String)
+  name: DownloadContestSubmissions(String, String)
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_DownloadContestSubmissions_System_String_System_String_
+  commentId: M:AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions(System.String,System.String)
+  fullName: AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions(System.String, System.String)
+  nameWithType: Dmoj.DownloadContestSubmissions(String, String)
+- uid: AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions*
+  name: DownloadContestSubmissions
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_DownloadContestSubmissions_
+  commentId: Overload:AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Dmoj.DownloadContestSubmissions
+  nameWithType: Dmoj.DownloadContestSubmissions
+- uid: AutoCheck.Core.Connectors.Dmoj.Host
+  name: Host
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_Host
+  commentId: P:AutoCheck.Core.Connectors.Dmoj.Host
+  fullName: AutoCheck.Core.Connectors.Dmoj.Host
+  nameWithType: Dmoj.Host
+- uid: AutoCheck.Core.Connectors.Dmoj.Host*
+  name: Host
+  href: api/AutoCheck.Core.Connectors.Dmoj.html#AutoCheck_Core_Connectors_Dmoj_Host_
+  commentId: Overload:AutoCheck.Core.Connectors.Dmoj.Host
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Dmoj.Host
+  nameWithType: Dmoj.Host
 - uid: AutoCheck.Core.Connectors.GDrive
   name: GDrive
   href: api/AutoCheck.Connectors.GDrive.html
@@ -3624,6 +3682,19 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Connectors.Shell.Username
   nameWithType: Shell.Username
+- uid: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  name: Wait(Int32)
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Wait_System_Int32_
+  commentId: M:AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  nameWithType: Shell.Wait(Int32)
+- uid: AutoCheck.Core.Connectors.Shell.Wait*
+  name: Wait
+  href: api/AutoCheck.Core.Connectors.Shell.html#AutoCheck_Core_Connectors_Shell_Wait_
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Wait
+  isSpec: "True"
+  fullName: AutoCheck.Core.Connectors.Shell.Wait
+  nameWithType: Shell.Wait
 - uid: AutoCheck.Core.Connectors.TextStream
   name: TextStream
   href: api/AutoCheck.Core.Connectors.TextStream.html
@@ -4879,6 +4950,31 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Exceptions.ArgumentNotFoundException.ArgumentNotFoundException
   nameWithType: ArgumentNotFoundException.ArgumentNotFoundException
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException
+  name: ConfigFileMissingException
+  href: api/AutoCheck.Core.Exceptions.ConfigFileMissingException.html
+  commentId: T:AutoCheck.Core.Exceptions.ConfigFileMissingException
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException
+  nameWithType: ConfigFileMissingException
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  name: ConfigFileMissingException()
+  href: api/AutoCheck.Core.Exceptions.ConfigFileMissingException.html#AutoCheck_Core_Exceptions_ConfigFileMissingException__ctor
+  commentId: M:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException()
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException()
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor(System.String,Exception)
+  name: ConfigFileMissingException(String, Exception)
+  href: api/AutoCheck.Core.Exceptions.ConfigFileMissingException.html#AutoCheck_Core_Exceptions_ConfigFileMissingException__ctor_System_String_Exception_
+  commentId: M:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor(System.String,Exception)
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException(System.String, Exception)
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException(String, Exception)
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor*
+  name: ConfigFileMissingException
+  href: api/AutoCheck.Core.Exceptions.ConfigFileMissingException.html#AutoCheck_Core_Exceptions_ConfigFileMissingException__ctor_
+  commentId: Overload:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  isSpec: "True"
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException
 - uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
   name: ConnectionInvalidException
   href: api/AutoCheck.Core.Exceptions.ConnectionInvalidException.html
@@ -5849,6 +5945,32 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.Script.AppFolderPath
   nameWithType: Script.AppFolderPath
+- uid: AutoCheck.Core.Script.AppTempName
+  name: AppTempName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppTempName
+  commentId: P:AutoCheck.Core.Script.AppTempName
+  fullName: AutoCheck.Core.Script.AppTempName
+  nameWithType: Script.AppTempName
+- uid: AutoCheck.Core.Script.AppTempName*
+  name: AppTempName
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppTempName_
+  commentId: Overload:AutoCheck.Core.Script.AppTempName
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppTempName
+  nameWithType: Script.AppTempName
+- uid: AutoCheck.Core.Script.AppTempPath
+  name: AppTempPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppTempPath
+  commentId: P:AutoCheck.Core.Script.AppTempPath
+  fullName: AutoCheck.Core.Script.AppTempPath
+  nameWithType: Script.AppTempPath
+- uid: AutoCheck.Core.Script.AppTempPath*
+  name: AppTempPath
+  href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppTempPath_
+  commentId: Overload:AutoCheck.Core.Script.AppTempPath
+  isSpec: "True"
+  fullName: AutoCheck.Core.Script.AppTempPath
+  nameWithType: Script.AppTempPath
 - uid: AutoCheck.Core.Script.AppUtilsName
   name: AppUtilsName
   href: api/AutoCheck.Core.Script.html#AutoCheck_Core_Script_AppUtilsName

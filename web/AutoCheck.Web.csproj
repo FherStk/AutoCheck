@@ -7,7 +7,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Web</Product>
-		<Copyright>Copyright © 2022</Copyright>
+		<Copyright>Copyright © 2023</Copyright>
 		<VersionPrefix>1.5.1</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
