@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: PorpertyNotFoundException
     path: ../core/main/Exceptions.cs
-    startLine: 85
+    startLine: 95
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -59,7 +59,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 91
+    startLine: 101
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -89,7 +89,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 92
+    startLine: 102
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

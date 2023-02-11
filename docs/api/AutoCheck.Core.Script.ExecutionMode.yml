@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionMode
     path: ../core/main/Script.cs
-    startLine: 690
+    startLine: 720
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -54,7 +54,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SINGLE
     path: ../core/main/Script.cs
-    startLine: 691
+    startLine: 721
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -86,7 +86,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: BATCH
     path: ../core/main/Script.cs
-    startLine: 692
+    startLine: 722
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

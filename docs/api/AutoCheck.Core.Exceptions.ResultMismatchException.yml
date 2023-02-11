@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ResultMismatchException
     path: ../core/main/Exceptions.cs
-    startLine: 217
+    startLine: 227
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 223
+    startLine: 233
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 224
+    startLine: 234
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

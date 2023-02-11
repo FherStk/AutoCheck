@@ -10,6 +10,7 @@ items:
   - AutoCheck.Core.Connectors.Css
   - AutoCheck.Core.Connectors.Csv
   - AutoCheck.Core.Connectors.CsvDocument
+  - AutoCheck.Core.Connectors.Dmoj
   - AutoCheck.Core.Connectors.GDrive
   - AutoCheck.Core.Connectors.Html
   - AutoCheck.Core.Connectors.Math
@@ -71,6 +72,11 @@ references:
   name: Csv
   nameWithType: Csv
   fullName: AutoCheck.Core.Connectors.Csv
+- uid: AutoCheck.Core.Connectors.Dmoj
+  commentId: T:AutoCheck.Core.Connectors.Dmoj
+  name: Dmoj
+  nameWithType: Dmoj
+  fullName: AutoCheck.Core.Connectors.Dmoj
 - uid: AutoCheck.Core.Connectors.GDrive
   commentId: T:AutoCheck.Core.Connectors.GDrive
   name: GDrive

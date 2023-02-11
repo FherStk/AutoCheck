@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: RegexInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 45
+    startLine: 55
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 51
+    startLine: 61
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 52
+    startLine: 62
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

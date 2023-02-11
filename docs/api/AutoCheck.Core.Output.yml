@@ -605,7 +605,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToString
     path: ../core/main/Output.cs
-    startLine: 298
+    startLine: 305
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -640,7 +640,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: ToJson
     path: ../core/main/Output.cs
-    startLine: 306
+    startLine: 313
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core
@@ -675,7 +675,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SendToTerminal
     path: ../core/main/Output.cs
-    startLine: 314
+    startLine: 321
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core

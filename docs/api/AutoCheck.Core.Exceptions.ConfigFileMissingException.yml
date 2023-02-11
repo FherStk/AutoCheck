@@ -1,55 +1,55 @@
 ### YamlMime:ManagedReference
 items:
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
-  commentId: T:AutoCheck.Core.Exceptions.ConnectionInvalidException
-  id: ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException
+  commentId: T:AutoCheck.Core.Exceptions.ConfigFileMissingException
+  id: ConfigFileMissingException
   parent: AutoCheck.Core.Exceptions
   children:
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+  - AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  - AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor(System.String,Exception)
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  name: ConfigFileMissingException
+  nameWithType: ConfigFileMissingException
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException
   type: Class
   source:
     remote:
       path: core/main/Exceptions.cs
       branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
-    id: ConnectionInvalidException
+    id: ConfigFileMissingException
     path: ../core/main/Exceptions.cs
-    startLine: 187
+    startLine: 25
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: 'public class ConnectionInvalidException : Exception'
+    content: 'public class ConfigFileMissingException : Exception'
     content.vb: >-
-      Public Class ConnectionInvalidException
+      Public Class ConfigFileMissingException
           Inherits Exception
   inheritance:
   - System.Object
   extensionMethods:
-  - AutoCheck.Core.Exceptions.ConnectionInvalidException.ObjectExtensions.DeepClone``1
+  - AutoCheck.Core.Exceptions.ConfigFileMissingException.ObjectExtensions.DeepClone``1
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  commentId: M:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
   id: '#ctor'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ConfigFileMissingException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException()
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException()
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException()
+  name: ConfigFileMissingException()
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException()
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException()
   type: Constructor
   source:
     remote:
@@ -58,28 +58,28 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 193
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException()
+    content: public ConfigFileMissingException()
     content.vb: Public Sub New
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
-  commentId: M:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor(System.String,Exception)
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor(System.String,Exception)
+  commentId: M:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor(System.String,Exception)
   id: '#ctor(System.String,Exception)'
-  parent: AutoCheck.Core.Exceptions.ConnectionInvalidException
+  parent: AutoCheck.Core.Exceptions.ConfigFileMissingException
   langs:
   - csharp
   - vb
-  name: ConnectionInvalidException(String, Exception)
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException(String, Exception)
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException(System.String, Exception)
+  name: ConfigFileMissingException(String, Exception)
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException(String, Exception)
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException(System.String, Exception)
   type: Constructor
   source:
     remote:
@@ -88,19 +88,19 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 194
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
   syntax:
-    content: public ConnectionInvalidException(string message, Exception innerException = null)
+    content: public ConfigFileMissingException(string message, Exception innerException = null)
     parameters:
     - id: message
       type: System.String
     - id: innerException
       type: Exception
     content.vb: Public Sub New(message As String, innerException As Exception = Nothing)
-  overload: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
+  overload: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -117,21 +117,21 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.ObjectExtensions.DeepClone``1
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.ObjectExtensions.DeepClone``1
   commentId: M:ObjectExtensions.DeepClone``1(``0)
   parent: ObjectExtensions
   definition: ObjectExtensions.DeepClone``1(``0)
-  name: DeepClone<ConnectionInvalidException>()
-  nameWithType: ObjectExtensions.DeepClone<ConnectionInvalidException>()
-  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConnectionInvalidException>()
-  nameWithType.vb: ObjectExtensions.DeepClone(Of ConnectionInvalidException)()
-  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConnectionInvalidException)()
-  name.vb: DeepClone(Of ConnectionInvalidException)()
+  name: DeepClone<ConfigFileMissingException>()
+  nameWithType: ObjectExtensions.DeepClone<ConfigFileMissingException>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConfigFileMissingException>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of ConfigFileMissingException)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConfigFileMissingException)()
+  name.vb: DeepClone(Of ConfigFileMissingException)()
   spec.csharp:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone<ConnectionInvalidException>
-    nameWithType: ObjectExtensions.DeepClone<ConnectionInvalidException>
-    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConnectionInvalidException>
+    name: DeepClone<ConfigFileMissingException>
+    nameWithType: ObjectExtensions.DeepClone<ConfigFileMissingException>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.Exceptions.ConfigFileMissingException>
   - name: (
     nameWithType: (
     fullName: (
@@ -140,9 +140,9 @@ references:
     fullName: )
   spec.vb:
   - uid: ObjectExtensions.DeepClone``1
-    name: DeepClone(Of ConnectionInvalidException)
-    nameWithType: ObjectExtensions.DeepClone(Of ConnectionInvalidException)
-    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConnectionInvalidException)
+    name: DeepClone(Of ConfigFileMissingException)
+    nameWithType: ObjectExtensions.DeepClone(Of ConfigFileMissingException)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.Exceptions.ConfigFileMissingException)
   - name: (
     nameWithType: (
     fullName: (
@@ -190,11 +190,11 @@ references:
   name: ObjectExtensions
   nameWithType: ObjectExtensions
   fullName: ObjectExtensions
-- uid: AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor*
-  commentId: Overload:AutoCheck.Core.Exceptions.ConnectionInvalidException.#ctor
-  name: ConnectionInvalidException
-  nameWithType: ConnectionInvalidException.ConnectionInvalidException
-  fullName: AutoCheck.Core.Exceptions.ConnectionInvalidException.ConnectionInvalidException
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor*
+  commentId: Overload:AutoCheck.Core.Exceptions.ConfigFileMissingException.#ctor
+  name: ConfigFileMissingException
+  nameWithType: ConfigFileMissingException.ConfigFileMissingException
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException.ConfigFileMissingException
 - uid: System.String
   isExternal: true
   name: String

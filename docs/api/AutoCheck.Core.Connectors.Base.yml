@@ -38,6 +38,7 @@ items:
   - AutoCheck.Core.Connectors.Compressed
   - AutoCheck.Core.Connectors.Css
   - AutoCheck.Core.Connectors.Csv
+  - AutoCheck.Core.Connectors.Dmoj
   - AutoCheck.Core.Connectors.GDrive
   - AutoCheck.Core.Connectors.Html
   - AutoCheck.Core.Connectors.Math

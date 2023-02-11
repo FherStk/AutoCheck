@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: QueryInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 187
+    startLine: 197
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 193
+    startLine: 203
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 194
+    startLine: 204
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: VariableNotFoundException
     path: ../core/main/Exceptions.cs
-    startLine: 65
+    startLine: 75
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -59,7 +59,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 71
+    startLine: 81
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -89,7 +89,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 72
+    startLine: 82
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

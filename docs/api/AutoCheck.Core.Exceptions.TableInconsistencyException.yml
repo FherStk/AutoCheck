@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: TableInconsistencyException
     path: ../core/main/Exceptions.cs
-    startLine: 167
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 173
+    startLine: 183
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 174
+    startLine: 184
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

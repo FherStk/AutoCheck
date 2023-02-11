@@ -6,7 +6,6 @@ items:
   children:
   - AutoCheck.Core.CopyDetectors.Base
   - AutoCheck.Core.CopyDetectors.Css
-  - AutoCheck.Core.CopyDetectors.Dmoj
   - AutoCheck.Core.CopyDetectors.Html
   - AutoCheck.Core.CopyDetectors.PlainText
   - AutoCheck.Core.CopyDetectors.PlainText.File
@@ -34,11 +33,6 @@ references:
   name: Css
   nameWithType: Css
   fullName: AutoCheck.Core.CopyDetectors.Css
-- uid: AutoCheck.Core.CopyDetectors.Dmoj
-  commentId: T:AutoCheck.Core.CopyDetectors.Dmoj
-  name: Dmoj
-  nameWithType: Dmoj
-  fullName: AutoCheck.Core.CopyDetectors.Dmoj
 - uid: AutoCheck.Core.CopyDetectors.Html
   commentId: T:AutoCheck.Core.CopyDetectors.Html
   name: Html

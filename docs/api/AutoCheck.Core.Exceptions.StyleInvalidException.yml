@@ -21,7 +21,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: StyleInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 35
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 41
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -88,7 +88,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 42
+    startLine: 52
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

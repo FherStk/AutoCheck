@@ -49,7 +49,6 @@ items:
   - AutoCheck.Core.CopyDetectors.Base
   derivedClasses:
   - AutoCheck.Core.CopyDetectors.Css
-  - AutoCheck.Core.CopyDetectors.Dmoj
   - AutoCheck.Core.CopyDetectors.Html
   - AutoCheck.Core.CopyDetectors.SourceCode
   - AutoCheck.Core.CopyDetectors.SqlLog
