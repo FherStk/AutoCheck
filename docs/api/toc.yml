@@ -33,6 +33,8 @@
     name: Csv
   - uid: AutoCheck.Core.Connectors.CsvDocument
     name: CsvDocument
+  - uid: AutoCheck.Core.Connectors.Dmoj
+    name: Dmoj
   - uid: AutoCheck.Core.Connectors.GDrive
     name: GDrive
   - uid: AutoCheck.Core.Connectors.Html
@@ -94,6 +96,8 @@
     name: ArgumentInvalidException
   - uid: AutoCheck.Core.Exceptions.ArgumentNotFoundException
     name: ArgumentNotFoundException
+  - uid: AutoCheck.Core.Exceptions.ConfigFileMissingException
+    name: ConfigFileMissingException
   - uid: AutoCheck.Core.Exceptions.ConnectionInvalidException
     name: ConnectionInvalidException
   - uid: AutoCheck.Core.Exceptions.ConnectorInvalidException

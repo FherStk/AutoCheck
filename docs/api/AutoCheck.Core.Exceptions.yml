@@ -6,6 +6,7 @@ items:
   children:
   - AutoCheck.Core.Exceptions.ArgumentInvalidException
   - AutoCheck.Core.Exceptions.ArgumentNotFoundException
+  - AutoCheck.Core.Exceptions.ConfigFileMissingException
   - AutoCheck.Core.Exceptions.ConnectionInvalidException
   - AutoCheck.Core.Exceptions.ConnectorInvalidException
   - AutoCheck.Core.Exceptions.ConnectorNotFoundException
@@ -34,6 +35,11 @@ items:
   assemblies:
   - AutoCheck.Core
 references:
+- uid: AutoCheck.Core.Exceptions.ConfigFileMissingException
+  commentId: T:AutoCheck.Core.Exceptions.ConfigFileMissingException
+  name: ConfigFileMissingException
+  nameWithType: ConfigFileMissingException
+  fullName: AutoCheck.Core.Exceptions.ConfigFileMissingException
 - uid: AutoCheck.Core.Exceptions.DocumentInvalidException
   commentId: T:AutoCheck.Core.Exceptions.DocumentInvalidException
   name: DocumentInvalidException

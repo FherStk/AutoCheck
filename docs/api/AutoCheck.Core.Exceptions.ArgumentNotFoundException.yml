@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ArgumentNotFoundException
     path: ../core/main/Exceptions.cs
-    startLine: 75
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -55,11 +55,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 81
+    startLine: 91
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -85,11 +85,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 82
+    startLine: 92
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

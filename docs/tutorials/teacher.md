@@ -209,6 +209,8 @@ APP_CONFIG_NAME | text | The core app's configuration folder (just the folder na
 APP_CONFIG_PATH | text | The core app's configuration folder (the entire path). 
 APP_UTILS_NAME | text | The core app's utils folder (just the folder name). 
 APP_UTILS_PATH | text | The core app's utils folder (the entire path). 
+APP_TEMP_NAME | text | The core app's temporary folder (just the folder name). 
+APP_TEMP_PATH | text | The core app's temporary folder (the entire path). 
 
 ##### Script data:
 Name | Type | Description
@@ -443,18 +445,18 @@ Name | Type | Mandatory | Description | Default
 ------------ | -------------
 caption | text | no | Message to display before every batch execution. | `"Running on batch mode:"`
 concurrent | integer | no | Maximum concurrent scripts execution (0 = MAX). | `0`
-[init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption| |
+[init](#init) | sequence | no | The defined content will be executed once at the begining, before the caption. | |
 [setup](#setup) | sequence | no | The defined content will be executed once per target, before the caption (and also before the copy_detectors begins). | |
 [pre](#pre) | sequence | no | The defined content will be executed once per batch target just before each body. |
 [post](#post) | sequence | no | The defined content will be executed once per batch target just after each body. |
 [teardown](#teardown) | sequence | no | The defined content will be executed once per target, after the execution of all post. |
-[end](#end) | sequence | no | The defined content will be executed once at the end of the script | |
+[end](#end) | sequence | no | The defined content will be executed once at the end of the script. | |
 [copy_detector](#copy_detector) | mapping | no | Enables the copy detection logic, which will be executed before any body and after all pre executions. | 
 [local](#local) | sequence | yes (if no `remote` has been defined) | Local batch target, so each script body will be executed once per local target. | 
 [remote](#remote) | sequence | yes (if no `local` has been defined) | Remote batch target, so each script body will be executed once per remote target | 
 
-### <a name="setup"></a> body
-The defined content will be executed before the caption (once per target on batch mode).
+### <a name="init"></a> init
+The defined content will be executed once at the begining, before the caption.
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
@@ -463,8 +465,8 @@ Name | Type | Mandatory | Description
 [run](#run) | mapping | no | Runs a command.
 echo | text | no | Displays a message.
 
-### <a name="teardown"></a> body
-The defined content will be executed at the end (once per target on batch mode).
+### <a name="setup"></a> setup
+The defined content will be executed before the caption (once per target on batch mode).
 
 Name | Type | Mandatory | Description 
 ------------ | -------------
@@ -491,6 +493,26 @@ Name | Type | Mandatory | Description
 [vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
 [connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
 [run](#run) | mapping | no | Runs a command, it can be used wherever inside the body (usually inside a question's content).
+echo | text | no | Displays a message.
+
+### <a name="teardown"></a> teardown
+The defined content will be executed at the end (once per target on batch mode).
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command.
+echo | text | no | Displays a message.
+
+### <a name="end"></a> end
+The defined content will be executed once at the end of the script.
+
+Name | Type | Mandatory | Description 
+------------ | -------------
+[vars](#vars) | mapping | no | Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.
+[connector](#connector) | mapping | no | Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content). 
+[run](#run) | mapping | no | Runs a command.
 echo | text | no | Displays a message.
 
 #### <a name="copy_detector"></a> copy_detector

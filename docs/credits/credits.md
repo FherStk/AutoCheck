@@ -1,5 +1,5 @@
 # Autocheck
-**Copyright © 2022 by [Fernando Porrino Serrano](https://github.com/FherStk) (under the AGPL license)**\
+**Copyright © 2023 by [Fernando Porrino Serrano](https://github.com/FherStk) (under the AGPL license)**\
 Further details about the license can be found at [https://github.com/FherStk/AutoCheck/blob/master/LICENSE](https://github.com/FherStk/AutoCheck/blob/master/LICENSE).
 
 # Third party software and licenses:

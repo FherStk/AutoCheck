@@ -1,6 +1,6 @@
 
 /*
-    Copyright © 2022 Fernando Porrino Serrano
+    Copyright © 2023 Fernando Porrino Serrano
     Third party software licenses can be found at /docs/credits/credits.md
 
     This file is part of AutoCheck.
@@ -23,6 +23,16 @@ using System;
 
 namespace AutoCheck.Core.Exceptions
 {
+    [Serializable]
+    /// <summary>
+    /// The exception that is thrown when a config file is missing.
+    /// </summary>
+    public class ConfigFileMissingException : Exception
+    {
+        public ConfigFileMissingException(){}
+        public ConfigFileMissingException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
     [Serializable]
     /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).

@@ -405,6 +405,16 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>text</td>
 <td>The core app's utils folder (the entire path).</td>
 </tr>
+<tr>
+<td>APP_TEMP_NAME</td>
+<td>text</td>
+<td>The core app's temporary folder (just the folder name).</td>
+</tr>
+<tr>
+<td>APP_TEMP_PATH</td>
+<td>text</td>
+<td>The core app's temporary folder (the entire path).</td>
+</tr>
 </tbody>
 </table>
 <h5 id="script-data">Script data:</h5>
@@ -1116,7 +1126,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#init">init</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once at the begining, before the caption</td>
+<td>The defined content will be executed once at the begining, before the caption.</td>
 <td></td>
 </tr>
 <tr>
@@ -1151,7 +1161,7 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><a href="#end">end</a></td>
 <td>sequence</td>
 <td>no</td>
-<td>The defined content will be executed once at the end of the script</td>
+<td>The defined content will be executed once at the end of the script.</td>
 <td></td>
 </tr>
 <tr>
@@ -1177,8 +1187,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
-<h3 id="setup"> body</h3>
-<p>The defined content will be executed before the caption (once per target on batch mode).</p>
+<h3 id="init"> init</h3>
+<p>The defined content will be executed once at the begining, before the caption.</p>
 <table>
 <thead>
 <tr>
@@ -1215,8 +1225,8 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 </tr>
 </tbody>
 </table>
-<h3 id="teardown"> body</h3>
-<p>The defined content will be executed at the end (once per target on batch mode).</p>
+<h3 id="setup"> setup</h3>
+<p>The defined content will be executed before the caption (once per target on batch mode).</p>
 <table>
 <thead>
 <tr>
@@ -1320,6 +1330,82 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td>mapping</td>
 <td>no</td>
 <td>Runs a command, it can be used wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="teardown"> teardown</h3>
+<p>The defined content will be executed at the end (once per target on batch mode).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Runs a command.</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>text</td>
+<td>no</td>
+<td>Displays a message.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="end"> end</h3>
+<p>The defined content will be executed once at the end of the script.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#vars">vars</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines vars in the same way and with the same rules as the ones defined within root level, but as local-scope vars; useful to store command results or other stuff.</td>
+</tr>
+<tr>
+<td><a href="#connector">connector</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Defines a connector to use, it can be defined wherever inside the body (usually inside a question's content).</td>
+</tr>
+<tr>
+<td><a href="#run">run</a></td>
+<td>mapping</td>
+<td>no</td>
+<td>Runs a command.</td>
 </tr>
 <tr>
 <td>echo</td>

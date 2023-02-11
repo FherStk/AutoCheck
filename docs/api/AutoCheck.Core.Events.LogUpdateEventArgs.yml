@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: LogUpdateEventArgs
     path: ../core/main/Events.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ID
     path: ../core/main/Events.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Log
     path: ../core/main/Events.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: EndOfScript
     path: ../core/main/Events.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Events.cs

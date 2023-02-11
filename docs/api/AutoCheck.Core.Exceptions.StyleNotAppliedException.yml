@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: StyleNotAppliedException
     path: ../core/main/Exceptions.cs
-    startLine: 157
+    startLine: 167
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 163
+    startLine: 173
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 164
+    startLine: 174
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
