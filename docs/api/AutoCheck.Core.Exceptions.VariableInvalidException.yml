@@ -17,11 +17,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: VariableInvalidException
     path: ../core/main/Exceptions.cs
-    startLine: 137
+    startLine: 147
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 143
+    startLine: 153
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions
@@ -84,11 +84,11 @@ items:
   source:
     remote:
       path: core/main/Exceptions.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Exceptions.cs
-    startLine: 144
+    startLine: 154
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Exceptions

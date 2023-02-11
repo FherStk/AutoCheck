@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: SourceCode
     path: ../core/copy/SourceCode.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/SourceCode.cs
@@ -113,7 +113,7 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/SourceCode.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/SourceCode.cs

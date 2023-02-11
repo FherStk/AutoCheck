@@ -36,6 +36,7 @@ items:
   - AutoCheck.Core.Connectors.Shell.Run(System.String,System.String,System.Int32)
   - AutoCheck.Core.Connectors.Shell.TestConnection
   - AutoCheck.Core.Connectors.Shell.Username
+  - AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
   langs:
   - csharp
   - vb
@@ -46,11 +47,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Shell
     path: ../core/connectors/Shell.cs
-    startLine: 35
+    startLine: 34
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -88,11 +89,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: RemoteOS
     path: ../core/connectors/Shell.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -126,11 +127,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Host
     path: ../core/connectors/Shell.cs
-    startLine: 46
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -164,11 +165,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Username
     path: ../core/connectors/Shell.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -202,11 +203,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Password
     path: ../core/connectors/Shell.cs
-    startLine: 58
+    startLine: 57
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -240,11 +241,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Port
     path: ../core/connectors/Shell.cs
-    startLine: 64
+    startLine: 63
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -278,11 +279,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsLocal
     path: ../core/connectors/Shell.cs
-    startLine: 70
+    startLine: 69
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -316,11 +317,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: IsRemote
     path: ../core/connectors/Shell.cs
-    startLine: 80
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -354,11 +355,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
-    startLine: 99
+    startLine: 98
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -386,11 +387,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
-    startLine: 114
+    startLine: 113
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -427,11 +428,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/connectors/Shell.cs
-    startLine: 125
+    startLine: 124
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -468,11 +469,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/connectors/Shell.cs
-    startLine: 142
+    startLine: 141
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -503,11 +504,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: TestConnection
     path: ../core/connectors/Shell.cs
-    startLine: 149
+    startLine: 148
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -535,11 +536,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/connectors/Shell.cs
-    startLine: 167
+    startLine: 166
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -577,11 +578,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: Run
     path: ../core/connectors/Shell.cs
-    startLine: 178
+    startLine: 177
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -622,11 +623,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolder
     path: ../core/connectors/Shell.cs
-    startLine: 323
+    startLine: 322
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -669,11 +670,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFile
     path: ../core/connectors/Shell.cs
-    startLine: 336
+    startLine: 335
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -716,11 +717,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
-    startLine: 348
+    startLine: 347
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -760,11 +761,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFolders
     path: ../core/connectors/Shell.cs
-    startLine: 359
+    startLine: 358
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -805,11 +806,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 376
+    startLine: 375
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -849,11 +850,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetFiles
     path: ../core/connectors/Shell.cs
-    startLine: 387
+    startLine: 386
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -894,11 +895,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 405
+    startLine: 404
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -939,11 +940,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFolders
     path: ../core/connectors/Shell.cs
-    startLine: 415
+    startLine: 414
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -983,11 +984,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 426
+    startLine: 425
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1028,11 +1029,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: CountFiles
     path: ../core/connectors/Shell.cs
-    startLine: 436
+    startLine: 435
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1072,11 +1073,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 444
+    startLine: 443
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1110,11 +1111,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFolder
     path: ../core/connectors/Shell.cs
-    startLine: 460
+    startLine: 459
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1155,11 +1156,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 469
+    startLine: 468
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1193,11 +1194,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExistsFile
     path: ../core/connectors/Shell.cs
-    startLine: 485
+    startLine: 484
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1238,11 +1239,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFile
     path: ../core/connectors/Shell.cs
-    startLine: 496
+    startLine: 495
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1280,11 +1281,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 520
+    startLine: 519
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1322,11 +1323,11 @@ items:
   source:
     remote:
       path: core/connectors/Shell.cs
-      branch: v2.23.0
+      branch: dmoj
       repo: https://github.com/FherStk/AutoCheck.git
     id: DownloadFolder
     path: ../core/connectors/Shell.cs
-    startLine: 531
+    startLine: 530
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.Connectors
@@ -1349,6 +1350,42 @@ items:
       description: The local folder path once downloaded.
     content.vb: Public Function DownloadFolder(path As String, folder As String = Nothing, recursive As Boolean = False) As String
   overload: AutoCheck.Core.Connectors.Shell.DownloadFolder*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  commentId: M:AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  id: Wait(System.Int32)
+  parent: AutoCheck.Core.Connectors.Shell
+  langs:
+  - csharp
+  - vb
+  name: Wait(Int32)
+  nameWithType: Shell.Wait(Int32)
+  fullName: AutoCheck.Core.Connectors.Shell.Wait(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: core/connectors/Shell.cs
+      branch: dmoj
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Wait
+    path: ../core/connectors/Shell.cs
+    startLine: 562
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.Connectors
+  summary: "\nThe current thread execution will sleep for the given time.\n"
+  example: []
+  syntax:
+    content: public void Wait(int milliseconds)
+    parameters:
+    - id: milliseconds
+      type: System.Int32
+      description: The time to sleep.
+    content.vb: Public Sub Wait(milliseconds As Integer)
+  overload: AutoCheck.Core.Connectors.Shell.Wait*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1896,3 +1933,8 @@ references:
   name: DownloadFolder
   nameWithType: Shell.DownloadFolder
   fullName: AutoCheck.Core.Connectors.Shell.DownloadFolder
+- uid: AutoCheck.Core.Connectors.Shell.Wait*
+  commentId: Overload:AutoCheck.Core.Connectors.Shell.Wait
+  name: Wait
+  nameWithType: Shell.Wait
+  fullName: AutoCheck.Core.Connectors.Shell.Wait
