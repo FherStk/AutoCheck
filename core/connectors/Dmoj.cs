@@ -20,16 +20,10 @@
 
 using System;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Xml;
-using System.Text.Json;
-using System.Linq;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using ExCSS;
-using HtmlAgilityPack;
 using AutoCheck.Core.Exceptions;
 
 //NOTA: en función del directorio de batch y del file puesto en el script, se invoca a este método con el folder y el file que se ha encontrado por cada iteración.
