@@ -196,6 +196,36 @@ namespace AutoCheck.Core{
         }
 
         /// <summary>
+        /// The current app's temporary folder path.
+        /// </summary>
+        protected string AppTempPath {
+            get{
+                return GetVar("app_temp_path", AutoComputeVarValues).ToString();
+            }
+
+            private set{                
+                try{
+                    //Read only
+                    GetVar("app_temp_path", AutoComputeVarValues);
+                    throw new NotSupportedException("Read only");
+                }
+                catch (ItemNotFoundException){
+                    UpdateVar("app_temp_path", value); 
+                    UpdateVar("app_temp_name", Path.GetFileName(value) ?? string.Empty);    
+                } 
+            }
+        }
+
+        /// <summary>
+        /// The root app's temporary folder name.
+        /// </summary>
+        protected string AppTempName {
+            get{
+                return GetVar("app_temp_name", AutoComputeVarValues).ToString();
+            }           
+        }
+
+        /// <summary>
         /// The current app's utils folder path.
         /// </summary>
         protected string AppUtilsPath {
@@ -710,6 +740,7 @@ namespace AutoCheck.Core{
             AppFolderPath = Utils.AppFolder;
             AppConfigPath = Utils.ConfigFolder;
             AppUtilsPath = Utils.UtilsFolder;
+            AppTempPath = Utils.TempFolder;
             ExecutionFolderPath = Utils.ExecutionFolder;
             
             //Setup the remaining vars            

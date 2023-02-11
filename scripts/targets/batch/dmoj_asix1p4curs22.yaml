@@ -1,0 +1,82 @@
+# Copyright © 2023 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+vars:
+    contest: "asix1p4curs22"
+    output: "{$APP_TEMP_PATH}/DMOJ/{$CONTEST}"
+
+batch:     
+    - init:
+        - echo: "Downloading DMOJ contest ~{$CONTEST}~ into ~{$OUTPUT}:"
+
+        - connector:  
+            type: "Dmoj"                    
+            arguments: "--host dmoj.elpuig.xeill.net"
+
+        - run:         
+            connector: "Dmoj"   
+            command:  "DownloadContestSubmissions"
+            arguments: "--contestCode {$CONTEST} --outputPath {$OUTPUT}"
+            store: "ZIP_FILE"
+
+    - local:                             
+        - path: "{$APP_TEMP_PATH}/DMOJ/{$CONTEST}"
+
+    - caption: "Running on batch mode for ~{$CURRENT_FOLDER_NAME}:"         
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "quantitatdetalles.java"
+        threshold: !!float 0.97
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "quantitatdivisibles.java"
+        threshold: !!float 0.97  
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "posiciovalormespetit.java"
+        threshold: !!float 0.97  
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "posiciovalormesgran.java"
+        threshold: !!float 0.97  
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "endrecarifiltrar.java"
+        threshold: !!float 0.97  
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "endrecareliminarrepe.java"
+        threshold: !!float 0.97  
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "fusiolleteresinums.java"
+        threshold: !!float 0.97             
+
+    - copy_detector:            
+        type: "SourceCode"            
+        file: "separarlletresinums.java"
+        threshold: !!float 0.97   
+
+        

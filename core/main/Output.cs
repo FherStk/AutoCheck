@@ -258,28 +258,14 @@ namespace AutoCheck.Core{
         /// </summary>
         public Log[] GetLog() {
             List<Log> logs = new List<Log>();
-
-            //Getting info for each script log (head+setup+script+teardown)
-            foreach(var script in ScriptLog){                
-                var log = new Log();
-                log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
-
-                if(SetupLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
-                    log.Content.Add(new Space());
-                }
-
-                if(script.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(script.Content)).ToList();
-                    log.Content.Add(new Space());
-                }               
-
-                if(TeardownLog.Content.Count > 0){
-                    log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
-                }
-
-                logs.Add(log);
-            }
+            
+            if(ScriptLog.Count == 0) AppendLogData(logs, null);
+            if(ScriptLog.Count > 0){
+                //Getting info for each script log (head+setup+script+teardown)
+                foreach(var scriptLog in ScriptLog){    
+                    AppendLogData(logs, scriptLog);
+                }                
+            }    
 
             //Getting trailing log data
             if(CurrentLog.Content.Count > 0){
@@ -287,9 +273,30 @@ namespace AutoCheck.Core{
                 log.Content.Add(new Space());
                 log.Content = log.Content.Concat(Trim(CurrentLog.Content)).ToList();   
                 logs.Add(log);             
-            }
+            }        
             
             return logs.ToArray();
+        }
+
+        private void AppendLogData(List<Log> allLogs, Log scriptLog){
+            var log = new Log();
+            log.Content = log.Content.Concat(Trim(HeaderLog.Content)).ToList();
+
+            if(SetupLog.Content.Count > 0){
+                log.Content = log.Content.Concat(Trim(SetupLog.Content)).ToList();
+                log.Content.Add(new Space());
+            }
+
+            if(scriptLog != null && scriptLog.Content.Count > 0){
+                log.Content = log.Content.Concat(Trim(scriptLog.Content)).ToList();
+                log.Content.Add(new Space());
+            }               
+
+            if(TeardownLog.Content.Count > 0){
+                log.Content = log.Content.Concat(Trim(TeardownLog.Content)).ToList();                    
+            }
+
+            allLogs.Add(log);
         }
         
         /// <summary>
@@ -414,6 +421,7 @@ namespace AutoCheck.Core{
                         Style = $"{style.ToString().ToLower()}-primary" 
                     });                      
                     text = text.Substring(i+1);
+                    IsNewLine = false; //otherwise another ~ trailed items produces an unwanted indent
 
                     i = (text.Contains("~") ? text.IndexOf("~") : text.Contains("...") ? text.IndexOf("...") : text.IndexOf(":"));
                     if(i == -1) i = text.Length;
