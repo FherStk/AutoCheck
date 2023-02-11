@@ -63,13 +63,7 @@ namespace AutoCheck.Core.Connectors{
                 if(!File.Exists(filePath)) throw new ConfigFileMissingException($"Unable to load the DMOJ's API token from the config file '{filePath}'");
                 return File.ReadAllText(filePath);
             }
-        }
-
-        // /// <summary>
-        // /// The original CSS file content (unparsed).
-        // /// </summary>
-        // /// <value></value>
-        // public string Raw {get; private set;}
+        }       
 
         /// <summary>
         /// Creates a new connector instance.
