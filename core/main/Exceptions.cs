@@ -25,6 +25,16 @@ namespace AutoCheck.Core.Exceptions
 {
     [Serializable]
     /// <summary>
+    /// The exception that is thrown when a config file is missing.
+    /// </summary>
+    public class ConfigFileMissingException : Exception
+    {
+        public ConfigFileMissingException(){}
+        public ConfigFileMissingException(string message, Exception innerException = null) : base(message, innerException){}
+    }
+
+    [Serializable]
+    /// <summary>
     /// The exception that is thrown when a document cannot be correctly loaded and parsed into an equivalent object (CSS, HTML, etc.).
     /// </summary>
     public class DocumentInvalidException : Exception
