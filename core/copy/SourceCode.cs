@@ -21,8 +21,10 @@
 using System;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using AutoCheck.Core.Exceptions;
+using AutoCheck.Core.Connectors;
 
 namespace AutoCheck.Core.CopyDetectors{
     /// <summary>
@@ -40,9 +42,10 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Compares all the files between each other
         /// </summary>
         public override void Compare(){  
-            //JPlag uses one single path
+            //Compare will be invoked even for a single file
             if(Files.Count < 2) return;
             
+            //JPlag uses one single path
             var path = GetMinimalPath(Files);
             var shell = new Connectors.Shell();
             var output = Path.Combine(Utils.TempFolder, $@"{Guid.NewGuid()}");
@@ -50,11 +53,16 @@ namespace AutoCheck.Core.CopyDetectors{
             
             try{
                 //Setting up execution
-                var lang = Path.GetExtension(FilePattern).TrimStart('.');
-                var result = shell.Run($"java -jar jplag-3.0.0-jar-with-dependencies.jar -c parallel -n -1 -t 4 -r \"{output}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
-                //Parsing result (JPlag creates a CSV file with the output data)
-                var csv = new Connectors.Csv(Path.Combine(output, "matches_avg.csv"), ';', null, false);                 
+                var filter = String.Empty;
+                var names = Files.DistinctBy(x => x.FileName);
+                if(names.Count() == 1) filter = $"-p {names.FirstOrDefault().FileName}";
+                
+                var lang = Path.GetExtension(FilePattern).TrimStart('.');
+                var report = Path.Combine(output, "report");
+                var result = shell.Run($"java -jar jplag-4.2.0-jar-with-dependencies.jar {filter} -n -1 -t 4 -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
+                
+                //Parsing result (JPlag creates JSON files with the output data)
                 var folders = new Dictionary<string, int>();
 
                 //temp directory to match the JPlag directory name with the original index (directory path)
@@ -63,23 +71,36 @@ namespace AutoCheck.Core.CopyDetectors{
                 }
 
                 //collecting matches
-                Matches = new float[Files.Count(), Files.Count()];               
-                for(int i=0; i<csv.CsvDoc.Count; i++){
-                    var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
+                Matches = new float[Files.Count(), Files.Count()];
 
-                    try{
-                        var left = Files[folders[line[1]]];
-                        var right = Files[folders[line[2]]];                    
-                        var match = float.Parse(line[3], System.Globalization.CultureInfo.InvariantCulture)/100f;
+                //JPlag v4 generates a ZIP file with the results
+                using(Compressed conn = new Compressed($"{report}.zip"))
+                    conn.Extract(output);
+                
+                foreach(var jsonPath in Directory.GetFiles(output, "*.json")){
+                    var jsonName = Path.GetFileName(jsonPath);
+                    if(jsonName == "overview.json") continue;
 
-                        Matches[folders[line[1]], folders[line[2]]] = match;
-                        Matches[folders[line[2]], folders[line[1]]] = match;
-                    }                    
-                    catch(KeyNotFoundException){
-                        //Could happen if the file has not been loaded (but the folder comes from JPlag with match as 0%)
-                        continue;
-                    }
+                    var json = JObject.Parse(jsonPath);
+                    //TODO: continue
                 }
+
+                // for(int i=0; i<csv.CsvDoc.Count; i++){
+                //     var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
+
+                //     try{
+                //         var left = Files[folders[line[1]]];
+                //         var right = Files[folders[line[2]]];                    
+                //         var match = float.Parse(line[3], System.Globalization.CultureInfo.InvariantCulture)/100f;
+
+                //         Matches[folders[line[1]], folders[line[2]]] = match;
+                //         Matches[folders[line[2]], folders[line[1]]] = match;
+                //     }                    
+                //     catch(KeyNotFoundException){
+                //         //Could happen if the file has not been loaded (but the folder comes from JPlag with match as 0%)
+                //         continue;
+                //     }
+                // }
 
                 //1-1 matches
                 for(int i=0; i<Matches.GetLength(0); i++){
