@@ -27,11 +27,18 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public SqlLog(float threshold, string filePattern = "*.log"): base(threshold, filePattern)
+        public SqlLog(float threshold, int sensibility, string filePattern = "*.log"): base(threshold, sensibility, filePattern)
         {
             this.SentenceMatchWeight = 0.85f;
             this.WordCountWeight = 0.1f;
             this.LineCountWeight = 0.05f; 
-        }                                       
+        } 
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
+        public SqlLog(float threshold, string filePattern = "*.log"): this(threshold, -1, filePattern)
+        {
+        }                                      
     }
 }

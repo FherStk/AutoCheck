@@ -26,7 +26,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public Xml(float threshold, string filePattern = "*.xml"): base(threshold, filePattern)
+        public Xml(float threshold, int sensibility, string filePattern = "*.xml"): base(threshold, sensibility, filePattern)
         {    
             //TODO: more items are needed:
             //  Amount of nodes
@@ -37,6 +37,13 @@ namespace AutoCheck.Core.CopyDetectors{
             this.SentenceMatchWeight = 0.3f;
             this.WordCountWeight = 0.5f;
             this.LineCountWeight = 0.2f;    
-        }                                                
+        } 
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
+        public Xml(float threshold, string filePattern = "*.xml"): this(threshold, -1, filePattern)
+        { 
+        }                                               
     }
 }

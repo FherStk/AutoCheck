@@ -35,7 +35,16 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
         /// </summary>     
-        public SourceCode(float threshold, string filePattern = "*.java"): base(threshold, filePattern){               
+        public SourceCode(float threshold, int sensibility, string filePattern = "*.java"): base(threshold, (sensibility == -1 ? 7 : sensibility), filePattern){ 
+            //JPlag uses 7 as the default sensibility value (-t 7)   
+        }
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
+        /// </summary>     
+        public SourceCode(float threshold, string filePattern = "*.java"): this(threshold, 7, filePattern){   
+            //JPlag uses 7 as the default sensibility value (-t 7)            
         } 
        
         /// <summary>
@@ -60,7 +69,7 @@ namespace AutoCheck.Core.CopyDetectors{
                 
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
                 var report = Path.Combine(output, "report");
-                var result = shell.Run($"java -jar jplag-4.2.0-jar-with-dependencies.jar {filter} -n -1 -t 4 -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
+                var result = shell.Run($"java -jar jplag-4.2.0-jar-with-dependencies.jar {filter} -n -1 -t {Sensibility} -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates JSON files with the output data)
                 var folders = new Dictionary<string, int>();

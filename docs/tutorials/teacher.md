@@ -524,6 +524,7 @@ type | text | yes |The type of copy detector to use (see avaliable copy detector
 file | text | no | Search patthern used to find files for extraction, OS file naming convetions allowed. The first file found using the search pattern will be loaded into the copy detector engine.| `"*"`
 caption | text | no | Message displayed at output before every check. | `"Looking for potential copies within {$CURRENT_FOLDER_NAME}..."`
 threshold | decimal | no | The copy threshold to use, so results exceeding this value will be considered as a pontential copy. | `!!float 1 `
+sensibility | integer | no | The copy detection sensibility, lower values increases the probability of false positives. | `!!int -1 `
 
 #### <a name="local"></a>local
 Local batch target, so each script body will be executed once per local target.

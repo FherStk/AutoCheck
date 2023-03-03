@@ -1479,7 +1479,7 @@ namespace AutoCheck.Core{
         }
         
         private CopyDetector[] ParseCopyDetector(YamlNode node, Local[] local, Remote[] remote, string current="copy_detector", string parent="batch", string[] children = null, string[] mandatory = null){                        
-            children ??= new string[]{"type", "caption", "threshold", "file"};
+            children ??= new string[]{"type", "caption", "threshold", "file", "sensibility"};
             mandatory ??= new string[]{"type"};
 
             //Validations
@@ -1488,16 +1488,17 @@ namespace AutoCheck.Core{
             ValidateChildren(node, current, children, mandatory);                        
 
             //Loading data
-            var threshold = ParseChild(node, "threshold", 1f, false);
             var file = ParseChild(node, "file", "*", false);
-            var caption = ParseChild(node, "caption", "Looking for potential copies within ~{$CURRENT_FOLDER_NAME}... ", false);                    
-            var type = ParseChild(node, "type", string.Empty);                                    
+            var type = ParseChild(node, "type", string.Empty);
+            var threshold = ParseChild(node, "threshold", 1f, false);                        
+            var sensibility = ParseChild(node, "sensibility", -1, false);            
+            var caption = ParseChild(node, "caption", "Looking for potential copies within ~{$CURRENT_FOLDER_NAME}... ", false);                                
             if(string.IsNullOrEmpty(type)) throw new ArgumentNullException(type);
 
             //Running the copy detector
             Output.WriteLine($"Starting the copy detector for ~{type}:", Output.Style.HEADER);                 
             Output.Indent();
-            cds.Add(LoadCopyDetector(type, caption, threshold, file, local, remote));
+            cds.Add(LoadCopyDetector(type, caption, threshold, sensibility, file, local, remote));
             Output.UnIndent();   
             Output.BreakLine();                     
 
@@ -2672,15 +2673,15 @@ namespace AutoCheck.Core{
         }                
 #endregion
 #region Copy Detection        
-        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, string filePattern, Local[] local, Remote[] remote){                        
+        private CopyDetector LoadCopyDetector(string type, string caption, float threshold, int sensibility, string filePattern, Local[] local, Remote[] remote){                        
             Assembly assembly = Assembly.GetExecutingAssembly();
             if(assembly == null) throw new ArgumentInvalidException("type");
 
             //Loading documents
             var assemblyType = assembly.GetTypes().Where(t => t.Name.Equals(type, StringComparison.InvariantCultureIgnoreCase) && t.IsSubclassOf(typeof(CopyDetector))).FirstOrDefault();                       
             if(assemblyType == null) throw new ArgumentInvalidException("type");
-
-            var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, filePattern}); 
+            
+            var cd = (CopyDetector)Activator.CreateInstance(assemblyType, new object[]{threshold, sensibility, filePattern}); 
 
             //Compute for each local folder
             ForEachLocalTarget(local, (folder) => {

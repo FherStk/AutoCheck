@@ -5,6 +5,7 @@ items:
   id: SourceCode
   parent: AutoCheck.Core.CopyDetectors
   children:
+  - AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
   - AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
   - AutoCheck.Core.CopyDetectors.SourceCode.Compare
   - AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
@@ -18,11 +19,11 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: SourceCode
     path: ../core/copy/SourceCode.cs
-    startLine: 30
+    startLine: 32
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -50,6 +51,7 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Threshold
+  - AutoCheck.Core.CopyDetectors.Base.Sensibility
   - AutoCheck.Core.CopyDetectors.Base.FilePattern
   - AutoCheck.Core.CopyDetectors.Base.Load(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
@@ -62,6 +64,45 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
+  id: '#ctor(System.Single,System.Int32,System.String)'
+  parent: AutoCheck.Core.CopyDetectors.SourceCode
+  langs:
+  - csharp
+  - vb
+  name: SourceCode(Single, Int32, String)
+  nameWithType: SourceCode.SourceCode(Single, Int32, String)
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode(System.Single, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/copy/SourceCode.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/copy/SourceCode.cs
+    startLine: 37
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\nInternally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.\n"
+  example: []
+  syntax:
+    content: public SourceCode(float threshold, int sensibility, string filePattern = "*.java")
+    parameters:
+    - id: threshold
+      type: System.Single
+    - id: sensibility
+      type: System.Int32
+    - id: filePattern
+      type: System.String
+    content.vb: Public Sub New(threshold As Single, sensibility As Integer, filePattern As String = "*.java")
+  overload: AutoCheck.Core.CopyDetectors.SourceCode.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
   commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
   id: '#ctor(System.Single,System.String)'
@@ -76,11 +117,11 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/SourceCode.cs
-    startLine: 35
+    startLine: 45
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -113,11 +154,11 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/SourceCode.cs
-    startLine: 41
+    startLine: 52
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -148,11 +189,11 @@ items:
   source:
     remote:
       path: core/copy/SourceCode.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/SourceCode.cs
-    startLine: 99
+    startLine: 123
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -376,6 +417,12 @@ references:
   name: Threshold
   nameWithType: Base.Threshold
   fullName: AutoCheck.Core.CopyDetectors.Base.Threshold
+- uid: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  commentId: P:AutoCheck.Core.CopyDetectors.Base.Sensibility
+  parent: AutoCheck.Core.CopyDetectors.Base
+  name: Sensibility
+  nameWithType: Base.Sensibility
+  fullName: AutoCheck.Core.CopyDetectors.Base.Sensibility
 - uid: AutoCheck.Core.CopyDetectors.Base.FilePattern
   commentId: P:AutoCheck.Core.CopyDetectors.Base.FilePattern
   parent: AutoCheck.Core.CopyDetectors.Base
@@ -722,6 +769,11 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: System.String
   isExternal: true
   name: String

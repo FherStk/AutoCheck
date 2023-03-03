@@ -90,7 +90,7 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public PlainText(float threshold, string filePattern = "*.txt"): base(threshold, filePattern)
+        public PlainText(float threshold, int sensibility, string filePattern = "*.txt"): base(threshold, sensibility, filePattern)
         {                 
             SentenceMatchWeight = 0.7f;
             WordCountWeight = 0.2f;
@@ -99,6 +99,13 @@ namespace AutoCheck.Core.CopyDetectors{
             Files = new List<File>();
             Index = new Dictionary<string, int>();
         } 
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
+        public PlainText(float threshold, string filePattern = "*.txt"): this(threshold, -1, filePattern)
+        { 
+        }
         
         /// <summary>
         /// Disposes the current copy detector instance and releases its internal objects.

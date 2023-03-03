@@ -26,12 +26,18 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public Css(float threshold, string filePattern = "*.css"): base(threshold, filePattern)
+        public Css(float threshold, int sensibility, string filePattern = "*.css"): base(threshold, sensibility, filePattern)
         {                 
             this.SentenceMatchWeight = 0.5f;
             this.WordCountWeight = 0.3f;
             this.LineCountWeight = 0.2f;    
+        }   
 
-        }                                                
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
+        public Css(float threshold, string filePattern = "*.css"): this(threshold, -1, filePattern)
+        {         
+        }                                             
     }
 }

@@ -38,6 +38,12 @@ namespace AutoCheck.Core.CopyDetectors{
         public float Threshold {get; protected set;}
 
         /// <summary>
+        /// The comparison sensibility, a lower value increases the sensibility so produces more potential copy results.
+        /// </summary>
+        /// <value></value>
+        protected int Sensibility {get; set;}
+
+        /// <summary>
         /// Pattern that will be used to find and load files within the copy detector.
         /// </summary>
         /// <value></value>
@@ -52,14 +58,22 @@ namespace AutoCheck.Core.CopyDetectors{
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
         /// </summary>     
-        public Base(float threshold, string filePattern = "*")
+        public Base(float threshold, int sensibility, string filePattern = "*")
         {
             if(string.IsNullOrEmpty(filePattern)) throw new ArgumentNullException("filePattern");
             FilePattern = filePattern;
 
             if(threshold < 0 || threshold > 1) throw new ArgumentOutOfRangeException("threshold");
-            Threshold = threshold;            
+            Threshold = threshold;   
+
+            Sensibility = sensibility;                
         }
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>     
+        public Base(float threshold, string filePattern = "*"): this(threshold, -1, filePattern){           
+        } 
 
         /// <summary>
         /// Disposes the current copy detector instance and releases its internal objects.
