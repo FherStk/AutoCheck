@@ -155,9 +155,9 @@ namespace AutoCheck.Core.CopyDetectors{
         /// Checks if a potential copy has been detected.
         /// The Compare() method should be called firts.
         /// </summary>
-        /// <param name="source">The source item asked for.</param>
+        /// <param name="path">The path to a compared file.</param>
         /// <returns>True of copy has been detected.</returns>
-        public abstract bool CopyDetected(string source);
+        public abstract bool CopyDetected(string path);
         
         /// <summary>
         /// Returns a printable details list, containing information about the comparissons (student, source and % of match).

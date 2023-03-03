@@ -113,27 +113,7 @@ namespace AutoCheck.Core.CopyDetectors{
             finally{
                 Directory.Delete(output, true);
             }
-        }         
-
-        /// <summary>
-        /// Checks if a potential copy has been detected.
-        /// The Compare() method should be called firts.
-        /// </summary>
-        /// <param name="path">The path to a compared file.</param>
-        /// <returns>True of copy has been detected.</returns>
-        public override bool CopyDetected(string path){
-            if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
-            if(!Index.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
-
-            int i = Index[path];   
-            for(int j=0; j < Files.Count(); j++){
-                if(i != j){
-                    if(Matches[i,j] >= Threshold) return true;     
-                }                        
-            }            
-           
-            return false;
-        }
+        }                 
         
         private string GetMinimalPath(List<File> paths){
             var left = paths.FirstOrDefault().FolderPath;
