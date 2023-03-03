@@ -2740,7 +2740,7 @@ namespace AutoCheck.Core{
             catch(KeyNotFoundException){
                 //The folder has not been found within the current copy detector instance
                 folder = Path.GetFileName(folder);
-                Output.WriteLine($"The copy detector was unable to find and compare some files using the search pattern ~{Path.Combine(folder, cd.FilePattern)}:", Output.Style.CRITICAL);
+                Output.WriteLine($"The copy detector was unable to find and compare some files using the search pattern ~{Path.Combine(folder, cd.FilePattern)}:", Output.Style.ECHO);
             }            
             finally{
                 Output.BreakLine();
