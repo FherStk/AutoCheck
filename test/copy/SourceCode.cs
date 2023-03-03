@@ -170,7 +170,7 @@ namespace AutoCheck.Test.Checkers
         }   
 
         [Test]
-        [TestCase(0.6f, "*.java", "sample1.java", "sample2.java", ExpectedResult=0.81099999f)]
+        [TestCase(0.6f, "*.java", "sample1.java", "sample2.java", ExpectedResult=0.807692289f)]
         public float GetDetails_DoesNotThrow(float threshold, string filepattern, string sampleFileLeft, string sampleFileRight)
         { 
             var folder = Guid.NewGuid().ToString();     

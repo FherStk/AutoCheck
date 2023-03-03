@@ -81,26 +81,20 @@ namespace AutoCheck.Core.CopyDetectors{
                     var jsonName = Path.GetFileName(jsonPath);
                     if(jsonName == "overview.json") continue;
 
-                    var json = JObject.Parse(jsonPath);
-                    //TODO: continue
+                    var json = JObject.Parse(System.IO.File.ReadAllText(jsonPath));
+                    try{
+                        var left = Files[folders[json["id1"].ToString()]];
+                        var right = Files[folders[json["id2"].ToString()]];
+                        var match = (float)json["similarity"];
+
+                        Matches[folders[json["id1"].ToString()], folders[json["id2"].ToString()]] = match;
+                        Matches[folders[json["id2"].ToString()], folders[json["id1"].ToString()]] = match;                                              
+                    }                    
+                    catch(KeyNotFoundException){
+                        //Could happen if the file has not been loaded (but the folder comes from JPlag with match as 0%)
+                        continue;
+                    }
                 }
-
-                // for(int i=0; i<csv.CsvDoc.Count; i++){
-                //     var line = csv.CsvDoc.GetLine(i+1).Values.ToArray();
-
-                //     try{
-                //         var left = Files[folders[line[1]]];
-                //         var right = Files[folders[line[2]]];                    
-                //         var match = float.Parse(line[3], System.Globalization.CultureInfo.InvariantCulture)/100f;
-
-                //         Matches[folders[line[1]], folders[line[2]]] = match;
-                //         Matches[folders[line[2]], folders[line[1]]] = match;
-                //     }                    
-                //     catch(KeyNotFoundException){
-                //         //Could happen if the file has not been loaded (but the folder comes from JPlag with match as 0%)
-                //         continue;
-                //     }
-                // }
 
                 //1-1 matches
                 for(int i=0; i<Matches.GetLength(0); i++){
