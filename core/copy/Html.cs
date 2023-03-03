@@ -24,9 +24,13 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class Html: PlainText{                
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public Html(float threshold, int sensibility, string filePattern = "*.html"): base(threshold, sensibility, filePattern)
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        public Html(float threshold, int sensibility, DetectionMode mode, string filePattern = "*.html"): base(threshold, sensibility, mode, filePattern)
         {
             this.SentenceMatchWeight = 0.5f;
             this.WordCountWeight = 0.3f;
@@ -34,10 +38,32 @@ namespace AutoCheck.Core.CopyDetectors{
         }     
 
         /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Html(float threshold, int sensibility, string filePattern = "*.html"): this(threshold, sensibility, DetectionMode.DEFAULT, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Html(float threshold, DetectionMode mode, string filePattern = "*.html"): this(threshold, -1, mode, filePattern){           
+        }
+
+        /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public Html(float threshold, string filePattern = "*.html"): this(threshold, -1, filePattern)
-        {
-        }                                  
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Html(float threshold, string filePattern = "*.html"): this(threshold, -1, DetectionMode.DEFAULT, filePattern){           
+        }                                 
     }
 }

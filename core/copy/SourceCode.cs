@@ -23,8 +23,8 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using AutoCheck.Core.Exceptions;
 using AutoCheck.Core.Connectors;
+using MathNet.Numerics.Statistics;
 
 namespace AutoCheck.Core.CopyDetectors{
     /// <summary>
@@ -32,19 +32,45 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class SourceCode: PlainText{   
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
-        /// </summary>     
-        public SourceCode(float threshold, int sensibility, string filePattern = "*.java"): base(threshold, (sensibility == -1 ? 7 : sensibility), filePattern){ 
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>  
+        public SourceCode(float threshold, int sensibility, DetectionMode mode, string filePattern = "*.java"): base(threshold, (sensibility == -1 ? 7 : sensibility), mode, filePattern){ 
             //JPlag uses 7 as the default sensibility value (-t 7)   
+        }        
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public SourceCode(float threshold, int sensibility, string filePattern = "*.java"): this(threshold, sensibility, DetectionMode.DEFAULT, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public SourceCode(float threshold, DetectionMode mode, string filePattern = "*.java"): this(threshold, 7, mode, filePattern){    
+            //JPlag uses 7 as the default sensibility value (-t 7)          
         }
 
         /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// Internally uses JPlag which supports: java, python3, cpp, csharp, char, text, scheme.
-        /// </summary>     
-        public SourceCode(float threshold, string filePattern = "*.java"): this(threshold, 7, filePattern){   
-            //JPlag uses 7 as the default sensibility value (-t 7)            
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public SourceCode(float threshold, string filePattern = "*.java"): this(threshold, 7, DetectionMode.DEFAULT, filePattern){ 
+            //JPlag uses 7 as the default sensibility value (-t 7)             
         } 
        
         /// <summary>
@@ -80,6 +106,7 @@ namespace AutoCheck.Core.CopyDetectors{
                 }
 
                 //collecting matches
+                var accum = new List<double>();
                 Matches = new float[Files.Count(), Files.Count()];
 
                 //JPlag v4 generates a ZIP file with the results
@@ -91,13 +118,14 @@ namespace AutoCheck.Core.CopyDetectors{
                     if(jsonName == "overview.json") continue;
 
                     var json = JObject.Parse(System.IO.File.ReadAllText(jsonPath));
-                    try{
-                        var left = Files[folders[json["id1"].ToString()]];
-                        var right = Files[folders[json["id2"].ToString()]];
+                    try{                        
+                        var left = folders[json["id1"].ToString()];
+                        var right = folders[json["id2"].ToString()];
                         var match = (float)json["similarity"];
 
-                        Matches[folders[json["id1"].ToString()], folders[json["id2"].ToString()]] = match;
-                        Matches[folders[json["id2"].ToString()], folders[json["id1"].ToString()]] = match;                                              
+                        accum.Add(match);
+                        Matches[left, right] = match;
+                        Matches[right, left] = match;                                              
                     }                    
                     catch(KeyNotFoundException){
                         //Could happen if the file has not been loaded (but the folder comes from JPlag with match as 0%)
@@ -108,7 +136,10 @@ namespace AutoCheck.Core.CopyDetectors{
                 //1-1 matches
                 for(int i=0; i<Matches.GetLength(0); i++){
                     Matches[i, i] = 1;
-                }              
+                } 
+
+                //Computing the median if needed
+                if(Mode == DetectionMode.AUTO) ComputeAutoModeProperties(accum);
             }
             finally{
                 Directory.Delete(output, true);

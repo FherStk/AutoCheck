@@ -24,9 +24,13 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class Xml: PlainText{                
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public Xml(float threshold, int sensibility, string filePattern = "*.xml"): base(threshold, sensibility, filePattern)
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>  
+        public Xml(float threshold, int sensibility, DetectionMode mode, string filePattern = "*.xml"): base(threshold, sensibility, mode, filePattern)
         {    
             //TODO: more items are needed:
             //  Amount of nodes
@@ -40,10 +44,32 @@ namespace AutoCheck.Core.CopyDetectors{
         } 
 
         /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Xml(float threshold, int sensibility, string filePattern = "*.xml"): this(threshold, sensibility, DetectionMode.DEFAULT, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Xml(float threshold, DetectionMode mode, string filePattern = "*.xml"): this(threshold, -1, mode, filePattern){           
+        }
+
+        /// <summary>
         /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public Xml(float threshold, string filePattern = "*.xml"): this(threshold, -1, filePattern)
-        { 
-        }                                               
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Xml(float threshold, string filePattern = "*.xml"): this(threshold, -1, DetectionMode.DEFAULT, filePattern){           
+        }                                              
     }
 }

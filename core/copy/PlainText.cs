@@ -88,9 +88,13 @@ namespace AutoCheck.Core.CopyDetectors{
         }   
         
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public PlainText(float threshold, int sensibility, string filePattern = "*.txt"): base(threshold, sensibility, filePattern)
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        public PlainText(float threshold, int sensibility, DetectionMode mode, string filePattern = "*.txt"): base(threshold, sensibility, mode, filePattern)
         {                 
             SentenceMatchWeight = 0.7f;
             WordCountWeight = 0.2f;
@@ -101,11 +105,33 @@ namespace AutoCheck.Core.CopyDetectors{
         } 
 
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public PlainText(float threshold, string filePattern = "*.txt"): this(threshold, -1, filePattern)
-        { 
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public PlainText(float threshold, int sensibility, string filePattern = "*.txt"): this(threshold, sensibility, DetectionMode.DEFAULT, filePattern){           
         }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public PlainText(float threshold, DetectionMode mode, string filePattern = "*.txt"): this(threshold, -1, mode, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public PlainText(float threshold, string filePattern = "*.txt"): this(threshold, -1, DetectionMode.DEFAULT, filePattern){           
+        } 
         
         /// <summary>
         /// Disposes the current copy detector instance and releases its internal objects.
@@ -140,6 +166,7 @@ namespace AutoCheck.Core.CopyDetectors{
             DiffMatchPatch dmp = new DiffMatchPatch();
             dmp.DiffTimeout = 0;
 
+            var accum = new List<double>();
             Matches = new float[Files.Count(), Files.Count()];                
             Diffs = new List<Diff>[Files.Count(), Files.Count()];
             for(int i=0; i < Files.Count(); i++){
@@ -154,21 +181,23 @@ namespace AutoCheck.Core.CopyDetectors{
                         float diffAmount = (float)diff.Where(x => x.Operation == Operation.EQUAL).Count() / diff.Count;
                         float diffWordCount = (left.WordCount <= right.WordCount ? ((float)left.WordCount / right.WordCount) : ((float)right.WordCount / left.WordCount));                    
                         float diffLineCount = (left.LineCount <= right.LineCount ? ((float)left.LineCount / right.LineCount) : ((float)right.LineCount / left.LineCount));
-                        Matches[i,j] = (float)(diffWordCount * WordCountWeight) + (diffLineCount * LineCountWeight) + (diffAmount * SentenceMatchWeight);  
+
+                        var match = (float)(diffWordCount * WordCountWeight) + (diffLineCount * LineCountWeight) + (diffAmount * SentenceMatchWeight);                        
+                        Matches[i,j] = match;
+                        Matches[j, i] = match;
+                        
+                        //This will be used to compute the median
+                        accum.Add(match);        
                     }
 
                     //This should be always added                                        
-                    Diffs[i,j] = diff;          
+                    Diffs[i,j] = diff; 
+                    Diffs[j,i] = Diffs[i,j];         
                 } 
             }
 
-            //Copy the results that has been already computed
-            for(int i=0; i < Files.Count(); i++){
-                for(int j=i+1; j < Files.Count(); j++){
-                    Matches[j,i] = Matches[i,j];
-                    Diffs[j,i] = Diffs[i,j];
-                }
-            }
+            //Computing the median if needed
+            if(Mode == DetectionMode.AUTO) ComputeAutoModeProperties(accum);
         }                 
                 
         /// <summary>
@@ -180,14 +209,22 @@ namespace AutoCheck.Core.CopyDetectors{
         public override bool CopyDetected(string path){
             if(string.IsNullOrEmpty(path)) throw new ArgumentNullException("path");
             if(!Index.ContainsKey(path)) throw new ArgumentInvalidException("The given 'path' has not been used within the current copy detector instance.");
-
-            int i = Index[path];   
+            
+            int i = Index[path];                           
             for(int j=0; j < Files.Count(); j++){
                 if(i != j){
-                    if(Matches[i,j] >= Threshold) return true;     
+                    switch(Mode){
+                        case DetectionMode.DEFAULT:
+                            if(Matches[i,j] >= Threshold) return true;     
+                            break;
+                        
+                        case DetectionMode.AUTO:
+                            if(Matches[i,j] >= AutomaticThreshold) return true;
+                            break;
+                    }                    
                 }                        
             }            
-           
+
             return false;
         }
         
@@ -196,14 +233,14 @@ namespace AutoCheck.Core.CopyDetectors{
         /// </summary>
         /// <param name="path">Path where the files has been loaded.</param>
         /// <returns>Left file followed by all the right files compared with its matching score.</returns>
-        public override (string Folder, string File, (string Folder, string File, float Match)[] matches) GetDetails(string path){
+        public override (string Folder, string File, (string Folder, string File, float Match)[] matches, float Threshold) GetDetails(string path){
             int i = Index[path];   
             var matches = new List<(string, string, float)>();            
             for(int j=0; j < Files.Count(); j++){                
                 if(i != j) matches.Add((Files[j].FolderPath, Files[j].FilePath, Matches[i,j]));                     
             }            
            
-            return (Files[i].FolderPath, Files[i].FilePath, matches.ToArray());
+            return (Files[i].FolderPath, Files[i].FilePath, matches.ToArray(), (Mode == DetectionMode.DEFAULT ? Threshold : AutomaticThreshold));
         }       
     }
 }

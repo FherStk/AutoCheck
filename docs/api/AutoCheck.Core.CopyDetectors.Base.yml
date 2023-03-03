@@ -76,7 +76,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Threshold
     path: ../core/copy/Base.cs
-    startLine: 37
+    startLine: 42
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -116,7 +116,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Sensibility
     path: ../core/copy/Base.cs
-    startLine: 43
+    startLine: 48
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -154,7 +154,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: FilePattern
     path: ../core/copy/Base.cs
-    startLine: 49
+    startLine: 54
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -194,7 +194,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/Base.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -234,7 +234,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
-    startLine: 60
+    startLine: 65
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -273,7 +273,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Base.cs
-    startLine: 74
+    startLine: 79
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -310,7 +310,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/Base.cs
-    startLine: 80
+    startLine: 85
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -344,7 +344,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 86
+    startLine: 91
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -382,7 +382,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 105
+    startLine: 110
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -430,7 +430,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 119
+    startLine: 124
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -481,7 +481,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/Base.cs
-    startLine: 146
+    startLine: 151
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -522,7 +522,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/Base.cs
-    startLine: 151
+    startLine: 156
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -556,22 +556,22 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/Base.cs
-    startLine: 160
+    startLine: 164
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
   summary: "\nChecks if a potential copy has been detected.\nThe Compare() method should be called firts.\n"
   example: []
   syntax:
-    content: public abstract bool CopyDetected(string source)
+    content: public abstract bool CopyDetected(string path)
     parameters:
-    - id: source
+    - id: path
       type: System.String
-      description: The source item asked for.
+      description: The path to a compared file.
     return:
       type: System.Boolean
       description: True of copy has been detected.
-    content.vb: Public MustOverride Function CopyDetected(source As String) As Boolean
+    content.vb: Public MustOverride Function CopyDetected(path As String) As Boolean
   overload: AutoCheck.Core.CopyDetectors.Base.CopyDetected*
   modifiers.csharp:
   - public
@@ -597,7 +597,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/Base.cs
-    startLine: 167
+    startLine: 171
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors

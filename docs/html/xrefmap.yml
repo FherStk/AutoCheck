@@ -4128,6 +4128,24 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.Base.Load
   nameWithType: Base.Load
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode
+  name: Base.Mode
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html
+  commentId: T:AutoCheck.Core.CopyDetectors.Base.Mode
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode
+  nameWithType: Base.Mode
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  name: AUTO
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html#AutoCheck_Core_CopyDetectors_Base_Mode_AUTO
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  nameWithType: Base.Mode.AUTO
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  name: DEFAULT
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html#AutoCheck_Core_CopyDetectors_Base_Mode_DEFAULT
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  nameWithType: Base.Mode.DEFAULT
 - uid: AutoCheck.Core.CopyDetectors.Base.Sensibility
   name: Sensibility
   href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Sensibility
@@ -4686,19 +4704,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare
   nameWithType: SourceCode.Compare
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  name: CopyDetected(String)
-  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_System_String_
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  nameWithType: SourceCode.CopyDetected(String)
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
-  name: CopyDetected
-  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  isSpec: "True"
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  nameWithType: SourceCode.CopyDetected
 - uid: AutoCheck.Core.CopyDetectors.SqlLog
   name: SqlLog
   href: api/AutoCheck.CopyDetectors.SqlLog.html

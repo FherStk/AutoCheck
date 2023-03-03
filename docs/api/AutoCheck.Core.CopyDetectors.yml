@@ -5,6 +5,7 @@ items:
   id: AutoCheck.Core.CopyDetectors
   children:
   - AutoCheck.Core.CopyDetectors.Base
+  - AutoCheck.Core.CopyDetectors.Base.Mode
   - AutoCheck.Core.CopyDetectors.Css
   - AutoCheck.Core.CopyDetectors.Html
   - AutoCheck.Core.CopyDetectors.PlainText
@@ -28,6 +29,12 @@ references:
   name: Base
   nameWithType: Base
   fullName: AutoCheck.Core.CopyDetectors.Base
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode
+  commentId: T:AutoCheck.Core.CopyDetectors.Base.Mode
+  parent: AutoCheck.Core.CopyDetectors
+  name: Base.Mode
+  nameWithType: Base.Mode
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode
 - uid: AutoCheck.Core.CopyDetectors.Css
   commentId: T:AutoCheck.Core.CopyDetectors.Css
   name: Css

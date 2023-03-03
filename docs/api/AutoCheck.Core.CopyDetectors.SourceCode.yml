@@ -8,7 +8,6 @@ items:
   - AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
   - AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
   - AutoCheck.Core.CopyDetectors.SourceCode.Compare
-  - AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
   langs:
   - csharp
   - vb
@@ -23,7 +22,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: SourceCode
     path: ../core/copy/SourceCode.cs
-    startLine: 32
+    startLine: 31
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -49,6 +48,7 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.Count
   - AutoCheck.Core.CopyDetectors.PlainText.Dispose
   - AutoCheck.Core.CopyDetectors.PlainText.Load(System.String,System.String)
+  - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Threshold
   - AutoCheck.Core.CopyDetectors.Base.Sensibility
@@ -82,7 +82,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/SourceCode.cs
-    startLine: 37
+    startLine: 36
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -121,7 +121,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/SourceCode.cs
-    startLine: 45
+    startLine: 44
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -158,7 +158,7 @@ items:
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/SourceCode.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -169,48 +169,6 @@ items:
     content.vb: Public Overrides Sub Compare
   overridden: AutoCheck.Core.CopyDetectors.PlainText.Compare
   overload: AutoCheck.Core.CopyDetectors.SourceCode.Compare*
-  modifiers.csharp:
-  - public
-  - override
-  modifiers.vb:
-  - Public
-  - Overrides
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  id: CopyDetected(System.String)
-  parent: AutoCheck.Core.CopyDetectors.SourceCode
-  langs:
-  - csharp
-  - vb
-  name: CopyDetected(String)
-  nameWithType: SourceCode.CopyDetected(String)
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  type: Method
-  source:
-    remote:
-      path: core/copy/SourceCode.cs
-      branch: jplag-upgrade
-      repo: https://github.com/FherStk/AutoCheck.git
-    id: CopyDetected
-    path: ../core/copy/SourceCode.cs
-    startLine: 123
-  assemblies:
-  - AutoCheck.Core
-  namespace: AutoCheck.Core.CopyDetectors
-  summary: "\nChecks if a potential copy has been detected.\nThe Compare() method should be called firts.\n"
-  example: []
-  syntax:
-    content: public override bool CopyDetected(string path)
-    parameters:
-    - id: path
-      type: System.String
-      description: The path to a compared file.
-    return:
-      type: System.Boolean
-      description: True of copy has been detected.
-    content.vb: Public Overrides Function CopyDetected(path As String) As Boolean
-  overridden: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  overload: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
   modifiers.csharp:
   - public
   - override
@@ -364,6 +322,45 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  isExternal: true
+  name: CopyDetected(String)
+  nameWithType: PlainText.CopyDetected(String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+  spec.csharp:
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
+    name: CopyDetected
+    nameWithType: PlainText.CopyDetected
+    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
+  - name: (
+    nameWithType: (
+    fullName: (
   - uid: System.String
     name: String
     nameWithType: String
@@ -812,52 +809,3 @@ references:
   name: Compare
   nameWithType: SourceCode.Compare
   fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare
-- uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  parent: AutoCheck.Core.CopyDetectors.PlainText
-  isExternal: true
-  name: CopyDetected(String)
-  nameWithType: PlainText.CopyDetected(String)
-  fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-  spec.csharp:
-  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-    name: CopyDetected
-    nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
-    name: CopyDetected
-    nameWithType: PlainText.CopyDetected
-    fullName: AutoCheck.Core.CopyDetectors.PlainText.CopyDetected
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  name: CopyDetected
-  nameWithType: SourceCode.CopyDetected
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-- uid: System.Boolean
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
