@@ -156,7 +156,6 @@ namespace AutoCheck.Core.CopyDetectors{
         /// The Compare() method should be called firts.
         /// </summary>
         /// <param name="source">The source item asked for.</param>
-        /// <param name="threshold">The threshold value, a higher one will be considered as copy.</param>
         /// <returns>True of copy has been detected.</returns>
         public abstract bool CopyDetected(string source);
         
