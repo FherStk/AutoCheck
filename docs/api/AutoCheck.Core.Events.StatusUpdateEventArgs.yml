@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: StatusUpdateEventArgs
     path: ../core/main/Events.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: ID
     path: ../core/main/Events.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Mode
     path: ../core/main/Events.cs
@@ -126,7 +126,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Event
     path: ../core/main/Events.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/main/Events.cs

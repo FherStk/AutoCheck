@@ -4000,6 +4000,12 @@ references:
   commentId: T:AutoCheck.Core.CopyDetectors.Base
   fullName: AutoCheck.Core.CopyDetectors.Base
   nameWithType: Base
+- uid: AutoCheck.Core.CopyDetectors.Base.#ctor(System.Single,System.Int32,System.String)
+  name: Base(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Base.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Base.Base(System.Single, System.Int32, System.String)
+  nameWithType: Base.Base(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.Base.#ctor(System.Single,System.String)
   name: Base(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base__ctor_System_Single_System_String_
@@ -4122,6 +4128,37 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.Base.Load
   nameWithType: Base.Load
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode
+  name: Base.Mode
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html
+  commentId: T:AutoCheck.Core.CopyDetectors.Base.Mode
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode
+  nameWithType: Base.Mode
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  name: AUTO
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html#AutoCheck_Core_CopyDetectors_Base_Mode_AUTO
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  nameWithType: Base.Mode.AUTO
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  name: DEFAULT
+  href: api/AutoCheck.Core.CopyDetectors.Base.Mode.html#AutoCheck_Core_CopyDetectors_Base_Mode_DEFAULT
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  nameWithType: Base.Mode.DEFAULT
+- uid: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  name: Sensibility
+  href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Sensibility
+  commentId: P:AutoCheck.Core.CopyDetectors.Base.Sensibility
+  fullName: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  nameWithType: Base.Sensibility
+- uid: AutoCheck.Core.CopyDetectors.Base.Sensibility*
+  name: Sensibility
+  href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Sensibility_
+  commentId: Overload:AutoCheck.Core.CopyDetectors.Base.Sensibility
+  isSpec: "True"
+  fullName: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  nameWithType: Base.Sensibility
 - uid: AutoCheck.Core.CopyDetectors.Base.Threshold
   name: Threshold
   href: api/AutoCheck.Core.CopyDetectors.Base.html#AutoCheck_Core_CopyDetectors_Base_Threshold
@@ -4147,6 +4184,12 @@ references:
   commentId: M:AutoCheck.Core.CopyDetectors.Css.#ctor
   fullName: AutoCheck.Core.CopyDetectors.Css.Css()
   nameWithType: Css.Css()
+- uid: AutoCheck.Core.CopyDetectors.Css.#ctor(System.Single,System.Int32,System.String)
+  name: Css(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.Css.html#AutoCheck_Core_CopyDetectors_Css__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Css.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Css.Css(System.Single, System.Int32, System.String)
+  nameWithType: Css.Css(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.Css.#ctor(System.Single,System.String)
   name: Css(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.Css.html#AutoCheck_Core_CopyDetectors_Css__ctor_System_Single_System_String_
@@ -4172,6 +4215,12 @@ references:
   commentId: M:AutoCheck.Core.CopyDetectors.Html.#ctor
   fullName: AutoCheck.Core.CopyDetectors.Html.Html()
   nameWithType: Html.Html()
+- uid: AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.Int32,System.String)
+  name: Html(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.Html.html#AutoCheck_Core_CopyDetectors_Html__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Html.Html(System.Single, System.Int32, System.String)
+  nameWithType: Html.Html(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.String)
   name: Html(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.Html.html#AutoCheck_Core_CopyDetectors_Html__ctor_System_Single_System_String_
@@ -4268,6 +4317,12 @@ references:
   commentId: M:AutoCheck.Core.CopyDetectors.PlainText.#ctor
   fullName: AutoCheck.Core.CopyDetectors.PlainText.PlainText()
   nameWithType: PlainText.PlainText()
+- uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.Int32,System.String)
+  name: PlainText(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.PlainText(System.Single, System.Int32, System.String)
+  nameWithType: PlainText.PlainText(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.String)
   name: PlainText(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.PlainText.html#AutoCheck_Core_CopyDetectors_PlainText__ctor_System_Single_System_String_
@@ -4617,6 +4672,12 @@ references:
   commentId: T:AutoCheck.Core.CopyDetectors.SourceCode
   fullName: AutoCheck.Core.CopyDetectors.SourceCode
   nameWithType: SourceCode
+- uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
+  name: SourceCode(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.SourceCode.SourceCode(System.Single, System.Int32, System.String)
+  nameWithType: SourceCode.SourceCode(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.SourceCode.#ctor(System.Single,System.String)
   name: SourceCode(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode__ctor_System_Single_System_String_
@@ -4643,19 +4704,6 @@ references:
   isSpec: "True"
   fullName: AutoCheck.Core.CopyDetectors.SourceCode.Compare
   nameWithType: SourceCode.Compare
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  name: CopyDetected(String)
-  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_System_String_
-  commentId: M:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected(System.String)
-  nameWithType: SourceCode.CopyDetected(String)
-- uid: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected*
-  name: CopyDetected
-  href: api/AutoCheck.Core.CopyDetectors.SourceCode.html#AutoCheck_Core_CopyDetectors_SourceCode_CopyDetected_
-  commentId: Overload:AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  isSpec: "True"
-  fullName: AutoCheck.Core.CopyDetectors.SourceCode.CopyDetected
-  nameWithType: SourceCode.CopyDetected
 - uid: AutoCheck.Core.CopyDetectors.SqlLog
   name: SqlLog
   href: api/AutoCheck.CopyDetectors.SqlLog.html
@@ -4668,6 +4716,12 @@ references:
   commentId: M:AutoCheck.Core.CopyDetectors.SqlLog.#ctor
   fullName: AutoCheck.Core.CopyDetectors.SqlLog.SqlLog()
   nameWithType: SqlLog.SqlLog()
+- uid: AutoCheck.Core.CopyDetectors.SqlLog.#ctor(System.Single,System.Int32,System.String)
+  name: SqlLog(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.SqlLog.html#AutoCheck_Core_CopyDetectors_SqlLog__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.SqlLog.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.SqlLog.SqlLog(System.Single, System.Int32, System.String)
+  nameWithType: SqlLog.SqlLog(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.SqlLog.#ctor(System.Single,System.String)
   name: SqlLog(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.SqlLog.html#AutoCheck_Core_CopyDetectors_SqlLog__ctor_System_Single_System_String_
@@ -4687,6 +4741,12 @@ references:
   commentId: T:AutoCheck.Core.CopyDetectors.Xml
   fullName: AutoCheck.Core.CopyDetectors.Xml
   nameWithType: Xml
+- uid: AutoCheck.Core.CopyDetectors.Xml.#ctor(System.Single,System.Int32,System.String)
+  name: Xml(Single, Int32, String)
+  href: api/AutoCheck.Core.CopyDetectors.Xml.html#AutoCheck_Core_CopyDetectors_Xml__ctor_System_Single_System_Int32_System_String_
+  commentId: M:AutoCheck.Core.CopyDetectors.Xml.#ctor(System.Single,System.Int32,System.String)
+  fullName: AutoCheck.Core.CopyDetectors.Xml.Xml(System.Single, System.Int32, System.String)
+  nameWithType: Xml.Xml(Single, Int32, String)
 - uid: AutoCheck.Core.CopyDetectors.Xml.#ctor(System.Single,System.String)
   name: Xml(Single, String)
   href: api/AutoCheck.Core.CopyDetectors.Xml.html#AutoCheck_Core_CopyDetectors_Xml__ctor_System_Single_System_String_
