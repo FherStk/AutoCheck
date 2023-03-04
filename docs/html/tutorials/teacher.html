@@ -1450,11 +1450,25 @@ arguments: &quot;--folder {$CURRENT_FOLDER_PATH} --file index.html&quot;
 <td><code>&quot;Looking for potential copies within {$CURRENT_FOLDER_NAME}...&quot;</code></td>
 </tr>
 <tr>
+<td>mode</td>
+<td>text</td>
+<td>no</td>
+<td>The copy detection matching mode, allowed values are: <ul><li><em>DEFAULT</em>: values above the <code>threshold</code> will compute as a potential copy.</li><li><em>AUTO</em>: a median will be automatically computed using all the matching values and the <code>threshold</code> will be used as a margin error, so only the matching values over the margin error will compute as a potential copy.</li></ul>.</td>
+<td></td>
+</tr>
+<tr>
 <td>threshold</td>
 <td>decimal</td>
 <td>no</td>
-<td>The copy threshold to use, so results exceeding this value will be considered as a pontential copy.</td>
+<td>The behaviour relies on the selected <code>mode</code>.</td>
 <td><code>!!float 1 </code></td>
+</tr>
+<tr>
+<td>sensibility</td>
+<td>integer</td>
+<td>no</td>
+<td>The copy detection sensibility, lower values increases the probability of false positives.</td>
+<td><code>!!int -1 </code></td>
 </tr>
 </tbody>
 </table>

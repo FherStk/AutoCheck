@@ -26,4 +26,5 @@ batch:
     - copy_detector:            
         type: "SourceCode"            
         file: "*.java"
+        sensibility: 4
         threshold: !!float 0.8       

@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: ExecutionEvent
     path: ../core/main/Events.cs
@@ -58,7 +58,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_HEADER
     path: ../core/main/Events.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_INIT
     path: ../core/main/Events.cs
@@ -122,7 +122,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_SETUP
     path: ../core/main/Events.cs
@@ -154,7 +154,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_COPY_DETECTOR
     path: ../core/main/Events.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_PRE
     path: ../core/main/Events.cs
@@ -218,7 +218,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_BODY
     path: ../core/main/Events.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_POST
     path: ../core/main/Events.cs
@@ -282,7 +282,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_SCRIPT
     path: ../core/main/Events.cs
@@ -314,7 +314,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_TEARDOWN
     path: ../core/main/Events.cs
@@ -346,7 +346,7 @@ items:
   source:
     remote:
       path: core/main/Events.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: AFTER_END
     path: ../core/main/Events.cs

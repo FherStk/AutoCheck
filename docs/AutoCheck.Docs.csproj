@@ -7,7 +7,7 @@
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Docs</Product>
     <Copyright>Copyright © 2020</Copyright>
-    <VersionPrefix>2.24.0</VersionPrefix>
+    <VersionPrefix>2.25.0</VersionPrefix>
     <VersionSuffix>stable</VersionSuffix>  
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>

@@ -170,8 +170,9 @@ namespace AutoCheck.Test.Checkers
         }   
 
         [Test]
-        [TestCase(0.6f, "*.java", "sample1.java", "sample2.java", ExpectedResult=0.81099999f)]
-        public float GetDetails_DoesNotThrow(float threshold, string filepattern, string sampleFileLeft, string sampleFileRight)
+        [TestCase(0.6f, 7, "*.java", "sample1.java", "sample2.java", ExpectedResult=0.807692289f)]
+        [TestCase(0.6f, 2, "*.java", "sample1.java", "sample2.java", ExpectedResult=0.884615362f)]
+        public float GetDetails_DoesNotThrow(float threshold, int sensibility, string filepattern, string sampleFileLeft, string sampleFileRight)
         { 
             var folder = Guid.NewGuid().ToString();     
             var dest1 =  Path.Combine(SamplesScriptFolder, "temp", folder, "folder1"); 
@@ -185,7 +186,7 @@ namespace AutoCheck.Test.Checkers
             File.Copy(GetSampleFile(sampleFileLeft), file1);
             File.Copy(GetSampleFile(sampleFileRight), file2);            
 
-            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(threshold, filepattern))
+            using(var cd = new AutoCheck.Core.CopyDetectors.SourceCode(threshold, sensibility, filepattern))
             {                         
                 cd.Load(file1);
                 cd.Load(file2);
