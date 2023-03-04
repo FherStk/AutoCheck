@@ -5,6 +5,7 @@ items:
   id: PlainText
   parent: AutoCheck.Core.CopyDetectors
   children:
+  - AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.Int32,System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.Compare
   - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
@@ -29,7 +30,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: PlainText
     path: ../core/copy/PlainText.cs
@@ -55,6 +56,7 @@ items:
   - AutoCheck.Core.CopyDetectors.Xml
   inheritedMembers:
   - AutoCheck.Core.CopyDetectors.Base.Threshold
+  - AutoCheck.Core.CopyDetectors.Base.Sensibility
   - AutoCheck.Core.CopyDetectors.Base.FilePattern
   - AutoCheck.Core.CopyDetectors.Base.Load(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
@@ -81,7 +83,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Index
     path: ../core/copy/PlainText.cs
@@ -116,7 +118,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Files
     path: ../core/copy/PlainText.cs
@@ -151,7 +153,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Matches
     path: ../core/copy/PlainText.cs
@@ -186,7 +188,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Diffs
     path: ../core/copy/PlainText.cs
@@ -221,7 +223,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: SentenceMatchWeight
     path: ../core/copy/PlainText.cs
@@ -259,7 +261,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: WordCountWeight
     path: ../core/copy/PlainText.cs
@@ -297,7 +299,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: LineCountWeight
     path: ../core/copy/PlainText.cs
@@ -335,7 +337,7 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Count
     path: ../core/copy/PlainText.cs
@@ -362,6 +364,45 @@ items:
   - Public
   - Overrides
   - ReadOnly
+- uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.Int32,System.String)
+  id: '#ctor(System.Single,System.Int32,System.String)'
+  parent: AutoCheck.Core.CopyDetectors.PlainText
+  langs:
+  - csharp
+  - vb
+  name: PlainText(Single, Int32, String)
+  nameWithType: PlainText.PlainText(Single, Int32, String)
+  fullName: AutoCheck.Core.CopyDetectors.PlainText.PlainText(System.Single, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/copy/PlainText.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/copy/PlainText.cs
+    startLine: 92
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
+  syntax:
+    content: public PlainText(float threshold, int sensibility, string filePattern = "*.txt")
+    parameters:
+    - id: threshold
+      type: System.Single
+    - id: sensibility
+      type: System.Int32
+    - id: filePattern
+      type: System.String
+    content.vb: Public Sub New(threshold As Single, sensibility As Integer, filePattern As String = "*.txt")
+  overload: AutoCheck.Core.CopyDetectors.PlainText.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.String)
   commentId: M:AutoCheck.Core.CopyDetectors.PlainText.#ctor(System.Single,System.String)
   id: '#ctor(System.Single,System.String)'
@@ -376,11 +417,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/PlainText.cs
-    startLine: 92
+    startLine: 105
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -413,11 +454,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Dispose
     path: ../core/copy/PlainText.cs
-    startLine: 105
+    startLine: 112
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -448,11 +489,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Load
     path: ../core/copy/PlainText.cs
-    startLine: 115
+    startLine: 122
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -490,11 +531,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Compare
     path: ../core/copy/PlainText.cs
-    startLine: 127
+    startLine: 134
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -525,11 +566,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: CopyDetected
     path: ../core/copy/PlainText.cs
-    startLine: 172
+    startLine: 179
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -567,11 +608,11 @@ items:
   source:
     remote:
       path: core/copy/PlainText.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: GetDetails
     path: ../core/copy/PlainText.cs
-    startLine: 191
+    startLine: 198
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -619,6 +660,12 @@ references:
   name: Threshold
   nameWithType: Base.Threshold
   fullName: AutoCheck.Core.CopyDetectors.Base.Threshold
+- uid: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  commentId: P:AutoCheck.Core.CopyDetectors.Base.Sensibility
+  parent: AutoCheck.Core.CopyDetectors.Base
+  name: Sensibility
+  nameWithType: Base.Sensibility
+  fullName: AutoCheck.Core.CopyDetectors.Base.Sensibility
 - uid: AutoCheck.Core.CopyDetectors.Base.FilePattern
   commentId: P:AutoCheck.Core.CopyDetectors.Base.FilePattern
   parent: AutoCheck.Core.CopyDetectors.Base

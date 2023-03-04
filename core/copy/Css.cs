@@ -24,14 +24,46 @@ namespace AutoCheck.Core.CopyDetectors{
     /// </summary>
     public class Css: PlainText{                
         /// <summary>
-        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
-        /// </summary>     
-        public Css(float threshold, string filePattern = "*.css"): base(threshold, filePattern)
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        public Css(float threshold, int sensibility, DetectionMode mode, string filePattern = "*.css"): base(threshold, sensibility, mode, filePattern)
         {                 
             this.SentenceMatchWeight = 0.5f;
             this.WordCountWeight = 0.3f;
             this.LineCountWeight = 0.2f;    
+        }   
 
-        }                                                
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="sensibility">The copy detection sensibility, lower values increases the probability of false positives.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Css(float threshold, int sensibility, string filePattern = "*.css"): this(threshold, sensibility, DetectionMode.DEFAULT, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="mode">The comparisson mode.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Css(float threshold, DetectionMode mode, string filePattern = "*.css"): this(threshold, -1, mode, filePattern){           
+        }
+
+        /// <summary>
+        /// Creates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.
+        /// </summary>
+        /// <param name="threshold">Matches above this value will be computed as potential copies.</param>
+        /// <param name="filePattern">Only the files mathing this pattern will be compared.</param>
+        /// <returns></returns>
+        public Css(float threshold, string filePattern = "*"): this(threshold, -1, DetectionMode.DEFAULT, filePattern){           
+        }                                           
     }
 }

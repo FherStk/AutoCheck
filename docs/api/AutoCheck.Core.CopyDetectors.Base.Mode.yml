@@ -1,0 +1,187 @@
+### YamlMime:ManagedReference
+items:
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode
+  commentId: T:AutoCheck.Core.CopyDetectors.Base.Mode
+  id: Base.Mode
+  parent: AutoCheck.Core.CopyDetectors
+  children:
+  - AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  - AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  langs:
+  - csharp
+  - vb
+  name: Base.Mode
+  nameWithType: Base.Mode
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode
+  type: Enum
+  source:
+    remote:
+      path: core/copy/Base.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: Mode
+    path: ../core/copy/Base.cs
+    startLine: 33
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: 'public enum Mode : int'
+    content.vb: Public Enum Mode As Integer
+  extensionMethods:
+  - AutoCheck.Core.CopyDetectors.Base.Mode.ObjectExtensions.DeepClone``1
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  id: DEFAULT
+  parent: AutoCheck.Core.CopyDetectors.Base.Mode
+  langs:
+  - csharp
+  - vb
+  name: DEFAULT
+  nameWithType: Base.Mode.DEFAULT
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.DEFAULT
+  type: Field
+  source:
+    remote:
+      path: core/copy/Base.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: DEFAULT
+    path: ../core/copy/Base.cs
+    startLine: 34
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: DEFAULT = 0
+    return:
+      type: AutoCheck.Core.CopyDetectors.Base.Mode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  commentId: F:AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  id: AUTO
+  parent: AutoCheck.Core.CopyDetectors.Base.Mode
+  langs:
+  - csharp
+  - vb
+  name: AUTO
+  nameWithType: Base.Mode.AUTO
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode.AUTO
+  type: Field
+  source:
+    remote:
+      path: core/copy/Base.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: AUTO
+    path: ../core/copy/Base.cs
+    startLine: 35
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  syntax:
+    content: AUTO = 1
+    return:
+      type: AutoCheck.Core.CopyDetectors.Base.Mode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: AutoCheck.Core.CopyDetectors
+  commentId: N:AutoCheck.Core.CopyDetectors
+  name: AutoCheck.Core.CopyDetectors
+  nameWithType: AutoCheck.Core.CopyDetectors
+  fullName: AutoCheck.Core.CopyDetectors
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode.ObjectExtensions.DeepClone``1
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  parent: ObjectExtensions
+  definition: ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<Base.Mode>()
+  nameWithType: ObjectExtensions.DeepClone<Base.Mode>()
+  fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Base.Mode>()
+  nameWithType.vb: ObjectExtensions.DeepClone(Of Base.Mode)()
+  fullName.vb: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Base.Mode)()
+  name.vb: DeepClone(Of Base.Mode)()
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone<Base.Mode>
+    nameWithType: ObjectExtensions.DeepClone<Base.Mode>
+    fullName: ObjectExtensions.DeepClone<AutoCheck.Core.CopyDetectors.Base.Mode>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1
+    name: DeepClone(Of Base.Mode)
+    nameWithType: ObjectExtensions.DeepClone(Of Base.Mode)
+    fullName: ObjectExtensions.DeepClone(Of AutoCheck.Core.CopyDetectors.Base.Mode)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions.DeepClone``1(``0)
+  commentId: M:ObjectExtensions.DeepClone``1(``0)
+  name: DeepClone<T>(T)
+  nameWithType: ObjectExtensions.DeepClone<T>(T)
+  fullName: ObjectExtensions.DeepClone<T>(T)
+  nameWithType.vb: ObjectExtensions.DeepClone(Of T)(T)
+  fullName.vb: ObjectExtensions.DeepClone(Of T)(T)
+  name.vb: DeepClone(Of T)(T)
+  spec.csharp:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone<T>
+    nameWithType: ObjectExtensions.DeepClone<T>
+    fullName: ObjectExtensions.DeepClone<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: ObjectExtensions.DeepClone``1(``0)
+    name: DeepClone(Of T)
+    nameWithType: ObjectExtensions.DeepClone(Of T)
+    fullName: ObjectExtensions.DeepClone(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ObjectExtensions
+  commentId: T:ObjectExtensions
+  name: ObjectExtensions
+  nameWithType: ObjectExtensions
+  fullName: ObjectExtensions
+- uid: AutoCheck.Core.CopyDetectors.Base.Mode
+  commentId: T:AutoCheck.Core.CopyDetectors.Base.Mode
+  parent: AutoCheck.Core.CopyDetectors
+  name: Base.Mode
+  nameWithType: Base.Mode
+  fullName: AutoCheck.Core.CopyDetectors.Base.Mode

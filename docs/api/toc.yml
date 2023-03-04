@@ -66,6 +66,8 @@
   items:
   - uid: AutoCheck.Core.CopyDetectors.Base
     name: Base
+  - uid: AutoCheck.Core.CopyDetectors.Base.Mode
+    name: Base.Mode
   - uid: AutoCheck.Core.CopyDetectors.Css
     name: Css
   - uid: AutoCheck.Core.CopyDetectors.Html

@@ -5,6 +5,7 @@ items:
   id: Html
   parent: AutoCheck.Core.CopyDetectors
   children:
+  - AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.Int32,System.String)
   - AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.String)
   langs:
   - csharp
@@ -16,7 +17,7 @@ items:
   source:
     remote:
       path: core/copy/Html.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: Html
     path: ../core/copy/Html.cs
@@ -50,6 +51,7 @@ items:
   - AutoCheck.Core.CopyDetectors.PlainText.CopyDetected(System.String)
   - AutoCheck.Core.CopyDetectors.PlainText.GetDetails(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Threshold
+  - AutoCheck.Core.CopyDetectors.Base.Sensibility
   - AutoCheck.Core.CopyDetectors.Base.FilePattern
   - AutoCheck.Core.CopyDetectors.Base.Load(System.String)
   - AutoCheck.Core.CopyDetectors.Base.Load(AutoCheck.Core.Utils.OS,System.String,System.String,System.String,System.String)
@@ -62,6 +64,45 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.Int32,System.String)
+  commentId: M:AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.Int32,System.String)
+  id: '#ctor(System.Single,System.Int32,System.String)'
+  parent: AutoCheck.Core.CopyDetectors.Html
+  langs:
+  - csharp
+  - vb
+  name: Html(Single, Int32, String)
+  nameWithType: Html.Html(Single, Int32, String)
+  fullName: AutoCheck.Core.CopyDetectors.Html.Html(System.Single, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: core/copy/Html.cs
+      branch: jplag-upgrade
+      repo: https://github.com/FherStk/AutoCheck.git
+    id: .ctor
+    path: ../core/copy/Html.cs
+    startLine: 28
+  assemblies:
+  - AutoCheck.Core
+  namespace: AutoCheck.Core.CopyDetectors
+  summary: "\nCreates a new instance, setting up its properties in order to allow copy detection with the lowest possible false-positive probability.\n"
+  example: []
+  syntax:
+    content: public Html(float threshold, int sensibility, string filePattern = "*.html")
+    parameters:
+    - id: threshold
+      type: System.Single
+    - id: sensibility
+      type: System.Int32
+    - id: filePattern
+      type: System.String
+    content.vb: Public Sub New(threshold As Single, sensibility As Integer, filePattern As String = "*.html")
+  overload: AutoCheck.Core.CopyDetectors.Html.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.String)
   commentId: M:AutoCheck.Core.CopyDetectors.Html.#ctor(System.Single,System.String)
   id: '#ctor(System.Single,System.String)'
@@ -76,11 +117,11 @@ items:
   source:
     remote:
       path: core/copy/Html.cs
-      branch: dmoj
+      branch: jplag-upgrade
       repo: https://github.com/FherStk/AutoCheck.git
     id: .ctor
     path: ../core/copy/Html.cs
-    startLine: 28
+    startLine: 38
   assemblies:
   - AutoCheck.Core
   namespace: AutoCheck.Core.CopyDetectors
@@ -366,6 +407,12 @@ references:
   name: Threshold
   nameWithType: Base.Threshold
   fullName: AutoCheck.Core.CopyDetectors.Base.Threshold
+- uid: AutoCheck.Core.CopyDetectors.Base.Sensibility
+  commentId: P:AutoCheck.Core.CopyDetectors.Base.Sensibility
+  parent: AutoCheck.Core.CopyDetectors.Base
+  name: Sensibility
+  nameWithType: Base.Sensibility
+  fullName: AutoCheck.Core.CopyDetectors.Base.Sensibility
 - uid: AutoCheck.Core.CopyDetectors.Base.FilePattern
   commentId: P:AutoCheck.Core.CopyDetectors.Base.FilePattern
   parent: AutoCheck.Core.CopyDetectors.Base
@@ -712,6 +759,11 @@ references:
   name: Single
   nameWithType: Single
   fullName: System.Single
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: System.String
   isExternal: true
   name: String
