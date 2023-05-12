@@ -1,0 +1,105 @@
+# Copyright © 2023 Fernando Porrino Serrano
+# Third party software licenses can be found at /docs/credits/credits.md
+
+# This file is part of AutoCheck.
+
+# AutoCheck is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# AutoCheck is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# You should have received a copy of the GNU Affero General Public License
+# along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
+
+name: "ASIX - M02 (UF3): Permissions Assignment (Recuperació)"
+version: "1.0.0.0"
+
+#TODO: permission reset should be performed ONLY when running on batch mode and ONLY when importing an SQL dump... When using directly over an existing BBDD, it should be just READ ONLY.
+
+body:
+  - connector:            
+      type: "Postgres"        
+      arguments: "--host {$CURRENT_HOST} --database {$DATABASE} --username {$CURRENT_USER} --password {$CURRENT_PASSWORD}"
+  
+  - question: 
+      description: "This questions does not score"
+      score: 0
+      content:  
+        - run: "echo dummy"   #dummy question, just for matching with the assignment rubric
+
+  - question: 
+      description: "Foreign key (I)"
+      score: 1
+      content:        
+        - run:
+            caption: "Checking foreign key 'professors -> professors'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom secretaria --tableFrom professors --columnFrom id_cap --schemaTo secretaria --tableTo professors --columnTo id"                  
+            expected: True 
+
+  - question: 
+      description: "Privileges over 'grups'"
+      score: 2
+      content:        
+        - run:
+            caption: "Checking schema privileges..."
+            connector: "Postgres"
+            command:  "GetSchemaPrivileges"      
+            arguments: "--schema organitzacio --role capestudis"
+            expected: "%U%"
+            
+        - run:
+            caption: "Checking table privileges..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--schema organitzacio --table grups --role secretari"
+            expected: "%a%"       
+        
+  - question: 
+      description: "Privileges over 'grups'"
+      score: 2
+      content:    
+        - run:
+            caption: "Checking table privileges..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--schema secretaria --table professors --role capestudis"
+            expected: "%x%"
+
+        - run:
+            caption: "Checking foreign key 'grups -> aules'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom organitzacio --tableFrom grups --columnFrom id_aula --schemaTo organitzacio --tableTo aules --columnTo id"                  
+            expected: True
+
+        - run:
+            caption: "Checking foreign key 'grups -> professors'..."
+            connector: "Postgres"
+            command:  "ExistsForeignKey"      
+            arguments: "--schemaFrom organitzacio --tableFrom grups --columnFrom id_tutor --schemaTo secretaria --tableTo professors --columnTo id"                  
+            expected: True    
+
+  - question: 
+      description: "Privileges for admin"
+      score: 3
+      content:         
+        - run:
+            caption: "Checking 'admin' privileges for the table 'ubicacions'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--schema organitzacio --table ubicacions --role admin"
+            expected: "dD"       
+       
+        - run:
+            caption: "Checking 'capestudis' privileges for the table 'ubicacions'..."
+            connector: "Postgres"
+            command:  "GetTablePrivileges"      
+            arguments: "--schema organitzacio --table ubicacions --role capestudis"
+            expected: "arwxt" 
