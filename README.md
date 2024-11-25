@@ -1,8 +1,8 @@
 [//]: # (WARNING: DO NOT EDIT README.md file because it's a copy of docs/index.md auto-generated during on build.)
 # Current versions:
-**AutoCheck.Test:** v2.25.0 | **AutoCheck.Docs:** v2.25.0 | **AutoCheck.Core:** v2.25.2 | **AutoCheck.Cli:** v2.5.0 | **AutoCheck.Web:** v1.5.1
+**AutoCheck.Test:** v2.26.0 | **AutoCheck.Docs:** v2.26.0 | **AutoCheck.Core:** v2.26.0 | **AutoCheck.Cli:** v2.6.0 | **AutoCheck.Web:** v1.6.0
 # AutoCheck
-Multipurpose and extensible automated assignment validator, designed for academic purposes only, which has been developed using C# over .NET 6.0.
+Multipurpose and extensible automated assignment validator, designed for academic purposes only, which has been developed using C# over .NET 8.0.
 It has been created in order to automatically check the correctness of a set of students assignments including a score suggestion, but manual supervision is still needed.
 
 Feel free to use, copy, fork or modify this code; but please refer a mention to this project and its author respecting also the licenses of the included third party software.

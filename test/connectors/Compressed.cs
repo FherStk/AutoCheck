@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using OS = AutoCheck.Core.Utils.OS;
 
 namespace AutoCheck.Test.Connectors
@@ -70,13 +71,13 @@ namespace AutoCheck.Test.Connectors
         public void Extract_Local_NoRecursive_DoesNotThrow(string file, string password, string expectedFile, string expectedContent)
         {                        
             var local = new AutoCheck.Core.Connectors.Compressed(GetSampleFile(file));
-            Assert.IsFalse(Directory.Exists(TempScriptFolder));                     
+            Assert.That(!Directory.Exists(TempScriptFolder));                     
             
             Directory.CreateDirectory(TempScriptFolder);            
             local.Extract(TempScriptFolder, password);
 
-            Assert.IsTrue(File.Exists(Path.Combine(TempScriptFolder, expectedFile)));
-            Assert.AreEqual(expectedContent, File.ReadAllText(Path.Combine(TempScriptFolder, expectedFile)));
+            Assert.That(File.Exists(Path.Combine(TempScriptFolder, expectedFile)));
+            ClassicAssert.AreEqual(expectedContent, File.ReadAllText(Path.Combine(TempScriptFolder, expectedFile)));
         } 
 
         [Test]
@@ -84,13 +85,13 @@ namespace AutoCheck.Test.Connectors
         public void Extract_Local_Recursive_DoesNotThrow(string file, int expectedFolders, int expectedFiles)
         {                        
             var local = new AutoCheck.Core.Connectors.Compressed(GetSampleFile(file));         
-            Assert.IsFalse(Directory.Exists(TempScriptFolder));      
+            Assert.That(!Directory.Exists(TempScriptFolder));      
 
             Directory.CreateDirectory(TempScriptFolder);     
             local.Extract(true, TempScriptFolder);
             
-            Assert.AreEqual(expectedFolders, Directory.GetDirectories(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
-            Assert.AreEqual(expectedFiles, Directory.GetFiles(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
+            ClassicAssert.AreEqual(expectedFolders, Directory.GetDirectories(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
+            ClassicAssert.AreEqual(expectedFiles, Directory.GetFiles(TempScriptFolder, "*", SearchOption.AllDirectories).Length);
         } 
     }
 }

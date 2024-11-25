@@ -164,7 +164,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="command">The command to run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) Run(string command, int timeout=0){    
+        public (int? code, string response) Run(string command, int timeout=0){    
             return Run(command, "", timeout);
         }
 
@@ -175,7 +175,7 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="path">The path where the command must run.</param>
         /// <param name="timeout">Timeout in milliseconds, 0 for no timeout.</param>
         /// <returns>The return code and the complete response.</returns>        
-        public (int code, string response) Run(string command, string path, int timeout=0){              
+        public (int? code, string response) Run(string command, string path, int timeout=0){              
             var result = (IsLocal ? RunLocal(command, path, timeout) : RunRemote(command, path, timeout));            
             return (result.exitCode, (string.IsNullOrEmpty(result.stdErr.Trim(Environment.NewLine.ToArray())) ? result.stdOut : result.stdErr));
 
@@ -228,7 +228,7 @@ namespace AutoCheck.Core.Connectors{
             */
         } 
         
-        private (int exitCode, string stdOut, string stdErr) RunRemote(string command, string path, int timeout=0){
+        private (int? exitCode, string stdOut, string stdErr) RunRemote(string command, string path, int timeout=0){
             if(!string.IsNullOrEmpty(path)) throw new NotImplementedException("Sorry");
             
             this.RemoteShell.Connect();
