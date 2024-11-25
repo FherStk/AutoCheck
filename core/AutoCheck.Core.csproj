@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<BuildDocFx>false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
 		<InvariantGlobalization>true</InvariantGlobalization>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
 		<Copyright>Copyright © 2023</Copyright>

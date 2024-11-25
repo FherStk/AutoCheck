@@ -70,7 +70,7 @@ namespace AutoCheck.Test.Connectors
                 Assert.DoesNotThrow(() => conn.DownloadContestSubmissions(contestCode, output));
 
                 Assert.AreEqual(23, Directory.GetDirectories(output).Count());
-                Assert.AreEqual(28, Directory.GetFiles(output, "*.java", SearchOption.AllDirectories).Count());
+                Assert.AreEqual(30, Directory.GetFiles(output, "*.java", SearchOption.AllDirectories).Count());
             }                
         }
     }
