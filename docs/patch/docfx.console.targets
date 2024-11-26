@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>  
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <BuildDocToolPath>$(MSBuildThisFileDirectory)..\tools\docfx.exe</BuildDocToolPath>
     <DocfxConfigFile Condition=" '$(DocfxConfigFile)' == '' ">$(MSBuildProjectDirectory)\..\docs\docfx.json</DocfxConfigFile>
     <PreviewPort Condition=" '$(PreviewPort)' == '' ">8002</PreviewPort>
