@@ -27,6 +27,7 @@ using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -274,19 +275,19 @@ namespace AutoCheck.Test.Connectors
             var conn = LocalConnector;
 
             //Does not exist
-            Assert.IsNull(conn.GetFile(remotePath, remoteFile));
+            ClassicAssert.IsNull(conn.GetFile(remotePath, remoteFile));
             Thread.Sleep(5000);
             Assert.DoesNotThrow(() => conn.DeleteFile(remotePath, remoteFile));
 
             //Creating
             Assert.DoesNotThrow(() => conn.CreateFile(GetSampleFile(localFile), remotePath, remoteFile));
             Thread.Sleep(5000);
-            Assert.IsNotNull(conn.GetFile(remotePath, remoteFile));
+            ClassicAssert.IsNotNull(conn.GetFile(remotePath, remoteFile));
 
             //Destroying
             Assert.DoesNotThrow(() =>conn.DeleteFile(remotePath, remoteFile));
             Thread.Sleep(5000);
-            Assert.IsNull(conn.GetFile(remotePath, remoteFile));      
+            ClassicAssert.IsNull(conn.GetFile(remotePath, remoteFile));      
         }
 
         [Test]
@@ -315,7 +316,7 @@ namespace AutoCheck.Test.Connectors
 
             Assert.DoesNotThrow(() => conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
             Thread.Sleep(5000);
-            Assert.IsNotNull(conn.GetFile(remotePath, remoteAssignedName, false));
+            ClassicAssert.IsNotNull(conn.GetFile(remotePath, remoteAssignedName, false));
         }
 
         [Test]
@@ -338,7 +339,7 @@ namespace AutoCheck.Test.Connectors
 
             Assert.DoesNotThrow(() => conn.CreateFolder(@base, folder));
             Thread.Sleep(5000);
-            Assert.IsNotNull(conn.GetFolder(@base, Path.GetFileName(folder)));
+            ClassicAssert.IsNotNull(conn.GetFolder(@base, Path.GetFileName(folder)));
         }
 
         [Test]
@@ -357,19 +358,19 @@ namespace AutoCheck.Test.Connectors
             var conn = LocalConnector; 
 
             //Does not exist
-            Assert.IsNull(conn.GetFolder(_driveFolder, folder));
+            ClassicAssert.IsNull(conn.GetFolder(_driveFolder, folder));
             Thread.Sleep(5000);
             Assert.DoesNotThrow(() => conn.DeleteFolder(_driveFolder, folder));
 
             //Creating
             Assert.DoesNotThrow(() => conn.CreateFolder(_driveFolder, folder));
             Thread.Sleep(5000);
-            Assert.IsNotNull(conn.GetFolder(_driveFolder, folder));
+            ClassicAssert.IsNotNull(conn.GetFolder(_driveFolder, folder));
 
             //Destroying
             Assert.DoesNotThrow(() => conn.DeleteFolder(_driveFolder, folder));
             Thread.Sleep(5000);
-            Assert.IsNull(conn.GetFolder(_driveFolder, folder));
+            ClassicAssert.IsNull(conn.GetFolder(_driveFolder, folder));
         }
 
         [Test]
@@ -393,8 +394,8 @@ namespace AutoCheck.Test.Connectors
         public void Download_DoesNotThrow(string uri, string file)
         {            
             var filePath = Path.Combine(TempScriptFolder, file)            ;
-            Assert.AreEqual(filePath, LocalConnector.Download(new Uri(uri), TempScriptFolder));
-            Assert.IsTrue(File.Exists(filePath));
+            ClassicAssert.AreEqual(filePath, LocalConnector.Download(new Uri(uri), TempScriptFolder));
+            Assert.That(File.Exists(filePath));
         }
 
         [Test]
@@ -423,10 +424,10 @@ namespace AutoCheck.Test.Connectors
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFilePath = (string.IsNullOrEmpty(remoteFilePath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFilePath));
            
-            Assert.IsFalse(conn.ExistsFolder(remoteFilePath));
+            Assert.That(!conn.ExistsFolder(remoteFilePath));
             Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToRemote(GetSampleFile(localFilePath), "autocheck"), remoteFilePath, remoteFileName));
             Thread.Sleep(5000);
-            Assert.IsTrue(conn.ExistsFile(remoteFilePath, expectedFileName));            
+            Assert.That(conn.ExistsFile(remoteFilePath, expectedFileName));            
         }
 
         [Test]
@@ -455,15 +456,15 @@ namespace AutoCheck.Test.Connectors
             //Note: the source code for local and remote mode are exactly the same, just need to test that the remote file is being downloaded from remote and parsed.
             remoteFolderPath = (string.IsNullOrEmpty(remoteFolderPath) ? remoteBasePath : Path.Combine(remoteBasePath, remoteFolderPath));
 
-            Assert.IsFalse(conn.ExistsFolder(remoteFolderPath));
+            Assert.That(!conn.ExistsFolder(remoteFolderPath));
             Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToRemote(Path.Combine(SamplesScriptFolder, localFolderPath), "autocheck"), remoteFolderPath, remoteFolderName, recursive));
             
             Thread.Sleep(5000);            
-            Assert.IsTrue(conn.ExistsFolder(remoteFolderPath, expectedFolderName));
+            Assert.That(conn.ExistsFolder(remoteFolderPath, expectedFolderName));
 
             remoteFolderPath = Path.Combine(remoteFolderPath, expectedFolderName);            
-            Assert.AreEqual(expectedFolderCount, conn.CountFolders(remoteFolderPath, recursive));
-            Assert.AreEqual(expectedFileCount, conn.CountFiles(remoteFolderPath, recursive));
+            ClassicAssert.AreEqual(expectedFolderCount, conn.CountFolders(remoteFolderPath, recursive));
+            ClassicAssert.AreEqual(expectedFileCount, conn.CountFiles(remoteFolderPath, recursive));
         }
     }
 }

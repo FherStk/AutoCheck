@@ -20,6 +20,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test
 {    
@@ -47,15 +48,15 @@ namespace AutoCheck.Test
             File.Copy(GetSampleFile("plaintext", "lorem1.txt"), dest1);
             File.Copy(GetSampleFile("plaintext", "lorem1.txt"), dest2);
  
-            Assert.IsTrue(File.Exists(dest1));
-            Assert.IsTrue(File.Exists(dest2));
+            Assert.That(File.Exists(dest1));
+            Assert.That(File.Exists(dest2));
 
             //Getting folder and file for the current OS type in order to check the output
             dest1 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest1)), Path.GetFileName(dest1));
             dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok1.yaml")); 
-            Assert.AreEqual("Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder1/sample1.txt using a threshold of 60,00 %:\r\n      Match score with folder2/sample2.txt... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder2/sample2.txt using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.txt... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder1/sample1.txt using a threshold of 60,00 %:\r\n      Match score with folder2/sample2.txt... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_plaintext_ok1 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode:\r\n   Potential copy detected for folder2/sample2.txt using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.txt... 100,00 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -74,15 +75,15 @@ namespace AutoCheck.Test
             File.Copy(GetSampleFile("plaintext", "lorem1.txt"), dest1);
             File.Copy(GetSampleFile("plaintext", "lorem2.txt"), dest2);                             
            
-            Assert.IsTrue(File.Exists(dest1));
-            Assert.IsTrue(File.Exists(dest2));
+            Assert.That(File.Exists(dest1));
+            Assert.That(File.Exists(dest2));
 
             //Getting folder and file for the current OS type in order to check the output
             dest1 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest1)), Path.GetFileName(dest1));
             dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_plaintext_ok2.yaml")); 
-            Assert.AreEqual("Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   No potential copy detected for folder1/sample1.txt using a threshold of 60,00 %:\r\n      Match score with folder2/sample2.txt... 58,30 %\r\n\r\n   No potential copy has been detected.\r\n\r\nRunning script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   No potential copy detected for folder2/sample2.txt using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.txt... 58,30 %\r\n\r\n   No potential copy has been detected.", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   No potential copy detected for folder1/sample1.txt using a threshold of 60,00 %:\r\n      Match score with folder2/sample2.txt... 58,30 %\r\n\r\n   No potential copy has been detected.\r\n\r\nRunning script copy_plaintext_ok2 (v1.0.0.0):\r\n   Starting the copy detector for PLAINTEXT:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   No potential copy detected for folder2/sample2.txt using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.txt... 58,30 %\r\n\r\n   No potential copy has been detected.", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -102,15 +103,15 @@ namespace AutoCheck.Test
             File.Copy(GetSampleFile("sourcecode", "sample1.java"), dest1);
             File.Copy(GetSampleFile("sourcecode", "sample2.java"), dest2);                             
            
-            Assert.IsTrue(File.Exists(dest1));
-            Assert.IsTrue(File.Exists(dest2));
+            Assert.That(File.Exists(dest1));
+            Assert.That(File.Exists(dest2));
 
             //Getting folder and file for the current OS type in order to check the output
             dest1 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest1)), Path.GetFileName(dest1));
             dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_sourcecode_ok1.yaml")); 
-            Assert.AreEqual("Running script copy_sourcecode_ok1 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   Potential copy detected for folder1/sample1.java using a threshold of 60,00 %:\r\n      Match score with folder2/sample1.java... 80,77 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_sourcecode_ok1 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   Potential copy detected for folder2/sample1.java using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.java... 80,77 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script copy_sourcecode_ok1 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   Potential copy detected for folder1/sample1.java using a threshold of 60,00 %:\r\n      Match score with folder2/sample1.java... 80,77 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_sourcecode_ok1 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   Potential copy detected for folder2/sample1.java using a threshold of 60,00 %:\r\n      Match score with folder1/sample1.java... 80,77 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
             Directory.Delete(dest, true);
         }
 
@@ -130,15 +131,15 @@ namespace AutoCheck.Test
             File.Copy(GetSampleFile("sourcecode", "sample1.java"), dest1);
             File.Copy(GetSampleFile("sourcecode", "sample2.java"), dest2);                             
            
-            Assert.IsTrue(File.Exists(dest1));
-            Assert.IsTrue(File.Exists(dest2));
+            Assert.That(File.Exists(dest1));
+            Assert.That(File.Exists(dest2));
 
             //Getting folder and file for the current OS type in order to check the output
             dest1 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest1)), Path.GetFileName(dest1));
             dest2 = Path.Combine(Path.GetFileName(Path.GetDirectoryName(dest2)), Path.GetFileName(dest2));
 
             var s = new AutoCheck.Core.Script(GetSampleFile("copy_sourcecode_ok2.yaml")); 
-            Assert.AreEqual("Running script copy_sourcecode_ok2 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   Potential copy detected for folder1/sample1.java using a threshold of 85,00 %:\r\n      Match score with folder2/sample1.java... 88,46 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_sourcecode_ok2 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   Potential copy detected for folder2/sample1.java using a threshold of 85,00 %:\r\n      Match score with folder1/sample1.java... 88,46 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script copy_sourcecode_ok2 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder1:\r\n   Potential copy detected for folder1/sample1.java using a threshold of 85,00 %:\r\n      Match score with folder2/sample1.java... 88,46 %\r\n\r\n   Script execution aborted due potential copy detection.\r\n\r\nRunning script copy_sourcecode_ok2 (v1.0.0.0):\r\n   Starting the copy detector for SOURCECODE:\r\n      Looking for potential copies within folder1... OK\r\n      Looking for potential copies within folder2... OK\r\n\r\nRunning on batch mode for folder2:\r\n   Potential copy detected for folder2/sample1.java using a threshold of 85,00 %:\r\n      Match score with folder1/sample1.java... 88,46 %\r\n\r\n   Script execution aborted due potential copy detection.", s.Output.ToString());
             Directory.Delete(dest, true);
         }
     }

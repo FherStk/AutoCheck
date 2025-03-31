@@ -21,6 +21,7 @@
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test
 {    
@@ -65,9 +66,9 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_1.yaml"));
-            Assert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
-            Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToText()));
+            ClassicAssert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
+            Assert.That(File.Exists(logFilePath));        
+            Assert.That(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToText()));
         } 
 
         [Test, Category("Output"), Category("Local"), Category("Json")]
@@ -78,9 +79,9 @@ namespace AutoCheck.Test
             if(File.Exists(logFilePath)) File.Delete(logFilePath);
             
             var s = new AutoCheck.Core.Script(GetSampleFile("output_single_2.yaml"));
-            Assert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
-            Assert.IsTrue(File.Exists(logFilePath));        
-            Assert.IsTrue(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToJson()));                
+            ClassicAssert.AreEqual(logFilePath, Core.Utils.PathToCurrentOS(s.LogFiles.FirstOrDefault()));
+            Assert.That(File.Exists(logFilePath));        
+            Assert.That(File.ReadAllText(logFilePath).Equals(s.Output.GetLog().LastOrDefault().ToJson()));                
         }
 
         [Test, Category("Output"), Category("Local"), Category("Text")]
@@ -97,19 +98,19 @@ namespace AutoCheck.Test
 
             if(Directory.Exists(path)){     
                 foreach(var l in logs)
-                    Assert.IsFalse(File.Exists(l));
+                    Assert.That(!File.Exists(l));
             }
             
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_1.yaml"));
             
-            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in logs){
                 var logFile = Core.Utils.PathToCurrentOS(l);
 
-                Assert.IsTrue(File.Exists(logFile));
-                Assert.IsTrue(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
+                Assert.That(File.Exists(logFile));
+                Assert.That(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
         
@@ -123,13 +124,13 @@ namespace AutoCheck.Test
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_2.yaml"));
 
-            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in s.LogFiles){
                 var logFile = Core.Utils.PathToCurrentOS(l);
                 
-                Assert.IsTrue(File.Exists(logFile));
-                Assert.IsTrue(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
+                Assert.That(File.Exists(logFile));
+                Assert.That(File.ReadAllText(logFile).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
 
@@ -147,17 +148,17 @@ namespace AutoCheck.Test
 
             if(Directory.Exists(path)){     
                 foreach(var l in logs)
-                    Assert.IsFalse(File.Exists(Core.Utils.PathToCurrentOS(l)));
+                    Assert.That(!File.Exists(Core.Utils.PathToCurrentOS(l)));
             }
             
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_3.yaml"));
             
-            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in logs){
-                Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToJson()));
+                Assert.That(File.Exists(l));        
+                Assert.That(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToJson()));
             }
         } 
 
@@ -175,17 +176,17 @@ namespace AutoCheck.Test
 
             if(Directory.Exists(path)){     
                 foreach(var l in logs)
-                    Assert.IsFalse(File.Exists(Core.Utils.PathToCurrentOS(l)));
+                    Assert.That(!File.Exists(Core.Utils.PathToCurrentOS(l)));
             }
             
             var i = 0;
             var s = new AutoCheck.Core.Script(GetSampleFile("output_batch_4.yaml"));
             
-            Assert.AreEqual(3, Directory.GetFiles(path).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(path).Length);
 
             foreach(var l in logs){
-                Assert.IsTrue(File.Exists(l));        
-                Assert.IsTrue(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
+                Assert.That(File.Exists(l));        
+                Assert.That(File.ReadAllText(l).Equals(s.Output.GetLog()[i++].ToText()));
             }
         } 
     }

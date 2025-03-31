@@ -19,6 +19,7 @@
 */
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
@@ -64,21 +65,21 @@ namespace AutoCheck.Test
         public void Script_CONNECTOR_IMPLICIT_INVALID_INLINE_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko1.yaml"));
-            Assert.AreEqual("Running script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Shell' that matches with the given set of arguments.", s.Output.ToString());        
+            ClassicAssert.AreEqual("Running script connector_ko1 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Shell' that matches with the given set of arguments.", s.Output.ToString());        
         }
 
         [Test, Category("Connector"), Category("Local")]
         public void Script_CONNECTOR_EXPLICIT_INVALID_INLINE_ARGS()
         {   
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko2.yaml"));
-            Assert.AreEqual("Running script connector_ko2 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Css' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script connector_ko2 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Css' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());
         }
 
         [Test, Category("Connector"), Category("Local")]
         public void Script_CONNECTOR_EXPLICIT_INVALID_TYPED_ARGS()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("connector_ko3.yaml"));
-            Assert.AreEqual("Running script connector_ko3 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Odoo' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());                           
+            ClassicAssert.AreEqual("Running script connector_ko3 (v1.0.0.0):\r\n   Testing connector... ERROR:\n      -Unable to find any constructor for the Connector 'Odoo' that matches with the given set of arguments.\r\n\r\n   Aborting execution!", s.Output.ToString());                           
         }
 
         [Test, Category("Connector"), Category("Local")]

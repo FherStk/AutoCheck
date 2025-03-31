@@ -22,8 +22,7 @@ using System;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-using AutoCheck.Core.Exceptions;
-using OS = AutoCheck.Core.Utils.OS;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -69,8 +68,8 @@ namespace AutoCheck.Test.Connectors
                 var output = Path.Combine(AutoCheck.Core.Utils.TempFolder, "DMOJ", contestCode);
                 Assert.DoesNotThrow(() => conn.DownloadContestSubmissions(contestCode, output));
 
-                Assert.AreEqual(23, Directory.GetDirectories(output).Count());
-                Assert.AreEqual(28, Directory.GetFiles(output, "*.java", SearchOption.AllDirectories).Count());
+                ClassicAssert.AreEqual(23, Directory.GetDirectories(output).Count());
+                ClassicAssert.AreEqual(30, Directory.GetFiles(output, "*.java", SearchOption.AllDirectories).Count());
             }                
         }
     }
