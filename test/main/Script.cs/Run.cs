@@ -19,6 +19,7 @@
 */
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
@@ -46,7 +47,7 @@ namespace AutoCheck.Test
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("run_ok3.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Running script run_ok3 (v1.0.0.1):\r\n   Checking if file exists... OK", log);
+            ClassicAssert.AreEqual("Running script run_ok3 (v1.0.0.1):\r\n   Checking if file exists... OK", log);
         }
 
         [Test, Category("Run"), Category("Local")]
@@ -54,7 +55,7 @@ namespace AutoCheck.Test
         {          
             var s = new AutoCheck.Core.Script(GetSampleFile("run_ok4.yaml"));
             var log = s.Output.ToString();
-            Assert.AreEqual("Running script run_ok4 (v1.0.0.1):\r\n   Checking if file exists... OK\r\n   Counting folders... ERROR:\n      -Expected -> Wanted ERROR!; Found -> 0", log);
+            ClassicAssert.AreEqual("Running script run_ok4 (v1.0.0.1):\r\n   Checking if file exists... OK\r\n   Counting folders... ERROR:\n      -Expected -> Wanted ERROR!; Found -> 0", log);
         }
 
         [Test, Category("Run"), Category("Local")]
@@ -73,7 +74,7 @@ namespace AutoCheck.Test
         public void Script_RUN_EMPTY()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("run_ok6.yaml"));
-            Assert.AreEqual("Running script run_ok6 (v1.0.0.0):", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script run_ok6 (v1.0.0.0):", s.Output.ToString());
         }
 
         [Test, Category("Run"), Category("Local")]

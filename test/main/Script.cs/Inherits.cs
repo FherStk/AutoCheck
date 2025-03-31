@@ -20,6 +20,7 @@
 
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
@@ -40,7 +41,7 @@ namespace AutoCheck.Test
                 var s = new AutoCheck.Core.Script(GetSampleFile("inherits_vars_ok1.yaml"));
             }   
             catch(ResultMismatchException ex){
-                Assert.AreEqual("Expected -> Fer; Found -> New Fer", ex.Message);
+                ClassicAssert.AreEqual("Expected -> Fer; Found -> New Fer", ex.Message);
             }                                       
         }
 
@@ -53,10 +54,10 @@ namespace AutoCheck.Test
             if(!Directory.Exists(dest)) Directory.CreateDirectory(dest);                                 
 
             File.Copy(GetSampleFile("compressed", "nopass.zip"), GetSampleFile(dest, "nopass.zip"));
-            Assert.IsTrue(File.Exists(GetSampleFile(dest, "nopass.zip")));
+            Assert.That(File.Exists(GetSampleFile(dest, "nopass.zip")));
             var s = new AutoCheck.Core.Script(GetSampleFile("inherits_run_ok1.yaml"));            
             
-            Assert.AreEqual($"Running script inherits_run_ok1 (v1.0.0.1):\r\nRunning script inherits_run_ok1 (v1.0.0.1) in single mode for {dest}:", s.Output.ToString());
+            ClassicAssert.AreEqual($"Running script inherits_run_ok1 (v1.0.0.1):\r\nRunning script inherits_run_ok1 (v1.0.0.1) in single mode for {dest}:", s.Output.ToString());
             Directory.Delete(dest, true);
         }
     }

@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test.Checkers
@@ -164,8 +165,8 @@ namespace AutoCheck.Test.Checkers
                 cd.Compare();
 
                 //both sides must be tested
-                Assert.AreEqual(expected, cd.CopyDetected(dest1));
-                Assert.AreEqual(expected, cd.CopyDetected(dest2));
+                ClassicAssert.AreEqual(expected, cd.CopyDetected(dest1));
+                ClassicAssert.AreEqual(expected, cd.CopyDetected(dest2));
             }
         }   
 
@@ -193,11 +194,11 @@ namespace AutoCheck.Test.Checkers
                 cd.Compare();
 
                 var res = cd.GetDetails(dest1); 
-                Assert.AreEqual(dest1, res.Folder);               
-                Assert.AreEqual(dest2, res.matches[0].Folder);
+                ClassicAssert.AreEqual(dest1, res.Folder);               
+                ClassicAssert.AreEqual(dest2, res.matches[0].Folder);
 
-                Assert.AreEqual(Path.GetFileName(file1), res.File);               
-                Assert.AreEqual(Path.GetFileName(file2), res.matches[0].File);
+                ClassicAssert.AreEqual(Path.GetFileName(file1), res.File);               
+                ClassicAssert.AreEqual(Path.GetFileName(file2), res.matches[0].File);
                 
                 return res.matches[0].Match;
             }
