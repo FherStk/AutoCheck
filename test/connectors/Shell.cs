@@ -25,6 +25,7 @@ using System.Collections.Concurrent;
 using NUnit.Framework;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test.Connectors
 {
@@ -303,14 +304,14 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("ls", ExpectedResult = 0)]
         [TestCase("fake", ExpectedResult = 127)]
-        public int RunCommand_Local_DoesNotThrow(string command)
+        public int? RunCommand_Local_DoesNotThrow(string command)
         {
             if(Core.Utils.CurrentOS == OS.WIN) command = string.Format("wsl {0}", command);
             
             //TODO: on windows, test if the  wsl is installed because wsl -e will be used to test linux commands and windows ones in one step if don't, throw an exception
 
             var lres = LocalConnector.Run(command);            
-            Assert.IsNotNull(lres.response);
+            ClassicAssert.IsNotNull(lres.response);
 
             return lres.code;
         }
@@ -318,10 +319,10 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("ls", ExpectedResult = 0)]
         [TestCase("fake", ExpectedResult = 127)]
-        public int RunCommand_Remote_DoesNotThrow(string command)
+        public int? RunCommand_Remote_DoesNotThrow(string command)
         {            
             var lres = RemoteConnector.Run(command);            
-            Assert.IsNotNull(lres.response);
+            ClassicAssert.IsNotNull(lres.response);
             
             return lres.code;
         }
@@ -332,18 +333,18 @@ namespace AutoCheck.Test.Connectors
         {   
             //Checking the local sample file
             sourceFile = GetSampleFile(sourceFile);
-            Assert.IsTrue(File.Exists(sourceFile));
+            Assert.That(File.Exists(sourceFile));
 
             //Preparing remote path and local copy one
             var remoteFile = LocalPathToRemote(sourceFile, "autocheck");
             var destFile = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFile));            
-            Assert.IsFalse(File.Exists(destFile));
+            Assert.That(!File.Exists(destFile));            
 
             //Download
             var downloadedFile = RemoteConnector.DownloadFile(remoteFile, Path.GetDirectoryName(destFile));
-            Assert.IsTrue(File.Exists(downloadedFile));
-            Assert.AreEqual(destFile, downloadedFile);
-            Assert.AreEqual(File.ReadAllText(sourceFile), File.ReadAllText(downloadedFile));
+            Assert.That(File.Exists(downloadedFile));
+            ClassicAssert.AreEqual(destFile, downloadedFile);
+            ClassicAssert.AreEqual(File.ReadAllText(sourceFile), File.ReadAllText(downloadedFile));
         }
 
         [Test]
@@ -351,19 +352,19 @@ namespace AutoCheck.Test.Connectors
         {   
             //Checking the local sample file
             var sourceFolder = SamplesScriptFolder;
-            Assert.IsTrue(Directory.Exists(sourceFolder));
+            Assert.That(Directory.Exists(sourceFolder));
 
             //Preparing remote path and local copy one
             var remoteFolder = LocalPathToRemote(sourceFolder, "autocheck");
             var destFolder = Path.Combine(TempScriptFolder, Path.GetFileName(sourceFolder));            
-            Assert.IsFalse(Directory.Exists(destFolder));
+            Assert.That(!Directory.Exists(destFolder));
 
             //Download
             var downloadedFolder = RemoteConnector.DownloadFolder(remoteFolder, Path.GetDirectoryName(destFolder), true);
-            Assert.IsTrue(Directory.Exists(downloadedFolder));
-            Assert.AreEqual(destFolder, downloadedFolder);
-            Assert.AreEqual(3, Directory.GetDirectories(downloadedFolder, "*", SearchOption.AllDirectories).Length);
-            Assert.AreEqual(3, Directory.GetFiles(downloadedFolder, "*", SearchOption.AllDirectories).Length);
+            Assert.That(Directory.Exists(downloadedFolder));
+            ClassicAssert.AreEqual(destFolder, downloadedFolder);
+            ClassicAssert.AreEqual(3, Directory.GetDirectories(downloadedFolder, "*", SearchOption.AllDirectories).Length);
+            ClassicAssert.AreEqual(3, Directory.GetFiles(downloadedFolder, "*", SearchOption.AllDirectories).Length);
         }        
     }
 }

@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
@@ -136,7 +137,7 @@ namespace AutoCheck.Test.Connectors
         public void Comments()
         {   
             var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile("sample4_comments.xml"));
-            Assert.AreEqual(3, xml.Comments.Length);        
+            ClassicAssert.AreEqual(3, xml.Comments.Length);        
         }       
 
         [Test]

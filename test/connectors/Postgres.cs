@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Concurrent;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test.Connectors
@@ -131,7 +132,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         public void ExistsDataBase_DoesNotThrow_True() 
         {            
-            Assert.IsTrue(Connector.ExistsDataBase());                        
+            Assert.That(Connector.ExistsDataBase());                        
         }  
 
         [Test]
@@ -139,7 +140,7 @@ namespace AutoCheck.Test.Connectors
         public void ExistsDataBase_DoesNotThrow_False(string host, string database, string username, string password) 
         {            
             using(var conn = new AutoCheck.Core.Connectors.Postgres(host, database, username, password))
-                Assert.IsFalse(conn.ExistsDataBase());
+                Assert.That(!conn.ExistsDataBase());
         }     
 
         [Test]
@@ -163,11 +164,11 @@ namespace AutoCheck.Test.Connectors
         public void ExecuteQuery_DoesNotThrow_READ(string query, int rowCount, int columnCount, string schema, string table, string scalarField, string scalarValue)
         {
             var ds = Connector.ExecuteQuery(query);
-            Assert.AreEqual(rowCount, ds.Tables[0].Rows.Count);
-            Assert.AreEqual(columnCount, ds.Tables[0].Columns.Count);
-            Assert.AreEqual(schema, ds.Tables[0].Namespace);
-            Assert.AreEqual(table, ds.Tables[0].TableName);
-            Assert.AreEqual(scalarValue, ds.Tables[0].Rows[0][scalarField]);                
+            ClassicAssert.AreEqual(rowCount, ds.Tables[0].Rows.Count);
+            ClassicAssert.AreEqual(columnCount, ds.Tables[0].Columns.Count);
+            ClassicAssert.AreEqual(schema, ds.Tables[0].Namespace);
+            ClassicAssert.AreEqual(table, ds.Tables[0].TableName);
+            ClassicAssert.AreEqual(scalarValue, ds.Tables[0].Rows[0][scalarField]);                
         } 
 
         [Test]        
@@ -259,7 +260,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("createuser_user2")]
         public void CreateUser_Throws_QueryInvalidException(string user){  
             //Create
-            Assert.IsFalse(Connector.ExistsUser(user)); 
+            Assert.That(!Connector.ExistsUser(user)); 
             Assert.DoesNotThrow(() =>Connector.CreateUser(user));
 
             //Create an existing one
@@ -270,16 +271,16 @@ namespace AutoCheck.Test.Connectors
         [TestCase("createuser_user3", null)]
         [TestCase("createuser_user4", "PASS")]
         public void CreateUser_DoesNotThrow(string user, string password){
-            Assert.IsFalse(Connector.ExistsUser(user)); 
+            Assert.That(!Connector.ExistsUser(user)); 
             Assert.DoesNotThrow(() =>Connector.CreateUser(user, password));            
-            Assert.IsTrue(Connector.ExistsUser(user)); 
+            Assert.That(Connector.ExistsUser(user)); 
         }
 
         [Test]
         [TestCase("existuser_user1", "existuser_user1", ExpectedResult=true)]
         [TestCase("existuser_user2", "existuser_user0", ExpectedResult=false)]
         public bool ExistsUser_DoesNotThrow(string user, string find){
-            Assert.IsFalse(Connector.ExistsUser(user));
+            Assert.That(!Connector.ExistsUser(user));
             Assert.DoesNotThrow(() =>Connector.CreateUser(user));            
             return Connector.ExistsUser(find);
         }
@@ -287,17 +288,17 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("dropuser_user1")]
         public void DropUser_DoesNotThrow_Exists(string user){
-            Assert.IsFalse(Connector.ExistsUser(user));
+            Assert.That(!Connector.ExistsUser(user));
             Assert.DoesNotThrow(() =>Connector.CreateUser(user));   
-            Assert.IsTrue(Connector.ExistsUser(user));
+            Assert.That(Connector.ExistsUser(user));
             Assert.DoesNotThrow(() => Connector.DropUser(user));                   
-            Assert.IsFalse(Connector.ExistsUser(user));
+            Assert.That(!Connector.ExistsUser(user));
         }
 
         [Test]        
         [TestCase("dropuser_user2")]
         public void DropUser_Throws_QueryInvalidException(string user){
-            Assert.IsFalse(Connector.ExistsUser(user));
+            Assert.That(!Connector.ExistsUser(user));
             Assert.Throws<QueryInvalidException>(() =>Connector.DropUser(user)); 
         }
         
@@ -305,7 +306,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("existrole_role1", "existrole_role1", ExpectedResult=true)]
         [TestCase("existrole_role2", "existrole_role0", ExpectedResult=false)]
         public bool ExistsRole_DoesNotThrow(string role, string find){
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
             Assert.DoesNotThrow(() =>Connector.CreateRole(role));            
             return Connector.ExistsRole(find);
         }
@@ -323,15 +324,15 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("createrole_role1")]
         public void CreateNonExistingRole_DoesNotThrow(string role){    
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
             Assert.DoesNotThrow(() =>Connector.CreateRole(role));
-            Assert.IsTrue(Connector.ExistsRole(role));
+            Assert.That(Connector.ExistsRole(role));
         }
 
         [Test]
         [TestCase("createrole_role2")]
         public void CreateExistingRole_DoesNotThrow(string role){    
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
             Assert.DoesNotThrow(() =>Connector.CreateRole(role));
             Assert.Throws<QueryInvalidException>(() =>Connector.CreateRole(role));    
         }
@@ -339,17 +340,17 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("droprole_role1")]
         public void DropExistingRole_DoesNotThrow(string role){    
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
             Assert.DoesNotThrow(() =>Connector.CreateRole(role));
-            Assert.IsTrue(Connector.ExistsRole(role));
+            Assert.That(Connector.ExistsRole(role));
             Assert.DoesNotThrow(() => Connector.DropRole(role));
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
         }
 
         [Test]
         [TestCase("droprole_role2")]
         public void DropNonExistingRole_DoesNotThrow(string role){    
-            Assert.IsFalse(Connector.ExistsRole(role));
+            Assert.That(!Connector.ExistsRole(role));
             Assert.Throws<QueryInvalidException>(() => Connector.DropRole(role));
         }
 
@@ -396,9 +397,9 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase(_SCHEMA, "programmers", " SELECT employees.id_employee AS id,\n    employees.id_boss,\n    employees.name,\n    employees.surnames,\n    employees.email,\n    employees.phone\n   FROM test.employees\n  WHERE ((employees.id_work)::text = 'IT_PROG'::text);")]
+        [TestCase(_SCHEMA, "programmers", " SELECT id_employee AS id,\n    id_boss,\n    name,\n    surnames,\n    email,\n    phone\n   FROM test.employees\n  WHERE ((id_work)::text = 'IT_PROG'::text);")]
         public void GetViewDefinition_DowsNotThrow_Overloads(string schema, string table, string definition){  
-            Assert.AreEqual(definition, Connector.GetViewDefinition(schema, table));     
+            ClassicAssert.AreEqual(definition, Connector.GetViewDefinition(schema, table));     
         }
 
         [Test]
@@ -430,8 +431,8 @@ namespace AutoCheck.Test.Connectors
         public void  GetForeignKeys_DowsNotThrow_Overloads(string schema, string table, string field, string value){  
             var foreign = Connector.GetForeignKeys(schema, table);
 
-            Assert.AreEqual(1, foreign.Tables[0].Rows.Count);
-            Assert.AreEqual(value, foreign.Tables[0].Rows[0][field]);
+            ClassicAssert.AreEqual(1, foreign.Tables[0].Rows.Count);
+            ClassicAssert.AreEqual(value, foreign.Tables[0].Rows[0][field]);
         }
          
         [Test]
@@ -449,14 +450,14 @@ namespace AutoCheck.Test.Connectors
             //Adding data
             Assert.DoesNotThrow(() => Connector.CreateUser(user));
             Assert.DoesNotThrow(() => Connector.CreateRole(role));
-            Assert.AreEqual(roles+1, Connector.CountRoles());
-            Assert.AreEqual(users+1, Connector.CountUsers());
+            ClassicAssert.AreEqual(roles+1, Connector.CountRoles());
+            ClassicAssert.AreEqual(users+1, Connector.CountUsers());
 
             //Removing data
             Assert.DoesNotThrow(() => Connector.DropUser(user));
             Assert.DoesNotThrow(() => Connector.DropRole(role));
-            Assert.AreEqual(roles, Connector.CountRoles());
-            Assert.AreEqual(users, Connector.CountUsers());
+            ClassicAssert.AreEqual(roles, Connector.CountRoles());
+            ClassicAssert.AreEqual(users, Connector.CountUsers());
         } 
     }
 }

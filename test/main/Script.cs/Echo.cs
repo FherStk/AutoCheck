@@ -19,6 +19,7 @@
 */
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test
 {    
@@ -32,14 +33,14 @@ namespace AutoCheck.Test
         public void Script_ECHO_RUN()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("echo_ok1.yaml"));
-            Assert.AreEqual("Running script echo_ok1 (v1.0.0.0):\r\n   ECHO", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script echo_ok1 (v1.0.0.0):\r\n   ECHO", s.Output.ToString());
         }
 
         [Test, Category("Echo"), Category("Local")]
         public void Script_ECHO_CONTENT()
         {  
             var s = new AutoCheck.Core.Script(GetSampleFile("echo_ok2.yaml"));
-            Assert.AreEqual("Running script echo_ok2 (v1.0.0.0):\r\n   ECHO 1\r\n   Question 1 [1 point]:\r\n      ECHO 2\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
+            ClassicAssert.AreEqual("Running script echo_ok2 (v1.0.0.0):\r\n   ECHO 1\r\n   Question 1 [1 point]:\r\n      ECHO 2\r\n\r\n   TOTAL SCORE: 10 / 10", s.Output.ToString());
         }
     }
 }
