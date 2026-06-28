@@ -54,14 +54,15 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("asix1p4curs22")]
         public void DownloadContestSubmissions_DoesNotThrow(string contestCode)
-        {      
+        {
+            // Isolated path to avoid race condition with Real_Dmoj tests that download to the same contest folder
+            var output = Path.Combine(AutoCheck.Core.Utils.TempFolder, "DMOJ", TestContext.CurrentContext.Test.ID);
             using(var conn = new AutoCheck.Core.Connectors.Dmoj("dmoj.elpuig.xeill.net")){
-                var output = Path.Combine(AutoCheck.Core.Utils.TempFolder, "DMOJ", contestCode);
                 Assert.DoesNotThrow(() => conn.DownloadContestSubmissions(contestCode, output));
 
                 ClassicAssert.AreEqual(23, Directory.GetDirectories(output).Count());
                 ClassicAssert.AreEqual(30, Directory.GetFiles(output, "*.java", SearchOption.AllDirectories).Count());
-            }                
+            }
         }
     }
 }
