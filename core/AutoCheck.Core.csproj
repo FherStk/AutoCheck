@@ -21,11 +21,7 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="Npgsql" Version="10.0.3" />
 		<PackageReference Include="SharpZipLib" Version="1.4.2" />
-		<PackageReference Include="docfx.console" Version="2.59.4">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-		<PackageReference Include="SSH.NET" Version="2025.1.0" />
+<PackageReference Include="SSH.NET" Version="2025.1.0" />
 		<PackageReference Include="Google.Apis.Drive.v3" Version="1.74.0.4135" />
 		<PackageReference Include="Google.Apis.Storage.v1" Version="1.74.0.4161" />
 		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.11" />
@@ -71,11 +67,9 @@
 		<WriteLinesToFile File="..\README.md" Lines="@(FileContents)" Overwrite="true" />
 	</Target>
 
-	<Target Name="BuildDocumentation" BeforeTargets="DocGenerateMetadata">
-		<Message Importance="High" Text="Generating README.md for GitHub..." />
+	<Target Name="BuildDocumentation" AfterTargets="GitHubReadme" Condition="'$(BuildDocFx)' == 'true'">
 		<Message Importance="High" Text="Generating documentation..." />
-		<CallTarget Targets="GitHubReadme" />
-		<Copy SourceFiles="..\docs\patch\docfx.console.targets" DestinationFiles="$(PkgDocfx_console)\build\docfx.console.targets" />
+		<Exec IgnoreExitCode="True" Command="dotnet docfx &quot;$(MSBuildProjectDirectory)/../docs/docfx.json&quot;" />
 	</Target>
 
 	<Target Name="ObliterateAfterClean" AfterTargets="Clean">

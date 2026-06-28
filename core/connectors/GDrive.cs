@@ -732,40 +732,50 @@ namespace AutoCheck.Core.Connectors{
         /// <param name="secretFilePath">Path to the client secret json file from Google Developers console.</param>
         /// <returns>DriveService used to make requests against the Drive API</returns>
         /// <remarks>Credits to Linda Lawton: https://www.daimto.com/download-files-from-google-drive-with-c/</remarks>
+        private static readonly object _authLock = new object();
+        private static readonly Dictionary<string, UserCredential> _credentialCache = new Dictionary<string, UserCredential>();
+
         private static DriveService AuthenticateOauth(string accountFilePath, string secretFilePath)
         {
-            try
-            {                                        
-                UserCredential credential;
-                string userName = File.ReadAllText(accountFilePath).Trim();                
-                string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-                
-                // These are the scopes of permissions you need. It is best to request only what you need and not all of them
-                string[] scopes = new string[] { 
-                    DriveService.Scope.Drive
-                };
-                
-                // Requesting Authentication or loading previously stored authentication for userName
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.FromFile(secretFilePath).Secrets,
-                    scopes,
-                    userName,
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)
-                ).Result;
+            var cacheKey = $"{accountFilePath}|{secretFilePath}";
 
-                // Create Drive API service.
-                return new DriveService(new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = "Autocheck's GDrive Connector"
-                });
-            }
-            catch (Exception ex)
+            UserCredential credential;
+            lock (_authLock)
             {
-                throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
+                if (!_credentialCache.TryGetValue(cacheKey, out credential))
+                {
+                    try
+                    {
+                        string userName = File.ReadAllText(accountFilePath).Trim();
+                        string credPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.UserProfile);
+                        credPath = Path.Combine(credPath, ".credentials/", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+
+                        string[] scopes = new string[] {
+                            DriveService.Scope.Drive
+                        };
+
+                        credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                            GoogleClientSecrets.FromFile(secretFilePath).Secrets,
+                            scopes,
+                            userName,
+                            CancellationToken.None,
+                            new FileDataStore(credPath, true)
+                        ).Result;
+
+                        _credentialCache[cacheKey] = credential;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ConnectionInvalidException("Unable to stablish a connection to Google Drive's API using OAuth 2", ex);
+                    }
+                }
             }
+
+            return new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "Autocheck's GDrive Connector"
+            });
         }     
 
         private Google.Apis.Drive.v3.Data.File GetFileFromID(string fileID, string requestFields = null){
