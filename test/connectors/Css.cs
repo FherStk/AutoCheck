@@ -20,7 +20,9 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
@@ -115,11 +117,109 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
         [TestCase("correct.html", "correct.css", "text-shadow", "none", ExpectedResult = false)]
         public bool PropertyApplied_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
-        {            
+        {
             using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", htmlFile)))
             using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(cssFile)))
             {
-                return css.PropertyApplied(html.HtmlDoc, property, value);                
+                return css.PropertyApplied(html.HtmlDoc, property, value);
+            }
+        }
+
+        [Test]
+        public void PropertyExists_Array_DoesNotThrow()
+        {
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyExists(new[] { "color", "font-size", "float" });
+                ClassicAssert.AreEqual(2, count);
+                ClassicAssert.Contains("color", exists);
+                ClassicAssert.Contains("font-size", exists);
+            }
+        }
+
+        [Test]
+        public void PropertyExists_Array_NoneFound_DoesNotThrow()
+        {
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyExists(new[] { "float", "text-align" });
+                ClassicAssert.AreEqual(0, count);
+                ClassicAssert.AreEqual(0, exists.Length);
+            }
+        }
+
+        [Test]
+        public void PropertyExists_Dictionary_DoesNotThrow()
+        {
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyExists(new Dictionary<string, string> { {"color", ""}, {"line-height", "1"}, {"float", ""} });
+                ClassicAssert.AreEqual(2, count);
+                ClassicAssert.Contains("color", exists);
+                ClassicAssert.Contains("line-height", exists);
+            }
+        }
+
+        [Test]
+        public void PropertyApplied_HtmlDoc_Array_DoesNotThrow()
+        {
+            using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyApplied(html.HtmlDoc, new[] { "color", "font-size", "float" });
+                ClassicAssert.AreEqual(2, count);
+                ClassicAssert.Contains("color", exists);
+                ClassicAssert.Contains("font-size", exists);
+            }
+        }
+
+        [Test]
+        public void PropertyApplied_HtmlDoc_Dictionary_DoesNotThrow()
+        {
+            using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyApplied(html.HtmlDoc, new Dictionary<string, string> { {"color", ""}, {"line-height", "1"}, {"float", ""} });
+                ClassicAssert.AreEqual(2, count);
+                ClassicAssert.Contains("color", exists);
+                ClassicAssert.Contains("line-height", exists);
+            }
+        }
+
+        [Test]
+        [TestCase("correct.html", "correct.css", "color", null, ExpectedResult = true)]
+        [TestCase("correct.html", "correct.css", "float", null, ExpectedResult = false)]
+        public bool PropertyApplied_HtmlConn_DoesNotThrow(string htmlFile, string cssFile, string property, string value)
+        {
+            using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", htmlFile)))
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile(cssFile)))
+            {
+                return css.PropertyApplied(html, property, value);
+            }
+        }
+
+        [Test]
+        public void PropertyApplied_HtmlConn_Array_DoesNotThrow()
+        {
+            using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyApplied(html, new[] { "color", "font-size", "float" });
+                ClassicAssert.AreEqual(2, count);
+                ClassicAssert.Contains("color", exists);
+                ClassicAssert.Contains("font-size", exists);
+            }
+        }
+
+        [Test]
+        public void PropertyApplied_HtmlConn_Dictionary_DoesNotThrow()
+        {
+            using(var html = new AutoCheck.Core.Connectors.Html(GetSampleFile("html", "correct.html")))
+            using(var css = new AutoCheck.Core.Connectors.Css(GetSampleFile("correct.css")))
+            {
+                var (count, exists) = css.PropertyApplied(html, new Dictionary<string, string> { {"color", ""}, {"float", ""} });
+                ClassicAssert.AreEqual(1, count);
+                ClassicAssert.Contains("color", exists);
             }
         }
     }

@@ -259,7 +259,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase(20, ExpectedResult=2)]
-        public int GetProductTemplateData_DoesNotThrow_ProductName(int productID)
+        public int GetProductTemplateData_DoesNotThrow_ProductID(int productID)
         {                    
             return Connector.GetProductTemplateData(productID).Rows.Count;
         }
@@ -326,7 +326,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00001", ExpectedResult=3)]
         [TestCase("PO00006", ExpectedResult=4)]
         [TestCase("PO00999", ExpectedResult=0)]
-        public int GetPurchaseData_DoesNotThrow_PurchaseID(string purchaseCode)
+        public int GetPurchaseData_DoesNotThrow_PurchaseCode(string purchaseCode)
         {                    
             return Connector.GetPurchaseData(purchaseCode).Rows.Count;
         }
@@ -415,7 +415,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("PO00008", ExpectedResult=1)]
         [TestCase("PO00009", ExpectedResult=0)]
-        public int GetInvoiceData_DoesNotThrow_InvoiceID(string orderCode)
+        public int GetInvoiceData_DoesNotThrow_OrderCode(string orderCode)
         {                    
             return Connector.GetInvoiceData(orderCode).Rows.Count;
         } 
@@ -482,7 +482,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Main/0001", ExpectedResult=1)]
         [TestCase("Main/0002", ExpectedResult=2)]
         [TestCase("Main/0999", ExpectedResult=0)]
-        public int GetPosSaleData_DoesNotThrow_PosSaleID(string posSaleCode)
+        public int GetPosSaleData_DoesNotThrow_PosSaleCode(string posSaleCode)
         {                    
             return Connector.GetPosSaleData(posSaleCode).Rows.Count;
         }

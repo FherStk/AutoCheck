@@ -69,28 +69,18 @@ namespace AutoCheck.Test.Connectors
         }
 
         protected override void CleanUp(){
-            using(var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, _ADMIN, _ADMIN, _ADMIN)){ //default BBDD postgres can be used to user management
-                foreach(string user in new string[]{
-                        "createuser_user1", 
-                        "createuser_user2", 
-                        "createuser_user3", 
-                        "createuser_user4", 
-                        "existuser_user1", 
-                        "existuser_user2",
-                        "dropuser_user1",
-                        "dropuser_user2",
-                        "existrole_role1",
-                        "existrole_role2",
-                        "createrole_role1",
-                        "createrole_role2",
-                        "droprole_role1",
-                        "droprole_role2",
-                        "permissionmanagement_role1",
-                        "permissionmanagement_user1"
-                    }){
-                    try{ conn.ExecuteNonQuery(string.Format("REASSIGN OWNED BY {0} TO postgres", user)); } catch{}
-                    try{ conn.ExecuteNonQuery(string.Format("DROP OWNED BY {0}", user)); } catch{}
-                    try{ conn.ExecuteNonQuery(string.Format("DROP USER {0}", user)); } catch{}
+            using(var conn = new AutoCheck.Core.Connectors.Postgres(_HOST, _ADMIN, _ADMIN, _ADMIN)){
+                // Query test-created roles dynamically by prefix convention instead of maintaining a hardcoded list.
+                // Any new test that creates users/roles following the "<testmethod>_<name>" pattern is covered automatically.
+                var prefixes = new[] { "createuser_", "existuser_", "dropuser_", "existrole_", "createrole_", "droprole_", "permissionmanagement_" };
+                var where = string.Join(" OR ", System.Array.ConvertAll(prefixes, p => $"rolname LIKE '{p}%'"));
+                var result = conn.ExecuteQuery($"SELECT rolname FROM pg_roles WHERE {where}");
+
+                foreach(System.Data.DataRow row in result.Tables[0].Rows){
+                    var user = row["rolname"].ToString();
+                    try{ conn.ExecuteNonQuery($"REASSIGN OWNED BY {user} TO postgres"); } catch{}
+                    try{ conn.ExecuteNonQuery($"DROP OWNED BY {user}"); } catch{}
+                    try{ conn.ExecuteNonQuery($"DROP USER {user}"); } catch{}
                 }
             }
 
