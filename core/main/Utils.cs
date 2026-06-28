@@ -25,6 +25,7 @@ using System.Linq;
 using System.Reflection;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace AutoCheck.Core{    
     public static class Utils{  
@@ -103,7 +104,9 @@ namespace AutoCheck.Core{
         /// <value></value>
         public static OS CurrentOS {
             get {
-                return (OS)Enum.Parse(typeof(OS), ToolBox.Platform.OS.GetCurrent(), true);               
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return OS.WIN;
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) return OS.MAC;
+                return OS.GNU;
             }
         }
 #endregion

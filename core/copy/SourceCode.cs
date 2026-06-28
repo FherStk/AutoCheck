@@ -88,14 +88,9 @@ namespace AutoCheck.Core.CopyDetectors{
             
             try{
                 //Setting up execution
-                
-                var filter = String.Empty;
-                var names = Files.DistinctBy(x => x.FileName);
-                if(names.Count() == 1) filter = $"-p {names.FirstOrDefault().FileName}";
-                
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
                 var report = Path.Combine(output, "report");
-                var result = shell.Run($"java -jar jplag-4.2.0-jar-with-dependencies.jar {filter} -n -1 -t {Sensibility} -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
+                var result = shell.Run($"java -jar jplag-6.3.0-jar-with-dependencies.jar -n -1 -t {Sensibility} -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates JSON files with the output data)
                 var folders = new Dictionary<string, int>();
@@ -109,8 +104,8 @@ namespace AutoCheck.Core.CopyDetectors{
                 var accum = new List<double>();
                 Matches = new float[Files.Count(), Files.Count()];
 
-                //JPlag v4 generates a ZIP file with the results
-                using(Compressed conn = new Compressed($"{report}.zip"))
+                //JPlag v6 generates a .jplag file (zip internally) with the results
+                using(Compressed conn = new Compressed($"{report}.jplag"))
                     conn.Extract(output);
                 
                 foreach(var jsonPath in Directory.GetFiles(output, "*.json")){
@@ -118,10 +113,11 @@ namespace AutoCheck.Core.CopyDetectors{
                     if(jsonName == "overview.json") continue;
 
                     var json = JObject.Parse(System.IO.File.ReadAllText(jsonPath));
-                    try{                        
-                        var left = folders[json["id1"].ToString()];
-                        var right = folders[json["id2"].ToString()];
-                        var match = (float)json["similarity"];
+                    try{
+                        var left = folders[json["firstSubmissionId"].ToString()];
+                        var right = folders[json["secondSubmissionId"].ToString()];
+                        var similarities = (Newtonsoft.Json.Linq.JObject)json["similarities"];
+                        var match = (float)similarities.Properties().First().Value;
 
                         accum.Add(match);
                         Matches[left, right] = match;

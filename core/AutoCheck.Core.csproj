@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<BuildDocFx>false</BuildDocFx> <!-- Set this value to 'true' in order to build the documentation. -->
 		<InvariantGlobalization>true</InvariantGlobalization>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Core</Product>
 		<Copyright>Copyright © 2025</Copyright>
@@ -14,32 +14,25 @@
 		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<NoWarn>$(NoWarn);MSB3253</NoWarn>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<PackageReference Include="dein.ToolBox" Version="1.11.0" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.12.0" />
-		<PackageReference Include="ExCSS" Version="4.3.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Npgsql" Version="9.0.3" />
-		<PackageReference Include="System.Text.Json" Version="8.0.5" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+		<PackageReference Include="ExCSS" Version="4.3.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="Npgsql" Version="10.0.3" />
 		<PackageReference Include="SharpZipLib" Version="1.4.2" />
 		<PackageReference Include="docfx.console" Version="2.59.4">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
-		<PackageReference Include="SSH.NET" Version="2024.2.0" />
-		<PackageReference Include="Google.Apis.Drive.v3" Version="1.69.0.3703" />
-		<PackageReference Include="Google.Apis.Storage.v1" Version="1.69.0.3723" />
-		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.0" />
+		<PackageReference Include="SSH.NET" Version="2025.1.0" />
+		<PackageReference Include="Google.Apis.Drive.v3" Version="1.74.0.4135" />
+		<PackageReference Include="Google.Apis.Storage.v1" Version="1.74.0.4161" />
+		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.11" />
 		<PackageReference Include="XPath2" Version="1.1.5" />
-		<PackageReference Include="YamlDotNet" Version="16.3.0" />
+		<PackageReference Include="YamlDotNet" Version="18.1.0" />
 		<PackageReference Include="NCalc2" Version="2.1.0" />
-		<PackageReference Include="SharpCompress" Version="0.39.0" />
+		<PackageReference Include="SharpCompress" Version="0.49.1" />
 		<PackageReference Include="MathNet.Numerics" Version="5.0.0" />
 	</ItemGroup>
 
@@ -92,7 +85,6 @@
 	</Target>
 
 	<Target Name="ObliterateAfterClean" AfterTargets="Build">
-		<RemoveDir Directories="bin\Debug\net6.0\temp" />
 		<Delete Files="..\versions.tmp" />
-	</Target>	
+	</Target>
 </Project>

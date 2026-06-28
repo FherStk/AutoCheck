@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Docs</Product>
     <Copyright>Copyright © 2025</Copyright>
