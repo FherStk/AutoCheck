@@ -90,7 +90,7 @@ namespace AutoCheck.Core.CopyDetectors{
                 //Setting up execution
                 var lang = Path.GetExtension(FilePattern).TrimStart('.');
                 var report = Path.Combine(output, "report");
-                var result = shell.Run($"java -jar jplag-6.3.0-jar-with-dependencies.jar -n -1 -t {Sensibility} -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
+                var result = shell.Run($"java -jar jplag-6.3.0-jar-with-dependencies.jar -M RUN -n -1 -t {Sensibility} -r \"{report}\" -l {lang} \"{path}\"", Utils.UtilsFolder);                
                 
                 //Parsing result (JPlag creates JSON files with the output data)
                 var folders = new Dictionary<string, int>();
