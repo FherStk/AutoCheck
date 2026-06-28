@@ -108,10 +108,8 @@ namespace AutoCheck.Core.CopyDetectors{
                 using(Compressed conn = new Compressed($"{report}.jplag"))
                     conn.Extract(output);
                 
-                foreach(var jsonPath in Directory.GetFiles(output, "*.json")){
-                    var jsonName = Path.GetFileName(jsonPath);
-                    if(jsonName == "overview.json") continue;
-
+                var comparisonsDir = Path.Combine(output, "comparisons");
+                foreach(var jsonPath in Directory.GetFiles(comparisonsDir, "*.json")){
                     var json = JObject.Parse(System.IO.File.ReadAllText(jsonPath));
                     try{
                         var left = folders[json["firstSubmissionId"].ToString()];
