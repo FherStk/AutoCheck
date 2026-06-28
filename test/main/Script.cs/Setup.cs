@@ -24,7 +24,7 @@ using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test
 {    
-    [Parallelizable(ParallelScope.All)]    
+    [Parallelizable(ParallelScope.Self)]
     public class Setup : Test
     {
         public Setup(): base("script"){
