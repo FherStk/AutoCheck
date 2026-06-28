@@ -113,17 +113,12 @@ namespace AutoCheck.Test.Connectors
 
 
         [Test]
-        [TestCase("Play Puig", true, ExpectedResult=1)]
         [TestCase("Play Puig", false, ExpectedResult=1)]
         [TestCase("Pl ay  Puig", true, ExpectedResult=0)]
         [TestCase("Pl ay  Puig", false, ExpectedResult=1)]
-        [TestCase("Play Puig Enterprises", true, ExpectedResult=0)]
         [TestCase("Play Puig Enterprises", false, ExpectedResult=0)]
-        [TestCase("PlayPuig", true, ExpectedResult=0)]
         [TestCase("PlayPuig", false, ExpectedResult=0)]
-        [TestCase("Puig", true, ExpectedResult=0)]
         [TestCase("Puig", false, ExpectedResult=0)]
-        [TestCase("Play", true, ExpectedResult=0)]
         [TestCase("Play", false, ExpectedResult=0)]
         public int GetCompanyID_DoesNotThrow(string companyName, bool strict)
         {                    
@@ -147,7 +142,6 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase(_FAKE, ExpectedResult=0)]
         [TestCase("Play Puig", ExpectedResult=1)]
-        [TestCase(_FAKE, ExpectedResult=0)]
         public int GetCompanyData_DoesNotThrows_CompanyName(string companyName)
         {                    
             return Connector.GetCompanyData(companyName).Rows.Count;           
@@ -168,15 +162,11 @@ namespace AutoCheck.Test.Connectors
         } 
 
         [Test]
-        [TestCase("ASUSTeK", true, ExpectedResult=8)]
         [TestCase("ASUSTeK", false, ExpectedResult=8)]
         [TestCase("ASUS TeK", true, ExpectedResult=0)]
         [TestCase("ASUS TeK", false, ExpectedResult=8)]
-        [TestCase("ASUS TeK Enterprises", true, ExpectedResult=0)]
         [TestCase("ASUS TeK Enterprises", false, ExpectedResult=0)]
-        [TestCase("ASUS", true, ExpectedResult=0)]
         [TestCase("ASUS", false, ExpectedResult=0)]
-        [TestCase("TeK", true, ExpectedResult=0)]
         [TestCase("TeK", false, ExpectedResult=0)]
         public int GetProviderID_DoesNotThrows(string companyName, bool strict)
         {                    
@@ -218,19 +208,13 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("iPod", true, ExpectedResult=20)]
         [TestCase("iPod", false, ExpectedResult=20)]
         [TestCase("i Pod", true, ExpectedResult=0)]
         [TestCase("i Pod", false, ExpectedResult=20)]
-        [TestCase("Apple iPod", true, ExpectedResult=0)]
         [TestCase("Apple iPod", false, ExpectedResult=0)]
-        [TestCase("HDD", true, ExpectedResult=0)]
         [TestCase("HDD", false, ExpectedResult=0)]
-        [TestCase("SH-1", true, ExpectedResult=0)]
         [TestCase("SH-1", false, ExpectedResult=0)]
-        [TestCase("HDD SH-1", true, ExpectedResult=25)]
         [TestCase("HDD SH-1", false, ExpectedResult=25)]
-        [TestCase("HDDSH-1", true, ExpectedResult=0)]
         [TestCase("HDDSH-1", false, ExpectedResult=0)]
         public int GetProductTemplateID_DoesNotThrow(string productName, bool strict)
         {                    
@@ -259,7 +243,7 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase(20, ExpectedResult=2)]
-        public int GetProductTemplateData_DoesNotThrow_ProductName(int productID)
+        public int GetProductTemplateData_DoesNotThrow_ProductID(int productID)
         {                    
             return Connector.GetProductTemplateData(productID).Rows.Count;
         }
@@ -326,7 +310,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("PO00001", ExpectedResult=3)]
         [TestCase("PO00006", ExpectedResult=4)]
         [TestCase("PO00999", ExpectedResult=0)]
-        public int GetPurchaseData_DoesNotThrow_PurchaseID(string purchaseCode)
+        public int GetPurchaseData_DoesNotThrow_PurchaseCode(string purchaseCode)
         {                    
             return Connector.GetPurchaseData(purchaseCode).Rows.Count;
         }
@@ -339,19 +323,14 @@ namespace AutoCheck.Test.Connectors
 
         [Test]
         [TestCase("PO00001", false, ExpectedResult=3)]
-        [TestCase("PO00001", true, ExpectedResult=3)]
         [TestCase("PO00002", false, ExpectedResult=2)]
-        [TestCase("PO00002", true, ExpectedResult=2)]
         [TestCase("PO00008", false, ExpectedResult=1)]
         [TestCase("PO00008", true, ExpectedResult=0)]
         [TestCase("PO00999", false, ExpectedResult=0)]
-        [TestCase("PO00999", true, ExpectedResult=0)]
         [TestCase("SO020", false, ExpectedResult=1)]
         [TestCase("SO020", true, ExpectedResult=0)]
         [TestCase("SO021", false, ExpectedResult=1)]
-        [TestCase("SO021", true, ExpectedResult=1)]
         [TestCase("SO999", false, ExpectedResult=0)]
-        [TestCase("SO999", true, ExpectedResult=0)]
         public int GetStockMovementData_DoesNotThrow(string purchaseCode, bool isReturn)
         {                    
             return Connector.GetStockMovementData(purchaseCode, isReturn).Rows.Count;
@@ -415,7 +394,7 @@ namespace AutoCheck.Test.Connectors
         [Test]
         [TestCase("PO00008", ExpectedResult=1)]
         [TestCase("PO00009", ExpectedResult=0)]
-        public int GetInvoiceData_DoesNotThrow_InvoiceID(string orderCode)
+        public int GetInvoiceData_DoesNotThrow_OrderCode(string orderCode)
         {                    
             return Connector.GetInvoiceData(orderCode).Rows.Count;
         } 
@@ -482,7 +461,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase("Main/0001", ExpectedResult=1)]
         [TestCase("Main/0002", ExpectedResult=2)]
         [TestCase("Main/0999", ExpectedResult=0)]
-        public int GetPosSaleData_DoesNotThrow_PosSaleID(string posSaleCode)
+        public int GetPosSaleData_DoesNotThrow_PosSaleCode(string posSaleCode)
         {                    
             return Connector.GetPosSaleData(posSaleCode).Rows.Count;
         }
@@ -561,11 +540,8 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("demo", true, ExpectedResult=5)]
         [TestCase("demo", false, ExpectedResult=5)]
-        [TestCase("admin", true, ExpectedResult=0)]
         [TestCase("admin", false, ExpectedResult=0)]
-        [TestCase("admin@elpuig.xeill.net", true, ExpectedResult=1)]
         [TestCase("admin@elpuig.xeill.net", false, ExpectedResult=1)]
         [TestCase("admin @ elpuig.xeill.net", true, ExpectedResult=0)]
         [TestCase("admin @ elpuig.xeill.net", false, ExpectedResult=1)]

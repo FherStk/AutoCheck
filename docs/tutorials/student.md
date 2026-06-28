@@ -4,10 +4,14 @@ Despite that you'll find a complete tutorial below this lines, a video tutorial 
 
 ## How to use the application
 ### Pre-requisites
-This application has been developed over the **.NET 8.0**, so its runtime enviroment must be installed in order to run the app; also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app. Notice than Java's JDK is also required because some components relay on its use, like the `SourceCode` Copy Detector:
+This application has been developed over the **.NET 10.0 (LTS)**, so its runtime enviroment must be installed in order to run the app; also, the application is hosted on **GitHub** repository, so **Git** must be installed in order to download and update the app. Notice than Java's JDK is also required because some components relay on its use, like the `SourceCode` Copy Detector:
 * [Git](https://git-scm.com/downloads)
-* [.NET 8.0 SDK x64](https://dotnet.microsoft.com/download)
-* [Java Developement Kit (JDK)](http://jdk.java.net/17/)
+* [.NET 10.0 SDK x64](https://dotnet.microsoft.com/download)
+* [Java Developement Kit (JDK 21+)](https://jdk.java.net/)
+
+> **Ubuntu 24.04 / Linux Mint 22:** .NET 10 is not in the default Ubuntu 24 repositories. Install it from the Microsoft package feed: `wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && sudo apt-get update && sudo apt-get install -y dotnet-sdk-10.0`
+>
+> **Ubuntu 26.04:** .NET 10 is available directly via `sudo apt-get install dotnet-sdk-10.0`.
 
 ### Installation
 Follow this instructions in order to install the application for the first time:
@@ -16,7 +20,7 @@ Follow this instructions in order to install the application for the first time:
 3. Download the application with the following command: `git clone https://github.com/FherStk/AutoCheck.git`.
 
 ### Permissions
-**For GNU/Linux only.** Running a .NET application with `dotnet run` wont work properly with .NET6 under Ubuntu 20.04 if it has been installed as a snap package, so **shelscript launchers** has been distributed in order to use AutoCheck under any kind of OS and installation type, but some execution permissions are needed:
+**For GNU/Linux only.** Shellscript launchers have been distributed in order to use AutoCheck under any kind of OS and installation type, but some execution permissions are needed:
 1. Go to the web app folder with the following command: `cd AutoCheck/web`.
 2. Give permissions to the startup file with: `chmod +x run.sh`.
 3. Go to the cli app folder with the following command: `cd AutoCheck/cli`.

@@ -167,11 +167,21 @@ namespace AutoCheck.Test.Connectors
         [TestCase("sample6.xml", "//*[namespace-uri()=//*/namespace::*[name()!=''][1]]", ExpectedResult=26)]
         [TestCase("sample6.xml", "//*[namespace-uri()=//*/namespace::*[name()!=''][2]]", ExpectedResult=26)]
         public int XPath2(string file, string query)
-        {   
-            //Note: Uses XPath2 external library because .NET one is not compatible with XPath 2.0
+        {
             var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile(file));
             return xml.CountNodes(query);
-        }  
+        }
+
+        [Test]
+        [TestCase("sample4_comments.xml", "//*[name() = following-sibling::*/name()]", Core.Connectors.Xml.XmlNodeType.ALL, ExpectedResult=1)]
+        [TestCase("sample4_comments.xml", "//*[name() = following-sibling::*/name()]", Core.Connectors.Xml.XmlNodeType.STRING, ExpectedResult=0)]
+        [TestCase("sample4_comments.xml", "//*[name() = following-sibling::*/name()]", Core.Connectors.Xml.XmlNodeType.NUMERIC, ExpectedResult=0)]
+        [TestCase("sample4_comments.xml", "//*[name() = following-sibling::*/name()]", Core.Connectors.Xml.XmlNodeType.BOOLEAN, ExpectedResult=0)]
+        public int CountNodes_XPath2_DoesNotThrow(string file, string query, Core.Connectors.Xml.XmlNodeType type)
+        {
+            var xml = new AutoCheck.Core.Connectors.Xml(GetSampleFile(file));
+            return xml.CountNodes(query, type);
+        }
 
         [Test]
         [TestCase("sample5_dtd.xml", "sample5_dtd.xml", ExpectedResult=true)]

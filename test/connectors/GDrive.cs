@@ -18,7 +18,6 @@
     along with AutoCheck.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-//TODO: try to optimize. Now: >1:30 minutes to complete. Target: 5-10 seconds would be great... but less than a minute will do the trick
 
 using System;
 using System.IO;
@@ -50,11 +49,20 @@ namespace AutoCheck.Test.Connectors
             }
         }
 
-        [OneTimeSetUp]        
-        public override void OneTimeSetUp() 
-        {                                                                                  
+        private static void WaitUntil(Func<bool> condition, int timeoutMs = 15000, int intervalMs = 500)
+        {
+            var deadline = DateTime.UtcNow.AddMilliseconds(timeoutMs);
+            while (DateTime.UtcNow < deadline)
+            {
+                if (condition()) return;
+                Thread.Sleep(intervalMs);
+            }
+        }
+
+        [OneTimeSetUp]
+        public override void OneTimeSetUp()
+        {
             base.OneTimeSetUp();    //needs "Conn" in order to use it within "CleanUp"
-            Thread.Sleep(5000);
 
             var localConn = new AutoCheck.Core.Connectors.GDrive(_user, _secret);  
             var path = Path.Combine(_driveFolder, "Test Folder 1", "Test Folder 1.1", "TestFolder 1.1.1");
@@ -252,7 +260,7 @@ namespace AutoCheck.Test.Connectors
             remotePath = (string.IsNullOrEmpty(remoteFolder) ? remotePath : Path.Combine(remotePath, remoteFolder));
 
             conn.CreateFile(GetSampleFile(sample), remotePath, remoteFileCreate);
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFile(remotePath, remoteFileFind) != null);
 
             var f = conn.GetFile(remotePath, remoteFileFind);
             if(f == null) return null;
@@ -276,17 +284,16 @@ namespace AutoCheck.Test.Connectors
 
             //Does not exist
             ClassicAssert.IsNull(conn.GetFile(remotePath, remoteFile));
-            Thread.Sleep(5000);
             Assert.DoesNotThrow(() => conn.DeleteFile(remotePath, remoteFile));
 
             //Creating
             Assert.DoesNotThrow(() => conn.CreateFile(GetSampleFile(localFile), remotePath, remoteFile));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFile(remotePath, remoteFile) != null);
             ClassicAssert.IsNotNull(conn.GetFile(remotePath, remoteFile));
 
             //Destroying
             Assert.DoesNotThrow(() =>conn.DeleteFile(remotePath, remoteFile));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFile(remotePath, remoteFile) == null);
             ClassicAssert.IsNull(conn.GetFile(remotePath, remoteFile));      
         }
 
@@ -315,7 +322,7 @@ namespace AutoCheck.Test.Connectors
             var conn = LocalConnector; 
 
             Assert.DoesNotThrow(() => conn.CopyFile(new Uri("https://drive.google.com/file/d/0B1MVW1mFO2zmWjJMR2xSYUUwdG8/edit"), remotePath, remoteFileName));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFile(remotePath, remoteAssignedName, false) != null);
             ClassicAssert.IsNotNull(conn.GetFile(remotePath, remoteAssignedName, false));
         }
 
@@ -338,7 +345,7 @@ namespace AutoCheck.Test.Connectors
             @base = (string.IsNullOrEmpty(path) ? @base : Path.Combine(@base, path));    
 
             Assert.DoesNotThrow(() => conn.CreateFolder(@base, folder));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFolder(@base, Path.GetFileName(folder)) != null);
             ClassicAssert.IsNotNull(conn.GetFolder(@base, Path.GetFileName(folder)));
         }
 
@@ -359,17 +366,16 @@ namespace AutoCheck.Test.Connectors
 
             //Does not exist
             ClassicAssert.IsNull(conn.GetFolder(_driveFolder, folder));
-            Thread.Sleep(5000);
             Assert.DoesNotThrow(() => conn.DeleteFolder(_driveFolder, folder));
 
             //Creating
             Assert.DoesNotThrow(() => conn.CreateFolder(_driveFolder, folder));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFolder(_driveFolder, folder) != null);
             ClassicAssert.IsNotNull(conn.GetFolder(_driveFolder, folder));
 
             //Destroying
             Assert.DoesNotThrow(() => conn.DeleteFolder(_driveFolder, folder));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.GetFolder(_driveFolder, folder) == null);
             ClassicAssert.IsNull(conn.GetFolder(_driveFolder, folder));
         }
 
@@ -426,7 +432,7 @@ namespace AutoCheck.Test.Connectors
            
             Assert.That(!conn.ExistsFolder(remoteFilePath));
             Assert.DoesNotThrow(() => conn.UploadFile(LocalPathToRemote(GetSampleFile(localFilePath), "autocheck"), remoteFilePath, remoteFileName));
-            Thread.Sleep(5000);
+            WaitUntil(() => conn.ExistsFile(remoteFilePath, expectedFileName));
             Assert.That(conn.ExistsFile(remoteFilePath, expectedFileName));            
         }
 
@@ -458,8 +464,7 @@ namespace AutoCheck.Test.Connectors
 
             Assert.That(!conn.ExistsFolder(remoteFolderPath));
             Assert.DoesNotThrow(() => conn.UploadFolder(LocalPathToRemote(Path.Combine(SamplesScriptFolder, localFolderPath), "autocheck"), remoteFolderPath, remoteFolderName, recursive));
-            
-            Thread.Sleep(5000);            
+            WaitUntil(() => conn.ExistsFolder(remoteFolderPath, expectedFolderName));
             Assert.That(conn.ExistsFolder(remoteFolderPath, expectedFolderName));
 
             remoteFolderPath = Path.Combine(remoteFolderPath, expectedFolderName);            

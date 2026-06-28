@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Xml;
 using System.Linq;
 using System.Collections.Generic;
@@ -34,7 +35,8 @@ namespace AutoCheck.Core.Connectors{
     /// <summary>
     /// Allows in/out operations and/or data validations with CSS files.
     /// </summary>
-    public class Css: Base{                
+    public class Css: Base{
+        private static readonly SemaphoreSlim _w3cThrottle = new SemaphoreSlim(1, 1);                
         /// <summary>
         /// The CSS document content.
         /// </summary>
@@ -97,45 +99,53 @@ namespace AutoCheck.Core.Connectors{
         }
         
         /// <summary>
-        /// Validates the currently loaded CSS document against the W3C public API. 
+        /// Validates the currently loaded CSS document against the W3C Jigsaw public API.
+        /// Serializes concurrent requests and retries on transient failures.
         /// Throws an exception if the document is invalid.
         /// </summary>
         public void ValidateCss3AgainstW3C(){
             //Documentation:    https://jigsaw.w3.org/css-validator/manual.html
-            //                  https://jigsaw.w3.org/css-validator/api.html#requestformat        
-            var httpClient = new HttpClient();
-            var css = System.Web.HttpUtility.UrlEncode(Raw.Replace("\r\n", ""));
-            var asyncGet = httpClient.GetAsync($"http://jigsaw.w3.org/css-validator/validator?profile=css3&output=soap12&warning=no&text={css}");
-            asyncGet.Wait();
+            //                  https://jigsaw.w3.org/css-validator/api.html#requestformat
+            _w3cThrottle.Wait();
+            try{
+                var httpClient = new HttpClient();
+                var css = System.Web.HttpUtility.UrlEncode(Raw.Replace("\r\n", ""));
+                var url = $"https://jigsaw.w3.org/css-validator/validator?profile=css3&output=soap12&warning=no&text={css}";
 
-            asyncGet.Result.EnsureSuccessStatusCode();
-            
-            var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
-            asyncRead.Wait();
-            
-            XmlDocument document = new XmlDocument();
-            document.LoadXml(asyncRead.Result); 
-            
-            int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
-            if(errorCount > 0){
-                //TODO: add the error list to the description
-                //Loop through all the "m:error" nodes
-                //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"
-                foreach(XmlNode error in document.GetElementsByTagName("m:message")){
-                    //TODO: add the error list to the description
-                    //Loop through all the "m:error" nodes
-                    //  Display: "m:line" + "m:errortype" + "m:context" + "m_message"                    
-                    var message = error.InnerText.Trim();
-
-                    while(message.Contains('\n')){
-                        int i = message.IndexOf('\n');
-                        string temp = message.Substring(0, i);
-                        message = $"{temp}\\${message.Substring(i+1).TrimStart()}";
-                    }
-                    
-                    throw new DocumentInvalidException(message.Replace("\\$", System.Environment.NewLine));         
+                string xmlResponse = null;
+                for(int attempt = 0; attempt < 3; attempt++){
+                    if(attempt > 0) Thread.Sleep(1500 * attempt);
+                    var asyncGet = httpClient.GetAsync(url);
+                    asyncGet.Wait();
+                    if((int)asyncGet.Result.StatusCode == 429 || (int)asyncGet.Result.StatusCode >= 500) continue;
+                    asyncGet.Result.EnsureSuccessStatusCode();
+                    var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
+                    asyncRead.Wait();
+                    xmlResponse = asyncRead.Result;
+                    break;
                 }
-            } 
+
+                if(xmlResponse == null) throw new Exception("W3C CSS Validator unavailable after 3 attempts.");
+
+                XmlDocument document = new XmlDocument();
+                document.LoadXml(xmlResponse);
+
+                int errorCount = int.Parse(document.GetElementsByTagName("m:errorcount")[0].InnerText);
+                if(errorCount > 0){
+                    foreach(XmlNode error in document.GetElementsByTagName("m:message")){
+                        var message = error.InnerText.Trim();
+                        while(message.Contains('\n')){
+                            int i = message.IndexOf('\n');
+                            message = $"{message.Substring(0, i)}\\${message.Substring(i+1).TrimStart()}";
+                        }
+                        throw new DocumentInvalidException(message.Replace("\\$", System.Environment.NewLine));
+                    }
+                }
+            }
+            finally{
+                Thread.Sleep(500);
+                _w3cThrottle.Release();
+            }
         }          
         
         /// <summary>

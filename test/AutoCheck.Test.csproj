@@ -1,25 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <Authors>Fernando Porrino Serrano</Authors>
 		<Product>AutoCheck.Test</Product>
 		<Copyright>Copyright © 2025</Copyright>
-		<VersionPrefix>2.26.0</VersionPrefix>
+		<VersionPrefix>2.27.0</VersionPrefix>
 		<VersionSuffix>stable</VersionSuffix>
 		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
 		<AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="nunit" Version="4.3.2" />
-    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />    
-    <PackageReference Include="HtmlAgilityPack" Version="1.12.0" />
+    <PackageReference Include="nunit" Version="4.6.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\AutoCheck.Core.csproj" />
   </ItemGroup>
-   <Target Name="ObliterateAfterClean" AfterTargets="Build">
-    <RemoveDir Directories="bin\Debug\net6.0\temp" />    
-  </Target>
 </Project>

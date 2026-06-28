@@ -24,7 +24,7 @@ using NUnit.Framework.Legacy;
 
 namespace AutoCheck.Test
 {    
-    [Parallelizable(ParallelScope.All)]    
+    [Parallelizable(ParallelScope.Self)]
     public class Batch : Test
     {
         //WARNING:  Parametrization not allowed, because the temp folder would be shared. 

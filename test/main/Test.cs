@@ -20,6 +20,7 @@
 
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using AutoCheck.Core;
 using AutoCheck.Core.Exceptions;
@@ -159,7 +160,15 @@ namespace AutoCheck.Test
         }
 
         /// <summary>
-        /// This is for remote testing purposes only, so the remote machine will be the localhost. 
+        /// Normalizes absolute temp/log paths in script output so tests pass regardless of build
+        /// configuration (Debug/Release) or user home directory.
+        /// Replaces any absolute path ending in /temp/ or \temp\ with {TEMP}/.
+        /// </summary>
+        protected static string NormalizePaths(string text) =>
+            Regex.Replace(text, @"(?:[/\\][\w.-]+)+[/\\]temp[/\\]", "{TEMP}/");
+
+        /// <summary>
+        /// This is for remote testing purposes only, so the remote machine will be the localhost.
         /// If the host OS is Windows, converts an absolute local Win path to a remote one under WSL (Windows Subsystem Linux); otherwise remains as is and just replaces the local user for the remote one if given (and found).
         /// </summary>
         /// <example>"C:\folder\file.ext" -> "/mnt/c/folder/file.ext"</example>

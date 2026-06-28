@@ -282,7 +282,7 @@ namespace AutoCheck.Test.Connectors
         [TestCase(null)]
         public void CountFiles_Local_Throws_ArgumentNullException(string path)
         {
-            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFolders(path));
+            Assert.Throws<ArgumentNullException>(() => LocalConnector.CountFiles(path));
         }
 
         [Test]

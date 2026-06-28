@@ -24,8 +24,7 @@ using System.Text;
 using System.Collections.Generic;
 using SharpCompress.Readers;
 using SharpCompress.Common;
-using SharpCompress.Archives.Rar;
-using SharpCompress.Archives.Zip;
+using SharpCompress.Archives;
 
 namespace AutoCheck.Core.Connectors{    
     public class Compressed: Base{     
@@ -78,12 +77,12 @@ namespace AutoCheck.Core.Connectors{
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             
             using (var stream = File.OpenRead(filePath)){
-                using (var reader = ReaderFactory.Open(stream))
-                {     
-                    FileType = reader.ArchiveType;                               
-                    stream.Seek(0, SeekOrigin.Begin);   
-                    stream.CopyTo(FileContent);      
-                }      
+                using (var reader = ReaderFactory.OpenReader(stream, new ReaderOptions()))
+                {
+                    FileType = reader.Type;
+                    stream.Seek(0, SeekOrigin.Begin);
+                    stream.CopyTo(FileContent);
+                }
             }                     
         }
 
@@ -113,29 +112,15 @@ namespace AutoCheck.Core.Connectors{
             output ??= Path.GetDirectoryName(FilePath);
             if(!Directory.Exists(output)) throw new DirectoryNotFoundException();
             
-            var extract = new Action<IReader>((reader) => {
-                reader.WriteAllToDirectory(output, new ExtractionOptions(){
+            var readerOptions = new ReaderOptions();
+            if (password != null) readerOptions.Password = password;
+            FileContent.Seek(0, SeekOrigin.Begin);
+            using (var archive = ArchiveFactory.OpenArchive(FileContent, readerOptions))
+            {
+                archive.WriteToDirectory(output, new ExtractionOptions(){
                     ExtractFullPath = true,
                     Overwrite = true
                 });
-            });
-
-            switch(FileType){
-                case ArchiveType.Zip:
-                    var zip = ZipArchive.Open(FileContent);
-                    using (var reader = zip.ExtractAllEntries())
-                    {                
-                       extract.Invoke(reader);
-                    }
-                    break;
-                
-                case ArchiveType.Rar:
-                    var rar = RarArchive.Open(FileContent);
-                    using (var reader = rar.ExtractAllEntries())
-                    {                
-                        extract.Invoke(reader);
-                    }
-                    break;                
             }
 
             if(recursive){                

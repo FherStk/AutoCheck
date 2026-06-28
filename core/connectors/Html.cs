@@ -20,8 +20,6 @@
 
 using System;
 using System.IO;
-using System.Net;
-using System.Net.Http;
 using System.Xml;
 using System.Text;
 using System.Linq;
@@ -98,41 +96,33 @@ namespace AutoCheck.Core.Connectors{
         } 
         
         /// <summary>
-        /// Validates the currently loaded HTML document against the W3C public API. 
+        /// Validates the currently loaded HTML document using a local vnu.jar instance (Nu HTML Checker).
         /// Throws an exception if the document is invalid.
         /// </summary>
         public void ValidateHtml5AgainstW3C(){
-            //Documentation:    https://validator.w3.org/docs/api.html
-            //                  https://github.com/validator/validator/wiki/Service-%C2%BB-Input-%C2%BB-POST-body 
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+            //Documentation:    https://github.com/validator/validator
+            //vnu.jar is the same engine that powers validator.w3.org — no network needed, no rate limits.
+            var tmp = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.html");
+            try{
+                File.WriteAllText(tmp, this.Raw, Encoding.UTF8);
 
-            var asyncGet = httpClient.PostAsync("https://validator.nu?out=xml", new StringContent(this.Raw, Encoding.UTF8, "text/html"));                
-            asyncGet.Wait();
+                var shell = new Shell();
+                var (_, response) = shell.Run($"java -jar vnu.jar --format xml --errors-only \"{tmp}\"", Utils.UtilsFolder);
 
-            asyncGet.Result.EnsureSuccessStatusCode();
-            
-            var asyncRead = asyncGet.Result.Content.ReadAsStringAsync();
-            asyncRead.Wait();
-            
-            XmlDocument document = new XmlDocument();
-            document.LoadXml(asyncRead.Result); 
+                XmlDocument document = new XmlDocument();
+                document.LoadXml(response);
 
-            foreach(XmlNode msg in document.GetElementsByTagName("info")){               
-                XmlAttribute type = msg.Attributes["type"];
-                if(type != null && type.InnerText.Equals("error"))
-                    throw new DocumentInvalidException();  //TODO: add the error list to the description
+                foreach(XmlNode msg in document.GetElementsByTagName("error")){
+                    var message = msg["message"]?.InnerText ?? msg.InnerText;
+                    if(message.StartsWith("Attribute allow not allowed on element iframe at this point.")) continue;
+
+                    var extract = msg["extract"]?.InnerText ?? "";
+                    throw new DocumentInvalidException(extract.Length > 0 ? $"{message}{extract}" : message);
+                }
             }
-            
-            foreach(XmlNode msg in document.GetElementsByTagName("error")){
-                //Workaround: works on manual validation but fails on API cal...
-                if(msg.InnerText.StartsWith("Attribute allow not allowed on element iframe at this point.")) continue;
-                
-                //TODO: add the error list to the description                
-                string node = "<ul>";                
-                throw new DocumentInvalidException(msg.InnerText.Contains(node) ? msg.InnerText.Substring(0, msg.InnerText.LastIndexOf(node)) : msg.InnerText); //TODO: add the error list to the description
+            finally{
+                if(File.Exists(tmp)) File.Delete(tmp);
             }
-
         }        
         
         /// <summary>

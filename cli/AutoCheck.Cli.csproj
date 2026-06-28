@@ -3,11 +3,11 @@
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Authors>Fernando Porrino Serrano</Authors>
     <Product>AutoCheck.Cli</Product>
     <Copyright>Copyright © 2025</Copyright>
-    <VersionPrefix>2.6.0</VersionPrefix>
+    <VersionPrefix>2.7.0</VersionPrefix>
     <VersionSuffix>stable</VersionSuffix>  
     <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
     <AssemblyFileVersion>$(AssemblyVersion)</AssemblyFileVersion>

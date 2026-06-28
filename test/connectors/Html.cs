@@ -22,6 +22,7 @@ using System;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using AutoCheck.Core.Exceptions;
 using OS = AutoCheck.Core.Utils.OS;
 
@@ -145,9 +146,33 @@ namespace AutoCheck.Test.Connectors
         [TestCase("correct.html", "//table[@id='simpleOk']")]
         [TestCase("correct.html", "//table[@id='colspanOk']")]
         public void CheckTableConsistence_DoesNotThrow(string file, string xpath)
-        {                        
+        {
             using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
-                Assert.DoesNotThrow(() => conn.ValidateTable(xpath));                
+                Assert.DoesNotThrow(() => conn.ValidateTable(xpath));
+        }
+
+        [Test]
+        [TestCase("correct.html", "//body/p", ExpectedResult = 3)]
+        [TestCase("correct.html", "//p", ExpectedResult = 6)]
+        [TestCase("correct.html", "//input[@type='text']", ExpectedResult = 2)]
+        public int SelectNodes_DoesNotThrow(string file, string xpath)
+        {
+            using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
+                return conn.SelectNodes(xpath).Count;
+        }
+
+        [Test]
+        [TestCase("correct.html", "//body/p", 1, 3)]
+        [TestCase("correct.html", "//p", 2, 3)]
+        public void GroupSiblings_DoesNotThrow(string file, string xpath, int expectedGroups, int expectedSiblingsPerGroup)
+        {
+            using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
+            {
+                var groups = conn.GroupSiblings(xpath);
+                ClassicAssert.AreEqual(expectedGroups, groups.Length);
+                foreach(var g in groups)
+                    ClassicAssert.AreEqual(expectedSiblingsPerGroup, g.Length);
+            }
         }
     }
 }

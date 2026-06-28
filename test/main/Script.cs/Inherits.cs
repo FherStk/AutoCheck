@@ -25,7 +25,7 @@ using AutoCheck.Core.Exceptions;
 
 namespace AutoCheck.Test
 {    
-    [Parallelizable(ParallelScope.All)]    
+    [Parallelizable(ParallelScope.Self)]
     public class Inherits : Test
     {
         //WARNING:  Parametrization not allowed, because the temp folder would be shared. 
