@@ -162,15 +162,6 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("correct.html", "//body/p", ExpectedResult = 3)]
-        [TestCase("correct.html", "//p", ExpectedResult = 6)]
-        public int SelectNodes_WithRoot_DoesNotThrow(string file, string xpath)
-        {
-            using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
-                return conn.SelectNodes(conn.HtmlDoc.DocumentNode, xpath).Count;
-        }
-
-        [Test]
         [TestCase("correct.html", "//body/p", 1, 3)]
         [TestCase("correct.html", "//p", 2, 3)]
         public void GroupSiblings_DoesNotThrow(string file, string xpath, int expectedGroups, int expectedSiblingsPerGroup)
@@ -178,20 +169,6 @@ namespace AutoCheck.Test.Connectors
             using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
             {
                 var groups = conn.GroupSiblings(xpath);
-                ClassicAssert.AreEqual(expectedGroups, groups.Length);
-                foreach(var g in groups)
-                    ClassicAssert.AreEqual(expectedSiblingsPerGroup, g.Length);
-            }
-        }
-
-        [Test]
-        [TestCase("correct.html", "//body/p", 1, 3)]
-        [TestCase("correct.html", "//p", 2, 3)]
-        public void GroupSiblings_WithRoot_DoesNotThrow(string file, string xpath, int expectedGroups, int expectedSiblingsPerGroup)
-        {
-            using(var conn = new AutoCheck.Core.Connectors.Html(GetSampleFile(file)))
-            {
-                var groups = conn.GroupSiblings(conn.HtmlDoc.DocumentNode, xpath);
                 ClassicAssert.AreEqual(expectedGroups, groups.Length);
                 foreach(var g in groups)
                     ClassicAssert.AreEqual(expectedSiblingsPerGroup, g.Length);

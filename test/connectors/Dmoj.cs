@@ -52,17 +52,8 @@ namespace AutoCheck.Test.Connectors
         }
 
         [Test]
-        [TestCase("asix1p4curs22")]        
+        [TestCase("asix1p4curs22")]
         public void DownloadContestSubmissions_DoesNotThrow(string contestCode)
-        {      
-            using(var conn = new AutoCheck.Core.Connectors.Dmoj("dmoj.elpuig.xeill.net")){
-                Assert.DoesNotThrow(() => conn.DownloadContestSubmissions(contestCode));                
-            }                
-        }
-
-        [Test]
-        [TestCase("asix1p4curs22")]        
-        public void DownloadContestSubmissions_CountDownloads(string contestCode)
         {      
             using(var conn = new AutoCheck.Core.Connectors.Dmoj("dmoj.elpuig.xeill.net")){
                 var output = Path.Combine(AutoCheck.Core.Utils.TempFolder, "DMOJ", contestCode);
